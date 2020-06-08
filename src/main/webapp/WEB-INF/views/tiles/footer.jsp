@@ -5,7 +5,7 @@
     <div class="w3-third">
       <h3>고객센터</h3>
       <p>고객센터 자리입니다.</p>
-      <p>링크링크 <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">링크</a></p>
+      <p>고객센터내용 <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">링크</a></p>
     </div>
   
     <div class="w3-third">
