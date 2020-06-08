@@ -13,8 +13,17 @@
 <div class="w3-top">
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
     <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">menu열기</div>
-    <div class="w3-right w3-padding-16"> 메뉴2</div>
-    <div class="w3-right w3-padding-16"> 메뉴1</div>
+    <div class="w3-right w3-padding-16"><a href="#" class="w3-bar-item w3-button">Link 1</a></div>
+    <div class="w3-right w3-padding-16"><a href="#" class="w3-bar-item w3-button">Link 2</a></div>
+    
+    <div class="w3-right w3-padding-16"> 
+    <div class="w3-dropdown-hover w3-right">
+      <button class="w3-button">__님</button>
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="#" class="w3-bar-item w3-button">마이페이지</a>
+        <a href="#" class="w3-bar-item w3-button">로그아웃</a>
+      </div>
+    </div></div>
     <div class="w3-center w3-padding-16">HUBY</div>
   </div>
 </div>
