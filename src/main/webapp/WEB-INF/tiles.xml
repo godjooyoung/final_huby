@@ -15,11 +15,18 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/views/tiles/footer.jsp" />
 	</definition>
-	
+
+<!-- Pront.ver -->
 	<definition name="no/*/*" template="/WEB-INF/views/tiles/notiles.jsp">
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
-	<!-- end layout.jsp -->
+	
+<!-- change top Company version -->
+	<definition name="*/*" extends="hubyhome">
+		<put-attribute name="top"
+			value="/WEB-INF/views/tiles/topVerCompany.jsp" />
+	</definition>
+<!-- end layout.jsp -->
 
 	<!-- change body -->
 	<definition name="*/*" extends="hubyhome">
