@@ -1,4 +1,4 @@
-package co.sin.prj;
+package co.huby.prj;
 
 import java.text.DateFormat;
 import java.util.Date;
