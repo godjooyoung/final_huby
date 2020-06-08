@@ -6,13 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-
 </style>
 </head>
 <body>
 	<div>
 		<div>
-		<div><a href="main.do"><h1>HUBY</h1></a></div>
+			<div>
+				<a href="main.do"><img src="WEB-INF/img/common/logo.JPG" /></a>
+			</div>
 		</div>
 	</div>
 </body>
