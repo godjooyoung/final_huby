@@ -12,7 +12,7 @@
 <body>
 	<div>
 		<div>
-		<div><a href="home.do"><h1>HUBY</h1></a></div>
+		<div><a href="main.do"><h1>HUBY</h1></a></div>
 		</div>
 	</div>
 </body>
