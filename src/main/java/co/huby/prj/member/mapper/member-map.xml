@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="co.huby.prj.member.mapper.MemberMap">
+
+	<!-- 밑의 내용은 알아서 바꾸기 -->
+	<select id="getSelectList" resultType="MemberVO">
+		SELECT * FROM MEMBER
+	</select>
+	
+	<select id="getSelect" parameterType="MemberVO" resultType="MemberVO">
+		SELECT * FROM MEMBER WHERE ID = #{ID}
+	</select>
+	
+	<select id="memberLoginCheck" parameterType="MemberVO" resultType="MemberVO">
+		SELECT * FROM MEMBER WHERE ID = #{ID} AND PW = #{PW}
+	</select>
+	
+	<select id="memberSearch" parameterType="MemberVO" resultType="MemberVO">
+		
+	</select>
+	
+	<insert id="memberInsert" parameterType="MemberVO">
+		INSERT INTO MEMBER VALUE(#{ID},#{NAME},#{PW},#{ADDR},#{TEL},#{GENDER},#{HOBBY},#{FILENAME},#{AUTH})
+	</insert>
+	
+	<delete id="memberDelete" parameterType="MemberVO">
+		DELETE FROM MEMBER WHERE ID = #{ID}
+	</delete>
+	
+	<update id="memberUpdate" parameterType="MemberVO">
+		UPDATE MEMBER SET NAME = #{NAME}, PW = #{PW} , ADDR = #{ADDR}, TEL = #{TEL}, GENDER = #{GENDER},
+									HOBBY = #{HOBBY}, FILENAME = #{FILENAME}, AUTH = #{AUTH}
+	</update>
+</mapper>
+
