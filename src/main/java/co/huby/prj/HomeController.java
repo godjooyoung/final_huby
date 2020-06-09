@@ -36,7 +36,7 @@ public class HomeController {
 		return "common/home";
 	}
 	
-	
+	  //?
 	
 	@RequestMapping(value = "/companyAfterLogin.do")
 	public String home(Model model) {
