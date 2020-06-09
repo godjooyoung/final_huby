@@ -18,4 +18,11 @@ public class MemberController {
 		
 		return "member/myresume";
 	}
+	@RequestMapping("/memberJoin.do")
+	public String memberJoin(Model model) {
+		
+		return "no/member/memberJoin";
+	}
+	
+	
 }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="co.huby.prj.member.mapper.MemberMap">
 
-<mapper namespace="co.huby.prj.analy.mapper.AnalyMap">
-	
 	<!-- 밑의 내용은 알아서 바꾸기 -->
 	<select id="getSelectList" resultType="MemberVO">
 		SELECT * FROM MEMBER
@@ -33,3 +32,4 @@
 									HOBBY = #{HOBBY}, FILENAME = #{FILENAME}, AUTH = #{AUTH}
 	</update>
 </mapper>
+
