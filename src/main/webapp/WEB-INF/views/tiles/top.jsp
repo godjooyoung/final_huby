@@ -16,6 +16,7 @@
 <div class="w3-top">
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
     <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">menu열기</div>
+    <div><a  href="main.do"><img src="${pageContext.request.contextPath }/img/common/logo.jpg"></a></div>
     <div class="w3-right w3-padding-16"><a href="#" class="w3-bar-item w3-button">Link 1</a></div>
     <div class="w3-right w3-padding-16"><a href="#" class="w3-bar-item w3-button">Link 2</a></div>
     
