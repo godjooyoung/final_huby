@@ -9,5 +9,6 @@
 <body>
 	<h1>회원가입 유형을 선택해주세요</h1>
 	<button type="button">개인회원</button>
+	<button type="button">기업회원</button>
 </body>
 </html>
