@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- database Connection Pool 설정 -->
-	<bean id="dataSourceSpide"
+	<bean id="dataSourceSpied"
 		class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
