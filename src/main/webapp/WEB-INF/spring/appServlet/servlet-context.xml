@@ -26,9 +26,13 @@
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<beans:property name="order" value="1" />
 	</beans:bean>
+<<<<<<< HEAD
 
 
 
+=======
+	
+>>>>>>> branch 'master' of https://github.com/godjooyoung/final_huby
 	<beans:bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions">
@@ -38,6 +42,7 @@
 		</beans:property>
 	</beans:bean>
 
+<<<<<<< HEAD
 
 
 	<!-- 멀티파트 리졸버 -->
@@ -53,6 +58,19 @@
 
 	<context:component-scan
 		base-package="co.huby.prj" />
+=======
+	<!-- NO TILES 
+	<beans:bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/company/" />
+		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="2" />
+	</beans:bean>-->
+
+	<context:component-scan
+		base-package="co.huby.prj" />
+
+>>>>>>> branch 'master' of https://github.com/godjooyoung/final_huby
 
 
 </beans:beans>

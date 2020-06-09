@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:forward page="prontPage.do"></jsp:forward>
+기업 
 </body>
 </html>
