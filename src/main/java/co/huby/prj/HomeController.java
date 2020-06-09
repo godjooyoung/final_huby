@@ -36,4 +36,14 @@ public class HomeController {
 		return "common/home";
 	}
 	
+	@RequestMapping(value = "/prontPage.do")
+	public String home1(Model model) {
+		return "no/common/prontPage";
+	}
+	
+	@RequestMapping(value = "/companyAfterLogin.do")
+	public String home(Model model) {
+		return "companyStart";
+	}
+	
 }

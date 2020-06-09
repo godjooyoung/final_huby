@@ -8,6 +8,8 @@
 		template="/WEB-INF/views/tiles/layout.jsp">
 		<put-attribute name="top"
 			value="/WEB-INF/views/tiles/top.jsp" />
+		<put-attribute name="topVerCompany"
+			value="/WEB-INF/views/tiles/topVerCompany.jsp" />
 		<put-attribute name="header"
 			value="/WEB-INF/views/tiles/header.jsp" />
 		<put-attribute name="body"
@@ -25,6 +27,10 @@
 	<definition name="*/*" extends="hubyhome">
 		<put-attribute name="top"
 			value="/WEB-INF/views/tiles/topVerCompany.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/tiles/body.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/tiles/footer.jsp" />
 	</definition>
 <!-- end layout.jsp -->
 
