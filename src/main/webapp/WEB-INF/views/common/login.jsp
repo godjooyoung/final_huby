@@ -19,7 +19,7 @@
 <form name="loginform" method="post" action="../pro/LoginPro.jsp" 
                 onsubmit="return checkValue()">
 
-<br><br><br>
+<br><br><br><br>
 <h1 align="center">HUBY</h1>
 <br><br><br>
  <div style="width:50%; float:left;">
