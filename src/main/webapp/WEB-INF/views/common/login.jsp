@@ -7,43 +7,32 @@
 <title>login</title>
 </head>
 <style>
-#loginform1 {
-	display: block;
-	margin: 0 auto;
-	width: 600px;
-	height: 50px;
-	padding: 0px 300px;
-}
+ .member {
+ 	padding: 50px; 
+ }
 </style>
 <body>
 	<form name="loginform">
 		<br><br><br><br><br>
 		<h1 align="center">HUBY</h1>
 		<br><br><br>
-		<div style="width: 50%; float: left;">
-			<div id="loginform1">개인회원
-				<div>
+		<div align="center">
+				<div class="member" style="display: inline-block">개인회원</br>
+					<input type="text" name="id" maxlength="50" placeholder="ID"> <br><br>
+					<input type="password" name="password" maxlength="50" placeholder="PW">
+				</div>
+				<div class="member" style="display: inline-block">기업회원</br>
 					<input type="text" name="id" maxlength="50" placeholder="ID"> <br><br>
 					<input type="password" name="password" maxlength="50" placeholder="PW">
 				</div>
 			</div>
-		</div>
-		<div style="width: 50%; float: right;">
-			<div id="loginform2">기업회원
-				<div>
-					<input type="text" name="id" maxlength="50" placeholder="ID"> <br><br>
-					<input type="password" name="password" maxlength="50" placeholder="PW">
-				</div>
-			</div>
-		</div>
-		<div style="width: 50%; float: right;"></div>
-		<br><br><br><br><br><br><br>
+				<br><br><br>
 		<div align="center">
 			<input type="submit" value="로그인" />
-			<button type="button" onclick="location.href='main.do'">홈가기</button>
-
+			<button type="button" onclick="location.href='main.do' ">홈으로</button>
 			<br>
-			<br> <a href="memberjoin.do">회원이 아니신가요?</a>
+			<br> 
+			<a href="memberjoin.do">회원이 아니신가요?</a>
 		</div>
 	</form>
 	<!-- test -->

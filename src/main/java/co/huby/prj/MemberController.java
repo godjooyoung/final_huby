@@ -12,4 +12,10 @@ public class MemberController {
 		
 		return "no/member/employment";
 	}
+	
+	@RequestMapping("/myresume.do")
+	public String myresume(Model model) {
+		
+		return "member/myresume";
+	}
 }

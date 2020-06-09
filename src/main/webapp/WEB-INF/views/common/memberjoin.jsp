@@ -6,10 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원가입 기업 개인 구분</title>
 </head>
+<style>
+	#logo{
+	margin: 30px 100px 100px;
+	}
+</style>
 <body>
-<br><br><br><br><br><br>
+	<div id="logo">
+		<img src="${pageContext.request.contextPath}/img/common/logo.jpg">
+ </div>
 	<div align="center">
-		<h1>회원가입 유형을 선택해주세요</h1><br><br><br>
+		<h1>회원가입 유형을 선택해주세요</h1>
+		<br><br><br>
 		<button type="button">개인회원</button>
 		<button type="button">기업회원</button>
 	</div>
