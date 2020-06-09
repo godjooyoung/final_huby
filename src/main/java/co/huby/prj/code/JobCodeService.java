@@ -15,7 +15,7 @@ public class JobCodeService {
 
 	public Object getItemsFromOpenApi(String api, String JOB_TYPE, String job_dic_list)
 			throws UnsupportedEncodingException {
-
+  
 		String url = "http://www.career.go.kr/cnet/openapi/getOpenApi.json?";
 
 		RestTemplate restTemplate = new RestTemplate();
