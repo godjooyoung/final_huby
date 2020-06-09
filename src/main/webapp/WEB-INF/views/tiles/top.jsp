@@ -34,7 +34,7 @@
         <a href="#" class="w3-bar-item w3-button">로그아웃</a>
       </div>
     </div></div>
-     <div class="w3-center w3-padding-16"><a href="implement.do" />&nbsp;&nbsp;<a>지원내역</a></div>
+     <div class="w3-center w3-padding-16"><a href="employment.do">채용공고</a>&nbsp;&nbsp;<a>지원내역</a></div>
   </div>
 </div>
   
