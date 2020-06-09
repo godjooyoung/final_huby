@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="co.lucjay.prj.user.mapper.MemberMap">
-	<select id="getSelectList" resultType="MemberVO"> <!-- <![CDATA[ 특수문자인식 ]]> -->
+	<select id="getSelectList" resultType="map"> <!-- <![CDATA[ 특수문자인식 ]]> -->
 		<![CDATA[ 
 
 		]]>
 	</select>
-	<select id="getSelect" parameterType="MemberVO">
+	<!-- <select id="getSelect" parameterType="MemberVO">
 
 	</select>
 	<select id="memberLoginCheck" parameterType="MemberVO"
@@ -24,6 +24,6 @@
 	</delete>
 	<update id="memberUpdate" parameterType="MemberVO">
 
-	</update>
+	</update> -->
 
 </mapper>
