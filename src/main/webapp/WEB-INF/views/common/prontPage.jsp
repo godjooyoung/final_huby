@@ -20,6 +20,19 @@
 	height: auto !important;
 	
 }
+
+.button1 {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  }
+  .button1-1 {background-color: #4CAF50;} /* Green */
 </style>
 </head>
 <body>
@@ -30,7 +43,7 @@
 					src="${pageContext.request.contextPath}/img/common/logo.jpg" /></a>
 			</div>
 			<div align="right">
-				<button></button>
+				<button type="button" class="button1 button1-1" onclick="href='login.do'">로그인</button>
 			</div>
 		</div>
 		<div class="flex-container">
