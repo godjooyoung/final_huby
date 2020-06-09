@@ -18,10 +18,4 @@ public class MemberController {
 		
 		return "member/myresume";
 	}
-	
-	@RequestMapping("/myresume.do")
-	public String myresume(Model model) {
-		
-		return "member/myresume";
-	}
 }
