@@ -16,16 +16,18 @@
 			}
 			$.ajax({
 				url : "getData.do",
-				//	type : "POST",
+				type : "POST",
 				data : form,
 				//contentType : "application/json; charset=utf-8;",
 				dataType : "json",
 				success : function(data) {
 					console.log(data.dataSearch.content);
-					$('#tbody').append("<tr>");
-					appendingText(data.dataSearch.content.jbgp_code);
-					appendingText(data.dataSearch.content.jbgp_code_nm);
-					$('#tbody').append("</tr>");
+					for (i = 0; i < data.dataSearch.content.length; i++) {
+						$('#tbody').append("<tr>");
+						appendingText(data.dataSearch.content[i].jbgp_code);
+						appendingText(data.dataSearch.content[i].jbgp_code_nm);
+						$('#tbody').append("</tr>");
+					}
 				},
 				error : function() {
 					alert("err");
@@ -40,11 +42,11 @@
 	}
 </script>
 <body>
-	<button id="btn">btn</button>
+	<button id="btn">눌러</button>
 	<table border="1">
 		<thead>
 			<tr>
-				<td>직종</td>
+				<td>코드</td>
 				<td>이름</td>
 			</tr>
 		</thead>

@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class CodeController {
+public class JobCodeController {
 
 	@Autowired
-	CodeService codeService;
+	JobCodeService codeService;
 
 	@RequestMapping(value = "/code.do", method = RequestMethod.GET)
 	public String toHome() {
@@ -21,7 +21,7 @@ public class CodeController {
 
 	@RequestMapping(value = "/getData.do")
 	@ResponseBody
-	public Object getData(CodeVo request) throws UnsupportedEncodingException {
+	public Object getData(JobCodeVo request) throws UnsupportedEncodingException {
 		String svcType = request.getSvcType();
 		String svcCode = request.getSvcCode();
 		String gubun = request.getGubun();

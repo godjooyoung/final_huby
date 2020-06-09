@@ -11,7 +11,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
-public class CodeService {
+public class JobCodeService {
 
 	public Object getItemsFromOpenApi(String api, String JOB_TYPE, String job_dic_list)
 			throws UnsupportedEncodingException {

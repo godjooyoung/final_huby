@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-public class CodeVo {
+public class JobCodeVo {
 
 	String svcType;
 	String svcCode;
