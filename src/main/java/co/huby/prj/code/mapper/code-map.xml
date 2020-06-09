@@ -7,11 +7,5 @@
 		VALUES
 		(#{code_id},#{code_part},#{code_name},#{code_use})
 	</insert>
-	<delete id="memberDelete" parameterType="CodeVO">
-
-	</delete>
-	<update id="memberUpdate" parameterType="CodeVO">
-
-	</update>
 
 </mapper>
