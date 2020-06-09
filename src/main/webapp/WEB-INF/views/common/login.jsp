@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div style="width: 50%; float: right;"></div>
-		<br><br><br><br><br><br>
+		<br><br><br><br><br><br><br>
 		<div align="center">
 			<input type="submit" value="로그인" />
 			<button type="button" onclick="location.href='main.do'">홈가기</button>
