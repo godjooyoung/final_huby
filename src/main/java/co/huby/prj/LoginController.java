@@ -11,5 +11,10 @@ public class LoginController {
 	public String login(Model model) {
 		return "no/common/login";
 	}
+	
+	@RequestMapping("/memberjoin.do")
+	public String memberjoin(Model model) {
+		return "no/common/memberjoin";
+	}
 
 }
