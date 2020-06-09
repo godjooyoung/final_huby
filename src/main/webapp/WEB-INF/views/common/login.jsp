@@ -43,7 +43,7 @@
 			<button type="button" onclick="location.href='main.do'">홈가기</button>
 
 			<br>
-			<br> <a href="memberinsert.do">회원이 아니신가요?</a>
+			<br> <a href="memberjoin.do">회원이 아니신가요?</a>
 		</div>
 	</form>
 </body>
