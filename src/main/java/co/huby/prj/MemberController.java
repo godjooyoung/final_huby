@@ -10,6 +10,19 @@ public class MemberController {
 	@RequestMapping("/employment.do")
 	public String employment(Model model) {
 		
-		return "no/member/employment";
+		return "member/employment";
 	}
+	
+	@RequestMapping("/myresume.do")
+	public String myresume(Model model) {
+		
+		return "member/myresume";
+	}
+	@RequestMapping("/memberJoin.do")
+	public String memberJoin(Model model) {
+		
+		return "no/member/memberJoin";
+	}
+	
+	
 }

@@ -1,14 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <style>
-	.employment01{
-		width:100%;
-		height:auto;
-	}
+.employment01 {
+	width: auto;
+	height: auto;
+	padding: 6%;
+}
 </style>
-<div class="employment01"><img src="${pageContext.request.contextPath }/img/common/employment01"><br/>
-	<img src="${pageContext.request.contextPath }/img/common/employment02"><br/>
-	<img src="${pageContext.request.contextPath }/img/common/employment03">
+
+<div align="center">
+	<div class="employment01" >
+		<img src="${pageContext.request.contextPath }/img/employment01.JPG"><br />
+		<img src="${pageContext.request.contextPath }/img/employment02.JPG"><br />
+		<img src="${pageContext.request.contextPath }/img/employment03.JPG">
+		<br />
+		<div style="margin:20px">
+			<button type="button" onclick="location.href='memberUpdate.do'">정보수정</button>
 		</div>
-		<div><button type="button" onclick="location.href='memberUpdate.do'">정보수정</button></div>
+	</div>
+
+</div>

@@ -1,7 +1,13 @@
 package co.huby.prj.code;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@AllArgsConstructor
+@Getter
+@Setter
 @Data
 public class CodeVo {
 
@@ -10,7 +16,6 @@ public class CodeVo {
 	String contentType;
 	String gubun;
 	String category;
-	
 	public String getSvcType() {
 		return svcType;
 	}
@@ -41,7 +46,7 @@ public class CodeVo {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
+
 	
 	
 }

@@ -16,15 +16,15 @@
 			}
 			$.ajax({
 				url : "getData.do",
-			//	type : "POST",
+				//	type : "POST",
 				data : form,
 				//contentType : "application/json; charset=utf-8;",
 				dataType : "json",
 				success : function(data) {
-					console.log(data.response.body.items);
+					console.log(data.dataSearch.content);
 					$('#tbody').append("<tr>");
 					appendingText(data.dataSearch.content.jbgp_code);
-
+					appendingText(data.dataSearch.content.jbgp_code_nm);
 					$('#tbody').append("</tr>");
 				},
 				error : function() {
@@ -45,6 +45,7 @@
 		<thead>
 			<tr>
 				<td>직종</td>
+				<td>이름</td>
 			</tr>
 		</thead>
 		<tbody id="tbody"></tbody>
