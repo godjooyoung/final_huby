@@ -17,9 +17,11 @@
 /build/
 /bin/
 target/
+target/classes/co/huby/prj/*
 
 # Package Files #
 *.jar
 *.war
 *.ear
 *.db
+*.class
