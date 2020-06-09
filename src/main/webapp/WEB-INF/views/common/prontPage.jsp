@@ -43,7 +43,7 @@
 					src="${pageContext.request.contextPath}/img/common/logo.jpg" /></a>
 			</div>
 			<div align="right">
-				<button type="button" class="button1 button1-1" onclick="href='login.do'">로그인</button>
+				<button type="button" class="button1 button1-1" onclick="location.href='login.do'">로그인</button>
 			</div>
 		</div>
 		<div class="flex-container">
