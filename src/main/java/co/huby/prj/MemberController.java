@@ -10,6 +10,6 @@ public class MemberController {
 	@RequestMapping("/employment.do")
 	public String employment(Model model) {
 		
-		return "no/member/employment";
+		return "member/employment";
 	}
 }
