@@ -24,7 +24,7 @@
         <a href="#" class="w3-bar-item w3-button">로그아웃</a>
       </div>
     </div></div>
-    <div class="w3-center w3-padding-16">HUBY</div>
+    <div class="w3-center w3-padding-16">HUBY로 인재를 찾으세요</div>
   </div>
 </div>
   

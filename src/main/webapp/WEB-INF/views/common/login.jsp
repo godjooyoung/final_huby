@@ -46,5 +46,7 @@
 			<br> <a href="memberinsert.do">회원이 아니신가요?</a>
 		</div>
 	</form>
+	<!-- test -->
+	<button type="button" onclick="location.href='companyAfterLogin.do'">기업페이지타일즈 테스트</button>
 </body>
 </html>
