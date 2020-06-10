@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- !PAGE CONTENT! -->
 <!-- !기업회원에게 매칭해서 자기소개영상띄워주는 페이지! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px"></div>
+
+
 
   <!-- First Photo Grid-->
   <div class="w3-row-padding w3-padding-16 w3-center" id="food">
@@ -63,5 +66,11 @@
       <a href="#" class="w3-bar-item w3-button w3-hover-black">앞으로</a>
     </div>
   </div>
+  <!-- test button -->
+  	<button type="button" onclick="location.href='matchingForCompany.do' ">매칭하기</button>
+  	<c:forEach var="matched" items="${matched }">
+	${matched.video_contents }<br>
+</c:forEach>
+  <!-- test end -->
   
   <hr id="about">
