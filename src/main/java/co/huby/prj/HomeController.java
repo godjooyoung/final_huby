@@ -48,7 +48,7 @@ public class HomeController {
 		List<VideoVo> list = boardService.getMatchedListForCompany();
 
 		model.addAttribute("matched", list);
-		String viewPage = "company/companyStart";
+		String viewPage = "company/company/companyStart";
 		
 		return viewPage;
 	}
