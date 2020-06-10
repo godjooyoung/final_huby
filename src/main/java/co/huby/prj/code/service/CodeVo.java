@@ -7,6 +7,10 @@ public class CodeVo {
 	private String code_name;
 	private String code_use;
 
+	public CodeVo() {
+
+	}
+
 	public String getCode_id() {
 		return code_id;
 	}

@@ -16,6 +16,7 @@ public class JobCodeVo {
 	String contentType;
 	String gubun;
 	String category;
+	
 	public String getSvcType() {
 		return svcType;
 	}

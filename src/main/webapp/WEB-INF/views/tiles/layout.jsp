@@ -22,7 +22,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	<div id="wrapper">
 		<tiles:insertAttribute name="top" />
 		<div id="contents">
-			<tiles:insertAttribute name="header" />
 			<tiles:insertAttribute name="body" />
 			<tiles:insertAttribute name="footer" />
 		</div>

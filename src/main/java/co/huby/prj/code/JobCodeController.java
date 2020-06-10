@@ -28,4 +28,5 @@ public class JobCodeController {
 		Object response = codeService.getItemsFromOpenApi(svcType, svcCode, gubun);
 		return response;
 	}
+
 }

@@ -4,5 +4,7 @@
 	<typeAliases>
 		<typeAlias alias="MemberVO" type="co.huby.prj.member.service.MemberVo"/>
 		<!-- <typeAlias alias="MemberVO" type="co.huby.prj.member.service.CompanyMemberVo"/> -->
+		<typeAlias type="co.huby.prj.code.service.CodeVo"
+			alias="CodeVo" />
 	</typeAliases>
 </configuration>
