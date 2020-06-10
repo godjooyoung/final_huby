@@ -16,16 +16,16 @@
 		<div>
 			<div>
 				<img
-					src="${pageContext.request.contextPath}/img/common/logo.jpg" />
+					src="${pageContext.request.contextPath}/resources/img/common/logo.jpg" />
 			</div>
 			<div align="right">
-				<button type="button" class="button1 button1-1" onclick="location.href='login.do'">로그인</button>
+				<button type="button" class="btn btn-default" onclick="location.href='login.do'">로그인</button>
 			</div>
 		</div>
 		<div class="img01">
 			<div>
 				<img
-					src="${pageContext.request.contextPath }/img/common/img01.jpg" />
+					src="${pageContext.request.contextPath }/resources/img/common/img01.jpg" />
 			</div>
 		</div>
 	</div>
