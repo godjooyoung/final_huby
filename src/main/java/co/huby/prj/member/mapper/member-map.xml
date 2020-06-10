@@ -7,6 +7,10 @@
 		SELECT * FROM dual
 	</select>
 	
+	<insert id="memberInsert" parameterType="MemberVo">
+		INSERT INTO MEMBER VALUES(#{member_id}, #{member_pw}, #{member_name},#{member_birth},#{member_addr}
+		,#{member_tel},#{member_email},#{member_gender},sysdate,#{member_photo})
+	</insert>
 	<!-- <select id="getSelect" parameterType="MemberVO" resultType="MemberVO">
 		SELECT * FROM MEMBER WHERE ID = #{ID}
 	</select>
