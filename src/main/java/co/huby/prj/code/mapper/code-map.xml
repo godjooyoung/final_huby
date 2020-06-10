@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="co.huby.">
+<mapper namespace="co.huby.prj.code.mapper.CodeMap">
 
-	<insert id="codeInsert" parameterType="map">
+	<insert id="codeInsert" parameterType="co.huby.prj.code.service.CodeVo">
 		INSERT INTO CODE
 		VALUES
-		(#{code_id},#{code_part},#{code_name},#{code_use})
+		(#{code_id},'job_dic_list',#{code_name},'Y')
 	</insert>
 
 </mapper>

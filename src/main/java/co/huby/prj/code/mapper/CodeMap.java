@@ -1,5 +1,7 @@
 package co.huby.prj.code.mapper;
 
-public interface CodeMap {
+import co.huby.prj.code.service.CodeService;
+
+public interface CodeMap extends CodeService {
 
 }
