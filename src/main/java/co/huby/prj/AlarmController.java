@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AlarmController {
 
-	@RequestMapping("companyalarm.do")
+	@RequestMapping("/alarm.do")
 	public String companyalarm(Model model) {
-		return "alarm/companyalarm";
+		return "alarm/alarm";
 	}
 	
+	/*
 	@RequestMapping("personalarm.do")
 	public String memberalarm(Model model) {
 		return "alarm/personalarm";
-	}
+	}*/
 }

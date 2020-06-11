@@ -56,6 +56,17 @@
 	<!-- NO TILES <beans:bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 		<beans:property name="prefix" value="/WEB-INF/views/company/" /> <beans:property 
 		name="suffix" value=".jsp" /> <beans:property name="order" value="2" /> </beans:bean> -->
-
-
+		
+	<!--alarm websocket handler-->
+	<!-- <beans:bean id="alarmHandler" class="co.huby.prj.alarm.AlarmHandler"></beans:bean>
+	
+	<websocket:handlers>
+		<websocket:mapping handler="alarmHandler" path="/alarm"/>
+		<websocket:handshake-interceptors>
+		<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></beans:bean>
+		</websocket:handshake-interceptors>
+	</websocket:handlers> -->
+		
 </beans:beans>
+
+

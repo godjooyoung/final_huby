@@ -1,4 +1,4 @@
-package co.huby.prj.alarm.service;
+package co.huby.prj.alarm;
 
 import java.util.Date;
 
