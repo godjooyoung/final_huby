@@ -8,4 +8,6 @@
 		(#{code_id},'job_dic_list',#{code_name},'Y')
 	</insert>
 
+
+
 </mapper>
