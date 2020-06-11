@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,18 +39,20 @@ public class HomeController {
 	}
 
 
-	@RequestMapping(value = "/companyAfterLogin.do")
-	public String home(Model model) {
+	@RequestMapping(value = "/companyAfterLogin.do")//매치된거 기업에게 추천
+	public String home(Model model, HttpServletRequest request) throws Exception {
+		List<Map> list = boardService.getMatchedListForCompany();
+		model.addAttribute("matched", list);
 		return "company/company/companyStart";
 	}
-
-	@RequestMapping("/matchingForCompany.do") // 매치리스트 기업에게 개인추천
-	public String matchingList(Model model, HttpServletRequest request) throws Exception {
-		List<VideoVo> list = boardService.getMatchedListForCompany();
-
-		model.addAttribute("matched", list);
-		String viewPage = "company/company/companyStart";
+	
+	@RequestMapping(value = "/companyLikeVideo.do")//기업이 영상좋아요 버튼 누를경우 디비에 인설트
+	public void likeVideo(Model model, HttpServletRequest request) throws Exception {
+		VideoVo vo = new VideoVo();
+		boardService.videoLikeInsertFromCompany(vo);
 		
-		return viewPage;
 	}
+	
+	
+
 }

@@ -5,72 +5,52 @@
 <!-- !기업회원에게 매칭해서 자기소개영상띄워주는 페이지! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px"></div>
 
-
-
-  <!-- First Photo Grid-->
-  <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-    <div class="w3-quarter">
-      <img src="/w3images/sandwich.jpg" alt="Sandwich" style="width:100%">
-      <h3>비디오해시태그뿌려주는 자리</h3>
-      <p>비디오컨텐츠자리</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/steak.jpg" alt="Steak" style="width:100%">
-      <h3>비디오해시태그뿌려주는 자리</h3>
-      <p>비디오컨텐츠자리</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/cherries.jpg" alt="Cherries" style="width:100%">
-      <h3>비디오해시태그뿌려주는 자리</h3>
-      <p>비디오컨텐츠자리</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/wine.jpg" alt="Pasta and Wine" style="width:100%">
-       <h3>비디오해시태그뿌려주는 자리</h3>
-      <p>비디오컨텐츠자리</p>
-    </div>
-  </div>
   
-  <!-- Second Photo Grid-->
-  <div class="w3-row-padding w3-padding-16 w3-center">
+ <!-- First Photo Grid-->
+  <div class="w3-row-padding w3-padding-16 w3-center" id="food">
+  <c:forEach var="matched" items="${matched }">
     <div class="w3-quarter">
-      <img src="/w3images/popsicle.jpg" alt="Popsicle" style="width:100%">
-       <h3>비디오해시태그뿌려주는 자리</h3>
-      <p>비디오컨텐츠자리</p>
+    	<img src="${pageContext.request.contextPath}/resources/img/common/${matched.video_img }" 
+     	  alt="thumnail" style="width:100%;">
+   		<button id="btn${matched.video_id }" 
+   				name="likeBtn" 
+   				value="${matched.video_id}" type="button"
+   				onclick="clickLike(${matched.video_id})">
+   			<font color="green"><i class="fas fa-heart"></i></font>
+   		</button>
+		<h3>#${matched.code_name }</h3>
+      	<p>${matched.video_contents }</p>
     </div>
-    <div class="w3-quarter">
-      <img src="/w3images/salmon.jpg" alt="Salmon" style="width:100%">
-       <h3>비디오해시태그뿌려주는 자리</h3>
-      <p>비디오컨텐츠자리</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/sandwich.jpg" alt="Sandwich" style="width:100%">
-      <h3>비디오해시태그뿌려주는 자리</h3>
-      <p>비디오컨텐츠자리</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/croissant.jpg" alt="Croissant" style="width:100%">
-     <h3>비디오해시태그뿌려주는 자리</h3>
-      <p>비디오컨텐츠자리</p>
-    </div>
+  </c:forEach>
   </div>
+<!-- Grid END -->
+  
 
-  <!-- Pagination -->
+ <!-- Pagination -->
   <div class="w3-center w3-padding-32">
     <div class="w3-bar">
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">뒤로</a>
-      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">앞으로</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">더보기</a>
     </div>
   </div>
-  <!-- test button -->
-  	<button type="button" onclick="location.href='matchingForCompany.do' ">매칭하기</button>
-  	<c:forEach var="matched" items="${matched }">
-	${matched.video_contents }<br>
-</c:forEach>
-  <!-- test end -->
+
   
   <hr id="about">
+
+
+<form id="frm" name="frm">
+	<input type="hidden" id="hid">
+</form>
+  
+<script>
+	//좋아요 버튼 클릭하면 인설트된다.
+	function clickLike(vid){
+		var clickedBtn = document.getElementById("btn"+vid);
+		//좋아요 클릭된버튼의 아이디 찾음.
+		var clickedBtnValue = clickedBtn.value;
+		//그 버튼에 붙은 비디오아이디 값을 받아서 clickedBtnValue에 넣음.
+		hid.setAttribute('vid', clickedBtnValue);
+		frm.action ='companyLikeVideo.do';
+		frm.submit();
+		
+	}
+</script>
