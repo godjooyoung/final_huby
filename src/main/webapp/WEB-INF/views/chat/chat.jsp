@@ -1,37 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="resources/sockjs.min.js"></script>
-<title>Chat</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-	<form id="chatForm">
-		<input type="text" id="message" />
-		<button>send</button>
-	</form>
-	<div id="chat"></div>
-	<script>
-		$(document).ready(function() {
-			$("#chatForm").submit(function(event) {
-				event.preventDefault();
-				sock.send($("#message").val());
-				$("#message").val('').focus();
-			});
-		});
-
-		var sock = new SockJS("/chat");
-
-		sock.onmessage = function(e) {
-			$("#chat").append(e.data + "<br/>");
+<div id="data"></div>
+<input id="message"><button type="button" id="sendBtn">보내기</button>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+	devljh = {};
+	devljh.webSocket = {
+		init : function(oParam) {
+			this._url = oParam.url || "";
+			this._initSocket();
+			this._initEvent();
+		},
+		_initSocket : function() {
+			this._socket = new SockJS(this._url);
+			// 소켓 연결
+			this._socket.onmessage = function(evt) {
+				// evt 파라미터는 웹소켓을 보내준 데이터 
+				$("#data").append(evt.data + "<br/>");
+			};
+			this._socket.onclose = function(evt) {
+				$("#data").append("연결 끊김");
+			}
+		},
+		_initEvent : function() {
+			$("#sendBtn").on("click", (function() {
+				var msg = $("#message").val();
+				this._socket.send(msg);
+			}).bind(this));
 		}
-
-		sock.onclose = function() {
-			$("#chat").append("연결 종료");
-		}
-	</script>
+	};
+	$(document).ready(function() {
+		devljh.webSocket.init({ url: '/prj/chat.do' }); 
+	});
+</script>
 </body>
 </html>
