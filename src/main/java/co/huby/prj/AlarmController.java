@@ -12,8 +12,8 @@ public class AlarmController {
 		return "alarm/companyalarm";
 	}
 	
-	@RequestMapping("memberalarm.do")
+	@RequestMapping("personalarm.do")
 	public String memberalarm(Model model) {
-		return "alarm/memberalarm";
+		return "alarm/personalarm";
 	}
 }
