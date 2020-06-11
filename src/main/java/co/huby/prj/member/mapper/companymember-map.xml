@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="co.huby.prj.member.mapper.MemberMap">
+<mapper namespace="co.huby.prj.member.mapper.CompanyMemberMap">
 
 	
-	<select id="SelectAll" resultType="MemberVo">
-		SELECT * FROM MEMBER
-	</select>
+	<!-- <select id="SelectAll" resultType="map">
+		SELECT * FROM dual
+	</select> -->
 	
-	<select id="selectone" resultType="MemberVo" parameterType="MemberVo">
-		SELECT * FROM MEMBER WHERE member_id = #{member_id} and member_pw = #{member_pw}
-	</select>
-	
-	<insert id="memberInsert" parameterType="MemberVo">
-		INSERT INTO MEMBER VALUES(#{member_id}, #{member_pw}, #{member_name},#{member_birth},#{member_addr}
-		,#{member_tel},#{member_email},#{member_gender},sysdate,#{member_photo})
+	<insert id="companyMemberInsert" parameterType="CompanyVo">
+		INSERT INTO COMPANY(company_id, regist_number, company_name, company_pw, company_tel, ceo_name, business_type, business_category,company_date) 
+		VALUES(#{company_id},#{regist_number},#{company_name},#{company_pw},#{company_tel},
+		#{ceo_name},#{business_type},#{business_category},sysdate)
 	</insert>
 	
+	<select id="selectone" resultType="CompanyVo" parameterType="CompanyVo">
+		SELECT * FROM COMPANY WHERE company_id = #{company_id} and company_pw = #{company_pw}
+	</select>
+	
+	<!-- <insert id="companyMemberInsert" parameterType="CompanyVo">
+		INSERT INTO COMPANY 
+		VALUES(#{company_id},#{regist_number},#{company_name},#{company_pw},#{company_tel},#{company_email},
+		#{ceo_name},#{business_type},#{company_addr},#{business_category},#{company_birth},#{company_sales},#{homepage},sysdate)
+	</insert> -->
 	
 	<!-- <select id="getSelect" parameterType="MemberVO" resultType="MemberVO">
 		SELECT * FROM MEMBER WHERE ID = #{ID}

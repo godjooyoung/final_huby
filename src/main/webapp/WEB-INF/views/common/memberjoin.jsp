@@ -19,7 +19,7 @@
 		<h1>회원가입 유형을 선택해주세요</h1>
 		<br><br><br>
 		<button type="button" onclick="location.href='personalmemberjoin.do'">개인회원</button>
-		<button type="button">기업회원</button>
+		<button type="button" onclick="location.href='companymemberjoin.do'">기업회원</button>
 	</div>
 </body>
 </html>

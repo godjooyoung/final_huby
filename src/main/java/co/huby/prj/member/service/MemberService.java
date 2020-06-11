@@ -8,5 +8,4 @@ public interface MemberService {
 	int memberInsert(MemberVo vo) throws Exception;
 	int memberUpdate(MemberVo vo) throws Exception;
 	int memberDelete(MemberVo vo) throws Exception;
-	MemberVo memberLoginCheck(MemberVo vo) throws Exception;
 }

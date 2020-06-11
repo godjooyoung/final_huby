@@ -3,6 +3,7 @@ package co.huby.prj;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,16 +55,11 @@ public class MemberController {
 		
 		return "member/myresume";
 	}
-	@RequestMapping("/memberJoin.do")
-	public String memberJoin(Model model) {
-		
-		return "no/member/memberJoin";
-	}
 	
 	@RequestMapping("/personalmemberjoin.do")
 	public String PersonalMemberJoin(Model model) {
 		
-		return "no/member/personalmemberjoin";
+		return "no/common/personalmemberjoin";
 	}
 	
 	@RequestMapping("/MemberInsertJoin.do")
@@ -85,10 +82,12 @@ public class MemberController {
 		int n = memberService.memberInsert(vo);
 		
 		if (n == 1) {
-			mav.setViewName("no/member/personalmemberjoinOk");
+			mav.setViewName("no/common/login");
 		} else {
-			mav.setViewName("no/member/personalmemberjoinFail");
+			mav.setViewName("no/common/personalmemberjoinFail");
 		}
 		return mav;
 	}
+	
+	
 }

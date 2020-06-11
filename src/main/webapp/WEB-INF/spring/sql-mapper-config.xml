@@ -2,9 +2,9 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 	<typeAliases>
-		<typeAlias alias="MemberVO" type="co.huby.prj.member.service.MemberVo"/>
+		<typeAlias alias="MemberVo" type="co.huby.prj.member.service.MemberVo" />
 		<!-- <typeAlias alias="MemberVO" type="co.huby.prj.member.service.CompanyMemberVo"/> -->
-		<typeAlias type="co.huby.prj.code.service.CodeVo"
-			alias="CodeVo" />
+		<typeAlias type="co.huby.prj.code.service.CodeVo" alias="CodeVo" />
+		<typeAlias alias="CompanyVo" type="co.huby.prj.member.service.CompanyMemberVo" />
 	</typeAliases>
 </configuration>

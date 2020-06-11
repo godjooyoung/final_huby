@@ -18,13 +18,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberVo> SelectAll() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return map.SelectAll();
 	}
 
 	@Override
 	public MemberVo selectone(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return map.selectone(vo);
 	}
 
 	@Override
@@ -44,11 +44,5 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Override
-	public MemberVo memberLoginCheck(MemberVo vo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	
 	}
-
-}
