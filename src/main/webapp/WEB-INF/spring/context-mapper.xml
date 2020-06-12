@@ -16,7 +16,7 @@
 	</bean>
 	<!-- Mapper InterFace 위치 정의 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="co.huby.prj.*.*" />
+		<property name="basePackage" value="co.huby.prj.*.mapper" />
 	</bean>
 
 	<bean id="sqlSessionTemplate"

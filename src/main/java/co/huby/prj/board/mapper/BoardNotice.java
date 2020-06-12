@@ -8,6 +8,6 @@ package co.huby.prj.board.mapper;
  LIKE_EMPLOYMENT, 
  LIKE_VIDEO, 
  INTEREST_RESUME
-  등등.. ㅈㄴ 많아요... 
+  등등.. 많아요... 
 	
  */

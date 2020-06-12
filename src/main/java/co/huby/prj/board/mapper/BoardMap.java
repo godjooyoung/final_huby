@@ -1,5 +1,14 @@
 package co.huby.prj.board.mapper;
-import co.huby.prj.board.service.BoardService;
-public interface BoardMap extends BoardService {
-	
+import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.annotation.MapperScan;
+
+import co.huby.prj.common.LikeVideoVo;
+import co.huby.prj.common.VideoVo;
+
+@MapperScan
+public interface BoardMap  {
+	List<Map> getMatchedListForCompany(VideoVo vo) ;
+	void videoLikeInsertFromCompany(LikeVideoVo vo) ;
 }
