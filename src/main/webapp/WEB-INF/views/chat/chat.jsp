@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="data"></div>
+<div id="data"><br><br><br><br><br><br><br><br><br></div>
 <input id="message"><button type="button" id="sendBtn">보내기</button>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -38,7 +38,7 @@
 		}
 	};
 	$(document).ready(function() {
-		devljh.webSocket.init({ url: '/prj/chat.do' }); 
+		devljh.webSocket.init({ url: '/chat.do' }); 
 	});
 </script>
 </body>
