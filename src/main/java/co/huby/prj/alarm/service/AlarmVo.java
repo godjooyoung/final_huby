@@ -1,6 +1,6 @@
-package co.huby.prj.alarm;
+package co.huby.prj.alarm.service;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class AlarmVo {
 	//alarm
@@ -8,9 +8,9 @@ public class AlarmVo {
 	private String alarm_id;
 	private String alarm_current;
 	private String member_id;
-	private String company_id; 
+	private String company_id;
 	private String alarm_message;
-	private Date alarm_time;
+	private Timestamp alarm_time;
 	
 	//
 	public String getAlarm_id() {
@@ -43,10 +43,10 @@ public class AlarmVo {
 	public void setAlarm_message(String alarm_message) {
 		this.alarm_message = alarm_message;
 	}
-	public Date getAlarm_time() {
+	public Timestamp getAlarm_time() {
 		return alarm_time;
 	}
-	public void setAlarm_time(Date alarm_time) {
+	public void setAlarm_time(Timestamp alarm_time) {
 		this.alarm_time = alarm_time;
 	}
 	}

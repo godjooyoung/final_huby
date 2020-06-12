@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="co.huby.prj.alarm.mapper.AlarmMap">
+
+	<insert id="alarmInsert" parameterType="co.huby.prj.alarm.service.AlarmVo">
+		INSERT INTO ALARM VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP);
+	</insert>
+
+</mapper>
