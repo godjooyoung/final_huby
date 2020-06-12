@@ -24,6 +24,8 @@
   </c:forEach>
   </div>
 <!-- Grid END -->
+
+
   
 
  <!-- Pagination -->
@@ -37,20 +39,33 @@
   <hr id="about">
 
 
-<form id="frm" name="frm">
-	<input type="hidden" id="hid">
+<form id="frmFevorite" name="frmFevorite">
+	<input type="hidden" id="hideenId" value="" name="vid">
 </form>
-  
+
+
 <script>
 	//좋아요 버튼 클릭하면 인설트된다.
-	function clickLike(vid){
-		var clickedBtn = document.getElementById("btn"+vid);
-		//좋아요 클릭된버튼의 아이디 찾음.
-		var clickedBtnValue = clickedBtn.value;
-		//그 버튼에 붙은 비디오아이디 값을 받아서 clickedBtnValue에 넣음.
-		hid.setAttribute('vid', clickedBtnValue);
-		frm.action ='companyLikeVideo.do';
-		frm.submit();
+	function clickLike(video_id){
+		alert(video_id);
+		frmFevorite.vid.value=video_id;
+		var video_id  = frmFevorite.vid.value;
+		
+		$.ajax({
+			type:"get",
+			url:"companyLikeVideo.do",
+			data : {'video_id': video_id },
+			success: function(video_id){
+				alert(video_id + "를 스크랩했습니다");
+			},
+			error: function(){
+			  alert("에러 발생. 관리자에게 문의주세요.");
+			}
+		})
+		
+		//frmFevorite.vid.value=video_id;
+		//frmFevorite.action ='companyLikeVideo.do';
+		//frmFevorite.submit();
 		
 	}
 </script>

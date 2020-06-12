@@ -23,7 +23,7 @@
 	<!-- 기업이 영상에 좋아요 버튼을 클릭할경우 테이블에 저장되는거. -->
 	<insert id="videoLikeInsertFromCompany" parameterType="co.huby.prj.common.VideoVo">
 	INSERT INTO like_video
-	VALUES (LIKE_VIDEO_SEQ.nextval, #{ID}, (select member_id from video where video_id= #{ID}), 'comtest2');
+	VALUES (LIKE_VIDEO_SEQ.nextval, #{video_id}, (select member_id from video where video_id= #{video_id}), 'comtest2')
 	</insert>
 	
 	
