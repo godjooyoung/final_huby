@@ -67,7 +67,7 @@ public class LoginController {
 		
 		if(vo2 != null) {
 			if(vo2.getCompany_pw().equals(vo.getCompany_pw())) {
-			mav.setViewName("company/company/companyStart");
+			mav.setViewName("redirect:companyAfterLogin.do");
 			request.getSession().setAttribute("companyVo", vo2);
 			request.getSession().setAttribute("companyloginid", vo2.getCompany_id());
 			}
