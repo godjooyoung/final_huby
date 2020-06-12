@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -50,7 +51,9 @@ public class LoginController {
 			
 			}
 		}else {
-			mav.setViewName("no/common/personalLoginFail");
+			String num = "1"; 
+			request.setAttribute("num", num);
+			mav.setViewName("no/common/login");
 		}
 		return mav;
 	}
@@ -69,10 +72,18 @@ public class LoginController {
 			request.getSession().setAttribute("companyloginid", vo2.getCompany_id());
 			}
 		}else {
-			mav.setViewName("no/common/companyLoginFail");
+			String num = "1"; 
+			request.setAttribute("num", num);
+			mav.setViewName("no/common/login");
 		}
 		
 		return mav;
 	}
 	
+	/*@RequestMapping("/idCheck.do")
+	public String idCheck(Model model, HttpServletRequest request) {
+		String id = 
+		
+		return "no/common/personalmemberjoin";
+	}*/	
 }

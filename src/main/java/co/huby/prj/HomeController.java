@@ -44,6 +44,8 @@ public class HomeController {
 
 	@RequestMapping(value = "/companyAfterLogin.do")//매치된거 기업에게 추천
 	public String home(Model model, HttpServletRequest request, VideoVo vo) throws Exception {
+		String companyid=(String) request.getSession().getAttribute("companyloginid");
+		vo.setCompany_id(companyid);
 		List<Map> list = boardService.getMatchedListForCompany(vo);
 		model.addAttribute("matched", list);
 		return "company/company/companyStart";   
@@ -51,8 +53,10 @@ public class HomeController {
 	
 	@RequestMapping(value = "/companyLikeVideo.do")//기업이 영상좋아요 버튼 누를경우 디비에 인설트
 	public String likeVideo(Model model, HttpServletRequest request, LikeVideoVo vo) throws Exception {
+		String companyid=(String) request.getSession().getAttribute("companyloginid");
 		String vid = request.getParameter("vid");
 		vo.setVideo_id(vid);
+		vo.setCompany_id(companyid);
 		boardService.videoLikeInsertFromCompany(vo);
 		return "redirect:companyAfterLogin.do";
 	}
