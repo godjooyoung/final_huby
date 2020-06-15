@@ -26,6 +26,28 @@
 	VALUES (LIKE_VIDEO_SEQ.nextval, #{video_id}, (select member_id from video where video_id= #{video_id}), #{company_id})
 	</insert>
 	
+	<!-- 기업이 낸 공고 조회하기 -->
+	<select id="getCompany_Employments" parameterType="string" resultType="map">
+	select * from employments where company_id = #{value} 
+	</select>
+	
+	<!-- 기업이 낸 공고에 지원한 사람 목록 보기. -->
+	<select id="getCompany_ApplyList" parameterType="string" resultType="map">
+		SELECT A.apply_date as "apply_date", A.employment_id as "employment_id", A.member_id as "member_id", 
+			   A.resume_id as "resume_id",
+               E.employment_title as "employment_title", E.employment_time as "employment_time",
+               M.member_name as "member_name",
+               R.resume_title as "resume_title"
+        FROM apply A
+        JOIN member M
+   	    ON A.member_id = M.member_id
+            JOIN employments E
+            ON A.employment_id = E.employment_id
+                JOIN resume R
+                ON A.resume_id = R.resume_id
+                    WHERE E.company_id =#{companyid} and A.employment_id = #{listviewid}
+                        ORDER BY E.employment_time  
+	</select>
 	
 	<!-- <select id="getSelect" parameterType="MemberVO" resultType="MemberVO">
 		SELECT * FROM MEMBER WHERE ID = #{ID}
