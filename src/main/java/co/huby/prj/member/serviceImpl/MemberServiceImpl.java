@@ -45,4 +45,10 @@ public class MemberServiceImpl implements MemberService {
 		return 0;
 	}
 	
+	@Override
+	public MemberVo memberIdCheck(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.memberIdCheck(vo);
+	}
+	
 	}

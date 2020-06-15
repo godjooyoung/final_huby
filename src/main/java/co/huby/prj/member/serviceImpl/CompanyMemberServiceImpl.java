@@ -45,4 +45,15 @@ public class CompanyMemberServiceImpl implements CompanyMemberService {
 		return 0;
 	}
 
+	@Override
+	public CompanyMemberVo companyMemberIdCheck(CompanyMemberVo vo) {
+		// TODO Auto-generated method stub
+		return map.companyMemberIdCheck(vo);
+	}
+
+	@Override
+	public CompanyMemberVo companyrNumCheck(CompanyMemberVo vo) {
+		// TODO Auto-generated method stub
+		return map.companyrNumCheck(vo);
+	}
 }

@@ -8,4 +8,6 @@ public interface CompanyMemberService {
 	int companyMemberInsert(CompanyMemberVo vo);
 	int companyMemberUpdate(CompanyMemberVo vo);
 	int companyMemberDelete(CompanyMemberVo vo);
+	CompanyMemberVo companyMemberIdCheck(CompanyMemberVo vo);
+	CompanyMemberVo companyrNumCheck(CompanyMemberVo vo);
 }

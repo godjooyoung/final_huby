@@ -21,6 +21,7 @@
 <script>
 	function CompanyLoginCheck(){
 			
+		
 			var id = document.getElementById("company_id");
 			var pw = document.getElementById("company_pw");
 			
@@ -49,7 +50,8 @@
 </script>
 <script>
 	function PersonalLoginCheck(){
-		
+			
+			
 			var id = document.getElementById("member_id");
 			var pw = document.getElementById("member_pw");
 			

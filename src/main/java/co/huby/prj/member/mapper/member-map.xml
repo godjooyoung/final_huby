@@ -16,6 +16,9 @@
 		,#{member_tel},#{member_email},#{member_gender},sysdate,#{member_photo})
 	</insert>
 	
+	<select id="memberIdCheck" resultType="MemberVo" parameterType="MemberVo">
+		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_ID = #{member_id}
+	</select>
 	
 	<!-- <select id="getSelect" parameterType="MemberVO" resultType="MemberVO">
 		SELECT * FROM MEMBER WHERE ID = #{ID}

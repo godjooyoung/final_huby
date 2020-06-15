@@ -76,6 +76,8 @@ public class MemberController {
 			file = new FileRenamePolicy().rename(file);
 			uploadFile.transferTo(file);
 			vo.setMember_photo(file.getName());
+		}else {
+			vo.setMember_photo("");
 		}
 		
 		

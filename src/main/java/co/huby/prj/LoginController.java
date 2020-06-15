@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.huby.prj.member.service.CompanyMemberService;
@@ -80,10 +81,36 @@ public class LoginController {
 		return mav;
 	}
 	
-	/*@RequestMapping("/idCheck.do")
-	public String idCheck(Model model, HttpServletRequest request) {
-		String id = 
-		
-		return "no/common/personalmemberjoin";
-	}*/	
+	@ResponseBody
+	@RequestMapping("/idCheck.do")
+	public String idCheck(Model model, HttpServletRequest request, MemberVo vo) throws Exception {
+		MemberVo checkVo = memberService.memberIdCheck(vo);
+		String num = "0";
+		if(checkVo != null) {
+			num = "1";
+		}
+		return num;
+	}	
+	
+	@ResponseBody
+	@RequestMapping("/CompanyidCheck.do")
+	public String CompanyidCheck(Model model, HttpServletRequest request, CompanyMemberVo vo) throws Exception {
+		CompanyMemberVo checkVo = companyMemberService.companyMemberIdCheck(vo);
+		String num = "0";
+		if(checkVo != null) {
+			num = "1";
+		}
+		return num;
+	}	
+	
+	@ResponseBody
+	@RequestMapping("/CompanyrNumCheck.do")
+	public String CompanyrNumCheck(Model model, CompanyMemberVo vo) {
+		CompanyMemberVo checkVo = companyMemberService.companyrNumCheck(vo);
+		String num = "0";
+		if(checkVo != null) {
+			num = "1";
+		}
+		return num;
+	}
 }

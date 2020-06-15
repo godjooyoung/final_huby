@@ -1,19 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-	function companyinsertgo(){
-		$("#frm").attr("action","CompanyInsertJoin.do");
-		$("#frm").submit();
-	}
-</script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<style>
+	.r_num1{ width: 30px }
+	.r_num2{ width: 25px }
+	.r_num3{ width: 50px }
+	.tel1{ width: 30px }
+	.tel2{ width: 40px }
+	.tel3{ width: 40px }
+</style>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function sample4_execDaumPostcode() {
@@ -50,32 +55,482 @@
                 console.log(data) */
                 // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
                 if(data.userSelectedType == 'R'){
-                	frm.company_addr.value = roadAddr;
+                	frm.company_addr1.value = roadAddr;
                 } else {
-                	frm.company_addr.value = data.jibunAddress;
+                	frm.company_addr1.value = data.jibunAddress;
                 }
             }
         }).open();
     }
 </script>
+<script>
+function idcheck(){
+	var id = $("#company_id").val();
+	var idCheck = /^[a-z]+[a-z0-9]{5,19}$/g;
+	
+	$.ajax({
+	    url:'/CompanyidCheck.do', //request 보낼 서버의 경로
+	    dataType: 'json',
+	    type:'post', // 메소드(get, post, put 등)
+	    data:{'company_id':$("#company_id").val()}, //보낼 데이터
+	    success: function(data) {
+	        if(data==1){
+	        	$("#overlap").html("아이디가 중복입니다.");
+	        	$("#overlap").css("color", "red");
+	        	return false;
+	        }else if(id == "" || !idCheck.test(id)) {
+				$("#overlap").html("영문자로 시작하는 6~20자 영문자 또는 숫자 입력.");
+				$('#overlap').css("color", "red");
+				return false;
+			}else {
+				$('#overlap').html("사용 가능한 아이디입니다.");
+				$('#overlap').css("color", "blue");
+				return true;
+			}
+	    }
+	});
+}
+/* function r_numcheck(){
+	var r_numRule = /^[0-9]*$/	
+	var r_num1 = $("#regist_number1").val();
+	var r_num2 = $("#regist_number2").val();
+	var r_num3 = $("#regist_number3").val();
+	var r_num = $("#regist_number").val();
+	
+	if(r_num1 == "" || r_num2 == "" || r_num3 == ""){
+		$("#r_numblur").html("숫자를 모두 입력해주세요.");
+		$('#r_numblur').css("color", "red");
+		return;
+	}
+	
+	if(!r_numRule.test(r_num1) || !r_numRule.test(r_num2) || !r_numRule.test(r_num3)){
+		$("#r_numblur").html("숫자만 입력해주세요.");
+		$('#r_numblur').css("color", "red");
+		return;
+	}
+	
+	if(r_numRule.test(r_num1) || r_numRule.test(r_num2) || r_numRule.test(r_num3)){
+		r_num = r_num1 + "-" + r_num2 + "-" + r_num3;
+		$.ajax({
+		    url:'/CompanyrNumCheck.do', //request 보낼 서버의 경로
+		    dataType: 'json',
+		    type:'post', // 메소드(get, post, put 등)
+		    data:{'regist_number':r_num}, //보낼 데이터
+		    success: function(data) {
+		        if(data==1){
+		        	$("#r_numblur").html("이미 가입된 사업자입니다.");
+		        	$("#r_numblur").css("color", "red");
+		        	return false;
+		        }else {
+					$('#r_numblur').html("사용할 수 있는 사업자 번호입니다.");
+					$('#r_numblur').css("color", "blue");
+					return true;
+				}
+		    }
+		});
+	}
+} */
+	function r_numcheck(){
+		var r_num = $("#regist_number").val();
+		var r_numRule = /^\d{3}-\d{2}-\d{5}$/;
+	
+		if(!r_numRule.test(r_num)){
+			$("#r_numblur").html("ex) 604-12-63412");
+			$("#r_numblur").css("color","red");
+		}else{
+			$.ajax({
+			    url:'/CompanyrNumCheck.do', //request 보낼 서버의 경로
+			    dataType: 'json',
+			    type:'post', // 메소드(get, post, put 등)
+			    data:{'regist_number':r_num}, //보낼 데이터
+			    success: function(data) {
+			        if(data==1){
+			        	$("#r_numblur").html("이미 가입된 사업자입니다.");
+			        	$("#r_numblur").css("color", "red");
+			        	return false;
+			        }else {
+						$('#r_numblur').html("사용 가능한 사업자 번호입니다.");
+						$('#r_numblur').css("color", "blue");
+						return true;
+					}
+			    }
+			});
+		}
+	}
+
+function namecheck(){
+	var name = $("#company_name").val();
+	var nameRule = /^[가-힣a-zA-Z()]{1,7}$/;
+	if(name == "" || !nameRule.test(name)){
+		$("#nameblur").html("1~7글자 한글,영어(공백 없음)만 입력 가능합니다.");
+		$("#nameblur").css("color", "red");
+	}else{
+		$("#nameblur").html("사용 가능한 회사명입니다");
+		$("#nameblur").css("color", "blue");
+	}
+}
+
+function pwcheck(){
+	var pw = $("#company_pw").val();
+	var pwcheck = /^[A-Za-z0-9]{6,20}$/;
+	
+	if (pw == '' || !pwcheck.test(pw)) {
+		$('#pwblur').html("6~20자 영문자 또는 숫자 입력.");
+		$('#pwblur').css("color", "red");
+	} else {
+		$('#pwblur').html("사용가능한 패스워드입니다.");
+		$('#pwblur').css("color", "blue");
+	}
+}
+
+function pwcheck2(){
+	var pw2 = $("#company_pw2").val();
+	var pw = $("#company_pw").val();
+	
+	if(pw != '' && pw2 == pw){
+		$('#pwblur2').html("패스워드가 일치합니다.");
+		$('#pwblur2').css("color", "blue");
+	}else{
+		$('#pwblur2').html("패스워드를 확인하세요.");
+		$('#pwblur2').css("color", "red");
+	}
+}
+
+/* function telcheck(){
+	var telRule = /^[0-9]*$/
+	var tel1 = $("#company_tel1").val();
+	var tel2 = $("#company_tel2").val();
+	var tel3 = $("#company_tel3").val();
+	
+	if(tel1 == "" || tel2 == "" || tel3 == ""){
+		$('#telblur').html("번호를 전부 입력해주세요");
+		$('#telblur').css("color", "red");
+		return;
+	}
+	
+	if(!telRule.test(tel1) || !telRule.test(tel2) || !telRule.test(tel3)){
+		$('#telblur').html("숫자만 입력해주세요.");
+		$('#telblur').css("color", "red");
+		return;
+		
+	} else {
+		$('#telblur').html("정상적으로 번호가 입력되었습니다.");
+		$('#telblur').css("color", "blue");
+		return true;
+	} 
+} */
+
+function telcheck(){
+	var tel = $("#company_tel").val();
+	var telRule = /^\d{3}-\d{3,4}-\d{4}$/;
+
+	if(!telRule.test(tel)){
+		$('#telblur').html("ex) 010-8164-2731 또는 016-593-1929");
+		$('#telblur').css("color", "red");
+		return false;
+	}else{
+		$('#telblur').html("사용 가능한 번호입니다.");
+		$('#telblur').css("color", "blue");
+		return true;
+	}
+}
+
+/* function emailcheck(){
+	var email1 = $("#company_email1").val();
+	var email2 = $("#company_email2").val();
+	var email3 = $("#company_email3").val();
+	var emailRule = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+	
+	if(email3 == "custom"){
+			if(email1 == "" || email2 == ""){
+				$("#emailblur").html("이메일을 입력해주세요.");
+				$("#emailblur").css("color","red");
+				return;
+			}else{
+				var email = email1 + "@" + email2;
+				if(emailRule.test(email)){
+					$("#emailblur").html("사용가능한 이메일입니다.");
+					$("#emailblur").css("color","blue");
+				}else{
+					$("#emailblur").html("이메일 형식이 맞지않습니다.");
+					$("#emailblur").css("color","red");
+				}
+			}
+	}else{
+			if(email1 == ""){
+				$("#emailblur").html("이메일을 입력해주세요.");
+				$("#emailblur").css("color","red");
+				return;
+			}else{
+				if(emailRule.test(email)){
+				$("#emailblur").html("사용가능한 이메일입니다.");
+				$("#emailblur").css("color","blue");
+				}
+			}
+	}
+}
+
+function custom(selected){	
+	var email1 = $("#company_email1").val();
+	var email2 = $("#company_email2").val();
+	var email3 = $("#company_email3").val();
+	
+	if(selected == "custom"){
+		$("#company_email2").show();
+		if(email1 == "" || email2 == ""){
+			$("#emailblur").html("이메일을 입력해주세요.");
+			$("#emailblur").css("color","red");
+			return;
+		}
+	}
+	else{
+		$("#company_email2").val("");
+		$("#company_email2").hide();
+		if(email1 != ""){
+			$("#emailblur").html("사용가능한 이메일입니다.");
+			$("#emailblur").css("color","blue");
+			return;
+		}else{
+			$("#emailblur").html("이메일을 입력해주세요.");
+			$("#emailblur").css("color","red");
+		}
+	}
+} */
+
+function emailcheck(){
+	var email = $("#company_email").val();
+	var emailRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	
+	if(!emailRule.test(email)){
+		$("#emailblur").html("ex) abcd1234@naver.com")
+		$('#emailblur').css("color", "red");
+		return false;
+	}else{
+		$("#emailblur").html("사용 가능한 이메일입니다.")
+		$('#emailblur').css("color", "blue");
+		return true;
+	}
+}
+
+function ceonamecheck(){
+	var ceoname = $("#ceo_name").val();
+	var ceonameRule = /^[가-힣]{2,5}$/;
+	
+	if (ceoname == '' || !ceonameRule.test(ceoname)) {
+		$('#ceoblur').html(" 2~5글자(공백 없음) 한글만 입력 가능.");
+		$('#ceoblur').css("color", "red");
+		return;
+	} else {
+		$('#ceoblur').html("사용가능한 이름입니다.");
+		$('#ceoblur').css("color", "blue");
+		return true;
+	}
+}
+
+function bcategorycheck(){
+	var bcategory = $("#business_category").val();  
+	var bcategoryRule = /^[가-힣]{2,5}$/;
+	
+	if(!bcategoryRule.test(bcategory)){
+		$("#bcategoryblur").html("2~5글자(공백 없음) 한글만 입력 가능.");
+		$('#bcategoryblur').css("color", "red");
+	}else{
+		$("#bcategoryblur").html("사용 가능한 카테고리입니다.");
+		$('#bcategoryblur').css("color", "blue");
+	}
+}
+
+function homepagecheck(){
+	var homepage = $("#homepage").val();
+	var homepageRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	
+	if(!homepageRule.test(homepage)){
+		$("#homepageblur").html("ex) abcd1234@naver.com");
+		$('#homepageblur').css("color", "red");
+	}else{
+		$("#homepageblur").html("사용 가능한 이메일입니다.")
+		$('#homepageblur').css("color", "blue");
+	}
+}
+
+function joincheck(){
+		/* var tel1 = $("#company_tel1").val();
+		var tel2 = $("#company_tel2").val();
+		var tel3 = $("#company_tel3").val();
+		$("#company_tel").val(tel1 + "-" + tel2 + "-" + tel3); */
+		
+		/* var rnum1 = $("#regist_number1").val();
+		var rnum2 = $("#regist_number2").val();
+		var rnum3 = $("#regist_number3").val();
+		$("#regist_number").val(rnum1 + "-" + rnum2 + "-" + rnum3); */
+		
+		var addr1 = $("#company_addr1").val();
+		var addr2 = $("#company_addr2").val();
+		$("#company_addr").val(addr1+" "+addr2); 
+		
+		/* var email1 = $("#company_email1").val();
+		var email2 = $("#company_email2").val();
+		var email3 = $("#company_email3").val();
+		var email = "";
+		
+		if(email3 == "custom"){
+			email = email1 + "@" + email2;
+		}else{
+			email = email1 + "@" + email3;	
+		}
+		$("#company_email").val(email); */
+		
+		return true;
+	}
+</script>
 </head>
 <body>
-<h1>기업 회원가입</h1>
-<form id="frm" name="frm" method="post">
-회사아이디:<input type="text" id="company_id" name="company_id" width="300px"><br>
-사업자등록번호:<input type="text" id="regist_number" name="regist_number" width="300px"><br>
-회사명:<input type="text" id="company_name" name="company_name" width="300px"><br>
-회사비밀번호:<input type="password" id="company_pw" name="company_pw" width="300px"><br>
-회사전화번호:<input type="text" id="company_tel" name="company_tel" width="300px"><br>
-회사이메일:<input type="text" id="company_email" name="company_email" width="300px"><br>
-CEO명:<input type="text" id="ceo_name" name="ceo_name" width="300px"><br>
-종목:<input type="text" id="business_type" name="business_type" width="300px"><br>
-회사주소:<input type="text" id="company_addr" name="company_addr" width="300px"><input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-카테고리:<input type="text" id="business_category" name="business_category" width="300px"><br>
-회사설립일:<input type="date" id="company_birth" name="company_birth" width="300px"><br>
-회사매출액:<input type="text" id="company_sales" name="company_sales" width="300px"><br>
-회사홈페이지:<input type="text" id="homepage" name="homepage" width="300px"><br>
-<button type="button" onclick="companyinsertgo()">전송</button>
+<form class="form-horizontal" id="frm" name="frm" method="post" action="CompanyInsertJoin.do" onsubmit="return joincheck()">
+<fieldset style="padding: 20px 20px 20px 20px;">
+
+<!-- Form Name -->
+<legend align="center">기업 회원가입</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">아이디</label>  
+  <div class="col-md-4">
+	 <input class="form-control input-md" type="text" id="company_id" name="company_id" required="required" onblur="idcheck()" maxlength="20" placeholder="Enter Your ID">
+	 <span class="help-block" id="overlap"></span>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">사업자등록번호</label>  
+  <div class="col-md-4">
+  	<input class="form-control input-md" type="text" id="regist_number" name="regist_number" required="required" onblur="r_numcheck()" maxlength="12" placeholder="Enter Your Company Registration Number">
+    <span class="help-block" id="r_numblur"></span>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">회사명</label>  
+  <div class="col-md-4">
+  	<input class="form-control input-md" type="text" id="company_name" name="company_name" required="required" onblur="namecheck()" maxlength="5" placeholder="Enter Your Company Name">
+    <span class="help-block" id="nameblur"></span>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">비밀번호</label>  
+  <div class="col-md-4">
+ 	 <input class="form-control input-md" type="password" id="company_pw" name="company_pw" required="required" onblur="pwcheck()" maxlength="20" placeholder="Enter Your Password">
+ 	 <span class="help-block" id="pwblur"></span> 
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">비밀번호 확인</label>  
+  <div class="col-md-4">
+ 	 <input class="form-control input-md" type="password" id="company_pw2" name="company_pw2" required="required" onblur="pwcheck2()" maxlength="20" placeholder="Repeat Your Password"><br>
+ 	 <span class="help-block" id="pwblur2"></span> 
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">전화번호</label>  
+  <div class="col-md-4">
+  	<input class="form-control input-md" type="text" id="company_tel" name="company_tel" required="required" onblur="telcheck()" maxlength="13" placeholder="Enter Your Phone">
+  	<span class="help-block" id="telblur"></span> 
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">이메일</label>  
+  <div class="col-md-4">
+  	<input class="form-control input-md" type="text" id="company_email" name="company_email" onblur="emailcheck()" maxlength="30" placeholder="Enter Your Email">
+  	<span class="help-block" id="emailblur"></span> 
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">CEO이름</label>  
+  <div class="col-md-4">
+  	<input class="form-control input-md" type="text" id="ceo_name" name="ceo_name" required="required" maxlength="5" onblur="ceonamecheck()" placeholder="Enter Company CEO Name">
+  	<span class="help-block" id="ceoblur"></span> 
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">종목 api 당긴거 가져와야 함</label>  
+  <div class="col-md-4">
+  	<input class="form-control input-md" type="text" id="business_type" name="business_type" required="required" maxlength="15" placeholder="Enter Your Company Code">
+  	<span class="help-block" id=""></span> 
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">주소</label>  
+  <div class="col-md-4">
+  	<input class="form-control input-md" type="text" id="company_addr1" name="company_addr1" maxlength="50" placeholder="Enter Your Company Address">
+  	<input class="form-control input-md" type="text" id="company_addr2" name="company_addr2" placeholder="Detail Company Address" maxlength="50">
+  	<input class="btn btn-primary" type="button" onclick="sample4_execDaumPostcode()" value="주소 찾기">
+  	<input type="hidden" id="company_addr" name="company_addr">
+  	<span class="help-block" id=""></span> 
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">카테고리 텍스트만 입력하면 되는가?</label>  
+  <div class="col-md-4">
+  	<input class="form-control input-md" type="text" id="business_category" name="business_category" required="required" onblur="bcategorycheck()" maxlength="5" placeholder="Enter Your Company Category"><br>
+  	<span class="help-block" id="bcategoryblur"></span> 
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">설립일</label>  
+  <div class="col-md-4">
+  	<input class="form-control input-md" type="date" id="company_birth" name="company_birth" required="required">
+  	<span class="help-block" id=""></span> 
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">매출액</label>  
+  <div class="col-md-4">
+  	<input class="form-control input-md" type="text" id="company_sales" name="company_sales" placeholder="Enter Your Company Sales" maxlength="10"><br>
+  	<span class="help-block" id=""></span> 
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">홈페이지</label>  
+  <div class="col-md-4">
+  	<input class="form-control input-md" type="text" id="homepage" name="homepage" onblur="homepagecheck()" maxlength="30" placeholder="Enter Your Company Homepage Address"><br>
+  	<span class="help-block" id="homepageblur"></span> 
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <input class="btn btn-success" type="submit" value="가입하기">
+           <input class="btn btn-success" type="reset"" value="취소">
+  </div>
+</div>
+
+</fieldset>
 </form>
 </body>
 </html>
