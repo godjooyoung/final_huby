@@ -5,5 +5,13 @@
 	<insert id="alarmInsert" parameterType="co.huby.prj.alarm.service.AlarmVo">
 		INSERT INTO ALARM VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP);
 	</insert>
-
+	
+	<select id="personalarm" parameterType="co.huby.prj.alarm.service.AlarmVo" resultType="co.huby.prj.alarm.service.AlarmVo">
+		SELECT COMPANY_ID, ALARM_MESSAGE, ALARM_TIME FROM ALARM WHERE MEMBER_ID = #{member_id}
+	</select>
+	
+	<select id="companyalarm" parameterType="co.huby.prj.alarm.service.AlarmVo" resultType="co.huby.prj.alarm.service.AlarmVo">
+		SELECT MEMBER_ID, ALARM_MESSAGE, ALARM_TIME, ALARM_CURRENT FROM ALARM WHERE COMPANY_ID = #{company_id}
+	</select>
+	
 </mapper>
