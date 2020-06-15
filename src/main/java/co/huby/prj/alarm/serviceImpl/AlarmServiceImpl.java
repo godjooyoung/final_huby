@@ -1,8 +1,6 @@
 package co.huby.prj.alarm.serviceImpl;
 
-import java.util.List;
-import java.util.Map;
-
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +14,12 @@ public class AlarmServiceImpl implements AlarmService {
 	private AlarmMap map;
 	
 	@Override
-	public List<AlarmVo> personalarmlist() throws Exception{
+	public ArrayList<AlarmVo> personalarmlist() throws Exception{
 		return map.personalarm();
 	}
 
 	@Override
-	public List<AlarmVo> companyalarmlist() throws Exception {
+	public ArrayList<AlarmVo> companyalarmlist() throws Exception {
 		// TODO Auto-generated method stub
 		return map.companyalarm();
 	}

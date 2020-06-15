@@ -8,12 +8,3 @@
 	String id = (String)session.getAttribute("personalVo");
 %>
 
-<%
-	
-	AlarmVo vo = new AlarmVo();
-	ArrayList<AlarmVo> list = new ArrayList<AlarmVo>();
-	String view = null;
-	list = .personalarm();
-%>
-
-<% for 
