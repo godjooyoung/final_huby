@@ -1,5 +1,7 @@
 package co.huby.prj;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +18,17 @@ public class ChatController {
 	// System.out.println("웹소켓(서버) 객체생성");
 	// }
 
-	@RequestMapping(value = "/chat.do")
-	public String getChatViewPage(Model model) {
-		return "chat/chat";
+	@RequestMapping(value = "/company_chat.do")
+	public String getChatViewPage(Model model, HttpServletRequest request) {
+		String companyid = (String) request.getSession().getAttribute("companyloginid");
+		return "company/chat/test";
+
+	}
+
+	@RequestMapping(value = "/person_chat.do")
+	public String getChatViewPage2(Model model, HttpServletRequest request) {
+		String personalid = (String) request.getSession().getAttribute("personalloginid");
+		return "person/chat/test";
 
 	}
 

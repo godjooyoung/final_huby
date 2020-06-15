@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="co.huby.prj.chat.mapper.ChatMap">
+
+	<insert id="createRoom">
+		INSERT INTO interview (interview_id = member_id , company_id,
+		resume_id)
+		VALUES(#{member_id}, #{company_id} , #{resume_id} )
+	</insert>
+
+	<select id="isRoom" resultType="InterviewVo">
+		SELECT * FROM interview WHERE
+		member_id = #{member_id} AND company_id = #{company_id} AND resume_id
+		= #{resume_id}
+	</select>
+
+	<select id="getMember" resultType="MessageVo">
+		SELECT member_id FROM message
+		WHERE company_id = #{company_id} AND resume_id = #{resume_id}
+	</select>
+
+	<select id="getProfile" resultType="MemberVo">
+		SELECT * FROM member WHERE
+		member_id = #{member_id}
+	</select>
+
+	<select id="getMessageList" resultType="InterviewVo">
+		select m.* , member_name,
+		member_photo
+		from Interview i left outer join member m on
+		m.message_sender = m.member_id
+		where interview_id = #{interview_id}
+	</select>
+
+	<select id="getRoomList" resultType="InterviewVo">
+		select * from interview
+		where member_id = #{member_id}
+	</select>
+	<select id="getRoomList2" resultType="InterviewVo">
+		select * from interview
+		where company_id = #{company_id}
+	</select>
+
+	<select id="getCompany" resultType="String">
+		select company_id from
+		company where company_id = #{company_id}
+	</select>
+
+	<update id="updateReadTime">
+		update MESSAGE set message_readTime = NOW() where
+		company_id = #{company_id} AND resume_id = #{resume_id} AND
+		message_readTime = message_sendTime and
+		message_sender = company_id and
+		member_id = #{member_id};
+	</update>
+
+	<update id="updateReadTimeCompany">
+		update MESSAGE set message_readTime = NOW() where
+		company_id =
+		#{company_id} AND resume_id =
+		#{resume_id} AND
+		message_readTime = message_sendTime and
+		message_sender = member_id
+		and
+		member_id = #{member_id};
+	</update>
+
+	<select id="getUnReadCount" resultType="int">
+		select * from
+		MESSAGE
+		where member_id = #{member_id} and
+		company_id =
+		#{company_id} AND
+		resume_id =
+		#{resume_id} AND
+		message_readTime = message_sendTime and
+		message_sender =
+		company_id;
+
+	</select>
+	<select id="getUnReadCountCompany" resultType="int">
+		select * from
+		MESSAGE where company_id =#{company_id}
+		and
+		resume_id = #{resume_id} AND
+		message_readTime =
+		message_sendTime and message_sender = member_id and
+		member_id =
+		#{member_id};
+
+	</select>
+
+	<select id="getAllCount" resultType="int">
+		select * from MESSAGE
+		WHERE
+		(company_id = #{company_id} and message_readTime = message_sendTime
+		and
+		message_sender != #{member_id}) or
+		(member_id = #{member_id}
+		and
+		message_readTime = message_sendTime
+		and message_sender !=
+		#{member_id});
+	</select>
+</mapper>

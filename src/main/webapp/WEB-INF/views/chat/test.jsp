@@ -6,15 +6,20 @@
 
 <html>
 <head>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <link rel="stylesheet" type="text/css"
-	href="../../../resources/css/bootstrap-grid.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap-grid.css">
 <link rel="stylesheet" type="text/css"
-	href="../../../resources/css/bootstrap-reboot.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap-reboot.css">
 <link rel="stylesheet" type="text/css"
-	href="../../../resources/css/bootstrap.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="../../../resources/css/bootstrap.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="../../../resources/css/page.css">
 <link rel="stylesheet"
@@ -22,18 +27,14 @@
 <link rel="stylesheet" type="text/css"
 	href="../../../resources/css/style.css">
 <script type="text/javascript"
-	src="../../../resources/js/jquery-3.2.1.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 
 </head>
 
 <body>
-
 	<c:set var="profile" value='<%=session.getAttribute("login")%>' />
-
-
-
 	<div class="col-12 row justify-content-center align-items-center my-5 ">
 		<a href=""><img src="../../../resources/image/AlmomLogo.png"
 			alt="Almom Logo" width="180px" class="img-fluid" /></a>
@@ -43,19 +44,15 @@
 			<span> 목록 </span>
 		</div>
 		<div class="col-8" style="float: left; text-align: center;">
-			${tutor_name } 님과 대화</div>
+			${company_name } 님과 대화</div>
 		<div class="col-2" style="float: right">
 			<span> 닫기 </span>
 		</div>
-
-
-
 	</div>
 	<div class="col-12" style="margin-top: 40px; clear: both;">
 		<div class="col-10"
 			style="margin: 20px auto; text-align: center; color: white; background-color: #01D1FE; border: 1px solid #01D1FE; padding: 10px 10px; border-radius: 8px;">
-			수업 일정과 강의 내용에 대해 문의해보세요. <br>(연락처 문의 또는 직접 알려주는 것은 불가)
-		</div>
+			문의해보세요.</div>
 
 	</div>
 	<!-- 채팅 내용 -->
@@ -63,13 +60,8 @@
 		<div class="col-11"
 			style="margin: 0 auto; border: 1px solid #01D1FE; height: 400px; border-radius: 10px; overflow: scroll"
 			id="chatArea">
-
 			<div id="chatMessageArea"
 				style="margin-top: 10px; margin-left: 10px;"></div>
-
-
-
-
 		</div>
 	</div>
 
@@ -79,8 +71,6 @@
 			<textarea class="form-control"
 				style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%"
 				placeholder="Enter ..." id="message">
-
-
 				</textarea>
 			<span
 				style="float: right; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px;">
@@ -89,14 +79,13 @@
 				id="sendBtn"><br>전송</a>
 			</span>
 		</div>
-
 	</div>
 
 
 	<img id="profileImg" class="img-fluid"
-		src="/displayFile?fileName=${userImage}&directory=profile"
+		src="/displayFile?fileName=${member_photo}&directory=profile"
 		style="display: none">
-	<input type="text" id="nickname" value="${user_name }"
+	<input type="text" id="nickname" value="${member_name }"
 		style="display: none">
 	<input type="button" id="enterBtn" value="입장" style="display: none">
 	<input type="button" id="exitBtn" value="나가기" style="display: none">
@@ -104,7 +93,7 @@
 		connect();
 
 		function connect() {
-			sock = new SockJS('/chat');
+			sock = new SockJS('/chat.do');
 			sock.onopen = function() {
 				console.log('open');
 			};
@@ -125,11 +114,10 @@
 			var msg = $("#message").val();
 			if (msg != "") {
 				message = {};
-				message.message_content = $("#message").val()
-				message.TUTOR_USER_user_id = '${TUTOR_USER_user_id}'
-				message.USER_user_id = '${profile.user_id}'
-				message.CLASS_class_id = '${class_id}'
-				message.message_sender = '${profile.user_id}'
+				//		message.message_content = $("#message").val()
+
+				message.message_receiver = '${userType}' == 'C' ? 'test4' : 'comtest1';
+				message.message_sender = '${loginId}'
 			}
 
 			sock.send(JSON.stringify(message));
@@ -152,7 +140,6 @@
 		function leadingZeros(n, digits) {
 			var zero = '';
 			n = n.toString();
-
 			if (n.length < digits) {
 				for (i = 0; i < digits - n.length; i++)
 					zero += '0';
@@ -161,11 +148,9 @@
 		}
 
 		function appendMessage(msg) {
-
 			if (msg == '') {
 				return false;
 			} else {
-
 				var t = getTimeStamp();
 				$("#chatMessageArea")
 						.append(

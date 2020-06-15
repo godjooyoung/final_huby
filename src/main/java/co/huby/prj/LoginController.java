@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,7 +47,9 @@ public class LoginController {
 			if(vo2.getMember_pw().equals(vo.getMember_pw())) {
 			mav.setViewName("person/common/home");
 			request.getSession().setAttribute("personalVo", vo2);
-			request.getSession().setAttribute("personalloginid", vo2.getMember_id());
+			request.getSession().setAttribute("loginId", vo2.getMember_id());
+			request.getSession().setAttribute("loginType", "U");
+			
 			
 			}
 		}else {
@@ -70,7 +71,8 @@ public class LoginController {
 			if(vo2.getCompany_pw().equals(vo.getCompany_pw())) {
 			mav.setViewName("redirect:companyAfterLogin.do");
 			request.getSession().setAttribute("companyVo", vo2);
-			request.getSession().setAttribute("companyloginid", vo2.getCompany_id());
+			request.getSession().setAttribute("loginId", vo2.getCompany_id());
+			request.getSession().setAttribute("loginType", "C");
 			}
 		}else {
 			String num = "1"; 
