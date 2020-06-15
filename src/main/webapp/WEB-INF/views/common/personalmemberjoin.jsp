@@ -34,6 +34,7 @@
 <script>
 <!-- 정규식 검사 시작 -->
 	function joincheck(){
+		var cnt = 0;
 		/* var tel1 = $("#member_tel1").val();
 		var tel2 = $("#member_tel2").val();
 		var tel3 = $("#member_tel3").val();
@@ -78,15 +79,15 @@
 		        if(data==1){
 		        	$("#overlap").html("아이디가 중복입니다.");
 		        	$('#overlap').css("color", "red");
-		        	return false;
+		        	cnt++;
 		        }else if(id == "" || !idCheck.test(id)) {
 					$("#overlap").html("영문자로 시작하는 6~20자 영문자 또는 숫자 입력.");
 					$('#overlap').css("color", "red");
-					return false;
+					cnt++;
 				}else {
 					$('#overlap').html("사용 가능한 아이디입니다.");
 					$('#overlap').css("color", "blue");
-					return true;
+				
 				}
 		    }
 		});
@@ -94,30 +95,31 @@
 	
 	var pw = $('#member_pw').val();
 	var pwcheck = /^[A-Za-z0-9]{6,20}$/;
-	if (pw == '' || !pwcheck.test(pw)) {
-		$('#pwcheck').html("6~20자 영문자 또는 숫자 입력.");
-		$('#pwcheck').css("color", "red");
-		return false;
-	} else {
-		$('#pwcheck').html("사용 가능한 패스워드입니다.");
-		$('#pwcheck').css("color", "blue");
-		return true;
+	
+	if(pw != ""){
+		if (!pwcheck.test(pw)) {
+			$('#pwcheck').html("6~20자 영문자 또는 숫자 입력.");
+			$('#pwcheck').css("color", "red");
+			cnt++;
+		} else {
+			$('#pwcheck').html("사용 가능한 패스워드입니다.");
+			$('#pwcheck').css("color", "blue");
+		}
 	}
-
 
 	var pw = $('#member_pw').val();
 	var pw2 = $('#member_pw2').val();
 	
-	if (pw == pw2) {
-		$('#pwcheck2').html("패스워드가 일치합니다.");
-		$('#pwcheck2').css("color", "blue");
-		return false;
-	} else {
-		$('#pwcheck2').html("패스워드가 일치하지않습니다. 다시 확인해주세요");
-		$('#pwcheck2').css("color", "red");
-		return true;
+	if(pw != "" && pw2 != ""){
+		if (pw == pw2) {
+			$('#pwcheck2').html("패스워드가 일치합니다.");
+			$('#pwcheck2').css("color", "blue");
+		} else {
+			$('#pwcheck2').html("패스워드가 일치하지않습니다. 다시 확인해주세요");
+			$('#pwcheck2').css("color", "red");
+			cnt++;
+		}
 	}
-
 
 
 	var name = $('#member_name').val();
@@ -125,11 +127,10 @@
 	if (name == '' || !nameCheck.test(name)) {
 		$('#namecheck').html("2~5글자(공백 없음) 한글만 입력 가능.");
 		$('#namecheck').css("color", "red");
-		return false;
+		cnt++;
 	} else {
 		$('#namecheck').html("사용 가능한 이름입니다.");
 		$('#namecheck').css("color", "blue");
-		return true;
 	}
 
 
@@ -163,11 +164,10 @@
 	if(!telRule.test(tel)){
 		$('#telcheck').html("ex) 010-8164-2731 또는 016-593-1929");
 		$('#telcheck').css("color", "red");
-		return false;
+		cnt++;
 	}else{
 		$('#telcheck').html("사용 가능한 번호입니다.");
 		$('#telcheck').css("color", "blue");
-		return true;
 	}
 
 
@@ -177,14 +177,20 @@
 	if(!emailRule.test(email)){
 		$("#emailcheck").html("ex) abcd1234@naver.com")
 		$('#emailcheck').css("color", "red");
-		return false;
+		cnt++;
 	}else{
 		$("#emailcheck").html("사용 가능한 이메일입니다.")
 		$('#emailcheck').css("color", "blue");
-		return true;
+		
 	}
 
+	if(cnt > 0){
+		alert("조건을 정확히 입력해주세요");
+		return false;
+	}else{
+		return true;
 	}
+}
 </script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -369,7 +375,7 @@ function namecheck(){
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="name">아이디</label>  
+          <label class="col-md-4 control-label" for="name">*아이디</label>  
           <div class="col-md-4">
           <input class="form-control input-md" type="text" id="member_id" name="member_id" required="required" maxlength="20" onblur="idcheck()" placeholder="Enter Your ID">
           <span class="help-block" class="error" id="overlap"></span>  
@@ -378,7 +384,7 @@ function namecheck(){
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="phone">비밀번호</label>  
+          <label class="col-md-4 control-label" for="phone">*비밀번호</label>  
           <div class="col-md-4">
           <input class="form-control input-md" type="password" id="member_pw" name="member_pw" required="required" onblur="pwcheck()" placeholder="Enter Your Password" maxlength="20">
           <span class="help-block" id="pwcheck"></span>  
@@ -387,7 +393,7 @@ function namecheck(){
         
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="phone">비밀번호 확인</label>  
+          <label class="col-md-4 control-label" for="phone">*비밀번호 확인</label>  
           <div class="col-md-4">
           <input class="form-control input-md" type="password" id="member_pw2" name="member_pw2" required="required" onblur="pwcheck2()" placeholder="Repeat Your Password" maxlength="20">
           <span class="help-block" id="pwcheck2"></span>  
@@ -396,7 +402,7 @@ function namecheck(){
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="email">이름</label>  
+          <label class="col-md-4 control-label" for="email">*이름</label>  
           <div class="col-md-4">
           <input class="form-control input-md" text" id="member_name" name="member_name" required="required" onblur="namecheck()" placeholder="Enter Your Name" maxlength="5">
           <span class="help-block" id="namecheck" ></span>  
@@ -405,7 +411,7 @@ function namecheck(){
 
         <!-- Password input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="password">생일 </label>
+          <label class="col-md-4 control-label" for="password">*생일 </label>
           <div class="col-md-4">
             <input class="form-control input-md" type="date" id="member_birth" name="member_birth" required="required">
             <span class="help-block"></span>
@@ -426,7 +432,7 @@ function namecheck(){
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="address1">번호</label>  
+          <label class="col-md-4 control-label" for="address1">*번호</label>  
           <div class="col-md-4">
 			<input class="form-control input-md" type="text" id="member_tel" name="member_tel" onblur="telcheck()" required="required" placeholder="Enter Your Phone" maxlength="13">
 			<span class="help-block" id="telcheck"></span>
@@ -435,7 +441,7 @@ function namecheck(){
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="address1">이메일</label>  
+          <label class="col-md-4 control-label" for="address1">*이메일</label>  
           <div class="col-md-4">
 			<input class="form-control input-md" type="text" id="member_email" name="member_email" required="required" onblur="emailcheck()" placeholder="Enter Your Email" maxlength="30">
 			<span class="help-block" id="emailcheck"></span>
@@ -444,7 +450,7 @@ function namecheck(){
 
         <!-- Password input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="password">성별 </label>
+          <label class="col-md-4 control-label" for="password">*성별 </label>
           <div class="col-md-4">
             <input type="radio" id="member_gender" name="member_gender" value="M" checked required="required">&nbsp;남 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="radio" id="member_gender" name="member_gender" value="W" required="required">&nbsp;여

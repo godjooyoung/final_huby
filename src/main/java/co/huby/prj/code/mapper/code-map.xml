@@ -7,7 +7,12 @@
 		VALUES
 		(#{code_id},'job_dic_list',#{code_name},'Y')
 	</insert>
-
+	
+	<select id="SelectAll" resultType="CodeVo">
+		SELECT CODE_ID, CODE_PART, CODE_NAME, CODE_USE
+		FROM CODE
+		WHERE CODE_PART = 'job_dic_list'
+	</select>
 
 
 </mapper>

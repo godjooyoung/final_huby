@@ -1,5 +1,7 @@
 package co.huby.prj;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.huby.prj.code.service.CodeService;
+import co.huby.prj.code.service.CodeVo;
 import co.huby.prj.member.service.CompanyMemberService;
 import co.huby.prj.member.service.CompanyMemberVo;
 import co.huby.prj.member.service.MemberService;
@@ -21,6 +25,8 @@ public class LoginController {
 	MemberService memberService;
 	@Autowired
 	CompanyMemberService companyMemberService;
+	@Autowired
+	CodeService codeService;
 	
 	@RequestMapping("/login.do")
 	public String login(Model model) {
@@ -33,7 +39,10 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/companymemberjoin.do")
-	public String CompanyMemberJoin(Model model) {
+	public String CompanyMemberJoin(Model model) throws Exception {
+		List<CodeVo> typeVo = codeService.SelectAll();
+		model.addAttribute("typeVo",typeVo);
+		
 		return "no/common/companymemberjoin";
 	}
 

@@ -302,14 +302,16 @@ function emailcheck(){
 	var email = $("#company_email").val();
 	var emailRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	
-	if(!emailRule.test(email)){
-		$("#emailblur").html("ex) abcd1234@naver.com")
-		$('#emailblur').css("color", "red");
-		return false;
-	}else{
-		$("#emailblur").html("사용 가능한 이메일입니다.")
-		$('#emailblur').css("color", "blue");
-		return true;
+	if(email != ""){
+		if(!emailRule.test(email)){
+			$("#emailblur").html("ex) abcd1234@naver.com")
+			$('#emailblur').css("color", "red");
+			return false;
+		}else{
+			$("#emailblur").html("사용 가능한 이메일입니다.")
+			$('#emailblur').css("color", "blue");
+			return true;
+		}
 	}
 }
 
@@ -345,16 +347,19 @@ function homepagecheck(){
 	var homepage = $("#homepage").val();
 	var homepageRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	
-	if(!homepageRule.test(homepage)){
-		$("#homepageblur").html("ex) abcd1234@naver.com");
-		$('#homepageblur').css("color", "red");
-	}else{
-		$("#homepageblur").html("사용 가능한 이메일입니다.")
-		$('#homepageblur').css("color", "blue");
+	if(homepage != ""){
+		if(!homepageRule.test(homepage)){
+			$("#homepageblur").html("ex) abcd1234@naver.com");
+			$('#homepageblur').css("color", "red");
+		}else{
+			$("#homepageblur").html("사용 가능한 이메일입니다.")
+			$('#homepageblur').css("color", "blue");
+		}
 	}
 }
 
 function joincheck(){
+		var cnt = 0;
 		/* var tel1 = $("#company_tel1").val();
 		var tel2 = $("#company_tel2").val();
 		var tel3 = $("#company_tel3").val();
@@ -380,9 +385,191 @@ function joincheck(){
 			email = email1 + "@" + email3;	
 		}
 		$("#company_email").val(email); */
+		var id = $("#company_id").val();
+		var idCheck = /^[a-z]+[a-z0-9]{5,19}$/g;
 		
-		return true;
+		$.ajax({
+		    url:'/CompanyidCheck.do', //request 보낼 서버의 경로
+		    dataType: 'json',
+		    type:'post', // 메소드(get, post, put 등)
+		    data:{'company_id':$("#company_id").val()}, //보낼 데이터
+		    success: function(data) {
+		        if(data==1){
+		        	$("#overlap").html("아이디가 중복입니다.");
+		        	$("#overlap").css("color", "red");
+		        	cnt++;
+		        }else if(id == "" || !idCheck.test(id)) {
+					$("#overlap").html("영문자로 시작하는 6~20자 영문자 또는 숫자 입력.");
+					$('#overlap').css("color", "red");
+					cnt++;
+				}else {
+					$('#overlap').html("사용 가능한 아이디입니다.");
+					$('#overlap').css("color", "blue");
+				}
+		    }
+		});
+		
+		var r_num = $("#regist_number").val();
+		var r_numRule = /^\d{3}-\d{2}-\d{5}$/;
+	
+		if(!r_numRule.test(r_num)){
+			$("#r_numblur").html("ex) 604-12-63412");
+			$("#r_numblur").css("color","red");
+		}else{
+			$.ajax({
+			    url:'/CompanyrNumCheck.do', //request 보낼 서버의 경로
+			    dataType: 'json',
+			    type:'post', // 메소드(get, post, put 등)
+			    data:{'regist_number':r_num}, //보낼 데이터
+			    success: function(data) {
+			        if(data==1){
+			        	$("#r_numblur").html("이미 가입된 사업자입니다.");
+			        	$("#r_numblur").css("color", "red");
+			        	cnt++;
+			        }else {
+						$('#r_numblur').html("사용 가능한 사업자 번호입니다.");
+						$('#r_numblur').css("color", "blue");
+					}
+			    }
+			});
+		}
+		
+		var name = $("#company_name").val();
+		var nameRule = /^[가-힣a-zA-Z()]{1,7}$/;
+		if(name == "" || !nameRule.test(name)){
+			$("#nameblur").html("1~7글자 한글,영어(공백 없음)만 입력 가능합니다.");
+			$("#nameblur").css("color", "red");
+			cnt++;
+		}else{
+			$("#nameblur").html("사용 가능한 회사명입니다");
+			$("#nameblur").css("color", "blue");
+		}
+		
+		var pw = $("#company_pw").val();
+		var pwcheck = /^[A-Za-z0-9]{6,20}$/;
+		
+		if (pw == '' || !pwcheck.test(pw)) {
+			$('#pwblur').html("6~20자 영문자 또는 숫자 입력.");
+			$('#pwblur').css("color", "red");
+			cnt++;
+		} else {
+			$('#pwblur').html("사용가능한 패스워드입니다.");
+			$('#pwblur').css("color", "blue");
+		}
+		
+		var pw2 = $("#company_pw2").val();
+		var pw = $("#company_pw").val();
+		
+		if(pw != '' && pw2 == pw){
+			$('#pwblur2').html("패스워드가 일치합니다.");
+			$('#pwblur2').css("color", "blue");
+		}else{
+			$('#pwblur2').html("패스워드를 확인하세요.");
+			$('#pwblur2').css("color", "red");
+			cnt++;
+		}
+		
+		var tel = $("#company_tel").val();
+		var telRule = /^\d{3}-\d{3,4}-\d{4}$/;
+
+		if(!telRule.test(tel)){
+			$('#telblur').html("ex) 010-8164-2731 또는 016-593-1929");
+			$('#telblur').css("color", "red");
+			cnt++;
+		}else{
+			$('#telblur').html("사용 가능한 번호입니다.");
+			$('#telblur').css("color", "blue");
+		}
+		
+		var email = $("#company_email").val();
+		var emailRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		
+		if(email != ""){
+			if(!emailRule.test(email)){
+				$("#emailblur").html("ex) abcd1234@naver.com")
+				$('#emailblur').css("color", "red");
+				cnt++;
+			}else{
+				$("#emailblur").html("사용 가능한 이메일입니다.")
+				$('#emailblur').css("color", "blue");
+			}
+		}
+		
+		var ceoname = $("#ceo_name").val();
+		var ceonameRule = /^[가-힣]{2,5}$/;
+		
+		if (ceoname == '' || !ceonameRule.test(ceoname)) {
+			$('#ceoblur').html(" 2~5글자(공백 없음) 한글만 입력 가능.");
+			$('#ceoblur').css("color", "red");
+			cnt++;
+		} else {
+			$('#ceoblur').html("사용가능한 이름입니다.");
+			$('#ceoblur').css("color", "blue");
+		}
+
+		var type = $("#business_type").val();
+		if(type == ""){
+			$("#typeblur").html("종목을 선택하세요");
+			$("#typeblur").css("color","red");
+			cnt++;
+		}else{
+			$("#typeblur").html("입력 완료.");
+			$("#typeblur").css("color","blue");
+		}
+		
+		var bcategory = $("#business_category").val();  
+		var bcategoryRule = /^[가-힣]{2,5}$/;
+		
+		if(!bcategoryRule.test(bcategory)){
+			$("#bcategoryblur").html("2~5글자(공백 없음) 한글만 입력 가능.");
+			$('#bcategoryblur').css("color", "red");
+			cnt++;
+		}else{
+			$("#bcategoryblur").html("사용 가능한 카테고리입니다.");
+			$('#bcategoryblur').css("color", "blue");
+		}
+		
+		
+		
+		var birth = $("#company_birth").val()
+		var birthRule = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
+				
+		
+		var homepage = $("#homepage").val();
+		var homepageRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		if(homepage != ""){
+			if(homepage != "" && !homepageRule.test(homepage)){
+				$("#homepageblur").html("ex) abcd1234@naver.com");
+				$('#homepageblur').css("color", "red");
+				cnt++;
+			}else{
+				$("#homepageblur").html("사용 가능한 이메일입니다.")
+				$('#homepageblur').css("color", "blue");
+			}
+		}
+		
+		if(cnt > 0){
+			alert("조건을 정확히 입력해주세요");
+			return false;
+		}else{
+			return true;
+		}
 	}
+	
+		function typecheck(selected){
+			var type = $("#business_type").val();
+			if(type == ""){
+				$("#typeblur").html("종목을 선택하세요");
+				$("#typeblur").css("color","red");
+			}else{
+				$("#typeblur").html("입력 완료.");
+				$("#typeblur").css("color","blue");
+			}		
+		}
+		
+		function salescheck(selected){
+			$("#company_sales").val();
+		}
 </script>
 </head>
 <body>
@@ -394,7 +581,7 @@ function joincheck(){
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">아이디</label>  
+  <label class="col-md-4 control-label" for="textinput">*아이디</label>  
   <div class="col-md-4">
 	 <input class="form-control input-md" type="text" id="company_id" name="company_id" required="required" onblur="idcheck()" maxlength="20" placeholder="Enter Your ID">
 	 <span class="help-block" id="overlap"></span>
@@ -403,7 +590,7 @@ function joincheck(){
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">사업자등록번호</label>  
+  <label class="col-md-4 control-label" for="textinput">*사업자등록번호</label>  
   <div class="col-md-4">
   	<input class="form-control input-md" type="text" id="regist_number" name="regist_number" required="required" onblur="r_numcheck()" maxlength="12" placeholder="Enter Your Company Registration Number">
     <span class="help-block" id="r_numblur"></span>
@@ -412,7 +599,7 @@ function joincheck(){
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">회사명</label>  
+  <label class="col-md-4 control-label" for="textinput">*회사명</label>  
   <div class="col-md-4">
   	<input class="form-control input-md" type="text" id="company_name" name="company_name" required="required" onblur="namecheck()" maxlength="5" placeholder="Enter Your Company Name">
     <span class="help-block" id="nameblur"></span>
@@ -421,7 +608,7 @@ function joincheck(){
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">비밀번호</label>  
+  <label class="col-md-4 control-label" for="textinput">*비밀번호</label>  
   <div class="col-md-4">
  	 <input class="form-control input-md" type="password" id="company_pw" name="company_pw" required="required" onblur="pwcheck()" maxlength="20" placeholder="Enter Your Password">
  	 <span class="help-block" id="pwblur"></span> 
@@ -430,7 +617,7 @@ function joincheck(){
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">비밀번호 확인</label>  
+  <label class="col-md-4 control-label" for="textinput">*비밀번호 확인</label>  
   <div class="col-md-4">
  	 <input class="form-control input-md" type="password" id="company_pw2" name="company_pw2" required="required" onblur="pwcheck2()" maxlength="20" placeholder="Repeat Your Password"><br>
  	 <span class="help-block" id="pwblur2"></span> 
@@ -439,7 +626,7 @@ function joincheck(){
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">전화번호</label>  
+  <label class="col-md-4 control-label" for="textinput">*전화번호</label>  
   <div class="col-md-4">
   	<input class="form-control input-md" type="text" id="company_tel" name="company_tel" required="required" onblur="telcheck()" maxlength="13" placeholder="Enter Your Phone">
   	<span class="help-block" id="telblur"></span> 
@@ -457,7 +644,7 @@ function joincheck(){
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">CEO이름</label>  
+  <label class="col-md-4 control-label" for="textinput">*CEO이름</label>  
   <div class="col-md-4">
   	<input class="form-control input-md" type="text" id="ceo_name" name="ceo_name" required="required" maxlength="5" onblur="ceonamecheck()" placeholder="Enter Company CEO Name">
   	<span class="help-block" id="ceoblur"></span> 
@@ -466,10 +653,16 @@ function joincheck(){
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">종목 api 당긴거 가져와야 함</label>  
+  <label class="col-md-4 control-label" for="textinput">*종목</label>  
   <div class="col-md-4">
-  	<input class="form-control input-md" type="text" id="business_type" name="business_type" required="required" maxlength="15" placeholder="Enter Your Company Code">
-  	<span class="help-block" id=""></span> 
+  	<!-- <input class="form-control input-md" type="text" id="business_type" name="business_type" required="required" maxlength="15" placeholder="Enter Your Company Code"> -->
+  	<select class="form-control input-md" id="business_type" name="business_type" required="required" onchange="typecheck(this.value)">
+  		<option value="">종목 선택</option>
+  		<c:forEach items="${ typeVo }" var="type">
+  		<option value=${ type.code_id }>${ type.code_name }</option>
+  		</c:forEach>
+  	</select>
+  	<span class="help-block" id="typeblur"></span> 
   </div>
 </div>
 
@@ -487,7 +680,7 @@ function joincheck(){
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">카테고리 텍스트만 입력하면 되는가?</label>  
+  <label class="col-md-4 control-label" for="textinput">*카테고리</label>  
   <div class="col-md-4">
   	<input class="form-control input-md" type="text" id="business_category" name="business_category" required="required" onblur="bcategorycheck()" maxlength="5" placeholder="Enter Your Company Category"><br>
   	<span class="help-block" id="bcategoryblur"></span> 
@@ -498,7 +691,7 @@ function joincheck(){
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">설립일</label>  
   <div class="col-md-4">
-  	<input class="form-control input-md" type="date" id="company_birth" name="company_birth" required="required">
+  	<input class="form-control input-md" type="date" id="company_birth" name="company_birth" onblur="birthcheck()">
   	<span class="help-block" id=""></span> 
   </div>
 </div>
@@ -507,8 +700,15 @@ function joincheck(){
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">매출액</label>  
   <div class="col-md-4">
-  	<input class="form-control input-md" type="text" id="company_sales" name="company_sales" placeholder="Enter Your Company Sales" maxlength="10"><br>
-  	<span class="help-block" id=""></span> 
+  	<!-- <input class="form-control input-md" type="text" id="company_sales" name="company_sales" placeholder="Enter Your Company Sales" maxlength="10"><br> -->
+  	<select class="form-control input-md" type="text" id="company_sales" name="company_sales" onchange="salescheck(this.value)">
+  		<option value="">매출액 선택</option>
+  		<option value="5,000만원 이하">5,000만원 이하</option>  		
+  		<option value="5,000만원 ~ 1억">5,000만원 ~ 1억</option>
+  		<option value="1억 ~ 5억">1억 ~ 5억</option>
+  		<option value="10억이상">10억이상</option>  		
+  	</select>
+  	<span class="help-block" id="salesblur"></span> 
   </div>
 </div>
 
@@ -526,7 +726,8 @@ function joincheck(){
   <label class="col-md-4 control-label" for="singlebutton"></label>
   <div class="col-md-4">
     <input class="btn btn-success" type="submit" value="가입하기">
-           <input class="btn btn-success" type="reset"" value="취소">
+    <input class="btn btn-success" type="reset"" value="취소">
+    <input class="btn btn-success" type="reset"" value="취소">
   </div>
 </div>
 

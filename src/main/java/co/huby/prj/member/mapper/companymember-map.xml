@@ -13,21 +13,47 @@
 					regist_number, 
 					company_name, 
 					company_pw, 
-					company_tel, 
+					company_tel,
+					<if test="company_email != null and company_email != ''"> 
 					company_email, 
+					</if>
 					ceo_name, 
 					business_type, 
+					<if test="company_addr != null and company_addr != ''">
 					company_addr,
-					business_category, 
-					company_birth,
-					company_sales, 
+					</if>
+					business_category,
+					<if test="company_birth != null"> 
+					company_birth, 
+					</if>
+					<if test="company_sales != null and company_sales != ''">
+					company_sales,
+					</if>
+					<if test="homepage != null and homepage != ''"> 
 					homepage, 
+					</if>
 					company_date) 
 		VALUES(#{company_id},#{regist_number},#{company_name},
-				#{company_pw},#{company_tel},#{company_email},
-				#{ceo_name},#{business_type},#{company_addr},
-				#{business_category},#{company_birth},#{company_sales},
-				#{homepage},sysdate)
+				#{company_pw},#{company_tel},
+				<if test="company_email != null and company_email != ''">
+				#{company_email},
+				</if>
+				#{ceo_name},#{business_type},
+				<if test="company_addr != null and company_addr != ''">
+				#{company_addr},
+				</if>
+				#{business_category},
+				<if test="company_birth != null">
+				#{company_birth},
+				</if>
+				<if test="company_sales != null and company_sales != ''">
+				#{company_sales},
+				</if>
+				<if test="homepage != null and homepage != ''">
+				#{homepage},
+				</if>
+				sysdate)
+				
 	</insert>
 	
 	<select id="selectone" resultType="CompanyVo" parameterType="CompanyVo">
