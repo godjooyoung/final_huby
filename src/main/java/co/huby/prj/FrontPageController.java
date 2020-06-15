@@ -5,11 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class ProntPageController {
+public class FrontPageController {
 
-	@RequestMapping("/prontPage.do")
+	@RequestMapping("/frontPage.do")
 	public String home(Model model) {
 
-		return "no/common/prontPage";
+		return "no/common/frontPage";
 	}
 }
