@@ -154,7 +154,6 @@ section .section-title {
 										<p class="card-text">${empMatch.employment_title}</p>
 										<a href="https://www.fiverr.com/share/qb8D02"
 											class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -188,8 +187,10 @@ section .section-title {
 								</div>
 							</div>
 						</div>
+						</c:forEach>
 					</div>
 				</div>
+
 			</div>
 			<!-- ./Team member -->
 			<!-- Team member -->

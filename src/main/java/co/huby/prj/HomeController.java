@@ -37,7 +37,7 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate);
-		return "person/common/home";
+		return "person/common/memberHome";
 	}
 
 	@RequestMapping(value = "/companyAfterLogin.do") // 매치된거 기업에게 추천

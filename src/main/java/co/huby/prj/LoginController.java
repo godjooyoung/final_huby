@@ -58,7 +58,7 @@ public class LoginController {
 		if(vo2 != null) {
 			boolean pwdMatch = pwdEncoder.matches(vo.getMember_pw(), vo2.getMember_pw());
 			if(pwdMatch) {
-				mav.setViewName("person/common/home");
+				mav.setViewName("redirect:employmentMatch.do");
 				request.getSession().setAttribute("personalVo", vo2);
 				request.getSession().setAttribute("loginId", vo2.getMember_id());
 				request.getSession().setAttribute("loginType", "U");
@@ -81,7 +81,7 @@ public class LoginController {
 			boolean pwdMatch = pwdEncoder.matches(vo.getCompany_pw(), vo2.getCompany_pw());
 			System.out.println("@@@@@@@@@@@@"+vo2.getCompany_pw());
 			if(pwdMatch) {
-				mav.setViewName("person/common/home");
+				mav.setViewName("redirect:companyAfterLogin.do");
 				request.getSession().setAttribute("companyVo", vo2);
 				request.getSession().setAttribute("loginId", vo2.getCompany_id());
 				request.getSession().setAttribute("loginType", "C");

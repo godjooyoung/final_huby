@@ -11,9 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.huby.prj.board.service.EmploymentService;
-import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.EmploymentsVo;
-import co.huby.prj.vo.VideoVo;
 
 @Controller
 public class MemberHomeController {
