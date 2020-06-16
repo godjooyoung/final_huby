@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="co.huby.prj.board.mapper.BoardMap">
 	<!-- 기업에게 매치해서 추천해주는거 -->
-	<select id="getMatchedListForCompany" parameterType="co.huby.prj.common.VideoVo" resultType="map">
+	<select id="getMatchedListForCompany" parameterType="co.huby.prj.vo.VideoVo" resultType="map">
 		SELECT DISTINCT c.code_name as "code_name", 
 			v.video_id as "video_id", 
 			v.video_contents as "video_contents", 
@@ -21,7 +21,7 @@
 	</select>
 	
 	<!-- 기업이 영상에 좋아요 버튼을 클릭할경우 테이블에 저장되는거. -->
-	<insert id="videoLikeInsertFromCompany" parameterType="co.huby.prj.common.VideoVo">
+	<insert id="videoLikeInsertFromCompany" parameterType="co.huby.prj.vo.VideoVo">
 	INSERT INTO like_video
 	VALUES (LIKE_VIDEO_SEQ.nextval, #{video_id}, (select member_id from video where video_id= #{video_id}), #{company_id})
 	</insert>

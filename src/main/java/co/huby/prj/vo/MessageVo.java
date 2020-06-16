@@ -1,4 +1,4 @@
-package co.huby.prj.common;
+package co.huby.prj.vo;
 
 import java.sql.Timestamp;
 

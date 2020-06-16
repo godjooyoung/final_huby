@@ -2,8 +2,8 @@ package co.huby.prj.chat.service;
 
 import java.util.List;
 
-import co.huby.prj.common.InterviewVo;
-import co.huby.prj.common.MessageVo;
+import co.huby.prj.vo.InterviewVo;
+import co.huby.prj.vo.MessageVo;
 
 public interface ChatService {
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="co.huby.prj.board.mapper.EmploymentMap">
+
+	<select id="getMatchedEmploymentList"
+		parameterType="EmploymentsVo" resultType="map">
+		SELECT c.company_name,
+		e.employment_title, e.employment_contents
+		FROM company c, employments e
+		WHERE c.company_id = e.company_id
+	</select>
+</mapper>

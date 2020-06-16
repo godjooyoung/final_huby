@@ -1,4 +1,4 @@
-package co.huby.prj.common;
+package co.huby.prj.vo;
 
 public class LikeCompanyVo {
 	//like_company

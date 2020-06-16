@@ -7,11 +7,11 @@
 		<!-- <typeAlias alias="MemberVO" type="co.huby.prj.member.service.CompanyMemberVo"/> -->
 		<typeAlias type="co.huby.prj.code.service.CodeVo"
 			alias="CodeVo" />
-		<typeAlias alias="CompanyVo"
-			type="co.huby.prj.member.service.CompanyMemberVo" />
+		<typeAlias alias="CompanyVo" type="co.huby.prj.vo.CompanyVo" />
 		<typeAlias alias="InterviewVo"
-			type="co.huby.prj.common.InterviewVo" />
-		<typeAlias alias="MessageVo"
-			type="co.huby.prj.common.MessageVo" />
+			type="co.huby.prj.vo.InterviewVo" />
+		<typeAlias alias="MessageVo" type="co.huby.prj.vo.MessageVo" />
+		<typeAlias alias="EmploymentsVo"
+			type="co.huby.prj.vo.EmploymentsVo" />
 	</typeAliases>
 </configuration>

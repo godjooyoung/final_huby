@@ -54,17 +54,16 @@ public class LoginController {
 		
 		if(vo2 != null) {
 			if(vo2.getMember_pw().equals(vo.getMember_pw())) {
-			mav.setViewName("person/common/home");
-			request.getSession().setAttribute("personalVo", vo2);
-			request.getSession().setAttribute("loginId", vo2.getMember_id());
-			request.getSession().setAttribute("loginType", "U");
-			
+				request.getSession().setAttribute("personalVo", vo2);
+				request.getSession().setAttribute("loginId", vo2.getMember_id());
+				request.getSession().setAttribute("loginType", "U");
+				mav.setViewName("redirect:employmentMatch.do");
 			
 			}
 		}else {
 			String num = "1"; 
 			request.setAttribute("num", num);
-			mav.setViewName("no/common/login");
+			mav.setViewName("redirect:employmentMatch.do");
 		}
 		return mav;
 	}

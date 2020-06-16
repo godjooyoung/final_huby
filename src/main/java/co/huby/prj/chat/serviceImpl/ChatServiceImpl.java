@@ -9,8 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import co.huby.prj.chat.service.ChatService;
-import co.huby.prj.common.InterviewVo;
-import co.huby.prj.common.MessageVo;
+import co.huby.prj.vo.InterviewVo;
+import co.huby.prj.vo.MessageVo;
 
 @Repository
 public class ChatServiceImpl implements ChatService {

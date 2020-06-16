@@ -1,4 +1,4 @@
-package co.huby.prj.common;
+package co.huby.prj.vo;
 
 public class ResumeVo {
 	private String resume_id;

@@ -1,4 +1,4 @@
-package co.huby.prj.common;
+package co.huby.prj.vo;
 
 public class LikeVideoVo {
 	private String like_video_id;
