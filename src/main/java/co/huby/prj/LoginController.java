@@ -16,9 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import co.huby.prj.code.service.CodeService;
 import co.huby.prj.code.service.CodeVo;
 import co.huby.prj.member.service.CompanyMemberService;
-import co.huby.prj.member.service.CompanyMemberVo;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.CompanyVo;
 
 @Controller
 public class LoginController {
@@ -73,13 +73,12 @@ public class LoginController {
 	
 	
 	@RequestMapping("/CompanyLoginCheck.do")
-	public ModelAndView CompanyLoginCheck(Model model, HttpServletRequest request, CompanyMemberVo vo) throws Exception {
+	public ModelAndView CompanyLoginCheck(Model model, HttpServletRequest request, CompanyVo vo) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		CompanyMemberVo vo2 = companyMemberService.selectone(vo); 
+		CompanyVo vo2 = companyMemberService.selectone(vo); 
 		
 		if(vo2 != null) {
 			boolean pwdMatch = pwdEncoder.matches(vo.getCompany_pw(), vo2.getCompany_pw());
-			System.out.println("@@@@@@@@@@@@"+vo2.getCompany_pw());
 			if(pwdMatch) {
 				mav.setViewName("redirect:companyAfterLogin.do");
 				request.getSession().setAttribute("companyVo", vo2);
@@ -109,8 +108,8 @@ public class LoginController {
 	
 	@ResponseBody
 	@RequestMapping("/CompanyidCheck.do")
-	public String CompanyidCheck(Model model, HttpServletRequest request, CompanyMemberVo vo) throws Exception {
-		CompanyMemberVo checkVo = companyMemberService.companyMemberIdCheck(vo);
+	public String CompanyidCheck(Model model, HttpServletRequest request, CompanyVo vo) throws Exception {
+		CompanyVo checkVo = companyMemberService.companyMemberIdCheck(vo);
 		String num = "0";
 		
 		if(checkVo != null) {
@@ -124,8 +123,8 @@ public class LoginController {
 	
 	@ResponseBody
 	@RequestMapping("/CompanyrNumCheck.do")
-	public String CompanyrNumCheck(Model model, CompanyMemberVo vo) {
-		CompanyMemberVo checkVo = companyMemberService.companyrNumCheck(vo);
+	public String CompanyrNumCheck(Model model, CompanyVo vo) {
+		CompanyVo checkVo = companyMemberService.companyrNumCheck(vo);
 		String num = "0";
 		if(checkVo != null) {
 			num = "1";

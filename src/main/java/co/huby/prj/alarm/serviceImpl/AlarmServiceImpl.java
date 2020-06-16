@@ -7,21 +7,23 @@ import org.springframework.stereotype.Service;
 import co.huby.prj.alarm.mapper.AlarmMap;
 import co.huby.prj.alarm.service.AlarmService;
 import co.huby.prj.alarm.service.AlarmVo;
+import co.huby.prj.alarm.service.UserVo;
 
 @Service("alarmService")
 public class AlarmServiceImpl implements AlarmService {
 	@Autowired
 	private AlarmMap map;
 	
+	
 	@Override
-	public ArrayList<AlarmVo> personalarmlist() throws Exception{
-		return map.personalarmlist();
+	public ArrayList<AlarmVo> personalarmlist(String personid) throws Exception{
+		return map.personalarmlist(personid);
 	}
 
 	@Override
-	public ArrayList<AlarmVo> companyalarmlist() throws Exception {
+	public ArrayList<AlarmVo> companyalarmlist(UserVo uservo) throws Exception {
 		// TODO Auto-generated method stub
-		return map.companyalarmlist();
+		return map.companyalarmlist(uservo);
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import co.huby.prj.member.mapper.CompanyMemberMap;
 import co.huby.prj.member.service.CompanyMemberService;
-import co.huby.prj.member.service.CompanyMemberVo;
+import co.huby.prj.vo.CompanyVo;
 
 @Service("companyMemberService")
 public class CompanyMemberServiceImpl implements CompanyMemberService {
@@ -19,19 +19,19 @@ public class CompanyMemberServiceImpl implements CompanyMemberService {
 	BCryptPasswordEncoder pwdEncoder;
 	
 	@Override
-	public List<CompanyMemberVo> SelectAll(){
+	public List<CompanyVo> SelectAll(){
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CompanyMemberVo selectone(CompanyMemberVo vo){
+	public CompanyVo selectone(CompanyVo vo){
 		// TODO Auto-generated method stub
 		return map.selectone(vo);
 	}
 
 	@Override
-	public int companyMemberInsert(CompanyMemberVo vo){
+	public int companyMemberInsert(CompanyVo vo){
 		// TODO Auto-generated method stub
 		vo.setCompany_pw(pwdEncoder.encode(vo.getCompany_pw()));
 		
@@ -39,25 +39,25 @@ public class CompanyMemberServiceImpl implements CompanyMemberService {
 	}
 
 	@Override
-	public int companyMemberUpdate(CompanyMemberVo vo){
+	public int companyMemberUpdate(CompanyVo vo){
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int companyMemberDelete(CompanyMemberVo vo){
+	public int companyMemberDelete(CompanyVo vo){
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public CompanyMemberVo companyMemberIdCheck(CompanyMemberVo vo) {
+	public CompanyVo companyMemberIdCheck(CompanyVo vo) {
 		// TODO Auto-generated method stub
 		return map.companyMemberIdCheck(vo);
 	}
 
 	@Override
-	public CompanyMemberVo companyrNumCheck(CompanyMemberVo vo) {
+	public CompanyVo companyrNumCheck(CompanyVo vo) {
 		// TODO Auto-generated method stub
 		return map.companyrNumCheck(vo);
 	}
