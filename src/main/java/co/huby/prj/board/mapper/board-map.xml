@@ -13,11 +13,11 @@
     	ON c.code_id = v.hashtag
         	Join employments e
         	ON e.hope_job = v.hashtag
-        	WHERE e.company_id =#{company_id}
+        	WHERE e.company_id =#{company_id , jdbcType=VARCHAR}
         	AND v.video_id NOT IN (
         						SELECT video_id 
         						FROM like_video 
-        						WHERE company_id =#{company_id})
+        						WHERE company_id =#{company_id , jdbcType=VARCHAR})
 	</select>
 	
 	<!-- 기업이 영상에 좋아요 버튼을 클릭할경우 테이블에 저장되는거. -->
@@ -28,7 +28,7 @@
 	
 	<!-- 기업이 낸 공고 조회하기 -->
 	<select id="getCompany_Employments" parameterType="string" resultType="map">
-	select * from employments where company_id = #{value} 
+	select * from employments where company_id = #{value, jdbcType=VARCHAR} 
 	</select>
 	
 	<!-- 기업이 낸 공고에 지원한 사람 목록 보기. -->
@@ -45,7 +45,7 @@
             ON A.employment_id = E.employment_id
                 JOIN resume R
                 ON A.resume_id = R.resume_id
-                    WHERE E.company_id =#{companyid} and A.employment_id = #{listviewid}
+                    WHERE E.company_id =#{companyid ,jdbcType=VARCHAR} and A.employment_id = #{listviewid, jdbcType=VARCHAR}
                         ORDER BY E.employment_time  
 	</select>
 	
