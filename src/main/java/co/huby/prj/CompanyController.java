@@ -23,8 +23,7 @@ public class CompanyController {
 	public void allowEmptyDateBinding( WebDataBinder binder )
 		{
 		    // Custom String Editor. tell spring to set empty values as null instead of empty string.
-		    binder.registerCustomEditor( String.class, new StringTrimmerEditor( true ));
-												
+		    // binder.registerCustomEditor( String.class, new StringTrimmerEditor( true ));			
 		    //Custom Date Editor
 												
 		    SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");

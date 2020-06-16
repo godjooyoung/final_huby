@@ -57,7 +57,7 @@
 	</insert>
 	
 	<select id="selectone" resultType="CompanyVo" parameterType="CompanyVo">
-		SELECT * FROM COMPANY WHERE company_id = #{company_id} and company_pw = #{company_pw}
+		SELECT * FROM COMPANY WHERE company_id = #{company_id}
 	</select>
 	
 	<select id="companyMemberIdCheck" resultType="CompanyVo" parameterType="CompanyVo">

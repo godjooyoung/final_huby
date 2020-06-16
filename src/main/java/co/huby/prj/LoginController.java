@@ -2,9 +2,11 @@ package co.huby.prj;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,8 @@ public class LoginController {
 	CompanyMemberService companyMemberService;
 	@Autowired
 	CodeService codeService;
+	@Autowired
+	BCryptPasswordEncoder pwdEncoder;
 	
 	@RequestMapping("/login.do")
 	public String login(Model model) {
@@ -49,21 +53,20 @@ public class LoginController {
 	@RequestMapping("/PersonalLoginCheck.do")
 	public ModelAndView PersonalLoginCheck(Model model, HttpServletRequest request, MemberVo vo) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		
 		MemberVo vo2 = memberService.selectone(vo);
 		
 		if(vo2 != null) {
-			if(vo2.getMember_pw().equals(vo.getMember_pw())) {
+			boolean pwdMatch = pwdEncoder.matches(vo.getMember_pw(), vo2.getMember_pw());
+			if(pwdMatch) {
+				mav.setViewName("person/common/home");
 				request.getSession().setAttribute("personalVo", vo2);
 				request.getSession().setAttribute("loginId", vo2.getMember_id());
 				request.getSession().setAttribute("loginType", "U");
-				mav.setViewName("redirect:employmentMatch.do");
-			
 			}
 		}else {
 			String num = "1"; 
 			request.setAttribute("num", num);
-			mav.setViewName("redirect:employmentMatch.do");
+			mav.setViewName("no/common/login");
 		}
 		return mav;
 	}
@@ -72,15 +75,16 @@ public class LoginController {
 	@RequestMapping("/CompanyLoginCheck.do")
 	public ModelAndView CompanyLoginCheck(Model model, HttpServletRequest request, CompanyMemberVo vo) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		
 		CompanyMemberVo vo2 = companyMemberService.selectone(vo); 
 		
 		if(vo2 != null) {
-			if(vo2.getCompany_pw().equals(vo.getCompany_pw())) {
-			mav.setViewName("redirect:companyAfterLogin.do");
-			request.getSession().setAttribute("companyVo", vo2);
-			request.getSession().setAttribute("loginId", vo2.getCompany_id());
-			request.getSession().setAttribute("loginType", "C");
+			boolean pwdMatch = pwdEncoder.matches(vo.getCompany_pw(), vo2.getCompany_pw());
+			System.out.println("@@@@@@@@@@@@"+vo2.getCompany_pw());
+			if(pwdMatch) {
+				mav.setViewName("person/common/home");
+				request.getSession().setAttribute("companyVo", vo2);
+				request.getSession().setAttribute("loginId", vo2.getCompany_id());
+				request.getSession().setAttribute("loginType", "C");
 			}
 		}else {
 			String num = "1"; 
@@ -102,16 +106,21 @@ public class LoginController {
 		return num;
 	}	
 	
+	
 	@ResponseBody
 	@RequestMapping("/CompanyidCheck.do")
 	public String CompanyidCheck(Model model, HttpServletRequest request, CompanyMemberVo vo) throws Exception {
 		CompanyMemberVo checkVo = companyMemberService.companyMemberIdCheck(vo);
 		String num = "0";
+		
 		if(checkVo != null) {
 			num = "1";
 		}
 		return num;
-	}	
+	}
+	
+	
+	
 	
 	@ResponseBody
 	@RequestMapping("/CompanyrNumCheck.do")

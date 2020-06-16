@@ -22,4 +22,14 @@
 			<li class="gnb_dp2"><a href="javascript:GoPage('skin02')">습관</a></li>
 			<li class="gnb_dp2"><a href="javascript:GoPage('skin04')">로그아웃</a></li>
 		</ul></li>
+		
+		<!-- 비만클리닉 -->
+	<li class="gnb_dp1"><span>알림내역</span>
+		<ul class="gnb_dp2_wrap">
+			<li class="gnb_dp2"><a href="personalarm.do">알림내역</a></li>
+			<li class="gnb_dp2"><a href="javascript:GoPage('body02')">나에게
+					맞는 다이어트</a></li>
+			<li class="gnb_dp2"><a href="javascript:GoPage('body03')">요요없는
+					유지관리</a></li>
+		</ul></li>
 </ul>

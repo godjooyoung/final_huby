@@ -9,8 +9,8 @@ import co.huby.prj.alarm.service.AlarmVo;
 
 @MapperScan
 public interface AlarmMap {
-	public ArrayList<AlarmVo> personalarm();
-	public ArrayList<AlarmVo> companyalarm();
+	public ArrayList<AlarmVo> personalarmlist();
+	public ArrayList<AlarmVo> companyalarmlist();
 	void alarmInsert(AlarmVo vo);
 	
 }

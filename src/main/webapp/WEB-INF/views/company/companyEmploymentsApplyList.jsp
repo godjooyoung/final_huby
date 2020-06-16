@@ -8,24 +8,21 @@
 <br><br><br><br><br><br><br>
 
 <h3>공고목록</h3>
- <p><strong>Note:</strong> 공고제목을 눌러 지원자를 확인하세요!!</p>
+<p><strong> 공고제목을 눌러 지원자를 확인하세요!!</strong></p>
+
 <div class="accordion-box">
-   <ul class="Emp_list">
+   
    	<c:forEach var="employmentList" items="${employmentList }">
-     <li>
-      <p class="title" onclick="listview(event,${employmentList.EMPLOYMENT_ID})" >
-      	<b>${employmentList.EMPLOYMENT_TITLE}</b>
-      	<br>${employmentList.EMPLOYMENT_TIME}
-      </p>
-      <div class="con" id="${employmentList.EMPLOYMENT_ID}">
-      	<ul>
-      		<li></li>
-      	</ul>
-      	</div>
-      	 </li>
+    		<p class="title" onclick="listview(event,${employmentList.EMPLOYMENT_ID})" >
+      			<b>${employmentList.EMPLOYMENT_TITLE}</b>
+      			<br>${employmentList.EMPLOYMENT_TIME}
+      		</p>
+      		<div class="con" id="${employmentList.EMPLOYMENT_ID}" style="background-color:pink">
+      			
+      			
+      			
+      		</div>
      </c:forEach>
-     </ul>
-  
 </div>
 
 <script>
@@ -38,9 +35,14 @@ function listview(e,listviewId){
 		data : {'listviewId': listviewId },
 		dataType : 'json',
 		success: function(data){
-			console.log(data);
-			//alert('아작=======아작' + listviewId);
-			$(e.target).parent().next().append(data[0].member_id)
+			//$(e.target).parent().next().empty();
+			//$(e.target).next().append("<b>넥스트가 어딘데?</b>")
+			$(e.target).next().empty();
+			 for(var i=0; i<data.length; i++){
+				$(e.target).next().append( "<p>"+
+						data[i].member_id + " " + data[i].apply_date + " " 
+						+ data[i].member_name + " " + data[i].resume_title + "</p>")
+			 }
 			
 		},
 		error: function(){

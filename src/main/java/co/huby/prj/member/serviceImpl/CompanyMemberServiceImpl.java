@@ -3,6 +3,7 @@ package co.huby.prj.member.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import co.huby.prj.member.mapper.CompanyMemberMap;
@@ -14,6 +15,8 @@ public class CompanyMemberServiceImpl implements CompanyMemberService {
 
 	@Autowired
 	private CompanyMemberMap map;
+	@Autowired
+	BCryptPasswordEncoder pwdEncoder;
 	
 	@Override
 	public List<CompanyMemberVo> SelectAll(){
@@ -30,6 +33,8 @@ public class CompanyMemberServiceImpl implements CompanyMemberService {
 	@Override
 	public int companyMemberInsert(CompanyMemberVo vo){
 		// TODO Auto-generated method stub
+		vo.setCompany_pw(pwdEncoder.encode(vo.getCompany_pw()));
+		
 		return map.companyMemberInsert(vo);
 	}
 
