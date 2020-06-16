@@ -3,14 +3,17 @@ package co.huby.prj;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import co.huby.prj.alarm.service.AlarmService;
 import co.huby.prj.alarm.service.AlarmVo;
+import co.huby.prj.member.service.MemberVo;
 
 @Controller
 public class AlarmController {
@@ -25,11 +28,13 @@ public class AlarmController {
 	
 	
 	@RequestMapping("/personalarm.do")
-	public ModelAndView personalarmlist(ModelAndView mav) throws Exception  {
+	public String personalarmlist(Model model, HttpServletRequest request) throws Exception {
+		HttpSession session =request.getSession(); 
+		String id = ((MemberVo)session.getAttribute("personalVo")).getMember_id();
+		
 		ArrayList<AlarmVo> list = alarmService.personalarmlist();
-		mav.addObject("list", list);
-		mav.setViewName("alarm/personalarmlist");
-		return mav;
+		model.addAttribute("list", list);
+		return "alarm/personalarmlist";
 	}
 	
 }

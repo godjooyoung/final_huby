@@ -15,13 +15,13 @@ public class AlarmServiceImpl implements AlarmService {
 	
 	@Override
 	public ArrayList<AlarmVo> personalarmlist() throws Exception{
-		return map.personalarm();
+		return map.personalarmlist();
 	}
 
 	@Override
 	public ArrayList<AlarmVo> companyalarmlist() throws Exception {
 		// TODO Auto-generated method stub
-		return map.companyalarm();
+		return map.companyalarmlist();
 	}
 
 	@Override

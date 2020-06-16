@@ -41,15 +41,16 @@
 <div class="sub_menu_wrap s-inner sub_menu_pc ">
 	<div class="sub_menu_tit">
 		<script>
-			document.write(tit01);
+			//document.write(tit01);
 		</script>
 	</div>
 
 	<ul class="sub_menu_box sub01">
-		<li class="m1"><a href="javascript:GoPage('olive01')">웰리브이념</a></li>
-		<li class="m2"><a href="javascript:GoPage('olive02')">의료진소개</a></li>
-		<li class="m3"><a href="javascript:GoPage('olive03')">진료안내</a></li>
-		<li class="m4"><a href="javascript:GoPage('olive04')">둘러보기</a></li>
+		<!-- 기업정보관리 -->
+		<li class="m1"><a href="javascript:GoPage('olive01')">마이페이지</a></li>
+		<li class="m2"><a href="javascript:GoPage('olive02')">공고관리</a></li>
+		<li class="m3"><a href="javascript:GoPage('olive03')">지원확인</a></li>
+		<li class="m4"><a href="javascript:GoPage('olive04')">관심인재</a></li>
 	</ul>
 
 	<ul class="sub_menu_box sub02">

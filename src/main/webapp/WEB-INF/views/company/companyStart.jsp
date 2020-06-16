@@ -27,7 +27,8 @@
   </c:forEach>
   </div>
 <!-- Grid END -->
-
+<!-- test -->
+<button type="button" onclick="location.href='companyEmploymentsList.do'">기업에 지원한 인간들 목록 테스트</button>
 
   
 
@@ -53,7 +54,7 @@
 		$.ajax({
 			type:"get",
 			url:"companyLikeVideo.do",
-			data : {'vid': vid },
+			data : {'video_id': vid },
 			success: function(){
 				
 			},

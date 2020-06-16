@@ -15,9 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.huby.prj.board.service.BoardService;
+import co.huby.prj.common.ApplyVo;
+import co.huby.prj.common.CompanyVo;
+import co.huby.prj.common.EmploymentsVo;
 import co.huby.prj.common.LikeVideoVo;
 import co.huby.prj.common.VideoVo;
 
@@ -54,13 +58,32 @@ public class HomeController {
 	@RequestMapping(value = "/companyLikeVideo.do")//기업이 영상좋아요 버튼 누를경우 디비에 인설트
 	public String likeVideo(Model model, HttpServletRequest request, LikeVideoVo vo) throws Exception {
 		String companyid=(String) request.getSession().getAttribute("companyloginid");
-		String vid = request.getParameter("vid");
-		vo.setVideo_id(vid);
+//		String vid = request.getParameter("vid");
+//		vo.setVideo_id(vid);
 		vo.setCompany_id(companyid);
 		boardService.videoLikeInsertFromCompany(vo);
 		return "redirect:companyAfterLogin.do";
 	}
 	
+	@RequestMapping(value = "/companyEmploymentsList.do")//기업의 공고보여주기.
+	public String companyEmploymentsList(Model model, HttpServletRequest request, EmploymentsVo vo) throws Exception {
+		String companyid = (String) request.getSession().getAttribute("companyloginid");
+		
+		List<Map> list = boardService.getCompany_Employments(companyid);
+		model.addAttribute("employmentList", list);
+		return "company/company/companyEmploymentsApplyList";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/companyEmploymentsApply.do")//기업에 지원한 이력서와 이름 보여주기
+	public List<Map> companyApplyList(Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
+		String companyid = (String) request.getSession().getAttribute("companyloginid");
+		String listviewid = request.getParameter("listviewId");
+		System.out.println("...................."+listviewid);
+		List<Map> list = boardService.getCompany_ApplyList(companyid, listviewid);
+		
+		return list;
+	}
 	
 
 }
