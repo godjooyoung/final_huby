@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.huby.prj.member.service.CompanyMemberService;
-import co.huby.prj.member.service.CompanyMemberVo;
+import co.huby.prj.vo.CompanyVo;
 
 @Controller
 public class CompanyController {
@@ -35,7 +35,7 @@ public class CompanyController {
 	CompanyMemberService companyMemberService;
 	
 	@RequestMapping("/CompanyInsertJoin.do")
-	public ModelAndView CompanyInsertJoin(Model model, CompanyMemberVo vo) {
+	public ModelAndView CompanyInsertJoin(Model model, CompanyVo vo) {
 		ModelAndView mav = new ModelAndView();		
 		
 		int n = companyMemberService.companyMemberInsert(vo);
