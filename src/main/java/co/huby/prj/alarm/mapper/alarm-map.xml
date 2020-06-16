@@ -7,7 +7,7 @@
 	</insert>
 	
 	<select id="personalarmlist" parameterType="co.huby.prj.alarm.service.AlarmVo" resultType="co.huby.prj.alarm.service.AlarmVo">
-		SELECT COMPANY_ID, ALARM_MESSAGE, ALARM_TIME FROM ALARM WHERE MEMBER_ID = #{member_id}
+		SELECT COMPANY_ID, ALARM_MESSAGE, ALARM_TIME FROM ALARM WHERE MEMBER_ID = #{id}
 	</select>
 	
 	<select id="companyalarmlist" parameterType="co.huby.prj.alarm.service.AlarmVo" resultType="co.huby.prj.alarm.service.AlarmVo">
