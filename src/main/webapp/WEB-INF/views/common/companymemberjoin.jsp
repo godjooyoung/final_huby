@@ -64,6 +64,7 @@
     }
 </script>
 <script>
+
 function idcheck(){
 	var id = $("#company_id").val();
 	var idCheck = /^[a-z]+[a-z0-9]{5,19}$/g;
@@ -407,7 +408,7 @@ function joincheck(){
 					$('#overlap').css("color", "blue");
 				}
 		    }
-		});
+		});		
 		
 		var r_num = $("#regist_number").val();
 		var r_numRule = /^\d{3}-\d{2}-\d{5}$/;

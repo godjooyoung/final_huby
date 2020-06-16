@@ -9,4 +9,5 @@ public interface MemberService {
 	int memberUpdate(MemberVo vo) throws Exception;
 	int memberDelete(MemberVo vo) throws Exception;
 	MemberVo memberIdCheck(MemberVo vo) throws Exception;
+	String selectpw(MemberVo vo) throws Exception;
 }

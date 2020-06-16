@@ -3,6 +3,7 @@ package co.huby.prj.member.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import co.huby.prj.member.mapper.MemberMap;
@@ -14,6 +15,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberMap map;
+	@Autowired
+	BCryptPasswordEncoder pwdEncoder;
+	
 	
 	@Override
 	public List<MemberVo> SelectAll() throws Exception {
@@ -30,6 +34,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int memberInsert(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
+		vo.setMember_pw(pwdEncoder.encode(vo.getMember_pw()));
+		
 		return map.memberInsert(vo);
 	}
 
@@ -49,6 +55,12 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVo memberIdCheck(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.memberIdCheck(vo);
+	}
+
+	@Override
+	public String selectpw(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.selectpw(vo);
 	}
 	
 	}
