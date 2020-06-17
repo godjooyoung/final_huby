@@ -15,7 +15,6 @@
 	<li class="gnb_dp1"><span>채용</span>
 		<ul class="gnb_dp2_wrap">
 			<li class="gnb_dp2"><a href="javascript:GoPage('detox01')">채용인터뷰</a></li>
-			<li class="gnb_dp2"><a href="companyEmploymentsList.do">채용공고목록</a></li>
 		</ul></li>
 	<li class="gnb_dp1"><span>____님</span>
 		<ul class="gnb_dp2_wrap">
