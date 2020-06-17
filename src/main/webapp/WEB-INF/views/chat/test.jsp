@@ -30,7 +30,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
-
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 </head>
 
 <body>
@@ -93,7 +94,7 @@
 		connect();
 
 		function connect() {
-			sock = new SockJS('/chat.do');
+			sock = new SockJS('/person_chat.do');
 			sock.onopen = function() {
 				console.log('open');
 			};
@@ -116,7 +117,8 @@
 				message = {};
 				//		message.message_content = $("#message").val()
 
-				message.message_receiver = '${userType}' == 'C' ? 'test4' : 'comtest1';
+				message.message_receiver = '${userType}' == 'C' ? 'test4'
+						: 'comtest1';
 				message.message_sender = '${loginId}'
 			}
 

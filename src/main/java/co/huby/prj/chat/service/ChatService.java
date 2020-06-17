@@ -11,17 +11,21 @@ public interface ChatService {
 
 	public InterviewVo isRoom(InterviewVo vo) throws Exception;
 
+	public void insertMessage(MessageVo vo) throws Exception;
+
 	public String getMember(InterviewVo vo) throws Exception;
 
 	public String getProfile(String str) throws Exception;
 
 	public String getName(String str) throws Exception;
-	
+
 	public List<MessageVo> getMessageList(String str) throws Exception;
 
 	public List<InterviewVo> getRoomList(String str) throws Exception;
 
 	public List<InterviewVo> getRoomList2(String str) throws Exception;
+
+	public MessageVo getRecentMessage(String str) throws Exception;
 
 	public String getCompany(String str) throws Exception;
 

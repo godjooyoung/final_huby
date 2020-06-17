@@ -24,16 +24,14 @@ public class Handler extends TextWebSocketHandler {
 	@Autowired
 	private ChatService service;
 	private List<WebSocketSession> connectedUsers;
-	Map<String, WebSocketSession> mapuser;
+	
+	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
 
 	public Handler() {
 		connectedUsers = new ArrayList<WebSocketSession>();
 	}
 
-	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
-
 	@Override
-
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		log(session.getId() + " 연결 됨!!");
 		users.put((String) session.getAttributes().get("loginId"), session);

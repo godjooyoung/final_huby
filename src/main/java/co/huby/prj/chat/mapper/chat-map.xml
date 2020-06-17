@@ -4,16 +4,32 @@
 <mapper namespace="co.huby.prj.chat.mapper.ChatMap">
 
 	<insert id="createRoom">
-		INSERT INTO interview (interview_id = member_id , company_id,
-		resume_id)
-		VALUES(#{member_id}, #{company_id} , #{resume_id} )
+		INSERT INTO interview
+		VALUES(INTERVIEW_SEQ.nextval,NULL,NULL,NULL,NULL,NULL,#{COMPANY_ID},#{RESUME_ID},#{MEMBER_ID})
 	</insert>
 
 	<select id="isRoom" resultType="InterviewVo">
 		SELECT * FROM interview WHERE
-		member_id = #{member_id} AND company_id = #{company_id} AND resume_id
-		= #{resume_id}
+		member_id = #{member_id} AND
+		company_id = #{company_id}
+		AND resume_id= #{resume_id}
 	</select>
+
+	<insert id="insertMessage">
+		insert into MESSAGE
+		(message_id, message_sender,
+		message_receiver, message_content,
+		interview_id,
+		member_id, company_id,
+		resume_id)
+		values
+		(MESSAGE_SEQ.nextval,#{message_sender},
+		#{message_receiver},
+		#{message_content},
+		#{interview_id}, #{member_id},
+		#{company_id}
+		#{resume_id})
+	</insert>
 
 	<select id="getMember" resultType="MessageVo">
 		SELECT member_id FROM message
@@ -21,14 +37,21 @@
 	</select>
 
 	<select id="getProfile" resultType="MemberVo">
-		SELECT * FROM member WHERE
+		SELECT member_photo from
+		member WHERE
 		member_id = #{member_id}
 	</select>
 
-	<select id="getMessageList" resultType="InterviewVo">
+	<select id="getName" resultType="MemberVo">
+		select member_name from member
+		where
+		member_id = #{member_id}
+	</select>
+
+	<select id="getMessageList" resultType="MessageVo">
 		select m.* , member_name,
 		member_photo
-		from Interview i left outer join member m on
+		from message i left outer join member m on
 		m.message_sender = m.member_id
 		where interview_id = #{interview_id}
 	</select>
@@ -42,6 +65,14 @@
 		where company_id = #{company_id}
 	</select>
 
+	<select id="getRecentMessage" resultType="MessageVO">
+		select m.*, resume_id, company_id 
+		from MESSAGE m left outer join resume r on m.resume_id = r.resume_id
+		where interview_id = #{interview_id} 
+		order by message_id	desc limit 1
+	</select>
+
+
 	<select id="getCompany" resultType="String">
 		select company_id from
 		company where company_id = #{company_id}
@@ -50,57 +81,48 @@
 	<update id="updateReadTime">
 		update MESSAGE set message_readTime = NOW() where
 		company_id = #{company_id} AND resume_id = #{resume_id} AND
-		message_readTime = message_sendTime and
+		message_readtime = message_sendtime and
 		message_sender = company_id and
-		member_id = #{member_id};
+		member_id = #{member_id}
 	</update>
 
 	<update id="updateReadTimeCompany">
 		update MESSAGE set message_readTime = NOW() where
-		company_id =
-		#{company_id} AND resume_id =
-		#{resume_id} AND
-		message_readTime = message_sendTime and
-		message_sender = member_id
-		and
-		member_id = #{member_id};
+		company_id = #{company_id} 
+		AND resume_id = #{resume_id} 
+		AND message_readTime = message_sendTime 
+		and message_sender = member_id
+		and member_id = #{member_id}
 	</update>
 
 	<select id="getUnReadCount" resultType="int">
 		select * from
 		MESSAGE
-		where member_id = #{member_id} and
-		company_id =
-		#{company_id} AND
-		resume_id =
-		#{resume_id} AND
-		message_readTime = message_sendTime and
-		message_sender =
-		company_id;
-
+		where member_id = #{member_id} 
+		and company_id = #{company_id} 
+		AND resume_id = #{resume_id} 
+		AND message_readtime = message_sendtime 
+		and message_sender = company_id
 	</select>
+	
 	<select id="getUnReadCountCompany" resultType="int">
 		select * from
 		MESSAGE where company_id =#{company_id}
 		and
 		resume_id = #{resume_id} AND
-		message_readTime =
-		message_sendTime and message_sender = member_id and
-		member_id =
-		#{member_id};
+		message_readtime = message_sendtime 
+		and message_sender = member_id and
+		member_id =	#{member_id}
 
 	</select>
 
 	<select id="getAllCount" resultType="int">
 		select * from MESSAGE
-		WHERE
-		(company_id = #{company_id} and message_readTime = message_sendTime
-		and
-		message_sender != #{member_id}) or
+		WHERE (company_id = #{company_id} 
+		and message_readtime = message_sendtime
+		and message_sender != #{member_id}) or
 		(member_id = #{member_id}
-		and
-		message_readTime = message_sendTime
-		and message_sender !=
-		#{member_id});
+		and message_readtime = message_sendtime
+		and message_sender != #{member_id})
 	</select>
 </mapper>

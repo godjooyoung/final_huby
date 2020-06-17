@@ -150,4 +150,16 @@ public class ChatServiceImpl implements ChatService {
 		}
 	}
 
+	@Override
+	public void insertMessage(MessageVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		session.insert(namespace + ".insertMessage", vo);
+	}
+
+	@Override
+	public MessageVo getRecentMessage(String str) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace + ".getRecentMessage", str);
+	}
+
 }

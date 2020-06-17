@@ -14,6 +14,7 @@ public class MessageVo {
 	private String company_id;
 	private String member_id;
 	private String interview_id;
+	private String message_contents;
 
 	public MessageVo() {
 		// TODO Auto-generated constructor stub
@@ -101,6 +102,14 @@ public class MessageVo {
 				+ getCompany_id() + ", getMember_id()=" + getMember_id() + ", getInterview_id()=" + getInterview_id()
 				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
 				+ "]";
+	}
+
+	public String getMessage_contents() {
+		return message_contents;
+	}
+
+	public void setMessage_contents(String message_contents) {
+		this.message_contents = message_contents;
 	}
 
 }
