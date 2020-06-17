@@ -5,11 +5,11 @@ import java.util.Map;
 
 import org.mybatis.spring.annotation.MapperScan;
 
-import co.huby.prj.vo.EmploymentsVo;
+import co.huby.prj.vo.ResumeVo;
 
 @MapperScan
 public interface EmploymentMap {
-	List<Map> getMatchedEmploymentList(EmploymentsVo vo);
+	List<Map> getMatchedEmploymentList(ResumeVo vo);
 	/*
 	 * void videoLikeInsertFromCompany(LikeVideoVo vo) ; List<Map>
 	 * getCompany_Employments(String com_id); List<Map>

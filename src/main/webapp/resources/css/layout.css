@@ -341,7 +341,7 @@
 	right: -1100px;
 	top: 0px;
 	padding: 160px 40px 0;
-	background: rgba(114, 102, 89, 0.9);
+	background: #0b68e3;
 	width: 550px;
 	height: 100%;
 	box-sizing: border-box;
@@ -432,7 +432,7 @@
 	#hd_wrap.hd-up #gnb_tel {
 		display: inline-block;
 		z-index: 2;
-		background: #948778 url(/images/common/hd_tel.png) no-repeat center
+		background: #0b68e3 url(/images/common/hd_tel.png) no-repeat center
 			center;
 	}
 }

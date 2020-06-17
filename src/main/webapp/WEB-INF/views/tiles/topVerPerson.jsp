@@ -10,14 +10,14 @@
 	</div>
 	<div id="hd_gnb" class="gnb_pc">
 		<div class="hd_gnb_logo">
-			<a href="javascript:GoPage('main')"> <img class="b"
+			<a href="employmentMatch.do"> <img class="b"
 				src="${pageContext.request.contextPath}/resources/images/common/hd_logo_over.png" />
 				<img class="t"
 				src="${pageContext.request.contextPath}/resources/images/common/hd_logo.png" />
 			</a>
 		</div>
 		<div id="gnb_tel" class="hd_gnb_tel">
-			<a href="tel:0536330077"></a>
+			<a href="employmentMatch.do"></a>
 		</div>
 		<%@include file="personMenu.jsp"%>
 		<div id="gnb_menu" class="hd_gnb_menu">

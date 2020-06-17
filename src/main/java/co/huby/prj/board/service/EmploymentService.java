@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import co.huby.prj.vo.EmploymentsVo;
+import co.huby.prj.vo.ResumeVo;
 
 public interface EmploymentService {
-	List<Map> getMatchedEmploymentList(EmploymentsVo vo) throws Exception;
+	List<Map> getMatchedEmploymentList(ResumeVo vo) throws Exception;
 
 }
