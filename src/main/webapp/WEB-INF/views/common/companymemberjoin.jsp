@@ -182,7 +182,7 @@ function pwcheck(){
 		$('#pwblur').html("사용가능한 패스워드입니다.");
 		$('#pwblur').css("color", "blue");
 	}
-}
+} 
 
 function pwcheck2(){
 	var pw2 = $("#company_pw2").val();

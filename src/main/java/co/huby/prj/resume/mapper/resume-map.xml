@@ -7,51 +7,98 @@
 				hope_job, hope_salary, hope_location, 
 				final_education, select_resume,
 				select_public, resume_coment
-		from resume where member_id = #{member_id}
+		from resume 
+		where member_id = #{member_id}
 	</select>
 	
+	<select id="selectone" parameterType="ResumeVo" resultType="ResumeVo">
+		select resume_id, member_id, resume_title, 
+				hope_job, hope_salary, hope_location, 
+				final_education, select_resume,
+				select_public, resume_coment
+		from resume 
+		where resume_id = #{resume_id,jdbcType=VARCHAR}
+	</select>
+
 	<insert id="resumeInsert" parameterType="ResumeVo">
 	insert into resume 		
 				(resume_id, 		
 				member_id, 		
 				resume_title, 		
 				hope_job, 		
-				hope_salary,
+				hope_salary
 				<if test="hope_location != null and hope_location != ''"> 		
-				hope_location,		
+				,hope_location	
 				</if>
 				<if test="final_education != null and final_education != ''"> 		
-				final_education,
+				,final_education
 				</if>
 				<if test="select_resume != null and select_resume != ''"> 	
-				select_resume, 		
+				,select_resume 		
 				</if>
 				<if test="select_public != null and select_public != ''">
-				select_public, 		
+				,select_public 		
 				</if>
 				<if test="resume_coment != null and resume_coment != ''">
-				resume_coment)		
+				,resume_coment	
 				</if>
+				)
 	values
 				(RESUME_SEQ.nextval,
 				#{member_id}, 
 				#{resume_title}, 			
 				#{hope_job}, 		
-				#{hope_salary}, 
+				#{hope_salary} 
 				<if test="hope_location != null and hope_location != ''">
-				#{hope_location,
+				,#{hope_location}
 				</if>
 				<if test="final_education != null and final_education != ''">
-				#{final_education}, 
+				,#{final_education} 
 				</if>
 				<if test="select_resume != null and select_resume != ''">
-				#{select_resume}, 
+				,#{select_resume} 
 				</if>
 				<if test="select_public != null and select_public != ''">
-				#{select_public},
+				,#{select_public}
 				</if>
 				<if test="resume_coment != null and resume_coment != ''"> 
-				#{resume_coment})
+				,#{resume_coment}
 				</if>
+				)
 	</insert>
+	
+	<delete id="resumeDelete" parameterType="ResumeVo">
+		delete from resume 
+		where resume_id = #{resume_id}
+	</delete>
+	
+	<update id="resumeUpdate" parameterType="ResumeVo">
+		update resume
+		set 
+			 
+			resume_title = #{resume_title}
+			
+			 
+			,hope_job = #{hope_job}
+			
+			
+			,hope_salary = #{hope_salary}
+			
+			<if test="hope_location != null and hope_location != ''"> 
+			,hope_location = #{hope_location}
+			</if>
+			<if test="final_education != null and final_education != ''">
+			,final_education = #{final_education}
+			</if>
+			<if test="select_resume != null and select_resume != ''">
+			,select_resume = #{select_resume}
+			</if>
+			<if test="select_public != null and select_public != ''">
+			,select_public = #{select_public}
+			</if>
+			<if test="resume_coment != null and resume_coment != ''">
+			,resume_coment = #{resume_coment}
+			</if>
+		where resume_id = #{resume_id}
+	</update>
 </mapper>
