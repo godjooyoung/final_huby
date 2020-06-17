@@ -131,4 +131,14 @@ public class LoginController {
 		}
 		return num;
 	}
+	
+	@RequestMapping("/logout.do")
+	public String logout(Model model, HttpServletRequest request) {
+		
+		request.getSession().removeAttribute("personalVo");
+		request.getSession().removeAttribute("loginId");
+		request.getSession().removeAttribute("loginType");
+		
+		return "no/common/login";
+	}
 }
