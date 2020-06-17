@@ -16,7 +16,6 @@ public class ResumeServiceImpl implements ResumeService {
 	@Autowired
 	ResumeMap map;
 	
-	
 	@Override
 	public List<ResumeVo> SelectAll(MemberVo vo) {
 		// TODO Auto-generated method stub
