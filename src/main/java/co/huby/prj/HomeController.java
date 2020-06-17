@@ -81,5 +81,16 @@ public class HomeController {
 
 		return list;
 	}
+	
+	@RequestMapping(value = "/companyApplyMember.do") //기업에 지원인 인간의 상세 정보
+		public String applyMemInfoHome (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
+			String apply_id = (String) request.getParameter("applyIdInput");
+			vo.setApply_id(apply_id);
+			System.out.println("!!!!! " + apply_id);
+			Map map = boardService.get_apply_member_info(vo);
+			model.addAttribute("applyman", map);
+		return "company/company/applyMemberInfoView";
+		
+	}
 
 }

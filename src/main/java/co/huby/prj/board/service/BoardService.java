@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import co.huby.prj.vo.ApplyVo;
 import co.huby.prj.vo.LikeVideoVo;
 import co.huby.prj.vo.VideoVo;
 
@@ -18,5 +19,6 @@ public interface BoardService {
 
 	List<Map> getCompany_ApplyList(@Param("companyid") String companyid, @Param("listviewid") String listviewid)
 			throws Exception;
+	Map get_apply_member_info(ApplyVo vo) throws Exception;
 
 }

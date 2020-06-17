@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import co.huby.prj.board.mapper.BoardMap;
 import co.huby.prj.board.service.BoardService;
+import co.huby.prj.vo.ApplyVo;
 import co.huby.prj.vo.LikeVideoVo;
 import co.huby.prj.vo.VideoVo;
 
@@ -40,6 +41,12 @@ public class BoardServiceImpl implements BoardService {
 
 		return map.getCompany_ApplyList(companyid, listviewid);
 
+	}
+
+	@Override
+	public Map get_apply_member_info(ApplyVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.get_apply_member_info(vo);
 	}
 
 }
