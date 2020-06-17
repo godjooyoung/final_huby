@@ -11,7 +11,21 @@ public class AlarmVo {
 	private String company_id;
 	private String alarm_message;
 	private Timestamp alarm_time;
+	private String company_name;
+	private String member_name;
 	
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+	public String getCompany_name() {
+		return company_name;
+	}
+	public void setCompany_name(String company_name) {
+		this.company_name = company_name;
+	}
 	//
 	public String getAlarm_id() {
 		return alarm_id;

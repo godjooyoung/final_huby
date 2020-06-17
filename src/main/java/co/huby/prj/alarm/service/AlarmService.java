@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public interface AlarmService {
 	public ArrayList<AlarmVo> personalarmlist(String personid) throws Exception;
-	public ArrayList<AlarmVo> companyalarmlist(UserVo uservo) throws Exception;
-	void AlarmInsert(AlarmVo vo);
+	public ArrayList<AlarmVo> companyalarmlist(String companyid) throws Exception;
+	void alarmInsert(AlarmVo vo);
+	void currentY(AlarmVo vo);
+	void currentN(AlarmVo vo);
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import co.huby.prj.alarm.mapper.AlarmMap;
 import co.huby.prj.alarm.service.AlarmService;
 import co.huby.prj.alarm.service.AlarmVo;
-import co.huby.prj.alarm.service.UserVo;
 
 @Service("alarmService")
 public class AlarmServiceImpl implements AlarmService {
@@ -21,15 +20,25 @@ public class AlarmServiceImpl implements AlarmService {
 	}
 
 	@Override
-	public ArrayList<AlarmVo> companyalarmlist(UserVo uservo) throws Exception {
+	public ArrayList<AlarmVo> companyalarmlist(String companyid) throws Exception {
 		// TODO Auto-generated method stub
-		return map.companyalarmlist(uservo);
+		return map.companyalarmlist(companyid);
 	}
 
 	@Override
-	public void AlarmInsert(AlarmVo vo) {
+	public void alarmInsert(AlarmVo vo) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void currentY(AlarmVo vo) {
+		map.currentY(vo);
+	}
+	
+	@Override
+	public void currentN(AlarmVo vo) {
+		map.currentN(vo);
 	}
 	
 }

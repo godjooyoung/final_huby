@@ -6,12 +6,28 @@
 		INSERT INTO ALARM VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP);
 	</insert>
 	
-	<select id="personalarmlist" parameterType="co.huby.prj.alarm.service.AlarmVo" resultType="co.huby.prj.alarm.service.AlarmVo">
-		SELECT COMPANY_ID, ALARM_MESSAGE, ALARM_TIME FROM ALARM WHERE MEMBER_ID = #{id}
+	<select id="personalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
+		SELECT C.COMPANY_NAME company_name, A.ALARM_MESSAGE alarm_message, A.ALARM_TIME alarm_time
+		FROM ALARM A
+		JOIN COMPANY C
+		ON C.COMPANY_ID = A.COMPANY_ID 
+		WHERE MEMBER_ID = #{personid}
 	</select>
 	
-	<select id="companyalarmlist" parameterType="co.huby.prj.alarm.service.AlarmVo" resultType="co.huby.prj.alarm.service.AlarmVo">
-		SELECT MEMBER_ID, ALARM_MESSAGE, ALARM_TIME, ALARM_CURRENT FROM ALARM WHERE COMPANY_ID = #{company_id}
+	<select id="companyalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
+		SELECT M.MEMBER_NAME member_name, A.ALARM_MESSAGE alarm_message, A.ALARM_CURRENT alarm_current
+		FROM ALARM A
+		JOIN MEMBER M
+		ON A.MEMBER_ID = M.MEMBER_ID
+		WHERE COMPANY_ID = #{companyid}
 	</select>
+	
+	<update id="currentY" parameterType="co.huby.prj.alarm.service.AlarmVo">
+		UPDATE ALARM SET ALARM_CURRENT = 'Y' WHERE ALARM_ID = #{alarm_id}
+	</update>
+	
+	<update id="currentN" parameterType="co.huby.prj.alarm.service.AlarmVo">
+		UPDATE ALARM SET ALARM_CURRENT = 'N' WHERE ALARM_ID = #{alarm_id}
+	</update>
 	
 </mapper>
