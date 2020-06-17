@@ -5,6 +5,7 @@
 		<typeAlias alias="MemberVo"
 			type="co.huby.prj.member.service.MemberVo" />
 		<!-- <typeAlias alias="MemberVO" type="co.huby.prj.member.service.CompanyMemberVo"/> -->
+		<typeAlias alias="ResumeVo" type="co.huby.prj.vo.ResumeVo" />
 		<typeAlias type="co.huby.prj.code.service.CodeVo"
 			alias="CodeVo" />
 		<typeAlias alias="CompanyVo" type="co.huby.prj.vo.CompanyVo" />
@@ -13,5 +14,5 @@
 		<typeAlias alias="MessageVo" type="co.huby.prj.vo.MessageVo" />
 		<typeAlias alias="EmploymentsVo"
 			type="co.huby.prj.vo.EmploymentsVo" />
-	</typeAliases>
+		</typeAliases>
 </configuration>

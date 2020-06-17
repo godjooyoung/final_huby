@@ -2,4 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="co.huby.prj.resume.mapper.ResumeMap">
 <!-- 레쥬메 -->
+	<select id="SelectAll" resultType="ResumeVo" parameterType="MemberVo">
+		select resume_id, member_id, resume_title, 
+				hope_job, hope_salary, hope_location, 
+				final_education, select_resume,
+				select_public, resume_coment
+		from resume where member_id = #{member_id}
+	</select>
+	
+	<insert id="resumeInsert" parameterType="ResumeVo">
+	insert into resume 		
+				(resume_id, 		
+				member_id, 		
+				resume_title, 		
+				hope_job, 		
+				hope_salary,
+				<if test="hope_location != null and hope_location != ''"> 		
+				hope_location,		
+				</if>
+				<if test="final_education != null and final_education != ''"> 		
+				final_education,
+				</if>
+				<if test="select_resume != null and select_resume != ''"> 	
+				select_resume, 		
+				</if>
+				<if test="select_public != null and select_public != ''">
+				select_public, 		
+				</if>
+				<if test="resume_coment != null and resume_coment != ''">
+				resume_coment)		
+				</if>
+	values
+				(RESUME_SEQ.nextval,
+				#{member_id}, 
+				#{resume_title}, 			
+				#{hope_job}, 		
+				#{hope_salary}, 
+				<if test="hope_location != null and hope_location != ''">
+				#{hope_location,
+				</if>
+				<if test="final_education != null and final_education != ''">
+				#{final_education}, 
+				</if>
+				<if test="select_resume != null and select_resume != ''">
+				#{select_resume}, 
+				</if>
+				<if test="select_public != null and select_public != ''">
+				#{select_public},
+				</if>
+				<if test="resume_coment != null and resume_coment != ''"> 
+				#{resume_coment})
+				</if>
+	</insert>
 </mapper>
