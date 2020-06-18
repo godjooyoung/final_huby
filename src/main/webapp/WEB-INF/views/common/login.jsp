@@ -14,7 +14,7 @@
  }
 </style>
 <script>
-	if( ${num} == 1){
+	if( '${num}' == 1){
 		alert("로그인 실패, ID/PW를 정확히 입력해주세요.");
 	}
 </script>
