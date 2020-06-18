@@ -11,15 +11,20 @@
 }
 </style>
 <br><br><br><br><br><br>
+<script type="text/javascript">
 
+	function currentDelete(){}
 
-<form>
+</script>
+
+<form action="currentY.do" method='POST'>
 	<div class="alarmlist">
 		<c:forEach var="list" items="${personalarmlist }">
 			<br>${list.company_name }<br>
 				${list.alarm_message }<br>
 				${list.alarm_time }<br>
-			<input type="button" value="수락" onclick="location.href='currentY.do'">
+			<input type="hidden" value="${list.alarm_id }" name="alarmid">
+			<input type="submit" value="수락">
 			<input type="button" value="거절" onclick='alert("거절되었습니다.")'>
 		</c:forEach>
 	</div>

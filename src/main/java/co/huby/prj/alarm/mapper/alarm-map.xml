@@ -7,7 +7,7 @@
 	</insert>
 	
 	<select id="personalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
-		SELECT C.COMPANY_NAME company_name, A.ALARM_MESSAGE alarm_message, A.ALARM_TIME alarm_time
+		SELECT C.COMPANY_NAME company_name, A.ALARM_MESSAGE alarm_message, A.ALARM_TIME alarm_time, A.ALARM_ID alarm_id
 		FROM ALARM A
 		JOIN COMPANY C
 		ON C.COMPANY_ID = A.COMPANY_ID 

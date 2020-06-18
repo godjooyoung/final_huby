@@ -1,17 +1,16 @@
 package co.huby.prj;
 
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import co.huby.prj.alarm.service.AlarmService;
 import co.huby.prj.alarm.service.AlarmVo;
 
@@ -37,14 +36,38 @@ public class AlarmController {
 		model.addAttribute("personalarmlist", list);
 		return "person/alarm/personalarmlist";
 	}
+	// 알람 수락 update
+	@RequestMapping("/currentY.do") 
+	public void currentY(AlarmVo vo, Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		vo.setAlarm_id(request.getParameter("alarmid"));
+		alarmService.currentY(vo);
+		
+		PrintWriter out = response.getWriter();
+		out.print("<script>");
+		out.print("alert('수락되었습니다.');");
+		out.print("location.href='personalarm.do';");
+		out.print("</script>");
+		//return "person/alarm/personalarmlist";
+	}
+	//알람 거절 update
+	@RequestMapping("/currentN.do")
+	public void currentN(AlarmVo vo, Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		vo.setAlarm_id(request.getParameter("alarmid"));
+		alarmService.currentN(vo);
+		
+		PrintWriter out = response.getWriter();
+		out.print("<script>");
+		out.print("alert('거절되었습니다.');");
+		out.print("location.href='personalarm.do';");
+		out.print("</script>");
+	}
 	
-	//@RequestMapping(value="/currentY.do", method=RequestMethod.POST) // 알람 수락 update
-	//public String currentY(@ModelAttribute AlarmVo vo) throws Exception {
-	//	alarmService.currentY(vo);
-	//	return "person/alarm/personalarmlist";
-	//}
-	
-	//알람 거절
 	
 	//기업 알람 insert
 }
