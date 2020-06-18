@@ -51,7 +51,6 @@
 <script>
 	function PersonalLoginCheck(){
 			
-			
 			var id = document.getElementById("member_id");
 			var pw = document.getElementById("member_pw");
 			
@@ -74,9 +73,12 @@
 			}
 			
 			else {
+				Android.login("안녕");
 				return true;
 			}
 	}
+	
+	
 </script>
 
 <!-- <script>
