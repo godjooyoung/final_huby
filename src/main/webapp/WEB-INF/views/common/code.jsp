@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<html>
-<head>
-<title>Code</title>
+
 <!-- jQuery CDN -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-</head>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+ -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#btn').on("click", function() {
@@ -41,16 +39,13 @@
 		$('#tbody').append(tag);
 	}
 </script>
-<body>
-	<button id="btn">눌러</button>
-	<table border="1">
-		<thead>
-			<tr>
-				<td>코드</td>
-				<td>이름</td>
-			</tr>
-		</thead>
-		<tbody id="tbody"></tbody>
-	</table>
-</body>
-</html>
+<button id="btn">눌러</button>
+<table border="1">
+	<thead>
+		<tr>
+			<td>코드</td>
+			<td>이름</td>
+		</tr>
+	</thead>
+	<tbody id="tbody"></tbody>
+</table>

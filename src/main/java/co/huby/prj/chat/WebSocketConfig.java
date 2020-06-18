@@ -4,17 +4,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
-//	@Autowired
-//	private EchoHandler echoHandler;
+	// @Autowired
+	// private EchoHandler echoHandler;
 
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(new Handler(), "/chat.do").setAllowedOrigins("*").withSockJS();
-			//	.setInterceptors(new HttpSessionHandshakeInterceptor());
+		registry.addHandler(new Handler(), "/chat.do").setAllowedOrigins("*").withSockJS()
+				.setInterceptors(new HandShaker());
 	}
 
 }

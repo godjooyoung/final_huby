@@ -24,7 +24,7 @@ public class Handler extends TextWebSocketHandler {
 	@Autowired
 	private ChatService service;
 	private List<WebSocketSession> connectedUsers;
-	
+
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
 
 	public Handler() {
@@ -33,8 +33,9 @@ public class Handler extends TextWebSocketHandler {
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+		if (session.getAttributes().get("loginId") != null)
+			users.put((String) session.getAttributes().get("loginId"), session);
 		log(session.getId() + " 연결 됨!!");
-		users.put((String) session.getAttributes().get("loginId"), session);
 		connectedUsers.add(session);
 	}
 
@@ -47,46 +48,29 @@ public class Handler extends TextWebSocketHandler {
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+
+		System.out.println(message.getPayload());
+		System.out.println(users);
+		Map<String, Object> map = null;
+		MessageVo messageVo = MessageVo.convertMessage(message.getPayload());
+
+		WebSocketSession rs = users.get(messageVo.getMessage_receiver());
+		if (rs != null) {
+			rs.sendMessage(new TextMessage(message.getPayload()));
+		}
+		session.sendMessage(new TextMessage(message.getPayload()));
+
+	}
+
+	protected void sendAllMessage(WebSocketSession session, TextMessage message) throws Exception {
+
 		System.out.println(message.getPayload());
 		Map<String, Object> map = null;
 		MessageVo messageVo = MessageVo.convertMessage(message.getPayload());
 
-		System.out.println("1 : " + messageVo.toString());
-
-		InterviewVo interviewVo = new InterviewVo();
-		interviewVo.setInterview_id(messageVo.getInterview_id()); // 인터뷰
-		interviewVo.setCompany_id(messageVo.getCompany_id()); // 회사
-		interviewVo.setMember_id(messageVo.getMember_id()); // 유저
-
-		InterviewVo iroom = null;
-		if (!messageVo.getMember_id().equals(messageVo.getCompany_id())) {
-			System.out.println("a");
-
-			if (service.isRoom(interviewVo) == null) {
-				System.out.println("b");
-				service.createRoom(interviewVo);
-				System.out.println("d");
-				iroom = service.isRoom(interviewVo);
-
-			} else {
-				System.out.println("C");
-				iroom = service.isRoom(interviewVo);
-			}
-		} else {
-
-			iroom = service.isRoom(interviewVo);
-		}
-
-		messageVo.setInterview_id(iroom.getInterview_id());
-		if (iroom.getMember_id().equals(messageVo.getMessage_sender())) {
-			messageVo.setMessage_receiver(interviewVo.getCompany_id());
-		} else {
-			messageVo.setMessage_receiver(interviewVo.getMember_id());
-		}
-
 		for (WebSocketSession websocketSession : connectedUsers) {
 			map = websocketSession.getAttributes();
-			MemberVo login = (MemberVo) map.get("login");
+			MemberVo login = (MemberVo) map.get("loginId");
 
 			// 받는사람
 			if (login.getMember_id().equals(messageVo.getMessage_sender())) {

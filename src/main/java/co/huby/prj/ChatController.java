@@ -20,14 +20,14 @@ public class ChatController {
 
 	@RequestMapping(value = "/company_chat.do")
 	public String getChatViewPage(Model model, HttpServletRequest request) {
-		String companyid = (String) request.getSession().getAttribute("loginId");
+
 		return "company/chat/test";
 
 	}
 
 	@RequestMapping(value = "/person_chat.do")
 	public String getChatViewPage2(Model model, HttpServletRequest request) {
-		String personalid = (String) request.getSession().getAttribute("loginId");
+
 		return "person/chat/test";
 
 	}

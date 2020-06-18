@@ -17,27 +17,28 @@ public class HandShaker extends HttpSessionHandshakeInterceptor {
 		// TODO Auto-generated method stub
 		super.afterHandshake(request, response, wsHandler, ex);
 
-
 	}
 
 	@Override
-	public boolean beforeHandshake(org.springframework.http.server.ServerHttpRequest request, ServerHttpResponse response,
-			WebSocketHandler arg2, Map<String, Object> attributes) throws Exception {
+	public boolean beforeHandshake(org.springframework.http.server.ServerHttpRequest request,
+			ServerHttpResponse response, WebSocketHandler arg2, Map<String, Object> attributes) throws Exception {
 		// TODO Auto-generated method stub
-		
-		 ServletServerHttpRequest ssreq = (ServletServerHttpRequest) request;
-	        System.out.println("URI:"+request.getURI());
-	  
-	        HttpServletRequest req =  ssreq.getServletRequest();
-	 
-	        /*String userId = req.getParameter("userid");
-	        System.out.println("param, id:"+userId);
-	        attributes.put("userId", userId);*/
-	  
-	        // HttpSession 에 저장된 이용자의 아이디를 추출하는 경우
-	        String id = (String)req.getSession().getAttribute("loginId");
-	        attributes.put("loginId", id);
-	        return super.beforeHandshake(request, response, arg2, attributes);
+
+		ServletServerHttpRequest ssreq = (ServletServerHttpRequest) request;
+		System.out.println("URI:" + request.getURI());
+
+		HttpServletRequest req = ssreq.getServletRequest();
+
+		/*
+		 * String userId = req.getParameter("userid");
+		 * System.out.println("param, id:"+userId); attributes.put("userId", userId);
+		 */
+
+		// HttpSession 에 저장된 이용자의 아이디를 추출하는 경우
+		String id = (String) req.getSession().getAttribute("loginId");
+		if (id != null)
+			attributes.put("loginId", id);
+		return super.beforeHandshake(request, response, arg2, attributes);
 	}
 
 }
