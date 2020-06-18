@@ -20,12 +20,24 @@
 	</select>
 	
 	<select id="SelectMatchedEmploymentList" resultType="map" parameterType="map">
-	select e.EMPLOYMENT_ID,e.EMPLOYMENT_TITLE,e.EMPLOYMENT_CONTENTS,e.HOPE_CAREER,e.HOPE_GRADUATE,
+	select e.EMPLOYMENT_ID,e.EMPLOYMENT_TITLE,e.EMPLOYMENT_CONTENTS,e.HOPE_CAREER,e.HOPE_GRADUATE, e.employment_id,
 			e.HOPE_JOB_POSITION,e.HOPE_JOB,e.HOPE_LOCATION,e.HOPE_WORK_TYPE,e.EMPLOYMENT_PREFER,e.EMPLOYMENT_TIME,
 			c.COMPANY_NAME,c.COMPANY_TEL,c.COMPANY_EMAIL,c.CEO_NAME,c.BUSINESS_TYPE,
 			c.COMPANY_ADDR,c.BUSINESS_CATEGORY,c.COMPANY_BIRTH,c.COMPANY_SALES,
-			c.HOMEPAGE,c.COMPANY_DATE
+			c.HOMEPAGE,c.COMPANY_DATE, c.company_id
 	from employments e, company c
 	where e.company_id = c.company_id and e.employment_id = #{employment_id}
+	</select>
+	
+	<select id="ApplyUserInfoAll" resultType="map" parameterType="map">
+	select m.member_id, m.member_name, m.member_birth, m.member_addr, m.member_tel, m.member_email, m.member_gender, m.member_photo,
+			r.resume_id, r.member_id, r.resume_title, r.hope_job, r.hope_salary, r.hope_location, r.final_education, r.select_resume, r.select_public, r.resume_coment,
+			v.video_id, v.video_contents, v.video_img, v.hashtag, v.company_id, v.member_id,
+			s.skill_id, s.award_name, s.sicense_name, s.skill_name, s.award_agency, s.skill_level, s.acquisition, s.award_contents, s.award_date, s.member_id
+	from member m, resume r, video v, skills s
+	where m.member_id = r.member_id 
+			and m.member_id = v.member_id
+			and m.member_id = s.member_id
+			and m.member_id= #{member_id}
 	</select>
 </mapper>

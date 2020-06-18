@@ -169,11 +169,29 @@
 	if(n==0){
 		alert("이력서 등록을 실패했습니다.");
 	}
+	
+	<button class="btn-primary" onclick="toggle()" style="size: 30px">toggle</button>
+	<p id="test">sample text</p>
+	
+	var toggled = false;
+	function toggle(){
+		if(!toggled){
+			toggled = true;
+			document.getElementById("test").style.display="none";
+			return;
+		}
+		if(toggled){
+			toggled = false;
+			document.getElementById("test").style.display="block";
+			return;
+		}
+	}
 </script>
 </head>
 <body>
-<h1>이력서 등록</h1>
+<br><br><br>
 <div align="center">
+<h1>이력서 등록</h1>
 <div class="container">
     <h2 class="">&nbsp</h2>
 	<div class="row">
