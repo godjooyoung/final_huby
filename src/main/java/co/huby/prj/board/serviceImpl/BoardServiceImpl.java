@@ -45,8 +45,31 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Map get_apply_member_info(ApplyVo vo) throws Exception {
-		// TODO Auto-generated method stub
 		return map.get_apply_member_info(vo);
+	}
+
+	@Override
+	public List<Map> get_career(String memberid) throws Exception {
+		// 지원자정보에서 커리어 가져오기
+		return map.get_career(memberid);
+	}
+
+	@Override
+	public List<Map> get_habit(String memberid) throws Exception {
+		// 지원자정보에서 습관 가져오기
+		return map.get_habit(memberid);
+	}
+
+	@Override
+	public List<Map> get_skills(String memberid) throws Exception {
+		// 지원자정보에서 기술 가져오기
+		return map.get_skills(memberid);
+	}
+
+	@Override
+	public List<Map> get_exp(String memberid) throws Exception {
+		// 지원자정보에서 경험 가져오기
+		return map.get_exp(memberid);
 	}
 
 }

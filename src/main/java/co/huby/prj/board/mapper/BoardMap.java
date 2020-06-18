@@ -17,4 +17,9 @@ public interface BoardMap {
 	List<Map> getCompany_Employments(String com_id);
 	List<Map> getCompany_ApplyList(@Param("companyid") String companyid, @Param("listviewid") String listviewid);
 	Map get_apply_member_info(ApplyVo vo);
+	
+	List<Map> get_career (String memberid) throws Exception;
+	List<Map> get_habit (String memberid) throws Exception;
+	List<Map> get_skills (String memberid) throws Exception;
+	List<Map> get_exp (String memberid) throws Exception;
 }

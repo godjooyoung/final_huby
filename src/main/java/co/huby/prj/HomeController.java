@@ -86,11 +86,59 @@ public class HomeController {
 		public String applyMemInfoHome (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
 			String apply_id = (String) request.getParameter("applyIdInput");
 			vo.setApply_id(apply_id);
-			System.out.println("!!!!! " + apply_id);
 			Map map = boardService.get_apply_member_info(vo);
 			model.addAttribute("applyman", map);
 		return "company/company/applyMemberInfoView";
 		
 	}
+	
+	
+	/**아작스....*/
+	@ResponseBody
+	@RequestMapping(value = "/showCareer.do") //경력상세 보여주기
+	public List<Map> showCareer (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		String listviewid = request.getParameter("listviewId");
+		System.out.println("...................." + listviewid);
+		List<Map> list = boardService.getCompany_ApplyList(companyid, listviewid);
+
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/showSkills.do") //기술
+	public List<Map> showExperience (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
+		String memberid = request.getParameter("memberid");
+		System.out.println("..." + memberid);
+		List<Map> list = boardService.get_skills(memberid);
+		System.out.println("여기!!!!!"+list);
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/showHabit.do") //습관보여주기
+	public List<Map> showHabit (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		String listviewid = request.getParameter("listviewId");
+		System.out.println("...................." + listviewid);
+		List<Map> list = boardService.getCompany_ApplyList(companyid, listviewid);
+
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/showExp.do") //경험보여주기
+	public List<Map> showExp (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		String listviewid = request.getParameter("listviewId");
+		System.out.println("...................." + listviewid);
+		List<Map> list = boardService.getCompany_ApplyList(companyid, listviewid);
+
+		return list;
+	}
+	
+	/**아작스....*/
+	
+	
 
 }
