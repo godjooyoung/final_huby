@@ -8,5 +8,6 @@ import co.huby.prj.vo.ResumeVo;
 
 public interface EmploymentService {
 	List<Map> getMatchedEmploymentList(ResumeVo vo) throws Exception;
-
+	Map SelectMatchedEmploymentList(Map vo) throws Exception;
+	
 }

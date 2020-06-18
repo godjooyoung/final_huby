@@ -131,9 +131,17 @@ section .section-title {
 	border-radius: 50%;
 }
 </style>
+<script>
+function selectemployment(cid, eid){
+	$("#company_id").val(cid);
+	$("#employment_id").val(eid);
+	$("#frm").attr("action","selectresumepage.do");
+	document.frm.submit();
+}
 
+</script>
 <!-- Team -->
-
+<form id="frm" name="frm" method="post">
 <section id="team" class="pb-5">
 	<h5 class="section-title h1">채용공고</h5>
 	<div class="col-xs-12 col-sm-6 col-md-4">
@@ -162,7 +170,7 @@ section .section-title {
 										</div>
 									</div>
 									<div class="backside">
-										<div class="card">
+										<div class="card" onclick='selectemployment("${ empMatch.company_id }","${ empMatch.employment_id }")'>
 											<div class="card-body text-center mt-4">
 												<h4 class="card-title">${empMatch.company_name}</h4>
 												<p class="card-text">${empMatch.employment_contents}</p>
@@ -200,8 +208,9 @@ section .section-title {
 		</div>
 	</div>
 </section>
-
-
+<input type="hidden" id="company_id" name="company_id">
+<input type="hidden" id="employment_id" name="employment_id">
+</form>
 
 
 <!-- Pagination -->

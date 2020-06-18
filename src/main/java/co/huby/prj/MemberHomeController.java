@@ -1,5 +1,6 @@
 package co.huby.prj;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.huby.prj.board.service.EmploymentService;
 import co.huby.prj.vo.ResumeVo;
@@ -27,5 +29,21 @@ public class MemberHomeController {
 		model.addAttribute("empMatch", list);
 		return "person/common/memberHome";
 	}
-
+	
+	@RequestMapping(value = "/selectresumepage.do")
+	public String selectresumepage(Model model,@RequestParam Map vo) throws Exception {
+		Map checkVo = employmentService.SelectMatchedEmploymentList(vo);
+		
+		model.addAttribute("empMatch", checkVo);
+		return "person/member/selectresumepage";
+	}
+	
+	@RequestMapping(value = "/applyinfoall.do")
+	public String applyinfoall(Model model,@RequestParam Map vo) throws Exception {
+		
+		Map checkVo = employmentService.SelectMatchedEmploymentList(vo);
+		
+		model.addAttribute("empMatch", checkVo);
+		return "person/member/applyinfoall";
+	}
 }

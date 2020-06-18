@@ -22,4 +22,10 @@ public class EmploymentServiceImpl implements EmploymentService {
 		return map.getMatchedEmploymentList(vo);
 	}
 
+	@Override
+	public Map SelectMatchedEmploymentList(Map vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.SelectMatchedEmploymentList(vo);
+	}
+
 }
