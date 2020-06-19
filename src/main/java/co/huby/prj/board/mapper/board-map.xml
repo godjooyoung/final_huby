@@ -110,7 +110,17 @@
 
 
 	<select id="get_career" parameterType="string" resultType="map">
-		SELECT * FROM CAREER WHERE MEMBER_ID = #{value}
+		SELECT ca.start_date, 
+            ca.end_date, 
+            ca.company_name, 
+            ca.career_content, 
+            c.code_name, 
+            ca.job_position, 
+            ca.member_id
+    		FROM career ca
+   			JOIN code C
+   			ON ca.job = c.code_id
+    		WHERE ca.member_id = #{value}
 	</select>
 
 
