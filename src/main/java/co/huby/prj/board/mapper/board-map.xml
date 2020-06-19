@@ -31,10 +31,9 @@
 	<insert id="videoLikeInsertFromCompany"
 		parameterType="co.huby.prj.vo.VideoVo">
 		INSERT INTO like_video
-		VALUES (LIKE_VIDEO_SEQ.nextval,
-		#{video_id}, (select member_id from video
-		where video_id= #{video_id}),
-		#{company_id})
+		VALUES (
+			LIKE_VIDEO_SEQ.nextval, #{video_id}, 
+			(select member_id from video where video_id= #{video_id}), #{company_id})
 	</insert>
 
 	<!-- 기업이 낸 공고 조회하기 -->
@@ -94,18 +93,16 @@
 		V.hashtag as "hashtag",
 		V.video_location as "video_location",
 		C.code_name as "code_name"
-		FROM resume R
-		JOIN member M
-		ON M.member_id =
-		R.member_id
-		JOIN video V
-		ON V.member_id =M.member_id AND V.hashtag =
-		r.hope_job
-		JOIN CODE C
-		ON V.hashtag = C.code_id
-		WHERE resume_id =
-		(SELECT
-		resume_id FROM apply WHERE apply_id=#{apply_id, jdbcType=VARCHAR})
+        FROM apply A
+        JOIN member M
+        ON a.member_id = m.member_id
+            JOIN resume R
+            ON a.resume_id = R.resume_id
+                JOIN video v
+                ON v.video_id = a.video_id
+                    JOIN code c
+                    ON v.hashtag = c.code_id
+                        where a.apply_id = #{apply_id, jdbcType=VARCHAR}
 	</select>
 
 

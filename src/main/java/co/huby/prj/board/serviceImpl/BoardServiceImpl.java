@@ -27,7 +27,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void videoLikeInsertFromCompany(LikeVideoVo vo) throws Exception {
-		// TODO Auto-generated method stub
+		map.videoLikeInsertFromCompany(vo);
 
 	}
 

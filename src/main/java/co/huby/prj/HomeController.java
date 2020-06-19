@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,12 +53,14 @@ public class HomeController {
 		model.addAttribute("matched", list);
 		return "company/company/companyStart";
 	}
-
+	
+	@ResponseBody
 	@RequestMapping(value = "/companyLikeVideo.do") // 기업이 영상좋아요 버튼 누를경우 디비에 인설트
-	public String likeVideo(Model model, HttpServletRequest request, LikeVideoVo vo) throws Exception {
+	public String likeVideo(Model model, HttpServletRequest request,LikeVideoVo vo) throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
-		// String vid = request.getParameter("vid");
-		// vo.setVideo_id(vid);
+		String vid = request.getParameter("video_id");
+		System.out.println("비디오 아이디 넘어오나.." + vid);
+		vo.setVideo_id(vid);
 		vo.setCompany_id(companyid);
 		boardService.videoLikeInsertFromCompany(vo);
 		return "redirect:companyAfterLogin.do";

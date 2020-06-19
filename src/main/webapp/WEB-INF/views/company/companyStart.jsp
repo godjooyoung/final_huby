@@ -54,13 +54,16 @@
 		var viedoid = "btn"+video_id;
 		document.getElementById(heartid).color="red"
 		var vid= document.getElementById(viedoid).value;
+		var aa = video_id;
+		console.log("!!!" + aa);
 		
 		$.ajax({
 			type:"get",
 			url:"companyLikeVideo.do",
-			data : {'video_id': vid },
+			data : {'video_id': aa },  
+			//contentType: 'application/json', 
 			success: function(){
-				
+			 alert("스크랩했습니다");		
 			},
 			error: function(){
 			  alert("에러 발생. 관리자에게 문의주세요.");

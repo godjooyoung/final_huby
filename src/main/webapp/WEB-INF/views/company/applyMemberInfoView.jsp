@@ -27,38 +27,65 @@ hi?lollololololololololo ${applyman}
 						<br>기술
 					</h3>
 				</a>
-				<ul class="nav nav-pills flex-column" id="habits${applyman.member_id}">
+				<ul class="nav nav-pills flex-column" id="skills${applyman.member_id}">
 					<!-- 반복문 돌리기 -->
 					<!-- 여기에 가져온 스킬정보를 붙이자. li 태그로로 -->
-					
 				</ul>
+				
 				
 				<a onclick="reciveHabit(event,'${applyman.member_id}')">
 					<h3>
 						<br>습관
 					</h3>
 				</a>
-				<ul class="nav nav-pills flex-column">
-					<li class="nav-item"><a class="nav-link" href="#">${applyman.member_addr}</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">${applyman.member_tel}</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">${applyman.member_email}</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">${applyman.member_birth}</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">${applyman.member_gender}</a>
-					</li>
+				<ul class="nav nav-pills flex-column" id="habits${applyman.member_id}">
+				<!-- 여기에 가져온 습관정보를 붙이자. li 태그로로 -->
 				</ul>
+				
 				<hr class="d-sm-none">
 			</div>
 			<div class="col-sm-8">
-				<h2>이력서 ${applyman.resume_title}</h2>
-				<h5> ${applyman.resume_coment}</h5>
-				<p>${applyman.code_name}</p>
-				<br>
-				<h2>자기소개 영상 </h2>
-				<h2>${applyman.video_contents}</h2>
-				<div class="#">
+				
+				<h2>[이력서]</h2> 
+				<h3>${applyman.resume_title}</h3>
+				<h4>${applyman.resume_coment}</h4>
+				<ul class="nav nav-pills flex-column">
+					<li class="nav-item">희망 연봉 : ${applyman.hope_salary}</li>
+					<li class="nav-item">희망 직무 : ${applyman.code_name}</li>
+					<li class="nav-item">희망 근무 지역 : 
+						<c:set var="location" value="${applyman.hope_location}" />
+						<c:if test="${location eq null}" >
+							없음
+						</c:if>
+						<c:if test="${location != null}" >
+							${applyman.hope_location}
+						</c:if>
+						</li>
+				</ul>
+				
+				<h2>[자기소개]</h2>
+				<h3>${applyman.video_contents}</h3>
+				<div>
 				<img src="${pageContext.request.contextPath}/resources/img/common/${applyman.video_img}">
 				</div>
+				<p>${applyman.code_name}</p>
+				<br>
+				
+				<a onclick="reciveCareer(event,'${applyman.member_id}')">
+				<h3>경력</h3>
+				</a>
+				<ul class="nav nav-pills flex-column" id="career${applyman.member_id}">
+				<!-- 여기에 가져온 경력정보를 붙이자. li 태그로로 -->
+				</ul>
+				
+				<a onclick="reciveExp(event,'${applyman.member_id}')">
+				<h3>경험</h3>
+				</a>
+				<ul class="nav nav-pills flex-column" id="exp${applyman.member_id}">
+				<!-- 여기에 가져온 경험정보를 붙이자. li 태그로로 -->
+				</ul>
+				
+				
 			</div>
 		</div>
 	</div>
@@ -74,7 +101,7 @@ function reciveSkill(e,memberid){
 		dataType : 'json',
 		success: 
 			function(data){	
-			alert ("성공..");
+			alert ("성공 skills");
 			console.log(data[0]);
 			
 			$(place).empty();
@@ -102,7 +129,7 @@ function reciveHabit(e,memberid){
 		dataType : 'json',
 		success: 
 			function(data){	
-			alert ("성공..");
+			alert ("성공 habit");
 			console.log(data[0]);
 			
 			$(place).empty();
@@ -119,12 +146,62 @@ function reciveHabit(e,memberid){
 	})
 	
 };//end habit
-function showPeson(id){
-		var apply_id = id.getAttribute( 'id' );
-		alert(apply_id);
-		document.getElementById("applyIdInput").value=apply_id;
-		  document.applyIdfrm.action = "companyApplyMember.do";
-		  document.applyIdfrm.method = "post";
-		  document.applyIdfrm.submit();
-};
+
+
+function reciveExp(e,memberid){
+	var place = document.getElementById("exp"+memberid);
+	var plusLi = document.createElement('li');
+	$.ajax({
+		type:"get",
+		url:"showExp.do",
+		data : {'memberid': memberid },
+		dataType : 'json',
+		success: 
+			function(data){	
+			alert ("성공 exp");
+			console.log(data[0]);
+			$(place).empty();
+			$.each(data,function(idx,item){
+				$('<li>').html(item.E_START_DATE + "~" +item.E_END_DATE + " | "+ item.EXPERIENCE_TITLE+"_" + item.EXPERIENCE_PLACE_NAME+ "_"+item.EXPERIENCE_ACTION)
+				.appendTo(place);
+			});//each
+			
+		},
+		
+		error: function(){
+		  alert("에러 발생. 관리자에게 문의주세요.");
+		}
+	})
+	
+};//endExp
+
+function reciveCareer(e,memberid){
+	var place = document.getElementById("career"+memberid);
+	var plusLi = document.createElement('li');
+	$.ajax({
+		type:"get",
+		url:"showCareer.do",
+		data : {'memberid': memberid },
+		dataType : 'json',
+		success: 
+			function(data){	
+			alert ("성공 career");
+			console.log(data.length);
+			
+			$(place).empty();
+			$.each(data,function(idx,item){	
+				
+				$('<li>').html(item.START_DATE + "~" +item.END_DATE + " | "+ item.COMPANY_NAME + item.CAREER_CONTENT+ "_"+item.CODE_NAME + "_"+ item.JOB_POSITION)
+				.appendTo(place);
+			});//each
+			
+		},
+		
+		error: function(){
+		  alert("에러 발생. 관리자에게 문의주세요.");
+		}
+	})
+	
+};//endCareer
+
 </script>
