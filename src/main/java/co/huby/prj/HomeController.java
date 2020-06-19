@@ -81,45 +81,45 @@ public class HomeController {
 
 		return list;
 	}
-	
-	@RequestMapping(value = "/companyApplyMember.do") //기업에 지원인 인간의 상세 정보
-		public String applyMemInfoHome (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
-			String apply_id = (String) request.getParameter("applyIdInput");
-			vo.setApply_id(apply_id);
-			Map map = boardService.get_apply_member_info(vo);
-			model.addAttribute("applyman", map);
+
+	@RequestMapping(value = "/companyApplyMember.do") // 기업에 지원인 인간의 상세 정보
+	public String applyMemInfoHome(Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
+		String apply_id = (String) request.getParameter("applyIdInput");
+		vo.setApply_id(apply_id);
+		Map map = boardService.get_apply_member_info(vo);
+		model.addAttribute("applyman", map);
 		return "company/company/applyMemberInfoView";
-		
+
 	}
-	
-	
-	/**아작스....*/
+
+	/** 아작스.... */
 	@ResponseBody
+
 	@RequestMapping(value = "/showCareer.do") //경력상세 보여주기
 	public List<Map> showCareer (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
 		String memberid = request.getParameter("memberid");
 		List<Map> list = boardService.get_career(memberid);
 		return list;
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value = "/showSkills.do") //기술
-	public List<Map> showExperience (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
+	@RequestMapping(value = "/showSkills.do") // 기술
+	public List<Map> showExperience(Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
 		String memberid = request.getParameter("memberid");
 		System.out.println("..." + memberid);
 		List<Map> list = boardService.get_skills(memberid);
-		System.out.println("여기!!!!!"+list);
+		System.out.println("여기!!!!!" + list);
 		return list;
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value = "/showHabit.do") //습관보여주기
-	public List<Map> showHabit (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
+	@RequestMapping(value = "/showHabit.do") // 습관보여주기
+	public List<Map> showHabit(Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
 		String memberid = request.getParameter("memberid");
 		List<Map> list = boardService.get_habit(memberid);
 		return list;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/showExp.do") //경험보여주기
 	public List<Map> showExp (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
@@ -127,9 +127,7 @@ public class HomeController {
 		List<Map> list = boardService.get_exp(memberid);
 		return list;
 	}
-	
-	/**아작스....*/
-	
-	
+
+	/** 아작스.... */
 
 }

@@ -72,4 +72,10 @@ public class BoardServiceImpl implements BoardService {
 		return map.get_exp(memberid);
 	}
 
+	@Override
+	public List<Map> get_video(String memberid) throws Exception {
+		// TODO Auto-generated method stub
+		return map.get_video(memberid);
+	}
+
 }

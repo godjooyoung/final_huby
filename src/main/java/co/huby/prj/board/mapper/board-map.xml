@@ -2,102 +2,137 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="co.huby.prj.board.mapper.BoardMap">
 	<!-- 기업에게 매치해서 추천해주는거 -->
-	<select id="getMatchedListForCompany" parameterType="co.huby.prj.vo.VideoVo" resultType="map">
-		SELECT DISTINCT c.code_name as "code_name", 
-			v.video_id as "video_id", 
-			v.video_contents as "video_contents", 
-			v.video_img as "video_img", 
-			v.member_id as "member_id"
+	<select id="getMatchedListForCompany"
+		parameterType="co.huby.prj.vo.VideoVo" resultType="map">
+		SELECT DISTINCT
+		c.code_name as "code_name",
+		v.video_id as "video_id",
+		v.video_contents
+		as "video_contents",
+		v.video_img as "video_img",
+		v.member_id as
+		"member_id"
 		FROM code c
-    	Join video v 
-    	ON c.code_id = v.hashtag
-        	Join employments e
-        	ON e.hope_job = v.hashtag
-        	WHERE e.company_id =#{company_id , jdbcType=VARCHAR}
-        	AND v.video_id NOT IN (
-        						SELECT video_id 
-        						FROM like_video 
-        						WHERE company_id =#{company_id , jdbcType=VARCHAR})
+		Join video v
+		ON c.code_id = v.hashtag
+		Join
+		employments e
+		ON e.hope_job = v.hashtag
+		WHERE e.company_id =#{company_id
+		, jdbcType=VARCHAR}
+		AND v.video_id NOT IN (
+		SELECT video_id
+		FROM
+		like_video
+		WHERE company_id =#{company_id , jdbcType=VARCHAR})
 	</select>
-	
+
 	<!-- 기업이 영상에 좋아요 버튼을 클릭할경우 테이블에 저장되는거. -->
-	<insert id="videoLikeInsertFromCompany" parameterType="co.huby.prj.vo.VideoVo">
-	INSERT INTO like_video
-	VALUES (LIKE_VIDEO_SEQ.nextval, #{video_id}, (select member_id from video where video_id= #{video_id}), #{company_id})
+	<insert id="videoLikeInsertFromCompany"
+		parameterType="co.huby.prj.vo.VideoVo">
+		INSERT INTO like_video
+		VALUES (LIKE_VIDEO_SEQ.nextval,
+		#{video_id}, (select member_id from video
+		where video_id= #{video_id}),
+		#{company_id})
 	</insert>
-	
+
 	<!-- 기업이 낸 공고 조회하기 -->
-	<select id="getCompany_Employments" parameterType="string" resultType="map">
-	select * from employments where company_id = #{value, jdbcType=VARCHAR} 
+	<select id="getCompany_Employments" parameterType="string"
+		resultType="map">
+		select * from employments where company_id = #{value,
+		jdbcType=VARCHAR}
 	</select>
-	
+
 	<!-- 기업이 낸 공고에 지원한 사람 목록 보기. -->
-	<select id="getCompany_ApplyList" parameterType="string" resultType="map">
-		SELECT A.apply_id as "apply_id", A.apply_date as "apply_date", A.employment_id as "employment_id", A.member_id as "member_id", 
-			   A.resume_id as "resume_id",
-               E.employment_title as "employment_title", E.employment_time as "employment_time",
-               M.member_name as "member_name",
-               R.resume_title as "resume_title"
-        FROM apply A
-        JOIN member M
-   	    ON A.member_id = M.member_id
-            JOIN employments E
-            ON A.employment_id = E.employment_id
-                JOIN resume R
-                ON A.resume_id = R.resume_id
-                    WHERE E.company_id =#{companyid ,jdbcType=VARCHAR} and A.employment_id = #{listviewid, jdbcType=VARCHAR}
-                        ORDER BY E.employment_time  
+	<select id="getCompany_ApplyList" parameterType="string"
+		resultType="map">
+		SELECT A.apply_id as "apply_id", A.apply_date as
+		"apply_date", A.employment_id as "employment_id", A.member_id as
+		"member_id",
+		A.resume_id as "resume_id",
+		E.employment_title as
+		"employment_title", E.employment_time as "employment_time",
+		M.member_name as "member_name",
+		R.resume_title as "resume_title"
+		FROM
+		apply A
+		JOIN member M
+		ON A.member_id = M.member_id
+		JOIN employments E
+		ON
+		A.employment_id = E.employment_id
+		JOIN resume R
+		ON A.resume_id =
+		R.resume_id
+		WHERE E.company_id =#{companyid ,jdbcType=VARCHAR} and
+		A.employment_id =
+		#{listviewid, jdbcType=VARCHAR}
+		ORDER BY
+		E.employment_time
 	</select>
-	
-	<select id ="get_apply_member_info" parameterType="co.huby.prj.vo.ApplyVo" resultType="map">
-	SELECT 
-		R.resume_title as "resume_title", 
-    	R.resume_coment as "resume_coment",
-    	R.hope_salary as "hope_salary",  
-    	R.hope_job as "hope_job",
-    	R.hope_location as "hope_location", 
-    	M.member_name as "member_name",
-    	M.member_id as "member_id",
-    	M.member_birth as "member_birth",
-    	M.member_tel as "member_tel",
-    	M.member_gender as "member_gender",
-    	M.member_email as "member_email",
-    	M.member_photo as "member_photo",
-    	M.member_addr as "member_addr",
-    	V.video_id as "video_id",
-    	V.video_contents as "video_contents",
-    	V.video_img as "video_img",
-    	V.hashtag as "hashtag",
-    	V.video_location as "video_location",
-    	C.code_name as "code_name"
-    FROM resume R
-    	JOIN member M
-    	ON M.member_id = R.member_id
-        	JOIN video V
-        	ON V.member_id =M.member_id AND V.hashtag = r.hope_job
-            	JOIN CODE C
-            	ON V.hashtag = C.code_id
-    WHERE resume_id = 
-    		(SELECT resume_id FROM apply WHERE apply_id=#{apply_id, jdbcType=VARCHAR})
+
+	<select id="get_apply_member_info"
+		parameterType="co.huby.prj.vo.ApplyVo" resultType="map">
+		SELECT
+		R.resume_title as "resume_title",
+		R.resume_coment as "resume_coment",
+		R.hope_salary as "hope_salary",
+		R.hope_job as "hope_job",
+		R.hope_location as "hope_location",
+		M.member_name as "member_name",
+		M.member_id as "member_id",
+		M.member_birth as "member_birth",
+		M.member_tel as "member_tel",
+		M.member_gender as "member_gender",
+		M.member_email as "member_email",
+		M.member_photo as "member_photo",
+		M.member_addr as "member_addr",
+		V.video_id as "video_id",
+		V.video_contents as "video_contents",
+		V.video_img as "video_img",
+		V.hashtag as "hashtag",
+		V.video_location as "video_location",
+		C.code_name as "code_name"
+		FROM resume R
+		JOIN member M
+		ON M.member_id =
+		R.member_id
+		JOIN video V
+		ON V.member_id =M.member_id AND V.hashtag =
+		r.hope_job
+		JOIN CODE C
+		ON V.hashtag = C.code_id
+		WHERE resume_id =
+		(SELECT
+		resume_id FROM apply WHERE apply_id=#{apply_id, jdbcType=VARCHAR})
 	</select>
-	
-	<select id ="get_career" parameterType="string" resultType="map">
-	   SELECT * FROM CAREER WHERE MEMBER_ID = #{value}
+
+
+	<select id="get_career" parameterType="string" resultType="map">
+		SELECT * FROM CAREER WHERE MEMBER_ID = #{value}
 	</select>
-	
-	<select id ="get_habit" parameterType="string" resultType="map">
-	 	SELECT * FROM HABIT WHERE MEMBER_ID =#{value}
+
+
+	<select id="get_habit" parameterType="string" resultType="map">
+		SELECT
+		* FROM HABIT WHERE MEMBER_ID =#{value}
 	</select>
-	
-	<select id ="get_skills" parameterType="string" resultType="map">
+
+	<select id="get_skills" parameterType="string" resultType="map">
 		SELECT * FROM SKILLS WHERE MEMBER_ID = #{value}
 	</select>
-	
-	<select id ="get_exp" parameterType="string" resultType="map">
-		SELECT * FROM EXPERIENCE WHERE MEMBER_ID =#{value}
+
+	<select id="get_exp" parameterType="string" resultType="map">
+		SELECT *
+		FROM EXPERIENCE WHERE MEMBER_ID =#{value}
 	</select>
-	
-	
-	
+
+	<select id="get_video" parameterType="string" resultType="map">
+		SELECT
+		* FROM VIDEO WHERE video_id = #{value}
+	</select>
+
+
 </mapper>
 

@@ -20,5 +20,6 @@ public interface BoardService {
 	List<Map> get_habit (String memberid) throws Exception;
 	List<Map> get_skills (String memberid) throws Exception;
 	List<Map> get_exp (String memberid) throws Exception;
+	List<Map> get_video (String memberid) throws Exception;
 
 }

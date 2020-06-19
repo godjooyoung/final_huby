@@ -8,7 +8,7 @@
 	</div>
 	<div id="hd_gnb" class="gnb_pc">
 		<div class="hd_gnb_logo">
-			<a href="javascript:GoPage('main')"> <img class="b"
+			<a href="companyAfterLogin.do"> <img class="b"
 				src="${pageContext.request.contextPath}/resources/images/common/hd_logo_over.png" />
 				<img class="t"
 				src="${pageContext.request.contextPath}/resources/images/common/hd_logo.png" />
