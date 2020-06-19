@@ -85,4 +85,10 @@ public class BoardServiceImpl implements BoardService {
 		return map.get_resume(resume);
 	}
 
+	@Override
+	public void videoLikeDeleteFromCompany(LikeVideoVo vo) throws Exception {
+		map.videoLikeDeleteFromCompany(vo);
+		
+	}
+
 }

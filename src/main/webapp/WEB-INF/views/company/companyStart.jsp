@@ -20,8 +20,11 @@
 				id="btn${matched.video_id }" name="likeBtn"
 				value="${matched.video_id}" type="button"
 				onclick="clickLike(${matched.video_id})">
-				<font id="font${matched.video_id }" color=black><b><i
-						class="fas fa-heart"></i></b></font>
+				<font id="font${matched.video_id }" color="black" data-count="0">
+					<b>
+						<i class="fas fa-heart"></i>
+					</b>
+				</font>
 			</button>
 			<h3>#${matched.code_name }</h3>
 			<p>${matched.video_contents }</p>
@@ -50,17 +53,22 @@
 <script>
 	//좋아요 버튼 클릭하면 하트 색이 바뀌고 버튼의 벨류가 넘어가서 인설트된다.
 	function clickLike(video_id){
-		var heartid = "font"+video_id;
+		var heart = "font"+video_id;
 		var viedoid = "btn"+video_id;
-		document.getElementById(heartid).color="red"
-		var vid= document.getElementById(viedoid).value;
-		var aa = video_id;
-		console.log("!!!" + aa);
 		
+		if(document.getElementById(heart).color == "black"){
+		document.getElementById(heart).color="red";
+		}else{
+			document.getElementById(heart).color = "black";
+		}
+		//var vid= document.getElementById(viedoid).value;
+		var video_id = video_id;
+		
+		if (document.getElementById(heart).color == "red") {
 		$.ajax({
 			type:"get",
 			url:"companyLikeVideo.do",
-			data : {'video_id': aa },  
+			data : {'video_id': video_id },  
 			//contentType: 'application/json', 
 			success: function(){
 			 alert("스크랩했습니다");		
@@ -68,8 +76,24 @@
 			error: function(){
 			  alert("에러 발생. 관리자에게 문의주세요.");
 			}
-		})
+		})//end ajax
+		}
 		
-		
+		else if (document.getElementById(heart).color == "black") {
+			
+			$.ajax({
+				type:"get",
+				url:"likeVideoDelete.do",
+				data : {'video_id': video_id },  
+				//contentType: 'application/json', 
+				success: function(){
+				 alert("스크랩취소");
+				},
+				error: function(){
+				  alert("에러 발생. 관리자에게 문의주세요.");
+				}
+			})//end ajax
+		}
+	
 	}
 </script>

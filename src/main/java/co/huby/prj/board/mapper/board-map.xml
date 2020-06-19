@@ -147,6 +147,17 @@
 		select * from resume where member_id = #{member_id} and
 		select_resume = 'Y'
 	</select>
+	
+	<!-- 기업이 영상에 좋아요 버튼을 다시클릭할경우 테이블에서 삭제됨. -->
+	<delete id="videoLikeDeleteFromCompany"
+		parameterType="co.huby.prj.vo.LikeVideoVo">
+		delete from like_video
+		where video_id=#{video_id} and 
+    	member_id = 
+    	(select member_id from video
+    	where video_id=#{video_id})
+    	and company_id = #{company_id}
+	</delete>
 
 </mapper>
 

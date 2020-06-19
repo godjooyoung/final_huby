@@ -6,7 +6,7 @@
 <br><br>
 <br><br>
 <br><br>
-hi?lollololololololololo ${applyman}
+
 <h1>지원자 상세 보기</h1>
 		
 	<div class="container" style="margin-top: 30px">

@@ -130,7 +130,18 @@ public class HomeController {
 		List<Map> list = boardService.get_exp(memberid);
 		return list;
 	}
-
+	
+	@ResponseBody
+	@RequestMapping(value = "/likeVideoDelete.do") // 기업이 영상좋아요 버튼 다시누를경우 디비에서 삭제
+	public String likeV_D(Model model, HttpServletRequest request,LikeVideoVo vo) throws Exception {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		String vid = request.getParameter("video_id");
+		System.out.println("삭제를 위한 비디오 아이디" + vid);
+		vo.setVideo_id(vid);
+		vo.setCompany_id(companyid);
+		boardService.videoLikeDeleteFromCompany(vo);
+		return "redirect:companyAfterLogin.do";
+	}
 	/** 아작스.... */
 
 }
