@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+
+<br><br><br><br>
 <div class="w3-sidebar w3-bar-block w3-light-grey w3-card"
 	style="width: 130px">
 	<h5 class="w3-bar-item">Menu</h5>
@@ -11,7 +13,7 @@
 	<button class="w3-bar-item w3-button tablink"
 		onclick="openCity(event, 'Tokyo')">Tokyo</button>
 </div>
-
+<br><br><br><br><br><br><br><br>
 <div style="margin-left: 130px">
 	<div class="w3-padding">Vertical Tab Example (sidebar)</div>
 
@@ -37,7 +39,7 @@
 	</div>
 
 </div>
-
+<br><br><br><br><br><br><br><br><br><br><br><br>
 <script>
 	function openCity(evt, cityName) {
 		var i, x, tablinks;

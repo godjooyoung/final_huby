@@ -104,26 +104,28 @@ body, h1, h2, h3, h4, h5, h6 {
 <body id="page-top">
 	<div id="wrapper">
 		<tiles:insertAttribute name="top" />
+		<br><br><br>
 		<div id="contents">
 			<tiles:insertAttribute name="body" />
 			<tiles:insertAttribute name="footer" />
 		</div>
 	</div>
 
-	<!--JavaScript-->
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('.sub_menu_tit')
-									.click(
-											function() {
-												$(
-														'.sub01 .sub_menu_box.sub01, .sub02 .sub_menu_box.sub02, .sub03 .sub_menu_box.sub03, .sub04 .sub_menu_box.sub04, .sub05 .sub_menu_box.sub05, .sub06 .sub_menu_box.sub06, .sub07 .sub_menu_box.sub07, .sub08 .sub_menu_box.sub08')
-														.slideToggle(200);
-											});
-						});
-	</script>
 
 </body>
+<!--JavaScript-->
+<script>
+	$(document)
+			.ready(
+					function() {
+						$('.sub_menu_tit')
+								.click(
+										function() {
+											$(
+													'.sub01 .sub_menu_box.sub01, .sub02 .sub_menu_box.sub02, .sub03 .sub_menu_box.sub03, .sub04 .sub_menu_box.sub04, .sub05 .sub_menu_box.sub05, .sub06 .sub_menu_box.sub06, .sub07 .sub_menu_box.sub07, .sub08 .sub_menu_box.sub08')
+													.slideToggle(200);
+										});
+					});
+</script>
+
 </html>
