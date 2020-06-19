@@ -57,4 +57,11 @@ public class MemberHomeController {
 		
 		return "person/member/applyinfoall";
 	}
+	
+	@RequestMapping(value = "/applypreview.do")
+	public String applyPreview(Model model, @RequestParam Map mapvo, HttpServletRequest request) throws Exception {
+		
+		return "no/member/applypreview";
+	}
+	
 }
