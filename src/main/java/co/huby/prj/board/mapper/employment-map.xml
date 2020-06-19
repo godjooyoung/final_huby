@@ -7,50 +7,70 @@
 		<!-- SELECT c.company_name as "company_name", e.employment_title as "employment_title", 
 			e.employment_contents as "employment_contents" FROM company c, employments 
 			e WHERE c.company_id = e.company_id -->
-		SELECT DISTINCT c.company_name as "company_name", 
+		SELECT DISTINCT c.company_name as "company_name",
 		e.employment_title as "employment_title",
 		e.employment_contents as "employment_contents",
-		c.company_id as "company_id", e.hope_job, e.employment_id as "employment_id"
+		c.company_id as "company_id", e.hope_job, e.employment_id as
+		"employment_id"
 		FROM company c
 		Join employments e
-		ON c.company_id = e.company_id
+		ON c.company_id =
+		e.company_id
 		Join resume r
 		ON e.hope_job = r.hope_job
-		WHERE r.member_id = #{member_id, jdbcType=VARCHAR}
+		WHERE r.member_id =
+		#{member_id, jdbcType=VARCHAR}
 	</select>
-	
-	<select id="SelectMatchedEmploymentList" resultType="map" parameterType="map">
-	select e.EMPLOYMENT_ID,e.EMPLOYMENT_TITLE,e.EMPLOYMENT_CONTENTS,e.HOPE_CAREER,e.HOPE_GRADUATE, e.employment_id,
-			e.HOPE_JOB_POSITION,e.HOPE_JOB,e.HOPE_LOCATION,e.HOPE_WORK_TYPE,e.EMPLOYMENT_PREFER,e.EMPLOYMENT_TIME,
-			c.COMPANY_NAME,c.COMPANY_TEL,c.COMPANY_EMAIL,c.CEO_NAME,c.BUSINESS_TYPE,
-			c.COMPANY_ADDR,c.BUSINESS_CATEGORY,c.COMPANY_BIRTH,c.COMPANY_SALES,
-			c.HOMEPAGE,c.COMPANY_DATE, c.company_id
-	from employments e, company c
-	where e.company_id = c.company_id and e.employment_id = #{employment_id}
+
+	<select id="SelectMatchedEmploymentList" resultType="map"
+		parameterType="map">
+		select
+		e.EMPLOYMENT_ID,e.EMPLOYMENT_TITLE,e.EMPLOYMENT_CONTENTS,e.HOPE_CAREER,e.HOPE_GRADUATE,
+		e.employment_id,
+		e.HOPE_JOB_POSITION,e.HOPE_JOB,e.HOPE_LOCATION,e.HOPE_WORK_TYPE,e.EMPLOYMENT_PREFER,e.EMPLOYMENT_TIME,
+		c.COMPANY_NAME,c.COMPANY_TEL,c.COMPANY_EMAIL,c.CEO_NAME,c.BUSINESS_TYPE,
+		c.COMPANY_ADDR,c.BUSINESS_CATEGORY,c.COMPANY_BIRTH,c.COMPANY_SALES,
+		c.HOMEPAGE,c.COMPANY_DATE, c.company_id
+		from employments e, company c
+		where e.company_id = c.company_id and e.employment_id = #{employment_id}
 	</select>
-	
+
 	<select id="resumeAll" resultType="map" parameterType="map">
-		select resume_id, member_id, resume_title, hope_job, hope_salary, hope_location, 
-				final_education, select_resume, select_public, resume_coment
+		select
+		resume_id, member_id, resume_title, hope_job, hope_salary,
+		hope_location,
+		final_education, select_resume, select_public, resume_coment
 		from resume
-		where member_id = #{member_id}
+		where member_id
+		= #{member_id}
 	</select>
-	
+
 	<select id="videoAll" resultType="map" parameterType="map">
-		select video_id, video_contents, video_img, hashtag, company_id, member_id, video_location
+		select
+		video_id, video_contents, video_img, hashtag, company_id, member_id,
+		video_location
 		from video
 		where member_id = #{member_id}
 	</select>
-	
+
 	<select id="careerAll" resultType="map" parameterType="map">
-		select career_id, start_date, end_date, company_name, career_content, job, job_position, member_id
+		select
+		career_id, start_date, end_date, company_name, career_content, job,
+		job_position, member_id
 		from career
 		where member_id = #{member_id}
 	</select>
-	
+
 	<select id="skillsAll" resultType="map" parameterType="map">
-		select skill_id, skill_name, skill_level, member_id
+		select
+		skill_id, skill_name, skill_level, member_id
 		from skills
-		where member_id = #{member_id}
+		where member_id
+		= #{member_id}
 	</select>
+
+	<select id="employmentList" resultType="map" parameterType="map">
+		select * from employments
+	</select>
+
 </mapper>

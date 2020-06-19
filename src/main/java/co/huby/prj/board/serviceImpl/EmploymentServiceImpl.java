@@ -53,6 +53,12 @@ public class EmploymentServiceImpl implements EmploymentService {
 		return map.careerAll(vo);
 	}
 
+	@Override
+	public List<Map> employmentList(Map vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.employmentList(vo);
+	}
+
 	
 
 }

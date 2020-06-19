@@ -20,6 +20,8 @@ public interface EmploymentMap {
 	List<Map> skillsAll(Map vo) throws Exception;
 
 	List<Map> careerAll(Map vo) throws Exception;
+	
+	List<Map> employmentList(Map vo) throws Exception;
 
 	/*
 	 * void videoLikeInsertFromCompany(LikeVideoVo vo) ; List<Map>

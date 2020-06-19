@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.huby.prj.board.service.EmploymentService;
 import co.huby.prj.member.service.FileRenamePolicy;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.EmploymentsVo;
 
 @Controller
 public class MemberController {
@@ -45,6 +48,8 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	EmploymentService employmentService;
 
 	@RequestMapping("/employment.do")
 	public String employment(Model model) {
@@ -93,8 +98,9 @@ public class MemberController {
 	}
 
 	@RequestMapping("/employmentList.do")
-	public String employmentList(Model model) {
-
+	public String employmentList(Model model, Map vo) throws Exception {
+		List<Map> list = employmentService.employmentList(vo);
+		model.addAttribute("elist", list);
 		return "person/member/employmentList";
 	}
 
