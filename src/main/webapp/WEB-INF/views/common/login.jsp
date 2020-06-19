@@ -44,6 +44,7 @@
 			}
 			
 			else {
+				Android.login("안녕");
 				return true;
 			}
 	}
