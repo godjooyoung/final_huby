@@ -97,11 +97,8 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "/showCareer.do") //경력상세 보여주기
 	public List<Map> showCareer (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
-		String companyid = (String) request.getSession().getAttribute("loginId");
-		String listviewid = request.getParameter("listviewId");
-		System.out.println("...................." + listviewid);
-		List<Map> list = boardService.getCompany_ApplyList(companyid, listviewid);
-
+		String memberid = request.getParameter("memberid");
+		List<Map> list = boardService.get_career(memberid);
 		return list;
 	}
 	
@@ -119,21 +116,15 @@ public class HomeController {
 	@RequestMapping(value = "/showHabit.do") //습관보여주기
 	public List<Map> showHabit (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
 		String memberid = request.getParameter("memberid");
-		ystem.out.println("..." + memberid);
 		List<Map> list = boardService.get_habit(memberid);
-		System.out.println();
-
 		return list;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/showExp.do") //경험보여주기
 	public List<Map> showExp (Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
-		String companyid = (String) request.getSession().getAttribute("loginId");
-		String listviewid = request.getParameter("listviewId");
-		System.out.println("...................." + listviewid);
-		List<Map> list = boardService.getCompany_ApplyList(companyid, listviewid);
-
+		String memberid = request.getParameter("memberid");
+		List<Map> list = boardService.get_exp(memberid);
 		return list;
 	}
 	

@@ -15,13 +15,11 @@ hi?lollololololololololo ${applyman}
 				<h2>${applyman.member_name} 님</h2>
 				<h3><br>개인 정보</h3>
 				<ul class="nav nav-pills flex-column">
-					<li class="nav-item"><a class="nav-link" href="#">${applyman.member_addr}</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">${applyman.member_tel}</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">${applyman.member_email}</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">${applyman.member_birth}</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">${applyman.member_gender}</a>
-					</li>
+					<li class="nav-item">${applyman.member_addr}</li>
+					<li class="nav-item">${applyman.member_tel}</li>
+					<li class="nav-item">${applyman.member_email}</li>
+					<li class="nav-item">${applyman.member_birth}</li>
+					<li class="nav-item">${applyman.member_gender}</li>
 				</ul>
 				
 				<a onclick="reciveSkill(event,'${applyman.member_id}')">
@@ -109,7 +107,7 @@ function reciveHabit(e,memberid){
 			
 			$(place).empty();
 			$.each(data,function(idx,item){
-				$('<li>').html(item.SKILL_NAME + item.SKILL_LEVEL)
+				$('<li>').html(item.HABIT_NAME + " / " +item.HABIT_START_DATE + "~"+ item.HABIT_COUNT)
 				.appendTo(place);
 			});//each
 			
