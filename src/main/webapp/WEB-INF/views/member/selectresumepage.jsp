@@ -8,8 +8,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	function applyinfoall(cid, eid){
-		$("#company_id").val(cid);
-		$("#employment_id").val(eid);
+		$("#COMPANY_ID").val(cid);
+		$("#EMPLOYMENT_ID").val(eid);
 		$("#frm").attr("action","applyinfoall.do");
 		document.frm.submit();
 	}
@@ -23,10 +23,10 @@
 ${ empMatch }
 <hr style="border: solid 10px red;">
 <br>
-<button class="btn-primary" type="button" style="height: 50px; size: 50px;" onclick="applyinfoall('${company_id}','${ employment_id }')">지원하기</button>
+<button class="btn-primary" type="button" style="height: 50px; size: 50px;" onclick="applyinfoall('${empMatch.COMPANY_ID}','${empMatch.EMPLOYMENT_ID}')">지원하기</button>
 </div>
-<input type="hidden" id="company_id" name="company_id">
-<input type="hidden" id="employment_id" name="employment_id">
+<input type="hidden" id="COMPANY_ID" name="COMPANY_ID">
+<input type="hidden" id="EMPLOYMENT_ID" name="EMPLOYMENT_ID">
 </form>
 </body>
 </html>
