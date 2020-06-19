@@ -14,5 +14,7 @@
 		<typeAlias alias="MessageVo" type="co.huby.prj.vo.MessageVo" />
 		<typeAlias alias="EmploymentsVo"
 			type="co.huby.prj.vo.EmploymentsVo" />
-		</typeAliases>
+		<typeAlias alias="VideoVo" type="co.huby.prj.vo.VideoVo" />
+		<typeAlias alias="ResumeVo" type="co.huby.prj.vo.ResumeVo" />
+	</typeAliases>
 </configuration>

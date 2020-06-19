@@ -29,60 +29,61 @@ import co.huby.prj.member.service.MemberVo;
 public class MemberController {
 
 	@InitBinder
-	public void allowEmptyDateBinding( WebDataBinder binder )
-		{
-		    /*// Custom String Editor. tell spring to set empty values as null instead of empty string.
-		    binder.registerCustomEditor( String.class, new StringTrimmerEditor( true ));*/
-												
-		    //Custom Date Editor
-												
-		    SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-		    simpleDateFormat.setLenient(false);
-		    binder.registerCustomEditor( Date.class, new CustomDateEditor( simpleDateFormat,false));	   
-		}
-	
+	public void allowEmptyDateBinding(WebDataBinder binder) {
+		/*
+		 * // Custom String Editor. tell spring to set empty values as null instead of
+		 * empty string. binder.registerCustomEditor( String.class, new
+		 * StringTrimmerEditor( true ));
+		 */
+
+		// Custom Date Editor
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		simpleDateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(simpleDateFormat, false));
+	}
+
 	@Autowired
 	MemberService memberService;
-	
+
 	@RequestMapping("/employment.do")
 	public String employment(Model model) {
-		
+
 		return "member/employment";
 	}
-	
+
 	@RequestMapping("/myresume.do")
 	public String myresume(Model model) {
-		
+
 		return "member/myresume";
 	}
-	
+
 	@RequestMapping("/personalmemberjoin.do")
 	public String PersonalMemberJoin(Model model) {
-		
+
 		return "no/common/personalmemberjoin";
 	}
-	
+
 	@RequestMapping("/MemberInsertJoin.do")
 	public ModelAndView MemberInsertJoin(Model model, MemberVo vo, HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView();		
-		
+		ModelAndView mav = new ModelAndView();
+
 		MultipartFile uploadFile = vo.getUploadFile();
 		String path = request.getSession().getServletContext().getRealPath("/resources/FileUpload");
-		System.out.println("@@@@@@@@"+path);
-		
-		if(!uploadFile.isEmpty()) {
+		System.out.println("@@@@@@@@" + path);
+
+		if (!uploadFile.isEmpty()) {
 			String fileName = uploadFile.getOriginalFilename();
-			File file = new File(path, fileName); 
+			File file = new File(path, fileName);
 			file = new FileRenamePolicy().rename(file);
 			uploadFile.transferTo(file);
 			vo.setMember_photo(file.getName());
-		}else {
+		} else {
 			vo.setMember_photo("");
 		}
-		
-		
+
 		int n = memberService.memberInsert(vo);
-		
+
 		if (n == 1) {
 			mav.setViewName("no/common/login");
 		} else {
@@ -90,6 +91,11 @@ public class MemberController {
 		}
 		return mav;
 	}
-	
-	
+
+	@RequestMapping("/employmentList.do")
+	public String employmentList(Model model) {
+
+		return "person/member/employmentList";
+	}
+
 }

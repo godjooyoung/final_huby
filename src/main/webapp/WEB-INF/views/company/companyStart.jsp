@@ -12,11 +12,10 @@
 
 <!-- First Photo Grid-->
 <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-	<c:forEach var="matched" items="${matched }">
+	<c:forEach var="matched" items="${matched}">
 		<div class="w3-quarter">
-			<a href="resumeDetail.do"><img
-				src="${pageContext.request.contextPath}/resources/img/common/${matched.video_img }"
-				alt="thumnail" style="width: 100%;"></a>
+			<img src="${pageContext.request.contextPath}/resources/img/common/${matched.video_img }"
+				alt="thumnail" style="width: 100%;" onclick="location.href='resumeDetail.do?video_id=${matched.video_id}&member_id=${matched.member_id }'">>
 			<button class="w3-button w3-padding-small w3-xlarge"
 				id="btn${matched.video_id }" name="likeBtn"
 				value="${matched.video_id}" type="button"

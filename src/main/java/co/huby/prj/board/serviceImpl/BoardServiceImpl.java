@@ -11,6 +11,7 @@ import co.huby.prj.board.mapper.BoardMap;
 import co.huby.prj.board.service.BoardService;
 import co.huby.prj.vo.ApplyVo;
 import co.huby.prj.vo.LikeVideoVo;
+import co.huby.prj.vo.ResumeVo;
 import co.huby.prj.vo.VideoVo;
 
 @Service("boardService")
@@ -73,9 +74,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Map> get_video(String memberid) throws Exception {
+	public VideoVo get_video(String memberid) throws Exception {
 		// TODO Auto-generated method stub
 		return map.get_video(memberid);
+	}
+
+	@Override
+	public ResumeVo get_resume(ResumeVo resume) throws Exception {
+		// TODO Auto-generated method stub
+		return map.get_resume(resume);
 	}
 
 }
