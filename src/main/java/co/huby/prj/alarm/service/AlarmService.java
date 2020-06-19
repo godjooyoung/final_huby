@@ -8,4 +8,5 @@ public interface AlarmService {
 	void alarmInsert(AlarmVo vo);
 	void currentY(AlarmVo vo);
 	void currentN(AlarmVo vo);
+	void alarmdelete(AlarmVo vo);
 }

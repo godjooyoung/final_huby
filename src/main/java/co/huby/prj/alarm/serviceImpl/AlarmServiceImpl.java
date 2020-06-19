@@ -41,4 +41,9 @@ public class AlarmServiceImpl implements AlarmService {
 		map.currentN(vo);
 	}
 	
+	@Override
+	public void alarmdelete(AlarmVo vo) {
+		map.alarmdelete(vo);
+	}
+	
 }

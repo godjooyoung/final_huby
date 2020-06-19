@@ -13,19 +13,41 @@
 <br><br><br><br><br><br>
 <script type="text/javascript">
 
-	function currentDelete(){}
+	function alarmOk(alarm_id){
+		
+		
+		document.frmok.alarmid.value = alarm_id
+		document.frmok.submit();
+	}
+	
+	function alarmRe(alarm_id){
+		if (confirm("거절하시겠습니까?") == true){
+		document.frmre.alarmid.value = alarm_id
+		document.frmre.submit();	
+		} else {
+			return;
+		}
+			
+	}
 
 </script>
-
-<form action="currentY.do" method='POST'>
 	<div class="alarmlist">
 		<c:forEach var="list" items="${personalarmlist }">
-			<br>${list.company_name }<br>
-				${list.alarm_message }<br>
+				<br>[${list.company_name }]
+				${list.alarm_message }
 				${list.alarm_time }<br>
-			<input type="hidden" value="${list.alarm_id }" name="alarmid">
-			<input type="submit" value="수락">
-			<input type="button" value="거절" onclick='alert("거절되었습니다.")'>
+			<input type="button" value="수락" onclick="alarmOk('${list.alarm_id }')">
+			<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }')">
+		
 		</c:forEach>
 	</div>
-</form>
+
+	<form action="currentY.do" method='POST' name="frmok" id="frmok">
+			<input type="hidden" name="alarmid">
+	</form>
+	
+	<form action="alarmdelete.do" method='POST' name="frmre" id="frmre">
+			<input type="hidden" name="alarmid">
+	</form>
+	
+

@@ -1,6 +1,7 @@
 package co.huby.prj;
 
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,9 +54,9 @@ public class AlarmController {
 		out.print("</script>");
 		//return "person/alarm/personalarmlist";
 	}
-	//알람 거절 update
-	@RequestMapping("/currentN.do")
-	public void currentN(AlarmVo vo, Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {
+	//알람 거절 update 
+	/*@RequestMapping("/currentN.do")
+	public String currentN(AlarmVo vo, Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
@@ -64,8 +66,25 @@ public class AlarmController {
 		PrintWriter out = response.getWriter();
 		out.print("<script>");
 		out.print("alert('거절되었습니다.');");
+		out.print("</script>");
+		return "person/alarm/personalarmlist";
+	}*/
+	
+	//개인이 요청 거절시 delete
+	@RequestMapping("/alarmdelete.do")
+	public void alarmdelete(AlarmVo vo, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		vo.setAlarm_id(request.getParameter("alarmid"));
+		alarmService.alarmdelete(vo);
+		
+		PrintWriter out = response.getWriter();
+		out.print("<script>");
+		out.print("alert('거절되었습니다.');");
 		out.print("location.href='personalarm.do';");
 		out.print("</script>");
+		
 	}
 	
 	
