@@ -12,7 +12,11 @@ import co.huby.prj.vo.ResumeVo;
 public interface EmploymentMap {
 	List<Map> getMatchedEmploymentList(ResumeVo vo);
 	Map SelectMatchedEmploymentList(Map vo) throws Exception;
-	List<Map> ApplyUserInfoAll(Map vo) throws Exception;
+	List<Map> resumeAll(Map vo) throws Exception;
+	List<Map> videoAll(Map vo) throws Exception;
+	List<Map> skillsAll(Map vo) throws Exception;
+	List<Map> careerAll(Map vo) throws Exception;
+	
 	/*
 	 * void videoLikeInsertFromCompany(LikeVideoVo vo) ; List<Map>
 	 * getCompany_Employments(String com_id); List<Map>

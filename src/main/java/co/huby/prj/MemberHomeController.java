@@ -41,13 +41,19 @@ public class MemberHomeController {
 	}
 	
 	@RequestMapping(value = "/applyinfoall.do")
-	public String applyinfoall(Model model, @RequestParam Map vo, HttpServletRequest request) throws Exception {
-		String id = (String) request.getSession().getAttribute("loginId");
-			
-		vo.put("member_id", id);
-		List<Map> checkVo = employmentService.ApplyUserInfoAll(vo);		
+	public String applyinfoall(Model model, @RequestParam Map mapvo, HttpServletRequest request) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");	
+		mapvo.put("member_id", id);
 		
-		model.addAttribute("empMatch", checkVo);
+		List<Map> lmapvo = employmentService.resumeAll(mapvo);
+		List<Map> vmapvo = employmentService.videoAll(mapvo);
+		List<Map> smapvo = employmentService.skillsAll(mapvo);
+		List<Map> cmapvo = employmentService.careerAll(mapvo);
+		
+		model.addAttribute("rlist",lmapvo);
+		model.addAttribute("vlist",vmapvo);
+		model.addAttribute("slist",smapvo);
+		model.addAttribute("clist",cmapvo);
 		
 		return "person/member/applyinfoall";
 	}

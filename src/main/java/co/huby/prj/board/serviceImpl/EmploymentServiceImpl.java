@@ -30,9 +30,29 @@ public class EmploymentServiceImpl implements EmploymentService {
 	}
 
 	@Override
-	public List<Map> ApplyUserInfoAll(Map vo) throws Exception {
+	public List<Map> resumeAll(Map vo) throws Exception {
 		// TODO Auto-generated method stub
-		return map.ApplyUserInfoAll(vo);
+		return map.resumeAll(vo);
 	}
+
+	@Override
+	public List<Map> videoAll(Map vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.videoAll(vo);
+	}
+
+	@Override
+	public List<Map> skillsAll(Map vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.skillsAll(vo);
+	}
+
+	@Override
+	public List<Map> careerAll(Map vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.careerAll(vo);
+	}
+
+	
 
 }
