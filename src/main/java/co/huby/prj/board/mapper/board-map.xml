@@ -81,11 +81,11 @@
     		(SELECT resume_id FROM apply WHERE apply_id=#{apply_id, jdbcType=VARCHAR})
 	</select>
 	
-	<select id ="get_career">
+	<select id ="get_career" parameterType="string" resultType="map">
 	   SELECT * FROM CAREER WHERE MEMBER_ID = #{value}
 	</select>
 	
-	<select id ="get_habit">
+	<select id ="get_habit" parameterType="string" resultType="map">
 	 	SELECT * FROM HABIT WHERE MEMBER_ID =#{value}
 	</select>
 	
@@ -93,7 +93,7 @@
 		SELECT * FROM SKILLS WHERE MEMBER_ID = #{value}
 	</select>
 	
-	<select id ="get_exp">
+	<select id ="get_exp" parameterType="string" resultType="map">
 		SELECT * FROM EXPERIENCE WHERE MEMBER_ID =#{value}
 	</select>
 	

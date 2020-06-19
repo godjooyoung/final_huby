@@ -24,18 +24,22 @@ hi?lollololololololololo ${applyman}
 					</li>
 				</ul>
 				
-				<a onclick="recive(event,'${applyman.member_id}')">
+				<a onclick="reciveSkill(event,'${applyman.member_id}')">
 					<h3>
 						<br>기술
 					</h3>
 				</a>
-				<ul class="nav nav-pills flex-column" id="skills${applyman.member_id}">
+				<ul class="nav nav-pills flex-column" id="habits${applyman.member_id}">
 					<!-- 반복문 돌리기 -->
 					<!-- 여기에 가져온 스킬정보를 붙이자. li 태그로로 -->
 					
 				</ul>
 				
-				<h3><br>습관</h3>
+				<a onclick="reciveHabit(event,'${applyman.member_id}')">
+					<h3>
+						<br>습관
+					</h3>
+				</a>
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item"><a class="nav-link" href="#">${applyman.member_addr}</a>
 					</li>
@@ -62,7 +66,9 @@ hi?lollololololololololo ${applyman}
 	</div>
 	
 <script>
-function recive(e,memberid){
+function reciveSkill(e,memberid){
+	var place = document.getElementById("skills"+memberid);
+	var plusLi = document.createElement('li');
 	$.ajax({
 		type:"get",
 		url:"showSkills.do",
@@ -70,13 +76,14 @@ function recive(e,memberid){
 		dataType : 'json',
 		success: 
 			function(data){	
-			alert (document.getElementById("skillstest4"));
-			$(e.target).parent().next().empty();
-			$(e.target).next().append("어디고 도대체")
+			alert ("성공..");
+			console.log(data[0]);
 			
-			for(var i=0; i<data.length; i++){
-				$(e.target).next().append("<li id=" +"라라라라라라랄여기붙니?"+ "</li>")
-			 }
+			$(place).empty();
+			$.each(data,function(idx,item){
+				$('<li>').html(item.SKILL_NAME + item.SKILL_LEVEL)
+				.appendTo(place);
+			});//each
 			
 		},
 		
@@ -85,7 +92,35 @@ function recive(e,memberid){
 		}
 	})
 	
-	};
+	};//end skills
+	
+function reciveHabit(e,memberid){
+	var place = document.getElementById("habits"+memberid);
+	var plusLi = document.createElement('li');
+	$.ajax({
+		type:"get",
+		url:"showHabit.do",
+		data : {'memberid': memberid },
+		dataType : 'json',
+		success: 
+			function(data){	
+			alert ("성공..");
+			console.log(data[0]);
+			
+			$(place).empty();
+			$.each(data,function(idx,item){
+				$('<li>').html(item.SKILL_NAME + item.SKILL_LEVEL)
+				.appendTo(place);
+			});//each
+			
+		},
+		
+		error: function(){
+		  alert("에러 발생. 관리자에게 문의주세요.");
+		}
+	})
+	
+};//end habit
 function showPeson(id){
 		var apply_id = id.getAttribute( 'id' );
 		alert(apply_id);
