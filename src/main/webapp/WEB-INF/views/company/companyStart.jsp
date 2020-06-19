@@ -1,46 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- !PAGE CONTENT! -->
 <!-- !기업회원에게 매칭해서 자기소개영상띄워주는 페이지! -->
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px"></div>
+<div class="w3-main w3-content w3-padding"
+	style="max-width: 1200px; margin-top: 100px"></div>
 
-  
- <!-- First Photo Grid-->
-  <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-  <c:forEach var="matched" items="${matched }">
-    <div class="w3-quarter">
-    	<img src="${pageContext.request.contextPath}/resources/img/common/${matched.video_img }" 
-     	  alt="thumnail" style="width:100%;">
-   		<button class="w3-button w3-padding-small w3-xlarge"
-   				id="btn${matched.video_id }" 
-   				name="likeBtn" 
-   				value="${matched.video_id}" type="button"
-   				onclick="clickLike(${matched.video_id})">
-   			<font id="font${matched.video_id }" color=black ><b><i class="fas fa-heart"></i></b></font>
-   		</button>
-		<h3>#${matched.code_name }</h3>
-      	<p>${matched.video_contents }</p>
-    </div>
-  </c:forEach>
-  </div>
+
+<!-- First Photo Grid-->
+<div class="w3-row-padding w3-padding-16 w3-center" id="food">
+	<c:forEach var="matched" items="${matched }">
+		<div class="w3-quarter">
+			<a href="resumeDetail.do"><img
+				src="${pageContext.request.contextPath}/resources/img/common/${matched.video_img }"
+				alt="thumnail" style="width: 100%;"></a>
+			<button class="w3-button w3-padding-small w3-xlarge"
+				id="btn${matched.video_id }" name="likeBtn"
+				value="${matched.video_id}" type="button"
+				onclick="clickLike(${matched.video_id})">
+				<font id="font${matched.video_id }" color=black><b><i
+						class="fas fa-heart"></i></b></font>
+			</button>
+			<h3>#${matched.code_name }</h3>
+			<p>${matched.video_contents }</p>
+		</div>
+	</c:forEach>
+</div>
 <!-- Grid END -->
 <!-- test -->
-<button type="button" onclick="location.href='companyEmploymentsList.do'">기업에 지원한 인간들 목록 테스트</button>
+<button type="button"
+	onclick="location.href='companyEmploymentsList.do'">기업에 지원한
+	인간들 목록 테스트</button>
 
-  
 
- <!-- Pagination -->
-  <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">더보기</a>
-    </div>
-  </div>
 
-  
-  <hr id="about">
+<!-- Pagination -->
+<div class="w3-center w3-padding-32">
+	<div class="w3-bar">
+		<a href="#" class="w3-bar-item w3-button w3-hover-black">더보기</a>
+	</div>
+</div>
+
+
+<hr id="about">
 
 
 <script>

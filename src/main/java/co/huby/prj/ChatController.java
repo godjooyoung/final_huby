@@ -37,6 +37,13 @@ public class ChatController {
 		return "person/chat/chatList";
 
 	}
+	
+	
+	@RequestMapping(value = "/company_chatList.do")
+	public String companyChatList(Model model, HttpServletRequest request) {
+		return "company/chat/chatList";
+
+	}
 
 	// @OnOpen
 	// public void onOpen(Session session) {
