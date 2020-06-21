@@ -1,76 +1,80 @@
 @font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 100;
-  src: url(/font/NotoSansKR-Thin.woff2) format('woff2'),
-       url(/font/NotoSansKR-Thin.woff) format('woff'),
-       url(/font/NotoSansKR-Thin.otf) format('opentype');
-}
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 300;
-  src: url(/font/NotoSansKR-Light.woff2) format('woff2'),
-       url(/font/NotoSansKR-Light.woff) format('woff'),
-       url(/font/NotoSansKR-Light.otf) format('opentype');
-}
-@font-face {
-   font-family: 'Noto Sans KR';
-   font-style: normal;
-   font-weight: 400;
-   src: url(/font/NotoSansKR-Regular.woff2) format('woff2'),
-        url(/font/NotoSansKR-Regular.woff) format('woff'),
-        url(/font/NotoSansKR-Regular.otf) format('opentype');
- }
-@font-face {
-   font-family: 'Noto Sans KR';
-   font-style: normal;
-   font-weight: 500;
-   src: url(/font/NotoSansKR-Medium.woff2) format('woff2'),
-        url(/font/NotoSansKR-Medium.woff) format('woff'),
-        url(/font/NotoSansKR-Medium.otf) format('opentype');
- }
-@font-face {
-   font-family: 'Noto Sans KR';
-   font-style: normal;
-   font-weight: 700;
-   src: url(/font/NotoSansKR-Bold.woff2) format('woff2'),
-        url(/font/NotoSansKR-Bold.woff) format('woff'),
-        url(/font/NotoSansKR-Bold.otf) format('opentype');
- }
-@font-face {
-   font-family: 'Noto Sans KR';
-   font-style: normal;
-   font-weight: 900;
-   src: url(/font/NotoSansKR-Black.woff2) format('woff2'),
-        url(/font/NotoSansKR-Black.woff) format('woff'),
-        url(/font/NotoSansKR-Black.otf) format('opentype');
- }
-
-
-@font-face {
-    font-family: 'NanumMyeongjo';
-    font-style: normal;
-    font-weight: 400;
-    src: url('/font/NanumMyeongjoR.woff2') format('woff2'), 
-        url('/font/NanumMyeongjoR.woff') format('woff'),
-        url('/font/NanumMyeongjoR.otf') format('opentype');
+	font-family: 'Noto Sans KR';
+	font-style: normal;
+	font-weight: 100;
+	src: url(resources/font/NotoSansKR-Thin.woff2) format('woff2'),
+		url(resources/font/NotoSansKR-Thin.woff) format('woff'),
+		url(resources/font/NotoSansKR-Thin.otf) format('opentype');
 }
 
 @font-face {
-    font-family: 'NanumMyeongjo';
-    font-style: normal;
-    font-weight: 700;
-    src: url('/font/NanumMyeongjoB.woff2') format('woff2'), 
-        url('/font/NanumMyeongjoB.woff') format('woff'),
-        url('/font/NanumMyeongjoB.otf') format('opentype');
+	font-family: 'Noto Sans KR';
+	font-style: normal;
+	font-weight: 300;
+	src: url(resources/font/NotoSansKR-Light.woff2) format('woff2'),
+		url(resources/font/NotoSansKR-Light.woff) format('woff'),
+		url(resources/font/NotoSansKR-Light.otf) format('opentype');
 }
 
 @font-face {
-    font-family: 'NanumMyeongjo';
-    font-style: normal;
-    font-weight: 900;
-    src: url('/font/NanumMyeongjoEB.woff2') format('woff2'), 
-        url('/font/NanumMyeongjoEB.woff') format('woff'),
-        url('/font/NanumMyeongjoEB.otf') format('opentype');
+	font-family: 'Noto Sans KR';
+	font-style: normal;
+	font-weight: 400;
+	src: url(resources/font/NotoSansKR-Regular.woff2) format('woff2'),
+		url(resources/font/NotoSansKR-Regular.woff) format('woff'),
+		url(resources/font/NotoSansKR-Regular.otf) format('opentype');
+}
+
+@font-face {
+	font-family: 'Noto Sans KR';
+	font-style: normal;
+	font-weight: 500;
+	src: url(resources/font/NotoSansKR-Medium.woff2) format('woff2'),
+		url(resources/font/NotoSansKR-Medium.woff) format('woff'),
+		url(resources/font/NotoSansKR-Medium.otf) format('opentype');
+}
+
+@font-face {
+	font-family: 'Noto Sans KR';
+	font-style: normal;
+	font-weight: 700;
+	src: url(resources/font/NotoSansKR-Bold.woff2) format('woff2'),
+		url(resources/font/NotoSansKR-Bold.woff) format('woff'),
+		url(resources/font/NotoSansKR-Bold.otf) format('opentype');
+}
+
+@font-face {
+	font-family: 'Noto Sans KR';
+	font-style: normal;
+	font-weight: 900;
+	src: url(resources/font/NotoSansKR-Black.woff2) format('woff2'),
+		url(resources/font/NotoSansKR-Black.woff) format('woff'),
+		url(resources/font/NotoSansKR-Black.otf) format('opentype');
+}
+
+@font-face {
+	font-family: 'NanumMyeongjo';
+	font-style: normal;
+	font-weight: 400;
+	src: url('resources/font/NanumMyeongjoR.woff2') format('woff2'),
+		url('resources/font/NanumMyeongjoR.woff') format('woff'),
+		url('resources/font/NanumMyeongjoR.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'NanumMyeongjo';
+	font-style: normal;
+	font-weight: 700;
+	src: url('resources/font/NanumMyeongjoB.woff2') format('woff2'),
+		url('resources/font/NanumMyeongjoB.woff') format('woff'),
+		url('resources/font/NanumMyeongjoB.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'NanumMyeongjo';
+	font-style: normal;
+	font-weight: 900;
+	src: url('resources/font/NanumMyeongjoEB.woff2') format('woff2'),
+		url('resources/font/NanumMyeongjoEB.woff') format('woff'),
+		url('resources/font/NanumMyeongjoEB.otf') format('opentype');
 }

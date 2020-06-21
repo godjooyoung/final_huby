@@ -94,7 +94,7 @@ section .section-title {
 	-moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
 	box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
 }
-
+.backside{width:100%}
 .frontside, .backside {
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
@@ -132,84 +132,86 @@ section .section-title {
 }
 </style>
 <script>
-function selectemployment(cid, eid){
-	$("#company_id").val(cid);
-	$("#employment_id").val(eid);
-	$("#frm").attr("action","selectresumepage.do");
-	document.frm.submit();
-}
-
+	function selectemployment(cid, eid) {
+		$("#company_id").val(cid);
+		$("#employment_id").val(eid);
+		$("#frm").attr("action", "selectresumepage.do");
+		document.frm.submit();
+	}
 </script>
 <!-- Team -->
 <form id="frm" name="frm" method="post">
-<section id="team" class="pb-5">
-	<h5 class="section-title h1">채용공고</h5>
-	<div class="col-xs-12 col-sm-6 col-md-4">
-		<div class="container">
-			<div class="row">
-				<c:choose>
-					<c:when test="${!empty empMatch}">
-						<c:forEach var="empMatch" items="${empMatch}">
-							<!-- Team member -->
-							<div class="image-flip"
-								ontouchstart="this.classList.toggle('hover');">
-								<div class="mainflip flip-0">
-									<div class="frontside">
-										<div class="card">
-											<div class="card-body text-center">
-												<p>
-													<img class=" img-fluid"
-														src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png"
-														alt="card image">
-												</p>
-												<h4 class="card-title">${empMatch.company_name}</h4>
-												<p class="card-text">${empMatch.employment_title}</p>
-												<a href="https://www.fiverr.com/share/qb8D02"
-													class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+	<section id="team" class="pb-5" style="width:1200px; margin:0 auto;">
+		<h5 class="section-title h1">채용공고</h5>
+		
+		<div class="row">
+			<c:choose>
+				<c:when test="${!empty empMatch}">
+					<c:forEach var="empMatch" items="${empMatch}">
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<div class="container">
+
+								<!-- Team member -->
+								<div class="image-flip"
+									ontouchstart="this.classList.toggle('hover');">
+									<div class="mainflip flip-0">
+										<div class="frontside">
+											<div class="card">
+												<div class="card-body text-center">
+													<p>
+														<img class=" img-fluid"
+															src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png"
+															alt="card image">
+													</p>
+													<h4 class="card-title">${empMatch.company_name}</h4>
+													<p class="card-text">${empMatch.employment_title}</p>
+													<a href="https://www.fiverr.com/share/qb8D02"
+														class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="backside">
-										<div class="card" onclick='selectemployment("${ empMatch.company_id }","${ empMatch.employment_id }")'>
-											<div class="card-body text-center mt-4">
-												<h4 class="card-title">${empMatch.company_name}</h4>
-												<p class="card-text">${empMatch.employment_contents}</p>
-												<ul class="list-inline">
-													<li class="list-inline-item"><a
-														class="social-icon text-xs-center" target="_blank"
-														href="https://www.fiverr.com/share/qb8D02"> <i
-															class="fa fa-facebook"></i>
-													</a></li>
-													<li class="list-inline-item"><a
-														class="social-icon text-xs-center" target="_blank"
-														href="https://www.fiverr.com/share/qb8D02"> <i
-															class="fa fa-twitter"></i>
-													</a></li>
-													<li class="list-inline-item"><a
-														class="social-icon text-xs-center" target="_blank"
-														href="https://www.fiverr.com/share/qb8D02"> <i
-															class="fa fa-skype"></i>
-													</a></li>
-													<li class="list-inline-item"><a
-														class="social-icon text-xs-center" target="_blank"
-														href="https://www.fiverr.com/share/qb8D02"> <i
-															class="fa fa-google"></i>
-													</a></li>
-												</ul>
+										<div class="backside">
+											<div class="card"
+												onclick='selectemployment("${ empMatch.company_id }","${ empMatch.employment_id }")'>
+												<div class="card-body text-center mt-4">
+													<h4 class="card-title">${empMatch.company_name}</h4>
+													<p class="card-text">${empMatch.employment_contents}</p>
+													<ul class="list-inline">
+														<li class="list-inline-item"><a
+															class="social-icon text-xs-center" target="_blank"
+															href="https://www.fiverr.com/share/qb8D02"> <i
+																class="fa fa-facebook"></i>
+														</a></li>
+														<li class="list-inline-item"><a
+															class="social-icon text-xs-center" target="_blank"
+															href="https://www.fiverr.com/share/qb8D02"> <i
+																class="fa fa-twitter"></i>
+														</a></li>
+														<li class="list-inline-item"><a
+															class="social-icon text-xs-center" target="_blank"
+															href="https://www.fiverr.com/share/qb8D02"> <i
+																class="fa fa-skype"></i>
+														</a></li>
+														<li class="list-inline-item"><a
+															class="social-icon text-xs-center" target="_blank"
+															href="https://www.fiverr.com/share/qb8D02"> <i
+																class="fa fa-google"></i>
+														</a></li>
+													</ul>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</c:forEach>
-					</c:when>
-				</c:choose>
-			</div>
+						</div>
+					</c:forEach>
+				</c:when>
+			</c:choose>
 		</div>
-	</div>
-</section>
-<input type="hidden" id="company_id" name="company_id">
-<input type="hidden" id="employment_id" name="employment_id">
+	</section>
+	<input type="hidden" id="company_id" name="company_id"> <input
+		type="hidden" id="employment_id" name="employment_id">
 </form>
 
 

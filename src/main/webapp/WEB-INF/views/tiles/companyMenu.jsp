@@ -3,7 +3,7 @@
 <ul class="gnb_dp1_wrap">
 	<li class="gnb_dp1"><span>공고</span>
 		<ul class="gnb_dp2_wrap">
-			<li class="gnb_dp2"><a href="javascript:GoPage('olive01')">공고관리</a></li>
+			<li class="gnb_dp2"><a href="employments.do">공고관리</a></li>
 			<li class="gnb_dp2"><a href="javascript:GoPage('olive02')">등록</a></li>
 			<li class="gnb_dp2"><a href="javascript:GoPage('olive03')">지원내역</a></li>
 		</ul></li>
