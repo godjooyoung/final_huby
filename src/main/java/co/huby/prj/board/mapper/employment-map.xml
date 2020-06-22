@@ -86,4 +86,35 @@
 		select * from employments where employment_id = #{employment_id}
 	</select>
 
+	<insert id="applyInsert" parameterType="map">
+		insert into apply
+				(apply_id, 
+				apply_date, 
+				resume_id, 
+				employment_id, 
+				member_id, 
+				video_id)
+		values
+		(apply_seq.nextval, 
+				sysdate, 
+				#{resume_id}, 
+				#{employment_id}, 
+				#{member_id}, 
+				#{video_id}
+				)
+	</insert>
+	
+	<select id="applycheck" resultType="int">
+	select count(employment_id)
+	from apply
+	where employment_id = #{employment_id} and member_id = #{member_id}
+	</select>
+	
+	<select id="applyList" resultType="map" parameterType="MemberVo">
+		select a.apply_id, a.apply_date, a.resume_id, a.employment_id, a.member_id, a.video_id, a.employment_id ,
+				e.employment_id, e.employment_title, e.employment_contents, e.hope_career, e.hope_graduate, e.hope_job_position,
+				e.hope_job, e.hope_location, e.hope_work_type, e.employment_prefer, e.employment_time, e.company_id, e.hope_salary
+		from apply a, employments e
+		where a.employment_id = e.employment_id and a.member_id = #{member_id}
+	</select>
 </mapper>

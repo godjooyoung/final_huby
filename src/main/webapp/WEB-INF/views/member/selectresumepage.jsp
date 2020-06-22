@@ -10,6 +10,7 @@
 	function applyinfoall(cid, eid){
 		$("#COMPANY_ID").val(cid);
 		$("#EMPLOYMENT_ID").val(eid);
+		alert(eid+"번째 공고입니다.");
 		$("#frm").attr("action","applyinfoall.do");
 		document.frm.submit();
 	} 	

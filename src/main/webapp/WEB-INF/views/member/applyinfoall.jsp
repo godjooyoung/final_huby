@@ -26,12 +26,19 @@
 		var url = "applypreview.do";
 		var preview = window.open(url,"fullscreen", "scrollbars=1"); //풀스크린 방식
 	}
+	
+	function applyInsert(){
+		$("#frm").attr("action","applyInsert.do");
+		document.frm.submit();
+	}
 </script>
 <body>
 <form id="frm" name="frm" method="post">
 	<br>
 	<br>
 	<br>
+	
+	
 	<!-- Page Container -->
 	<div class="w3-content w3-margin-top" style="max-width: 1400px;">
 		<!-- The Grid -->
@@ -131,7 +138,6 @@
 						<hr>
 					</div>
 
-
 				</div>
 			</div>
 				<div class="w3-container w3-card w3-white">
@@ -202,10 +208,14 @@
 	<br>
 	<div align="center">
 		<button type="button" class="btn-primary" onclick="view()">이력서, 동영상 변경</button>
-		<button type="button" class="btn-primary" onclick="">지원하기</button>
+		<button type="button" class="btn-primary" onclick="applyInsert()">지원하기</button>
 		<button type="button" class="btn-primary" onclick="back()">이전페이지</button>
 	</div>
 	<br>
+	<input type="hidden" id="employment_id" name="employment_id" value="${ mapvo.EMPLOYMENT_ID }">
+	<input type="hidden" id="resume_id" name="resume_id" value="${ rlist[0].RESUME_ID }">
+	<input type="hidden" id="video_id" name="video_id" value="${ vlist[0].VIDEO_ID }">
+	<input type="hidden" id="member_id" name="member_id" value="${sessionScope.personalVo.member_id}">
 </form>
 </body>
 </html>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import co.huby.prj.board.mapper.EmploymentMap;
 import co.huby.prj.board.service.EmploymentService;
 import co.huby.prj.member.service.MemberVo;
+
 import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.ResumeVo;
 
@@ -70,5 +71,26 @@ public class EmploymentServiceImpl implements EmploymentService {
 	public List<Map> habitAll(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.habitAll(vo);
+	}
+
+	@Override
+	public int applyInsert(Map vo) throws Exception {
+		int n = map.applycheck(vo);
+		if(n==0) {
+			return map.applyInsert(vo);
+		}else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int applycheck(Map vo) throws Exception {
+		return map.applycheck(vo);
+	}
+
+	@Override
+	public List<Map> applyList(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.applyList(vo);
 	}
 }
