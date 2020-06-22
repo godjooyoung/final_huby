@@ -10,12 +10,14 @@
 </style>
 <br><br><br><br><br><br>
 
+
+	
 <form>
 	<div class="alarmlist">
 		<c:forEach var="list" items="${companyalarmlist }">
-			<br>${list.member_name }<br>
-				${list.alarm_message }<br>
-				${list.alarm_current }<br>
+			<br>${list.member_name }님이
+				${list.alarm_message }를 수락하셨습니다.
+				<br>
 			<input type="button" value="채팅">
 		</c:forEach>
 	</div>

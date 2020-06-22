@@ -21,7 +21,7 @@ public interface ChatService {
 
 	public List<MessageVo> getMessageList(String str) throws Exception;
 
-	public List<InterviewVo> getRoomList(String str) throws Exception;
+	public List<InterviewVo> getRoomList(InterviewVo vo) throws Exception;
 
 	public List<InterviewVo> getRoomList2(String str) throws Exception;
 

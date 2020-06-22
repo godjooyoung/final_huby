@@ -1,10 +1,16 @@
 package co.huby.prj;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import co.huby.prj.chat.service.ChatService;
+import co.huby.prj.vo.InterviewVo;
 
 @Controller
 // @ServerEndpoint(value = "/echo.do")
@@ -17,6 +23,9 @@ public class ChatController {
 	// // TODO Auto-generated constructor stub
 	// System.out.println("웹소켓(서버) 객체생성");
 	// }
+
+	@Autowired
+	ChatService chatService;
 
 	@RequestMapping(value = "/company_chat.do")
 	public String getChatViewPage(Model model, HttpServletRequest request) {
@@ -33,12 +42,15 @@ public class ChatController {
 	}
 
 	@RequestMapping(value = "/person_chatList.do")
-	public String personChatList(Model model, HttpServletRequest request) {
+	public String personChatList(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
+		String memberid = (String) request.getSession().getAttribute("loginId");
+		vo.setMember_id(memberid);
+		List<InterviewVo> list = chatService.getRoomList(vo);
+		model.addAttribute("personChatList", list);
 		return "person/chat/chatList";
 
 	}
-	
-	
+
 	@RequestMapping(value = "/company_chatList.do")
 	public String companyChatList(Model model, HttpServletRequest request) {
 		return "company/chat/chatList";

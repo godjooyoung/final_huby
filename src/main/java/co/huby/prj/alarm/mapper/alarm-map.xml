@@ -3,7 +3,7 @@
 <mapper namespace="co.huby.prj.alarm.mapper.AlarmMap">
 
 	<insert id="alarmInsert" parameterType="co.huby.prj.alarm.service.AlarmVo">
-		INSERT INTO ALARM VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP);
+		INSERT INTO ALARM VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP)
 	</insert>
 	
 	<select id="personalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
@@ -15,11 +15,13 @@
 	</select>
 	
 	<select id="companyalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
-		SELECT M.MEMBER_NAME member_name, A.ALARM_MESSAGE alarm_message
+		SELECT M.MEMBER_NAME member_name, A.ALARM_MESSAGE alarm_message, A.ALARM_CURRENT alarm_current
 		FROM ALARM A
 		JOIN MEMBER M
 		ON A.MEMBER_ID = M.MEMBER_ID
 		WHERE COMPANY_ID = #{companyid}
+		AND A.ALARM_CURRENT = 'Y'
+		AND A.ALARM_MESSAGE = '면접제의'
 	</select>
 	
 	<update id="currentY" parameterType="co.huby.prj.alarm.service.AlarmVo">

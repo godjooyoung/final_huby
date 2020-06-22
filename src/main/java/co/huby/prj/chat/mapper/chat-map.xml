@@ -12,7 +12,8 @@
 		SELECT * FROM interview WHERE
 		member_id = #{member_id} AND
 		company_id = #{company_id}
-		AND resume_id= #{resume_id}
+		AND resume_id=
+		#{resume_id}
 	</select>
 
 	<insert id="insertMessage">
@@ -56,20 +57,34 @@
 		where interview_id = #{interview_id}
 	</select>
 
-	<select id="getRoomList" resultType="InterviewVo">
-		select * from interview
-		where member_id = #{member_id}
+	<select id="getRoomList" resultType="map">
+		select 
+		i.interview_id as "interview_id", 
+		i.interview_start as "interview_start", 
+		m.member_name as "member_name", c.company_name as "company_name",
+		i.member_id as "member_id",	i.company_id as "company_id", 
+		i.employment_option as "employment_option"
+		from interview i, member m, company c
+		where
+		i.member_id = m.member_id
+		and i.company_id = c.company_id
+		and	m.member_id = #{member_id, jdbcType=VARCHAR}
 	</select>
+
 	<select id="getRoomList2" resultType="InterviewVo">
 		select * from interview
 		where company_id = #{company_id}
 	</select>
 
 	<select id="getRecentMessage" resultType="MessageVO">
-		select m.*, resume_id, company_id 
-		from MESSAGE m left outer join resume r on m.resume_id = r.resume_id
-		where interview_id = #{interview_id} 
-		order by message_id	desc limit 1
+		select m.*, resume_id,
+		company_id
+		from MESSAGE m left outer join resume r on m.resume_id =
+		r.resume_id
+		where
+		interview_id = #{interview_id}
+		order by message_id desc
+		limit 1
 	</select>
 
 
@@ -88,41 +103,50 @@
 
 	<update id="updateReadTimeCompany">
 		update MESSAGE set message_readTime = NOW() where
-		company_id = #{company_id} 
-		AND resume_id = #{resume_id} 
-		AND message_readTime = message_sendTime 
+		company_id = #{company_id}
+		AND resume_id = #{resume_id}
+		AND
+		message_readTime = message_sendTime
 		and message_sender = member_id
-		and member_id = #{member_id}
+		and
+		member_id = #{member_id}
 	</update>
 
 	<select id="getUnReadCount" resultType="int">
 		select * from
 		MESSAGE
-		where member_id = #{member_id} 
-		and company_id = #{company_id} 
-		AND resume_id = #{resume_id} 
-		AND message_readtime = message_sendtime 
-		and message_sender = company_id
+		where member_id = #{member_id}
+		and company_id = #{company_id}
+		AND
+		resume_id = #{resume_id}
+		AND message_readtime = message_sendtime
+		and
+		message_sender = company_id
 	</select>
-	
+
 	<select id="getUnReadCountCompany" resultType="int">
 		select * from
 		MESSAGE where company_id =#{company_id}
 		and
 		resume_id = #{resume_id} AND
-		message_readtime = message_sendtime 
+		message_readtime = message_sendtime
 		and message_sender = member_id and
-		member_id =	#{member_id}
+		member_id = #{member_id}
 
 	</select>
 
 	<select id="getAllCount" resultType="int">
 		select * from MESSAGE
-		WHERE (company_id = #{company_id} 
+		WHERE
+		(company_id = #{company_id}
 		and message_readtime = message_sendtime
-		and message_sender != #{member_id}) or
+		and
+		message_sender !=
+		#{member_id}) or
 		(member_id = #{member_id}
-		and message_readtime = message_sendtime
+		and
+		message_readtime =
+		message_sendtime
 		and message_sender != #{member_id})
 	</select>
 </mapper>

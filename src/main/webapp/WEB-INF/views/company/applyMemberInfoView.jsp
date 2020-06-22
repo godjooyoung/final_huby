@@ -85,10 +85,11 @@
 				<!-- 여기에 가져온 경험정보를 붙이자. li 태그로로 -->
 				</ul>
 				
-				
+				<input type="button" id="button" value="면접요청" onclick="interviewRe('${applyman.member_id}')">
 			</div>
 		</div>
 	</div>
+	
 	
 <script>
 function reciveSkill(e,memberid){
@@ -203,5 +204,21 @@ function reciveCareer(e,memberid){
 	})
 	
 };//endCareer
+
+	//면접제의 버튼
+	function interviewRe(member_id){
+		
+	$.ajax({
+		type:"post",
+		url:"interviewRe.do",
+		data: {'member_id': member_id, 'alarm_message':"면접제의"},
+		dataType: 'json',
+		
+		success: 
+			function(data){
+				alert("면접 요청이 완료되었습니다.");
+		}
+	})
+}
 
 </script>

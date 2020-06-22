@@ -21,7 +21,7 @@
 	}
 	
 	function alarmRe(alarm_id){
-		if (confirm("거절하시겠습니까?") == true){
+		if (confirm("거절하시겠습니까?\n거절 시 내역에서 삭제됩니다.") == true){
 		document.frmre.alarmid.value = alarm_id
 		document.frmre.submit();	
 		} else {
@@ -31,6 +31,7 @@
 	}
 
 </script>
+
 	<div class="alarmlist">
 		<c:forEach var="list" items="${personalarmlist }">
 				<br>[${list.company_name }]

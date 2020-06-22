@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.annotation.Resources;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -98,10 +100,18 @@ public class MemberController {
 	}
 
 	@RequestMapping("/employmentList.do")
-	public String employmentList(Model model, Map vo) throws Exception {
+	public String employmentList(Model model, EmploymentsVo vo) throws Exception {
 		List<Map> list = employmentService.employmentList(vo);
 		model.addAttribute("elist", list);
 		return "person/member/employmentList";
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/empDetaleList.do")
+	public List<Map> empDetaleList(Model model, HttpServletRequest request, EmploymentsVo vo) throws Exception {
+		String empid = request.getParameter("empno");
+		vo.setEmployment_id(empid);
+		List<Map> list = employmentService.empDetailList(vo);
+		return list;
+	}
 }

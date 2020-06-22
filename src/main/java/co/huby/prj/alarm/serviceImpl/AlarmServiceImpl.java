@@ -27,7 +27,7 @@ public class AlarmServiceImpl implements AlarmService {
 
 	@Override
 	public void alarmInsert(AlarmVo vo) {
-		// TODO Auto-generated method stub
+		map.alarmInsert(vo);
 		
 	}
 	
