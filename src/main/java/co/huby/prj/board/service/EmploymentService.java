@@ -30,4 +30,6 @@ public interface EmploymentService {
 	int applyInsert(Map vo) throws Exception;
 	
 	int applycheck(Map vo) throws Exception;
+	
+	List<Map> applyList(MemberVo vo) throws Exception;
 }
