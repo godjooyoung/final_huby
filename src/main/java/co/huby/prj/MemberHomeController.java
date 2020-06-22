@@ -62,7 +62,15 @@ public class MemberHomeController {
 	}
 	
 	@RequestMapping(value = "/applypreview.do")
-	public String applyPreview(Model model, @RequestParam Map mapvo, HttpServletRequest request) throws Exception {
+	public String applyPreview(Model model, @RequestParam Map mapvo, HttpServletRequest request, MemberVo mvo) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		mvo.setMember_id(id);
+		
+		List<Map> lmapvo = employmentService.resumeAll(mvo);
+		List<Map> vmapvo = employmentService.videoAll(mvo);
+		
+		model.addAttribute("rlist",lmapvo);
+		model.addAttribute("vlist",vmapvo);
 		
 		return "person/member/applypreview";
 	}
