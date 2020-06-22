@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import co.huby.prj.vo.ApplyVo;
+import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.LikeVideoVo;
 import co.huby.prj.vo.ResumeVo;
 import co.huby.prj.vo.VideoVo;
@@ -35,5 +36,12 @@ public interface BoardService {
 	ResumeVo get_resume(ResumeVo resume) throws Exception;
 	
 	void videoLikeDeleteFromCompany(LikeVideoVo vo) throws Exception;
-
+	
+	List<Map> comlikevideo(LikeVideoVo vo) throws Exception;
+	
+	void comWriteEmploy(EmploymentsVo vo) throws Exception;
+	
+	List<Map> empListForCom (EmploymentsVo vo) throws Exception;
+	
+	EmploymentsVo get_empDetailsForCom(EmploymentsVo vo) throws Exception;
 }

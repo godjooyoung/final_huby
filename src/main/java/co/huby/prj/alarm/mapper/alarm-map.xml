@@ -7,11 +7,11 @@
 	</insert>
 	
 	<select id="personalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
-		SELECT C.COMPANY_NAME company_name, A.ALARM_MESSAGE alarm_message, A.ALARM_TIME alarm_time, A.ALARM_ID alarm_id, A.ALARM_CURRENT alarm_current
+		SELECT C.COMPANY_NAME company_name, A.ALARM_MESSAGE alarm_message, A.ALARM_TIME alarm_time, A.ALARM_ID alarm_id, A.ALARM_CURRENT alarm_current, A.MEMBER_ID member_id, A.COMPANY_ID company_id
 		FROM ALARM A
 		JOIN COMPANY C
 		ON C.COMPANY_ID = A.COMPANY_ID 
-		WHERE MEMBER_ID = #{personid}
+		WHERE MEMBER_ID = #{personid, jdbcType=VARCHAR}
 	</select>
 	
 	<select id="companyalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">

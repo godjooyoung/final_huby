@@ -87,4 +87,10 @@ public class EmploymentServiceImpl implements EmploymentService {
 	public int applycheck(Map vo) throws Exception {
 		return map.applycheck(vo);
 	}
+
+	@Override
+	public List<Map> applyList(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.applyList(vo);
+	}
 }

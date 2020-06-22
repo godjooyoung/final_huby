@@ -33,6 +33,8 @@ public interface EmploymentMap {
 	int applyInsert(Map vo) throws Exception;
 	
 	int applycheck(Map vo) throws Exception;
+	
+	List<Map> applyList(MemberVo vo) throws Exception;
 	/*
 	 * void videoLikeInsertFromCompany(LikeVideoVo vo) ; List<Map>
 	 * getCompany_Employments(String com_id); List<Map>

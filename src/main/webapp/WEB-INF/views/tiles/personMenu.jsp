@@ -12,12 +12,12 @@
 		<ul class="gnb_dp2_wrap">
 
 			<li class="gnb_dp2"><a href="personalarm.do">알림</a></li>
-			<li class="gnb_dp2"><a href="person_chat.do">면접</a></li>
+			<li class="gnb_dp2"><a href="person_chatList.do">면접</a></li>
 		</ul></li>
 	<li class="gnb_dp1"><span>${ loginId }의 Page</span>
 		<ul class="gnb_dp2_wrap">
 			<li class="gnb_dp2"><a href="resumemanagement.do">이력서관리</a></li>
-			<li class="gnb_dp2"><a href="applyManagementpage.do">지원내역</a></li>
+			<li class="gnb_dp2"><a href="applyManagement.do">지원내역</a></li>
 			<li class="gnb_dp2"><a href="javascript:GoPage('skin02')">습관</a></li>
 			<li class="gnb_dp2"><a href="javascript:GoPage('skin01')">스크랩</a></li>
 			<li class="gnb_dp2"><a href="logout.do">로그아웃</a></li>

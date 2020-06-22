@@ -16,9 +16,16 @@ public class EmploymentsVo {
 	private String employment_prefer;
 	private Date employment_time;
 	private String company_id;
+	private String hope_salary;
 	//getter setter
 	public String getEmployment_id() {
 		return employment_id;
+	}
+	public String getHope_salary() {
+		return hope_salary;
+	}
+	public void setHope_salary(String hope_salary) {
+		this.hope_salary = hope_salary;
 	}
 	public void setEmployment_id(String employment_id) {
 		this.employment_id = employment_id;
