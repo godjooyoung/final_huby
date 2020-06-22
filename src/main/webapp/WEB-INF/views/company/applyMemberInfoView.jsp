@@ -216,7 +216,10 @@ function reciveCareer(e,memberid){
 		
 		success: 
 			function(data){
-				alert("면접 요청이 완료되었습니다.");
+			if(data.count == 1)
+				alert("면접요청이 완료되었습니다.");
+			else
+				alert("이미 면접 요청이 진행되었습니다.")
 		}
 	})
 }

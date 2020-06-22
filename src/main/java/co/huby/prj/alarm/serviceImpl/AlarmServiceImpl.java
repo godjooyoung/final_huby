@@ -26,9 +26,13 @@ public class AlarmServiceImpl implements AlarmService {
 	}
 
 	@Override
-	public void alarmInsert(AlarmVo vo) {
-		map.alarmInsert(vo);
-		
+	public int alarmInsert(AlarmVo vo) {
+		int n = map.alarminsertcheck(vo);
+		if(n==0) {
+			return map.alarmInsert(vo);
+		} else {
+			return 0;
+		}
 	}
 	
 	@Override
@@ -44,6 +48,10 @@ public class AlarmServiceImpl implements AlarmService {
 	@Override
 	public void alarmdelete(AlarmVo vo) {
 		map.alarmdelete(vo);
+	}
+	@Override
+	public int alarminsertcheck(AlarmVo vo) {
+		return map.alarminsertcheck(vo);
 	}
 	
 }

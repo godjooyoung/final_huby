@@ -4,6 +4,7 @@ package co.huby.prj;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -95,13 +96,13 @@ public class AlarmController {
 	//면접요청 insert
 	@ResponseBody
 	@RequestMapping(value = "/interviewRe.do")
-	public AlarmVo interviewRe(HttpServletRequest request, AlarmVo vo) {
+	public Map interviewRe(HttpServletRequest request, AlarmVo vo) {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		
-
 		vo.setCompany_id(companyid);
+		int count = alarmService.alarmInsert(vo);
 		
-		alarmService.alarmInsert(vo);
-		return vo;
+		
+		return Collections.singletonMap("count", count);
 	}
 }

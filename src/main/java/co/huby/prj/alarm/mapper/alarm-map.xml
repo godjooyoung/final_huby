@@ -36,4 +36,10 @@
 		DELETE FROM ALARM WHERE ALARM_ID = #{alarm_id}
 	</delete>
 	
+	<select id="alarminsertcheck" resultType="int">
+		SELECT COUNT(MEMBER_ID)
+		FROM ALARM 
+		WHERE MEMBER_ID = #{member_id} AND COMPANY_ID = #{company_id} AND ALARM_MESSAGE = #{alarm_message}
+	</select>
+	
 </mapper>
