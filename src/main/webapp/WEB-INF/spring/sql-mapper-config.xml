@@ -2,24 +2,19 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 	<typeAliases>
-		<typeAlias alias="MemberVo" type="co.huby.prj.member.service.MemberVo" />
+		<typeAlias alias="MemberVo"
+			type="co.huby.prj.member.service.MemberVo" />
+		<!-- <typeAlias alias="MemberVO" type="co.huby.prj.member.service.CompanyMemberVo"/> -->
 		<typeAlias alias="ResumeVo" type="co.huby.prj.vo.ResumeVo" />
-		<typeAlias type="co.huby.prj.code.service.CodeVo" alias="CodeVo" />
+		<typeAlias type="co.huby.prj.code.service.CodeVo"
+			alias="CodeVo" />
 		<typeAlias alias="CompanyVo" type="co.huby.prj.vo.CompanyVo" />
-		<typeAlias alias="InterviewVo"type="co.huby.prj.vo.InterviewVo"/>
+		<typeAlias alias="InterviewVo"
+			type="co.huby.prj.vo.InterviewVo" />
 		<typeAlias alias="MessageVo" type="co.huby.prj.vo.MessageVo" />
-		<typeAlias alias="EmploymentsVo" type="co.huby.prj.vo.EmploymentsVo" />
+		<typeAlias alias="EmploymentsVo"
+			type="co.huby.prj.vo.EmploymentsVo" />
 		<typeAlias alias="VideoVo" type="co.huby.prj.vo.VideoVo" />
-		<typeAlias alias="QuestionVo" type="co.huby.prj.vo.QuestionVo" />
-		<typeAlias alias="LikeCompanyVo" type="co.huby.prj.vo.LikeCompanyVo" />
-		<typeAlias alias="InterestResumeVo" type="co.huby.prj.vo.InterestResumeVo" />
-		<typeAlias alias="AdminTableVo" type="co.huby.prj.vo.AdminTableVo" />
-		<typeAlias alias="ApplyVo" type="co.huby.prj.vo.ApplyVo" />
-		<typeAlias alias="CareerVo" type="co.huby.prj.vo.CareerVo" />
-		<typeAlias alias="EmploymentTestVo" type="co.huby.prj.vo.EmploymentTestVo" />
-		<typeAlias alias="HabitVo" type="co.huby.prj.vo.HabitVo" />
-		<typeAlias alias="NoticeVo" type="co.huby.prj.vo.NoticeVo" />
-		<typeAlias alias="SkillsVo" type="co.huby.prj.vo.SkillsVo" />
-		<typeAlias alias="TestDetailsVo" type="co.huby.prj.vo.TestDetailsVo" />
+		<typeAlias alias="ResumeVo" type="co.huby.prj.vo.ResumeVo" />
 	</typeAliases>
 </configuration>
