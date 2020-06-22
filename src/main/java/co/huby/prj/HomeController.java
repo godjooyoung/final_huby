@@ -1,6 +1,7 @@
 package co.huby.prj;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -66,7 +67,7 @@ public class HomeController {
 		return "redirect:companyAfterLogin.do";
 	}
 
-	@RequestMapping(value = "/companyEmploymentsList.do") // 기업의 공고보여주기.
+	@RequestMapping(value = "/companyEmploymentsList.do") // 기업 자기자신의 공고보여주기.
 	public String companyEmploymentsList(Model model, HttpServletRequest request, EmploymentsVo vo) throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		List<Map> list = boardService.getCompany_Employments(companyid);
@@ -143,5 +144,96 @@ public class HomeController {
 		return "redirect:companyAfterLogin.do";
 	}
 	/** 아작스.... */
+	
+	/*기업의 관심비디오 목록*/
+	@RequestMapping(value = "/comLikeVideoList.do") 
+	public String comLikeViedo(Model model, HttpServletRequest request, LikeVideoVo vo) throws Exception {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		vo.setCompany_id(companyid);
+		List<Map> list = boardService.comlikevideo(vo);
+		System.out.println("기업이 좋아한 영상 목록이 들어옵니다.");
+		System.out.println(vo);
+		System.out.println(list);
+		model.addAttribute("comLike", list);
+		return "company/company/companyScrapList";
+	}
+	
+	/*기업의 공고 작성*/
+	@RequestMapping(value = "/comEmpInsert.do") // 기업이 공고를 작성해서 인설트 한다이...
+	public String comEmpInsert (Model model, HttpServletRequest request,EmploymentsVo vo) throws Exception {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		String title =request.getParameter("title");
+		String career = request.getParameter("career");
+		String prefer = request.getParameter("prefer");
+		String position = request.getParameter("position");
+		String graduate = request.getParameter("graduate");
+		String job = request.getParameter("job");
+		String worktype = request.getParameter("worktype");
+		String contents = request.getParameter("contents");
+		String salary = request.getParameter("salary");
+		
+		String time = request.getParameter("time");
+		
+		System.out.println("-----시간" + time);
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d = df.parse(time);
+		
+		String[] locations = request.getParameterValues("location"); 
+		String location = "";
+		String locas = "";
+		
+	
+			for(int i=0; i<locations.length; i++){
+			 location = (locations[i] + ".");
+			 locas += location;
+			}
+		vo.setEmployment_title(title);
+		vo.setCompany_id(companyid);
+		vo.setEmployment_contents(contents);
+		vo.setEmployment_prefer(prefer);
+		vo.setEmployment_time(d);
+		vo.setHope_career(career);
+		vo.setHope_graduate(graduate);
+		vo.setHope_job(job);
+		vo.setHope_location(locas);
+		vo.setHope_work_type(worktype);
+		vo.setHope_job_position(position);
+		vo.setHope_salary(salary);
+		boardService.comWriteEmploy(vo);
+		return "redirect:forcomemploymentsList.do";
+	}
+	
+	/*기업의 공고 작서 페이지로 이동합니다.*/
+	@RequestMapping(value = "/empInsertPageGo.do")
+	public String empinserthome (Model model, HttpServletRequest request, VideoVo vo) throws Exception{ 
+		
+		return "company/company/employmentsInsert";
+	}
+	
+	/*기업의 공고 목록으로 이동합니다.*/
+	@RequestMapping(value = "/forcomemploymentsList.do")
+	public String employlisthome (Model model, HttpServletRequest request, EmploymentsVo vo) throws Exception	{
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		vo.setCompany_id(companyid);
+		List<Map> list = boardService.empListForCom(vo);
+		model.addAttribute("employments", list);
+		return "company/company/companyEmploymentListView";
+	}
+	
+	/*공고 목록에서 클릭하면 상세로 넘어갑니다.*/
+	@RequestMapping(value = "/employmentsDetailsforCom.do")
+	public String employmentDetails (Model model, HttpServletRequest request, EmploymentsVo vo) throws Exception	{
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		String emplomentid= request.getParameter("employment_id");
+		vo.setCompany_id(companyid);
+		vo.setEmployment_id(emplomentid);
+		vo = boardService.get_empDetailsForCom(vo);
+		model.addAttribute("employmentsDetails", vo);
+		System.out.println(vo);
+		return "company/company/companyEmploymentDetailsView";
+	}
+	
+	
+	
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import co.huby.prj.board.mapper.BoardMap;
 import co.huby.prj.board.service.BoardService;
 import co.huby.prj.vo.ApplyVo;
+import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.LikeVideoVo;
 import co.huby.prj.vo.ResumeVo;
 import co.huby.prj.vo.VideoVo;
@@ -90,5 +91,30 @@ public class BoardServiceImpl implements BoardService {
 		map.videoLikeDeleteFromCompany(vo);
 		
 	}
+	@Override
+	public List<Map> comlikevideo(LikeVideoVo vo) throws Exception {
+		// 기업이 좋아한 영상 목록
+		return map.comlikevideo(vo);
+	}
+
+	@Override
+	public void comWriteEmploy(EmploymentsVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		map.comWriteEmploy(vo);
+		
+	}
+
+	@Override
+	public List<Map> empListForCom(EmploymentsVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.empListForCom(vo);
+	}
+
+	@Override
+	public EmploymentsVo get_empDetailsForCom(EmploymentsVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.get_empDetailsForCom(vo);
+	}
+
 
 }
