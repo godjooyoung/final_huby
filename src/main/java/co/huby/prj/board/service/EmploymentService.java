@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.ApplyVo;
 import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.ResumeVo;
 
@@ -25,4 +26,8 @@ public interface EmploymentService {
 	List<Map> employmentList(EmploymentsVo vo) throws Exception;
 
 	List<Map> empDetailList(EmploymentsVo vo) throws Exception;
+	
+	int applyInsert(Map vo) throws Exception;
+	
+	int applycheck(Map vo) throws Exception;
 }

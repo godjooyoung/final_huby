@@ -36,6 +36,7 @@
 								<div class="card-body" id="checkvideo">
 									<!--Title-->
 									<h4 class="card-title" id="v_hashtag">${video.HASHTAG}</h4>
+									<input type="hidden" id="video_id" name="video_id" value="${video.VIDEO_ID}">
 									<!--Text-->
 									<p class="card-text" id="v_content">${video.VIDEO_CONTENTS}</p>
 									<p class="card-text" id="v_img">${video.VIDEO_IMG}</p>
@@ -69,6 +70,7 @@
 								<div class="card-body" id="checkresume">
 									<!--Title-->
 									<h4 class="card-title" id="r_title">${resume.RESUME_TITLE}</h4>
+									<input type="hidden" id="resume_id" name="resume_id" value="${resume.RESUME_ID}">
 									<!--Text-->
 									<p class="card-text" id="r_hope">${resume.HOPE_JOB}</p>
 									<p class="card-text" id="r_salary">${resume.HOPE_SALARY}</p>
@@ -91,14 +93,13 @@
 	</div>
 	<br>
 
-
 <script>
 	function pick2(){
 		var rchecked = $(document).find("[name='rselect']:checked").closest("#checkresume");
 		var vchecked = $(document).find("[name='vselect']:checked").closest("#checkvideo");
 
 		opener.document.getElementById("v_hashtag").innerHTML = vchecked.find("#v_hashtag").html();
-		opener.document.getElementById("v_content").innerHTML = vchecked.find("#v_content").html();
+		/* opener.document.getElementById("v_content").innerHTML = vchecked.find("#v_content").html(); */
 		/* opener.document.getElementById("v_img").innerHTML = vchecked.find("#v_img").html();
 		opener.document.getElementById("v_location").innerHTML = vchecked.find("#v_location").html(); */
 
@@ -109,8 +110,10 @@
 		opener.document.getElementById("r_education").innerHTML = rchecked.find("#r_education").html();
 		opener.document.getElementById("r_coment").innerHTML = rchecked.find("#r_coment").html();
 		
+		opener.document.getElementById("resume_id").value = rchecked.find("#resume_Id").val();
+		opener.document.getElementById("video_id").value = vchecked.find("#video_id").val();
 		
-	 
+		window.close();
 	}
 </script>
 </form>

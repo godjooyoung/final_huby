@@ -135,6 +135,7 @@ section .section-title {
 	function selectemployment(cid, eid) {
 		$("#company_id").val(cid);
 		$("#employment_id").val(eid);
+		alert(eid+"번 공고입니다.");
 		$("#frm").attr("action", "selectresumepage.do");
 		document.frm.submit();
 	}

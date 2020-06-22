@@ -1,15 +1,19 @@
 package co.huby.prj;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import co.huby.prj.board.service.EmploymentService;
 import co.huby.prj.member.service.MemberVo;
@@ -72,6 +76,21 @@ public class MemberHomeController {
 		model.addAttribute("vlist",vmapvo);
 		
 		return "person/member/applypreview";
+	}
+	
+	@RequestMapping(value = "/applyInsert.do")
+	public ModelAndView applyInsert(Model model, @RequestParam Map mapvo, HttpServletRequest request, HttpServletResponse response ,MemberVo mvo) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String id = (String) request.getSession().getAttribute("loginId");
+		mapvo.put("member_id", id);
+		
+		int n = employmentService.applyInsert(mapvo);
+		if(n==1) {
+			mav.setViewName("person/member/applyManagement");
+		}else {
+			mav.setViewName("redirect:applyinfoall.do");
+		}
+		return mav;
 	}
 
 }
