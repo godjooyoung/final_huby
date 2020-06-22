@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.annotation.MapperScan;
 
+import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.ResumeVo;
 
 @MapperScan
@@ -20,9 +21,10 @@ public interface EmploymentMap {
 	List<Map> skillsAll(Map vo) throws Exception;
 
 	List<Map> careerAll(Map vo) throws Exception;
-	
-	List<Map> employmentList(Map vo) throws Exception;
 
+	List<Map> employmentList(EmploymentsVo vo) throws Exception;
+
+	List<Map> empDetailList(EmploymentsVo vo) throws Exception;
 	/*
 	 * void videoLikeInsertFromCompany(LikeVideoVo vo) ; List<Map>
 	 * getCompany_Employments(String com_id); List<Map>

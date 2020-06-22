@@ -8,7 +8,8 @@
 			e.employment_contents as "employment_contents" FROM company c, employments 
 			e WHERE c.company_id = e.company_id -->
 		SELECT DISTINCT c.company_name as "company_name",
-		e.employment_title as "employment_title",
+		e.employment_title as
+		"employment_title",
 		e.employment_contents as "employment_contents",
 		c.company_id as "company_id", e.hope_job, e.employment_id as
 		"employment_id"
@@ -32,14 +33,16 @@
 		c.COMPANY_ADDR,c.BUSINESS_CATEGORY,c.COMPANY_BIRTH,c.COMPANY_SALES,
 		c.HOMEPAGE,c.COMPANY_DATE, c.company_id
 		from employments e, company c
-		where e.company_id = c.company_id and e.employment_id = #{employment_id}
+		where e.company_id = c.company_id and e.employment_id =
+		#{employment_id}
 	</select>
 
 	<select id="resumeAll" resultType="map" parameterType="map">
 		select
 		resume_id, member_id, resume_title, hope_job, hope_salary,
 		hope_location,
-		final_education, select_resume, select_public, resume_coment
+		final_education, select_resume, select_public,
+		resume_coment
 		from resume
 		where member_id
 		= #{member_id}
@@ -71,6 +74,10 @@
 
 	<select id="employmentList" resultType="map" parameterType="map">
 		select * from employments
+	</select>
+
+	<select id="empDetailList" resultType="map" parameterType="map">
+		select * from employments where employment_id = #{employment_id}
 	</select>
 
 </mapper>

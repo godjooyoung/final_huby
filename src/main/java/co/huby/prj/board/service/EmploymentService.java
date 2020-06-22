@@ -20,5 +20,7 @@ public interface EmploymentService {
 
 	List<Map> careerAll(Map vo) throws Exception;
 
-	List<Map> employmentList(Map vo) throws Exception;
+	List<Map> employmentList(EmploymentsVo vo) throws Exception;
+
+	List<Map> empDetailList(EmploymentsVo vo) throws Exception;
 }
