@@ -31,6 +31,7 @@
 	}
 
 </script>
+
 	<div class="alarmlist">
 		<c:forEach var="list" items="${personalarmlist }">
 				<br>[${list.company_name }]
