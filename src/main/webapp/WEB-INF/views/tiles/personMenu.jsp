@@ -11,7 +11,7 @@
 	<li class="gnb_dp1"><span>알림</span>
 		<ul class="gnb_dp2_wrap">
 			<li class="gnb_dp2"><a href="javascript:GoPage('detox01')">알림</a></li>
-			<li class="gnb_dp2"><a href="person_chat.do">면접</a></li>
+			<li class="gnb_dp2"><a href="person_chatList.do">면접</a></li>
 		</ul></li>
 	<li class="gnb_dp1"><span>${ loginId }의 Page</span>
 		<ul class="gnb_dp2_wrap">
