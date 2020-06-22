@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<h3>면접리스트</h3>
 ${personChatList}
 <c:forEach var="list" items="${personChatList}">
 ${list.interview_id }
@@ -11,12 +10,12 @@ ${list.interview_id }
 
 	<div align="center">
 		<h1>면접리스트</h1>
-		<form id="bookList" name="bookList" method="post">
+		<form id="ivList" name="ivList" method="post">
 			<table>
 				<thead>
 					<tr>
-						<th>도서번호</th>
-						<th>도서명</th>
+						<th>인터뷰시작</th>
+						<th></th>
 						<th>표지</th>
 						<th>출판일자</th>
 						<th>금액</th>
