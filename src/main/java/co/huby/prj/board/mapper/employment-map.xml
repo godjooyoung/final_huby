@@ -71,6 +71,12 @@
 		where member_id
 		= #{member_id}
 	</select>
+	
+	<select id="habitAll" resultType="map" parameterType="map">
+		select habit_id, habit_name, habit_start_date, habit_count, member_id
+		from habit
+		where member_id = #{member_id}
+	</select>
 
 	<select id="employmentList" resultType="map" parameterType="map">
 		select * from employments
