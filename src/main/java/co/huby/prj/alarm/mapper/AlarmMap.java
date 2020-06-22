@@ -11,8 +11,9 @@ import co.huby.prj.alarm.service.AlarmVo;
 public interface AlarmMap {
 	public ArrayList<AlarmVo> personalarmlist(String personid);
 	public ArrayList<AlarmVo> companyalarmlist(String companyid);
-	void alarmInsert(AlarmVo vo);
+	int alarmInsert(AlarmVo vo);
 	void currentY(AlarmVo vo);
 	void currentN(AlarmVo vo);
 	void alarmdelete(AlarmVo vo);
+	int alarminsertcheck(AlarmVo vo);
 }

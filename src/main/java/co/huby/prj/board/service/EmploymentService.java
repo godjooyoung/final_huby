@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.ApplyVo;
 import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.ResumeVo;
 

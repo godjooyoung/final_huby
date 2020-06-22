@@ -73,4 +73,11 @@ public class CompanyController {
 		mav.setViewName("company/company/resumeDetail");
 		return mav;
 	}
+
+	@RequestMapping("/employments.do")
+	public ModelAndView employments(Model model, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("company/common/test");
+		return mav;
+	}
 }

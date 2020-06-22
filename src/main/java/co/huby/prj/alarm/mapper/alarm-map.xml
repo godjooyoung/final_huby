@@ -3,23 +3,25 @@
 <mapper namespace="co.huby.prj.alarm.mapper.AlarmMap">
 
 	<insert id="alarmInsert" parameterType="co.huby.prj.alarm.service.AlarmVo">
-		INSERT INTO ALARM VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP);
+		INSERT INTO ALARM VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP)
 	</insert>
 	
 	<select id="personalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
-		SELECT C.COMPANY_NAME company_name, A.ALARM_MESSAGE alarm_message, A.ALARM_TIME alarm_time, A.ALARM_ID alarm_id, A.ALARM_CURRENT alarm_current
+		SELECT C.COMPANY_NAME company_name, A.ALARM_MESSAGE alarm_message, A.ALARM_TIME alarm_time, A.ALARM_ID alarm_id, A.ALARM_CURRENT alarm_current, A.MEMBER_ID member_id, A.COMPANY_ID company_id
 		FROM ALARM A
 		JOIN COMPANY C
 		ON C.COMPANY_ID = A.COMPANY_ID 
-		WHERE MEMBER_ID = #{personid}
+		WHERE MEMBER_ID = #{personid, jdbcType=VARCHAR}
 	</select>
 	
 	<select id="companyalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
-		SELECT M.MEMBER_NAME member_name, A.ALARM_MESSAGE alarm_message
+		SELECT M.MEMBER_NAME member_name, A.ALARM_MESSAGE alarm_message, A.ALARM_CURRENT alarm_current
 		FROM ALARM A
 		JOIN MEMBER M
 		ON A.MEMBER_ID = M.MEMBER_ID
 		WHERE COMPANY_ID = #{companyid}
+		AND A.ALARM_CURRENT = 'Y'
+		AND A.ALARM_MESSAGE = '면접제의'
 	</select>
 	
 	<update id="currentY" parameterType="co.huby.prj.alarm.service.AlarmVo">
@@ -33,5 +35,11 @@
 	<delete id="alarmdelete" parameterType="co.huby.prj.alarm.service.AlarmVo">
 		DELETE FROM ALARM WHERE ALARM_ID = #{alarm_id}
 	</delete>
+	
+	<select id="alarminsertcheck" resultType="int">
+		SELECT COUNT(MEMBER_ID)
+		FROM ALARM 
+		WHERE MEMBER_ID = #{member_id} AND COMPANY_ID = #{company_id} AND ALARM_MESSAGE = #{alarm_message}
+	</select>
 	
 </mapper>
