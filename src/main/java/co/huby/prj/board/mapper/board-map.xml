@@ -79,7 +79,7 @@
 		R.hope_salary as "hope_salary",
 		R.hope_job as "hope_job",
 		R.hope_location as "hope_location",
-		M.member_name as "member_name",
+		M.member_name as "member_name", 
 		M.member_id as "member_id",
 		M.member_birth as "member_birth",
 		M.member_tel as "member_tel",
@@ -158,6 +158,65 @@
     	where video_id=#{video_id})
     	and company_id = #{company_id}
 	</delete>
+	
+	<select id="comlikevideo" parameterType="co.huby.prj.vo.LikeVideoVo" resultType="map">
+	SELECT 
+    L.like_video_id, 
+    L.video_id, 
+    L.member_id, 
+    L.company_id,
+    v.video_contents,
+    v.video_img,
+    v.video_location, 
+    c.code_name
+    FROM LIKE_VIDEO L
+    JOIN VIDEO v
+    ON v.VIDEO_id = L.video_id
+        JOIN code c
+        On c.code_id = v.hashtag
+    WHERE L.company_id =#{company_id}
+	</select>
+	
+	<!-- 기업이 공고 인설트 -->
+	<insert id ="comWriteEmploy" parameterType="co.huby.prj.vo.EmploymentsVo">
+	INSERT INTO EMPLOYMENTS (EMPLOYMENT_ID,
+	EMPLOYMENT_TITLE,
+	EMPLOYMENT_CONTENTS,
+	HOPE_CAREER,
+	HOPE_GRADUATE,
+	HOPE_JOB_POSITION,
+	HOPE_JOB,
+	HOPE_LOCATION,
+	HOPE_WORK_TYPE,
+	EMPLOYMENT_PREFER,
+	EMPLOYMENT_TIME,
+	COMPANY_ID,
+	HOPE_SALARY)
+	VALUES(
+		EMPLOYMENTS_SEQ.nextval, 
+        #{employment_title},
+        #{employment_contents},
+        #{hope_career},
+        #{hope_graduate},
+        #{hope_job_position},
+        #{hope_job},
+        #{hope_location},
+        #{hope_work_type},
+        #{employment_prefer},
+        #{employment_time},
+        #{company_id},
+        #{hope_salary})   
+	</insert>
+	
+	<select id ="empListForCom"  parameterType="co.huby.prj.vo.EmploymentsVo" resultType="co.huby.prj.vo.EmploymentsVo">
+	SELECT * FROM EMPLOYMENTS WHERE COMPANY_ID = #{company_id}
+	</select>
+	
+	<select id ="get_empDetailsForCom"  parameterType="co.huby.prj.vo.EmploymentsVo" 
+	resultType="co.huby.prj.vo.EmploymentsVo">
+	SELECT * FROM EMPLOYMENTS WHERE EMPLOYMENT_ID =#{employment_id}
+	</select>
+	
 
 </mapper>
 
