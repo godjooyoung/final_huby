@@ -12,13 +12,15 @@ public interface EmploymentService {
 
 	Map SelectMatchedEmploymentList(Map vo) throws Exception;
 
-	List<Map> resumeAll(Map vo) throws Exception;
+	List<Map> resumeAll(MemberVo vo) throws Exception;
 
-	List<Map> videoAll(Map vo) throws Exception;
+	List<Map> videoAll(MemberVo vo) throws Exception;
 
-	List<Map> skillsAll(Map vo) throws Exception;
+	List<Map> skillsAll(MemberVo vo) throws Exception;
 
-	List<Map> careerAll(Map vo) throws Exception;
+	List<Map> careerAll(MemberVo vo) throws Exception;
+	
+	List<Map> habitAll(MemberVo vo) throws Exception;
 
 	List<Map> employmentList(Map vo) throws Exception;
 }

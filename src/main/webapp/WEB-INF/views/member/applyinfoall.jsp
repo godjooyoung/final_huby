@@ -32,148 +32,117 @@
 	<br>
 	<br>
 	<br>
-	<h2 align="center">영상</h2>
-	<div class="container">
-		<div class="row">
-			<c:choose>
-				<c:when test="${!empty vlist}">
-					<c:forEach var="video" items="${vlist}">
-						<div class="col-sm-4">
-							<!--Card-->
-							<div class="card">
-								<!--Card image-->
-								<%-- <img class="img-fluid"
-									src="${pageContext.request.contextPath}/resources/FileUpload/Chrysanthemum.jpg"
-									alt="Card image cap"> --%>
-								<video controls autoplay loop>
-								<source src="${pageContext.request.contextPath}/resources/FileUpload/Wildlife.wmv" type="video/mp4">
-								</video>
-								<!--Card content-->
-								<div class="card-body" id="checkvideo">
-									<!--Title-->
-									<h4 class="card-title" id="v_hashtag">${video.HASHTAG}</h4>
-									<!--Text-->
-									<p class="card-text" id="v_content">${video.VIDEO_CONTENTS}</p>
-									<p class="card-text" id="v_img">${video.VIDEO_IMG}</p>
-									<p class="card-text" id="v_location">${video.VIDEO_LOCATION}</p>
-									<input type="radio" id="vselect" name="vselect" value="vselect" checked="checked">&nbsp;&nbsp; Pick
-								</div>
-							</div>
-							<!--/.Card-->
+	<!-- Page Container -->
+	<div class="w3-content w3-margin-top" style="max-width: 1400px;">
+		<!-- The Grid -->
+		<div class="w3-row-padding">
+			<!-- Left Column -->
+			<div class="w3-third">
+				<div class="w3-white w3-text-grey w3-card-4">
+					<div class="w3-display-container">
+						<img src="${pageContext.request.contextPath}/resources/img/common/${video.video_img }"
+							style="width: 100%" alt="Avatar">
+						<div class="w3-display-bottomleft w3-container w3-text-black">
+							<h2>${member.member_name}</h2>
 						</div>
-					</c:forEach>
-				</c:when>
-			</c:choose>
-		</div>
-	</div>
-	<br>
-	<h2 align="center">이력서</h2>
-	<div class="container">
-		<div class="row">
-			<c:choose>
-				<c:when test="${!empty rlist}">
-					<c:forEach var="resume" items="${rlist}">
-						<div class="col-sm-4" >
-							<!--Card-->
-							<div class="card">
-								<!--Card image-->
-								<img class="img-fluid"
-									src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg"
-									alt="Card image cap">
+					</div>
+					<div class="w3-container">
+						<p>
+							<i
+								class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>${video.video_contents}
+						</p>
+						<p>
+							<i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>${member.member_addr}
+						</p>
+						<p>
+							<i
+								class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>${member.member_email}
+						</p>
+						<p>
+							<i
+								class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>${member.member_gender}
+						</p>
+						<hr>
+					</div>
+				</div>
+				<br>
 
-								<!--Card content-->
-								<div class="card-body" id="checkresume">
-									<!--Title-->
-									<h4 class="card-title" id="r_title">${resume.RESUME_TITLE}</h4>
-									<!--Text-->
-									<p class="card-text" id="r_hope">${resume.HOPE_JOB}</p>
-									<p class="card-text" id="r_salary">${resume.HOPE_SALARY}</p>
-									<p class="card-text" id="r_location">${resume.HOPE_LOCATION}</p>
-									<p class="card-text" id="r_education">${resume.FINAL_EDUCATION}</p>
-									<p class="card-text" id="r_coment">${resume.RESUME_COMENT}</p>
-									<input type="radio" id="rselect" name="rselect" value="rselect" checked="checked">&nbsp;&nbsp; Pick
-								</div>
-							</div>
-							<!--/.Card-->
-						</div>
-					</c:forEach>
-				</c:when>
-			</c:choose>
-		</div>
-	</div>
-	<br>
-	<%-- <h2 align="center">스킬</h2>
-	<div class="container">
-		<div class="row">
-			<c:choose>
-				<c:when test="${!empty slist}">
-					<c:forEach var="skills" items="${slist}">
-						<div class="col-sm-4">
-							<!--Card-->
-							<div class="card">
-								<!--Card image-->
-								<!-- <img class="img-fluid"
-									src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg"
-									alt="Card image cap"> -->
+				<!-- End Left Column -->
+			</div>
 
-								<!--Card content-->
-								<div class="card-body">
-									<!--Title-->
-									<h4 class="card-title" id="checkskills">SKILL</h4>
-									<!--Text-->
-									<p class="card-text" id="s_name">${skills.SKILL_NAME}</p>
-									<p class="card-text" id="s_level">${skills.SKILL_LEVEL}</p>
-									<input type="radio" id="sselect" name="sselect" value="sselect" checked="checked">&nbsp;&nbsp; Pick
-								</div>
-							</div>
-							<!--/.Card-->
-						</div>
-					</c:forEach>
-				</c:when>
-			</c:choose>
-		</div>
-	</div>
-	<br>
-	<h2 align="center">이력서</h2>
-	<div class="container">
-		<div class="row">
-			<c:choose>
-				<c:when test="${!empty clist}">
-					<c:forEach var="career" items="${clist}">
-						<div class="col-sm-4">
-							<!--Card-->
-							<div class="card">
-								<!--Card image-->
-								<!-- <img class="img-fluid"
-									src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg"
-									alt="Card image cap"> -->
+			<!-- Right Column -->
+			<div class="w3-twothird">
 
-								<!--Card content-->
-								<div class="card-body">
-									<!--Title-->
-									<h4 class="card-title" id="checkcareer">CAREER</h4>
-									<!--Text-->
-									<p class="card-text" id="c_startdate">${career.START_DATE}</p>
-									<p class="card-text" id="c_enddate">${career.END_DATE}</p>
-									<p class="card-text" id="c_name">${career.COMPANY_NAME}</p>
-									<p class="card-text" id="c_content">${career.CAREER_CONTENT}</p>
-									<p class="card-text" id="c_job">${career.JOB}</p>
-									<p class="card-text" id="c_position">${career.JOB_POSITION}</p>
-									<input type="radio" id="cselect" name="cselect" value="cselect">&nbsp;&nbsp; Pick
-								</div>
-							</div>
-							<!--/.Card-->
-						</div>
-					</c:forEach>
-				</c:when>
-			</c:choose>
+				<div class="w3-container w3-card w3-white w3-margin-bottom">
+					<h2 class="w3-text-grey w3-padding-16">
+						<i
+							class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>${resume.resume_title}
+					</h2>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<b>희망직무</b>
+						</h5>
+						<h6 class="w3-text-teal">
+							<i class="fa fa-calendar fa-fw w3-margin-right"></i>${resume.hope_job}
+							<span class="w3-tag w3-teal w3-round">Current</span>
+						</h6>
+						<p>블라블라</p>
+						<hr>
+					</div>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<b>희망근무지역</b>
+						</h5>
+						<h6 class="w3-text-teal">
+							<i class="fa fa-calendar fa-fw w3-margin-right"></i>${resume.hope_location}
+						</h6>
+						<p>ㅇㅇㅇ</p>
+						<hr>
+					</div>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<b>최종학력</b>
+						</h5>
+						<h6 class="w3-text-teal">
+							<i class="fa fa-calendar fa-fw w3-margin-right"></i>${resume.final_education}
+						</h6>
+						<p>ㅇㅇㅇ</p>
+						<br>
+					</div>
+				</div>
+
+				<div class="w3-container w3-card w3-white">
+					<h2 class="w3-text-grey w3-padding-16">
+						<i
+							class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>한마디
+					</h2>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<b>소개</b>
+						</h5>
+						<h6 class="w3-text-teal">
+							<i class="fa fa-calendar fa-fw w3-margin-right"></i>${resume.resume_coment}
+						</h6>
+						<p>Web Development! All I need to know in one place</p>
+						<hr>
+					</div>
+
+
+				</div>
+
+				<!-- End Right Column -->
+			</div>
+
+			<!-- End Grid -->
 		</div>
+
+		<!-- End Page Container -->
 	</div>
 	<br> --%>
-	<div align="center">
+	<!-- <div align="center">
 		<button type="button" class="btn-primary" onclick="view()">미리보기</button>
 		<button type="button" class="btn-primary" onclick="back()">이전페이지</button>
-	</div>
+	</div> -->
 	<br>
 </form>
 </body>

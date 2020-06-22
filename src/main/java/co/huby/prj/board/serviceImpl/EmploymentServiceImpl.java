@@ -30,25 +30,25 @@ public class EmploymentServiceImpl implements EmploymentService {
 	}
 
 	@Override
-	public List<Map> resumeAll(Map vo) throws Exception {
+	public List<Map> resumeAll(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.resumeAll(vo);
 	}
 
 	@Override
-	public List<Map> videoAll(Map vo) throws Exception {
+	public List<Map> videoAll(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.videoAll(vo);
 	}
 
 	@Override
-	public List<Map> skillsAll(Map vo) throws Exception {
+	public List<Map> skillsAll(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.skillsAll(vo);
 	}
 
 	@Override
-	public List<Map> careerAll(Map vo) throws Exception {
+	public List<Map> careerAll(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.careerAll(vo);
 	}
@@ -57,6 +57,12 @@ public class EmploymentServiceImpl implements EmploymentService {
 	public List<Map> employmentList(Map vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.employmentList(vo);
+	}
+
+	@Override
+	public List<Map> habitAll(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.habitAll(vo);
 	}
 
 	

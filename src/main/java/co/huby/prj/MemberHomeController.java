@@ -41,19 +41,22 @@ public class MemberHomeController {
 	}
 	
 	@RequestMapping(value = "/applyinfoall.do")
-	public String applyinfoall(Model model, @RequestParam Map mapvo, HttpServletRequest request) throws Exception {
-		String id = (String) request.getSession().getAttribute("loginId");	
-		mapvo.put("member_id", id);
+	public String applyinfoall(Model model, @RequestParam Map mapvo, HttpServletRequest request, MemberVo mvo) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		mvo.setMember_id(id);
 		
-		List<Map> lmapvo = employmentService.resumeAll(mapvo);
-		List<Map> vmapvo = employmentService.videoAll(mapvo);
-		List<Map> smapvo = employmentService.skillsAll(mapvo);
-		List<Map> cmapvo = employmentService.careerAll(mapvo);
+		List<Map> lmapvo = employmentService.resumeAll(mvo);
+		List<Map> vmapvo = employmentService.videoAll(mvo);
+		List<Map> smapvo = employmentService.skillsAll(mvo);
+		List<Map> cmapvo = employmentService.careerAll(mvo);
+		List<Map> hmapvo = employmentService.habitAll(mvo);
 		
 		model.addAttribute("rlist",lmapvo);
 		model.addAttribute("vlist",vmapvo);
 		model.addAttribute("slist",smapvo);
 		model.addAttribute("clist",cmapvo);
+		model.addAttribute("hlist",hmapvo);
+		model.addAttribute("mapvo",mapvo);
 		
 		return "person/member/applyinfoall";
 	}
@@ -61,7 +64,7 @@ public class MemberHomeController {
 	@RequestMapping(value = "/applypreview.do")
 	public String applyPreview(Model model, @RequestParam Map mapvo, HttpServletRequest request) throws Exception {
 		
-		return "no/member/applypreview";
+		return "person/member/applypreview";
 	}
 	
 }
