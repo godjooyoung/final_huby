@@ -17,7 +17,7 @@ public class ChatServiceImpl implements ChatService {
 
 	@Inject
 	private SqlSession session;
-	private static String namespace = "co.huby.prj.chat.mapper.chat-map";
+	private static String namespace = "co.huby.prj.chat.mapper.ChatMap";
 
 	@Override
 	public void createRoom(InterviewVo vo) throws Exception {
@@ -64,11 +64,12 @@ public class ChatServiceImpl implements ChatService {
 		return session.selectList(namespace + ".getMessageList", str);
 	}
 
-	@Override
-	public List<InterviewVo> getRoomList(String str) throws Exception {
-		// TODO Auto-generated method stub
-		return session.selectList(namespace + ".getRoomList", str);
-	}
+	// @Override
+	/*
+	 * public List<InterviewVo> getRoomList(String str) throws Exception { // TODO
+	 * Auto-generated method stub return session.selectList(namespace +
+	 * ".getRoomList", str); }
+	 */
 
 	@Override
 	public List<InterviewVo> getRoomList2(String str) throws Exception {
@@ -160,6 +161,12 @@ public class ChatServiceImpl implements ChatService {
 	public MessageVo getRecentMessage(String str) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace + ".getRecentMessage", str);
+	}
+
+	@Override
+	public List<InterviewVo> getRoomList(InterviewVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace + ".getRoomList", vo);
 	}
 
 }

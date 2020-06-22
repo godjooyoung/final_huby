@@ -26,7 +26,6 @@
 	<div id="London" class="w3-container city" style="display: block">
 		<h2>전체</h2>
 		<p>채용공고전부다</p>
-		${elist }
 		<div class="w3-container">
 			<h2>공고리스트</h2>
 			<p>여기서 다보여줌</p>
@@ -70,33 +69,47 @@
 	function empDetail(e, empid) {
 		var place = document.getElementById("emp" + empid);
 		var plusLi = document.createElement('li');
-		$.ajax({
-			type : "get",
-			url : "empDetaleList.do",
-			data : {
-				'empno' : empid
-			},
-			dataType : 'json',
-			success : function(data) {
-				console.log(data[0]);
+		$
+				.ajax({
+					type : "get",
+					url : "empDetaleList.do",
+					data : {
+						'empno' : empid
+					},
+					dataType : 'json',
+					success : function(data) {
+						console.log(data[0]);
 
-				$(place).empty();
-				$.each(data, function(idx, item) {
-					$('<li>').html(
-							"공고제목:" + item.EMPLOYMENT_TITLE + "<br>" + "직급:"
-									+ item.HOPE_JOB_POSITION + "<br>" + "지역:"
-									+ item.HOPE_LOCATION + "<br>" + "내용:"
-									+ item.EMPLOYMENT_CONTENTS + "<br>"
-									+ item.HOPE_WORK_TYPE).appendTo(place)
-							+ "<button type=\"button\">지원하기</button>";
-				});//each
+						$(place).empty();
+						$
+								.each(
+										data,
+										function(idx, item) {
+											$('<li>')
+													.html(
+															"공고제목:"
+																	+ item.EMPLOYMENT_TITLE
+																	+ "<br>"
+																	+ "직급:"
+																	+ item.HOPE_JOB_POSITION
+																	+ "<br>"
+																	+ "지역:"
+																	+ item.HOPE_LOCATION
+																	+ "<br>"
+																	+ "내용:"
+																	+ item.EMPLOYMENT_CONTENTS
+																	+ "<br>"
+																	+ item.HOPE_WORK_TYPE
+																	+ "<br><input type=\"button\" value=\"지원하기\"  onClick=\"location.href='applyinfoall.do'\">")
+													.appendTo(place);
+										});//each
 
-			},
+					},
 
-			error : function() {
-				alert("에러 발생. 관리자에게 문의주세요.");
-			}
-		})
+					error : function() {
+						alert("에러 발생. 관리자에게 문의주세요.");
+					}
+				})
 
 	};
 </script>

@@ -4,6 +4,8 @@ package co.huby.prj;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,9 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
 import co.huby.prj.alarm.service.AlarmService;
 import co.huby.prj.alarm.service.AlarmVo;
 
@@ -87,6 +92,16 @@ public class AlarmController {
 		
 	}
 	
-	
-	//기업 알람 insert
+	//면접요청 insert
+	@ResponseBody
+	@RequestMapping(value = "/interviewRe.do")
+	public AlarmVo interviewRe(HttpServletRequest request, AlarmVo vo) {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		
+
+		vo.setCompany_id(companyid);
+		
+		alarmService.alarmInsert(vo);
+		return vo;
+	}
 }
