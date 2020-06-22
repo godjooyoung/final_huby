@@ -9,7 +9,7 @@ import co.huby.prj.vo.MessageVo;
 
 @MapperScan
 public interface ChatMap {
-	public void createRoom(InterviewVo vo) throws Exception;
+	public List<InterviewVo> createRoom(InterviewVo vo) throws Exception;
 
 	public InterviewVo isRoom(InterviewVo vo) throws Exception;
 

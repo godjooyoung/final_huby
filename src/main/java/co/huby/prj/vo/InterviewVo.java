@@ -14,6 +14,7 @@ public class InterviewVo {
 	private String company_id;
 	private String resume_id;
 	private String member_id;
+	private String alarm_id;
 	// getter setter
 
 	public InterviewVo() {
@@ -103,6 +104,14 @@ public class InterviewVo {
 				+ getInterview_start() + ", getCompany_id()=" + getCompany_id() + ", getResume_id()=" + getResume_id()
 				+ ", getMember_id()=" + getMember_id() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ ", toString()=" + super.toString() + "]";
+	}
+
+	public String getAlarm_id() {
+		return alarm_id;
+	}
+
+	public void setAlarm_id(String alarm_id) {
+		this.alarm_id = alarm_id;
 	}
 
 }

@@ -114,4 +114,5 @@ public class MemberController {
 		List<Map> list = employmentService.empDetailList(vo);
 		return list;
 	}
+
 }

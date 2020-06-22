@@ -5,7 +5,7 @@
 
 	<insert id="createRoom">
 		INSERT INTO interview
-		VALUES(INTERVIEW_SEQ.nextval,NULL,NULL,NULL,NULL,NULL,#{COMPANY_ID},#{RESUME_ID},#{MEMBER_ID})
+		VALUES(INTERVIEW_SEQ.nextval,NULL,NULL,NULL,NULL,sysdate,#{company_id},NULL,#{member_id},null)
 	</insert>
 
 	<select id="isRoom" resultType="InterviewVo">
@@ -58,17 +58,22 @@
 	</select>
 
 	<select id="getRoomList" resultType="map">
-		select 
-		i.interview_id as "interview_id", 
-		i.interview_start as "interview_start", 
-		m.member_name as "member_name", c.company_name as "company_name",
-		i.member_id as "member_id",	i.company_id as "company_id", 
-		i.employment_option as "employment_option"
+		select
+		i.interview_id as
+		"interview_id",
+		i.interview_start as "interview_start",
+		m.member_name as
+		"member_name", c.company_name as "company_name",
+		i.member_id as
+		"member_id", i.company_id as "company_id",
+		i.employment_option as
+		"employment_option"
 		from interview i, member m, company c
 		where
 		i.member_id = m.member_id
 		and i.company_id = c.company_id
-		and	m.member_id = #{member_id, jdbcType=VARCHAR}
+		and
+		m.member_id = #{member_id, jdbcType=VARCHAR}
 	</select>
 
 	<select id="getRoomList2" resultType="InterviewVo">
