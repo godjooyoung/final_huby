@@ -127,9 +127,35 @@ public class MemberController {
 		mvo.setMember_id(id);
 		MemberVo checkVo = memberService.selectone(mvo);
 		
+		
+		
 		model.addAttribute("mlist",checkVo);
 		
 		return "person/member/myInfoUpdatePage";
+	}
+	
+	@RequestMapping(value = "/myInfoUpdate.do")
+	public String myInfoUpdate(Model model, MemberVo mvo, HttpServletRequest request) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		mvo.setMember_id(id);
+		
+		MultipartFile uploadFile = mvo.getUploadFile();
+		String path = request.getSession().getServletContext().getRealPath("/resources/FileUpload");
+		System.out.println("@@@@@@@@" + path);
+
+		if (!uploadFile.isEmpty()) {
+			String fileName = uploadFile.getOriginalFilename();
+			File file = new File(path, fileName);
+			file = new FileRenamePolicy().rename(file);
+			uploadFile.transferTo(file);
+			mvo.setMember_photo(file.getName());
+		} else {
+			mvo.setMember_photo(mvo.getMember_photo());
+		}
+		
+		int n = memberService.memberUpdate(mvo);
+		
+		return "redirect:myInfoUpdatePage.do";
 	}
 
 }

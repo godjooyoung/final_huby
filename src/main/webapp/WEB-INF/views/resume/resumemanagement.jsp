@@ -57,5 +57,29 @@
 <input type="hidden" id="rid" name="resume_id">
 </form>
 </div>
+<br>
+<div align="center">
+<button class="btn-primary" type="button" onclick="location.href='skillInsertPage.do'">스킬 등록</button>
+</div>
+<div align="center">
+<h1>스킬 관리</h1>
+<form id="frm" name="frm" method="post">
+<br>
+<table>
+<tr>
+<c:forEach items="${ slist }" var="skill">
+<td>
+${ skill.SKILL_ID }<br>
+${ skill.SKILL_NAME }<br>
+${ skill.SKILL_LEVEL }<br>
+<button type="button" class="btn-primary">스킬 삭제</button><br>
+<button type="button" class="btn-primary">스킬 수정</button><br>
+</td>
+</c:forEach>
+</tr>
+</table>
+<input type="hidden" id="sid" name="skill_id">
+</form>
+</div>
 </body>
 </html>

@@ -20,7 +20,41 @@
 		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_ID = #{member_id}
 	</select>
 	
-
+	<update id="memberUpdate" parameterType="MemberVo">
+		update member
+		<set> 
+			<if test="member_photo != null and member_photo != ''"> 
+			member_photo = #{member_photo}
+			</if>
+			<if test="member_pw != null and member_pw != ''">
+			,member_pw = #{member_pw}
+			</if>
+			<if test="member_addr != null and member_addr != ''">
+		    ,member_addr = #{member_addr}
+		    </if>
+			<if test="member_tel != null and member_tel != ''">
+		    ,member_tel = #{member_tel}
+		    </if>
+			<if test="member_email != null and member_email != ''">
+		    ,member_email = #{member_email}
+		    </if>
+		</set>
+		where member_id = #{member_id}
+	</update>
+	
+	<insert id="skillInsert" parameterType="SkillsVo">
+		insert into skills(skill_id, skill_name, skill_level, member_id)
+		values(
+				skills_seq.nextval,
+				#{skill_name},
+				<if test="skill_level != null and skill_level != ''">
+				#{skill_level},
+				</if>
+				<if test="member_id != null and member_id != ''">
+				#{member_id});
+				</if>
+	</insert>
+	
 	
 	<!-- <select id="getSelect" parameterType="MemberVO" resultType="MemberVO">
 		SELECT * FROM MEMBER WHERE ID = #{ID}

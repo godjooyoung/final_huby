@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import co.huby.prj.member.mapper.MemberMap;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.SkillsVo;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -42,7 +43,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int memberUpdate(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		vo.setMember_pw(pwdEncoder.encode(vo.getMember_pw()));
+		
+		return map.memberUpdate(vo);
 	}
 
 	@Override
@@ -62,5 +65,17 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return map.selectpw(vo);
 	}
-	
+
+	@Override
+	public List<SkillsVo> skillsAll(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.skillsAll(vo);
 	}
+
+	@Override
+	public int skillInsert(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.skillInsert(vo);
+	}
+	
+}

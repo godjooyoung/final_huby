@@ -11,23 +11,32 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.huby.prj.board.service.EmploymentService;
+import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.resume.service.ResumeService;
 import co.huby.prj.vo.ResumeVo;
+import co.huby.prj.vo.SkillsVo;
 
 @Controller
 public class ResumeController {
 	@Autowired
 	ResumeService resumeService;
+	@Autowired
+	MemberService memberService;
+	@Autowired
+	EmploymentService employmentService;
 	
 	@RequestMapping("/resumemanagement.do")
-	public String resumemanagement(Model model, HttpServletRequest request, MemberVo vo) {
-		// 내 이력서 정보들 가지고 오는 쿼리 필요
-		MemberVo mvo = (MemberVo) request.getSession().getAttribute("personalVo");
-		
-		List<ResumeVo> checkRvo = resumeService.SelectAll(mvo);
+	public String resumemanagement(Model model, HttpServletRequest request, MemberVo vo) throws Exception {
+		// 이력서 관리
+		String id = (String) request.getSession().getAttribute("loginId");
+		vo.setMember_id(id);
+		List<ResumeVo> checkRvo = resumeService.SelectAll(vo);
+		List<Map> svo = employmentService.skillsAll(vo);
 		
 		model.addAttribute("rlist" ,checkRvo);
+		model.addAttribute("slist", svo);
 		
 		return "person/resume/resumemanagement";
 	}
