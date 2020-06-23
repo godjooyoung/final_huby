@@ -13,7 +13,16 @@ public class AlarmVo {
 	private Timestamp alarm_time;
 	private String company_name;
 	private String member_name;
+	private String employment_id;
 	
+	
+	
+	public String getEmployment_id() {
+		return employment_id;
+	}
+	public void setEmployment_id(String employment_id) {
+		this.employment_id = employment_id;
+	}
 	public String getMember_name() {
 		return member_name;
 	}

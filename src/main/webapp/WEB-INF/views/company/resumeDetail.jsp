@@ -159,7 +159,7 @@ html, body, h1, h2, h3, h4, h5, h6 {
 					console.log(data);
 					for(i=0; i<data.length; i++){
 						$('<div>').append($('<span>').html(data[i].EMPLOYMENT_TITLE))
-						          .append('<input type="button" value="입사 지원 요청하기">')
+						          .append('<input type="button" id="btn" name="btn" value="입사 지원 요청하기">')
 						          .appendTo($('#btnsubmit'))
 					}
 					
@@ -168,13 +168,13 @@ html, body, h1, h2, h3, h4, h5, h6 {
 	}
 	
 	//입사지원요청 insert
-	function applyRe(member_id){
-		$('#btnsubmit').on('click', function(){
+	function applyRe(member_id, EMPLOYMENT_ID){
+		$(document).on("click", "#btn", function(event){
 		  
 			$.ajax({
 				type:"post",
 				url:"applyRe.do",
-				data: {'member_id':member_id,'alarm_message': "입사지원요청" },
+				data: {'member_id':member_id,'alarm_message': "입사지원요청", 'employment_id':EMPLOYMENT_ID },
 				dataType: 'json',
 				success:
 					function(data){
