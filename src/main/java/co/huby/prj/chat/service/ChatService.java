@@ -23,7 +23,7 @@ public interface ChatService {
 
 	public List<InterviewVo> getRoomList(InterviewVo vo) throws Exception;
 
-	public List<InterviewVo> getRoomList2(String str) throws Exception;
+	public List<InterviewVo> getRoomList2(InterviewVo vo) throws Exception;
 
 	public MessageVo getRecentMessage(String str) throws Exception;
 

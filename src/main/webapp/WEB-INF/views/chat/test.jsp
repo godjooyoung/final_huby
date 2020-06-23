@@ -11,7 +11,7 @@
 <br>
 <br>
 
-
+${personChatList}
 <!-- <link rel="stylesheet" type="text/css"
 	href="../../../resources/css/page.css"> -->
 
@@ -25,7 +25,7 @@
 		<span> 목록 </span>
 	</div>
 	<div class="col-8" style="float: left; text-align: center;">
-		${company_name} 님과 대화</div>
+		${personChatList.company_name} 님과 대화</div>
 	<div class="col-2" style="float: right">
 		<span> 닫기 </span>
 	</div>
@@ -46,6 +46,7 @@
 </div>
 
 <!-- 채팅 입력창 -->
+<form action="insertMessage.do" method="POST" name="insertM" id="insertM">
 <div class="col-12" style="margin-top: 20px; margin-bottom: 15px;">
 	<div class="col-12" style="float: left">
 		<textarea class="form-control"
@@ -60,7 +61,7 @@
 		</span>
 	</div>
 </div>
-
+</form>
 ===========================${loginType}, ${loginId}
 
 <img id="profileImg" class="img-fluid"
