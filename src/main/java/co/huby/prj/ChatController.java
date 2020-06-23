@@ -46,6 +46,8 @@ public class ChatController {
 	@RequestMapping(value = "/person_chatList.do")
 	public String personChatList(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
 		String memberid = (String) request.getSession().getAttribute("loginId");
+		String companyid = (String) request.getSession().getAttribute("companyVo");
+		vo.setCompany_id(companyid);
 		vo.setMember_id(memberid);
 		List<InterviewVo> list = chatService.getRoomList(vo);
 		model.addAttribute("personChatList", list);
