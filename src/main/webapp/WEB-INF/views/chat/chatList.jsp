@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-
+1234
 <div align="center">
 	<h1>면접리스트</h1>
 	<form id="ivList" name="ivList" method="post">
