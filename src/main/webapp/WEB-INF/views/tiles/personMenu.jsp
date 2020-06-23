@@ -16,6 +16,7 @@
 		</ul></li>
 	<li class="gnb_dp1"><span>${ loginId }의 Page</span>
 		<ul class="gnb_dp2_wrap">
+			<li class="gnb_dp2"><a href="myInfoUpdatePage.do">개인정보수정</a></li>
 			<li class="gnb_dp2"><a href="resumemanagement.do">이력서관리</a></li>
 			<li class="gnb_dp2"><a href="applyManagement.do">지원내역</a></li>
 			<li class="gnb_dp2"><a href="javascript:GoPage('skin02')">습관</a></li>

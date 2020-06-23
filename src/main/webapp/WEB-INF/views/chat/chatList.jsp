@@ -18,10 +18,12 @@
 				<c:forEach var="list" items="${personChatList}">
 					<tr
 						onclick="location.href='person_chat.do?interview_id=${list.interview_id}'">
+
 						<td>${list.interview_start}</td>
 						<td>${list.company_name}</td>
 						<td>${list.member_id}</td>
-						<c:if test="${ sessionScope.companyVo.company_id } != ''}">
+
+						<c:if test="${ sessionScope.companyVo.company_id } != null}">
 							<td>${list.company_id}</td>
 						</c:if>
 						<br>
