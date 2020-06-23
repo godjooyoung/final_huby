@@ -116,4 +116,15 @@ public class MemberHomeController {
 		return checkVo;
 	}
 	
+	@RequestMapping(value = "/areaEmployment.do")
+	public String areaEmployment(Model model, EmploymentsVo evo) throws Exception {
+		List<Map> checkMap = employmentService.employmentList(evo);
+		
+		
+		model.addAttribute("elist", checkMap);
+		
+		return "person/member/areaEmployment";
+	}
+	
+	
 }

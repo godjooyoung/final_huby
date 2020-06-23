@@ -34,4 +34,6 @@ public interface EmploymentService {
 	List<Map> applyList(MemberVo vo) throws Exception;
 	
 	EmploymentsVo selectApplyList(EmploymentsVo vo) throws Exception;
+	
+	EmploymentsVo areaEmploymentList(EmploymentsVo vo) throws Exception;
 }

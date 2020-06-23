@@ -41,6 +41,8 @@
 	</div>
 </div>
 <script>
+	
+
 	function selectApplyList(eid, index) {
 		$.ajax({
 		    url: "selectApplyList.do",

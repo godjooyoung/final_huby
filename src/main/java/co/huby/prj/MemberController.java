@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.huby.prj.board.service.EmploymentService;
+import co.huby.prj.code.service.CodeService;
+import co.huby.prj.code.service.CodeVo;
 import co.huby.prj.member.service.FileRenamePolicy;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
@@ -52,6 +54,8 @@ public class MemberController {
 	MemberService memberService;
 	@Autowired
 	EmploymentService employmentService;
+	@Autowired
+	CodeService codeService;
 
 	@RequestMapping("/employment.do")
 	public String employment(Model model) {
@@ -102,7 +106,9 @@ public class MemberController {
 	@RequestMapping("/employmentList.do")
 	public String employmentList(Model model, EmploymentsVo vo) throws Exception {
 		List<Map> list = employmentService.employmentList(vo);
+		List<CodeVo> typeVo = codeService.SelectAll();
 		model.addAttribute("elist", list);
+		model.addAttribute("typeVo", typeVo);
 		return "person/member/employmentList";
 	}
 
@@ -113,6 +119,17 @@ public class MemberController {
 		vo.setEmployment_id(empid);
 		List<Map> list = employmentService.empDetailList(vo);
 		return list;
+	}
+	
+	@RequestMapping(value = "/myInfoUpdatePage.do")
+	public String myInfoUpdatePage(Model model, MemberVo mvo, HttpServletRequest request) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		mvo.setMember_id(id);
+		MemberVo checkVo = memberService.selectone(mvo);
+		
+		model.addAttribute("mlist",checkVo);
+		
+		return "person/member/myInfoUpdatePage";
 	}
 
 }

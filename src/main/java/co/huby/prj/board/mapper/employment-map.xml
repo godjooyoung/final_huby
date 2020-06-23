@@ -79,7 +79,23 @@
 	</select>
 
 	<select id="employmentList" resultType="map" parameterType="map">
-		select * from employments
+		select * from employments 
+		<where> 
+			<if test="hope_location != null and hope_location != ''">
+	    	hope_location = #{hope_location}
+	    	</if>
+	    	<if test="hope_job != null and hope_job != ''">
+	    	and hope_job = #{hope_job}
+	    	</if>
+    	</where>
+    	order 	by 
+    	<choose>
+	    	<when test="hope_location != null">hope_location desc</when>
+	    	<when test="hope_job != null">hope_job desc</when>
+	    	<otherwise>
+	    		employment_id desc
+	    	</otherwise>
+    	</choose>
 	</select>
 
 	<select id="empDetailList" resultType="map" parameterType="map">
@@ -123,5 +139,11 @@
 				hope_job, hope_location, hope_work_type, employment_prefer, employment_time, company_id, hope_salary
 		from employments
 		where employment_id = #{employment_id}
+	</select>
+	
+	<select id="areaEmploymentList" resultType="EmploymentsVo" parameterType="EmploymentsVo">
+		select *
+		from employments
+		where hope_location = #{hope_location}
 	</select>
 </mapper>
