@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.vo.InterviewVo;
+import co.huby.prj.vo.MessageVo;
 
 @Controller
 // @ServerEndpoint(value = "/echo.do")
@@ -52,9 +54,20 @@ public class ChatController {
 	}
 
 	@RequestMapping(value = "/company_chatList.do")
-	public String companyChatList(Model model, HttpServletRequest request) {
+	public String companyChatList(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		List<InterviewVo> list = chatService.getRoomList2(vo);
+		model.addAttribute("companyChatList", list);
 		return "company/chat/chatList";
 
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/insertMessage.do")
+	public String insertMessage(MessageVo vo, Model model, HttpServletRequest request) throws Exception {
+
+		chatService.insertMessage(vo);
+		return null;
 	}
 
 	// @OnOpen

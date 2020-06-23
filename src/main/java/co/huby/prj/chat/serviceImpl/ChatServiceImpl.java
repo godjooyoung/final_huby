@@ -70,12 +70,6 @@ public class ChatServiceImpl implements ChatService {
 	 */
 
 	@Override
-	public List<InterviewVo> getRoomList2(String str) throws Exception {
-		// TODO Auto-generated method stub
-		return session.selectList(namespace + ".getRoomList2", str);
-	}
-
-	@Override
 	public String getCompany(String str) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace + ".getCompany", str);
@@ -165,6 +159,12 @@ public class ChatServiceImpl implements ChatService {
 	public List<InterviewVo> getRoomList(InterviewVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectList(namespace + ".getRoomList", vo);
+	}
+
+	@Override
+	public List<InterviewVo> getRoomList2(InterviewVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace + ".getRoomList2", vo);
 	}
 
 }
