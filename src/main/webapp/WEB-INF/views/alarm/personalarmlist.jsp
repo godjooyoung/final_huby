@@ -19,11 +19,13 @@
 <script type="text/javascript">
 	function alarmOk(alarm_id,company_id,member_id) {
 
-		document.frmok.alarmid.value = alarm_id
-		document.frmok.companyid.value = company_id
-		document.frmok.memberid.value = member_id
-		document.frmok.submit();
-	}
+
+			document.frmok.alarmid.value = alarm_id
+			document.frmok.companyid.value = company_id
+			document.frmok.memberid.value = member_id
+			document.frmok.submit();
+		}
+	
 
 	function alarmRe(alarm_id) {
 		if (confirm("거절하시겠습니까?\n거절 시 내역에서 삭제됩니다.") == true) {
@@ -41,7 +43,6 @@
 		<br>[${list.company_name }]
 				${list.alarm_message }
 				${list.alarm_time }<br>
-				${list.company_id}${list.member_id}
 		<input type="button" value="수락"
 			onclick="alarmOk('${list.alarm_id}','${list.company_id}','${list.member_id}')">
 		<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }')">

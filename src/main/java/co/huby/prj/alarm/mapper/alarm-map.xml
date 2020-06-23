@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="co.huby.prj.alarm.mapper.AlarmMap">
 
+	
 	<insert id="alarmInsert" parameterType="co.huby.prj.alarm.service.AlarmVo">
-		INSERT INTO ALARM VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP)
+		INSERT INTO ALARM VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP, #{employment_id})
 	</insert>
 	
 	<select id="personalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
@@ -40,6 +41,12 @@
 		SELECT COUNT(MEMBER_ID)
 		FROM ALARM 
 		WHERE MEMBER_ID = #{member_id} AND COMPANY_ID = #{company_id} AND ALARM_MESSAGE = #{alarm_message}
+	</select>
+	
+	<select id="comemploymentlist" parameterType="map" resultType="map">
+		SELECT EMPLOYMENT_ID, EMPLOYMENT_TITLE, EMPLOYMENT_TIME, COMPANY_ID
+		FROM EMPLOYMENTS
+		WHERE COMPANY_ID = #{companyid }
 	</select>
 	
 </mapper>

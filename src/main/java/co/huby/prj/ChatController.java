@@ -46,10 +46,12 @@ public class ChatController {
 	@RequestMapping(value = "/person_chatList.do")
 	public String personChatList(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
 		String memberid = (String) request.getSession().getAttribute("loginId");
+		String companyid = (String) request.getSession().getAttribute("companyVo");
+		vo.setCompany_id(companyid);
 		vo.setMember_id(memberid);
 		List<InterviewVo> list = chatService.getRoomList(vo);
 		model.addAttribute("personChatList", list);
-		return "person/chat/chatList";
+		return "person/chat/personChatList";
 
 	}
 
@@ -59,7 +61,7 @@ public class ChatController {
 		vo.setCompany_id(companyid);
 		List<InterviewVo> list = chatService.getRoomList2(vo);
 		model.addAttribute("companyChatList", list);
-		return "company/chat/chatList";
+		return "company/chat/companyChatList";
 
 	}
 
