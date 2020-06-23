@@ -326,7 +326,7 @@ public class HomeController {
 	@RequestMapping(value = "/select_video_all.do")
 	public String allVideoforCompany (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
 		List<Map> list = boardService.get_list_video_all(vo);
-		model.addAttribute("allList", vo);
+		model.addAttribute("allList", list);
 		return "company/company/comVideoAllView";
 	}
 

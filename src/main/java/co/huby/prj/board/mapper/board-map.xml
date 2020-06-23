@@ -248,7 +248,7 @@
 			AND LIKE_VIDEO_ID=#{like_video_id, jdbcType=VARCHAR}
 	</delete>
 
-	<select id ="get_list_video_all" parameterType="co.huby.prj.vo.VideoVo" resultType="co.huby.prj.vo.VideoVo">
+	<select id ="get_list_video_all" parameterType="co.huby.prj.vo.VideoVo" resultType="map">
 	SELECT * FROM VIDEO ORDER BY VIDEO_ID DESC
 	</select>
 </mapper>

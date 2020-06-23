@@ -14,20 +14,20 @@
 <div class="w3-row-padding w3-padding-16 w3-center" id="food">
 	<c:forEach var="allList" items="${allList}">
 		<div class="w3-quarter">
-			<img src="${pageContext.request.contextPath}/resources/img/common/${allList.video_img }"
+			<img src="${pageContext.request.contextPath}/resources/img/common/${allList.VIDEO_IMG}"
 				alt="thumnail" style="width: 100%;" onclick="location.href='resumeDetail.do?video_id=${allList.video_id}&member_id=${matched.member_id }'">
 			<button class="w3-button w3-padding-small w3-xlarge"
-				id="btn${allList.video_id }" name="likeBtn"
-				value="${allList.video_id}" type="button"
-				onclick="clickLike(${allList.video_id})">
-				<font id="font${allList.video_id }" color="black" data-count="0">
+				id="btn${allList.VIDEO_ID }" name="likeBtn"
+				value="${allList.VIDEO_ID}" type="button"
+				onclick="clickLike(${allList.VIDEO_ID})">
+				<font id="font${allList.VIDEO_ID }" color="black" data-count="0">
 					<b>
 						<i class="fas fa-heart"></i>
 					</b>
 				</font>
 			</button>
 			<h3>#${allList.code_name }</h3>
-			<p>${allList.video_contents }</p>
+			<p>${allList.VIDEO_CONTENTS }</p>
 		</div>
 	</c:forEach>
 </div>
