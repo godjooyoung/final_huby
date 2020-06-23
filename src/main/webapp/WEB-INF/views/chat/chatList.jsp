@@ -8,7 +8,7 @@ ${personChatList }
 	<h1>면접리스트</h1>
 	<form id="ivList" name="ivList" method="post">
 		<table>
-			<thead>
+			<thead> 
 				<tr>
 					<th>인터뷰시작</th>
 					<th>회사이름</th>
