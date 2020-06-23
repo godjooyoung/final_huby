@@ -51,7 +51,7 @@ public class ChatController {
 		vo.setMember_id(memberid);
 		List<InterviewVo> list = chatService.getRoomList(vo);
 		model.addAttribute("personChatList", list);
-		return "person/chat/chatList";
+		return "person/chat/personChatList";
 
 	}
 
@@ -61,7 +61,7 @@ public class ChatController {
 		vo.setCompany_id(companyid);
 		List<InterviewVo> list = chatService.getRoomList2(vo);
 		model.addAttribute("companyChatList", list);
-		return "company/chat/chatList";
+		return "company/chat/companyChatList";
 
 	}
 

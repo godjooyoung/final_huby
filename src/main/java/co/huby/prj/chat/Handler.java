@@ -14,7 +14,6 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.member.service.MemberVo;
-import co.huby.prj.vo.InterviewVo;
 import co.huby.prj.vo.MessageVo;
 
 import com.google.gson.Gson;
