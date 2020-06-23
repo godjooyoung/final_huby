@@ -115,6 +115,30 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return map.get_empDetailsForCom(vo);
 	}
+	@Override
+	public void modify_employment(EmploymentsVo vo) throws Exception {
+		map.modify_employment(vo);
+		
+	}
+
+	@Override
+	public void delete_employment(EmploymentsVo vo) throws Exception {
+		map.delete_employment(vo);
+		
+	}
+
+	@Override
+	public void delete_like_video(LikeVideoVo vo) throws Exception {
+		map.delete_like_video(vo);
+		
+	}
+	@Override
+	public List<Map> get_list_video_all(VideoVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.get_list_video_all(vo);
+	}
+
+
 
 
 }

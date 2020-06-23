@@ -217,6 +217,39 @@
 	SELECT * FROM EMPLOYMENTS WHERE EMPLOYMENT_ID =#{employment_id}
 	</select>
 	
+	<update id="modify_employment" parameterType="co.huby.prj.vo.EmploymentsVo" >
+	UPDATE employments
+		SET 
+	EMPLOYMENT_TITLE = #{employment_title, jdbcType=VARCHAR},
+	EMPLOYMENT_CONTENTS = #{employment_contents, jdbcType=VARCHAR},
+	HOPE_CAREER = #{hope_career, jdbcType=VARCHAR},
+	HOPE_GRADUATE =  #{hope_graduate, jdbcType=VARCHAR},
+	HOPE_JOB_POSITION =#{hope_job_position, jdbcType=VARCHAR},
+	HOPE_JOB =#{hope_job, jdbcType=VARCHAR},
+	HOPE_LOCATION =#{hope_location, jdbcType=VARCHAR},
+	HOPE_WORK_TYPE =#{hope_work_type, jdbcType=VARCHAR},
+	EMPLOYMENT_PREFER =#{employment_prefer, jdbcType=VARCHAR},
+	EMPLOYMENT_TIME = #{employment_time, jdbcType=DATE},
+	COMPANY_ID =#{company_id, jdbcType=VARCHAR},
+	HOPE_SALARY =#{hope_salary, jdbcType=VARCHAR}
+	WHERE
+	EMPLOYMENT_ID = #{employment_id, jdbcType=VARCHAR}
+	</update>
+	
+	<delete id="delete_employment" parameterType="co.huby.prj.vo.EmploymentsVo">	
+	DELETE FROM EMPLOYMENTS 
+	WHERE EMPLOYMENT_ID = #{employment_id, jdbcType=VARCHAR}
+	</delete>
+	
+	<delete id ="delete_like_video" parameterType="co.huby.prj.vo.LikeVideoVo">
+	DELETE FROM 
+		LIKE_VIDEO 
+		WHERE COMPANY_ID =#{company_id, jdbcType=VARCHAR}
+			AND LIKE_VIDEO_ID=#{like_video_id, jdbcType=VARCHAR}
+	</delete>
 
+	<select id ="get_list_video_all" parameterType="co.huby.prj.vo.VideoVo" resultType="co.huby.prj.vo.VideoVo">
+	SELECT * FROM VIDEO ORDER BY VIDEO_ID DESC
+	</select>
 </mapper>
 

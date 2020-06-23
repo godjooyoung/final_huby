@@ -9,7 +9,7 @@
 		</ul></li>
 	<li class="gnb_dp1"><span>인재</span>
 		<ul class="gnb_dp2_wrap">
-			<li class="gnb_dp2"><a href="#">전체인재목록</a></li>
+			<li class="gnb_dp2"><a href="select_video_all.do">전체인재목록</a></li>
 			<li class="gnb_dp2"><a href="comLikeVideoList.do">영상스크랩</a></li>
 			<li class="gnb_dp2"><a href="companyAfterLogin.do">맞춤추천인재</a></li>
 		</ul></li>

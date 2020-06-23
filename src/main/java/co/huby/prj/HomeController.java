@@ -233,7 +233,101 @@ public class HomeController {
 		return "company/company/companyEmploymentDetailsView";
 	}
 	
+	/*기업의 공고 수정 페이지로 이동합니다.*/
+	@RequestMapping(value = "/empMpdifyPageGo.do")
+	public String empmodify (Model model, HttpServletRequest request, EmploymentsVo vo) throws Exception{ 
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		String emplomentid= request.getParameter("emp_id");
+		String title = request.getParameter("title");
+		String contents = request.getParameter("contents");
+		String prefer = request.getParameter("prefer");
+		
+		System.out.println("제목 : " + title);
+		
+		vo.setCompany_id(companyid);
+		vo.setEmployment_id(emplomentid);
+		vo.setEmployment_title(title);
+		vo.setEmployment_contents(contents);
+		vo.setEmployment_prefer(prefer);
+		model.addAttribute("before", vo);
+		return "company/company/employmentModify";
+	}
+	
+	/*기업 공고 수정 처리.*/
+	@RequestMapping(value = "/employupdate.do")
+	public String employupdate (Model model, HttpServletRequest request, EmploymentsVo vo) throws Exception{ 
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		String emp_id = request.getParameter("emp_id");
+		String title =request.getParameter("title");
+		String career = request.getParameter("career");
+		String prefer = request.getParameter("prefer");
+		String position = request.getParameter("position");
+		String graduate = request.getParameter("graduate");
+		String job = request.getParameter("job");
+		String worktype = request.getParameter("worktype");
+		String contents = request.getParameter("contents");
+		String salary = request.getParameter("salary");
+		String time = request.getParameter("time");
+		System.out.println("-----시간" + time);
+		//시간 변환
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d = df.parse(time);
+		//지역 다중선택시 배열에 담김
+		String[] locations = request.getParameterValues("location"); 
+		String location = "";
+		String locas = "";
+			for(int i=0; i<locations.length; i++){
+			 location = (locations[i] + ".");
+			 locas += location;
+			}
+		vo.setEmployment_id(emp_id);
+		vo.setEmployment_title(title);
+		vo.setCompany_id(companyid);
+		vo.setEmployment_contents(contents);
+		vo.setEmployment_prefer(prefer);
+		vo.setEmployment_time(d);
+		vo.setHope_career(career);
+		vo.setHope_graduate(graduate);
+		vo.setHope_job(job);
+		vo.setHope_location(locas);
+		vo.setHope_work_type(worktype);
+		vo.setHope_job_position(position);
+		vo.setHope_salary(salary);
+		//vo에 담은 값으로 쿼리 진행
+		boardService.modify_employment(vo);
+		return "redirect:forcomemploymentsList.do";
+	}
 	
 	
+	/*기업 공고 삭제 처리.*/
+	@RequestMapping(value = "/delete_employment.do")
+	public String delete_employment (Model model, HttpServletRequest request, EmploymentsVo vo) throws Exception{
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		String emp_id = request.getParameter("emp_id");
+		vo.setEmployment_id(emp_id);
+		vo.setCompany_id(companyid);
+		boardService.delete_employment(vo);
+		return "redirect:forcomemploymentsList.do"; 
+	}
+	
+	/*기업 좋아한 비디오 관리탭에서 삭제 처리.*/
+	@RequestMapping(value = "/delete_like_video.do")
+	public String delete_like_video (Model model, HttpServletRequest request, LikeVideoVo vo)  throws Exception{
+		String lvid=request.getParameter("delid");
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		vo.setCompany_id(companyid);
+		vo.setLike_video_id(lvid);
+		boardService.delete_like_video(vo);
+		return "redirect:comLikeVideoList.do";
+		
+	}
+	
+	/*기업 전체 비디오 목록 보여주기*/
+	@RequestMapping(value = "/select_video_all.do")
+	public String allVideoforCompany (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
+		List<Map> list = boardService.get_list_video_all(vo);
+		model.addAttribute("allList", vo);
+		return "company/company/comVideoAllView";
+	}
 
 }

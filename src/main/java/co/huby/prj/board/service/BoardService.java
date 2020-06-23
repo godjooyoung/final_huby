@@ -44,4 +44,12 @@ public interface BoardService {
 	List<Map> empListForCom (EmploymentsVo vo) throws Exception;
 	
 	EmploymentsVo get_empDetailsForCom(EmploymentsVo vo) throws Exception;
+	
+	void modify_employment(EmploymentsVo vo) throws Exception;
+	
+	void delete_employment(EmploymentsVo vo) throws Exception; 
+	
+	void delete_like_video(LikeVideoVo vo) throws Exception;
+	
+	List<Map> get_list_video_all (VideoVo vo) throws Exception;
 }
