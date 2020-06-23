@@ -67,6 +67,7 @@
 </script>
 <script>
 	function empDetail(e, empid) {
+		var closeBtn = '<span onclick="this.parentElement.style.display=\'none\'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>';
 		var place = document.getElementById("emp" + empid);
 		var plusLi = document.createElement('li');
 		$
@@ -93,6 +94,7 @@
 																	+ "직급:"
 																	+ item.HOPE_JOB_POSITION
 																	+ "<br>"
+																	+ closeBtn
 																	+ "지역:"
 																	+ item.HOPE_LOCATION
 																	+ "<br>"

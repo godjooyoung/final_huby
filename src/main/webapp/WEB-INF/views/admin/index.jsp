@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="resources/vendor/linearicons/style.css">
 	<link rel="stylesheet" href="resources/vendor/chartist/css/chartist-custom.css">
 	<!-- MAIN CSS -->
-	<link rel="stylesheet" href="resources/css/main.css">
+	<link rel="stylesheet" href="resources/css/adminmain.css">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
 	<link rel="stylesheet" href="resources/css/demo.css">
 	<!-- GOOGLE FONTS -->

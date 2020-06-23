@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.huby.prj.board.service.EmploymentService;
@@ -107,18 +108,12 @@ public class MemberHomeController {
 		return "person/member/applyManagement";
 	}
 	
-	/*@RequestMapping(value = "/selectApplyList.do")
-	public String selectApplyList(Model model, @RequestParam Map mapvo, HttpServletRequest request, EmploymentsVo evo) throws Exception {
-		List<Map> checkMap = employmentService.empDetailList(evo);
-		String num = "0";
-		if(checkMap != null) {
-			num = "1";
-		}else {
-			num = "0";
-		}
+	@ResponseBody
+	@RequestMapping(value = "/selectApplyList.do")
+	public EmploymentsVo selectApplyList(Model model, @RequestParam Map mapvo, HttpServletRequest request, EmploymentsVo evo) throws Exception {
+		EmploymentsVo checkVo = employmentService.selectApplyList(evo);
 		
-		return num;
-	}*/
+		return checkVo;
+	}
 	
-
 }

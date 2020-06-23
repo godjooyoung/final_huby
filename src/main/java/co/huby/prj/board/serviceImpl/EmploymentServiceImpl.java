@@ -93,4 +93,10 @@ public class EmploymentServiceImpl implements EmploymentService {
 		// TODO Auto-generated method stub
 		return map.applyList(vo);
 	}
+
+	@Override
+	public EmploymentsVo selectApplyList(EmploymentsVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.selectApplyList(vo);
+	}
 }

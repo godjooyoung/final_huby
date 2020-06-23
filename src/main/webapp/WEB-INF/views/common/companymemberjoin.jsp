@@ -728,7 +728,7 @@ function joincheck(){
   <div class="col-md-4">
     <input class="btn btn-success" type="submit" value="가입하기">
     <input class="btn btn-success" type="reset"" value="취소">
-    <input class="btn btn-success" type="reset"" value="취소">
+    <input class="btn btn-success" type="button" value="로그인 홈" onclick="location.href='login.do'">
   </div>
 </div>
 

@@ -17,55 +17,55 @@ public class AdminController {
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "admin/index";
+		return "no/admin/index";
 	}
 	
 	@RequestMapping("/noticePage.do")
 	public String noticePage(Model model) {
 		
-		return "admin/noticepage";
+		return "no/admin/noticepage";
 	}
 	
 	@RequestMapping("/qnaPage.do")
 	public String qnaPage(Model model) {
 		
-		return "admin/qnapage";
+		return "no/admin/qnapage";
 	}
 	
 	@RequestMapping("/userManagement.do")
 	public String userManagement(Model model) {
 		
-		return "admin/usermanagement";
+		return "no/admin/usermanagement";
 	}
 	
 	@RequestMapping("/noticeManagement.do")
 	public String noticeManagement(Model model) {
 		
-		return "admin/noticemanagement";
+		return "no/admin/noticemanagement";
 	}
 	
 	@RequestMapping("/vManagement.do")
 	public String vManagement(Model model) {
 		
-		return "admin/vmanagement";
+		return "no/admin/vmanagement";
 	}
 	
 	@RequestMapping("/noticeselectpage.do")
 	public String noticeSelectPage(Model model) {
 		
-		return "admin/noticeselectpage";
+		return "no/admin/noticeselectpage";
 	}
 	
 	@RequestMapping("qnaselectpage.do")
 	public String qnaSelectPage(Model model) {
 		
-		return "admin/qnaselectpage";
+		return "no/admin/qnaselectpage";
 	}
 	
 	@RequestMapping("userSelectPage.do")
 	public String userSelectPage(Model model) {
 		
-		return "admin/userselectpage";
+		return "no/admin/userselectpage";
 	}
 	
 	

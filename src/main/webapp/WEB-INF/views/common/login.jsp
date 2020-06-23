@@ -126,5 +126,6 @@
 
 	<!-- test -->
 	<button type="button" onclick="location.href='companyAfterLogin.do'">기업페이지타일즈 테스트</button>
+	<button type="button" onclick="location.href='index.do'">관리자페이지 로그인 없음</button>
 </body>
 </html>
