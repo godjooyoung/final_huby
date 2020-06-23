@@ -115,6 +115,10 @@ html, body, h1, h2, h3, h4, h5, h6 {
 				</div>
 
 				<!-- End Right Column -->
+				<br><br><br>
+				<input type="button" value="면접요청" onclick="interviewRe('${member.member_id}')">
+				<input type="button" value="입사지원요청" onclick="comemploymentlist('${member.member_id}')">
+				<div id="btnsubmit"></div>
 			</div>
 
 			<!-- End Grid -->
@@ -122,3 +126,65 @@ html, body, h1, h2, h3, h4, h5, h6 {
 
 		<!-- End Page Container -->
 	</div>
+	
+<script>
+
+	function interviewRe(member_id){
+		
+		$.ajax({
+			type:"post",
+			url:"interviewRe.do",
+			data: {'member_id':member_id, 'alarm_message': "면접제의"},
+			dataType: 'json',
+			success:
+				function(data){
+				if(data.count == 1)
+					alert("면접요청이 완료되었습니다.");
+				else
+					alert("이미 면접 요청이 진행되었습니다.")
+			}
+		})
+	}
+	
+	//입사지원요청 클릭 시 공고목록
+	function comemploymentlist(member_id){
+		
+		$.ajax({
+			type:"get",
+			url:"comemploymentlist.do",
+			data: {'member_id':member_id },
+			dataType: 'json',
+			success:
+				function(data){
+					console.log(data);
+					for(i=0; i<data.length; i++){
+						$('<div>').append($('<span>').html(data[i].EMPLOYMENT_TITLE))
+						          .append('<input type="button" value="입사 지원 요청하기">')
+						          .appendTo($('#btnsubmit'))
+					}
+					
+			}
+		})
+	}
+	
+	//입사지원요청 insert
+	function applyRe(member_id){
+		$('#btnsubmit').on('click', function(){
+		  
+			$.ajax({
+				type:"post",
+				url:"applyRe.do",
+				data: {'member_id':member_id,'alarm_message': "입사지원요청" },
+				dataType: 'json',
+				success:
+					function(data){
+					if(data.count == 1)
+						alert("입사 지원 요청이 완료되었습니다.");
+					else
+						alert("이미 입사 지원 요청이 진행되었습니다.")
+				}
+			});
+		});
+	}
+	
+</script>

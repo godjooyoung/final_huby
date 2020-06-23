@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,12 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.huby.prj.alarm.service.AlarmService;
 import co.huby.prj.alarm.service.AlarmVo;
 import co.huby.prj.chat.service.ChatService;
+import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.InterviewVo;
 
 @Controller
@@ -109,5 +112,29 @@ public class AlarmController {
 
 		// return vo;
 
+	}
+	
+	
+	// 입사지원요청 시 공고목록 
+	@ResponseBody
+	@RequestMapping(value = "/comemploymentlist.do")
+	public List<Map> applyRe(HttpServletRequest request) throws Exception {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		
+		//vo2.setCompany_id(companyid);
+		List<Map> list = alarmService.comemploymentlist(companyid);
+		return list;
+		
+	}
+	// 입사 지원 insert
+	@ResponseBody
+	@RequestMapping(value = "/applyRe.do")
+	public Map applyRe(HttpServletRequest request, AlarmVo vo) {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+
+		vo.setCompany_id(companyid);
+		int count = alarmService.alarmInsert(vo);
+		alarmService.alarmInsert(vo);
+		return Collections.singletonMap("count", count);
 	}
 }
