@@ -25,7 +25,9 @@ import co.huby.prj.code.service.CodeVo;
 import co.huby.prj.member.service.FileRenamePolicy;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.CareerVo;
 import co.huby.prj.vo.EmploymentsVo;
+import co.huby.prj.vo.SkillsVo;
 
 @Controller
 public class MemberController {
@@ -152,5 +154,95 @@ public class MemberController {
 		
 		return "redirect:myInfoUpdatePage.do";
 	}
-
+	
+	@RequestMapping(value = "/skillInsertPage.do")
+	public String skillInsertPage(Model model) throws Exception {
+		return "person/member/skillInsertPage";
+	}
+	
+	@RequestMapping(value = "/skillInsert.do")
+	public String skillInsert(Model model, HttpServletRequest request, SkillsVo svo) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		svo.setMember_id(id);
+		
+		int n = memberService.skillInsert(svo);
+		
+		return "redirect:resumemanagement.do";
+	}
+	
+	@RequestMapping(value = "/skillDelete.do")
+	public String skillDelete(Model model, HttpServletRequest request, SkillsVo svo) throws Exception {
+		
+		int n = memberService.skillDelete(svo);
+		
+		return "redirect:resumemanagement.do";
+	}
+	
+	@RequestMapping(value = "/skillUpdatePage.do")
+	public String skillUpdatePage(Model model, HttpServletRequest request, SkillsVo svo) throws Exception {
+		
+		SkillsVo checkVo = memberService.skillSelect(svo);
+		model.addAttribute("svo",checkVo);
+		
+		return "person/member/skillUpdatePage";
+	}
+	
+	@RequestMapping(value = "/skillUpdate.do")
+	public String skillUpdate(Model model, HttpServletRequest request, SkillsVo svo) throws Exception {
+		
+		int n = memberService.skillUpdate(svo);
+		
+		return "redirect:resumemanagement.do";
+	}
+	
+	@RequestMapping(value = "/careerInsertPage.do")
+	public String careerInsertPage(Model model) throws Exception {
+		List<CodeVo> typeVo = codeService.SelectAll();
+		model.addAttribute("typeVo",typeVo);
+		
+		return "person/member/careerInsertPage";
+	}
+	
+	@RequestMapping(value = "/careerInsert.do")
+	public String careerInsert(Model model, HttpServletRequest request, CareerVo cvo) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		cvo.setMember_id(id);
+		
+		
+		int n = memberService.careerinsert(cvo);
+		
+		return "redirect:resumemanagement.do";
+	}
+	
+	@RequestMapping(value = "/careerDelete.do")
+	public String careerDelete(Model model, CareerVo cvo) throws Exception {
+		
+		int n = memberService.careerDelete(cvo);
+		
+		
+		return "redirect:resumemanagement.do";
+	}
+	
+	@RequestMapping(value = "/careerUpdatePage.do")
+	public String careerUpdatePage(Model model, CareerVo cvo) throws Exception {
+		CareerVo checkVo = memberService.careerSelect(cvo);
+		List<CodeVo> typeVo = codeService.SelectAll();
+		model.addAttribute("typeVo",typeVo);
+		model.addAttribute("cvo", checkVo);
+		
+		
+		return "person/member/careerUpdatePage";
+	}
+	
+	@RequestMapping(value = "/careerUpdate.do")
+	public String careerUpdate(Model model, CareerVo cvo) throws Exception {
+		CareerVo checkVo = memberService.careerSelect(cvo);
+		List<CodeVo> typeVo = codeService.SelectAll();
+		model.addAttribute("typeVo",typeVo);
+		model.addAttribute("cvo", checkVo);
+		
+		int n = memberService.careerUpdate(cvo);
+		
+		return "redirect:resumemanagement.do";
+	}
 }

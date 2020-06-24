@@ -6,31 +6,40 @@ public class CareerVo {
 	//career
 	//개인회원이 가지는 경력에 대한 상세 테이블입니다.
 	private String career_id; //경력 고유 아이디
-	private Date c_start_date;
-	private Date c_end_date;
+	private Date start_date;
+	private Date end_date;
 	private String company_name; //주영주식회사
 	private String career_content; // sns 서비스 개발 
 	private String job;  //직무, it관련직
 	private String job_position; //직급, 팀장
 	private String member_id;
+	private String job_name;
 	//getter setter
+	
 	public String getCareer_id() {
 		return career_id;
+	}
+	public String getJob_name() {
+		return job_name;
+	}
+	public void setJob_name(String job_name) {
+		this.job_name = job_name;
 	}
 	public void setCareer_id(String career_id) {
 		this.career_id = career_id;
 	}
-	public Date getC_start_date() {
-		return c_start_date;
+	
+	public Date getStart_date() {
+		return start_date;
 	}
-	public void setC_start_date(Date c_start_date) {
-		this.c_start_date = c_start_date;
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
 	}
-	public Date getC_end_date() {
-		return c_end_date;
+	public Date getEnd_date() {
+		return end_date;
 	}
-	public void setC_end_date(Date c_end_date) {
-		this.c_end_date = c_end_date;
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
 	}
 	public String getCompany_name() {
 		return company_name;
