@@ -362,4 +362,11 @@ public class HomeController {
 		List<Map> list = boardService.get_matched_video_List_more(companyid, count);
 		return list;
 	}
+	
+	/**TEST*/
+	@RequestMapping(value="go_habit_page.do")
+	public String go_habit_page (Model model, HttpServletRequest request, VideoVo vo) throws Exception{ 
+		
+		return "person/member/habitPage";
+	}
 }
