@@ -122,4 +122,11 @@ public class AdminController {
 		return "redirect:noticePage.do";
 	}
 	
+	@RequestMapping("noticeDelete.do")
+	public String noticeDelete(Model model, NoticeVo nvo) {
+		int n = adminService.noticeDelete(nvo);
+		
+		return "redirect:noticePage.do";
+	}
+	
 }

@@ -16,4 +16,5 @@ public interface AdminMap {
 	int noticeInsert(NoticeVo vo);
 	NoticeVo noticeSelectOne(NoticeVo vo);
 	int noticeUpdate(NoticeVo vo);
+	int noticeDelete(NoticeVo vo);
 }

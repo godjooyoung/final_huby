@@ -32,7 +32,8 @@
 </tr>
 <tr>
 <th>내용</th>
-<td><input type="text" id="notice_contents" name="notice_contents" required="required" style="width: 500px; height: 500px;"></td>
+<td>
+<textarea rows="30" cols="70" id="notice_contents" name="notice_contents" required="required"></textarea></td>
 </tr>
 </table>
 <br>

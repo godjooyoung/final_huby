@@ -13,4 +13,5 @@ public interface AdminService {
 	int noticeInsert(NoticeVo vo);
 	NoticeVo noticeSelectOne(NoticeVo vo);
 	int noticeUpdate(NoticeVo vo);
+	int noticeDelete(NoticeVo vo);
 }

@@ -52,5 +52,11 @@ public class AdminServiceImpl implements AdminService {
 		return map.noticeUpdate(vo);
 	}
 
+	@Override
+	public int noticeDelete(NoticeVo vo) {
+		// TODO Auto-generated method stub
+		return map.noticeDelete(vo);
+	}
+
 	
 }
