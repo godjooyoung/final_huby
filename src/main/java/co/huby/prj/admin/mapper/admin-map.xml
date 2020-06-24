@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="co.huby.prj.admin.mapper.AdminMap">
+	<select id="memberSelectAll" resultType="MemberVo">
+		select * from member
+	</select>
+	
+	<select id="companySelectAll" resultType="CompanyVo">
+		select * from company
+	</select>
+	
+	<select id="noticeSelectAll" resultType="NoticeVo">
+		select * from notice
+	</select>
+	
+	<insert id="noticeInsert" parameterType="NoticeVo">
+		insert into notice(
+							notice_id, 
+							notice_title, 
+							notice_date, 
+							notice_contents, 
+							admin_id)
+		values(
+				notice_seq.nextval, 
+				#{notice_title}, 
+				sysdate, 
+				#{notice_contents}, 
+				#{admin_id}
+				)
+	</insert>
+</mapper>

@@ -2,14 +2,24 @@ package co.huby.prj;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.huby.prj.admin.service.AdminService;
+import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.CompanyVo;
+import co.huby.prj.vo.NoticeVo;
+
 @Controller
 public class AdminController {
+	@Autowired
+	AdminService adminService;
+	
 	@RequestMapping("/index.do")
 	public String index(Locale locale, Model model) {
 		Date date = new Date();
@@ -22,7 +32,8 @@ public class AdminController {
 	
 	@RequestMapping("/noticePage.do")
 	public String noticePage(Model model) {
-		
+		List<NoticeVo> checkVo = adminService.noticeSelectAll();
+		model.addAttribute("nlist",checkVo);
 		return "no/admin/noticepage";
 	}
 	
@@ -68,5 +79,23 @@ public class AdminController {
 		return "no/admin/userselectpage";
 	}
 	
+	@RequestMapping("personalmemberall.do")
+	public String personalmemberall(Model model) {
+		List<MemberVo> checkVo = adminService.memberSelectAll();
+		model.addAttribute("mlist", checkVo);
+		return "no/admin/personalmemberall";
+	}
+	
+	@RequestMapping("companymemberall.do")
+	public String companymemberall(Model model) {
+		List<CompanyVo> checkVo = adminService.companySelectAll();
+		model.addAttribute("clist", checkVo);
+		return "no/admin/companymemberall";
+	}
+	
+	@RequestMapping("noticeInsertPage.do")
+	public String noticeInsertPage(Model model) {
+		return "no/admin/noticeInsertPage";
+	}
 	
 }
