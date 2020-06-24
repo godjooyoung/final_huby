@@ -51,8 +51,13 @@ public class AlarmServiceImpl implements AlarmService {
 	}
 	
 	@Override
-	public void currentY(AlarmVo vo) {
-		map.currentY(vo);
+	public int currentY(AlarmVo vo) {
+		int n = map.alarmupdatecheck(vo);
+		if(n==0) {
+			return map.currentY(vo);
+		} else {
+			return 0;
+		}
 	}
 	
 	@Override
@@ -67,6 +72,11 @@ public class AlarmServiceImpl implements AlarmService {
 	@Override
 	public int alarminsertcheck(AlarmVo vo) {
 		return map.alarminsertcheck(vo);
+	}
+
+	@Override
+	public int alarmupdatecheck(AlarmVo vo) {
+		return map.alarmupdatecheck(vo);
 	}
 	
 }

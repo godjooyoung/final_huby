@@ -16,10 +16,11 @@ public interface AlarmMap {
 	public ArrayList<AlarmVo> personalarmlist(String personid);
 	public ArrayList<AlarmVo> companyalarmlist(String companyid);
 	int alarmInsert(AlarmVo vo);
-	void currentY(AlarmVo vo);
+	int currentY(AlarmVo vo);
 	void currentN(AlarmVo vo);
 	void alarmdelete(AlarmVo vo);
 	int alarminsertcheck(AlarmVo vo);
 	List<Map> comemploymentlist(String companyid);
 	List<AlarmVo> companyselect(CompanyVo vo);
+	int alarmupdatecheck(AlarmVo vo);
 }

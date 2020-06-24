@@ -51,9 +51,9 @@
 				success:
 					function(data){
 					if(data.count == 1)
-						alert("입사 지원 요청이 완료되었습니다.");
+						alert("면접 수락이 완료되었습니다.");
 					else
-						alert("이미 입사 지원 요청이 진행되었습니다.")
+						alert("이미 면접 수락이 완료되었습니다.")
 				}
 			});
 		});

@@ -55,4 +55,10 @@
 		WHERE COMPANY_ID = #{company_id }
 	</select>
 	
+	<select id="alarmupdatecheck" resultType="int">
+		SELECT COUNT(MEMBER_ID)
+		FROM ALARM 
+		WHERE MEMBER_ID = #{member_id} AND COMPANY_ID = #{company_id} AND ALARM_CURRENT = 'Y' AND ALARM_MESSAGE = '면접제의'
+	</select>
+	
 </mapper>

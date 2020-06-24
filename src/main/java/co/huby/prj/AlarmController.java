@@ -50,24 +50,32 @@ public class AlarmController {
 
 	// 알람 수락 update
 	@RequestMapping("/currentY.do")
-	public void currentY(AlarmVo vo, InterviewVo vo2, Model model, HttpServletResponse response,
+	public int currentY(AlarmVo vo, InterviewVo vo2, Model model, HttpServletResponse response,
 			HttpServletRequest request) throws Exception {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
-		vo.setAlarm_id(request.getParameter("alarmid"));
-		alarmService.currentY(vo);
+			vo.setAlarm_id(request.getParameter("alarmid"));
+			vo.setCompany_id(request.getParameter("companyid"));
+			vo.setMember_id(request.getParameter("memberid"));
+			int count = alarmService.currentY(vo);
+			
+			
+			if(count==0) {
+			vo2.setCompany_id(request.getParameter("companyid"));
+			vo2.setMember_id(request.getParameter("memberid"));
+			chatService.createRoom(vo2);
+			}
+			return count;
+		}
+		
 
-		vo2.setCompany_id(request.getParameter("companyid"));
-		vo2.setMember_id(request.getParameter("memberid"));
-		chatService.createRoom(vo2);
-
-		PrintWriter out = response.getWriter();
+		/*PrintWriter out = response.getWriter();
 		out.print("<script>");
 		out.print("location.href='personalarm.do';");
-		out.print("</script>");
+		out.print("</script>");*/
 		// return "person/alarm/personalarmlist";
-	}
+	
 	// 알람 거절 update
 	/*
 	 * @RequestMapping("/currentN.do") public String currentN(AlarmVo vo, Model
