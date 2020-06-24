@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import co.huby.prj.alarm.mapper.AlarmMap;
 import co.huby.prj.alarm.service.AlarmService;
 import co.huby.prj.alarm.service.AlarmVo;
+import co.huby.prj.vo.CompanyVo;
 import co.huby.prj.vo.EmploymentsVo;
 
 @Service("alarmService")
@@ -31,6 +32,12 @@ public class AlarmServiceImpl implements AlarmService {
 	@Override
 	public List<Map> comemploymentlist(String companyid) throws Exception{
 		return map.comemploymentlist(companyid);
+	}
+	
+	@Override
+	public List<AlarmVo> companyselect(CompanyVo vo) throws Exception{
+		return map.companyselect(vo);
+		
 	}
 
 	@Override

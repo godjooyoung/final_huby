@@ -1,34 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- 영상 전체 보여주는 페이지 -->
+<!-- !PAGE CONTENT! -->
+<!-- !기업회원에게 매칭해서 자기소개영상띄워주는 페이지! -->
 <div class="w3-main w3-content w3-padding"
 	style="max-width: 1200px; margin-top: 100px"></div>
 
+
 <!-- First Photo Grid-->
 <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-	<c:forEach var="firstList" items="${firstList}">
-		<div class="w3-quarter">
-			<img src="${pageContext.request.contextPath}/resources/img/common/${firstList.VIDEO_IMG}"
-				alt="thumnail" style="width: 100%;" onclick="location.href='resumeDetail.do?video_id=${firstList.video_id}&member_id=${firstList.member_id }'">
+	<c:forEach var="matched" items="${matched}" >
+		<div class="w3-quarter" >
+			<img src="${pageContext.request.contextPath}/resources/img/common/${matched.video_img }"
+				alt="thumnail" style="width: 100%;" onclick="location.href='resumeDetail.do?video_id=${matched.video_id}&member_id=${matched.member_id }'">
 			<button class="w3-button w3-padding-small w3-xlarge"
-				id="btn${firstList.VIDEO_ID }" name="likeBtn"
-				value="${firstList.VIDEO_ID}" type="button"
-				onclick="clickLike(${firstList.VIDEO_ID})">
-				<font id="font${firstList.VIDEO_ID }" color="black" data-count="0">
+				id="btn${matched.video_id }" name="likeBtn"
+				value="${matched.video_id}" type="button"
+				onclick="clickLike(${matched.video_id})">
+				<font id="font${matched.video_id }" color="black" data-count="0">
 					<b>
 						<i class="fas fa-heart"></i>
 					</b>
 				</font>
 			</button>
-			<h3>#${firstList.CODE_NAME }</h3>
-			<p>${firstList.VIDEO_CONTENTS }</p>
+			<h3>#${matched.code_name }</h3>
+			<p>${matched.video_contents }</p>
 		</div>
-	</c:forEach>
+		</c:forEach>
 </div>
-<!-- Grid END -->
+	
+
 <!-- Second Photo Grid-->
 <div class="w3-row-padding w3-padding-16 w3-center" id="morePlace">
 		
@@ -91,7 +95,7 @@
 				  alert("에러 발생. 관리자에게 문의주세요.");
 				}
 			})//end ajax
-		}//end If
+		}
 	
 	};
 	
@@ -104,33 +108,32 @@
 		var load_mord_btn = document.getElementById("loadData");
 		$.ajax({
 			type:"get",
-			url:"get_video_list_more.do",
+			url:"get_matched_video_list_more.do",
 			data : {'count': plus },  
 			contentType: 'application/json', 
 			dataType : 'json',
 			success: function(data){
-			 alert("불러온느중..."+ count_more_button_click + "_"+plus);
+			 alert("불러온느중... "+ count_more_button_click + "<<버튼 클릭 횟수.. "+plus + "<<row범위..");
 			 console.log(data.length);
-			 if (data.length !=0){
+			if (data.length !=0){
 			 $.each(data, function(idx,item){	
-					$('<div class="w3-quarter">').html("<img src=\"${pageContext.request.contextPath}/resources/img/common/"+item.VIDEO_IMG+"\" "+
-							"alt='thumnail' style='width: 100%;' onclick=\"location.href='resumeDetail.do?video_id=" + item.VIDEO_ID + "&member_id=" +item.MEMBER_ID + "'\">"
-							+"<button class='w3-button w3-padding-small w3-xlarge'id='btn"+item.VIDEO_ID+"' name='likeBtn' value='" + item.VIDEO_ID + "' type='button' onclick='clickLike(" + 
-							item.VIDEO_ID + ")'>"+
-							"<font id='font" +item.VIDEO_ID+ "' color='black' data-count='0'> <b> <i class='fas fa-heart'></i> </b> </font> </button>"
-							+" <h3>#"+ item.CODE_NAME+ " </h3><p>"+ item.VIDEO_CONTENTS +
+					$('<div class="w3-quarter">').html("<img src=\"${pageContext.request.contextPath}/resources/img/common/"+item.video_img+"\" "+
+							"alt='thumnail' style='width: 100%;' onclick=\"location.href='resumeDetail.do?video_id=" + item.video_id + "&member_id=" +item.member_id + "'\">"
+							+"<button class='w3-button w3-padding-small w3-xlarge'id='btn"+item.video_id+"' name='likeBtn' value='" + item.video_id + "' type='button' onclick='clickLike(" + 
+							item.video_id + ")'>"+
+							"<font id='font" +item.video_id+ "' color='black' data-count='0'> <b> <i class='fas fa-heart'></i> </b> </font> </button>"
+							+" <h3>#"+ item.code_name+ " </h3><p>"+ item.video_contents +
 							"</p>")
 					.appendTo(place);
 				});
-			 }else if(data.length ==0){
-					$(load_mord_btn).empty();
-					$('<div align="center">').html("<h4><b><u>더이상 없어요..T.T</u></b></h4>").appendTo(place);
-				};//endif
+			}else if(data.length ==0){
+				$(load_mord_btn).empty();
+				$('<div align="center">').html("<br><br><br><h4><b><u>더이상 없어요..ㅜㅜ</u></b></h4>").appendTo(place);
+			};//endif
 			},
 			error: function(){
 			  alert("에러 발생. 관리자에게 문의주세요.");
 			}
 		})//end ajax
 	}; //end of function load...
-	
 </script>

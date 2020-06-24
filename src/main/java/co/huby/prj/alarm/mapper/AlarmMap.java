@@ -8,6 +8,7 @@ import java.util.Map;
 import org.mybatis.spring.annotation.MapperScan;
 
 import co.huby.prj.alarm.service.AlarmVo;
+import co.huby.prj.vo.CompanyVo;
 import co.huby.prj.vo.EmploymentsVo;
 
 @MapperScan
@@ -20,4 +21,5 @@ public interface AlarmMap {
 	void alarmdelete(AlarmVo vo);
 	int alarminsertcheck(AlarmVo vo);
 	List<Map> comemploymentlist(String companyid);
+	List<AlarmVo> companyselect(CompanyVo vo);
 }

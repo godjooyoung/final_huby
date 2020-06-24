@@ -8,7 +8,7 @@
 	</insert>
 	
 	<select id="personalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
-		SELECT C.COMPANY_NAME company_name, A.ALARM_MESSAGE alarm_message, A.ALARM_TIME alarm_time, A.ALARM_ID alarm_id, A.ALARM_CURRENT alarm_current, A.MEMBER_ID member_id, A.COMPANY_ID company_id
+		SELECT C.COMPANY_NAME company_name, A.ALARM_MESSAGE alarm_message, A.ALARM_TIME alarm_time, A.ALARM_ID alarm_id, A.ALARM_CURRENT alarm_current, A.MEMBER_ID member_id, A.COMPANY_ID company_id, A.EMPLOYMENT_ID employment_id
 		FROM ALARM A
 		JOIN COMPANY C
 		ON C.COMPANY_ID = A.COMPANY_ID 
@@ -46,7 +46,13 @@
 	<select id="comemploymentlist" parameterType="map" resultType="map">
 		SELECT EMPLOYMENT_ID, EMPLOYMENT_TITLE, EMPLOYMENT_TIME, COMPANY_ID
 		FROM EMPLOYMENTS
-		WHERE COMPANY_ID = #{companyid }
+		WHERE COMPANY_ID = #{company_id }
+	</select>
+	
+	<select id="companyselect" parameterType="co.huby.prj.vo.CompanyVo" resultType="co.huby.prj.vo.CompanyVo">
+		SELECT BUSINESS_TYPE, COMPANY_ADDR, BUSINESS_CATEGORY 
+		FROM COMPANY 
+		WHERE COMPANY_ID = #{company_id }
 	</select>
 	
 </mapper>

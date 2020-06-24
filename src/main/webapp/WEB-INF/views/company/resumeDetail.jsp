@@ -158,8 +158,9 @@ html, body, h1, h2, h3, h4, h5, h6 {
 				function(data){
 					console.log(data);
 					for(i=0; i<data.length; i++){
-						$('<div>').append($('<span>').html(data[i].EMPLOYMENT_TITLE))
-						          .append('<input type="button" id="btn" name="btn" value="입사 지원 요청하기">')
+						$('<div>').append($('<span>').html(data[i].EMPLOYMENT_ID))
+							      .append($('<span>').html(data[i].EMPLOYMENT_TITLE))
+						          .append('<input type="button" id="btn" class="btn btn-Warning" value="입사 지원 요청하기">')
 						          .appendTo($('#btnsubmit'))
 					}
 					
@@ -168,13 +169,13 @@ html, body, h1, h2, h3, h4, h5, h6 {
 	}
 	
 	//입사지원요청 insert
-	function applyRe(member_id, EMPLOYMENT_ID){
-		$(document).on("click", "#btn", function(event){
-		  
+	function applyRe(){
+		$(document).on("click", ".btn", function(event){
+		  var employment_id = $(this).parent().find("span").first().html()
 			$.ajax({
 				type:"post",
 				url:"applyRe.do",
-				data: {'member_id':member_id,'alarm_message': "입사지원요청", 'employment_id':EMPLOYMENT_ID },
+				data: {'member_id':'${member.member_id}','alarm_message': "입사지원요청", 'employment_id':employment_id },
 				dataType: 'json',
 				success:
 					function(data){
@@ -186,5 +187,7 @@ html, body, h1, h2, h3, h4, h5, h6 {
 			});
 		});
 	}
+	
+	applyRe();
 	
 </script>

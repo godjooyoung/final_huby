@@ -54,4 +54,6 @@ public interface BoardService {
 	List<Map> get_list_video_all (VideoVo vo) throws Exception;
 	
 	List<Map> get_video_list_more (int count);
+	
+	List<Map> get_matched_video_List_more (@Param("companyid") String companyid, @Param("count") int count);
 }

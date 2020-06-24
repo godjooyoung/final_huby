@@ -80,7 +80,7 @@ public class LoginController {
 		if(vo2 != null) {
 			boolean pwdMatch = pwdEncoder.matches(vo.getCompany_pw(), vo2.getCompany_pw());
 			if(pwdMatch) {
-				mav.setViewName("redirect:companyAfterLogin.do");
+				mav.setViewName("redirect:get_matched_video_list_first.do");
 				request.getSession().setAttribute("companyVo", vo2);
 				request.getSession().setAttribute("loginId", vo2.getCompany_id());
 				request.getSession().setAttribute("loginType", "C");
