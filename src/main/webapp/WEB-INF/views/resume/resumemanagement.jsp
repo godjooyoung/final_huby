@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +25,39 @@
 		$("#frm").attr("action","resumeupdatepage.do");
 		document.frm.submit();
 	}
+	
+	function skillInsertPage(){
+		$("#frm2").attr("action","skillInsertPage.do");
+		document.frm2.submit();
+	}
+	
+	function skillDelete(sid){
+		$("#sid").val(sid);
+		alert(sid);
+		$("#frm2").attr("action","skillDelete.do");
+		document.frm2.submit();
+	}
+	
+	function skillUpdatePage(sid){
+		$("#sid").val(sid);
+		$("#frm2").attr("action","skillUpdatePage.do");
+		document.frm2.submit();
+	}
+	
+	function careerDelete(cid){
+		$("#cid").val(cid);
+		$("#frm3").attr("action","careerDelete.do");
+		document.frm3.submit();
+	}
+	
+	function careerUpdatePage(cid){
+		$("#cid").val(cid);
+		$("#frm3").attr("action","careerUpdatePage.do");
+		document.frm3.submit();
+	}
 </script>
 </head>
 <body>
-<br><br><br><br><br>
 <div align="center">
 <button class="btn-primary" type="button" onclick="location.href='resumeinsertpage.do'">이력서등록</button>
 </div>
@@ -58,12 +88,14 @@
 </form>
 </div>
 <br>
+
+
 <div align="center">
-<button class="btn-primary" type="button" onclick="location.href='skillInsertPage.do'">스킬 등록</button>
+<button class="btn-primary" type="button" onclick="skillInsertPage()">스킬 등록</button>
 </div>
 <div align="center">
 <h1>스킬 관리</h1>
-<form id="frm" name="frm" method="post">
+<form id="frm2" name="frm2" method="post">
 <br>
 <table>
 <tr>
@@ -72,14 +104,45 @@
 ${ skill.SKILL_ID }<br>
 ${ skill.SKILL_NAME }<br>
 ${ skill.SKILL_LEVEL }<br>
-<button type="button" class="btn-primary">스킬 삭제</button><br>
-<button type="button" class="btn-primary">스킬 수정</button><br>
+<button type="button" class="btn-primary" onclick="skillDelete(${ skill.SKILL_ID })">스킬 삭제</button><br>
+<button type="button" class="btn-primary" onclick="skillUpdatePage(${ skill.SKILL_ID })">스킬 수정</button><br>
 </td>
 </c:forEach>
 </tr>
 </table>
 <input type="hidden" id="sid" name="skill_id">
 </form>
+</div><br>
+
+<div align="center">
+<button class="btn-primary" type="button" onclick="location.href='careerInsertPage.do'">커리어 등록</button>
 </div>
+<div align="center">
+<h1>커리어 관리</h1>
+<form id="frm3" name="frm3" method="post">
+<br>
+<table>
+<tr>
+<c:forEach items="${ clist }" var="career">
+<td>
+<fmt:formatDate value="${career.start_date}" pattern="yyyy-MM-dd" var="startDate" />
+<fmt:formatDate value="${career.end_date}" pattern="yyyy-MM-dd" var="endDate" />
+${ career.career_id }<br>
+${ startDate }<br>
+${ endDate }<br>
+${ career.company_name }<br>
+${ career.career_content}<br>
+${ career.job_name }<br>
+${ career.job_position }<br>
+<button type="button" class="btn-primary" onclick="careerDelete(${ career.career_id })">커리어 삭제</button><br>
+<button type="button" class="btn-primary" onclick="careerUpdatePage(${ career.career_id })">커리어 수정</button><br>
+</td>
+</c:forEach>
+</tr>
+</table>
+<input type="hidden" id="cid" name="career_id">
+</form>
+</div>
+
 </body>
 </html>
