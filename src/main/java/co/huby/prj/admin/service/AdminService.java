@@ -11,4 +11,6 @@ public interface AdminService {
 	List<CompanyVo> companySelectAll();
 	List<NoticeVo> noticeSelectAll();
 	int noticeInsert(NoticeVo vo);
+	NoticeVo noticeSelectOne(NoticeVo vo);
+	int noticeUpdate(NoticeVo vo);
 }

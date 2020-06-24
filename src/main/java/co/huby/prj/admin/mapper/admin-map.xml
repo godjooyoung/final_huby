@@ -25,7 +25,20 @@
 				#{notice_title}, 
 				sysdate, 
 				#{notice_contents}, 
-				#{admin_id}
+				admin
 				)
 	</insert>
+	
+	<select id="noticeSelectOne" resultType="NoticeVo" parameterType="NoticeVo">
+		select notice_id, notice_title, notice_date, notice_contents, admin_id
+		from notice
+		where notice_id = #{notice_id}
+	</select>
+	
+	<update id="noticeUpdate" parameterType="NoticeVo">
+		update notice
+		set notice_title = #{notice_title},
+		    notice_contents = #{notice_contents}
+		where notice_id = #{notice_id}
+	</update>
 </mapper>

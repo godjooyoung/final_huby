@@ -98,4 +98,28 @@ public class AdminController {
 		return "no/admin/noticeInsertPage";
 	}
 	
+	@RequestMapping("noticeInsert.do")
+	public String noticeInsert(Model model, NoticeVo nvo) {
+		String id = "admin";
+		nvo.setAdmin_id(id);
+		
+		int n = adminService.noticeInsert(nvo);
+		
+		return "redirect:noticePage.do";
+	}
+	
+	@RequestMapping("noticeSelectOnePage.do")
+	public String noticeSelectOnePage(Model model, NoticeVo nvo) {
+		NoticeVo checkVo = adminService.noticeSelectOne(nvo);
+		model.addAttribute("nvo",checkVo);
+		return "no/admin/noticeSelectOnePage";
+	}
+	
+	@RequestMapping("noticeUpdate.do")
+	public String noticeUpdate(Model model, NoticeVo nvo) {
+		int n = adminService.noticeUpdate(nvo);
+		
+		return "redirect:noticePage.do";
+	}
+	
 }

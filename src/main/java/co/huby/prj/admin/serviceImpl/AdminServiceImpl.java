@@ -40,5 +40,17 @@ public class AdminServiceImpl implements AdminService {
 		return map.noticeInsert(vo);
 	}
 
+	@Override
+	public NoticeVo noticeSelectOne(NoticeVo vo) {
+		// TODO Auto-generated method stub
+		return map.noticeSelectOne(vo);
+	}
+
+	@Override
+	public int noticeUpdate(NoticeVo vo) {
+		// TODO Auto-generated method stub
+		return map.noticeUpdate(vo);
+	}
+
 	
 }

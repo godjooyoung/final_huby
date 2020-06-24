@@ -13,6 +13,13 @@
 .col3 {width: 20%;}
 /* .col4 {width: 20%;} */
 </style>
+<script>
+	function noticeSelectOne(nid){
+		$("#nid").val(nid);
+		$("#frm").attr("action","noticeSelectOnePage.do")
+		document.frm.submit();
+	}
+</script>
 <h1 align="center" style="color: #2B333E">공 지 사 항</h1><br>
 <div align="center">
 <button type="button" class="btn-primary" onclick="location.href='noticeInsertPage.do'"> 글 작성하기 </button><br>
@@ -31,6 +38,7 @@
 		<span class="notice_cell notice_col4">2020-07-09</span>
 	</div>
 </div> -->
+<form id="frm" name="frm" method="post">
 <div id="table">
 <div class="row">
 <span class="cell col1">작성자</span>
@@ -38,12 +46,14 @@
 <span class="cell col3">작성일</span>
 </div>
 <c:forEach items="${ nlist }" var="notice">
-<div class="row">
-<span class="cell col1">${ notice.notice_title }</span>
-<span class="cell col2">${ notice.notice_contents }</span>
+<div class="row" onclick="noticeSelectOne(${notice.notice_id})">
+<span class="cell col1">${ notice.admin_id }</span>
+<span class="cell col2">${ notice.notice_title }</span>
 <fmt:formatDate value="${ notice.notice_date }" pattern="yyyy-MM-dd" var="notice_date" />
 <span class="cell col3">${ notice_date }</span>
 </div>
 </c:forEach>
 </div>
+<input type="hidden" id="nid" name="notice_id">
+</form>
 <jsp:include page="/WEB-INF/views/adminlayout/footer.jsp"></jsp:include>
