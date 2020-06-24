@@ -285,5 +285,26 @@
     				"RNUM" <![CDATA[ <= ]]> (4+#{value, jdbcType=INTEGER}))
      		where "RNUM" <![CDATA[ >= ]]>(1+#{value, jdbcType=INTEGER})
 	</select>
+	
+	<select id ="get_matched_video_List_more" resultType="map">
+		SELECT * FROM (        
+			(select ROWNUM AS "RNUM", InnerQuery.* from
+    		(SELECT DISTINCT
+       	
+			c.code_name as "code_name",
+			v.video_id as "video_id",
+			v.video_contents as "video_contents",
+			v.video_img as "video_img",
+			v.member_id as "member_id"
+			FROM video v
+			Join code c
+			ON c.code_id = v.hashtag
+       		WHERE v.hashtag 
+                IN (select DISTINCT hope_job from employments where company_id=#{companyid ,jdbcType=VARCHAR})
+        		AND v.video_id 
+                NOT IN ( SELECT video_id FROM like_video WHERE company_id =#{companyid ,jdbcType=VARCHAR})
+        ORDER BY v.video_id desc) InnerQuery))
+        where RNUM <![CDATA[<=]]> (4+#{count ,jdbcType=INTEGER}) and RNUM <![CDATA[>=]]> (1+#{count ,jdbcType=INTEGER})
+	</select>
 </mapper>
 

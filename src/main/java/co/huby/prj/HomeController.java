@@ -47,10 +47,6 @@ public class HomeController {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		vo.setCompany_id(companyid);
 		List<Map> list = boardService.getMatchedListForCompany(vo);
-		System.out.println("---------");
-		System.out.println(vo);
-		System.out.println(companyid);
-		System.out.println(list);
 		model.addAttribute("matched", list);
 		return "company/company/companyStart";
 	}
@@ -338,7 +334,7 @@ public class HomeController {
 		model.addAttribute("firstList", list);
 		return "company/company/comVideoAllView";
 	}
-	
+	/*전체 비디오 보기 더보기~*/
 	@ResponseBody
 	@RequestMapping(value="get_video_list_more.do")
 	public List<Map> video_list_more (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
@@ -346,5 +342,22 @@ public class HomeController {
 		List<Map> list = boardService.get_video_list_more(count);
 		return list;
 	}
-
+	
+	@RequestMapping(value="get_matched_video_list_first.do")
+	public String matched_video_list_first (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
+		int count = 0;
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		List<Map> list = boardService.get_matched_video_List_more(companyid, count);
+		model.addAttribute("matched", list);
+		return "company/company/comVideoMatchedView";
+	}
+	
+	/*매치 비디오 보기 더보기~*/
+	@ResponseBody
+	@RequestMapping(value="get_matched_video_list_more.do")
+	public List<Map> matched_video_list_more (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
+		int count = Integer.parseInt(request.getParameter("count"));
+		List<Map> list = boardService.get_video_list_more(count);
+		return list;
+	}
 }
