@@ -249,7 +249,41 @@
 	</delete>
 
 	<select id ="get_list_video_all" parameterType="co.huby.prj.vo.VideoVo" resultType="map">
-	SELECT * FROM VIDEO ORDER BY VIDEO_ID DESC
+		SELECT DISTINCT
+		C.CODE_NAME, 
+		V.VIDEO_ID, 
+		V.VIDEO_CONTENTS, 
+		V.VIDEO_IMG,
+		V.MEMBER_ID,
+        V.VIDEO_LOCATION 
+		FROM CODE C
+		JOIN VIDEO V
+		ON C.CODE_ID = V.HASHTAG
+        ORDER BY VIDEO_ID DESC
+	</select>
+	
+	<select id="get_video_list_more" parameterType="int" resultType="map">
+		select 
+			* 
+    	from  
+			(select 
+				* 
+			from
+				(SELECT DISTINCT
+        			ROWNUM as "RNUM",
+					c.code_name, 
+					v.video_id, 
+					v.video_contents, 
+					v.video_img,
+					v.member_id,
+        			v.video_location 
+					FROM code c
+						Join video v
+						ON c.code_id = v.hashtag
+        				ORDER BY video_id desc)
+					where 
+    				"RNUM" <![CDATA[ <= ]]> (4+#{value, jdbcType=INTEGER}))
+     		where "RNUM" <![CDATA[ >= ]]>(1+#{value, jdbcType=INTEGER})
 	</select>
 </mapper>
 

@@ -138,6 +138,12 @@ public class BoardServiceImpl implements BoardService {
 		return map.get_list_video_all(vo);
 	}
 
+	@Override
+	public List<Map> get_video_list_more(int count) {
+		// TODO Auto-generated method stub
+		return map.get_video_list_more(count);
+	}
+
 
 
 

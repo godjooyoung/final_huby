@@ -14,7 +14,7 @@
 		WHERE CODE_PART = 'job_dic_list'
 	</select>
 	
-	<select id="selectRegionName"resultType="CodeVo">
+	<select id="selectRegionName" resultType="CodeVo">
 		SELECT CODE_NAME FROM CODE
 	</select>
 
