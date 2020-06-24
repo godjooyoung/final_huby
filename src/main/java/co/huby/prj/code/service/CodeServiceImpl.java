@@ -25,4 +25,10 @@ public class CodeServiceImpl implements CodeService {
 
 	}
 
+	@Override
+	public List<CodeVo> selectRegionName() {
+		// TODO Auto-generated method stub
+		return map.selectRegionName();
+	}
+
 }
