@@ -20,23 +20,23 @@ public class ChatController {
 	@Autowired
 	ChatService chatService;
 
-	@RequestMapping(value = "/company_chat.do") //기업회원 채팅창
+	@RequestMapping(value = "/company_chat.do") // 기업회원 채팅창
 	public String getChatViewPage(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
 		vo = chatService.isRoom(vo);
 		model.addAttribute("room", vo);
-		return "company/chat/test";
+		return "company/chat/chat";
 
 	}
 
-	@RequestMapping(value = "/person_chat.do") //개인회원 채팅창
+	@RequestMapping(value = "/person_chat.do") // 개인회원 채팅창
 	public String getChatViewPage2(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
 		vo = chatService.isRoom(vo);
 		model.addAttribute("room", vo);
-		return "person/chat/test";
+		return "person/chat/chat";
 
 	}
 
-	@RequestMapping(value = "/person_chatList.do") //개인회원 채팅리스트
+	@RequestMapping(value = "/person_chatList.do") // 개인회원 채팅리스트
 	public String personChatList(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
 		String memberid = (String) request.getSession().getAttribute("loginId");
 		String companyid = (String) request.getSession().getAttribute("companyVo");
@@ -48,7 +48,7 @@ public class ChatController {
 
 	}
 
-	@RequestMapping(value = "/company_chatList.do") //기업회원 채팅리스트
+	@RequestMapping(value = "/company_chatList.do") // 기업회원 채팅리스트
 	public String companyChatList(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		String memberid = (String) request.getSession().getAttribute("personalVo");
@@ -63,7 +63,11 @@ public class ChatController {
 	@ResponseBody
 	@RequestMapping(value = "/insertMessage.do")
 	public String insertMessage(MessageVo vo, Model model, HttpServletRequest request) throws Exception {
-
+		String loginId = (String) request.getSession().getAttribute("loginId");
+		String msg = request.getParameter("message_contents");
+		vo.setMessage_sender(loginId);
+		vo.setMessage_contents(msg);
+		vo.setCompany_id(request.getParameter("company_id"));
 		chatService.insertMessage(vo);
 		return null;
 	}

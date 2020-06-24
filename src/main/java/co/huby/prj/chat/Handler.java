@@ -6,13 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.MessageVo;
 
@@ -20,12 +18,9 @@ import com.google.gson.Gson;
 
 public class Handler extends TextWebSocketHandler {
 
-	@Autowired
-	private ChatService service;
-	
 	private List<WebSocketSession> connectedUsers;
 
-	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>(); //1:1채팅
+	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>(); // 1:1채팅
 
 	public Handler() {
 		connectedUsers = new ArrayList<WebSocketSession>();
@@ -49,7 +44,7 @@ public class Handler extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 
-		System.out.println(message.getPayload()); //사용자가 보낸메시지
+		System.out.println(message.getPayload()); // 사용자가 보낸메시지
 		System.out.println(users);
 		Map<String, Object> map = null;
 		MessageVo messageVo = MessageVo.convertMessage(message.getPayload());
@@ -71,7 +66,6 @@ public class Handler extends TextWebSocketHandler {
 		for (WebSocketSession websocketSession : connectedUsers) {
 			map = websocketSession.getAttributes();
 			MemberVo login = (MemberVo) map.get("loginId");
-			
 
 			// 받는사람
 			if (login.getMember_id().equals(messageVo.getMessage_sender())) {
