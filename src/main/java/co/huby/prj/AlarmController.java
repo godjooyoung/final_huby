@@ -49,6 +49,7 @@ public class AlarmController {
 	}
 
 	// 알람 수락 update
+	@ResponseBody
 	@RequestMapping("/currentY.do")
 	public int currentY(AlarmVo vo, InterviewVo vo2, Model model, HttpServletResponse response,
 			HttpServletRequest request) throws Exception {
@@ -59,9 +60,9 @@ public class AlarmController {
 			vo.setCompany_id(request.getParameter("companyid"));
 			vo.setMember_id(request.getParameter("memberid"));
 			int count = alarmService.currentY(vo);
+			alarmService.currentY(vo);
 			
-			
-			if(count==0) {
+			if(count==1) {
 			vo2.setCompany_id(request.getParameter("companyid"));
 			vo2.setMember_id(request.getParameter("memberid"));
 			chatService.createRoom(vo2);
