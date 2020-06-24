@@ -1,16 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="co.huby.prj.Applistner"%>
-<%=Applistner.getUserList()%><br>
-<c:forEach items="<%=Applistner.getUserList()%>" var="list" varStatus="status">
-		<c:out value="${status.index}" />  
-		<c:out value="${status.end}" />
-		
-</c:forEach>
+<c:set var="connId" value="<%=Applistner.getUserList()%>" />
 <br>
-${personChatList}
-
 <br>
 <div align="center">
 	<h1>면접리스트</h1>
@@ -31,14 +25,18 @@ ${personChatList}
 						<td>${list.interview_start}</td>
 						<td>${list.company_name}</td>
 						<td>${list.member_id}</td>
-						<c:set var="connId" value="<%=Applistner.getUserList()%>"></c:set>
-						<c:if test="${connId == list.company_id}">
-							<td>${list.company_id}</td>
-						</c:if>
-
+						<td>${list.company_id}</td>
+						<td><c:if test="${fn:contains(connId, list.company_id)}">
+								<font color="red">현재접속중</font>
+							</c:if></td>
 					</tr>
 				</c:forEach>
 			</tbody>
-		</table>
+		</table> 
 	</form>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 </div>

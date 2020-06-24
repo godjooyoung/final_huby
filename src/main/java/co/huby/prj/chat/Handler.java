@@ -22,9 +22,10 @@ public class Handler extends TextWebSocketHandler {
 
 	@Autowired
 	private ChatService service;
+	
 	private List<WebSocketSession> connectedUsers;
 
-	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
+	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>(); //1:1채팅
 
 	public Handler() {
 		connectedUsers = new ArrayList<WebSocketSession>();
@@ -48,7 +49,7 @@ public class Handler extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 
-		System.out.println(message.getPayload());
+		System.out.println(message.getPayload()); //사용자가 보낸메시지
 		System.out.println(users);
 		Map<String, Object> map = null;
 		MessageVo messageVo = MessageVo.convertMessage(message.getPayload());
@@ -70,6 +71,7 @@ public class Handler extends TextWebSocketHandler {
 		for (WebSocketSession websocketSession : connectedUsers) {
 			map = websocketSession.getAttributes();
 			MemberVo login = (MemberVo) map.get("loginId");
+			
 
 			// 받는사람
 			if (login.getMember_id().equals(messageVo.getMessage_sender())) {

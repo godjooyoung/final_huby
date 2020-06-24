@@ -46,21 +46,22 @@ ${personChatList}
 </div>
 
 <!-- 채팅 입력창 -->
-<form action="insertMessage.do" method="POST" name="insertM" id="insertM">
-<div class="col-12" style="margin-top: 20px; margin-bottom: 15px;">
-	<div class="col-12" style="float: left">
-		<textarea class="form-control"
-			style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%"
-			placeholder="Enter ..." id="message">
+<form action="insertMessage.do" method="POST" name="insertM"
+	id="insertM">
+	<div class="col-12" style="margin-top: 20px; margin-bottom: 15px;">
+		<div class="col-12" style="float: left">
+			<textarea class="form-control"
+				style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%"
+				placeholder="내용을 입력하세요" id="message">
 				</textarea>
-		<span
-			style="float: right; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px;">
-			<a
-			style="margin-top: 30px; text-align: center; color: white; font-weight: bold;"
-			id="sendBtn"><br>전송</a>
-		</span>
+			<span
+				style="float: right; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px;">
+				<a
+				style="margin-top: 30px; text-align: center; color: white; font-weight: bold;"
+				id="sendBtn"><br>전송</a>
+			</span>
+		</div>
 	</div>
-</div>
 </form>
 ===========================${loginType}, ${loginId}
 
@@ -73,6 +74,8 @@ ${personChatList}
 <input type="button" id="exitBtn" value="나가기" style="display: none">
 <script type="text/javascript">
 	connect();
+	var userid = '${param.loginId}';
+
 	//연결
 	function connect() {
 		sock = new SockJS('/prj/chat.do');
