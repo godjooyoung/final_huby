@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import co.huby.prj.vo.CompanyVo;
 import co.huby.prj.vo.EmploymentsVo;
 
 public interface AlarmService {
@@ -15,4 +16,5 @@ public interface AlarmService {
 	void alarmdelete(AlarmVo vo);
 	int alarminsertcheck(AlarmVo vo);
 	List<Map> comemploymentlist(String companyid) throws Exception; 
+	List<AlarmVo> companyselect(CompanyVo vo) throws Exception;
 }

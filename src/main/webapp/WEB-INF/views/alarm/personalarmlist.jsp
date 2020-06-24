@@ -17,16 +17,56 @@
 <br>
 <br>
 <script type="text/javascript">
-	function alarmOk(alarm_id,company_id,member_id) {
 
-
-			document.frmok.alarmid.value = alarm_id
-			document.frmok.companyid.value = company_id
-			document.frmok.memberid.value = member_id
-			document.frmok.submit();
-		}
+	//면접제의 상세보기
+	function interviewOk(company_id,member_id,alarm_id) {
+		$.ajax({
+			type:"get",
+			url:"companyselect.do",
+			data: {'company_id':company_id },
+			dataType: 'json',
+			success:
+				function(data){
+					console.log(data);
+						$("#btnsubmit").append("업종 " + data[0].business_type + "<br>" 
+													+ "주소 " + data[0].company_addr + "<br>" 
+													+ "업태 " + data[0].business_category + "<br>" )
+						          .append($('<input type="button" id="btn" class="btn btn-Warning" value="면접수락">').data("companyid", company_id).data("memberid", member_id).data("alarmid", alarm_id))
+						          .appendTo($('#btnsubmit'))
+					
+			}
+		})
+	}
+	//면접제의 수락
+	function chatOk(){
+		$(document).on("click", ".btn", function(event){
+			var companyid = $(this).data("companyid")
+			var memberid = $(this).data("memberid")
+			var alarmid = $(this).data("alarmid")
+			$.ajax({
+				type:"post",
+				url:"currentY.do",
+				data: { 'companyid': companyid , 'memberid': memberid, 'alarmid': alarmid },
+				dataType: 'json',
+				success:
+					function(data){
+					if(data.count == 1)
+						alert("입사 지원 요청이 완료되었습니다.");
+					else
+						alert("이미 입사 지원 요청이 진행되었습니다.")
+				}
+			});
+		});
+	}
+	chatOk();
 	
-
+	
+	//입사지원요청 상세보기
+	function applyOk(alarm_id,company_id,member_id,alarm_message,employment_id){
+		location.href = "selectresumepage.do?employment_id="+employment_id;
+	}
+	
+	//거절
 	function alarmRe(alarm_id) {
 		if (confirm("거절하시겠습니까?\n거절 시 내역에서 삭제됩니다.") == true) {
 			document.frmre.alarmid.value = alarm_id
@@ -43,9 +83,17 @@
 		<br>[${list.company_name }]
 				${list.alarm_message }
 				${list.alarm_time }<br>
-		<input type="button" value="수락"
-			onclick="alarmOk('${list.alarm_id}','${list.company_id}','${list.member_id}')">
-		<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }')">
+			<c:if test="${list.alarm_message eq '면접제의' }">
+				<div id="btnsubmit"></div>
+				<input type="button" value="회사정보보기"
+					onclick="interviewOk('${list.company_id}','${list.member_id }','${list.alarm_id }')">
+				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }','${list.company_id}','${list.member_id}')">
+			</c:if>
+			<c:if test="${list.alarm_message eq '입사지원요청' }">
+				<input type="button" value="공고보기"
+				onclick="applyOk('${list.alarm_id}','${list.company_id}','${list.member_id}','${list.alarm_message }','${list.employment_id }')">
+				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }')">
+			</c:if>
 
 	</c:forEach>
 </div>

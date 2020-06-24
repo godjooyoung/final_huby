@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.huby.prj.alarm.service.AlarmService;
 import co.huby.prj.alarm.service.AlarmVo;
 import co.huby.prj.chat.service.ChatService;
+import co.huby.prj.vo.CompanyVo;
 import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.InterviewVo;
 
@@ -63,7 +64,6 @@ public class AlarmController {
 
 		PrintWriter out = response.getWriter();
 		out.print("<script>");
-		out.print("alert('수락되었습니다.');");
 		out.print("location.href='personalarm.do';");
 		out.print("</script>");
 		// return "person/alarm/personalarmlist";
@@ -113,9 +113,18 @@ public class AlarmController {
 		// return vo;
 
 	}
+	//개인이 면접제의 상세보기 버튼 클릭 시 회사 정보
+	@ResponseBody
+	@RequestMapping(value = "/companyselect.do")
+	public List<AlarmVo> companyselect(HttpServletRequest request, CompanyVo vo) throws Exception{
+		vo.setCompany_id(request.getParameter("company_id"));
+		List<AlarmVo> list = alarmService.companyselect(vo);
+		return list;
+		
+	}
 	
 	
-	// 입사지원요청 시 공고목록 
+	//기업이 개인에게 입사지원요청 시 공고목록 
 	@ResponseBody
 	@RequestMapping(value = "/comemploymentlist.do")
 	public List<Map> applyRe(HttpServletRequest request) throws Exception {
@@ -126,6 +135,7 @@ public class AlarmController {
 		return list;
 		
 	}
+	
 	// 입사 지원 insert
 	@ResponseBody
 	@RequestMapping(value = "/applyRe.do")
