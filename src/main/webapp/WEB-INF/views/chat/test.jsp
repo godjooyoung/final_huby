@@ -10,12 +10,13 @@
 <br>
 <br>
 <br>
-
+<%=session.getAttribute("loginId")%>
 ${personChatList}
 <!-- <link rel="stylesheet" type="text/css"
 	href="../../../resources/css/page.css"> -->
 
 <c:set var="profile" value='<%=session.getAttribute("loginId")%>' />
+
 <div class="col-12 row justify-content-center align-items-center my-5 ">
 	<a href=""><img src="../../../resources/image/AlmomLogo.png"
 		alt="Almom Logo" width="180px" class="img-fluid" /></a>
@@ -74,7 +75,6 @@ ${personChatList}
 <input type="button" id="exitBtn" value="나가기" style="display: none">
 <script type="text/javascript">
 	connect();
-	var userid = '${param.loginId}';
 
 	//연결
 	function connect() {
@@ -101,9 +101,9 @@ ${personChatList}
 			message = {};
 			message.message_content = $("#message").val();
 			message.cmd = "message";
-			message.message_receiver = '${loginType}' != 'C' ? 'comtest1'
-					: 'test4';
-			message.member_id = '${loginId}'
+			message.message_receiver = '${loginId}' == '${room.company_id}' ? '${room.member_id}'
+					: '${room.company_id}';
+			message.message_sender = '${loginId}'
 		}
 
 		sock.send(JSON.stringify(message));

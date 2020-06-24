@@ -10,10 +10,7 @@
 
 	<select id="isRoom" resultType="InterviewVo">
 		SELECT * FROM interview WHERE
-		member_id = #{member_id} AND
-		company_id = #{company_id}
-		AND resume_id=
-		#{resume_id}
+		interview_id = #{interview_id}
 	</select>
 
 	<insert id="insertMessage">
