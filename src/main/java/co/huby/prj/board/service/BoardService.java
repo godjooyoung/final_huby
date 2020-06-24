@@ -52,4 +52,6 @@ public interface BoardService {
 	void delete_like_video(LikeVideoVo vo) throws Exception;
 	
 	List<Map> get_list_video_all (VideoVo vo) throws Exception;
+	
+	List<Map> get_video_list_more (int count);
 }

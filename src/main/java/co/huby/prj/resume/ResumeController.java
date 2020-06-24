@@ -15,6 +15,7 @@ import co.huby.prj.board.service.EmploymentService;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.resume.service.ResumeService;
+import co.huby.prj.vo.CareerVo;
 import co.huby.prj.vo.ResumeVo;
 import co.huby.prj.vo.SkillsVo;
 
@@ -34,9 +35,11 @@ public class ResumeController {
 		vo.setMember_id(id);
 		List<ResumeVo> checkRvo = resumeService.SelectAll(vo);
 		List<Map> svo = employmentService.skillsAll(vo);
+		List<CareerVo> cvo = memberService.careerAll(vo);
 		
 		model.addAttribute("rlist" ,checkRvo);
 		model.addAttribute("slist", svo);
+		model.addAttribute("clist", cvo);
 		
 		return "person/resume/resumemanagement";
 	}

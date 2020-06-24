@@ -43,18 +43,111 @@
 	</update>
 	
 	<insert id="skillInsert" parameterType="SkillsVo">
-		insert into skills(skill_id, skill_name, skill_level, member_id)
+		insert into skills(
+				skill_id, 
+				skill_name,
+				<if test="skill_level != null and skill_level != ''"> 
+				skill_level, 
+				</if>
+				member_id)
 		values(
 				skills_seq.nextval,
 				#{skill_name},
 				<if test="skill_level != null and skill_level != ''">
 				#{skill_level},
 				</if>
-				<if test="member_id != null and member_id != ''">
-				#{member_id});
-				</if>
+				#{member_id})
 	</insert>
 	
+	<delete id="skillDelete" parameterType="SkillsVo">
+		delete from skills
+		where skill_id = #{skill_id}
+	</delete>
+	
+	<update id="skillUpdate" parameterType="SkillsVo">
+		update skills
+		set skill_name = #{skill_name}
+		<if test="skill_level != null and skill_level != ''">
+		    ,skill_level = #{skill_level}
+		</if>
+		where skill_id = #{skill_id}
+	</update>
+	
+	<select id="skillSelect" parameterType="SkillsVo" resultType="SkillsVo">
+		select skill_id, skill_name, skill_level, member_id
+		from skills
+		where skill_id = #{skill_id}
+	</select>
+	
+	<select id="careerAll" parameterType="MemberVo" resultType="CareerVo">
+		select career_id, start_date, end_date, company_name, career_content, job, (select code_name from code where code_id = job ) as job_name, job_position, member_id
+		from career
+		where member_id = #{member_id}
+	</select>
+	
+	<insert id="careerinsert" parameterType="CareerVo">
+		insert into career
+							(
+							career_id, 
+							start_date, 
+							end_date, 
+							<if test="company_name != null and company_name != ''">
+							company_name, 
+							</if>
+							<if test="career_content != null and career_content != ''">
+							career_content,
+							</if>
+							<if test="job != null and job != ''"> 
+							job, 
+							</if>
+							<if test="job_position != null and job_position != ''">
+							job_position, 
+							</if>
+							member_id
+							)
+		values
+							(
+							career_seq.nextval, 
+							#{start_date}, 
+							#{end_date}, 
+							<if test="company_name != null and company_name != ''">
+							#{company_name}, 
+							</if>
+							<if test="career_content != null and career_content != ''">
+							#{career_content},
+							</if>
+							<if test="job != null and job != ''"> 
+							#{job}, 
+							</if>
+							<if test="job_position != null and job_position != ''">
+							#{job_position}, 
+							</if>
+							#{member_id}
+							)
+	</insert>
+	
+	<delete id="careerDelete" parameterType="CareerVo">
+		delete from career
+		where career_id = #{career_id}
+	</delete>
+	
+	<select id="careerSelect" parameterType="CareerVo" resultType="CareerVo">
+		select career_id, start_date, end_date, company_name, career_content, job, (select code_name from code where code_id = job ) as job_name, job_position, member_id
+		from career
+		where career_id = #{career_id}
+	</select>
+	
+	<update id="careerUpdate" parameterType="CareerVo">
+		update career
+		set 
+			start_date = #{start_date},
+		    end_date = #{end_date},
+		    company_name = #{company_name},
+		    career_content = #{career_content},
+		    job = #{job},
+		    job_position = #{job_position}
+		where career_id = #{career_id}
+	</update>
 	
 	<!-- <select id="getSelect" parameterType="MemberVO" resultType="MemberVO">
 		SELECT * FROM MEMBER WHERE ID = #{ID}

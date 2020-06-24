@@ -322,12 +322,29 @@ public class HomeController {
 		
 	}
 	
-	/*기업 전체 비디오 목록 보여주기*/
+	/**기업 전체 비디오 목록 보여주기
 	@RequestMapping(value = "/select_video_all.do")
 	public String allVideoforCompany (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
 		List<Map> list = boardService.get_list_video_all(vo);
 		model.addAttribute("allList", list);
 		return "company/company/comVideoAllView";
+	}*/
+	
+	/*전체 비디오 중에 최신순으로 정렬해서 1~6개까지 보여주기*/
+	@RequestMapping(value="get_video_list_first.do")
+	public String video_list_first (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
+		int count = 0;
+		List<Map> list = boardService.get_video_list_more(count);
+		model.addAttribute("firstList", list);
+		return "company/company/comVideoAllView";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="get_video_list_more.do")
+	public List<Map> video_list_more (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
+		int count = Integer.parseInt(request.getParameter("count"));
+		List<Map> list = boardService.get_video_list_more(count);
+		return list;
 	}
 
 }

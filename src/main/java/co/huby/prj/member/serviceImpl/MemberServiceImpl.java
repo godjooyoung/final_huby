@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import co.huby.prj.member.mapper.MemberMap;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.CareerVo;
 import co.huby.prj.vo.SkillsVo;
 
 @Service("memberService")
@@ -73,9 +74,57 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int skillInsert(MemberVo vo) throws Exception {
+	public int skillInsert(SkillsVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.skillInsert(vo);
+	}
+
+	@Override
+	public int skillDelete(SkillsVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.skillDelete(vo);
+	}
+
+	@Override
+	public int skillUpdate(SkillsVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.skillUpdate(vo);
+	}
+
+	@Override
+	public SkillsVo skillSelect(SkillsVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.skillSelect(vo);
+	}
+
+	@Override
+	public List<CareerVo> careerAll(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.careerAll(vo);
+	}
+
+	@Override
+	public int careerinsert(CareerVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.careerinsert(vo);
+	}
+
+	@Override
+	public int careerDelete(CareerVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.careerDelete(vo);
+	}
+
+	@Override
+	public CareerVo careerSelect(CareerVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.careerSelect(vo);
+	}
+
+	@Override
+	public int careerUpdate(CareerVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.careerUpdate(vo);
 	}
 	
 }
