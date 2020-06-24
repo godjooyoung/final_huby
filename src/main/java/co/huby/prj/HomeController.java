@@ -343,6 +343,7 @@ public class HomeController {
 		return list;
 	}
 	
+	/*전체 비디오 최신순 보기, 기업 로그인후 첫 화면*/
 	@RequestMapping(value="get_matched_video_list_first.do")
 	public String matched_video_list_first (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
 		int count = 0;
@@ -357,7 +358,8 @@ public class HomeController {
 	@RequestMapping(value="get_matched_video_list_more.do")
 	public List<Map> matched_video_list_more (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
 		int count = Integer.parseInt(request.getParameter("count"));
-		List<Map> list = boardService.get_video_list_more(count);
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		List<Map> list = boardService.get_matched_video_List_more(companyid, count);
 		return list;
 	}
 }

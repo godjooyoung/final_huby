@@ -39,7 +39,7 @@
 <!-- Pagination -->
 <div class="w3-center w3-padding-32">
 	<div class="w3-bar">
-		<font color="#134a8e" onclick="loadVideoData_more('4')">MORE</font></a>
+		<font color="#134a8e" onclick="loadVideoData_more('4')" id="loadData">MORE</font></a>
 	</div>
 </div>
 
@@ -101,6 +101,7 @@
 		plus = plus*(count_more_button_click);
 		
 		var place = document.getElementById("morePlace");
+		var load_mord_btn = document.getElementById("loadData");
 		$.ajax({
 			type:"get",
 			url:"get_video_list_more.do",
@@ -110,6 +111,7 @@
 			success: function(data){
 			 alert("불러온느중..."+ count_more_button_click + "_"+plus);
 			 console.log(data.length);
+			 if (data.length !=0){
 			 $.each(data, function(idx,item){	
 					$('<div class="w3-quarter">').html("<img src=\"${pageContext.request.contextPath}/resources/img/common/"+item.VIDEO_IMG+"\" "+
 							"alt='thumnail' style='width: 100%;' onclick=\"location.href='resumeDetail.do?video_id=" + item.VIDEO_ID + "&member_id=" +item.MEMBER_ID + "'\">"
@@ -120,6 +122,10 @@
 							"</p>")
 					.appendTo(place);
 				});
+			 }else if(data.length ==0){
+					$(load_mord_btn).empty();
+					$('<div align="center">').html("<h4><b><u>더이상 없어요..T.T</u></b></h4>").appendTo(place);
+				};//endif
 			},
 			error: function(){
 			  alert("에러 발생. 관리자에게 문의주세요.");

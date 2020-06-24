@@ -12,8 +12,8 @@
 
 <!-- First Photo Grid-->
 <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-	<c:forEach var="matched" items="${matched}">
-		<div class="w3-quarter">
+	<c:forEach var="matched" items="${matched}" >
+		<div class="w3-quarter" >
 			<img src="${pageContext.request.contextPath}/resources/img/common/${matched.video_img }"
 				alt="thumnail" style="width: 100%;" onclick="location.href='resumeDetail.do?video_id=${matched.video_id}&member_id=${matched.member_id }'">
 			<button class="w3-button w3-padding-small w3-xlarge"
@@ -29,8 +29,10 @@
 			<h3>#${matched.code_name }</h3>
 			<p>${matched.video_contents }</p>
 		</div>
-	</c:forEach>
+		</c:forEach>
 </div>
+	
+
 <!-- Second Photo Grid-->
 <div class="w3-row-padding w3-padding-16 w3-center" id="morePlace">
 		
@@ -41,7 +43,7 @@
 <!-- Pagination -->
 <div class="w3-center w3-padding-32">
 	<div class="w3-bar">
-		<font color="#134a8e" onclick="loadVideoData_more('4')">MORE</font></a>
+		<font color="#134a8e" onclick="loadVideoData_more('4')" id="loadData">MORE</font></a>
 	</div>
 </div>
 
@@ -103,6 +105,7 @@
 		plus = plus*(count_more_button_click);
 		
 		var place = document.getElementById("morePlace");
+		var load_mord_btn = document.getElementById("loadData");
 		$.ajax({
 			type:"get",
 			url:"get_matched_video_list_more.do",
@@ -110,18 +113,23 @@
 			contentType: 'application/json', 
 			dataType : 'json',
 			success: function(data){
-			 alert("불러온느중..."+ count_more_button_click + "_"+plus);
+			 alert("불러온느중... "+ count_more_button_click + "<<버튼 클릭 횟수.. "+plus + "<<row범위..");
 			 console.log(data.length);
+			if (data.length !=0){
 			 $.each(data, function(idx,item){	
-					$('<div class="w3-quarter">').html("<img src=\"${pageContext.request.contextPath}/resources/img/common/"+item.VIDEO_IMG+"\" "+
-							"alt='thumnail' style='width: 100%;' onclick=\"location.href='resumeDetail.do?video_id=" + item.VIDEO_ID + "&member_id=" +item.MEMBER_ID + "'\">"
-							+"<button class='w3-button w3-padding-small w3-xlarge'id='btn"+item.VIDEO_ID+"' name='likeBtn' value='" + item.VIDEO_ID + "' type='button' onclick='clickLike(" + 
-							item.VIDEO_ID + ")'>"+
-							"<font id='font" +item.VIDEO_ID+ "' color='black' data-count='0'> <b> <i class='fas fa-heart'></i> </b> </font> </button>"
-							+" <h3>#"+ item.CODE_NAME+ " </h3><p>"+ item.VIDEO_CONTENTS +
+					$('<div class="w3-quarter">').html("<img src=\"${pageContext.request.contextPath}/resources/img/common/"+item.video_img+"\" "+
+							"alt='thumnail' style='width: 100%;' onclick=\"location.href='resumeDetail.do?video_id=" + item.video_id + "&member_id=" +item.member_id + "'\">"
+							+"<button class='w3-button w3-padding-small w3-xlarge'id='btn"+item.video_id+"' name='likeBtn' value='" + item.video_id + "' type='button' onclick='clickLike(" + 
+							item.video_id + ")'>"+
+							"<font id='font" +item.video_id+ "' color='black' data-count='0'> <b> <i class='fas fa-heart'></i> </b> </font> </button>"
+							+" <h3>#"+ item.code_name+ " </h3><p>"+ item.video_contents +
 							"</p>")
 					.appendTo(place);
 				});
+			}else if(data.length ==0){
+				$(load_mord_btn).empty();
+				$('<div align="center">').html("<br><br><br><h4><b><u>더이상 없어요..ㅜㅜ</u></b></h4>").appendTo(place);
+			};//endif
 			},
 			error: function(){
 			  alert("에러 발생. 관리자에게 문의주세요.");
