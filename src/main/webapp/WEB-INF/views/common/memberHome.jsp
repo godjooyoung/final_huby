@@ -143,7 +143,7 @@ section .section-title {
 <!-- Team -->
 <form id="frm" name="frm" method="post">
 	<section id="team" class="pb-5" style="width:1200px; margin:0 auto;">
-		<h5 class="section-title h1">채용공고</h5>
+		<h5 class="section-title h1">맞춤 채용공고</h5>
 		
 		<div class="row">
 			<c:choose>
@@ -152,7 +152,7 @@ section .section-title {
 						<div class="col-xs-12 col-sm-6 col-md-4">
 							<div class="container">
 
-								<!-- Team member -->
+								<!-- front -->
 								<div class="image-flip"
 									ontouchstart="this.classList.toggle('hover');">
 									<div class="mainflip flip-0">
@@ -166,40 +166,19 @@ section .section-title {
 													</p>
 													<h4 class="card-title">${empMatch.company_name}</h4>
 													<p class="card-text">${empMatch.employment_title}</p>
-													<a href="https://www.fiverr.com/share/qb8D02"
-														class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+			
 												</div>
 											</div>
 										</div>
 										<div class="backside">
-											<div class="card"
-												onclick='selectemployment("${ empMatch.company_id }","${ empMatch.employment_id }")'>
-												<div class="card-body text-center mt-4">
+											<div class="card">
+												<div class="card-body text-center mt-4" onclick='selectemployment("${ empMatch.company_id }","${ empMatch.employment_id }")'>
 													<h4 class="card-title">${empMatch.company_name}</h4>
 													<p class="card-text">${empMatch.employment_contents}</p>
-													<ul class="list-inline">
-														<li class="list-inline-item"><a
-															class="social-icon text-xs-center" target="_blank"
-															href="https://www.fiverr.com/share/qb8D02"> <i
-																class="fa fa-facebook"></i>
-														</a></li>
-														<li class="list-inline-item"><a
-															class="social-icon text-xs-center" target="_blank"
-															href="https://www.fiverr.com/share/qb8D02"> <i
-																class="fa fa-twitter"></i>
-														</a></li>
-														<li class="list-inline-item"><a
-															class="social-icon text-xs-center" target="_blank"
-															href="https://www.fiverr.com/share/qb8D02"> <i
-																class="fa fa-skype"></i>
-														</a></li>
-														<li class="list-inline-item"><a
-															class="social-icon text-xs-center" target="_blank"
-															href="https://www.fiverr.com/share/qb8D02"> <i
-																class="fa fa-google"></i>
-														</a></li>
-													</ul>
+													
 												</div>
+												<a href="javascript:void(0)" onclick="click_like_btn(event, '${ empMatch.employment_id }')"
+														class="btn btn-primary btn-sm">스크랩하기</a>
 											</div>
 										</div>
 									</div>
@@ -214,8 +193,27 @@ section .section-title {
 	<input type="hidden" id="company_id" name="company_id"> <input
 		type="hidden" id="employment_id" name="employment_id">
 </form>
+<script>
+//좋아요 버튼 스크립트
+	function click_like_btn(e, empid){
+		alert(empid)
+		var emp_id=empid;
+		$.ajax({
+			
+			type : "get",
+			url : "insert_to_employment_like.do",
+			data : {"employment_id" : emp_id},
+			//dataType : 'json',
+			success : function() {
+				alert("해당 공고가 스크랩 되었습니다. 스크랩관리에 가서 메모를 추가하세요");
+			},
+			error : function() {
+				alert("에러 발생. 관리자에게 문의주세요.");
+			}
+		})//end OF AJAX
 
-
+	}//END OF click_like_btn
+</script>
 <!-- Pagination -->
 <!--<div class="w3-center w3-padding-32">
 	<div class="w3-bar">

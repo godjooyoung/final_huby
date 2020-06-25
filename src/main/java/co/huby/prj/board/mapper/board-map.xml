@@ -306,5 +306,54 @@
         ORDER BY v.video_id desc) InnerQuery))
         where RNUM <![CDATA[<=]]> (4+#{count ,jdbcType=INTEGER}) and RNUM <![CDATA[>=]]> (1+#{count ,jdbcType=INTEGER})
 	</select>
+	
+	<!-- 개인회원 스크랩하기 버튼 클릭시 insert 되는 쿼리 -->
+	<insert id="insert_to_employment_like" parameterType="co.huby.prj.vo.LikeEmploymentVo" >
+	INSERT INTO LIKE_EMPLOYMENT 
+            VALUES(LIKE_EMPLOYMENT_SEQ.NEXTVAL,
+                   SYSDATE ,
+                   NULL, 
+                   #{member_id},
+                   #{employment_id})
+    </insert>
+    
+	<!-- 개인회원 스크랩한 내용과 목록 셀렉트 해주는 쿼리 -->
+	<select id ="load_employment_like_list" parameterType="co.huby.prj.vo.LikeEmploymentVo" resultType="map">
+	SELECT DISTINCT
+               E.EMPLOYMENT_ID, 
+               E.EMPLOYMENT_TITLE, 
+               E.HOPE_JOB,
+               C.CODE_NAME, 
+               E.HOPE_WORK_TYPE, 
+               E.EMPLOYMENT_TIME, 
+               E.COMPANY_ID, 
+               COM.COMPANY_NAME,
+               L.EMPLOYMENT_LIKE_ID, 
+               L.EMPLOYMENT_DATE, 
+               L.EMPLOYMENT_LIKE_MEMO
+        FROM EMPLOYMENTS E
+        JOIN CODE C
+        ON C.CODE_ID = E.HOPE_JOB
+            JOIN COMPANY COM
+            ON COM.COMPANY_ID = E.COMPANY_ID
+            JOIN LIKE_EMPLOYMENT L
+            ON L.EMPLOYMENT_ID = E.EMPLOYMENT_ID
+            WHERE L.MEMBER_ID = #{member_id}
+            ORDER BY employment_date DESC
+	</select>
+	<!-- 개인회원이 스크랩 삭제할 경우 딜리트 되는 쿼리 -->
+	<delete id="delete_from_employment_like_list" parameterType="co.huby.prj.vo.LikeEmploymentVo">
+	   DELETE FROM LIKE_EMPLOYMENT 
+       WHERE 
+       EMPLOYMENT_LIKE_ID= #{employment_like_id, jdbcType=VARCHAR}
+	</delete>
+	
+	<!-- 개인회원이 스크랩 메모 추가할 경우 인설트 되는 쿼리 -->
+	<update id="write_memo_for_Scrap" parameterType="co.huby.prj.vo.LikeEmploymentVo">
+	 UPDATE like_employment
+     SET employment_like_memo = #{employment_like_memo}
+     WHERE employment_like_id = #{employment_like_id}
+	</update>
+	
 </mapper>
 

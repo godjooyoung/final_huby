@@ -8,6 +8,7 @@ import org.mybatis.spring.annotation.MapperScan;
 
 import co.huby.prj.vo.ApplyVo;
 import co.huby.prj.vo.EmploymentsVo;
+import co.huby.prj.vo.LikeEmploymentVo;
 import co.huby.prj.vo.LikeVideoVo;
 import co.huby.prj.vo.ResumeVo;
 import co.huby.prj.vo.VideoVo;
@@ -57,4 +58,13 @@ public interface BoardMap {
 	List<Map> get_video_list_more (int count);
 	 
 	List<Map> get_matched_video_List_more (@Param("companyid") String companyid, @Param("count") int count);
+	
+	void insert_to_employment_like(LikeEmploymentVo vo) throws Exception;
+	
+	List<Map> load_employment_like_list(LikeEmploymentVo vo) throws Exception;
+	
+	void write_memo_for_Scrap(LikeEmploymentVo vo) throws Exception;
+	
+	void delete_from_employment_like_list(LikeEmploymentVo vo) throws Exception;
+	
 }

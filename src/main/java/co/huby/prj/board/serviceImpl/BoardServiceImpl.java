@@ -11,6 +11,7 @@ import co.huby.prj.board.mapper.BoardMap;
 import co.huby.prj.board.service.BoardService;
 import co.huby.prj.vo.ApplyVo;
 import co.huby.prj.vo.EmploymentsVo;
+import co.huby.prj.vo.LikeEmploymentVo;
 import co.huby.prj.vo.LikeVideoVo;
 import co.huby.prj.vo.ResumeVo;
 import co.huby.prj.vo.VideoVo;
@@ -148,6 +149,30 @@ public class BoardServiceImpl implements BoardService {
 	public List<Map> get_matched_video_List_more(String companyid, int count) {
 		// TODO Auto-generated method stub
 		return map.get_matched_video_List_more(companyid, count);
+	}
+
+	@Override
+	public void insert_to_employment_like(LikeEmploymentVo vo) throws Exception {
+		// 공고에 스크랩하기 버튼 클릭할 경우 디비에 인설트된다.
+		map.insert_to_employment_like(vo);
+	}
+
+	@Override
+	public List<Map> load_employment_like_list(LikeEmploymentVo vo) throws Exception {
+		//개인회원이 스크랩 관리 페이지로 가면 내가 스크랩한 공고 목록이 나타난다.
+		return map.load_employment_like_list(vo);
+	}
+
+	@Override
+	public void write_memo_for_Scrap(LikeEmploymentVo vo) throws Exception {
+		map.write_memo_for_Scrap(vo);
+		
+	}
+
+	@Override
+	public void delete_from_employment_like_list(LikeEmploymentVo vo) throws Exception {
+		map.delete_from_employment_like_list(vo);
+		
 	}
 
 

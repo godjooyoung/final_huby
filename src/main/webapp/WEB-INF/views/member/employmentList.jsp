@@ -16,21 +16,17 @@
 		</div></a>
 	</div>
 
-
 	<div id="Paris" class="w3-container city" style="display: none">
 		<h2>Paris</h2>
 		<p>Paris is the capital of France.</p>
 	</div>
 
-
 	<div id="London" class="w3-container city" style="display: block">
 		<h2>전체</h2>
-		<p>채용공고전부다</p>
+		
 		<div class="w3-container">
 			<h2>공고리스트</h2>
-			<p>여기서 다보여줌</p>
 			<div>
-			
 			<select class="form-control input-md" id="location" name="hope_location" onchange="locationcheck(this.value)">
 		  		<option value="">지역 선택</option>
 		  		<option value="서울">서울</option>
@@ -53,9 +49,12 @@
 		  		<option value="강원.">강원</option>
 		  		<option value="전국">전국</option>
 		  	</select>
+		  	
+		  	<!-- 스크립트 -->
 		  	<script>
 		  		$("#location").val("${param.hope_location}");
 		  	</script>
+			
 			</div>
 			<div>
 			<select class="form-control input-md" id="job" name="hope_job" onchange="jobcheck(this.value)">
@@ -64,16 +63,16 @@
 		  		<option value="${ type.code_id }">${ type.code_name }</option>
 		  	</c:forEach>
 		  	</select>
+		  	
+		  	<!-- 스크립트 -->
 			<script>
 				$("#job").val("${param.hope_job}");
 			</script>
-			</div>
 			
+			</div>
 			<c:forEach var="elist" items="${elist}">
 				<ul class="w3-ul w3-card-4">
-					<li class="w3-bar"><span
-						onclick="this.parentElement.style.display='none'"
-						class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+					<li class="w3-bar">
 						<img src="img_avatar2.png"
 						class="w3-bar-item w3-circle w3-hide-small" style="width: 85px">
 						<div class="w3-bar-item">
@@ -86,10 +85,13 @@
 			</c:forEach>
 
 		</div>
-	</div>	
+		<!-- 공고 리스트 end -->
+	</div>
+	<!-- 상단바 end -->
 </form>
 </div>
 
+<!-- 스크립트 -->
 <script>
 	function locationcheck(selected){
 		document.frm.submit();
@@ -114,13 +116,14 @@
 		evt.currentTarget.firstElementChild.className += " w3-border-red";
 	}
 </script>
+
+<!-- 스크립트 -->
 <script>
 	function empDetail(e, empid) {
 		var closeBtn = '<span onclick="this.parentElement.style.display=\'none\'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>';
 		var place = document.getElementById("emp" + empid);
 		var plusLi = document.createElement('li');
-		$
-				.ajax({
+		$.ajax({
 					type : "get",
 					url : "empDetaleList.do",
 					data : {
@@ -151,7 +154,13 @@
 																	+ item.EMPLOYMENT_CONTENTS
 																	+ "<br>"
 																	+ item.HOPE_WORK_TYPE
-																	+ "<br><input type=\"button\" value=\"지원하기\"  onClick=\"location.href='applyinfoall.do'\">")
+																	+ "<b>"
+																	+ item.EMPLOYMENT_ID
+																	+ "<b>"
+																	+ "<br><input type=\"button\" value=\"지원하기\"  onClick=\"location.href='applyinfoall.do'\">"
+																	+ "<br><input type=\"button\" value=\"스크랩하기\"  onClick=\"click_like_btn(event,"
+																			+ item.EMPLOYMENT_ID + ")\">")
+																	
 													.appendTo(place);
 										});//each
 
@@ -160,7 +169,27 @@
 					error : function() {
 						alert("에러 발생. 관리자에게 문의주세요.");
 					}
-				})
+				})//end OF AJAX
 
 	};
+	
+	//좋아요 버튼 스크립트
+	function click_like_btn(e, empid){
+		alert(empid)
+		var emp_id=empid;
+		$.ajax({
+			
+			type : "get",
+			url : "insert_to_employment_like.do",
+			data : {"employment_id" : emp_id},
+			//dataType : 'json',
+			success : function() {
+				alert("해당 공고가 스크랩 되었습니다. 스크랩관리에 가서 메모를 추가하세요");
+			},
+			error : function() {
+				alert("에러 발생. 관리자에게 문의주세요.");
+			}
+		})//end OF AJAX
+
+	}//END OF click_like_btn
 </script>

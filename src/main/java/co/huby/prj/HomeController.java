@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.huby.prj.board.service.BoardService;
 import co.huby.prj.vo.ApplyVo;
 import co.huby.prj.vo.EmploymentsVo;
+import co.huby.prj.vo.LikeEmploymentVo;
 import co.huby.prj.vo.LikeVideoVo;
 import co.huby.prj.vo.VideoVo;
 
@@ -343,7 +344,7 @@ public class HomeController {
 		return list;
 	}
 	
-	/*전체 비디오 최신순 보기, 기업 로그인후 첫 화면*/
+	/*매치비디오 최신순 보기, 기업 로그인후 첫 화면*/
 	@RequestMapping(value="get_matched_video_list_first.do")
 	public String matched_video_list_first (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
 		int count = 0;
@@ -368,5 +369,48 @@ public class HomeController {
 	public String go_habit_page (Model model, HttpServletRequest request, VideoVo vo) throws Exception{ 
 		
 		return "person/member/habitPage";
+	}
+	
+	// 공고에 스크랩하기 버튼 클릭할 경우 디비에 인설트된다.
+	@ResponseBody
+	@RequestMapping(value="insert_to_employment_like.do")
+	public void insert_to_employment_like (Model model, HttpServletRequest request,LikeEmploymentVo vo) throws Exception{
+		String memberid = (String) request.getSession().getAttribute("loginId");
+		String eid = request.getParameter("employment_id");
+		System.out.println("insert_to_employment_like를 실행합니다. 공고 아이디는?>>...." + eid);
+		vo.setEmployment_id(eid);
+		vo.setMember_id(memberid);
+		boardService.insert_to_employment_like(vo);
+	}
+	
+	//개인회원이 스크랩 페이지로 갈 경우 공고 스크랩 목록을 불러온다.
+	@RequestMapping(value="load_employment_like_list.do")
+	public String load_employment_like_list(Model model, HttpServletRequest request, LikeEmploymentVo vo) throws Exception {
+		String memberid = (String) request.getSession().getAttribute("loginId");
+		vo.setMember_id(memberid);
+		List<Map> list = boardService.load_employment_like_list(vo);
+		model.addAttribute("empLikeList", list);
+		return "person/member/employmentScrapPage";
+	}
+	
+	//개인회원 스크랩페이지에서 메모관리
+	@RequestMapping(value="write_memo_for_Scrap.do")
+	public String write_memo_for_Scrap(Model model, HttpServletRequest request, LikeEmploymentVo vo) throws Exception {
+		String memberid = (String) request.getSession().getAttribute("loginId");
+		String memo = request.getParameter("memotext");
+		String sid= request.getParameter("likeid");
+		vo.setEmployment_like_id(sid);
+		vo.setEmployment_like_memo(memo);
+		boardService.write_memo_for_Scrap(vo);
+		return "redirect:load_employment_like_list.do";
+	}
+	
+	//개인회원 스크랩창에서 스크랩 삭제
+	@RequestMapping(value="delete_from_employment_like.do")
+	public String delete_from_employment_like_list (Model model, HttpServletRequest request,LikeEmploymentVo vo) throws Exception{
+		String sid= request.getParameter("sid");
+		vo.setEmployment_like_id(sid);
+		boardService.delete_from_employment_like_list(vo);
+		return "redirect:load_employment_like_list.do";
 	}
 }
