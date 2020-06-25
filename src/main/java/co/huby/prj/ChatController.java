@@ -8,20 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import co.huby.prj.chat.Handler;
 import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.vo.InterviewVo;
-import co.huby.prj.vo.MessageVo;
 
 @Controller
 public class ChatController {
 
 	@Autowired
 	ChatService chatService;
-	@Autowired
-	Handler handler;
+	// @Autowired
+	// Handler handler;
 
 	@RequestMapping(value = "/company_chat.do") // 기업회원 채팅창
 	public String getChatViewPage(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
