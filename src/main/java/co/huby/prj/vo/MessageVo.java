@@ -15,6 +15,7 @@ public class MessageVo {
 	private String member_id;
 	private String interview_id;
 	private String message_contents;
+	private String message_type;
 
 	public MessageVo() {
 		// TODO Auto-generated constructor stub
@@ -110,6 +111,14 @@ public class MessageVo {
 
 	public void setMessage_contents(String message_contents) {
 		this.message_contents = message_contents;
+	}
+
+	public String getMessage_type() {
+		return message_type;
+	}
+
+	public void setMessage_type(String message_type) {
+		this.message_type = message_type;
 	}
 
 }

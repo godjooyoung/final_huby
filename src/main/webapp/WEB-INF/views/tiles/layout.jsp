@@ -51,7 +51,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 
 
-
 <!-- slick  -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/slick/slick.min.js"></script>
@@ -104,7 +103,7 @@ body, h1, h2, h3, h4, h5, h6 {
 <body id="page-top">
 	<div id="wrapper">
 		<tiles:insertAttribute name="top" />
-		<br><br><br>
+		<br> <br> <br>
 		<div id="contents">
 			<tiles:insertAttribute name="body" />
 			<tiles:insertAttribute name="footer" />
@@ -126,6 +125,27 @@ body, h1, h2, h3, h4, h5, h6 {
 													.slideToggle(200);
 										});
 					});
-</script>
 
+	
+	connect();
+
+	//연결
+	function connect() {
+		sock = new SockJS('/prj/chat.do');
+		sock.onopen = function() {
+			console.log('open');
+		};
+		sock.onmessage = function(evt) {
+			var data = evt.data;
+			var obj = JSON.parse(data)
+			if (obj.message_type == 'CHAT') {
+				appendMessage(obj.message_content);
+			}
+		};
+		sock.onclose = function() {
+			appendMessage("연결을 끊었습니다.");
+			console.log('close');
+		};
+	}
+</script>
 </html>

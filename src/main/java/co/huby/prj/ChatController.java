@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.huby.prj.chat.Handler;
 import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.vo.InterviewVo;
 import co.huby.prj.vo.MessageVo;
@@ -19,6 +20,8 @@ public class ChatController {
 
 	@Autowired
 	ChatService chatService;
+	@Autowired
+	Handler handler;
 
 	@RequestMapping(value = "/company_chat.do") // 기업회원 채팅창
 	public String getChatViewPage(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
@@ -60,16 +63,16 @@ public class ChatController {
 
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/insertMessage.do")
-	public String insertMessage(MessageVo vo, Model model, HttpServletRequest request) throws Exception {
-		String loginId = (String) request.getSession().getAttribute("loginId");
-		String msg = request.getParameter("message_contents");
-		vo.setMessage_sender(loginId);
-		vo.setMessage_contents(msg);
-		vo.setCompany_id(request.getParameter("company_id"));
-		chatService.insertMessage(vo);
-		return null;
-	}
-
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/insertMessage.do") public String
+	 * insertMessage(MessageVo vo, Model model, HttpServletRequest request) throws
+	 * Exception { String loginId = (String)
+	 * request.getSession().getAttribute("loginId"); String msg =
+	 * request.getParameter("message_contents"); vo.setMessage_sender(loginId);
+	 * vo.setMessage_contents(msg);
+	 * vo.setCompany_id(request.getParameter("company_id"));
+	 * chatService.insertMessage(vo); return null; }
+	 */
 }

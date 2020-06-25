@@ -76,27 +76,6 @@ ${personChatList}
 <input type="button" id="enterBtn" value="입장" style="display: none">
 <input type="button" id="exitBtn" value="나가기" style="display: none">
 <script type="text/javascript">
-	connect();
-
-	//연결
-	function connect() {
-		sock = new SockJS('/prj/chat.do');
-		sock.onopen = function() {
-			console.log('open');
-		};
-		sock.onmessage = function(evt) {
-			var data = evt.data;
-			console.log(data)
-			var obj = JSON.parse(data)
-			console.log(obj)
-			appendMessage(obj.message_content);
-		};
-		sock.onclose = function() {
-			appendMessage("연결을 끊었습니다.");
-			console.log('close');
-		};
-	}
-
 	function send() {
 		var msg = $("#message").val();
 		if (msg != "") {
@@ -106,6 +85,7 @@ ${personChatList}
 			message.message_receiver = '${loginId}' == '${room.company_id}' ? '${room.member_id}'
 					: '${room.company_id}';
 			message.message_sender = '${loginId}'
+			message.message_type = 'CHAT';
 		}
 
 		sock.send(JSON.stringify(message));

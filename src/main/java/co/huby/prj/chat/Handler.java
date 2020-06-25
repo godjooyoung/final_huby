@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.MessageVo;
 
@@ -18,6 +20,9 @@ import com.google.gson.Gson;
 
 public class Handler extends TextWebSocketHandler {
 
+	@Autowired
+	private ChatService chatService;
+	
 	private List<WebSocketSession> connectedUsers;
 
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>(); // 1:1채팅
@@ -48,13 +53,14 @@ public class Handler extends TextWebSocketHandler {
 		System.out.println(users);
 		Map<String, Object> map = null;
 		MessageVo messageVo = MessageVo.convertMessage(message.getPayload());
-
-		WebSocketSession rs = users.get(messageVo.getMessage_receiver());
-		if (rs != null) {
-			rs.sendMessage(new TextMessage(message.getPayload()));
+		if (messageVo.getMessage_type().equals("CHAT")) {
+			WebSocketSession rs = users.get(messageVo.getMessage_receiver());
+			if (rs != null) {
+				rs.sendMessage(new TextMessage(message.getPayload()));
+			}
+			session.sendMessage(new TextMessage(message.getPayload())); //클라이언트에게 보냄
+			//chatService.insertMessage(messageVo);
 		}
-		session.sendMessage(new TextMessage(message.getPayload()));
-
 	}
 
 	protected void sendAllMessage(WebSocketSession session, TextMessage message) throws Exception {
