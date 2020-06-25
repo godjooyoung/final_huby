@@ -42,7 +42,7 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate);
 		return "person/common/memberHome";
 	}
-
+	/*
 	@RequestMapping(value = "/companyAfterLogin.do") // 매치된거 기업에게 추천
 	public String home(Model model, HttpServletRequest request, VideoVo vo) throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
@@ -50,7 +50,7 @@ public class HomeController {
 		List<Map> list = boardService.getMatchedListForCompany(vo);
 		model.addAttribute("matched", list);
 		return "company/company/companyStart";
-	}
+	}*/
 	
 	@ResponseBody
 	@RequestMapping(value = "/companyLikeVideo.do") // 기업이 영상좋아요 버튼 누를경우 디비에 인설트
@@ -72,15 +72,14 @@ public class HomeController {
 		return "company/company/companyEmploymentsApplyList";
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/companyEmploymentsApply.do") // 기업에 지원한 이력서와 이름 보여주기
-	public List<Map> companyApplyList(Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
+	public String companyApplyList(Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
-		String listviewid = request.getParameter("listviewId");
+		String listviewid = request.getParameter("applyIdInput");
 		System.out.println("...................." + listviewid);
 		List<Map> list = boardService.getCompany_ApplyList(companyid, listviewid);
-
-		return list;
+		model.addAttribute("applymenList", list);
+		return "company/company/companyEmploymentApplymemList";
 	}
 
 	@RequestMapping(value = "/companyApplyMember.do") // 기업에 지원인 인간의 상세 정보

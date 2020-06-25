@@ -39,7 +39,9 @@
 	<!-- 기업이 낸 공고 조회하기 -->
 	<select id="getCompany_Employments" parameterType="string"
 		resultType="map">
-		select * from employments where company_id = #{value,
+		select e.*, (select count(*) from apply where e.employment_id = apply.employment_id) as applycnt 
+		from employments e 
+		where company_id = #{value,
 		jdbcType=VARCHAR}
 	</select>
 

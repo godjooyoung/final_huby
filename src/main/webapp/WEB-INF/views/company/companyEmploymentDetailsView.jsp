@@ -57,18 +57,7 @@
     </tr>
     </table>
     <br>
-	<h2>${employmentsDetails.employment_title}</h2>
-	<h3>${employmentsDetails.employment_contents}</h3>
-	<h2>${employmentsDetails.hope_career}</h2>
-	<h2>${employmentsDetails.hope_graduate}</h2>
-	<h2>${employmentsDetails.hope_job_position}</h2>
-	<h2>${employmentsDetails.hope_job}</h2>
-	<h2>${employmentsDetails.hope_location}</h2>
-	<h2>${employmentsDetails.hope_work_type}</h2>
-	<h2>${employmentsDetails.employment_prefer}</h2>
-	<h2>${employmentsDetails.employment_time}</h2>
-	<h2>${employmentsDetails.company_id}</h2>
-	<h2>${employmentsDetails.hope_salary}</h2>
+	
 	<form id="formodify" name="formodify" action="">
 	<input type="hidden" name ="emp_id" id="emp_id" value="${employmentsDetails.employment_id}">
 	<input type="hidden" name ="title" id="title" value="${employmentsDetails.employment_title}">
