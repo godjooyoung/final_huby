@@ -14,7 +14,7 @@ public class MessageVo {
 	private String company_id;
 	private String member_id;
 	private String interview_id;
-	private String message_contents;
+	private String message_content;
 	private String message_type;
 
 	public MessageVo() {
@@ -105,12 +105,12 @@ public class MessageVo {
 				+ "]";
 	}
 
-	public String getMessage_contents() {
-		return message_contents;
+	public String getMessage_content() {
+		return message_content;
 	}
 
-	public void setMessage_contents(String message_contents) {
-		this.message_contents = message_contents;
+	public void setMessage_content(String message_content) {
+		this.message_content = message_content;
 	}
 
 	public String getMessage_type() {

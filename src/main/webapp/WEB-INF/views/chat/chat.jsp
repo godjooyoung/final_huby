@@ -12,10 +12,7 @@ ${room.company_id}
 <br>
 <%=session.getAttribute("loginId")%>
 ${personChatList}
-<!-- <link rel="stylesheet" type="text/css"
-	href="../../../resources/css/page.css"> -->
-
-<c:set var="profile" value='<%=session.getAttribute("loginId")%>' />
+<c:set var="user" value='<%=session.getAttribute("loginId")%>' />
 
 <div class="col-12 row justify-content-center align-items-center my-5 ">
 	<a href=""><img src="../../../resources/image/AlmomLogo.png"
@@ -25,8 +22,7 @@ ${personChatList}
 	<div class="col-2" style="float: left">
 		<span> 목록 </span>
 	</div>
-	<div class="col-8" style="float: left; text-align: center;"> 님과
-		대화</div>
+	<div class="col-8" style="float: left; text-align: center;">님과 대화</div>
 	<div class="col-2" style="float: right">
 		<span> 닫기 </span>
 	</div>
@@ -47,25 +43,20 @@ ${personChatList}
 </div>
 
 <!-- 채팅 입력창 -->
-<form action="insertMessage.do" method="POST" name="insertM"
-	id="insertM">
-	<div class="col-12" style="margin-top: 20px; margin-bottom: 15px;">
-		<div class="col-12" style="float: left">
-			<textarea class="form-control"
-				style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%"
-				placeholder="내용을 입력하세요" id="message_contents"
-				name="message_contents">
+<div class="col-12" style="margin-top: 20px; margin-bottom: 15px;">
+	<div class="col-12" style="float: left">
+		<textarea class="form-control"
+			style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%"
+			placeholder="내용을 입력하세요" id="message">
 				</textarea>
-			<span
-				style="float: right; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px;">
-				<a
-				style="margin-top: 30px; text-align: center; color: white; font-weight: bold;"
-				id="sendBtn"><br>전송</a>
-				<input type="hidden" id="cid" name="company_id" value="${room.company_id }">
-			</span>
-		</div>
+		<span
+			style="float: right; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px;">
+			<a
+			style="margin-top: 30px; text-align: center; color: white; font-weight: bold;"
+			id="sendBtn"><br>전송</a>
+		</span>
 	</div>
-</form>
+</div>
 ===========================${loginType}, ${loginId}
 
 <img id="profileImg" class="img-fluid"
@@ -88,7 +79,7 @@ ${personChatList}
 			message.message_type = 'CHAT';
 		}
 
-		sock.send(JSON.stringify(message));
+		sock.send(JSON.stringify(message)); //웹소켓으로 메시지를 보내겠어
 		$("#message").val("");
 	}
 
@@ -120,12 +111,24 @@ ${personChatList}
 			return false;
 		} else {
 			var t = getTimeStamp();
-			$("#chatMessageArea")
-					.append(
-							"<div class='col-12 row' style = 'height : auto; margin-top : 5px;'><div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'><img id='profileImg' class='img-fluid' src='/displayFile?fileName=${userImage}&directory=profile' style = 'width:50px; height:50px; '><div style='font-size:9px; clear:both;'>${user_name}</div></div><div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:right;'><div class = 'col-12' style = ' background-color:#ACF3FF; padding : 10px 5px; float:left; border-radius:10px;'><span style = 'font-size : 12px;'>"
-									+ msg
-									+ "</span></div><div col-12 style = 'font-size:9px; text-align:right; float:right;'><span style ='float:right; font-size:9px; text-align:right;' >"
-									+ t + "</span></div></div></div>")
+			console.log(msg)
+			if (msg.message_sender == '${loginId}') {
+				$("#chatMessageArea")
+						.append(
+								"<div class='col-12 row' style = 'height : auto; margin-top : 5px;'><div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'><img id='profileImg' class='img-fluid' src='/displayFile?fileName=${userImage}&directory=profile' style = 'width:50px; height:50px; '><div style='font-size:9px; clear:both;' '>${user_name}</div></div><div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:right;'><div class = 'col-12' style = ' background-color:#134a8e; font-color:#FFFFFF; padding : 10px 5px; float:left; border-radius:10px;'><span style = 'font-size : 12px; font-color:#FFFFFF;'>"
+										+ msg.message_content // msg.message_sender +'${loginId}'
+										+ "</span></div><div col-12 style = 'font-size:9px; text-align:left; float:left; font-color:#FFFFFF;'><span style ='float:left; font-size:9px; text-align:left; font-color:#FFFFFF;' >"
+										+ t + "</span></div></div></div>")
+
+			} else {
+				$("#chatMessageArea")
+						.append(
+								"${loginId}</div></div><div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:right;'><div class = 'col-12' style = ' background-color:#ACF3FF; padding : 10px 5px; float:left; border-radius:10px;'><span style = 'font-size : 12px;'>"
+										+ msg.message_content // msg.message_sender +'${loginId}'
+										+ "</span></div><div col-12 style = 'font-size:9px; text-align:right; float:right;'><span style ='float:right; font-size:9px; text-align:right;' >"
+										+ t + "</span></div></div></div>")
+
+			}
 
 			var chatAreaHeight = $("#chatArea").height();
 			var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
@@ -144,6 +147,12 @@ ${personChatList}
 
 		$('#sendBtn').click(function() {
 			send();
-		});/* $('#enterBtn').click(function() { connect(); }); $('#exitBtn').click(function() { disconnect(); }); */
+		});
+		$('#enterBtn').click(function() {
+			connect();
+		});
+		$('#exitBtn').click(function() {
+			disconnect();
+		});
 	});
 </script>

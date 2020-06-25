@@ -125,8 +125,8 @@ body, h1, h2, h3, h4, h5, h6 {
 													.slideToggle(200);
 										});
 					});
-
-	
+</script>
+<script>
 	connect();
 
 	//연결
@@ -139,7 +139,7 @@ body, h1, h2, h3, h4, h5, h6 {
 			var data = evt.data;
 			var obj = JSON.parse(data)
 			if (obj.message_type == 'CHAT') {
-				appendMessage(obj.message_content);
+				appendMessage(obj);
 			}
 		};
 		sock.onclose = function() {
