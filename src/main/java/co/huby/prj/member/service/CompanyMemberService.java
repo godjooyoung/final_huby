@@ -12,4 +12,5 @@ public interface CompanyMemberService {
 	int companyMemberDelete(CompanyVo vo);
 	CompanyVo companyMemberIdCheck(CompanyVo vo);
 	CompanyVo companyrNumCheck(CompanyVo vo);
+	CompanyVo companySelectOne(CompanyVo vo);
 }

@@ -19,9 +19,18 @@ public class CompanyVo {
 	private String company_sales;
 	private String homepage;
 	private Date company_date;
+	private String job_name;
 	//getter setter
+	
+	
 	public String getCompany_id() {
 		return company_id;
+	}
+	public String getJob_name() {
+		return job_name;
+	}
+	public void setJob_name(String job_name) {
+		this.job_name = job_name;
 	}
 	public void setCompany_id(String company_id) {
 		this.company_id = company_id;

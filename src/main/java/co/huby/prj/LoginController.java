@@ -117,9 +117,6 @@ public class LoginController {
 		return num;
 	}
 	
-	
-	
-	
 	@ResponseBody
 	@RequestMapping("/CompanyrNumCheck.do")
 	public String CompanyrNumCheck(Model model, CompanyVo vo) {

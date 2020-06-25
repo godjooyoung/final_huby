@@ -313,6 +313,8 @@ function emailcheck(){
 			$('#emailblur').css("color", "blue");
 			return true;
 		}
+	}else{
+		$("#emailblur").html("");
 	}
 }
 

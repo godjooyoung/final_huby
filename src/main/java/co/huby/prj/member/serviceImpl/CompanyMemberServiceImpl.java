@@ -41,7 +41,7 @@ public class CompanyMemberServiceImpl implements CompanyMemberService {
 	@Override
 	public int companyMemberUpdate(CompanyVo vo){
 		// TODO Auto-generated method stub
-		return 0;
+		return map.companyMemberUpdate(vo);
 	}
 
 	@Override
@@ -60,5 +60,11 @@ public class CompanyMemberServiceImpl implements CompanyMemberService {
 	public CompanyVo companyrNumCheck(CompanyVo vo) {
 		// TODO Auto-generated method stub
 		return map.companyrNumCheck(vo);
+	}
+
+	@Override
+	public CompanyVo companySelectOne(CompanyVo vo) {
+		// TODO Auto-generated method stub
+		return map.companySelectOne(vo);
 	}
 }

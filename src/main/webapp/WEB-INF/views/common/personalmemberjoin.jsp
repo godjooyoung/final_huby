@@ -93,7 +93,7 @@
 		});
 	
 	
-	var pw = $('#member_pw').val();
+	/* var pw = $('#member_pw').val();
 	var pwcheck = /^[A-Za-z0-9]{6,20}$/;
 	
 	if(pw != ""){
@@ -119,7 +119,7 @@
 			$('#pwcheck2').css("color", "red");
 			cnt++;
 		}
-	}
+	} */
 
 
 	var name = $('#member_name').val();
@@ -266,7 +266,7 @@ function idcheck(){
 		
 }
 
-function pwcheck(){
+/* function pwcheck(){
 		var pw = $('#member_pw').val();
 		var pwcheck = /^[A-Za-z0-9]{6,20}$/;
 		
@@ -294,7 +294,7 @@ function pwcheck2(){
 			$('#pwcheck2').css("color", "red");
 			return true;
 		}
-}
+} */
 
 function namecheck(){
 		var name = $('#member_name').val();

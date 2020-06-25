@@ -36,35 +36,10 @@
 <!-- 정규식 검사 시작 -->
 	function joincheck(){
 		var cnt = 0;
-		/* var tel1 = $("#member_tel1").val();
-		var tel2 = $("#member_tel2").val();
-		var tel3 = $("#member_tel3").val();
-		$("#member_tel").val(tel1+"-"+tel2+"-"+tel3); */
 		
-		/* var email1 = $("#member_email1").val();
-		var email2 = $("#member_email2").val();
-		var email3 = $("#member_email3").val();
-		var email = "";
-		
-		if(email3 == "custom"){
-			email = email1 + "@" + email2;
-		}else{
-			email = email1 + "@" + email3;	
-		}
-		$("#member_email").val(email); */
 		
 		var addr1 = $("#member_addr1").val();
 		$("#member_addr").val(addr1);
-		
-	
-	
-	/* function custom(selected){
-		if(selected == "custom"){
-			$("#member_email2").show();
-		}else{
-			$("#member_email2").hide();
-		}
-	}  */
 	
 	var pw = $('#member_pw').val();
 	var pwcheck = /^[A-Za-z0-9]{6,20}$/;
@@ -93,30 +68,6 @@
 			cnt++;
 		}
 	}
-
-/* function telcheck(){
-	var phoneRule = /^[0-9]*$/
-	var tel1 = $("#member_tel1").val();
-	var tel2 = $("#member_tel2").val();
-	var tel3 = $("#member_tel3").val();
-	
-	if(tel1 == "" || tel2 == "" || tel3 == ""){
-		$('#telcheck').html("번호를 전부 입력해주세요");
-		$('#telcheck').css("color", "red");
-		return;
-	}
-	
-	if(!phoneRule.test(tel1) || !phoneRule.test(tel2) || !phoneRule.test(tel3)){
-		$('#telcheck').html("숫자만 입력해주세요.");
-		$('#telcheck').css("color", "red");
-		return;
-		
-	} else {
-		$('#telcheck').html("정상적으로 번호가 입력되었습니다.");
-		$('#telcheck').css("color", "blue");
-		return true;
-	} 
-} */
 
 	var tel = $("#member_tel").val();
 	var telRule = /^\d{3}-\d{3,4}-\d{4}$/;
@@ -355,22 +306,22 @@ function namecheck(){
         </div>
 
         <!-- Text input-->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label class="col-md-4 control-label" for="phone">비밀번호 변경</label>  
           <div class="col-md-4">
           <input class="form-control input-md" type="password" id="member_pw" name="member_pw" onblur="pwcheck()" maxlength="20">
           <span class="help-block" id="pwcheck"></span>  
           </div>
-        </div>
+        </div> -->
         
         <!-- Text input-->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label class="col-md-4 control-label" for="phone">비밀번호 변경 확인</label>  
           <div class="col-md-4">
           <input class="form-control input-md" type="password" id="member_pw2" name="member_pw2" onblur="pwcheck2()" maxlength="20">
           <span class="help-block" id="pwcheck2"></span>  
           </div>
-        </div>
+        </div> -->
 
         <!-- Text input-->
         <div class="form-group">
@@ -441,6 +392,7 @@ function namecheck(){
           	<input class="btn btn-success" type="submit" value="정보 수정하기">
             <input class="btn btn-success" type="reset" value="취소">
             <input class="btn btn-success" type="button" value="이전 페이지" onclick="back()">
+            <input class="btn btn-success" type="button" value="비밀번호 변경">
           </div>
         </div>
 

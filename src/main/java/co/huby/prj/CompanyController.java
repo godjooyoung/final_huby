@@ -2,6 +2,7 @@ package co.huby.prj;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.huby.prj.board.service.BoardService;
+import co.huby.prj.code.service.CodeService;
+import co.huby.prj.code.service.CodeVo;
 import co.huby.prj.member.service.CompanyMemberService;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
@@ -43,6 +46,8 @@ public class CompanyController {
 	BoardService boardService;
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	CodeService codeService;
 
 	@RequestMapping("/CompanyInsertJoin.do")
 	public ModelAndView CompanyInsertJFoin(Model model, CompanyVo vo) {
@@ -79,5 +84,27 @@ public class CompanyController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("company/common/test");
 		return mav;
+	}
+	
+	@RequestMapping("/companyInfoUpdatePage.do")
+	public String companyInfoUpdatePage(Model model, HttpServletRequest request, CompanyVo cvo) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		cvo.setCompany_id(id);
+		CompanyVo checkVo = companyMemberService.companySelectOne(cvo);
+		model.addAttribute("cvo",checkVo);
+		List<CodeVo> typeVo = codeService.SelectAll();
+		model.addAttribute("typeVo",typeVo);
+		
+		return "company/company/companyInfoUpdatePage";
+	}
+	
+	@RequestMapping("/companyInfoUpdate.do")
+	public String companyInfoUpdate(Model model, HttpServletRequest request, CompanyVo cvo) {
+		String id = (String) request.getSession().getAttribute("loginId");
+		cvo.setCompany_id(id);
+		
+		int n = companyMemberService.companyMemberUpdate(cvo);
+		
+		return "redirect:companyInfoUpdatePage.do";
 	}
 }
