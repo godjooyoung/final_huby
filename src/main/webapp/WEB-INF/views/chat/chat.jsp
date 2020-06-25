@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 ${room.company_id}
+${room.interview_id }
 <br>
 <br>
 <br>
@@ -77,6 +78,9 @@ ${personChatList}
 					: '${room.company_id}';
 			message.message_sender = '${loginId}'
 			message.message_type = 'CHAT';
+			message.interview_id = '${room.interview_id}';
+			message.member_id = '${room.member_id}';
+			message.company_id = '${room.company_id}';
 		}
 
 		sock.send(JSON.stringify(message)); //웹소켓으로 메시지를 보내겠어

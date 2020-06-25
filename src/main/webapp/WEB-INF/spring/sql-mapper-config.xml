@@ -15,7 +15,6 @@
 		<typeAlias alias="EmploymentsVo"
 			type="co.huby.prj.vo.EmploymentsVo" />
 		<typeAlias alias="VideoVo" type="co.huby.prj.vo.VideoVo" />
-		<typeAlias alias="ResumeVo" type="co.huby.prj.vo.ResumeVo" />
 		<typeAlias alias="SkillsVo" type="co.huby.prj.vo.SkillsVo" />
 		<typeAlias alias="CareerVo" type="co.huby.prj.vo.CareerVo" />
 		<typeAlias alias="NoticeVo" type="co.huby.prj.vo.NoticeVo" />

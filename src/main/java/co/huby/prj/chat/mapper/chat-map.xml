@@ -13,13 +13,11 @@
 		interview_id = #{interview_id}
 	</select>
 
-	<insert id="insertMessage">
+	<insert id="insertMessage" parameterType="MessageVo">
 		insert into MESSAGE
-		(message_id, message_sender, message_receiver,
-		message_contents,
-		interview_id, member_id, company_id, resume_id)
+		(message_id, message_sender, message_receiver, message_contents, interview_id, member_id, company_id)
 		values
-		(MESSAGE_SEQ.nextval,#{message_sender},null,#{message_contents},null,null,#{company_id},null)
+		(MESSAGE_SEQ.nextval,#{message_sender},#{message_receiver},#{message_contents},#{interview_id},#{member_id},#{company_id})
 	</insert>
 
 	<select id="getMember" resultType="MessageVo">

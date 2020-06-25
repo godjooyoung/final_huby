@@ -6,21 +6,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.member.service.MemberVo;
-import co.huby.prj.vo.InterviewVo;
 import co.huby.prj.vo.MessageVo;
 
 import com.google.gson.Gson;
 
 public class Handler extends TextWebSocketHandler {
 
-	//@Autowired
-	//private ChatService chatService;
+	@Autowired
+	private ChatService chatService;
 
 	private List<WebSocketSession> connectedUsers; // 웹소켓세션
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>(); // 1:1채팅
@@ -51,21 +52,19 @@ public class Handler extends TextWebSocketHandler {
 		System.out.println(users);
 		Map<String, Object> map = null;
 		MessageVo messageVo = MessageVo.convertMessage(message.getPayload());
-		InterviewVo interviewVo = new InterviewVo();
+		MessageVo mVo = new MessageVo();
 		if (messageVo.getMessage_type().equals("CHAT")) {
 			WebSocketSession rs = users.get(messageVo.getMessage_receiver());
 			if (rs != null) {
 				rs.sendMessage(new TextMessage(message.getPayload()));
 			}
 			session.sendMessage(new TextMessage(message.getPayload())); // 클라이언트에게 보냄
-
-			// messageVo.setInterview_id(interviewVo.getInterview_id());
-			// if (interviewVo.getMember_id().equals(messageVo.getMessage_sender())) {
-			// messageVo.setMessage_receiver(interviewVo.getCompany_id());
-			// } else {
-			// messageVo.setMessage_receiver(interviewVo.getMember_id());
-			// }
-			// chatService.insertMessage(messageVo);
+			mVo.setMessage_sender(messageVo.getMessage_sender());
+			mVo.setMessage_receiver(messageVo.getMessage_receiver());
+			mVo.setMessage_content(messageVo.getMessage_content());
+			mVo.setInterview_id(messageVo.getMember_id());
+			mVo.setCompany_id(messageVo.getCompany_id());
+			chatService.insertMessage(mVo);
 		}
 	}
 
