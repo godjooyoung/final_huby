@@ -7,11 +7,6 @@
 		<form class="col-12" action="memberVideoInsert.do" method="post"
 			enctype="multipart/form-data">
 			<div class="form-group">
-				<div>
-					<video width="320" height="640" controls>
-						<source src="">
-					</video>
-				</div>
 				<div style="padding-top:10px">
 					<input type=text list=browsers>
 					<datalist id=browsers>
@@ -21,7 +16,7 @@
 						</datalist>
 				</div>
 				<div style="padding-top:20px">
-					<input type="file" name="files" accept="video/*">
+					<input type="file" name="uploadFile" accept="video/*">
 					<button type="submit">보내기</button>
 				</div>
 			</div>
