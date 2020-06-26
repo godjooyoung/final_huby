@@ -79,9 +79,11 @@ public class Handler extends TextWebSocketHandler {
 			MessageVo messageVo = new MessageVo();
 			messageVo.setMessage_type("ALARM");
 			messageVo.setMessage_content("2");
+			
 			//필요한 것들 이런식으로 담아서
-			//읽음 상태가  null인 count 세는 쿼리
+			//읽음 상태가  N count 세는 쿼리
 			//alarmService.
+			
 			
 	}
 
