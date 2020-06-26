@@ -6,6 +6,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.CareerVo;
+import co.huby.prj.vo.HabitVo;
 import co.huby.prj.vo.SkillsVo;
 
 @MapperScan
@@ -27,4 +28,8 @@ public interface MemberMap{
 	int careerDelete(CareerVo vo) throws Exception;
 	CareerVo careerSelect(CareerVo vo) throws Exception;
 	int careerUpdate(CareerVo vo) throws Exception;
+	List<HabitVo> habitSelectAll(MemberVo vo) throws Exception;
+	int habitUpdate(HabitVo vo) throws Exception;
+	int habitInsert(HabitVo vo) throws Exception;
+	int habitDelete(HabitVo vo) throws Exception;
 }

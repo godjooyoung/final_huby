@@ -31,7 +31,6 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void videoLikeInsertFromCompany(LikeVideoVo vo) throws Exception {
 		map.videoLikeInsertFromCompany(vo);
-
 	}
 
 	@Override

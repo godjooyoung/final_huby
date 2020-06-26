@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.tiles.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.CareerVo;
 import co.huby.prj.vo.EmploymentsVo;
+import co.huby.prj.vo.HabitVo;
 import co.huby.prj.vo.SkillsVo;
 
 @Controller
@@ -237,12 +239,57 @@ public class MemberController {
 	@RequestMapping(value = "/careerUpdate.do")
 	public String careerUpdate(Model model, CareerVo cvo) throws Exception {
 		CareerVo checkVo = memberService.careerSelect(cvo);
-		List<CodeVo> typeVo = codeService.SelectAll();
+		List<CodeVo> typeVo = codeService.SelectAll(); 
+		
+		
+		
+				
 		model.addAttribute("typeVo",typeVo);
 		model.addAttribute("cvo", checkVo);
 		
 		int n = memberService.careerUpdate(cvo);
 		
 		return "redirect:resumemanagement.do";
+	}
+	
+	@RequestMapping(value = "/habitManagement.do")
+	public String habitManagement(Model model, HabitVo hvo, HttpServletRequest request,MemberVo mvo) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		mvo.setMember_id(id);
+		List<HabitVo> list = memberService.habitSelectAll(mvo);
+		model.addAttribute("hlist", list);
+		
+		return "person/member/habitManagement";
+	}
+	
+	@RequestMapping(value = "/habitUpdate.do")
+	public String habitUpdate(Model model,HabitVo hvo) throws Exception {
+		
+		
+		int n = memberService.habitUpdate(hvo);
+		
+		return "redirect:habitManagement.do";
+	}
+	
+	@RequestMapping(value = "/habitInsertPage.do")
+	public String habitUpdate(Model model) throws Exception {
+		
+		return "person/member/habitInsertPage";
+	}
+	
+	@RequestMapping(value = "/habitInsert.do")
+	public String habitInsert(Model model, HttpServletRequest request, HabitVo hvo, MemberVo mvo) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		hvo.setMember_id(id);
+		int n = memberService.habitInsert(hvo);
+		
+		return "redirect:habitManagement.do";
+	}
+	
+	@RequestMapping(value = "/habitDelete.do")
+	public String habitDelete(Model model, HabitVo hvo) throws Exception {
+		int n = memberService.habitDelete(hvo);
+		
+		return "redirect:habitManagement.do";
 	}
 }

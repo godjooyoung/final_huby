@@ -77,7 +77,9 @@ public class EmploymentServiceImpl implements EmploymentService {
 	public int applyInsert(Map vo) throws Exception {
 		int n = map.applycheck(vo);
 		if(n==0) {
-			return map.applyInsert(vo);
+			int num = 10;
+			map.applyInsert(vo);
+			return num;
 		}else {
 			return 0;
 		}
