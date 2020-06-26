@@ -29,9 +29,43 @@
 <div id="gnb_menu_box" class="gnb_mo_menu">
 	<%@include file="companyMenu.jsp"%>
 	<ul class="con">
-		<li>허비</li>
-		<li>대구 어딘가에있어</li>
+		<li>현재 진행중 공고 <a href="forcomemploymentsList.do"><span id="now_employment_cnt"> </span></a></li>
+		<li>총 지원자 수 <a href="companyEmploymentsList.do"><span id="now_applymen_cnt"> </span></a></li>
+		<li>채용면접 진행 수 <a href="company_chatList.do"><span id="now_interview_cnt"> </span></a></li>
+		<li> &nbsp;</li>
 		<li><a href="#">공지사항</a></li>
 		<li><a href="qListCompany.do">허비에게 문의하기</a></li>
 	</ul>
 </div>
+
+<!-- 아작스로 현재 count 항목들을 불러오는 script START -->
+<script>
+$(document).ready(function(){
+	$.ajax({
+		type : "post",
+		url : "loadCompanyNow.do",
+		data : {"employment_id" : "얍"},
+		success : function(data) {
+			console.log(data.now_e.com_now_emp);
+			console.log(data.now_a.com_now_apply);
+			console.log(data.now_i.com_now_interview);
+			var e_place = document.getElementById("now_employment_cnt");
+			var a_place =document.getElementById("now_applymen_cnt");
+			var i_place =document.getElementById("now_interview_cnt");
+			var e_cnt =data.now_e.com_now_emp;
+			var a_cnt =data.now_a.com_now_apply;
+			var i_cnt =data.now_i.com_now_interview;
+			$('<string>').html(" "+e_cnt)
+			.appendTo(e_place);
+			$('<string>').html(" "+a_cnt)
+			.appendTo(a_place);
+			$('<string>').html(" "+i_cnt)
+			.appendTo(i_place);
+		},
+		error : function() {
+			alert("에러 발생. 관리자에게 문의주세요.");
+		}
+	})//end OF AJAX
+});
+</script>
+<!-- 아작스로 현재 count 항목들을 불러오는 script END -->

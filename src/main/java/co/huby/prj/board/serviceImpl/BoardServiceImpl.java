@@ -140,11 +140,7 @@ public class BoardServiceImpl implements BoardService {
 		return map.get_list_video_all(vo);
 	}
 
-	@Override
-	public List<Map> get_video_list_more(int count) {
-		// TODO Auto-generated method stub
-		return map.get_video_list_more(count);
-	}
+	
 
 	@Override
 	public List<Map> get_matched_video_List_more(String companyid, int count) {
@@ -180,6 +176,29 @@ public class BoardServiceImpl implements BoardService {
 	public EmploymentsVo get_one_employment_by_emp_id(EmploymentsVo vo2) {
 		// TODO Auto-generated method stub
 		return map.get_one_employment_by_emp_id(vo2);
+	}
+	@Override
+	public List<Map> get_video_list_more(String companyid, int count) {
+		// TODO Auto-generated method stub
+		return map.get_video_list_more(companyid, count);
+	}
+
+	@Override
+	public Map com_now_emp(String companyid) throws Exception {
+		// TODO Auto-generated method stub
+		return map.com_now_emp(companyid);
+	}
+
+	@Override
+	public Map com_now_apply(String companyid) throws Exception {
+		// TODO Auto-generated method stub
+		return map.com_now_apply(companyid);
+	}
+
+	@Override
+	public Map com_now_interview(String companyid) throws Exception {
+		// TODO Auto-generated method stub
+		return map.com_now_interview(companyid);
 	}
 
 	
