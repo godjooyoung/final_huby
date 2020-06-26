@@ -23,7 +23,7 @@ public class ChatServiceImpl implements ChatService {
 	public void createRoom(InterviewVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		session.insert(namespace + ".createRoom", vo);
-
+		
 	}
 
 	@Override

@@ -10,12 +10,12 @@ import co.huby.prj.vo.QuestionVo;
 @MapperScan
 public interface QuestionMap {
 
-	List<Map> getSelectQuestionCompany(QuestionVo vo);
+	List<Map> getSelectQuestionCompany(QuestionVo vo) throws Exception;
 
-	List<Map> getSelectQuestionMember(QuestionVo vo);
+	List<Map> getSelectQuestionMember(QuestionVo vo) throws Exception;
 
-	void qInsertCompany(QuestionVo vo);
+	void qInsertCompany(QuestionVo vo) throws Exception;
 
-	void qInsertMember(QuestionVo vo);
+	void qInsertMember(QuestionVo vo) throws Exception;
 
 }

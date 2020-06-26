@@ -18,6 +18,7 @@ import co.huby.prj.vo.VideoVo;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
+	
 	@Autowired
 	private BoardMap map;
 
