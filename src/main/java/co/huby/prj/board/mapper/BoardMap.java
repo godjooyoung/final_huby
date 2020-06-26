@@ -75,4 +75,11 @@ public interface BoardMap {
 	
 	Map com_now_interview (String companyid) throws Exception;
 	
+	Map mem_now_resume (String memberid) throws Exception;
+	
+	Map mem_now_video  (String memberid) throws Exception;
+	
+	Map mem_now_apply  (String memberid) throws Exception;
+	
+	Map mem_now_interview  (String memberid) throws Exception;
 }

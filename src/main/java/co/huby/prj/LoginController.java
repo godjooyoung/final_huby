@@ -55,13 +55,19 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView();
 		MemberVo vo2 = memberService.selectone(vo);
 		
-	
+		
+		if(vo2 != null){
 		boolean pwdMatch = pwdEncoder.matches(vo.getMember_pw(), vo2.getMember_pw());
 		if(pwdMatch) {
 			mav.setViewName("redirect:employmentMatch.do");
 			request.getSession().setAttribute("personalVo", vo2);
 			request.getSession().setAttribute("loginId", vo2.getMember_id());
 			request.getSession().setAttribute("loginType", "U");
+		}else {
+			String num = "1"; 
+			request.setAttribute("num", num);
+			mav.setViewName("no/common/login");
+		}
 		}else {
 			String num = "1"; 
 			request.setAttribute("num", num);
@@ -76,7 +82,7 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView();
 		CompanyVo vo2 = companyMemberService.selectone(vo); 
 		
-		
+		if(vo2 != null){
 		boolean pwdMatch = pwdEncoder.matches(vo.getCompany_pw(), vo2.getCompany_pw());
 		if(pwdMatch) {
 			mav.setViewName("redirect:get_matched_video_list_first.do");
@@ -85,6 +91,11 @@ public class LoginController {
 			request.getSession().setAttribute("loginType", "C");
 		}
 		else {
+			String num = "1"; 
+			request.setAttribute("num", num);
+			mav.setViewName("no/common/login");
+		}
+		}else {
 			String num = "1"; 
 			request.setAttribute("num", num);
 			mav.setViewName("no/common/login");

@@ -31,7 +31,6 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void videoLikeInsertFromCompany(LikeVideoVo vo) throws Exception {
 		map.videoLikeInsertFromCompany(vo);
-
 	}
 
 	@Override
@@ -183,6 +182,7 @@ public class BoardServiceImpl implements BoardService {
 		return map.get_video_list_more(companyid, count);
 	}
 
+	/**나우들*/
 	@Override
 	public Map com_now_emp(String companyid) throws Exception {
 		// TODO Auto-generated method stub
@@ -199,6 +199,31 @@ public class BoardServiceImpl implements BoardService {
 	public Map com_now_interview(String companyid) throws Exception {
 		// TODO Auto-generated method stub
 		return map.com_now_interview(companyid);
+	}
+
+	/**나우들*/
+	@Override
+	public Map mem_now_resume(String memberid) throws Exception {
+		
+		return map.mem_now_resume(memberid);
+	}
+
+	@Override
+	public Map mem_now_video(String memberid) throws Exception {
+		
+		return map.mem_now_video(memberid);
+	}
+
+	@Override
+	public Map mem_now_apply(String memberid) throws Exception {
+		
+		return map.mem_now_apply(memberid);
+	}
+
+	@Override
+	public Map mem_now_interview(String memberid) throws Exception {
+		
+		return map.mem_now_interview(memberid);
 	}
 
 	

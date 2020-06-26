@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <footer id="ft_wrap" class="center">
 	<div class="ft_top">
-		<img src="/images/common/ft_logo.png" />
+		<img src="${pageContext.request.contextPath}/resources/images/common/ft_logo.png" />
 	</div>
 	<div class="ft_bt">
 		<div class="ft_bt_btn">OIT 정보 보기</div>
@@ -15,12 +15,12 @@
 		2020 OIT. All Right Reserved.
 	</div>
 	<div class="ft_sns">
-		<a href="https://blog.naver.com/olive_clinic" target="_blank"><img
-			src="/images/common/fb_sns_01.png" /></a> <a
+		<a href="https://blog.naver.com/olive_clinic" target="_blank">
+		<img src="${pageContext.request.contextPath}/resources/images/common/fb_sns_01.png" /></a> <a
 			href="https://open.kakao.com/o/sJQ5Qx4" target="_blank"><img
-			src="/images/common/fb_sns_02.png" /></a> <a
+			src="${pageContext.request.contextPath}/resources/images/common/fb_sns_02.png" /></a> <a
 			href="http://instagram.com/welliv_clinic " target="_blank"><img
-			src="/images/common/fb_sns_03.png" /></a>
+			src="${pageContext.request.contextPath}/resources/images/common/fb_sns_03.png" /></a>
 	</div>
 	<br>
 	<br>
