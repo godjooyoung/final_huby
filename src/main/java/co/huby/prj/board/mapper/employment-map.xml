@@ -73,7 +73,7 @@
 	</select>
 	
 	<select id="habitAll" resultType="map" parameterType="map">
-		select habit_id, habit_name, habit_start_date, HABIT_LOG_DATE, member_id
+		select habit_id, habit_name, habit_start_date, HABIT_LOG_DATE, member_id,cnt
 		from habit
 		where member_id = #{member_id}
 	</select>

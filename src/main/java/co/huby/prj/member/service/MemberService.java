@@ -3,6 +3,7 @@ package co.huby.prj.member.service;
 import java.util.List;
 
 import co.huby.prj.vo.CareerVo;
+import co.huby.prj.vo.HabitVo;
 import co.huby.prj.vo.SkillsVo;
 
 public interface MemberService {
@@ -23,4 +24,8 @@ public interface MemberService {
 	int careerDelete(CareerVo vo) throws Exception;
 	CareerVo careerSelect(CareerVo vo) throws Exception;
 	int careerUpdate(CareerVo vo) throws Exception;
+	List<HabitVo> habitSelectAll(MemberVo vo) throws Exception;
+	int habitUpdate(HabitVo vo) throws Exception;
+	int habitInsert(HabitVo vo) throws Exception;
+	int habitDelete(HabitVo vo) throws Exception;
 }

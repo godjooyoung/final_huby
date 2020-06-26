@@ -18,5 +18,6 @@
 		<typeAlias alias="SkillsVo" type="co.huby.prj.vo.SkillsVo" />
 		<typeAlias alias="CareerVo" type="co.huby.prj.vo.CareerVo" />
 		<typeAlias alias="NoticeVo" type="co.huby.prj.vo.NoticeVo" />
+		<typeAlias alias="HabitVo" type="co.huby.prj.vo.HabitVo" />
 	</typeAliases>
 </configuration>

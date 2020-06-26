@@ -10,6 +10,7 @@ import co.huby.prj.member.mapper.MemberMap;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.CareerVo;
+import co.huby.prj.vo.HabitVo;
 import co.huby.prj.vo.SkillsVo;
 
 @Service("memberService")
@@ -125,6 +126,30 @@ public class MemberServiceImpl implements MemberService {
 	public int careerUpdate(CareerVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.careerUpdate(vo);
+	}
+
+	@Override
+	public List<HabitVo> habitSelectAll(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.habitSelectAll(vo);
+	}
+
+	@Override
+	public int habitUpdate(HabitVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.habitUpdate(vo);
+	}
+
+	@Override
+	public int habitInsert(HabitVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.habitInsert(vo);
+	}
+
+	@Override
+	public int habitDelete(HabitVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.habitDelete(vo);
 	}
 	
 }
