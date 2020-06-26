@@ -29,9 +29,9 @@
 <div id="gnb_menu_box" class="gnb_mo_menu">
 	<%@include file="companyMenu.jsp"%>
 	<ul class="con">
-		<li>현재 진행중 공고 <a href="forcomemploymentsList.do"><span id="now_employment_cnt"> </span></a></li>
-		<li>총 지원자 수 <a href="companyEmploymentsList.do"><span id="now_applymen_cnt"> </span></a></li>
-		<li>채용면접 진행 수 <a href="company_chatList.do"><span id="now_interview_cnt"> </span></a></li>
+		<li>현재 진행중 공고 <a href="forcomemploymentsList.do"><b><span id="now_employment_cnt"> </span></b></a></li>
+		<li>총 지원자 수 <a href="companyEmploymentsList.do"><b><span id="now_applymen_cnt"> </span></b></a></li>
+		<li>채용면접 진행 수 <a href="company_chatList.do"><b><span id="now_interview_cnt"> </span></b></a></li>
 		<li> &nbsp;</li>
 		<li><a href="#">공지사항</a></li>
 		<li><a href="qListCompany.do">허비에게 문의하기</a></li>
@@ -55,11 +55,11 @@ $(document).ready(function(){
 			var e_cnt =data.now_e.com_now_emp;
 			var a_cnt =data.now_a.com_now_apply;
 			var i_cnt =data.now_i.com_now_interview;
-			$('<string>').html(" "+e_cnt)
+			$('<strong>').html(" "+e_cnt)
 			.appendTo(e_place);
-			$('<string>').html(" "+a_cnt)
+			$('<strong>').html(" "+a_cnt)
 			.appendTo(a_place);
-			$('<string>').html(" "+i_cnt)
+			$('<strong>').html(" "+i_cnt)
 			.appendTo(i_place);
 		},
 		error : function() {

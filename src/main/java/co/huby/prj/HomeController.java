@@ -444,6 +444,22 @@ public class HomeController {
 	//개인회원 지원갯수뿌려주기
 	//개인회원 진행면접갯수 뿌려주기
 	//개인회원 지원제의 갯수 뿌려주기
+	@ResponseBody
+	@RequestMapping(value = "/loadMemberNow.do") // 기업의 현재 현황
+	public Map loadMemberNow(Model model, HttpServletRequest request) throws Exception {
+		String memberid = (String) request.getSession().getAttribute("loginId");
+		Map map0 =boardService.mem_now_interview(memberid);
+		Map map1 =boardService.mem_now_apply(memberid);
+		Map map2 =boardService.mem_now_resume(memberid);
+		Map map3 =boardService.mem_now_video(memberid);
+		
+		Map nowMap = new HashMap<String, Object>();
+		nowMap.put("now_i", map0);
+		nowMap.put("now_a", map1);
+		nowMap.put("now_r", map2);
+		nowMap.put("now_v", map3);
+		return nowMap;
+	}
 	
 	
 	//뷰 정리(모바일뷰)

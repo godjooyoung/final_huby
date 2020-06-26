@@ -265,13 +265,10 @@
 	</select>
 	
 	<select id="get_video_list_more" resultType="map">
-		select 
-			* 
-    	from  
-			(select 
-				* 
-			from
-				(SELECT DISTINCT
+      SELECT 
+        * 
+        FROM
+             (SELECT DISTINCT
         			ROWNUM as "RNUM",
 					c.code_name, 
 					v.video_id, 
@@ -280,15 +277,12 @@
 					v.member_id,
         			v.video_location 
 					FROM code c
-						Join video v
+						JOIN video v
 						ON c.code_id = v.hashtag
-						WHERE v.hashtag not
-        				ORDER BY video_id desc)
-					where v.video_id
-					NOT IN ( SELECT video_id FROM like_video WHERE company_id =#{companyid ,jdbcType=VARCHAR})
-    				"RNUM" <![CDATA[ <= ]]> (4+#{count, jdbcType=INTEGER}))
-     		where "RNUM" <![CDATA[ >= ]]>(1+#{count, jdbcType=INTEGER})
-	</select>
+                        WHERE v.video_id NOT IN (SELECT VIDEO_ID FROM LIKE_VIDEO WHERE COMPANY_ID =#{companyid ,jdbcType=VARCHAR})
+        				ORDER BY v.video_id desc)
+                        WHERE "RNUM"  <![CDATA[<=]]> (4+#{count, jdbcType=INTEGER}) AND "RNUM" <![CDATA[>=]]> (1+#{count, jdbcType=INTEGER})
+   </select>
 	
 	<select id ="get_matched_video_List_more" resultType="map">
 		SELECT * FROM (        

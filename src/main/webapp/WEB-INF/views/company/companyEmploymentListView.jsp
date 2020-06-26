@@ -1,21 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<h1>POSTED EMPLOYMENTS</h1>
-<h2>공고 목록을 누르면 상세 공고 내용을 보고 수정삭제가 가능하게 할겁니다.</h2>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <style>
-li{cursor:pointer}
+	li{cursor:pointer}
+	
 </style>
+
+<h1 align="center">POSTED EMPLOYMENTS</h1>
 <div class="container">
   <ul class="list-group list-group-flush">
-  	<c:forEach var="employments" items="${employments}">
-    <li class="list-group-item"  value="${employments.employment_id}" 
-    onclick="showemployment(${employments.employment_id})">
-    ${employments.employment_title}
+  	<c:forEach var="employment" items="${employments}">
+    <li class="list-group-item"  value="${employment.employment_id}" 
+    	onclick="showemployment(${employment.employment_id})">
+    	${employment.employment_title} <p align="right"><fmt:formatDate pattern ="yyyy년MM월dd일 까지" value="${employment.employment_time}"/></p>
     </li>
-    <form id="frm${employments.employment_id}">
+    <form id="frm${employment.employment_id}">
     	<input type="hidden" 
-    	value="${employments.employment_id}" 
+    	value="${employment.employment_id}" 
     	name="employment_id">
     </form>
     </c:forEach>
