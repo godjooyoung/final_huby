@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+${ sessionScope.companyVo.company_id }
 <br>
 <div class="w3-container">
 	<h2 align="center">지원내역</h2>

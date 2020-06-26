@@ -7,8 +7,7 @@
 	<definition name="hubyhome"
 		template="/WEB-INF/views/tiles/layout.jsp">
 		<put-attribute name="top"
-			value="/WEB-INF/views/tiles/top.jsp" />
-		
+			value="/WEB-INF/views/tiles/topVerCompany.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/tiles/body.jsp" />
 		<put-attribute name="footer"

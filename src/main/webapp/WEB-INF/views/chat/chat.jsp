@@ -77,10 +77,10 @@ ${personChatList}
 			message.message_receiver = '${loginId}' == '${room.company_id}' ? '${room.member_id}'
 					: '${room.company_id}';
 			message.message_sender = '${loginId}'
-			message.message_type = 'CHAT';
 			message.interview_id = '${room.interview_id}';
 			message.member_id = '${room.member_id}';
 			message.company_id = '${room.company_id}';
+			message.message_type = 'CHAT';
 		}
 
 		sock.send(JSON.stringify(message)); //웹소켓으로 메시지를 보내겠어
@@ -119,7 +119,7 @@ ${personChatList}
 			if (msg.message_sender == '${loginId}') {
 				$("#chatMessageArea")
 						.append(
-								"<div class='col-12 row' style = 'height : auto; margin-top : 5px;'><div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'><img id='profileImg' class='img-fluid' src='/displayFile?fileName=${userImage}&directory=profile' style = 'width:50px; height:50px; '><div style='font-size:9px; clear:both;' '>${user_name}</div></div><div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:right;'><div class = 'col-12' style = ' background-color:#134a8e; font-color:#FFFFFF; padding : 10px 5px; float:left; border-radius:10px;'><span style = 'font-size : 12px; font-color:#FFFFFF;'>"
+								"<div class='col-12 row' style = 'height : auto; margin-top : 5px;'><div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'><img id='profileImg' class='img-fluid' src='/displayFile?fileName=${userImage}&directory=profile' style = 'width:50px; height:50px; '><div style='font-size:9px; clear:both;' '>${user_name}</div></div><div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:left;'><div class = 'col-12' style = ' background-color:#134a8e; font-color:#FFFFFF; padding : 10px 5px; float:left; border-radius:10px;'><span style = 'font-size : 12px; font-color:#FFFFFF;'>"
 										+ msg.message_content // msg.message_sender +'${loginId}'
 										+ "</span></div><div col-12 style = 'font-size:9px; text-align:left; float:left; font-color:#FFFFFF;'><span style ='float:left; font-size:9px; text-align:left; font-color:#FFFFFF;' >"
 										+ t + "</span></div></div></div>")
