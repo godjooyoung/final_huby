@@ -2,20 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="co.huby.prj.board.mapper.QuestionMap">
 
-	<select id="getSelectQuestionCompany">
-		select * from question where company_id = #{company_id}
+	<select id="getSelectQuestionCompany" resultType="map">
+		select * from
+		question where company_id = #{company_id, jdbcType=VARCHAR}
 	</select>
-	<select id="getSelectQuestionMember">
-		select * from question where member_id = #{member_id}
+	<select id="getSelectQuestionMember" resultType="map">
+		select * from
+		question where member_id = #{member_id, jdbcType=VARCHAR}
 	</select>
-	<insert id="insertQuestionCompany">
-		insert into question (q_id, q_title, q_contents, company_id, q_date)
-		values (question_seq.nextval,
-		#{q_title},#{q_contents},#{company_id},sysdate)
+	<insert id="insertQuestionCompany" parameterType="QuestionVo">
+		insert into
+		question (q_id, q_title, q_contents, company_id, q_date)
+		values
+		(question_seq.nextval,#{q_title},#{q_contents},#{company_id},sysdate)
 	</insert>
-	<insert id="insertQuestionMember">
-		insert into question (q_id, q_title, q_contents, member_id, q_date)
-		values (question_seq.nextval,
-		#{q_title},#{q_contents},#{member_id},sysdate)
+	<insert id="insertQuestionMember" parameterType="QuestionVo">
+		insert into
+		question (q_id, q_title, q_contents, member_id, q_date)
+		values
+		(question_seq.nextval,#{q_title},#{q_contents},#{member_id},sysdate)
 	</insert>
 </mapper>

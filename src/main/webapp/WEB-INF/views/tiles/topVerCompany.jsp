@@ -34,7 +34,7 @@
 		<li>채용면접 진행 수 <a href="company_chatList.do"><span id="now_interview_cnt"> </span></a></li>
 		<li> &nbsp;</li>
 		<li><a href="#">공지사항</a></li>
-		<li><a href="qInsertCompany.do">허비에게 문의하기</a></li>
+		<li><a href="qListCompany.do">허비에게 문의하기</a></li>
 	</ul>
 </div>
 

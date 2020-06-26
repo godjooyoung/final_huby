@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,7 +20,6 @@ import co.huby.prj.alarm.service.AlarmService;
 import co.huby.prj.alarm.service.AlarmVo;
 import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.vo.CompanyVo;
-import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.InterviewVo;
 
 @Controller

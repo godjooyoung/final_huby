@@ -3,17 +3,17 @@
 
 <mapper namespace="co.huby.prj.chat.mapper.ChatMap">
 
-	<insert id="createRoom">
+	<insert id="createRoom"> <!-- 인터뷰 룸 개설 -->
 		INSERT INTO interview
 		VALUES(INTERVIEW_SEQ.nextval,NULL,NULL,NULL,NULL,sysdate,#{company_id},NULL,#{member_id},null)
 	</insert>
 
-	<select id="isRoom" resultType="InterviewVo">
+	<select id="isRoom" resultType="InterviewVo"> <!-- 인터뷰 불러오기 -->
 		SELECT * FROM interview WHERE
 		interview_id = #{interview_id}
 	</select>
 
-	<insert id="insertMessage">
+	<insert id="insertMessage"> <!-- 메시지 저장 -->
 		insert into MESSAGE
 		(message_id, message_sender, message_receiver, message_content, interview_id, member_id, company_id)
 		values
@@ -45,7 +45,7 @@
 		where interview_id = #{interview_id}
 	</select>
 
-	<select id="getRoomList" resultType="map">
+	<select id="getRoomList" resultType="map"> <!-- 개인회원 인터뷰 리스트 -->
 		select
 		i.interview_id as
 		"interview_id",
@@ -64,7 +64,7 @@
 		m.member_id = #{member_id, jdbcType=VARCHAR}
 	</select>
 
-	<select id="getRoomList2" resultType="map">
+	<select id="getRoomList2" resultType="map"> <!-- 기업회원 인터뷰 리스트 -->
 		select
 		i.interview_id as
 		"interview_id",
