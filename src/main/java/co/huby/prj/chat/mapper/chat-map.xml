@@ -13,11 +13,11 @@
 		interview_id = #{interview_id}
 	</select>
 
-	<insert id="insertMessage" parameterType="MessageVo">
+	<insert id="insertMessage">
 		insert into MESSAGE
-		(message_id, message_sender, message_receiver, message_contents, interview_id, member_id, company_id)
+		(message_id, message_sender, message_receiver, message_content, interview_id, member_id, company_id)
 		values
-		(MESSAGE_SEQ.nextval,#{message_sender},#{message_receiver},#{message_contents},#{interview_id},#{member_id},#{company_id})
+		(MESSAGE_SEQ.nextval,#{message_sender},#{message_receiver},#{message_content},#{interview_id},#{member_id},#{company_id})
 	</insert>
 
 	<select id="getMember" resultType="MessageVo">
@@ -69,18 +69,22 @@
 		i.interview_id as
 		"interview_id",
 		i.interview_start as "interview_start",
-		m.member_name as "member_name",
+		m.member_name as
+		"member_name",
 		c.company_name as "company_name",
-		i.member_id as "member_id",
+		i.member_id as
+		"member_id",
 		i.company_id as "company_id",
-		i.employment_option as "employment_option"
+		i.employment_option as
+		"employment_option"
 		from
 		interview i, member m, company c
 		where
 		i.member_id = m.member_id
 		and
 		i.company_id = c.company_id
-		and i.company_id = #{company_id,
+		and
+		i.company_id = #{company_id,
 		jdbcType=VARCHAR}
 	</select>
 
