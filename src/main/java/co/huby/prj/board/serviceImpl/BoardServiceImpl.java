@@ -175,6 +175,14 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	@Override
+	public EmploymentsVo get_one_employment_by_emp_id(EmploymentsVo vo2) {
+		// TODO Auto-generated method stub
+		return map.get_one_employment_by_emp_id(vo2);
+	}
+
+	
+
 
 
 

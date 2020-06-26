@@ -357,5 +357,11 @@
      WHERE employment_like_id = #{employment_like_id}
 	</update>
 	
+	<select id ="get_one_employment_by_emp_id" parameterType="co.huby.prj.vo.EmploymentsVo"
+		resultType="co.huby.prj.vo.EmploymentsVo">
+	SELECT * from employments where employment_id = #{employment_id, jdbcType=VARCHAR}
+	</select>
+	
+
 </mapper>
 

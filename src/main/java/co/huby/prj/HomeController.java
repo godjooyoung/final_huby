@@ -72,19 +72,23 @@ public class HomeController {
 		return "company/company/companyEmploymentsApplyList";
 	}
 
-	@RequestMapping(value = "/companyEmploymentsApply.do") // 기업에 지원한 이력서와 이름 보여주기
-	public String companyApplyList(Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
+	@RequestMapping(value = "/companyEmploymentsApply.do") // 해당 공고에 지원한 사람의 상세내용
+	public String companyApplyList(Model model, HttpServletRequest request, ApplyVo vo, EmploymentsVo vo2) throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
-		String listviewid = request.getParameter("applyIdInput");
-		System.out.println("...................." + listviewid);
+		String listviewid = request.getParameter("empIdinput");
+		String emp_id = request.getParameter("empIdinput");
+		System.out.println(emp_id);
 		List<Map> list = boardService.getCompany_ApplyList(companyid, listviewid);
+		vo2.setEmployment_id(emp_id);
+		vo2 = boardService.get_one_employment_by_emp_id(vo2);
 		model.addAttribute("applymenList", list);
+		model.addAttribute("title", vo2);
 		return "company/company/companyEmploymentApplymemList";
 	}
 
 	@RequestMapping(value = "/companyApplyMember.do") // 기업에 지원인 인간의 상세 정보
 	public String applyMemInfoHome(Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
-		String apply_id = (String) request.getParameter("applyIdInput");
+		String apply_id = (String) request.getParameter("applyidInput");
 		vo.setApply_id(apply_id);
 		Map map = boardService.get_apply_member_info(vo);
 		model.addAttribute("applyman", map);

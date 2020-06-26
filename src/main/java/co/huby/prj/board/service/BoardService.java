@@ -65,4 +65,6 @@ public interface BoardService {
 	void write_memo_for_Scrap(LikeEmploymentVo vo) throws Exception;
 	
 	void delete_from_employment_like_list(LikeEmploymentVo vo) throws Exception;
+
+	EmploymentsVo get_one_employment_by_emp_id(EmploymentsVo vo2);
 }

@@ -6,14 +6,20 @@
 	<h2>전체채용공고</h2>
 	<div class="w3-row">
 		<a href="javascript:void(0)" onclick="">
-		<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">전체보기
-		</div></a> 
+		<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">
+			전체보기
+		</div>
+		</a> 
 		<a href="javascript:void(0)" onclick=""> 
-		<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">지역별
-		</div></a> 
+		<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">
+			지역별
+		</div>
+		</a> 
 		<a href="javascript:void(0)" onclick="">
-		<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">직무별
-		</div></a>
+		<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">
+			직무별
+		</div>
+		</a>
 	</div>
 
 	<div id="Paris" class="w3-container city" style="display: none">
@@ -69,6 +75,7 @@
 				$("#job").val("${param.hope_job}");
 			</script>
 			
+			<!-- 공고 리스트 BODY -->
 			</div>
 			<c:forEach var="elist" items="${elist}">
 				<ul class="w3-ul w3-card-4">
@@ -80,8 +87,18 @@
 								class="w3-large">${elist.EMPLOYMENT_TITLE}</span></a><br> <span>${elist.HOPE_JOB_POSITION}</span>
 						</div></li>
 				</ul>
-				<ul class="nav nav-pills flex-column" id="emp${elist.EMPLOYMENT_ID}"></ul>
+				<ul class="nav nav-pills flex-column" id="emp${elist.EMPLOYMENT_ID}">
+				</ul>
 				<br>
+				<form id="empfrmforapply${elist.EMPLOYMENT_ID}" 
+						action="applyinfoall.do" 
+						method="POST" 
+						name="empfrm">
+					<input type="hidden" 
+							id="empidInput${elist.EMPLOYMENT_ID}" 
+							value="${elist.EMPLOYMENT_ID}" 
+							name="empid">
+				</form>
 			</c:forEach>
 
 		</div>
@@ -157,7 +174,8 @@
 																	+ "<b>"
 																	+ item.EMPLOYMENT_ID
 																	+ "<b>"
-																	+ "<br><input type=\"button\" value=\"지원하기\"  onClick=\"location.href='applyinfoall.do'\">"
+																	+ "<br><input type=\"button\" value=\"지원하기\"  onClick=\"go_apply_page(event," 
+																			+item.EMPLOYMENT_ID+ ")\">"  
 																	+ "<br><input type=\"button\" value=\"스크랩하기\"  onClick=\"click_like_btn(event,"
 																			+ item.EMPLOYMENT_ID + ")\">")
 																	
@@ -191,5 +209,16 @@
 			}
 		})//end OF AJAX
 
-	}//END OF click_like_btn
+	};//END OF click_like_btn
+	
+	function go_apply_page(e, empid){
+		alert(empid)
+		var emp_id = empid;
+		var formTag = "empfrmforapply"+emp_id;
+			//document.getElementById(formTag).action="applyinfoall.do";
+			//document.getElementById(formTag).method="post";
+			document.getElementById(formTag).submit();
+			
+		//applyinfoall.do'\">"
+	};//go_apply_page
 </script>
