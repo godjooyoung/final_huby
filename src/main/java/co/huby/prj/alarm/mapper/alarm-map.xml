@@ -4,11 +4,11 @@
 
 	
 	<insert id="alarmInsert" parameterType="co.huby.prj.alarm.service.AlarmVo">
-		INSERT INTO ALARM VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP, #{employment_id})
+		INSERT INTO ALARM VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP, #{employment_id}, DEFAULT, DEFAULT)
 	</insert>
 	
 	<select id="personalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
-		SELECT C.COMPANY_NAME company_name, A.ALARM_MESSAGE alarm_message, A.ALARM_TIME alarm_time, A.ALARM_ID alarm_id, A.ALARM_CURRENT alarm_current, A.MEMBER_ID member_id, A.COMPANY_ID company_id, A.EMPLOYMENT_ID employment_id
+		SELECT C.COMPANY_NAME company_name, A.ALARM_MESSAGE alarm_message, A.ALARM_TIME alarm_time, A.ALARM_ID alarm_id, A.ALARM_CURRENT alarm_current, A.MEMBER_ID member_id, A.COMPANY_ID company_id, A.EMPLOYMENT_ID employment_id, A.MEMBERREAD_STATE memberread_state
 		FROM ALARM A
 		JOIN COMPANY C
 		ON C.COMPANY_ID = A.COMPANY_ID 
@@ -16,14 +16,28 @@
 	</select>
 	
 	<select id="companyalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
-		SELECT M.MEMBER_NAME member_name, A.ALARM_MESSAGE alarm_message, A.ALARM_CURRENT alarm_current
+		SELECT M.MEMBER_NAME member_name, A.ALARM_MESSAGE alarm_message, A.ALARM_CURRENT alarm_current, A.COMPANYREAD_STATE companyread_state
 		FROM ALARM A
 		JOIN MEMBER M
 		ON A.MEMBER_ID = M.MEMBER_ID
-		WHERE COMPANY_ID = #{companyid}
+		WHERE COMPANY_ID = #{companyid, jdbcType=VARCHAR}
 		AND A.ALARM_CURRENT = 'Y'
 		AND A.ALARM_MESSAGE = '면접제의'
 	</select>
+	
+	<update id="memberreadstate" parameterType="co.huby.prj.alarm.service.AlarmVo">
+		UPDATE ALARM 
+		SET MEMBERREAD_STATE = 'Y'
+		WHERE
+		MEMBER_ID = #{personid}
+	</update>
+	
+	<update id="companyreadstate" parameterType="co.huby.prj.alarm.service.AlarmVo">
+		UPDATE ALARM 
+		SET COMPANYREAD_STATE = 'Y'
+		WHERE COMPANY_ID = #{companyid, jdbcType=VARCHAR}
+		AND ALARM_CURRENT = 'Y'
+	</update>
 	
 	<update id="currentY" parameterType="co.huby.prj.alarm.service.AlarmVo">
 		UPDATE ALARM SET ALARM_CURRENT = 'Y' WHERE ALARM_ID = #{alarm_id}
@@ -60,5 +74,7 @@
 		FROM ALARM 
 		WHERE MEMBER_ID = #{member_id} AND COMPANY_ID = #{company_id} AND ALARM_CURRENT = 'Y' AND ALARM_MESSAGE = '면접제의'
 	</select>
+	
+	
 	
 </mapper>

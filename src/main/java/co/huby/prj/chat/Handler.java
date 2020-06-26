@@ -12,6 +12,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import co.huby.prj.alarm.service.AlarmService;
+import co.huby.prj.alarm.service.AlarmVo;
 import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.MessageVo;
@@ -22,6 +24,9 @@ public class Handler extends TextWebSocketHandler {
 
 	@Autowired
 	private ChatService chatService;
+	
+	@Autowired
+	private static AlarmService alarmService;
 
 	private List<WebSocketSession> connectedUsers; // 웹소켓세션
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>(); // 1:1채팅
@@ -66,6 +71,16 @@ public class Handler extends TextWebSocketHandler {
 			mVo.setCompany_id(messageVo.getCompany_id());
 			chatService.insertMessage(mVo);
 		}
+	}
+	
+	public static void alarmMessage(AlarmVo vo) throws Exception{
+			MessageVo messageVo = new MessageVo();
+			messageVo.setMessage_type("ALARM");
+			messageVo.setMessage_content("2");
+			//필요한 것들 이런식으로 담아서
+			//읽음 상태가  null인 count 세는 쿼리
+			//alarmService.
+			
 	}
 
 	protected void sendAllMessage(WebSocketSession session, TextMessage message) throws Exception {

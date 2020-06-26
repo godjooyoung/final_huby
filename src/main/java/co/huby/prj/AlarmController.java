@@ -37,6 +37,8 @@ public class AlarmController {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		ArrayList<AlarmVo> list = alarmService.companyalarmlist(companyid);
 		model.addAttribute("companyalarmlist", list);
+		//알림 내역 페이지 조회 시 기업 읽음 상태 Y로 업데이트
+		//alarmService.companyreadstate(companyid);
 		return "company/alarm/companyalarmlist";
 	}
 
@@ -45,6 +47,8 @@ public class AlarmController {
 		String personid = (String) request.getSession().getAttribute("loginId");
 		ArrayList<AlarmVo> list = alarmService.personalarmlist(personid);
 		model.addAttribute("personalarmlist", list);
+		//알림 내역 페이지 조회 시 개인 읽음 상태 Y로 업데이트
+		//alarmService.memberreadstate(personid);
 		return "person/alarm/personalarmlist";
 	}
 

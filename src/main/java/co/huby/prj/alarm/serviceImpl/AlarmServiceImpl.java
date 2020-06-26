@@ -18,6 +18,15 @@ public class AlarmServiceImpl implements AlarmService {
 	@Autowired
 	private AlarmMap map;
 	
+	@Override
+	public int companyreadstate(String companyid) {
+		return map.companyreadstate(companyid);
+	}
+	
+	@Override
+	public int memberreadstate(String personid) {
+		return map.memberreadstate(personid);
+	}
 	
 	@Override
 	public ArrayList<AlarmVo> personalarmlist(String personid) throws Exception{
@@ -27,6 +36,7 @@ public class AlarmServiceImpl implements AlarmService {
 	@Override
 	public ArrayList<AlarmVo> companyalarmlist(String companyid) throws Exception {
 		// TODO Auto-generated method stub
+		
 		return map.companyalarmlist(companyid);
 	}
 	@Override
