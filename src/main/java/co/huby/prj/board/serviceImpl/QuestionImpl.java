@@ -31,13 +31,13 @@ public class QuestionImpl implements QuestionService {
 	@Override
 	public void qInsertCompany(QuestionVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		map.qInsertCompany(vo);
+		map.insertQuestionCompany(vo);
 	}
 
 	@Override
 	public void qInsertMember(QuestionVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		map.qInsertMember(vo);
+		map.insertQuestionMember(vo);
 	}
 
 }

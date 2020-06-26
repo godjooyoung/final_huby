@@ -20,8 +20,9 @@ public class QuestionController {
 	@Autowired
 	private QuestionService qService;
 
-	@RequestMapping(value = "/qInsertCompany.do")
-	public ModelAndView qInsertCompany(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
+	@RequestMapping(value = "/qInsertC.do")
+	public ModelAndView qInsertC(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
+
 		ModelAndView mav = new ModelAndView();
 		qService.qInsertCompany(vo);
 		mav.setViewName("redirect:qListCompany");
@@ -29,12 +30,28 @@ public class QuestionController {
 
 	}
 
-	@RequestMapping(value = "/qInsertMember.do")
-	public String qInsertMember(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
-		return "person/qna/qInsert";
+	@RequestMapping(value = "/qInsertM.do")
+	public ModelAndView qInsertM(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
+		String memberid = (String) request.getSession().getAttribute("loginId");
+		vo.setMember_id(memberid);
+		ModelAndView mav = new ModelAndView();
+		qService.qInsertMember(vo);
+		mav.setViewName("redirect:qListMember");
+		return mav;
+
 	}
 
-	@RequestMapping(value = "/qListMember.do")
+	@RequestMapping(value = "/qInsertPageC.do") // 문의등록페이지
+	public String qInsertPageC(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
+		return "company/qna/qInsertPage";
+	}
+
+	@RequestMapping(value = "/qInsertPageM.do") // 문의등록페이지
+	public String qInsertMember(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
+		return "person/qna/qInsertPage";
+	}
+
+	@RequestMapping(value = "/qListMember.do") // 문의리스트
 	public String qListMember(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
 		String memberid = (String) request.getSession().getAttribute("loginId");
 		vo.setMember_id(memberid);
@@ -43,7 +60,7 @@ public class QuestionController {
 		return "person/qna/qListMember";
 	}
 
-	@RequestMapping(value = "/qListCompany.do")
+	@RequestMapping(value = "/qListCompany.do") // 문의리스트
 	public String qListCompany(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		vo.setCompany_id(companyid);
