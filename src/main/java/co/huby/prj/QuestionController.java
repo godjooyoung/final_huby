@@ -30,12 +30,8 @@ public class QuestionController {
 	}
 
 	@RequestMapping(value = "/qInsertMember.do")
-	public ModelAndView qInsertMember(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		qService.qInsertMember(vo);
-		mav.setViewName("redirect:qListMember");
-		return mav;
-
+	public String qInsertMember(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
+		return "person/qna/qInsert";
 	}
 
 	@RequestMapping(value = "/qListMember.do")

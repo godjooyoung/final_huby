@@ -6,7 +6,7 @@
 <br>
 <section>
 	<div class="container">
-		<input type="button" value="문의하기">
+		<input type="button" value="문의하기" onclick="location.href='qInsertMember.do'">
 		<!-- wordPress installation-->
 		<header class="section header mb-5">
 			<br> <br>
