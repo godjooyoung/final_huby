@@ -33,27 +33,18 @@
   		</div>
 	</c:forEach>
 </div>
-<form id="applyIdfrm" name="applyIdfrm" action="companyEmploymentsApply.do">
-	<input type="hidden" id ="applyIdInput"  name ="applyIdInput" value="">
+<form id="empIdfrm" name="empIdfrm" action="companyEmploymentsApply.do">
+	<input type="hidden" id ="empIdinput"  name ="empIdinput" value="">
 </form>
 <script>
 function go_applymen_list_page(e, eid){
 	var emp_id = eid;
-	document.getElementById("applyIdInput").value=eid;
-	document.applyIdfrm.action = "companyEmploymentsApply.do";
-	document.applyIdfrm.method = "post";
-	document.applyIdfrm.submit();
+	document.getElementById("empIdinput").value=eid;
+	document.empIdfrm.action = "companyEmploymentsApply.do";
+	document.empIdfrm.method = "post";
+	document.empIdfrm.submit();
 	
 }; // END OF GO_APPLYMEN_LIST_PAGE
-
-function showPeson(id){
-		var apply_id = id.getAttribute( 'id' );
-		alert(apply_id);
-		document.getElementById("applyIdInput").value=apply_id;
-		  document.applyIdfrm.action = "companyApplyMember.do";
-		  document.applyIdfrm.method = "post";
-		  document.applyIdfrm.submit();
-};
 </script>
 
 

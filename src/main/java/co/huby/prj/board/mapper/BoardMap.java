@@ -55,7 +55,7 @@ public interface BoardMap {
 	
 	List<Map> get_list_video_all (VideoVo vo) throws Exception;
 		
-	List<Map> get_video_list_more (int count);
+	List<Map> get_video_list_more (@Param("companyid") String companyid, @Param("count") int count);
 	 
 	List<Map> get_matched_video_List_more (@Param("companyid") String companyid, @Param("count") int count);
 	
@@ -66,5 +66,13 @@ public interface BoardMap {
 	void write_memo_for_Scrap(LikeEmploymentVo vo) throws Exception;
 	
 	void delete_from_employment_like_list(LikeEmploymentVo vo) throws Exception;
+	
+	EmploymentsVo get_one_employment_by_emp_id(EmploymentsVo vo2);
+	
+	Map com_now_emp (String companyid) throws Exception;
+	
+	Map com_now_apply (String companyid) throws Exception;
+	
+	Map com_now_interview (String companyid) throws Exception;
 	
 }

@@ -52,19 +52,21 @@ public class Handler extends TextWebSocketHandler {
 		System.out.println(users);
 		Map<String, Object> map = null;
 		MessageVo messageVo = MessageVo.convertMessage(message.getPayload());
-		MessageVo mVo = new MessageVo();
+		MessageVo vo = new MessageVo();
 		if (messageVo.getMessage_type().equals("CHAT")) {
 			WebSocketSession rs = users.get(messageVo.getMessage_receiver());
 			if (rs != null) {
 				rs.sendMessage(new TextMessage(message.getPayload()));
 			}
 			session.sendMessage(new TextMessage(message.getPayload())); // 클라이언트에게 보냄
-			mVo.setMessage_sender(messageVo.getMessage_sender());
-			mVo.setMessage_receiver(messageVo.getMessage_receiver());
-			mVo.setMessage_content(messageVo.getMessage_content());
-			mVo.setInterview_id(messageVo.getMember_id());
-			mVo.setCompany_id(messageVo.getCompany_id());
-			chatService.insertMessage(mVo);
+			vo.setMessage_sender(messageVo.getMessage_sender());
+			vo.setMessage_receiver(messageVo.getMessage_receiver());
+			vo.setMessage_content(messageVo.getMessage_content());
+			vo.setInterview_id(messageVo.getInterview_id());
+			vo.setMember_id(messageVo.getMember_id());
+			vo.setCompany_id(messageVo.getCompany_id());
+			System.out.println("값은" + vo);
+			chatService.insertMessage(vo);
 		}
 	}
 

@@ -34,7 +34,7 @@
 		<li>허비</li>
 		<li>대구 어딘가에있어</li>
 		<li><a href="#">공지사항</a></li>
-		<li><a href="#">허비에게 문의하기</a></li>
+		<li><a href="qListMember.do">허비에게 문의하기</a></li>
 	</ul>
 </div>
 

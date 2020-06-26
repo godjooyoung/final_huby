@@ -92,19 +92,6 @@ public class MessageVo {
 		return message;
 	}
 
-	@Override
-	public String toString() {
-		return "MessageVo [message_id=" + message_id + ", message_sender=" + message_sender + ", message_receiver="
-				+ message_receiver + ", message_sandtime=" + message_sandtime + ", message_readtime=" + message_readtime
-				+ ", company_id=" + company_id + ", member_id=" + member_id + ", interview_id=" + interview_id
-				+ ", getMessage_id()=" + getMessage_id() + ", getMessage_sender()=" + getMessage_sender()
-				+ ", getMessage_receiver()=" + getMessage_receiver() + ", getMessage_sandtime()="
-				+ getMessage_sandtime() + ", getMessage_readtime()=" + getMessage_readtime() + ", getCompany_id()="
-				+ getCompany_id() + ", getMember_id()=" + getMember_id() + ", getInterview_id()=" + getInterview_id()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
-	}
-
 	public String getMessage_content() {
 		return message_content;
 	}
@@ -119,6 +106,21 @@ public class MessageVo {
 
 	public void setMessage_type(String message_type) {
 		this.message_type = message_type;
+	}
+
+	@Override
+	public String toString() {
+		return "MessageVo [message_id=" + message_id + ", message_sender=" + message_sender + ", message_receiver="
+				+ message_receiver + ", message_sandtime=" + message_sandtime + ", message_readtime=" + message_readtime
+				+ ", company_id=" + company_id + ", member_id=" + member_id + ", interview_id=" + interview_id
+				+ ", message_content=" + message_content + ", message_type=" + message_type + ", getMessage_id()="
+				+ getMessage_id() + ", getMessage_sender()=" + getMessage_sender() + ", getMessage_receiver()="
+				+ getMessage_receiver() + ", getMessage_sandtime()=" + getMessage_sandtime()
+				+ ", getMessage_readtime()=" + getMessage_readtime() + ", getCompany_id()=" + getCompany_id()
+				+ ", getMember_id()=" + getMember_id() + ", getInterview_id()=" + getInterview_id()
+				+ ", getMessage_content()=" + getMessage_content() + ", getMessage_type()=" + getMessage_type()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 
 }

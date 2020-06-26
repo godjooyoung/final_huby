@@ -176,7 +176,7 @@
     ON v.VIDEO_id = L.video_id
         JOIN code c
         On c.code_id = v.hashtag
-    WHERE L.company_id =#{company_id}
+    WHERE L.company_id =#{company_id, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- 기업이 공고 인설트 -->
@@ -264,7 +264,7 @@
         ORDER BY VIDEO_ID DESC
 	</select>
 	
-	<select id="get_video_list_more" parameterType="int" resultType="map">
+	<select id="get_video_list_more" resultType="map">
 		select 
 			* 
     	from  
@@ -282,10 +282,12 @@
 					FROM code c
 						Join video v
 						ON c.code_id = v.hashtag
+						WHERE v.hashtag not
         				ORDER BY video_id desc)
-					where 
-    				"RNUM" <![CDATA[ <= ]]> (4+#{value, jdbcType=INTEGER}))
-     		where "RNUM" <![CDATA[ >= ]]>(1+#{value, jdbcType=INTEGER})
+					where v.video_id
+					NOT IN ( SELECT video_id FROM like_video WHERE company_id =#{companyid ,jdbcType=VARCHAR})
+    				"RNUM" <![CDATA[ <= ]]> (4+#{count, jdbcType=INTEGER}))
+     		where "RNUM" <![CDATA[ >= ]]>(1+#{count, jdbcType=INTEGER})
 	</select>
 	
 	<select id ="get_matched_video_List_more" resultType="map">
@@ -357,5 +359,54 @@
      WHERE employment_like_id = #{employment_like_id}
 	</update>
 	
+	<select id ="get_one_employment_by_emp_id" parameterType="co.huby.prj.vo.EmploymentsVo"
+		resultType="co.huby.prj.vo.EmploymentsVo">
+	SELECT * from employments where employment_id = #{employment_id, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 기업 now -->
+	<select id="com_now_emp" parameterType="String" resultType="map">
+	SELECT COUNT(*) as "com_now_emp" 
+	FROM (SELECT 
+			* FROM 
+			EMPLOYMENTS 
+			WHERE 
+				COMPANY_ID =#{value, jdbcType=VARCHAR})
+	</select>
+	
+	<select id="com_now_apply" parameterType="String" resultType="map">
+	SELECT COUNT(*) as "com_now_apply" 
+	FROM (SELECT 
+			APPLY_ID FROM 
+			APPLY 
+			WHERE 
+				EMPLOYMENT_ID IN (SELECT EMPLOYMENT_ID FROM EMPLOYMENTS WHERE COMPANY_ID = #{value, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="com_now_interview" parameterType="String"  resultType="map">
+	SELECT COUNT(INTERVIEW_ID) AS "com_now_interview" 
+	FROM (SELECT INTERVIEW_ID FROM INTERVIEW WHERE COMPANY_ID=#{value, jdbcType=VARCHAR})
+	</select>
+	
+	<!-- 개인 now -->
+
+	<select id="mem_now_resume" parameterType="String" resultType="map">
+	SELECT COUNT (*) as"mem_now_resume" FROM (SELECT RESUME_ID FROM RESUME WHERE MEMBER_ID =#{value, jdbcType=VARCHAR})
+	</select>
+	
+	<select id="mem_now_video" parameterType="String" resultType="map">
+	SELECT COUNT (*) as"mem_now_video" FROM (SELECT VIDEO_ID FROM VIDEO WHERE MEMBER_ID =#{value, jdbcType=VARCHAR})
+	</select>
+	
+	<select id="mem_now_apply" parameterType="String" resultType="map">
+	SELECT COUNT(*) as"mem_now_apply" FROM (SELECT APPLY_ID FROM APPLY WHERE MEMBER_ID=#{value, jdbcType=VARCHAR})
+	</select>
+	
+	<select id="mem_now_interview" parameterType="String" resultType="map">
+	SELECT COUNT(*) as"mem_now_interview" FROM (SELECT INTERVIEW_ID FROM INTERVIEW WHERE MEMBER_ID=#{value, jdbcType=VARCHAR})
+	</select>
+	
+	
+
 </mapper>
 
