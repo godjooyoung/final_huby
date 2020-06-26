@@ -3,6 +3,7 @@ package co.huby.prj;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.huby.prj.board.service.BoardService;
 import co.huby.prj.vo.ApplyVo;
 import co.huby.prj.vo.EmploymentsVo;
+import co.huby.prj.vo.InterviewVo;
 import co.huby.prj.vo.LikeEmploymentVo;
 import co.huby.prj.vo.LikeVideoVo;
 import co.huby.prj.vo.VideoVo;
@@ -334,7 +336,8 @@ public class HomeController {
 	@RequestMapping(value="get_video_list_first.do")
 	public String video_list_first (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
 		int count = 0;
-		List<Map> list = boardService.get_video_list_more(count);
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		List<Map> list = boardService.get_video_list_more(companyid, count);
 		model.addAttribute("firstList", list);
 		return "company/company/comVideoAllView";
 	}
@@ -343,7 +346,8 @@ public class HomeController {
 	@RequestMapping(value="get_video_list_more.do")
 	public List<Map> video_list_more (Model model, HttpServletRequest request, VideoVo vo) throws Exception {
 		int count = Integer.parseInt(request.getParameter("count"));
-		List<Map> list = boardService.get_video_list_more(count);
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		List<Map> list = boardService.get_video_list_more(companyid, count);
 		return list;
 	}
 	
@@ -416,4 +420,31 @@ public class HomeController {
 		boardService.delete_from_employment_like_list(vo);
 		return "redirect:load_employment_like_list.do";
 	}
+		
+	//기업회원 공고갯수 뿌려주기
+	//기업회원 지원자수 뿌려주기
+	//기업회원이 현재 진행중인 인터뷰수 뿌려주기
+	//기업회원이 개인회원을 채용처리
+		
+	@ResponseBody
+	@RequestMapping(value = "/loadCompanyNow.do") // 기업의 현재 현황
+	public Map loadCompanyNow(Model model, HttpServletRequest request) throws Exception {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		Map map3 =boardService.com_now_emp(companyid);
+		Map map =boardService.com_now_apply(companyid);
+		Map map2 =boardService.com_now_interview(companyid);
+		
+		Map nowMap = new HashMap<String, Object>();
+		nowMap.put("now_e", map3);
+		nowMap.put("now_a", map);
+		nowMap.put("now_i", map2);
+		return nowMap;
+	}
+	
+	//개인회원 지원갯수뿌려주기
+	//개인회원 진행면접갯수 뿌려주기
+	//개인회원 지원제의 갯수 뿌려주기
+	
+	
+	//뷰 정리(모바일뷰)
 }

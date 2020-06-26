@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <ul class="gnb_dp1_wrap">
-	<li class="gnb_dp1"><span>공고</span>
+	<li class="gnb_dp1">
+	<span>공고</span>
 		<ul class="gnb_dp2_wrap">
 			<li class="gnb_dp2"><a href="forcomemploymentsList.do">공고관리</a></li>
 			<li class="gnb_dp2"><a href="empInsertPageGo.do">공고등록</a></li>
