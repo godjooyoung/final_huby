@@ -16,11 +16,20 @@ public class MemberVo {
 	private Date member_date;
 	private String member_photo;
 	private MultipartFile uploadFile;
+	private String member_pwcheck;
 	
 	public MemberVo() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	
+	public String getMember_pwcheck() {
+		return member_pwcheck;
+	}
+	public void setMember_pwcheck(String member_pwcheck) {
+		this.member_pwcheck = member_pwcheck;
+	}
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}

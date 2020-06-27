@@ -8,9 +8,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.tiles.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -55,6 +55,8 @@ public class MemberController {
 	EmploymentService employmentService;
 	@Autowired
 	CodeService codeService;
+	@Autowired
+	BCryptPasswordEncoder pwdEncoder;
 
 	@RequestMapping("/employment.do")
 	public String employment(Model model) {
@@ -125,11 +127,7 @@ public class MemberController {
 		String id = (String) request.getSession().getAttribute("loginId");
 		mvo.setMember_id(id);
 		MemberVo checkVo = memberService.selectone(mvo);
-		
-		
-		
 		model.addAttribute("mlist",checkVo);
-		
 		return "person/member/myInfoUpdatePage";
 	}
 	
@@ -291,5 +289,42 @@ public class MemberController {
 		int n = memberService.habitDelete(hvo);
 		
 		return "redirect:habitManagement.do";
+	}
+	
+	@RequestMapping(value = "/pwUpdate.do")
+	public String pwUpdate(Model model, MemberVo mvo, HttpServletRequest request) throws Exception {
+		int n = memberService.pwUpdate(mvo);
+		String num = "0";
+		if(n==1) {
+			num = "1";
+		}else {
+			num = "0";
+		}
+		String id = (String) request.getSession().getAttribute("loginId");
+		mvo.setMember_id(id);
+		MemberVo checkVo = memberService.selectone(mvo);
+		model.addAttribute("mlist",checkVo);
+		model.addAttribute("resultCheck",num);
+		
+		return "person/member/myInfoUpdatePage";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value ="/realpwcheck.do")
+	public String realPwCheck(Model model, MemberVo mvo, HttpServletRequest request) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		mvo.setMember_id(id);
+		MemberVo pwCheckVo = memberService.selectone(mvo);
+		
+		String result = "";
+		
+		boolean pwdMatch = pwdEncoder.matches(mvo.getMember_pw(), pwCheckVo.getMember_pw());
+		if(pwdMatch) {
+			result = "1";
+		}else {
+			result = "0";
+		}
+		
+		return result;
 	}
 }

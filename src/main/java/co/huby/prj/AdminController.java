@@ -11,14 +11,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.huby.prj.admin.service.AdminService;
+import co.huby.prj.board.service.QuestionService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.CompanyVo;
 import co.huby.prj.vo.NoticeVo;
+import co.huby.prj.vo.QuestionVo;
 
 @Controller
 public class AdminController {
 	@Autowired
 	AdminService adminService;
+	@Autowired
+	QuestionService questionService;
 	
 	@RequestMapping("/index.do")
 	public String index(Locale locale, Model model) {
@@ -38,8 +42,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/qnaPage.do")
-	public String qnaPage(Model model) {
+	public String qnaPage(Model model) throws Exception {
+		List<QuestionVo> qvo = questionService.qnaSelectAll();
 		
+		model.addAttribute("qlist", qvo);
 		return "no/admin/qnapage";
 	}
 	
@@ -129,4 +135,18 @@ public class AdminController {
 		return "redirect:noticePage.do";
 	}
 	
+	@RequestMapping("qnaAnswerPage.do")
+	public String qnaAnswerPage(Model model, QuestionVo qvo) throws Exception {
+		QuestionVo checkVo = questionService.getSelectQuestion(qvo);
+		model.addAttribute("qvo", checkVo);
+		
+		return "no/admin/qnaAnswerPage";
+	}
+	
+	@RequestMapping("qnaAnswerInsert.do")
+	public String qnaAnswerInsert(Model model, QuestionVo qvo) throws Exception {
+		int n = questionService.qUpdateAdmin(qvo);
+		
+		return "redirect:qnaPage.do";
+	}	
 }

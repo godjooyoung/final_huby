@@ -14,4 +14,10 @@ public interface QuestionService {
 	int qInsertCompany(QuestionVo vo) throws Exception;
 
 	int qInsertMember(QuestionVo vo) throws Exception;
+	
+	List<QuestionVo> qnaSelectAll() throws Exception;
+	
+	QuestionVo getSelectQuestion(QuestionVo vo) throws Exception;
+	
+	int qUpdateAdmin(QuestionVo vo) throws Exception;
 }

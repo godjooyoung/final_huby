@@ -45,7 +45,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int memberUpdate(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		vo.setMember_pw(pwdEncoder.encode(vo.getMember_pw()));
 		
 		return map.memberUpdate(vo);
 	}
@@ -150,6 +149,14 @@ public class MemberServiceImpl implements MemberService {
 	public int habitDelete(HabitVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.habitDelete(vo);
+	}
+
+	@Override
+	public int pwUpdate(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		vo.setMember_pwcheck(pwdEncoder.encode(vo.getMember_pwcheck()));
+		
+		return map.pwUpdate(vo);
 	}
 	
 }

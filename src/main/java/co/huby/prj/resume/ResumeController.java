@@ -109,4 +109,19 @@ public class ResumeController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping("resumeCheckDelete.do")
+	public String resumeCheckDelete(Model model, HttpServletRequest request, ResumeVo vo) throws Exception {
+		String[] resumeArray = request.getParameterValues("resumeDelete");
+		
+		for(int i=0; i<resumeArray.length; i++) {
+			ResumeVo rvo = new ResumeVo();
+			rvo.setResume_id(resumeArray[i]);
+			resumeService.resumeDelete(rvo);
+		}
+		
+		
+		return "redirect:resumemanagement.do";
+	}
+	
 }
