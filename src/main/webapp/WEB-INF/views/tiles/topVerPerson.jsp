@@ -36,7 +36,7 @@
 		<li>촬영한 자기소개 영상  <a href="#"><b><span id="now_video_cnt"> </span></b></a></li>
 		<li>현재 진행중인 채용면접 <a href="person_chatList.do"><b><span id="now_interview_cnt"> </span></b></a></li>
 		<li> &nbsp;</li>
-		<li><a href="#">공지사항</a></li>
+		<li><a href="noticeListMember.do">공지사항</a></li>
 		<li><a href="qListMember.do">허비에게 문의하기</a></li>
 	</ul>
 </div>

@@ -22,10 +22,11 @@ public class QuestionController {
 
 	@RequestMapping(value = "/qInsertC.do")
 	public ModelAndView qInsertC(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
-
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		vo.setCompany_id(companyid);
 		ModelAndView mav = new ModelAndView();
 		qService.qInsertCompany(vo);
-		mav.setViewName("redirect:qListCompany");
+		mav.setViewName("redirect:qListCompany.do");
 		return mav;
 
 	}
@@ -36,7 +37,7 @@ public class QuestionController {
 		vo.setMember_id(memberid);
 		ModelAndView mav = new ModelAndView();
 		qService.qInsertMember(vo);
-		mav.setViewName("redirect:qListMember");
+		mav.setViewName("redirect:qListMember.do");
 		return mav;
 
 	}
