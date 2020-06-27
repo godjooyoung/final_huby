@@ -14,8 +14,13 @@ public interface QuestionMap {
 
 	List<Map> getSelectQuestionMember(QuestionVo vo) throws Exception;
 
-	void insertQuestionCompany(QuestionVo vo) throws Exception;
+	int insertQuestionCompany(QuestionVo vo) throws Exception;
 
-	void insertQuestionMember(QuestionVo vo) throws Exception;
+	int insertQuestionMember(QuestionVo vo) throws Exception;
+	
+	List<QuestionVo> qnaSelectAll() throws Exception;
 
+	QuestionVo getSelectQuestion(QuestionVo vo) throws Exception;
+	
+	int qUpdateAdmin(QuestionVo vo) throws Exception;
 }

@@ -9,9 +9,9 @@
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
-			value="jdbc:oracle:thin:@192.168.0.92:1521:xe" />
-		<property name="username" value="huby" />
-		<property name="password" value="1234" />
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="mp2" />
+		<property name="password" value="mp2" />
 	</bean>
 
 	<bean id="dataSource"
@@ -28,6 +28,6 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="100000"></property>
 	</bean>
-	
-	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 </beans> 

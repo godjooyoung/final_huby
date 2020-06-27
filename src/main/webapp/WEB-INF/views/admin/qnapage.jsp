@@ -1,17 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <jsp:include page="/WEB-INF/views/adminlayout/head.jsp"></jsp:include>
+<script>
+	function answer(qid){
+		$("#q_id").val(qid);
+		$("#frm").attr("action","qnaAnswerPage.do");
+		document.frm.submit();
+	}
+</script>
+<form id="frm" name="frm" method="post">
 <h1 align="center" style="color: #2B333E">QnA</h1><br>
 <div align="center">
 <div id="qna_table" align="center">
-	<div class="qna_row" style="background-color: #2B333E"; align="center">
+	<div class="qna_row" style="background-color: #2B333E" align="center">
 		<span class="qna_cell qna_col1" style="color: white">문의내용</span>
 	</div>
 	<div class="qna_row">
-		<span class="qna_cell qna_col2" onclick="location.href='qnaselectpage.do'">제목</span>
-		<!-- <span class="qna_cell qna_col3"><button type="button" class="btn btn-primary">답변하기</button></span> -->		
+		<span class="qna_cell qna_col2" onclick="location.href='qnaselectpage.do'">제목</span>		
 	</div>
 </div>	
 </div>
+<h1>개인문의내역</h1>
+<c:forEach items="${ qlist }" var="qlist">
+<c:if test="${ qlist.member_id != null }">
+${ qlist.q_id }<br>
+${ qlist.q_title }<br>
+${ qlist.q_contents }<br>
+<fmt:formatDate value="${ qlist.q_date }" pattern="yyyy-MM-dd" var="q_date" />
+${ q_date }<br>
+<input type="button" onclick="answer('${ qlist.q_id }')" value="답변하기">
+<br><br>
+</c:if>
+</c:forEach>
+<hr style="color: black;">
+<h1>기업문의내역</h1>
+<c:forEach items="${ qlist }" var="qlist">
+<c:if test="${ qlist.company_id != null }">
+${ qlist.q_id }<br>
+${ qlist.q_title }<br>
+${ qlist.q_contents }<br>
+<fmt:formatDate value="${ qlist.q_date }" pattern="yyyy-MM-dd" var="q_date" />
+${ q_date }<br>
+<input type="button" onclick="answer('${ qlist.q_id }')" value="답변하기">
+<br><br>
+</c:if>
+</c:forEach>
+
+
+
+<input type="hidden" id="q_id" name="q_id">
+</form>
 <jsp:include page="/WEB-INF/views/adminlayout/footer.jsp"></jsp:include>
