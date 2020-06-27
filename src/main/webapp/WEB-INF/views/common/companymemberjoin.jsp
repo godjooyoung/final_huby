@@ -559,7 +559,7 @@ function joincheck(){
 		}
 	}
 	
-		function typecheck(selected){
+		function typecheck(){
 			var type = $("#business_type").val();
 			if(type == ""){
 				$("#typeblur").html("종목을 선택하세요");

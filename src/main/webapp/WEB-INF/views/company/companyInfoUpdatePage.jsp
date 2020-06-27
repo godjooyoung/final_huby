@@ -300,11 +300,12 @@ $("#business_type").val(type);
   	<select class="form-control input-md" id="business_type" name="business_type" required="required" onchange="typecheck(this.value)">
   		<option value="">종목 선택</option>
   		<c:forEach items="${ typeVo }" var="type">
-  		<option value="${ type.code_id }">${ type.code_name }</option>
+  		<option value="${ type.code_id }" ${type.code_id == cvo.business_type ? 'selected="selected"':''}>${ type.code_name }</option>
   		</c:forEach>
   	</select>
   	<script>
-  		$("#business_type").val("${ cvo.business_type }")
+  		//$("#business_type").val("${ cvo.business_type }")
+  		//$("#job").val("${param.hope_job}");
   	</script>
   	<span class="help-block" id="typeblur"></span> 
   </div>
@@ -379,6 +380,8 @@ $("#business_type").val(type);
     <input class="btn btn-success" type="button" value="비밀번호 변경">
   </div>
 </div>
+
+<>
 
 </fieldset>
 </form>

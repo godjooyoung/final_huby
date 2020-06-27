@@ -176,6 +176,10 @@
 		$("#frm").attr("action","resumeupdate.do");
 		document.frm.submit();
 	}
+	
+	function back(){
+		history.back();
+	}
 </script>
 </head>
 <body>
@@ -246,8 +250,25 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">대표 설정 여부</div>
                                         </div>                                        
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="select_resume" name="select_resume" value="Y" value="${rlist.select_resume}">Y
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="select_resume" name="select_resume" value="N" value="${rlist.select_resume}">N
+                                        
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <c:choose>
+                                        	<c:when test="${ rlist.select_resume == 'Y' }">
+                                        		<input type="radio" id="select_resume" name="select_resume" checked="checked" value="Y">Y
+                                        	</c:when>
+                                        	<c:otherwise>
+                                        		<input type="radio" id="select_resume" name="select_resume" value="Y">Y
+                                        	</c:otherwise>
+                                        </c:choose>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <c:choose>
+                                        	<c:when test="${ rlist.select_resume == 'N' }">
+                                        		<input type="radio" id="select_resume" name="select_resume" checked="checked" value="N">N
+                                        	</c:when>
+                                        	<c:otherwise>
+                                        		<input type="radio" id="select_resume" name="select_resume" value="N">N
+                                        	</c:otherwise>
+                                        </c:choose>
                                     </div>
                                 </div>
 
@@ -256,8 +277,24 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">공개 설정 여부</div>
                                         </div>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="select_public" name="select_public" value="Y" value="${rlist.select_public}">Y
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="select_public" name="select_public" value="N" value="${rlist.select_public}">N
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <c:choose>
+                                        	<c:when test="${ rlist.select_public == 'Y' }">
+                                        		<input type="radio" id="select_public" name="select_public" checked="checked" value="Y">Y
+                                        	</c:when>
+                                        	<c:otherwise>
+                                        		<input type="radio" id="select_public" name="select_public" value="Y">Y
+                                        	</c:otherwise>
+                                        </c:choose>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <c:choose>
+                                        	<c:when test="${ rlist.select_public == 'N' }">
+                                        		<input type="radio" id="select_public" name="select_public" checked="checked" value="N">N
+                                        	</c:when>
+                                        	<c:otherwise>
+                                        		<input type="radio" id="select_public" name="select_public" value="N">N
+                                        	</c:otherwise>
+                                        </c:choose>
                                     </div>
                                 </div>
 

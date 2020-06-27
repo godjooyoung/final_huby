@@ -141,6 +141,15 @@
 	}
 </script>
 <script>
+	if('${resultCheck}' != null && '${resultCheck}' != ""){
+		if ('${resultCheck}' == 1) {
+			alert("비밀번호가 정상적으로 변경되었습니다.");
+		}else{
+			alert("비밀번호가 변경을 실패했습니다.");
+		}
+	}
+	
+
 	function back() {
 		history.back();
 	}
@@ -271,6 +280,52 @@
 			$('#emailcheck').css("color", "blue");
 			return true;
 		}
+	}
+	
+	function pwupdatecheck(){
+		var pwupdate1 = $("#member_pwcheck1").val();
+		var pwupdate2 = $("#member_pwcheck2").val();
+		var realpw = $("#member_pw").val();
+		
+		
+		if(realpw == null || realpw == ""){
+			alert("현재 비밀번호를 입력해주세요");
+			return;
+		}
+		
+		$.ajax({
+		    url: "realpwcheck.do",
+		    type: "post",
+		    dataType: "json",
+		    data: {'member_pw':realpw},
+		    success: function(data){
+		    },
+		    error: function (request, status, error){ 
+		    }
+		  });
+		
+		
+		
+		if(pwupdate1 != null && pwupdate1 != ""){
+			if(pwupdate1 != pwupdate2){
+				alert("변경 할 패스워드가 일치하지않습니다.");
+				return;
+			}
+		}else{
+			alert("변경 할 패스워드를 입력해주세요.");
+			return;
+		}
+		
+		$("#frm").attr("action","pwUpdate.do")
+		document.frm.submit();
+		
+		
+		
+		/* $(document).ready(function(){
+			$("#plzreset").click(function(){
+				alert(1);
+			});
+		}); */
 	}
 </script>
 </head>
@@ -406,8 +461,34 @@
 						<input class="btn btn-success" type="submit" value="정보 수정하기">
 						<input class="btn btn-success" type="reset" value="취소"> <input
 							class="btn btn-success" type="button" value="이전 페이지"
-							onclick="back()"> <input class="btn btn-success"
-							type="button" value="비밀번호 변경">
+							onclick="back()">
+							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">비밀번호 변경</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" id="plzreset" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">비밀번호 변경</h4>
+        </div>
+        <div class="modal-body">
+        <div align="center">
+		현재 비밀번호를 입력해주세요.<input type="password" id="member_pw" name="member_pw"><br>
+		변경 할 비밀번호를 입력해주세요.<input type="password" id="member_pwcheck1" name="member_pwcheck"><br>
+		변경 할 비밀번호 재확인.<input type="password" id="member_pwcheck2">
+		</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="pwupdatecheck()">변경하기</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 					</div>
 				</div>
 

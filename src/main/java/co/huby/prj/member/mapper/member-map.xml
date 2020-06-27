@@ -26,9 +26,6 @@
 			<if test="member_photo != null and member_photo != ''"> 
 			member_photo = #{member_photo}
 			</if>
-			<if test="member_pw != null and member_pw != ''">
-			,member_pw = #{member_pw}
-			</if>
 			<if test="member_addr != null and member_addr != ''">
 		    ,member_addr = #{member_addr}
 		    </if>
@@ -184,6 +181,12 @@
 	<delete id="habitDelete" parameterType="HabitVo">
 		delete from habit where habit_id = #{habit_id}
 	</delete>
+	
+	<update id="pwUpdate" parameterType="MemberVo">
+		update member
+		set member_pw = #{member_pwcheck}
+		where member_id = #{member_id}
+	</update>
 	<!-- <select id="getSelect" parameterType="MemberVO" resultType="MemberVO">
 		SELECT * FROM MEMBER WHERE ID = #{ID}
 	</select>

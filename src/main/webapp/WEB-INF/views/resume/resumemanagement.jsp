@@ -55,11 +55,17 @@
 		$("#frm3").attr("action","careerUpdatePage.do");
 		document.frm3.submit();
 	}
+	
+	function resumeCheckDelete(){
+		$("#frm").attr("action", "resumeCheckDelete.do")
+		document.frm.submit();
+	}
 </script>
 </head>
 <body>
 <div align="center">
-<button class="btn-primary" type="button" onclick="location.href='resumeinsertpage.do'">이력서등록</button>
+<button class="btn-primary" type="button" onclick="location.href='resumeinsertpage.do'">이력서등록</button><br>
+<button class="btn-primary" type="button" onclick="resumeCheckDelete()">이력서삭제하기</button><br>
 </div>
 <div align="center">
 <h1>이력서 관리</h1>
@@ -69,6 +75,7 @@
 <tr>
 <c:forEach items="${ rlist }" var="list">
 <td>
+	<input type="checkbox" id=resumeDelete name="resumeDelete" value=${ list.resume_id }>
 	${ list.resume_id }<br>
 	${ list.resume_title }<br>
 	${ list.hope_job }<br>
