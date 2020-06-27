@@ -23,4 +23,6 @@ public interface AlarmMap {
 	List<Map> comemploymentlist(String companyid);
 	List<AlarmVo> companyselect(CompanyVo vo);
 	int alarmupdatecheck(AlarmVo vo);
+	int memberreadstate(String personid);
+	int companyreadstate(String companyid);
 }

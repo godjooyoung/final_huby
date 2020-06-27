@@ -6,13 +6,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.vo.InterviewVo;
 import co.huby.prj.vo.MessageVo;
 
-@Repository
+@Service
 public class ChatServiceImpl implements ChatService {
 
 	@Inject
@@ -23,7 +23,7 @@ public class ChatServiceImpl implements ChatService {
 	public void createRoom(InterviewVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		session.insert(namespace + ".createRoom", vo);
-
+		
 	}
 
 	@Override

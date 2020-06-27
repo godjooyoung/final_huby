@@ -16,7 +16,7 @@ import co.huby.prj.vo.InterviewVo;
 public class ChatController {
 
 	@Autowired
-	ChatService chatService;
+	private ChatService chatService;
 	// @Autowired
 	// Handler handler;
 
