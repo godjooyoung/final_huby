@@ -29,15 +29,15 @@ public class QuestionImpl implements QuestionService {
 	}
 
 	@Override
-	public void qInsertCompany(QuestionVo vo) throws Exception {
+	public int qInsertCompany(QuestionVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		map.insertQuestionCompany(vo);
+		return map.insertQuestionCompany(vo);
 	}
 
 	@Override
-	public void qInsertMember(QuestionVo vo) throws Exception {
+	public int qInsertMember(QuestionVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		map.insertQuestionMember(vo);
+		return map.insertQuestionCompany(vo);
 	}
 
 }

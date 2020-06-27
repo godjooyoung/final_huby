@@ -14,7 +14,7 @@ public interface QuestionMap {
 
 	List<Map> getSelectQuestionMember(QuestionVo vo) throws Exception;
 
-	void insertQuestionCompany(QuestionVo vo) throws Exception;
+	int insertQuestionCompany(QuestionVo vo) throws Exception;
 
 	void insertQuestionMember(QuestionVo vo) throws Exception;
 

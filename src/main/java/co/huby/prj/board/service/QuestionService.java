@@ -11,7 +11,7 @@ public interface QuestionService {
 
 	List<Map> getSelectQuestionMember(QuestionVo vo) throws Exception;
 
-	void qInsertCompany(QuestionVo vo) throws Exception;
+	int qInsertCompany(QuestionVo vo) throws Exception;
 
-	void qInsertMember(QuestionVo vo) throws Exception;
+	int qInsertMember(QuestionVo vo) throws Exception;
 }
