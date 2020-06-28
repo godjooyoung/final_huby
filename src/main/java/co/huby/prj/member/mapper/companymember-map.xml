@@ -111,5 +111,11 @@
 	</set>
 	where company_id = #{company_id}
 	</update>
+	
+	<update id="companyPwUpdate" parameterType="CompanyVo">
+		update company
+		set company_pw = #{company_pw}
+		where company_id = #{company_id}
+	</update>
 </mapper>
 

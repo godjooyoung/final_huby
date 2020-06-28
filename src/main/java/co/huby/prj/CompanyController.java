@@ -8,11 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.huby.prj.board.service.BoardService;
@@ -48,6 +50,8 @@ public class CompanyController {
 	MemberService memberService;
 	@Autowired
 	CodeService codeService;
+	@Autowired
+	BCryptPasswordEncoder pwdEncoder;
 
 	@RequestMapping("/CompanyInsertJoin.do")
 	public ModelAndView CompanyInsertJFoin(Model model, CompanyVo vo) {
@@ -107,4 +111,34 @@ public class CompanyController {
 		
 		return "redirect:companyInfoUpdatePage.do";
 	}
+	
+	@ResponseBody
+	@RequestMapping("/companyPwUpdateCheck.do")
+	public String companyPwUpdateCheck(Model model, HttpServletRequest request, CompanyVo cvo) {
+		String companyId = (String) request.getSession().getAttribute("loginId");
+		cvo.setCompany_id(companyId);
+		CompanyVo checkCvo = companyMemberService.selectone(cvo);
+		boolean pwdMatch = pwdEncoder.matches(cvo.getCompany_pw(), checkCvo.getCompany_pw());
+		
+		String error = "";
+		if(pwdMatch) {
+			error = "10";
+		}else {
+			error = "20"; 
+		}
+		
+		return error;
+	}
+	
+	@RequestMapping("/companyPwUpdate.do")
+	public String companyPwUpdate(Model model, HttpServletRequest request, CompanyVo cvo) {
+		String companyId = (String) request.getSession().getAttribute("loginId");
+		cvo.setCompany_id(companyId);
+		cvo.setCompany_pw(cvo.getCompany_pwcheck());
+		
+		int n = companyMemberService.companyPwUpdate(cvo);
+		
+		return "redirect:companyInfoUpdatePage.do";
+	}
+	
 }

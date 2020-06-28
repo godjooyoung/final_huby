@@ -67,4 +67,11 @@ public class CompanyMemberServiceImpl implements CompanyMemberService {
 		// TODO Auto-generated method stub
 		return map.companySelectOne(vo);
 	}
+
+	@Override
+	public int companyPwUpdate(CompanyVo vo) {
+		vo.setCompany_pw(pwdEncoder.encode(vo.getCompany_pw()));
+		// TODO Auto-generated method stub
+		return map.companyPwUpdate(vo);
+	}
 }

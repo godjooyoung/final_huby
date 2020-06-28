@@ -13,4 +13,5 @@ public interface CompanyMemberService {
 	CompanyVo companyMemberIdCheck(CompanyVo vo);
 	CompanyVo companyrNumCheck(CompanyVo vo);
 	CompanyVo companySelectOne(CompanyVo vo);
+	int companyPwUpdate(CompanyVo vo);
 }

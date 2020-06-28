@@ -287,9 +287,16 @@
 		var pwupdate2 = $("#member_pwcheck2").val();
 		var realpw = $("#member_pw").val();
 		
-		
 		if(realpw == null || realpw == ""){
-			alert("현재 비밀번호를 입력해주세요");
+			alert("현재 패스워드를 입력해주세요.")
+			return;
+		}	
+		if(pwupdate1 == null || pwupdate1 == ""){
+			alert("변경 할 패스워드를 입력해주세요.")
+			return;
+		}
+		if(pwupdate2 == null || pwupdate2 == ""){
+			alert("변경 할 패스워드를 입력해주세요.")
 			return;
 		}
 		
@@ -297,22 +304,17 @@
 		    url: "realpwcheck.do",
 		    type: "post",
 		    dataType: "json",
+		    async: false,
 		    data: {'member_pw':realpw},
 		    success: function(data){
+		    	result = data;
 		    },
 		    error: function (request, status, error){ 
 		    }
 		  });
 		
-		
-		
-		if(pwupdate1 != null && pwupdate1 != ""){
-			if(pwupdate1 != pwupdate2){
-				alert("변경 할 패스워드가 일치하지않습니다.");
-				return;
-			}
-		}else{
-			alert("변경 할 패스워드를 입력해주세요.");
+		if(result==0){
+			alert("현재 패스워드가 일치하지 않습니다.")
 			return;
 		}
 		

@@ -20,11 +20,19 @@ public class CompanyVo {
 	private String homepage;
 	private Date company_date;
 	private String job_name;
+	private String company_pwcheck;;
+	
 	//getter setter
 	
 	
 	public String getCompany_id() {
 		return company_id;
+	}
+	public String getCompany_pwcheck() {
+		return company_pwcheck;
+	}
+	public void setCompany_pwcheck(String company_pwcheck) {
+		this.company_pwcheck = company_pwcheck;
 	}
 	public String getJob_name() {
 		return job_name;
