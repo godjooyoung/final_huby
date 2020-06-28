@@ -158,5 +158,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		return map.pwUpdate(vo);
 	}
+
+	@Override
+	public int selectSkillId() throws Exception {
+		// TODO Auto-generated method stub
+		return map.selectSkillId();
+	}
 	
 }

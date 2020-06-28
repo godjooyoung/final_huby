@@ -187,6 +187,10 @@
 		set member_pw = #{member_pwcheck}
 		where member_id = #{member_id}
 	</update>
+	
+	<select id="selectSkillId" resultType="int">
+		select max(skill_id) from skills
+	</select>
 	<!-- <select id="getSelect" parameterType="MemberVO" resultType="MemberVO">
 		SELECT * FROM MEMBER WHERE ID = #{ID}
 	</select>
