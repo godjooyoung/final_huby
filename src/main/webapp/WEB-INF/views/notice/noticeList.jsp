@@ -22,7 +22,6 @@
 <br>
 <br>
 <br>
-<br>
 
 <div align="center">
 	<div class="section-title">
@@ -65,3 +64,30 @@
 		</form>
 	</div>
 </div>
+<nav id="paging" aria-label="Page navigation example">
+	<ul class="pagination">
+		<c:if test="${paging.startPage>1}">
+			<li class="page-item"><a class="page-link"
+				href="javascript:${jsfunc}(${paging.startPage-1})">이전</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i">
+			<c:if test="${i != paging.page}">
+				<li class="page-item"><a class="page-link"
+					href="javascript:${jsfunc}(${i})">${i}</a>
+			</c:if>
+			<c:if test="${i == paging.page}">
+				<li class="page-item active"><a class="page-link"
+					href="javascript:${jsfunc}(${i})">${i}</a>
+			</c:if>
+		</c:forEach>
+		<c:if test="${paging.endPage<paging.totalPageCount}">
+			<li class="page-item"><a class="page-link"
+				href="javascript:${jsfunc}(${paging.endPage+1})">다음</a>
+		</c:if>
+	</ul>
+</nav>
+<script>
+	function gopage(p) {
+		location.href = window.location.pathname + "?page=" + p;
+	}
+</script>

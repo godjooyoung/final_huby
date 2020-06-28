@@ -11,4 +11,6 @@ import co.huby.prj.vo.NoticeVo;
 public interface NoticeMap {
 
 	List<Map> noticeList(NoticeVo vo) throws Exception;
+
+	int countNotice() throws Exception;
 }

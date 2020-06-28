@@ -3,7 +3,26 @@
 <mapper namespace="co.huby.prj.board.mapper.NoticeMap">
 
 	<select id="noticeList" resultType="map">
-		select * from notice
+		select rownum, b.*
+		from
+		(select rownum rn, a.*
+		from(select
+		notice_id, notice_title, admin_id,
+		notice_date
+		from notice order by
+		notice_id desc)a) b
+		where rn between
+		#{first} and #{last}
+	</select>
+
+	<select id="noticeSelect" resultType="map">
+		select * from notice where
+		notice_id = #{notice_id}
+	</select>
+
+	<select id="countNotice" resultType="int">
+		SELECT COUNT(*) count FROM
+		notice
 	</select>
 
 </mapper>
