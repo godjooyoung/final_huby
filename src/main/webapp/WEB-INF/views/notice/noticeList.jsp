@@ -16,6 +16,13 @@
 	left: 50%;
 }
 </style>
+<script>
+	function noticedetail(nid){
+		$("#notice_id").val(nid);
+		$("#frm").attr("action","noticedetail.do");
+		document.frm.submit();		
+	}
+</script>
 <br>
 <br>
 <br>
@@ -28,7 +35,7 @@
 		<h2>공지사항</h2>
 	</div>
 	<div class="container">
-		<form id="frm" name="frm" action="#" method="post">
+		<form id="frm" name="frm" method="post">
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -48,7 +55,7 @@
 						<c:otherwise>
 							<c:forEach var="notice" items="${noticeList}">
 								<tr
-									onclick="location.href='noticedetail.do?n_no=${notice.NOTICE_ID}'"
+									onclick="noticedetail('${notice.NOTICE_ID}')"
 									style="cursor: pointer">
 									<td>${notice.RN}</td>
 									<td>${notice.NOTICE_TITLE}</td>
@@ -61,6 +68,7 @@
 					</c:choose>
 				</tbody>
 			</table>
+			<input type="hidden" id="notice_id" name="notice_id">
 		</form>
 	</div>
 </div>

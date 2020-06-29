@@ -15,7 +15,7 @@
 		#{first} and #{last}
 	</select>
 
-	<select id="noticeSelect" resultType="map">
+	<select id="noticeSelect" resultType="NoticeVo">
 		select * from notice where
 		notice_id = #{notice_id}
 	</select>
