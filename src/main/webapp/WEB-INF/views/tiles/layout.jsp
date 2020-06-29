@@ -12,6 +12,7 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Karma">
 
+
 <!-- css -->
 <link media="all"
 	href="${pageContext.request.contextPath}/resources/css/common.css"
@@ -32,21 +33,13 @@
 
 <!-- js -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/basic.js"></script>
 <script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script type="text/javascript"
@@ -107,7 +100,11 @@ body, h1, h2, h3, h4, h5, h6 {
 	<div id="wrapper">
 		<tiles:insertAttribute name="top" />
 		<br> <br> <br>
+<<<<<<< HEAD
 		<div id="msgAlert"></div>
+=======
+		<div id="msgAlert">메시지Alert</div>
+>>>>>>> branch 'master' of https://github.com/godjooyoung/final_huby.git
 		<div id="contents">
 			<tiles:insertAttribute name="body" />
 			<tiles:insertAttribute name="footer" />
