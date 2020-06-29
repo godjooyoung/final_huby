@@ -45,12 +45,16 @@
 													$("#div_gifInsert *")
 															.remove();
 													var video = '<video width="360" height="640" controls>'
-															+ '<source src="download.do?name='
+															+ '<source src="downloadVideo.do?name='
 															+ data.video_location
 															+ '" type="video/mp4" />'
-															+ '</video>'
+															+ '</video>';
+													var gif = '<img width="360" height="640" src="downloadGif.do?name=data.video_img"
+															>'		
 													$('#div_videoInsert')
 															.append(video);
+													$('#div_videoInsert')
+															.append(gif);
 												},
 												error : function(e) {
 													console.log(e);
