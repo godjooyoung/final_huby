@@ -11,30 +11,30 @@
 
 <!-- First Photo Grid-->
 <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-	<c:forEach var="matched" items="${matched}" >
-		<div class="w3-quarter" >
-			<img src="${pageContext.request.contextPath}/resources/img/common/${matched.video_img }"
-				alt="thumnail" style="width: 100%;" onclick="location.href='resumeDetail.do?video_id=${matched.video_id}&member_id=${matched.member_id }'">
+	<c:forEach var="matched" items="${matched}">
+		<div class="w3-quarter">
+			<img src="download.do?name='${matched.video_img }'" alt="thumnail"
+				style="width: 100%;"
+				onclick="location.href='resumeDetail.do?video_id=${matched.video_id}&member_id=${matched.member_id }'">
 			<button class="w3-button w3-padding-small w3-xlarge"
 				id="btn${matched.video_id }" name="likeBtn"
 				value="${matched.video_id}" type="button"
 				onclick="clickLike(${matched.video_id})">
 				<font id="font${matched.video_id }" color="black" data-count="0">
-					<b>
-						<i class="fas fa-heart"></i>
-					</b>
+					<b> <i class="fas fa-heart"></i>
+				</b>
 				</font>
 			</button>
 			<h3>#${matched.code_name }</h3>
 			<p>${matched.video_contents }</p>
 		</div>
-		</c:forEach>
+	</c:forEach>
 </div>
-	
+
 
 <!-- Second Photo Grid-->
 <div class="w3-row-padding w3-padding-16 w3-center" id="morePlace">
-		
+
 </div>
 <!-- Grid END -->
 
@@ -116,7 +116,7 @@
 			 console.log(data.length);
 			if (data.length !=0){
 			 $.each(data, function(idx,item){	
-					$('<div class="w3-quarter">').html("<img src=\"${pageContext.request.contextPath}/resources/img/common/"+item.video_img+"\" "+
+					$('<div class="w3-quarter">').html("<img src='download.do?name="+item.video_img+"' "+
 							"alt='thumnail' style='width: 100%;' onclick=\"location.href='resumeDetail.do?video_id=" + item.video_id + "&member_id=" +item.member_id + "'\">"
 							+"<button class='w3-button w3-padding-small w3-xlarge'id='btn"+item.video_id+"' name='likeBtn' value='" + item.video_id + "' type='button' onclick='clickLike(" + 
 							item.video_id + ")'>"+

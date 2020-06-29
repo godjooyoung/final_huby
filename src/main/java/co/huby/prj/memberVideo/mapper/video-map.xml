@@ -6,11 +6,7 @@
 		(VIDEO_ID,MEMBER_ID, VIDEO_IMG,HASHTAG,
 		VIDEO_LOCATION)
 		VALUES(VIDEO_SEQ.NEXTVAL,#{member_id},
-		#{video_img}, #{hashtag},
+		#{video_img}, (select code_id from code where code_name = #{hashtag}),
 		#{video_location})
 	</insert>
-
-	<select id="selectVideoName" resultType="co.huby.prj.vo.VideoVo">
-		SELECT VIDEO_IMG, VIDEO_LOCATION FROM VIDEO
-	</select>
 </mapper>
