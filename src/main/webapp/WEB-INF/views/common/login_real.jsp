@@ -126,7 +126,7 @@
 		<button type="button" onclick="location.href='main.do' ">홈으로</button>
 		<br> <br> <a href="memberjoin.do">회원이 아니신가요?</a>
 	</div>
-	<button type="button" onclick="location.href='logintest.do'">로그인화면테스트
+	<button type="button" onclick="location.href='logintest.do'">회원가입테스트
 		테스트</button>
 	<!-- test -->
 	<button type="button" onclick="location.href='gotest.do'">뷰확인용

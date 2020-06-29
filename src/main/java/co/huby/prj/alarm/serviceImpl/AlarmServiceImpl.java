@@ -105,12 +105,7 @@ public class AlarmServiceImpl implements AlarmService {
 
 	@Override
 	public int countselect() {
-		
-	 if ('loginType' == 'U') {
-			return map.personcountselect(personid);
-		} else {
-			return map.companycountselect(companyid);
-	}
-	
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
