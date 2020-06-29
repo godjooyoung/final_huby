@@ -1,95 +1,202 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<br><br>
-<br><br>
-<br><br>
-
-<h1>지원자 상세 보기</h1>
-		
-	<div class="container" style="margin-top: 30px">
-		<div class="row">
-			<div class="col-sm-4">
-				<h2>${applyman.member_name} 님</h2>
-				<h3><br>개인 정보</h3>
-				<ul class="nav nav-pills flex-column">
-					<li class="nav-item">${applyman.member_addr}</li>
-					<li class="nav-item">${applyman.member_tel}</li>
-					<li class="nav-item">${applyman.member_email}</li>
-					<li class="nav-item">${applyman.member_birth}</li>
-					<li class="nav-item">${applyman.member_gender}</li>
-				</ul>
-				
-				<a onclick="reciveSkill(event,'${applyman.member_id}')">
-					<h3>
-						<br>기술
-					</h3>
-				</a>
-				<ul class="nav nav-pills flex-column" id="skills${applyman.member_id}">
-					<!-- 반복문 돌리기 -->
-					<!-- 여기에 가져온 스킬정보를 붙이자. li 태그로로 -->
-				</ul>
-				
-				
-				<a onclick="reciveHabit(event,'${applyman.member_id}')">
-					<h3>
-						<br>습관
-					</h3>
-				</a>
-				<ul class="nav nav-pills flex-column" id="habits${applyman.member_id}">
-				<!-- 여기에 가져온 습관정보를 붙이자. li 태그로로 -->
-				</ul>
-				
-				<hr class="d-sm-none">
-			</div>
-			<div class="col-sm-8">
-				
-				<h2>[이력서]</h2> 
-				<h3>${applyman.resume_title}</h3>
-				<h4>${applyman.resume_coment}</h4>
-				<ul class="nav nav-pills flex-column">
-					<li class="nav-item">희망 연봉 : ${applyman.hope_salary}</li>
-					<li class="nav-item">희망 직무 : ${applyman.code_name}</li>
-					<li class="nav-item">희망 근무 지역 : 
-						<c:set var="location" value="${applyman.hope_location}" />
-						<c:if test="${location eq null}" >
-							없음
-						</c:if>
-						<c:if test="${location != null}" >
-							${applyman.hope_location}
-						</c:if>
-						</li>
-				</ul>
-				
-				<h2>[자기소개]</h2>
-				<h3>${applyman.video_contents}</h3>
-				<div>
-				<img src="${pageContext.request.contextPath}/resources/img/common/${applyman.video_img}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<body>
+	<!-- Page Container -->
+	<div class="w3-content w3-margin-top" style="max-width: 1400px;">
+		<!-- The Grid -->
+		<div class="w3-row-padding">
+			<!-- Left Column -->
+			<div class="w3-third">
+				<div class="w3-white w3-text-grey w3-card-4">
+					<div class="w3-display-container">
+						<img
+							src="${pageContext.request.contextPath}/resources/img/common/${applyman.video_img}"
+							style="width: 100%" alt="self-video">
+						<div class="w3-display-topleft w3-container w3-text-black">
+							<br>
+							<h2><b><u>${applyman.member_name}</u> 지원자</b></h2>
+						</div>
+						<div class="w3-display-bottomleft w3-container w3-text-black">
+							<br>
+							<h3 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:340px;"><b>#${applyman.code_name}</b></h3>
+							<h3><b>${applyman.video_contents}</b></h3>
+						</div>
+					</div>
+					<br>
+					<div class="w3-container">
+						<p>
+							<i class="fas fa-signature w3-margin-right w3-large w3-text-blue"></i>
+							${applyman.member_name}
+						</p>
+						<p>
+						<i class="fas fa-home w3-margin-right w3-large w3-text-blue"></i>
+							${applyman.member_addr}
+						</p>
+						<p>
+							<i class="fas fa-at w3-margin-right w3-large w3-text-blue"></i>
+							${applyman.member_email}
+						</p>
+						<p>
+							<i class="fas fa-phone w3-margin-right w3-large w3-text-blue"></i>
+							${applyman.member_tel}
+						</p>
+						<p>
+							<i class="fas fa-venus-mars w3-margin-right w3-large w3-text-blue"></i>
+							${applyman.member_gender}
+						</p>
+						<p>
+							<i class="fas fa-birthday-cake w3-margin-right w3-large w3-text-blue"></i>
+							${applyman.member_birth}
+						</p>
+						
+						<hr>
+					</div>
+					<div align="center">
+					<input type="button" class="btn btn-primary w3-margin" id="button" value="면접요청" onclick="interviewRe('${applyman.member_id}')">
+					</div>
 				</div>
-				<p>${applyman.code_name}</p>
 				<br>
 				
-				<a onclick="reciveCareer(event,'${applyman.member_id}')">
-				<h3>경력</h3>
-				</a>
-				<ul class="nav nav-pills flex-column" id="career${applyman.member_id}">
-				<!-- 여기에 가져온 경력정보를 붙이자. li 태그로로 -->
-				</ul>
-				
-				<a onclick="reciveExp(event,'${applyman.member_id}')">
-				<h3>경험</h3>
-				</a>
-				<ul class="nav nav-pills flex-column" id="exp${applyman.member_id}">
-				<!-- 여기에 가져온 경험정보를 붙이자. li 태그로로 -->
-				</ul>
-				
-				<input type="button" id="button" value="면접요청" onclick="interviewRe('${applyman.member_id}')">
+				<!-- End Left Column -->
 			</div>
+
+			<!-- Right Column -->
+			<div class="w3-twothird">
+
+				<div class="w3-container w3-card w3-white w3-margin-bottom">
+					<h2 class="w3-text-grey w3-padding-16">
+						<i class="fas fa-file w3-margin-right w3-xxlarge w3-text-blue" ></i>
+						${applyman.resume_title}
+					</h2>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<b>한마디</b>
+						</h5>
+						<h6 class="w3-text-blue">
+							${applyman.resume_coment}
+						</h6>
+						<hr>
+					</div>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<b>희망연봉</b>
+						</h5>
+						<p>${applyman.hope_salary}</p>
+						<hr>
+					</div>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<b>희망직무</b>
+						</h5>
+						<p>${applyman.code_name}</p>
+						<hr>
+					</div>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<b>희망근무지역</b>
+						</h5>
+						<h6 class="w3-text-teal">
+							${applyman.hope_location}
+						</h6>
+						<hr>
+					</div>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<b>최종학력</b>
+						</h5>
+						<h6 class="w3-text-teal">
+							${applyman.final_education}
+						</h6>
+						<br>
+					</div>
+				</div>
+				<br>
+				<div class="w3-container w3-card w3-white w3-margin-bottom">
+					<h2 class="w3-text-grey w3-padding-16">
+						<a onclick="reciveCareer(event,'${applyman.member_id}')">
+						<i  class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-blue"></i>
+						경력사항
+						</a>
+					</h2>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+						<!-- 커리어 -->
+						<ul class="nav nav-pills flex-column" id="career${applyman.member_id}">
+						<!-- 여기에 가져온 경력정보를 붙이자. li 태그로로 -->
+						</ul>
+						</h5>
+						<hr>
+					</div>
+
+				</div>
+				
+				<div class="w3-container w3-card w3-white w3-margin-bottom">
+					<h2 class="w3-text-grey w3-padding-16">
+						<a onclick="reciveExp(event,'${applyman.member_id}')">
+						<i  class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-blue"></i>
+						관련 경험 및 자기 계발
+						</a>
+					</h2>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<ul class="nav nav-pills flex-column" id="exp${applyman.member_id}">
+							<!-- 여기에 가져온 경험정보를 붙이자. li 태그로로 -->
+						</ul>
+						</h5>
+						<hr>
+					</div>
+
+				</div>
+				
+				<div class="w3-container w3-card w3-white w3-margin-bottom">
+					<h2 class="w3-text-grey w3-padding-16">
+						<a onclick="reciveSkill(event,'${applyman.member_id}')">
+						<i  class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-blue"></i>
+						보유기술
+						</a>
+					</h2>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<ul class="nav nav-pills flex-column" id="skills${applyman.member_id}">
+								<!-- 반복문 돌리기 -->
+								<!-- 여기에 가져온 스킬정보를 붙이자. li 태그로로 -->
+							</ul>
+						</h5>
+						<hr>
+					</div>
+
+				</div>
+				
+				<div class="w3-container w3-card w3-white w3-margin-bottom">
+					<h2 class="w3-text-grey w3-padding-16">
+						<a onclick="reciveHabit(event,'${applyman.member_id}')">
+						<i  class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-blue"></i>
+						습관
+						</a>
+					</h2>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<ul class="nav nav-pills flex-column" id="habits${applyman.member_id}">
+							<!-- 여기에 가져온 습관정보를 붙이자. li 태그로로 -->
+							</ul>
+						</h5>
+						<hr>
+					</div>
+
+				</div>
+
+				<!-- End Right Column -->
+			</div>
+
+			<!-- End Grid -->
 		</div>
-	</div>
-	
+
+		<!-- End Page Container -->
+	</div>	
 	
 <script>
 function reciveSkill(e,memberid){
@@ -103,11 +210,9 @@ function reciveSkill(e,memberid){
 		success: 
 			function(data){	
 			alert ("성공 skills");
-			console.log(data[0]);
-			
 			$(place).empty();
 			$.each(data,function(idx,item){
-				$('<li>').html(item.SKILL_NAME + item.SKILL_LEVEL)
+				$('<li>').html(item.SKILL_NAME + '<div clas="w3-light-grey w3-round-large">' + "<div class='w3-container w3-blue w3-center w3-round-large w3-tiny' style='width:"+item.SKILL_LEVEL+"%'>" + item.SKILL_LEVEL + "lv</div></div><br>")
 				.appendTo(place);
 			});//each
 			
@@ -127,6 +232,7 @@ function reciveHabit(e,memberid){
 		type:"get",
 		url:"showHabit.do",
 		data : {'memberid': memberid },
+		contentType: "application/json",
 		dataType : 'json',
 		success: 
 			function(data){	
@@ -135,7 +241,9 @@ function reciveHabit(e,memberid){
 			
 			$(place).empty();
 			$.each(data,function(idx,item){
-				$('<li>').html(item.HABIT_NAME + " / " +item.HABIT_START_DATE + "~"+ item.HABIT_COUNT)
+				$('<li>').html("습관"+ (idx+1) + " " + item.HABIT_NAME + " "
+						+ item.HABIT_START_DATE
+						+ " 인증 " + item.CNT)
 				.appendTo(place);
 			});//each
 			

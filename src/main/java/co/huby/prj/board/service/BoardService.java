@@ -82,4 +82,5 @@ public interface BoardService {
 	
 	Map mem_now_interview  (String memberid) throws Exception;
 	
+	void click_complete (EmploymentsVo vo) throws Exception; 
 }

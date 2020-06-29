@@ -81,6 +81,7 @@
 		R.hope_salary as "hope_salary",
 		R.hope_job as "hope_job",
 		R.hope_location as "hope_location",
+		R.final_education as "final_education",
 		M.member_name as "member_name", 
 		M.member_id as "member_id",
 		M.member_birth as "member_birth",
@@ -109,8 +110,9 @@
 
 
 	<select id="get_career" parameterType="string" resultType="map">
-		SELECT ca.start_date,
-		ca.end_date,
+		SELECT
+		TO_CHAR(ca.start_date, 'yyyy-MM-dd') as START_DATE,
+		TO_CHAR(ca.end_date, 'yyyy-MM-dd') as END_DATE,
 		ca.company_name,
 		ca.career_content,
 		c.code_name,
@@ -125,8 +127,17 @@
 
 
 	<select id="get_habit" parameterType="string" resultType="map">
-		SELECT
-		* FROM HABIT WHERE MEMBER_ID =#{value}
+		SELECT 
+		HABIT_NAME, 
+		TO_CHAR(HABIT_START_DATE, 'yyyy-MM-dd') as HABIT_START_DATE, 
+		TO_CHAR(HABIT_LOG_DATE,'yyyy-MM-dd') as HABIT_LOG_DATE, 
+		HABIT_ID,
+		CNT, 
+		MEMBER_ID 
+		FROM 
+		HABIT 
+		WHERE 
+		MEMBER_ID=#{value}
 	</select>
 
 	<select id="get_skills" parameterType="string" resultType="map">
@@ -134,7 +145,14 @@
 	</select>
 
 	<select id="get_exp" parameterType="string" resultType="map">
-		SELECT *
+		SELECT 
+		EXPERIENCE_ID,
+		TO_CHAR(E_START_DATE, 'yyyy-MM-dd') as E_START_DATE,
+		TO_CHAR(E_END_DATE, 'yyyy-MM-dd') as E_END_DATE,
+		EXPERIENCE_TITLE,
+		EXPERIENCE_PLACE_NAME,
+		EXPERIENCE_ACTION,
+		MEMBER_ID
 		FROM EXPERIENCE WHERE MEMBER_ID =#{value}
 	</select>
 
@@ -400,7 +418,14 @@
 	SELECT COUNT(*) as"mem_now_interview" FROM (SELECT INTERVIEW_ID FROM INTERVIEW WHERE MEMBER_ID=#{value, jdbcType=VARCHAR})
 	</select>
 	
-	
+	<!-- 버튼 클릭마감 -->
+	<update id="click_complete" parameterType="co.huby.prj.vo.EmploymentsVo">
+		UPDATE employments
+		SET 
+	COMPLETE = #{complete, jdbcType=VARCHAR}
+	WHERE
+	EMPLOYMENT_ID = #{employment_id, jdbcType=VARCHAR}
+	</update>
 
 </mapper>
 
