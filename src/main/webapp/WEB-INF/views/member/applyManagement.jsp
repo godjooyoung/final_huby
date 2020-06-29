@@ -18,25 +18,34 @@ ${ sessionScope.companyVo.company_id }
 		<p>Paris is the capital of France.</p>
 	</div>
 	<div id="London" class="w3-container city" style="display: block">
-		<!-- <div class="w3-container"> -->
-			<c:forEach var="alist" items="${ alist }">
+		<div class="w3-container">
+			<c:forEach var="alist" items="${ alist }" varStatus="sts">
 				<ul class="w3-ul w3-card-4">
-					<li id="detailemp${alist.EMPLOYMENT_ID}" class="w3-bar">
+					<li id="detailemp${sts.index}" class="w3-bar">
 					<span
 						onclick="this.parentElement.style.display='none'"
 						class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
 						<img src="img_avatar2.png"
 						class="w3-bar-item w3-circle w3-hide-small" style="width: 85px">
+<<<<<<< HEAD
 						<div id="ajaxApplyList" class="w3-bar-item" onclick="selectApplyList('${alist.EMPLOYMENT_ID}')">
+=======
+						<div  class="w3-bar-item" onclick="selectApplyList('${alist.EMPLOYMENT_ID}', '${sts.index}')">
+>>>>>>> branch 'master' of https://github.com/godjooyoung/final_huby.git
 							<span class="w3-large">공고명: ${alist.EMPLOYMENT_TITLE}</span><br>
 							<span class="w3-large">공고내용: ${alist.EMPLOYMENT_CONTENTS}</span><br>채용공고기간${ alist.EMPLOYMENT_TIME } &nbsp;&nbsp; <span>지원시간: ${alist.APPLY_DATE}  </span>
 						</div></li>
 				</ul>
+<<<<<<< HEAD
 						<div id="appendemp${alist.EMPLOYMENT_ID}" style="display: none;"></div>
+=======
+						<div id="appendemp${sts.index}"></div>
+>>>>>>> branch 'master' of https://github.com/godjooyoung/final_huby.git
 				<%-- <ul class="nav nav-pills flex-column" id="emp${alist.EMPLOYMENT_TIME}"></ul> --%>
 				<br>
 			</c:forEach>
 
+		</div>
 	</div>
 </div>
 <script>
