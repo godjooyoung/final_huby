@@ -22,8 +22,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="list" items="${companyChatList}">
-					<tr
-						onclick="location.href='company_chat.do?interview_id=${list.interview_id}'">
+					<tr onclick="goChat(window.event, '${list.interview_id}')">
 						<td>${list.interview_start}</td>
 						<td>${list.member_name}</td>
 						<td>${list.member_id}</td>
@@ -37,3 +36,24 @@
 		</table>
 	</form>
 </div>
+
+<script>
+	function goChat(e, interview_id) {
+
+		var company_id = $(e.target).closest("tr").find("td").eq(3).html();
+		var member_id = $(e.target).closest("tr").find("td").eq(2).html()
+		//대화요청
+		var message = {};
+		message.message_content = '대화요청';
+		message.message_receiver = member_id;
+		message.message_sender = company_id;
+		message.interview_id = interview_id;
+		message.member_id = member_id;
+		message.company_id = company_id;
+		message.message_type = 'OPEN';
+
+		sock.send(JSON.stringify(message)); //웹소켓으로 메시지를 보내겠어
+
+		location.href = 'company_chat.do?interview_id=' + interview_id;
+	}
+</script>

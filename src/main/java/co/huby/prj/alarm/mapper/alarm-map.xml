@@ -75,4 +75,21 @@
 		WHERE MEMBER_ID = #{member_id} AND COMPANY_ID = #{company_id} AND ALARM_CURRENT = 'Y' AND ALARM_MESSAGE = '면접제의'
 	</select>
 	
+	<select id ="memcountselect" resultType="int">
+	  SELECT COUNT(MEMBER_ID)
+      FROM ALARM
+      WHERE MEMBER_ID = #{personid} AND MEMBERREAD_STATE = 'N';
+	</select>
+	
+	<select id ="companycountselect" resultType="int">
+	  SELECT COUNT(COMPANY_ID)
+      FROM ALARM
+      WHERE COMPANY_ID = #{companyid} AND MEMBERREAD_STATE = 'N' AND alarm_current = 'Y';
+	</select>
+	
+	<select id="countselect" resultType="co.huby.prj.alarm.service.AlarmVo">
+	select * from 
+	(select member_id,'U' loginType from member UNION all select company_id, 'C' from company)
+	where member_id =  #{loginId};
+	</select>
 </mapper>

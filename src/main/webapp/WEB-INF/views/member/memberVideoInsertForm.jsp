@@ -11,7 +11,12 @@
 		$('#btnSend')
 				.click(
 						function() {
-
+							if($("video").length >=3){
+								alert("영상은 3개까지 등록 가능합니다. 기존의 영상을 삭제 후 다시 실행해 주세요.");
+								$('#btnSend').attr('disabled',true);
+								return
+								
+							}
 							$('form')
 									.ajaxForm(
 											{
@@ -45,16 +50,12 @@
 													$("#div_gifInsert *")
 															.remove();
 													var video = '<video width="360" height="640" controls>'
-															+ '<source src="downloadVideo.do?name='
+															+ '<source src="download.do?name='
 															+ data.video_location
 															+ '" type="video/mp4" />'
 															+ '</video>';
-													var gif = '<img width="360" height="640" src="downloadGif.do?name=data.video_img"
-															>'		
 													$('#div_videoInsert')
 															.append(video);
-													$('#div_videoInsert')
-															.append(gif);
 												},
 												error : function(e) {
 													console.log(e);
@@ -68,6 +69,9 @@
 
 											}).submit();
 						});
+		autosize(document.querySelectorAll('textarea'));
+				
+
 	});
 </script>
 
@@ -110,26 +114,40 @@
 	</div>
 	<div id="status"></div>
 </div>
-<div id="div_gifInsert" class="div1"></div>
 <div id="div_videoInsert"></div>
+<div id="div_gifInsert"></div>
 <div class="container h-100">
 	<div class="row h-100 justify-content-center align-items-center">
-		<form class="col-12" action="memberVideoInsert.do" method="post"
-			enctype="multipart/form-data">
+		<form id="videoForm" class="col-12" action="memberVideoInsert.do"
+			method="post" enctype="multipart/form-data">
 			<div class="form-group">
 				<div style="padding-top: 10px">
 					<input type=text list=browsers name="hashtag" required>
 					<datalist id=browsers>
-						<c:forEach var="RegionName" items="${RegionName }">
-							<option value="${RegionName.code_name }">
+						<c:forEach var="RegionNameList" items="${RegionName }">
+							<option value="${RegionNameList.code_name }">
 						</c:forEach>
 					</datalist>
 				</div>
+				<div>
+					<textarea name="textarea" style="width: 100%" rows="10"
+						id="textarea"></textarea>
+					<!-- 텍스트 에어리어는 붙여서 입력할것 떨어지면 공백이 발생한다. -->
+				</div>
 				<div style="padding-top: 20px">
-					<input type="file" name="uploadFile" accept="video/*">
+					<input id="videoChoice" type="file" name="uploadFile"
+						accept="video/*">
 					<button type="button" id="btnSend">보내기</button>
 				</div>
 			</div>
 		</form>
+		<c:forEach var="matched" items="${videoName}">
+			<div class="w3-quarter" id="div_videoInsert">
+				<video width="360" height="640" controls>
+					<source src="download.do?name=${matched.video_location }"
+						type="video/mp4" />
+				</video>
+			</div>
+		</c:forEach>
 	</div>
 </div>

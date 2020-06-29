@@ -12,6 +12,7 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Karma">
 
+
 <!-- css -->
 <link media="all"
 	href="${pageContext.request.contextPath}/resources/css/common.css"
@@ -32,26 +33,19 @@
 
 <!-- js -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/basic.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <!-- slick  -->
 <script type="text/javascript"
@@ -106,6 +100,7 @@ body, h1, h2, h3, h4, h5, h6 {
 	<div id="wrapper">
 		<tiles:insertAttribute name="top" />
 		<br> <br> <br>
+		<div id="msgAlert">메시지Alert</div>
 		<div id="contents">
 			<tiles:insertAttribute name="body" />
 			<tiles:insertAttribute name="footer" />
@@ -142,8 +137,11 @@ body, h1, h2, h3, h4, h5, h6 {
 			var obj = JSON.parse(data)
 			if (obj.message_type == 'CHAT') {
 				appendMessage(obj);
-			} else {
-				(obj.message_type == 'ALARM')
+			} else if (obj.message_type == 'OPEN') {
+				console.log("aaa");
+				$('#msgAlert').html(data);
+				alert('면접요청이 들어왔습니다');
+			} else if (obj.message_type == 'ALARM') {
 			}
 		};
 		sock.onclose = function() {

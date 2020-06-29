@@ -62,9 +62,20 @@
 		<websocket:handlers> <websocket:mapping handler="alarmHandler" path="/alarm"/> 
 		<websocket:handshake-interceptors> <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></beans:bean> 
 		</websocket:handshake-interceptors> </websocket:handlers> -->
-		
 	<!-- download -->
-	
+
+	<!-- websockt -->
+	<websocket:handlers>
+		<websocket:mapping handler="chatHandler"
+			path="chat.do" />
+		<websocket:handshake-interceptors>
+			<beans:bean class="co.huby.prj.chat.HandShaker" />
+		</websocket:handshake-interceptors>
+		<websocket:sockjs />
+	</websocket:handlers>
+	<beans:bean id="chatHandler"
+		class="co.huby.prj.chat.Handler" />
+
 	<beans:bean
 		class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="0" />

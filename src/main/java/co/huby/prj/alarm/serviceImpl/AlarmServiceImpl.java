@@ -17,68 +17,70 @@ import co.huby.prj.vo.EmploymentsVo;
 public class AlarmServiceImpl implements AlarmService {
 	@Autowired
 	private AlarmMap map;
-	
+
 	@Override
 	public int companyreadstate(String companyid) {
 		return map.companyreadstate(companyid);
 	}
-	
+
 	@Override
 	public int memberreadstate(String personid) {
 		return map.memberreadstate(personid);
 	}
-	
+
 	@Override
-	public ArrayList<AlarmVo> personalarmlist(String personid) throws Exception{
+	public ArrayList<AlarmVo> personalarmlist(String personid) throws Exception {
 		return map.personalarmlist(personid);
 	}
 
 	@Override
 	public ArrayList<AlarmVo> companyalarmlist(String companyid) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 		return map.companyalarmlist(companyid);
 	}
+
 	@Override
-	public List<Map> comemploymentlist(String companyid) throws Exception{
+	public List<Map> comemploymentlist(String companyid) throws Exception {
 		return map.comemploymentlist(companyid);
 	}
-	
+
 	@Override
-	public List<AlarmVo> companyselect(CompanyVo vo) throws Exception{
+	public List<AlarmVo> companyselect(CompanyVo vo) throws Exception {
 		return map.companyselect(vo);
-		
+
 	}
 
 	@Override
 	public int alarmInsert(AlarmVo vo) {
 		int n = map.alarminsertcheck(vo);
-		if(n==0) {
+		if (n == 0) {
 			return map.alarmInsert(vo);
 		} else {
 			return 0;
 		}
 	}
-	
+
 	@Override
 	public int currentY(AlarmVo vo) {
 		int n = map.alarmupdatecheck(vo);
-		if(n==0) {
+		if (n == 0) {
 			return map.currentY(vo);
 		} else {
 			return 0;
 		}
 	}
-	
+
 	@Override
 	public void currentN(AlarmVo vo) {
 		map.currentN(vo);
 	}
-	
+
 	@Override
 	public void alarmdelete(AlarmVo vo) {
 		map.alarmdelete(vo);
 	}
+
 	@Override
 	public int alarminsertcheck(AlarmVo vo) {
 		return map.alarminsertcheck(vo);
@@ -88,5 +90,22 @@ public class AlarmServiceImpl implements AlarmService {
 	public int alarmupdatecheck(AlarmVo vo) {
 		return map.alarmupdatecheck(vo);
 	}
-	
+
+	@Override
+	public int memcountselect(String personid) {
+		// TODO Auto-generated method stub
+		return map.memcountselect(personid);
+	}
+
+	@Override
+	public int companycountselect(String companyid) {
+		// TODO Auto-generated method stub
+		return map.companycountselect(companyid);
+	}
+
+	@Override
+	public int countselect() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
