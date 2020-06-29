@@ -15,6 +15,9 @@
 				<img class="t"
 				src="${pageContext.request.contextPath}/resources/img/common/huby_icon_clear_01.png" />
 			</a>
+			<a href="companyalarm.do">
+			<img src="${pageContext.request.contextPath}/resources/img/common/alarm1.png" /><span id="count"></span>
+			</a>
 		</div>
 		<div id="gnb_tel" class="hd_gnb_tel">
 			<a href="employmentMatch.do"></a>

@@ -107,7 +107,7 @@ body, h1, h2, h3, h4, h5, h6 {
 	<div id="wrapper">
 		<tiles:insertAttribute name="top" />
 		<br> <br> <br>
-		<div id="msgAlert">왜안뜨냐구</div>
+		<div id="msgAlert"></div>
 		<div id="contents">
 			<tiles:insertAttribute name="body" />
 			<tiles:insertAttribute name="footer" />
@@ -147,8 +147,9 @@ body, h1, h2, h3, h4, h5, h6 {
 			} else if (obj.message_type == 'OPEN') {
 				console.log("aaa");
 				$('#msgAlert').html(data);
-				alert('면접요청이 들어왔습니다');
+				//alert('면접요청이 들어왔습니다');
 			} else if (obj.message_type == 'ALARM') {
+				$('#count').html(data);
 			}
 		};
 		sock.onclose = function() {

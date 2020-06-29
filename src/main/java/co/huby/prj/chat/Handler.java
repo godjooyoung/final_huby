@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -29,7 +31,7 @@ public class Handler extends TextWebSocketHandler {
 	private static AlarmService alarmService;
 
 	private List<WebSocketSession> connectedUsers; // 웹소켓세션
-	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>(); // 1:1채팅
+	public Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>(); // 1:1채팅
 
 	public Handler() {
 		connectedUsers = new ArrayList<WebSocketSession>(); // 세션저장할리스트
@@ -80,14 +82,13 @@ public class Handler extends TextWebSocketHandler {
 		}
 	}
 
-	public static void alarmMessage(WebSocketSession session) throws Exception {
+	public static void alarmMessage(WebSocketSession session, HttpServletRequest request, AlarmVo vo) throws Exception {
 		MessageVo messageVo = new MessageVo();
 		messageVo.setMessage_type("ALARM");
-		
+		String loginId = (String) request.getSession().getAttribute("loginId");
 		// 필요한 것들 이런식으로 담아서
 		// 읽음 상태가 N count 세는 쿼리
 		// alarmService.
-		alarmService.countselect();
 	}
 
 	protected void sendAllMessage(WebSocketSession session, TextMessage message) throws Exception {
