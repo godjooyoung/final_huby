@@ -62,6 +62,8 @@
 		document.frm.submit();
 	}
 	
+
+	
 	function resumeupdateAjax(rid){
 		
 		if($("#ajaxTest2").css("display") == "none") {
@@ -411,7 +413,8 @@
 <div align="center">
 <button class="btn-primary" type="button" onclick="location.href='careerInsertPage.do'">커리어 등록</button>
 </div>
-<div align="center">
+<!-- 커리어 관리 시작 -->
+<div id="ajaxCareer1" align="center">
 <h1>커리어 관리</h1>
 <form id="frm3" name="frm3" method="post">
 <br>
@@ -437,6 +440,34 @@ ${ career.job_position }<br>
 <input type="hidden" id="cid" name="career_id">
 </form>
 </div>
-
+<!-- 커리어 관리 끝 -->
+<!-- 커리어 관리 시작 -->
+<div align="center" id="ajaxCareer2" style="display: none">
+<h1>커리어 관리</h1>
+<form id="frm3" name="frm3" method="post">
+<br>
+<table>
+<tr>
+<c:forEach items="${ clist }" var="career">
+<td>
+<fmt:formatDate value="${career.start_date}" pattern="yyyy-MM-dd" var="startDate" />
+<fmt:formatDate value="${career.end_date}" pattern="yyyy-MM-dd" var="endDate" />
+${ career.career_id }<br>
+${ startDate }<br>
+${ endDate }<br>
+${ career.company_name }<br>
+${ career.career_content}<br>
+${ career.job_name }<br>
+${ career.job_position }<br>
+<button type="button" class="btn-primary" onclick="careerDelete(${ career.career_id })">커리어 삭제</button><br>
+<button type="button" class="btn-primary" onclick="careerUpdatePage(${ career.career_id })">커리어 수정</button><br>
+</td>
+</c:forEach>
+</tr>
+</table>
+<input type="hidden" id="cid" name="career_id">
+</form>
+</div>
+<!-- 커리어 관리 끝 -->
 </body>
 </html>
