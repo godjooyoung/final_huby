@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <footer id="ft_wrap" class="center">
 	<div class="ft_top">
-		<img src="${pageContext.request.contextPath}/resources/images/common/ft_logo.png" />
+		<img src="${pageContext.request.contextPath}/resources/img/common/footerlogo.png" />
 	</div>
 	<div class="ft_bt">
 		<div class="ft_bt_btn">OIT 정보 보기</div>

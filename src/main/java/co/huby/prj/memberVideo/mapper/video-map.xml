@@ -10,4 +10,7 @@
 		#{video_location})
 	</insert>
 
+	<select id="selectVideoName" resultType="co.huby.prj.vo.VideoVo">
+		SELECT VIDEO_IMG, VIDEO_LOCATION FROM VIDEO
+	</select>
 </mapper>

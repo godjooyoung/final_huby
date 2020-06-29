@@ -47,9 +47,9 @@ public class MemberVideoController {
 		return "person/member/memberVideoInsertForm";
 	}
 
-	@RequestMapping("/download.do")
-	public ModelAndView download(HttpServletRequest request, @RequestParam String name, Model model) throws Exception {
-
+	@RequestMapping("/downloadVideo.do")
+	public ModelAndView downloadVideo(HttpServletRequest request, @RequestParam String name, Model model, VideoVo vo)
+			throws Exception {
 		File down = new File(outputPath + name);
 		return new ModelAndView("download", "downloadFile", down);
 	}
