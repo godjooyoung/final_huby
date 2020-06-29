@@ -18,26 +18,25 @@ ${ sessionScope.companyVo.company_id }
 		<p>Paris is the capital of France.</p>
 	</div>
 	<div id="London" class="w3-container city" style="display: block">
-		<div class="w3-container">
-			<c:forEach var="alist" items="${ alist }" varStatus="sts">
+		<!-- <div class="w3-container"> -->
+			<c:forEach var="alist" items="${ alist }">
 				<ul class="w3-ul w3-card-4">
-					<li id="detailemp${sts.index}" class="w3-bar">
+					<li id="detailemp${alist.EMPLOYMENT_ID}" class="w3-bar">
 					<span
 						onclick="this.parentElement.style.display='none'"
 						class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
 						<img src="img_avatar2.png"
 						class="w3-bar-item w3-circle w3-hide-small" style="width: 85px">
-						<div  class="w3-bar-item" onclick="selectApplyList('${alist.EMPLOYMENT_ID}', '${sts.index}')">
+						<div  class="w3-bar-item" onclick="selectApplyList('${alist.EMPLOYMENT_ID}')">
 							<span class="w3-large">공고명: ${alist.EMPLOYMENT_TITLE}</span><br>
 							<span class="w3-large">공고내용: ${alist.EMPLOYMENT_CONTENTS}</span><br>채용공고기간${ alist.EMPLOYMENT_TIME } &nbsp;&nbsp; <span>지원시간: ${alist.APPLY_DATE}  </span>
 						</div></li>
 				</ul>
-						<div id="appendemp${sts.index}"></div>
+						<div id="appendemp${alist.EMPLOYMENT_ID}"></div>
 				<%-- <ul class="nav nav-pills flex-column" id="emp${alist.EMPLOYMENT_TIME}"></ul> --%>
 				<br>
 			</c:forEach>
 
-		</div>
 	</div>
 </div>
 <script>
@@ -50,19 +49,19 @@ ${ sessionScope.companyVo.company_id }
 		    dataType: "json",
 		    data: {'employment_id':eid},
 		    success: function(data){
-		    	$("#appendemp"+index).empty();
+		    	$("#appendemp"+eid).empty();
 		    	var closeBtn = '<span onclick="this.parentElement.style.display=\'none\'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>';
-		    	$("#appendemp"+index).append(data.employment_title + "<br>");
-		    	$("#appendemp"+index).append(data.employment_contents + "<br>");
-		    	$("#appendemp"+index).append(data.hope_career + "<br>");
-		    	$("#appendemp"+index).append(data.hope_graduate + "<br>");
-		    	$("#appendemp"+index).append(data.hope_job_position + "<br>");
-		    	$("#appendemp"+index).append(closeBtn);
-		    	$("#appendemp"+index).append(data.hope_job + "<br>");
-		    	$("#appendemp"+index).append(data.hope_location + "<br>");
-		    	$("#appendemp"+index).append(data.hope_work_type + "<br>");
-		    	$("#appendemp"+index).append(data.employment_prefer + "<br>");
-		    	$("#appendemp"+index).append(data.hope_salary);
+		    	$("#appendemp"+eid).append(data.employment_title + "<br>");
+		    	$("#appendemp"+eid).append(data.employment_contents + "<br>");
+		    	$("#appendemp"+eid).append(data.hope_career + "<br>");
+		    	$("#appendemp"+eid).append(data.hope_graduate + "<br>");
+		    	$("#appendemp"+eid).append(data.hope_job_position + "<br>");
+		    	$("#appendemp"+eid).append(closeBtn);
+		    	$("#appendemp"+eid).append(data.hope_job + "<br>");
+		    	$("#appendemp"+eid).append(data.hope_location + "<br>");
+		    	$("#appendemp"+eid).append(data.hope_work_type + "<br>");
+		    	$("#appendemp"+eid).append(data.employment_prefer + "<br>");
+		    	$("#appendemp"+eid).append(data.hope_salary);
 		    },
 
 			error : function() {

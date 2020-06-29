@@ -333,13 +333,12 @@
 </head>
 <body>
 	<div>
+<h1 align="center">개인정보 변경</h1><br>
 		<form class="form-horizontal" id="frm" name="frm" method="post"
 			enctype="multipart/form-data" action="myInfoUpdate.do"
 			onsubmit="return joincheck()">
-			<fieldset style="padding: 20px 20px 20px 20px;">
 
 				<!-- Form Name -->
-				<legend align="center">개인 회원가입</legend>
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password"></label>
 					<div class="col-md-4">
@@ -493,8 +492,6 @@
   </div>
 					</div>
 				</div>
-
-			</fieldset>
 		</form>
 	</div>
 </body>

@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title>
 <style>
 	.r_num1{ width: 30px }
@@ -264,11 +265,11 @@ function pwupdatecheck(){
 </script>
 </head>
 <body>
+<h1 align="center">기업정보 변경</h1><br>
 <form class="form-horizontal" id="frm" name="frm" method="post" action="companyInfoUpdate.do" onsubmit="return updatecheck()">
-<fieldset style="padding: 20px 20px 20px 20px;">
 
 <!-- Form Name -->
-<legend align="center">기업 회원가입</legend>
+
 
 <!-- Text input-->
 <div class="form-group">
@@ -457,7 +458,7 @@ function pwupdatecheck(){
 </div>
 
 
-</fieldset>
+
 </form>
 </body>
 </html>

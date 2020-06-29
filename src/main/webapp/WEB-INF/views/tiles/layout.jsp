@@ -11,6 +11,10 @@
 <link rel="shortcut icon" href="http://oliveclinic.webtro.kr/favi.ico">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Karma">
+<!--  현수 개인/기업 정보 수정페이지 -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <!-- css -->
 <link media="all"
@@ -107,7 +111,7 @@ body, h1, h2, h3, h4, h5, h6 {
 	<div id="wrapper">
 		<tiles:insertAttribute name="top" />
 		<br> <br> <br>
-		<div id="msgAlert">왜안뜨냐구</div>
+		<div id="msgAlert">메시지Alert</div>
 		<div id="contents">
 			<tiles:insertAttribute name="body" />
 			<tiles:insertAttribute name="footer" />
