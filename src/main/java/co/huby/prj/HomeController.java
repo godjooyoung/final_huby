@@ -461,6 +461,10 @@ public class HomeController {
 		return nowMap;
 	}
 	
+	@RequestMapping(value="/gotest.do") //뷰테스트 화면으로 가는 버튼 로그인jsp에 있다
+	public String gotest() throws Exception {
+		return "common/test";
+	}
 	
 	//뷰 정리(모바일뷰)
 }
