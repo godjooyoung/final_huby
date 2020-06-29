@@ -6,7 +6,7 @@
 <br>
 <section>
 	<div class="container">
-		<input type="button" value="문의하기" onclick="location.href='qInsertMember.do'">
+		<input type="button" value="문의하기" onclick="location.href='qInsertPageM.do'">
 		<!-- wordPress installation-->
 		<header class="section header mb-5">
 			<br> <br>
@@ -18,18 +18,20 @@
 				<div id="accordion" class="faq accordion accordion-custom pb-5">
 					<!-- question        -->
 					<div class="card">
-						<c:forEach var="list" items="${qList}">
-							<div id="headingTwo" class="card-header">
+						<c:forEach var="list" items="${qList}" varStatus="sts">
+							<div id="headingTwo${ sts.index }" class="card-header">
 								<h4 class="mb-0 accordion-heading">
-									<button data-toggle="collapse" data-target="#collapseTwo"
+									<button data-toggle="collapse" data-target="#collapseTwo${ sts.index }"
 										aria-expanded="false" aria-controls="collapseTwo"
 										class="d-flex align-items-center collapsed">
 										<i class="icon-plug"></i><span>${list.Q_TITLE }</span>
 									</button>
 								</h4>
 							</div>
-							<div id="collapseTwo" aria-labelledby="headingTwo"
+							<div id="collapseTwo${ sts.index }" aria-labelledby="headingTwo"
 								data-parent="#accordion" class="collapse">
+								<span>문의 내용:</span>
+								<span>${ list.Q_CONTENTS }</span>
 								<c:choose>
 									<c:when test="${list.Q_ANSWER == null}">
 										<div class="card-body">답변이 없습니다.</div>

@@ -11,9 +11,18 @@ public class ResumeVo {
 	private String select_resume;
 	private String select_public;
 	private String resume_coment;
+	private String job_name;
 	//gs
+	
+	
 	public String getResume_id() {
 		return resume_id;
+	}
+	public String getJob_name() {
+		return job_name;
+	}
+	public void setJob_name(String job_name) {
+		this.job_name = job_name;
 	}
 	public void setResume_id(String resume_id) {
 		this.resume_id = resume_id;

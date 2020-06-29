@@ -33,7 +33,7 @@
 		<li>총 지원자 수 <a href="companyEmploymentsList.do"><b><span id="now_applymen_cnt"> </span></b></a></li>
 		<li>채용면접 진행 수 <a href="company_chatList.do"><b><span id="now_interview_cnt"> </span></b></a></li>
 		<li> &nbsp;</li>
-		<li><a href="#">공지사항</a></li>
+		<li><a href="noticeListCompany.do">공지사항</a></li>
 		<li><a href="qListCompany.do">허비에게 문의하기</a></li>
 	</ul>
 </div>

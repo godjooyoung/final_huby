@@ -69,12 +69,11 @@
 		  		<option value="${ type.code_id }">${ type.code_name }</option>
 		  	</c:forEach>
 		  	</select>
-		  	
 		  	<!-- 스크립트 -->
 			<script>
 				$("#job").val("${param.hope_job}");
 			</script>
-			
+</form>			
 			<!-- 공고 리스트 BODY -->
 			</div>
 			<c:forEach var="elist" items="${elist}">
@@ -105,7 +104,7 @@
 		<!-- 공고 리스트 end -->
 	</div>
 	<!-- 상단바 end -->
-</form>
+
 </div>
 
 <!-- 스크립트 -->

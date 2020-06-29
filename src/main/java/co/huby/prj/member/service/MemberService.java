@@ -28,4 +28,6 @@ public interface MemberService {
 	int habitUpdate(HabitVo vo) throws Exception;
 	int habitInsert(HabitVo vo) throws Exception;
 	int habitDelete(HabitVo vo) throws Exception;
+	int pwUpdate(MemberVo vo) throws Exception;
+	int selectSkillId() throws Exception;
 }

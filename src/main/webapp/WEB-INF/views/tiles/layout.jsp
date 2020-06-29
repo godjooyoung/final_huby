@@ -142,6 +142,8 @@ body, h1, h2, h3, h4, h5, h6 {
 			var obj = JSON.parse(data)
 			if (obj.message_type == 'CHAT') {
 				appendMessage(obj);
+			} else {
+				(obj.message_type == 'ALARM')
 			}
 		};
 		sock.onclose = function() {

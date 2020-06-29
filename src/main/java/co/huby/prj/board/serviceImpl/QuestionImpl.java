@@ -19,7 +19,7 @@ public class QuestionImpl implements QuestionService {
 	@Override
 	public List<Map> getSelectQuestionCompany(QuestionVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		return map.getSelectQuestionMember(vo);
+		return map.getSelectQuestionCompany(vo);
 	}
 
 	@Override
@@ -29,15 +29,35 @@ public class QuestionImpl implements QuestionService {
 	}
 
 	@Override
-	public void qInsertCompany(QuestionVo vo) throws Exception {
+	public int qInsertCompany(QuestionVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		map.qInsertCompany(vo);
+		return map.insertQuestionCompany(vo);
 	}
 
 	@Override
-	public void qInsertMember(QuestionVo vo) throws Exception {
+	public int qInsertMember(QuestionVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		map.qInsertMember(vo);
+		return map.insertQuestionMember(vo);
 	}
+
+	@Override
+	public List<QuestionVo> qnaSelectAll() throws Exception {
+		// TODO Auto-generated method stub
+		return map.qnaSelectAll();
+	}
+
+	@Override
+	public QuestionVo getSelectQuestion(QuestionVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.getSelectQuestion(vo);
+	}
+
+	@Override
+	public int qUpdateAdmin(QuestionVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.qUpdateAdmin(vo);
+	}
+
+	
 
 }

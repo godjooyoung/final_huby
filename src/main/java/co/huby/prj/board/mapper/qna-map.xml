@@ -22,4 +22,15 @@
 		values
 		(question_seq.nextval,#{q_title},#{q_contents},#{member_id},sysdate)
 	</insert>
+	<select id="qnaSelectAll" resultType="QuestionVo">
+		select * from question order by to_number(q_id)
+	</select>
+	<select id="getSelectQuestion" resultType="QuestionVo" parameterType="QuestionVo">
+		select * from question where q_id = #{q_id, jdbcType=VARCHAR}
+	</select>
+	<update id="qUpdateAdmin" parameterType="QuestionVo">
+		UPDATE QUESTION
+		SET Q_ANSWER = #{q_answer}
+		where q_id = #{q_id}
+	</update>
 </mapper>

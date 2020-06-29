@@ -4,7 +4,7 @@
 <!-- 레쥬메 -->
 	<select id="SelectAll" resultType="ResumeVo" parameterType="MemberVo">
 		select resume_id, member_id, resume_title, 
-				hope_job, hope_salary, hope_location, 
+				hope_job, hope_salary, hope_location, (select code_name from code c where c.code_id = hope_job) as job_name,  
 				final_education, select_resume,
 				select_public, resume_coment
 		from resume 

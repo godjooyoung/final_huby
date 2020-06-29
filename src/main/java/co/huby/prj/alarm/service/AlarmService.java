@@ -18,4 +18,6 @@ public interface AlarmService {
 	int alarmupdatecheck(AlarmVo vo);
 	List<Map> comemploymentlist(String companyid) throws Exception; 
 	List<AlarmVo> companyselect(CompanyVo vo) throws Exception;
+	int memberreadstate(String personid);
+	int companyreadstate(String companyid);
 }

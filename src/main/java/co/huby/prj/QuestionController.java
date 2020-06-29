@@ -20,21 +20,58 @@ public class QuestionController {
 	@Autowired
 	private QuestionService qService;
 
-	@RequestMapping(value = "/qInsertCompany.do")
-	public ModelAndView qInsertCompany(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
+	@RequestMapping(value = "/qInsertC.do")
+	public ModelAndView qInsertC(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		vo.setCompany_id(companyid);
 		ModelAndView mav = new ModelAndView();
-		qService.qInsertCompany(vo);
-		mav.setViewName("redirect:qListCompany");
+		int n = qService.qInsertCompany(vo);
+		
+		if(n==1) { 
+				mav.setViewName("redirect:qListCompany.do"); 
+		}else {
+				mav.setViewName("redirect:qInsertPageM.do");
+				int num = 0;
+				model.addAttribute("error", num); 
+		}
+		 return mav;
+	}
+
+	@RequestMapping(value = "/qInsertM.do")
+	public ModelAndView qInsertM(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
+		String memberid = (String) request.getSession().getAttribute("loginId");
+		vo.setMember_id(memberid);
+		ModelAndView mav = new ModelAndView();
+		int n = qService.qInsertMember(vo);
+		mav.setViewName("redirect:qListMember.do");
+		
 		return mav;
-
 	}
 
-	@RequestMapping(value = "/qInsertMember.do")
+	/*
+	 * @RequestMapping(value = "/qInsertPageC.do") // 문의등록페이지 public ModelAndView
+	 * qInsertPageC(Model model, HttpServletRequest request, QuestionVo vo) throws
+	 * Exception { String companyid = (String)
+	 * request.getSession().getAttribute("loginId"); vo.setCompany_id(companyid);
+	 * ModelAndView mav = new ModelAndView(); int n = qService.qInsertCompany(vo);
+	 * 
+	 * if(n==1) { mav.setViewName("redirect:qListCompany.do"); }else {
+	 * mav.setViewName("redirect:qInsertPageM.do"); int num = 0;
+	 * model.addAttribute("error", num); }
+	 * 
+	 * return mav; }
+	 */
+	@RequestMapping(value = "/qInsertPageC.do") // 문의등록페이지
+	public String qInsertPageC(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
+		return "person/qna/qInsertPageC";
+	}
+	
+	@RequestMapping(value = "/qInsertPageM.do") // 문의등록페이지
 	public String qInsertMember(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
-		return "person/qna/qInsert";
+		return "person/qna/qInsertPage";
 	}
 
-	@RequestMapping(value = "/qListMember.do")
+	@RequestMapping(value = "/qListMember.do") // 문의리스트
 	public String qListMember(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
 		String memberid = (String) request.getSession().getAttribute("loginId");
 		vo.setMember_id(memberid);
@@ -43,11 +80,11 @@ public class QuestionController {
 		return "person/qna/qListMember";
 	}
 
-	@RequestMapping(value = "/qListCompany.do")
+	@RequestMapping(value = "/qListCompany.do") // 문의리스트
 	public String qListCompany(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		vo.setCompany_id(companyid);
-		List<Map> qListC = qService.getSelectQuestionMember(vo);
+		List<Map> qListC = qService.getSelectQuestionCompany(vo);
 		model.addAttribute("qList", qListC);
 		return "company/qna/qListCompany";
 	}
