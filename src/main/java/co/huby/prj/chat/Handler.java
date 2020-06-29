@@ -79,15 +79,14 @@ public class Handler extends TextWebSocketHandler {
 		}
 	}
 
-	public static void alarmMessage(AlarmVo vo) throws Exception {
+	public static void alarmMessage(WebSocketSession session) throws Exception {
 		MessageVo messageVo = new MessageVo();
 		messageVo.setMessage_type("ALARM");
-		messageVo.setMessage_content("2");
-
+		
 		// 필요한 것들 이런식으로 담아서
 		// 읽음 상태가 N count 세는 쿼리
 		// alarmService.
-
+		alarmService.countselect();
 	}
 
 	protected void sendAllMessage(WebSocketSession session, TextMessage message) throws Exception {
