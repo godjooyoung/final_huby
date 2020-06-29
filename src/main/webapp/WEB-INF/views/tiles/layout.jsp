@@ -51,7 +51,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <!-- slick  -->
 <script type="text/javascript"
@@ -142,8 +143,10 @@ body, h1, h2, h3, h4, h5, h6 {
 			var obj = JSON.parse(data)
 			if (obj.message_type == 'CHAT') {
 				appendMessage(obj);
-			} else {
-				(obj.message_type == 'ALARM')
+			} else if (obj.message_type == 'OPEN') {
+				console.log("aaa");
+				$('#msgAlert').html(data);
+				//alert('aaaa');
 			}
 		};
 		sock.onclose = function() {
