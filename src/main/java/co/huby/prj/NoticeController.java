@@ -58,5 +58,13 @@ public class NoticeController {
 		model.addAttribute("paging", paging);
 		return "person/notice/noticeList";
 	}
+	
+	@RequestMapping(value = "/noticedetail.do") // 개인회원 공지사항 리스트
+	public String noticedetail(NoticeVo vo, Model model, HttpServletRequest request) throws Exception {
+		NoticeVo checkVo = noticeService.noticeSelect(vo);
+		model.addAttribute("nvo", checkVo);
+		return "person/notice/noticedetail";
+	}
+	
 
 }

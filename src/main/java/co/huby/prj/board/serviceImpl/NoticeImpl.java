@@ -29,4 +29,10 @@ public class NoticeImpl implements NoticeService {
 		return map.countNotice();
 	}
 
+	@Override
+	public NoticeVo noticeSelect(NoticeVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.noticeSelect(vo);
+	}
+
 }
