@@ -148,4 +148,10 @@ public class LoginController {
 		
 		return "no/common/login";
 	}
+	
+	@RequestMapping("/logintest.do")
+	public String logintest(Model model, HttpServletRequest request) {
+		
+		return "no/common/logintest";
+	}
 }
