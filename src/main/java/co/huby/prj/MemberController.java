@@ -82,7 +82,7 @@ public class MemberController {
 
 		MultipartFile uploadFile = vo.getUploadFile();
 		String path = request.getSession().getServletContext().getRealPath("/resources/FileUpload");
-		System.out.println("@@@@@@@@" + path);
+		System.out.println("@@@@@@@@@@@@@@@@@" + path);
 
 		if (!uploadFile.isEmpty()) {
 			String fileName = uploadFile.getOriginalFilename();
