@@ -73,6 +73,7 @@ public class Handler extends TextWebSocketHandler {
 			System.out.println("값은" + vo);
 			chatService.insertMessage(vo);
 		} else if (messageVo.getMessage_type().equals("OPEN")) {
+			System.out.println("++++++++++++++++++++++");
 			WebSocketSession rcvSession = (WebSocketSession) users.get(messageVo.getMessage_receiver());
 			if (rcvSession != null)
 				rcvSession.sendMessage(new TextMessage(message.getPayload()));
