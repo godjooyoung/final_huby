@@ -334,14 +334,14 @@
 <body>
 	<div>
 <h1 align="center">개인정보 변경</h1><br>
-		<form class="form-horizontal" id="frm" name="frm" method="post"
+		<form class="form-horizontal" id="frm" name="frm" method="post" style="width: 500px; margin: auto;"
 			enctype="multipart/form-data" action="myInfoUpdate.do"
 			onsubmit="return joincheck()">
 
 				<!-- Form Name -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password"></label>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<img
 							src="${pageContext.request.contextPath}/resources/FileUpload/${mlist.member_photo }"
 							style="width: 100px; height: 100px" alt="Avatar"> <input
@@ -353,7 +353,7 @@
 				<!-- Text input-->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="name">아이디</label>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<input class="form-control input-md" type="text" id="member_id"
 							name="member_id" required="required" maxlength="20"
 							value="${ mlist.member_id }" readonly="readonly"> <span
@@ -382,7 +382,7 @@
 				<!-- Text input-->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="email">이름</label>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<input class="form-control input-md" text" id="member_name"
 							name="member_name" required="required" maxlength="5"
 							readonly="readonly" value="${ mlist.member_name }"> <span
@@ -393,7 +393,7 @@
 				<!-- Password input-->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">생일 </label>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<fmt:formatDate value="${ mlist.member_birth }"
 							pattern="yyyy-MM-dd" var="member_birth" />
 						<input class="form-control input-md" type="text" id="member_birth"
@@ -484,7 +484,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="pwupdatecheck()">변경하기</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+          <button type="reset" class="btn btn-default" data-dismiss="modal">취소</button>
         </div>
       </div>
       

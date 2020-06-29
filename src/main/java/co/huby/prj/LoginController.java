@@ -155,4 +155,9 @@ public class LoginController {
 		model.addAttribute("typeVo",typeVo);
 		return "no/common/unionJoinForm";
 	}
+	
+	@RequestMapping("/infoupdatetest.do")
+	public String infoupdatetest(Model model, HttpServletRequest request) throws Exception {
+		return "person/member/myInfoUpdatePage2";
+	}
 }

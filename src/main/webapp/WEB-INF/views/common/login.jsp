@@ -512,6 +512,7 @@ margin-left: 30px;
 		테스트</button>
 	<button type="button" class="btn-primary" onclick="location.href='index.do'">관리자페이지
 		로그인 없음</button>
+	<button type="button" class="btn-primary" onclick="location.href='infoupdatetest.do'">정보테스트</button>
 </div>
 <script>
     /* ------------------------------------ Click on login and Sign Up to  changue and view the effect

@@ -11,10 +11,7 @@
 <link rel="shortcut icon" href="http://oliveclinic.webtro.kr/favi.ico">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Karma">
-<!--  현수 개인/기업 정보 수정페이지 -->
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 
 <!-- css -->
 <link media="all"
@@ -36,21 +33,13 @@
 
 <!-- js -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/basic.js"></script>
 <script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script type="text/javascript"
