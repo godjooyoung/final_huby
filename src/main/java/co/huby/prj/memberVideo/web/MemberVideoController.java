@@ -40,20 +40,21 @@ public class MemberVideoController {
 	MemberVideoService memberVideoService;
 
 	@RequestMapping("/memberVideoInsertForm.do")
-	public String videoInsertForm(Model model) {
-		List<CodeVo> list = codeService.selectRegionName();
+	public String videoInsertForm(Model model) throws Exception {
+		List<CodeVo> list = codeService.SelectAll();
 		model.addAttribute("RegionName", list);
 
 		return "person/member/memberVideoInsertForm";
 	}
 
-	@RequestMapping("/downloadVideo.do")
-	public ModelAndView downloadVideo(HttpServletRequest request, @RequestParam String name, Model model, VideoVo vo)
+	@RequestMapping("/download.do")
+	public ModelAndView downloadVideo(HttpServletRequest request, @RequestParam String name, Model model)
 			throws Exception {
 		File down = new File(outputPath + name);
 		return new ModelAndView("download", "downloadFile", down);
 	}
 
+	
 	@ResponseBody
 	@RequestMapping("/memberVideoInsert.do")
 	public Map fileUpload(HttpServletRequest request, Model model, @RequestPart MultipartFile uploadFile)
