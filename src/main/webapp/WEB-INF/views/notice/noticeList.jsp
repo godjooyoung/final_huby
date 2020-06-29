@@ -50,7 +50,7 @@
 								<tr
 									onclick="location.href='noticedetail.do?n_no=${notice.NOTICE_ID}'"
 									style="cursor: pointer">
-									<td>${notice.NOTICE_ID}</td>
+									<td>${notice.RN}</td>
 									<td>${notice.NOTICE_TITLE}</td>
 									<td>${notice.ADMIN_ID}</td>
 									<td>${notice.NOTICE_DATE}</td>
@@ -68,21 +68,21 @@
 	<ul class="pagination">
 		<c:if test="${paging.startPage>1}">
 			<li class="page-item"><a class="page-link"
-				href="javascript:${jsfunc}(${paging.startPage-1})">이전</a>
+				href="javascript:void(0);" onclick="gopage(${paging.startPage-1})">이전</a>
 		</c:if>
 		<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i">
 			<c:if test="${i != paging.page}">
 				<li class="page-item"><a class="page-link"
-					href="javascript:${jsfunc}(${i})">${i}</a>
+					href="javascript:void(0);" onclick="gopage(${i})">${i}</a>
 			</c:if>
 			<c:if test="${i == paging.page}">
 				<li class="page-item active"><a class="page-link"
-					href="javascript:${jsfunc}(${i})">${i}</a>
+					href="javascript:void(0);" onclick="gopage(${i})">${i}</a>
 			</c:if>
 		</c:forEach>
 		<c:if test="${paging.endPage<paging.totalPageCount}">
 			<li class="page-item"><a class="page-link"
-				href="javascript:${jsfunc}(${paging.endPage+1})">다음</a>
+				href="javascript:void(0);" onclick="gopage(${paging.endPage+1})">다음</a>
 		</c:if>
 	</ul>
 </nav>
@@ -91,3 +91,4 @@
 		location.href = window.location.pathname + "?page=" + p;
 	}
 </script>
+<br><br><br>
