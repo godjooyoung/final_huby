@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-${room.company_id} ${room.interview_id }
+${room.company_id}
+${room.interview_id }
 <br>
 <br>
 <br>
@@ -38,52 +39,7 @@ ${personChatList}
 	<div class="col-11"
 		style="margin: 0 auto; border: 1px solid #01D1FE; height: 400px; border-radius: 10px; overflow: scroll"
 		id="chatArea">
-		<div id="chatMessageArea" style="margin-top: 10px; margin-left: 10px;">
-			<c:forEach var="contents" items="${message}">
-				<c:choose>
-					<c:when test="${contents.message_sender == (loginId)}">
-						<div class='col-12 row' style='height: auto; margin-top: 5px;'>
-							<div class='col-2'
-								style='float: left; padding-right: 0px; padding-left: 0px;'>
-								<img id='profileImg' class='img-fluid'
-									src='/displayFile?fileName=${userImage}&directory=profile'
-									style='width: 50px; height: 50px;'>
-								<div style='font-size: 9px; clear: both;''>여기 유저이름</div>
-							</div>
-							<div class='col-10'
-								style='overflow: y; margin-top: 7px; float: left;'>
-								<div class='col-12'
-									style='background-color: #134a8e; font-color: #FFFFFF; padding: 10px 5px; float: left; border-radius: 10px;'>
-									<span style='font-size: 12px; font-color: #FFFFFF;'>
-										${contents.message_content}</span>
-								</div>
-								<div col-12
-									style='font-size: 9px; text-align: left; float: left; font-color: #FFFFFF;'>
-									<span
-										style='float: left; font-size: 9px; text-align: left; font-color: #FFFFFF;'>
-										${contents.message_sandtime } </span>
-								</div>
-							</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class='col-10'
-							style='overflow: y; margin-top: 7px; float: right;'>
-							<div class='col-12'
-								style='background-color: #ACF3FF; padding: 10px 5px; float: left; border-radius: 10px;'>
-								<span style='font-size: 12px;'>
-									${contents.message_content} </span>
-							</div>
-							<div col-12
-								style='font-size: 9px; text-align: right; float: right;'>
-								<span style='float: right; font-size: 9px; text-align: right;'>${contents.message_sandtime }
-								</span>
-							</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</div>
+		<div id="chatMessageArea" style="margin-top: 10px; margin-left: 10px;"></div>
 	</div>
 </div>
 
@@ -131,6 +87,9 @@ ${personChatList}
 		$("#message").val("");
 	}
 
+	
+	
+	
 	function getTimeStamp() {
 		var d = new Date();
 		var s = leadingZeros(d.getFullYear(), 4) + '-'

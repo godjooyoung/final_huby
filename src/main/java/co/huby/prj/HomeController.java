@@ -13,11 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,22 +34,7 @@ public class HomeController {
 
 	@Autowired
 	private BoardService boardService;
-	
-	@InitBinder
-	public void allowEmptyDateBinding(WebDataBinder binder) {
-		/*
-		 * // Custom String Editor. tell spring to set empty values as null instead of
-		 * empty string. binder.registerCustomEditor( String.class, new
-		 * StringTrimmerEditor( true ));
-		 */
 
-		// Custom Date Editor
-
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		simpleDateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(simpleDateFormat, false));
-	}
-	
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -484,27 +466,5 @@ public class HomeController {
 		return "common/test";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/complete.do")//공고 마감
-	public void emp_complete(HttpServletRequest request,EmploymentsVo vo ) throws Exception {
-		System.out.println("공고막감버튼클릭쓰..");
-		String complete_state_y ="Y";
-		String employment_id =request.getParameter("emp_id");
-		vo.setEmployment_id(employment_id);
-		vo.setComplete(complete_state_y);
-		boardService.click_complete(vo);
-		
-	}
-	@ResponseBody
-	@RequestMapping(value="/re_post.do")//공고 재개
-	public void emp_re_post (HttpServletRequest request,EmploymentsVo vo ) throws Exception {
-		System.out.println("공고재개버튼클릭쓰..");
-		String complete_state_n ="N";
-		String employment_id =request.getParameter("emp_id");
-		vo.setEmployment_id(employment_id);
-		vo.setComplete(complete_state_n);
-		boardService.click_complete(vo);
-		
-	}
 	//뷰 정리(모바일뷰)
 }

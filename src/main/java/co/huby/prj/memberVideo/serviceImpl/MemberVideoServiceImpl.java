@@ -14,8 +14,8 @@ import co.huby.prj.vo.VideoVo;
 public class MemberVideoServiceImpl implements MemberVideoService {
 
 	@Autowired
-	private MemberVideoMap mapper;
-
+	 private MemberVideoMap mapper;
+	
 	@Override
 	public void memberVideoInsert(HashMap<String, String> map) throws Exception {
 
@@ -23,15 +23,9 @@ public class MemberVideoServiceImpl implements MemberVideoService {
 	}
 
 	@Override
-	public int memberVideoCount(String member_id) {
+	public List<VideoVo> selectVideoName(VideoVo vo) {
 		// TODO Auto-generated method stub
-		return mapper.memberVideoCount(member_id);
-	}
-
-	@Override
-	public List<String> memberSelect(String member_id) {
-		return mapper.memberSelect(member_id);
-
+		return mapper.selectVideoName(vo) ;
 	}
 
 }

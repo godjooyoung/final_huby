@@ -11,7 +11,6 @@ import co.huby.prj.alarm.mapper.AlarmMap;
 import co.huby.prj.alarm.service.AlarmService;
 import co.huby.prj.alarm.service.AlarmVo;
 import co.huby.prj.vo.CompanyVo;
-import co.huby.prj.vo.EmploymentsVo;
 
 @Service("alarmService")
 public class AlarmServiceImpl implements AlarmService {
@@ -104,8 +103,12 @@ public class AlarmServiceImpl implements AlarmService {
 	}
 
 	@Override
-	public int countselect() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countselect(String loginId, String loginType) {
+		if (loginType .equals("U")) {
+			return map.memcountselect(loginId);
+		} else {
+			return map.companycountselect(loginId);
+		}
 	}
+
 }

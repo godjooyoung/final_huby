@@ -12,7 +12,5 @@ public interface MemberVideoMap {
 
 	void memberVideoInsert(HashMap<String, String> map) throws Exception;
 
-	int memberVideoCount(String member_id);
-	
-	List<String> memberSelect(String member_id);
+	List<VideoVo> selectVideoName(VideoVo vo);
 }

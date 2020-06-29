@@ -1,14 +1,12 @@
 package co.huby.prj.memberVideo.web;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import co.huby.prj.board.service.BoardService;
 import co.huby.prj.code.service.CodeService;
 import co.huby.prj.code.service.CodeVo;
 import co.huby.prj.memberVideo.service.MemberVideoService;
@@ -42,18 +39,11 @@ public class MemberVideoController {
 	@Autowired
 	MemberVideoService memberVideoService;
 
-	@Autowired
-	BoardService boardService;
-
 	@RequestMapping("/memberVideoInsertForm.do")
-	public String videoInsertForm(Model model, HttpServletRequest request, VideoVo vo) throws Exception {
-		String member_id = (String) request.getSession().getAttribute("loginId");
-		List<CodeVo> list1 = codeService.SelectAll();
-		List<String> video_name = memberVideoService.memberSelect(member_id);
-		int video_count = memberVideoService.memberVideoCount(member_id);
-		model.addAttribute("RegionName", list1);
-		model.addAttribute("videoName", video_name);
-		model.addAttribute("videoCount", video_count);
+	public String videoInsertForm(Model model) throws Exception {
+		List<CodeVo> list = codeService.SelectAll();
+		model.addAttribute("RegionName", list);
+
 		return "person/member/memberVideoInsertForm";
 	}
 
@@ -64,31 +54,21 @@ public class MemberVideoController {
 		return new ModelAndView("download", "downloadFile", down);
 	}
 
+	
 	@ResponseBody
 	@RequestMapping("/memberVideoInsert.do")
 	public Map fileUpload(HttpServletRequest request, Model model, @RequestPart MultipartFile uploadFile)
 			throws Exception {
 		String member_id = (String) request.getSession().getAttribute("loginId");
 		String hashtag = request.getParameter("hashtag");
-		String contents = request.getParameter("textarea");
-		File file = new File(firstUploadPath);
-
 		HashMap<String, String> map = new HashMap<String, String>();
+		String baseDir = "";
+		baseDir = firstUploadPath;
 		UUID uuid = UUID.randomUUID();
 		String newName = uuid.toString();
 		String finalGifOutputPath = newName + ".gif";
 		String finalVideoOutputPath = newName + ".mp4";
-
-		if (!file.exists()) {
-			file.mkdir();
-			file = new File(outputPath);
-		}
-		if (!file.exists()) {
-			file.mkdir();
-			file = new File(firstUploadPath + newName + ".mp4");
-		} else {
-			file = new File(firstUploadPath + newName + ".mp4");
-		}
+		File file = new File(baseDir + newName + ".mp4");
 		uploadFile.transferTo(file);// 안드로이드에서 파일 업로드하는 부분
 
 		// 영상 압축부분
@@ -108,7 +88,9 @@ public class MemberVideoController {
 		excutor.createJob(thumbnail).run();
 		file.delete();
 
-		map.put("video_contents", contents);
+		// String finalGifOutputPath = outputPath + newName + ".gif";
+		// String finalVideoOutputPath = outputPath + newName + ".mp4";
+
 		map.put("member_id", member_id);
 		map.put("video_img", finalGifOutputPath);
 		map.put("hashtag", hashtag);

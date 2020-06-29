@@ -3,20 +3,10 @@
 <mapper namespace="co.huby.prj.memberVideo.mapper.MemberVideoMap">
 	<insert id="memberVideoInsert" parameterType="map">
 		INSERT INTO VIDEO
-		(VIDEO_ID, VIDEO_CONTENTS, MEMBER_ID, VIDEO_IMG,HASHTAG,
+		(VIDEO_ID,MEMBER_ID, VIDEO_IMG,HASHTAG,
 		VIDEO_LOCATION)
-		VALUES(
-		VIDEO_SEQ.NEXTVAL,
-		#{video_contents},
-		#{member_id},
-		#{video_img},
-		(select code_id from code where code_name = #{hashtag}),
+		VALUES(VIDEO_SEQ.NEXTVAL,#{member_id},
+		#{video_img}, (select code_id from code where code_name = #{hashtag}),
 		#{video_location})
 	</insert>
-	<select id="memberVideoCount" resultType="int">
-		SELECT COUNT(MEMBER_ID ) FROM VIDEO WHERE MEMBER_ID = #{value}
-	</select>
-	<select id="memberSelect" resultType="co.huby.prj.vo.VideoVo">
-		select video_location from video where member_id = #{value}
-	</select>
 </mapper>

@@ -4,7 +4,16 @@
 
 	
 	<insert id="alarmInsert" parameterType="co.huby.prj.alarm.service.AlarmVo">
-		INSERT INTO ALARM VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP, #{employment_id}, DEFAULT, DEFAULT)
+		INSERT INTO ALARM (alarm_id, alarm_current, member_id, company_id, alarm_message, alarm_time, 
+		<if test = "employment_id != null">
+		employment_id,
+		</if>
+		memberread_state, companyread_state)
+		VALUES (alarm_id_seq.nextval, null, #{member_id}, #{company_id}, #{alarm_message}, SYSTIMESTAMP, 
+		<if test = "employment_id != null">
+		#{employment_id},
+		</if>
+		DEFAULT, DEFAULT)
 	</insert>
 	
 	<select id="personalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
@@ -78,18 +87,14 @@
 	<select id ="memcountselect" resultType="int">
 	  SELECT COUNT(MEMBER_ID)
       FROM ALARM
-      WHERE MEMBER_ID = #{personid} AND MEMBERREAD_STATE = 'N';
+      WHERE MEMBER_ID = #{value} AND MEMBERREAD_STATE = 'N'
 	</select>
 	
 	<select id ="companycountselect" resultType="int">
 	  SELECT COUNT(COMPANY_ID)
       FROM ALARM
-      WHERE COMPANY_ID = #{companyid} AND MEMBERREAD_STATE = 'N' AND alarm_current = 'Y';
+      WHERE COMPANY_ID = #{value} AND MEMBERREAD_STATE = 'N' AND alarm_current = 'Y'
 	</select>
 	
-	<select id="countselect" resultType="co.huby.prj.alarm.service.AlarmVo">
-	select * from 
-	(select member_id,'U' loginType from member UNION all select company_id, 'C' from company)
-	where member_id =  #{loginId};
-	</select>
+	
 </mapper>

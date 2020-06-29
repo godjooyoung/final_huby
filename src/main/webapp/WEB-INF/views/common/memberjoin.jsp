@@ -88,9 +88,9 @@ hr { color : white;
 	width: 1px;
 }
 </style>
-<body style="background: #ffffff;">
+<body>
 <div class="container">
-	<hr><hr><hr>
+	<hr><hr><hr><hr><hr><hr><hr><hr><hr>
 	<h1 align="center"> HUBY </h1>
 	<div class="row" align="center">
 		<form class="form-signin mg-btm">

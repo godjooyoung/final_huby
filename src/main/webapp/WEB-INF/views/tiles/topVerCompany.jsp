@@ -12,6 +12,10 @@
 				src="${pageContext.request.contextPath}/resources/img/common/logo_horison.png" />
 				<img class="t"
 				src="${pageContext.request.contextPath}/resources/img/common/logo_horison.png" />
+				
+			</a>
+			<a href="companyalarm.do">
+			<img src="${pageContext.request.contextPath}/resources/img/common/alarm1.png" /><span id="count"></span>
 			</a>
 		</div>
 		<div id="gnb_tel" class="hd_gnb_tel">

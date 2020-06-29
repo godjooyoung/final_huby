@@ -15,51 +15,51 @@
 
 	<insert id="insertMessage"> <!-- 메시지 저장 -->
 		insert into MESSAGE
-		(message_id, message_sender, message_receiver,
-		message_content, interview_id, member_id, company_id)
+		(message_id, message_sender, message_receiver, message_content, interview_id, member_id, company_id)
 		values
 		(MESSAGE_SEQ.nextval,#{message_sender},#{message_receiver},#{message_content},#{interview_id},#{member_id},#{company_id})
 	</insert>
 
-	<select id="getMember" resultType="MessageVo"> SELECT member_id FROM
-		message
+	<select id="getMember" resultType="MessageVo">
+		SELECT member_id FROM message
 		WHERE company_id = #{company_id} AND resume_id = #{resume_id}
 	</select>
-	<select id="getProfile" resultType="MemberVo"> SELECT member_photo from
-		member
-		WHERE member_id = #{member_id}
-	</select>
-	<select id="getName" resultType="MemberVo">
-		select member_name from member
-		where member_id = #{member_id}
+
+	<select id="getProfile" resultType="MemberVo">
+		SELECT member_photo from
+		member WHERE
+		member_id = #{member_id}
 	</select>
 
-	<select id="getMessageList" resultType="MessageVo"> <!-- 대화내용 불러오기 -->
-		select * from message
-		where interview_id = #{interview_id} order by
-		message_id
+	<select id="getName" resultType="MemberVo">
+		select member_name from member
+		where
+		member_id = #{member_id}
+	</select>
+
+	<select id="getMessageList" resultType="MessageVo">
+		select m.* , member_name,
+		member_photo
+		from message i left outer join member m on
+		m.message_sender = m.member_id
+		where interview_id = #{interview_id}
 	</select>
 
 	<select id="getRoomList" resultType="map"> <!-- 개인회원 인터뷰 리스트 -->
 		select
 		i.interview_id as
 		"interview_id",
-		i.interview_start as
-		"interview_start",
+		i.interview_start as "interview_start",
 		m.member_name as
-		"member_name", c.company_name as
-		"company_name",
+		"member_name", c.company_name as "company_name",
 		i.member_id as
-		"member_id", i.company_id as
-		"company_id",
+		"member_id", i.company_id as "company_id",
 		i.employment_option as
 		"employment_option"
-		from interview
-		i, member m, company c
+		from interview i, member m, company c
 		where
 		i.member_id = m.member_id
-		and i.company_id =
-		c.company_id
+		and i.company_id = c.company_id
 		and
 		m.member_id = #{member_id, jdbcType=VARCHAR}
 	</select>
@@ -68,20 +68,17 @@
 		select
 		i.interview_id as
 		"interview_id",
-		i.interview_start as
-		"interview_start",
+		i.interview_start as "interview_start",
 		m.member_name as
 		"member_name",
-		c.company_name as
-		"company_name",
+		c.company_name as "company_name",
 		i.member_id as
 		"member_id",
 		i.company_id as "company_id",
 		i.employment_option as
 		"employment_option"
 		from
-		interview i, member m,
-		company c
+		interview i, member m, company c
 		where
 		i.member_id = m.member_id
 		and
@@ -93,55 +90,75 @@
 
 	<select id="getRecentMessage" resultType="MessageVO">
 		select m.*, resume_id,
-		company_id from MESSAGE m left outer join resume r on
-		m.resume_id =
+		company_id
+		from MESSAGE m left outer join resume r on m.resume_id =
 		r.resume_id
-		where interview_id = #{interview_id} order by
-		message_id
-		desc limit 1
+		where
+		interview_id = #{interview_id}
+		order by message_id desc
+		limit 1
 	</select>
-	<select id="getCompany" resultType="String"> select company_id from
+
+
+	<select id="getCompany" resultType="String">
+		select company_id from
 		company where company_id = #{company_id}
 	</select>
+
 	<update id="updateReadTime">
 		update MESSAGE set message_readTime = NOW() where
-		company_id = #{company_id}
-		AND resume_id = #{resume_id} AND
-		message_readtime = message_sendtime
-		and
+		company_id = #{company_id} AND resume_id = #{resume_id} AND
+		message_readtime = message_sendtime and
 		message_sender = company_id and
 		member_id = #{member_id}
 	</update>
-	<update id="updateReadTimeCompany"> update MESSAGE set message_readTime = NOW() where
-		company_id = #{company_id} AND resume_id = #{resume_id} AND
-		message_readTime
-		= message_sendTime and message_sender = member_id and
-		member_id =
-		#{member_id}
-	</update>
-	<select id="getUnReadCount" resultType="int"> select * from MESSAGE
-		where member_id = #{member_id} and company_id = #{company_id} AND
-		resume_id
-		= #{resume_id} AND message_readtime = message_sendtime and
-		message_sender
-		= company_id
-	</select>
-	<select id="getUnReadCountCompany" resultType="int">
-		select * from
-		MESSAGE where company_id =#{company_id} and resume_id =
-		#{resume_id}
-		AND message_readtime = message_sendtime and message_sender = member_id
+
+	<update id="updateReadTimeCompany">
+		update MESSAGE set message_readTime = NOW() where
+		company_id = #{company_id}
+		AND resume_id = #{resume_id}
+		AND
+		message_readTime = message_sendTime
+		and message_sender = member_id
 		and
 		member_id = #{member_id}
-	</select>
-	<select id="getAllCount" resultType="int">
-		select * from MESSAGE WHERE
-		(company_id = #{company_id} and message_readtime
-		= message_sendtime and
-		message_sender != #{member_id}) or (member_id =
-		#{member_id}
+	</update>
+
+	<select id="getUnReadCount" resultType="int">
+		select * from
+		MESSAGE
+		where member_id = #{member_id}
+		and company_id = #{company_id}
+		AND
+		resume_id = #{resume_id}
+		AND message_readtime = message_sendtime
 		and
-		message_readtime = message_sendtime and message_sender !=
-		#{member_id})
+		message_sender = company_id
+	</select>
+
+	<select id="getUnReadCountCompany" resultType="int">
+		select * from
+		MESSAGE where company_id =#{company_id}
+		and
+		resume_id = #{resume_id} AND
+		message_readtime = message_sendtime
+		and message_sender = member_id and
+		member_id = #{member_id}
+
+	</select>
+
+	<select id="getAllCount" resultType="int">
+		select * from MESSAGE
+		WHERE
+		(company_id = #{company_id}
+		and message_readtime = message_sendtime
+		and
+		message_sender !=
+		#{member_id}) or
+		(member_id = #{member_id}
+		and
+		message_readtime =
+		message_sendtime
+		and message_sender != #{member_id})
 	</select>
 </mapper>

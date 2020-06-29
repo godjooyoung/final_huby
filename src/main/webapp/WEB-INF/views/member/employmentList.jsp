@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="w3-container">
 <form id="frm" name="frm" method="post">
-	<h1 align="center">채용공고리스트</h1>
-	<!-- <div class="w3-row">
+	<h2>전체채용공고</h2>
+	<div class="w3-row">
 		<a href="javascript:void(0)" onclick="">
 		<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">
 			전체보기
@@ -20,7 +20,7 @@
 			직무별
 		</div>
 		</a>
-	</div> -->
+	</div>
 
 	<div id="Paris" class="w3-container city" style="display: none">
 		<h2>Paris</h2>
@@ -28,13 +28,13 @@
 	</div>
 
 	<div id="London" class="w3-container city" style="display: block">
-		<!-- <h2>전체</h2> -->
+		<h2>전체</h2>
 		
 		<div class="w3-container">
-			<!-- <h2>공고리스트</h2> -->
+			<h2>공고리스트</h2>
 			<div>
 			<select class="form-control input-md" id="location" name="hope_location" onchange="locationcheck(this.value)">
-		  		<option value="">지역별 공고 검색</option>
+		  		<option value="">지역 선택</option>
 		  		<option value="서울">서울</option>
 		  		<option value="인천">인천</option>
 		  		<option value="경기">경기</option>
@@ -64,7 +64,7 @@
 			</div>
 			<div>
 			<select class="form-control input-md" id="job" name="hope_job" onchange="jobcheck(this.value)">
-		  		<option value="">직무별 공고 검색</option>
+		  		<option value="">직업 선택</option>
 			<c:forEach items="${typeVo}" var="type">
 		  		<option value="${ type.code_id }">${ type.code_name }</option>
 		  	</c:forEach>
@@ -73,7 +73,7 @@
 			<script>
 				$("#job").val("${param.hope_job}");
 			</script>
-			</form><br>			
+</form>			
 			<!-- 공고 리스트 BODY -->
 			</div>
 			<c:forEach var="elist" items="${elist}">
@@ -83,7 +83,7 @@
 						class="w3-bar-item w3-circle w3-hide-small" style="width: 85px">
 						<div class="w3-bar-item">
 							<a onclick="empDetail(event,'${elist.EMPLOYMENT_ID}')"> <span
-								class="w3-large" style="color: #212121">${elist.EMPLOYMENT_TITLE}</span></a><br> <span>${elist.HOPE_JOB_POSITION}</span>
+								class="w3-large">${elist.EMPLOYMENT_TITLE}</span></a><br> <span>${elist.HOPE_JOB_POSITION}</span>
 						</div></li>
 				</ul>
 				<ul class="nav nav-pills flex-column" id="emp${elist.EMPLOYMENT_ID}">

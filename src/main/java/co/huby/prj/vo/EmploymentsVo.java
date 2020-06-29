@@ -17,13 +17,6 @@ public class EmploymentsVo {
 	private Date employment_time;
 	private String company_id;
 	private String hope_salary;
-	private String complete;
-	public String getComplete() {
-		return complete;
-	}
-	public void setComplete(String complete) {
-		this.complete = complete;
-	}
 	//getter setter
 	public String getEmployment_id() {
 		return employment_id;

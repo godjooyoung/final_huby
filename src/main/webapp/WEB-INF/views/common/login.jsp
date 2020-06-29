@@ -26,13 +26,11 @@
   width: 100%;
   height: 100%;
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfd8dc+0,607d8b+100,b0bec5+100 */
-
-/* background: #cfd8dc;
-background: -moz-linear-gradient(-45deg,  #cfd8dc 0%, #607d8b 100%, #b0bec5 100%); 
-background: -webkit-linear-gradient(-45deg,  #cfd8dc 0%,#607d8b 100%,#b0bec5 100%);
-background: linear-gradient(135deg,  #cfd8dc 0%,#607d8b 100%,#b0bec5 100%); */ 
+background: #cfd8dc; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #cfd8dc 0%, #607d8b 100%, #b0bec5 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #cfd8dc 0%,#607d8b 100%,#b0bec5 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #cfd8dc 0%,#607d8b 100%,#b0bec5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfd8dc', endColorstr='#b0bec5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-background: white;
 
 }
 
@@ -476,7 +474,7 @@ margin-left: 30px;
 		onsubmit="return PersonalLoginCheck();">       
  <div class="cont_form_login">
 <a href="#" onclick="ocultar_login_sign_up()" ><i class="material-icons"></i></a>
-   <h2>개인 LOGIN</h2>
+   <h2>LOGIN</h2>
 <input type="text" name="member_id" id="member_id"
 					maxlength="50" placeholder="ID">
 <br> <input type="password" name="member_pw" id="member_pw"
@@ -489,7 +487,7 @@ margin-left: 30px;
    <div class="cont_form_sign_up">
 <a href="#" onclick="ocultar_login_sign_up()"><i class="material-icons"></i></a>
 <br><br><br>
-     <h2>기업 LOGIN</h2>
+     <h2>SIGN UP</h2>
 <input type="text" name="company_id" id="company_id"
 					maxlength="50" placeholder="ID">
 <input type="password" name="company_pw" id="company_pw"
@@ -505,14 +503,15 @@ margin-left: 30px;
 		<br><br><br><br>
 </div>
 <br><br><br><br><br><br><br><br><br>
-	<a href="unionJoinForm.do" style="color: red; font-weight: bold;">회원이 아니신가요?</a><br><br>
+	<a href="memberjoin.do" style="color: red; font-weight: bold;">회원이 아니신가요?</a><br><br>
 	<button type="button" class="btn-primary" onclick="location.href='main.do' ">홈으로</button>
+	<button type="button" class="btn-primary" onclick="location.href='logintest.do'">로그인화면테스트
+		테스트</button>
 	<!-- test -->
 	<button type="button" class="btn-primary" onclick="location.href='gotest.do'">뷰확인용
 		테스트</button>
 	<button type="button" class="btn-primary" onclick="location.href='index.do'">관리자페이지
 		로그인 없음</button>
-	<button type="button" class="btn-primary" onclick="location.href='infoupdatetest.do'">정보테스트</button>
 </div>
 <script>
     /* ------------------------------------ Click on login and Sign Up to  changue and view the effect

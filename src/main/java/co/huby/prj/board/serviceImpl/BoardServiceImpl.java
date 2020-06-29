@@ -226,13 +226,6 @@ public class BoardServiceImpl implements BoardService {
 		return map.mem_now_interview(memberid);
 	}
 
-	@Override
-	public void click_complete(EmploymentsVo vo) throws Exception {
-		//공고 마감 버튼 클릭시
-		map.click_complete(vo);
-		
-	}
-
 	
 
 

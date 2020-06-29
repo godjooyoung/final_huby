@@ -15,12 +15,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import co.huby.prj.alarm.service.AlarmService;
 import co.huby.prj.alarm.service.AlarmVo;
+import co.huby.prj.chat.Handler;
 import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.vo.CompanyVo;
 import co.huby.prj.vo.InterviewVo;
+import co.huby.prj.vo.MessageVo;
 
 @Controller
 public class AlarmController {
@@ -29,6 +36,8 @@ public class AlarmController {
 	AlarmService alarmService;
 	@Autowired
 	ChatService chatService;
+	@Autowired
+	Handler handler;
 
 	@RequestMapping("/companyalarm.do") // 기업회원 알림 내역
 	public String companyalarm(Model model, HttpServletRequest request, AlarmVo vo) throws Exception {
@@ -113,12 +122,23 @@ public class AlarmController {
 	// 면접요청 insert
 	@ResponseBody
 	@RequestMapping(value = "/interviewRe.do")
-	public Map interviewRe(HttpServletRequest request, AlarmVo vo) {
-		String companyid = (String) request.getSession().getAttribute("loginId");
+	public Map interviewRe(HttpServletRequest request, AlarmVo vo) throws IOException {
+		String loginId = (String) request.getSession().getAttribute("loginId");
+		String loginType = (String) request.getSession().getAttribute("loginType");
 
-		vo.setCompany_id(companyid);
+		vo.setCompany_id(loginId);
 		int count = alarmService.alarmInsert(vo);
-		alarmService.alarmInsert(vo);
+		if(handler.users.get(vo.getMember_id()) != null) {
+			WebSocketSession rcvSession = (WebSocketSession) handler.users.get(vo.getMember_id());
+			MessageVo messageVo = new MessageVo();
+			int countselect = alarmService.countselect(loginId, loginType);
+			messageVo.setMessage_content(Integer.toString(countselect));
+			messageVo.setMessage_type("ALARM");
+			Gson gson = new GsonBuilder().create();
+			String json = gson.toJson(messageVo);
+			System.out.println(json+"=================================");
+			rcvSession.sendMessage(new TextMessage(json));
+		}
 		return Collections.singletonMap("count", count);
 
 		// return vo;
