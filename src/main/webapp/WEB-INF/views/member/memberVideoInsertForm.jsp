@@ -45,16 +45,12 @@
 													$("#div_gifInsert *")
 															.remove();
 													var video = '<video width="360" height="640" controls>'
-															+ '<source src="downloadVideo.do?name='
+															+ '<source src="download.do?name='
 															+ data.video_location
 															+ '" type="video/mp4" />'
 															+ '</video>';
-													var gif = '<img width="360" height="640" src="downloadGif.do?name=data.video_img"
-															>'		
 													$('#div_videoInsert')
 															.append(video);
-													$('#div_videoInsert')
-															.append(gif);
 												},
 												error : function(e) {
 													console.log(e);
@@ -120,8 +116,8 @@
 				<div style="padding-top: 10px">
 					<input type=text list=browsers name="hashtag" required>
 					<datalist id=browsers>
-						<c:forEach var="RegionName" items="${RegionName }">
-							<option value="${RegionName.code_name }">
+						<c:forEach var="RegionNameList" items="${RegionName }">
+							<option value="${RegionNameList.code_name }">
 						</c:forEach>
 					</datalist>
 				</div>
