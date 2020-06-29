@@ -22,8 +22,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="list" items="${companyChatList}">
-					<tr
-						onclick="location.href='company_chat.do?interview_id=${list.interview_id}'">
+					<tr onclick="goChat(window.event, '${list.interview_id}')">
 						<td>${list.interview_start}</td>
 						<td>${list.member_name}</td>
 						<td>${list.member_id}</td>
@@ -58,4 +57,3 @@
 		location.href = 'company_chat.do?interview_id=' + interview_id;
 	}
 </script>
-<tr onclick="goChat(window.event, '${list.interview_id}')">

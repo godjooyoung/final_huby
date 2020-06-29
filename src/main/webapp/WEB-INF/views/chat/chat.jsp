@@ -87,6 +87,9 @@ ${personChatList}
 		$("#message").val("");
 	}
 
+	
+	
+	
 	function getTimeStamp() {
 		var d = new Date();
 		var s = leadingZeros(d.getFullYear(), 4) + '-'
