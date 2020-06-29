@@ -59,7 +59,7 @@
 }
 
 #hd_gnb .gnb_dp1_wrap {
-	width: 1200px;
+	width: 900px;
 	margin: 0 auto;
 	overflow: hidden;
 }
@@ -163,7 +163,7 @@
 	top: 0;
 	width: 60px;
 	height: 60px;
-	background: #0b68e3;
+	background: #134a8e;
 	cursor: pointer;
 }
 
@@ -341,7 +341,7 @@
 	right: -1100px;
 	top: 0px;
 	padding: 160px 40px 0;
-	background: #0b68e3;
+	background: #134a8e;
 	width: 550px;
 	height: 100%;
 	box-sizing: border-box;
@@ -432,7 +432,7 @@
 	#hd_wrap.hd-up #gnb_tel {
 		display: inline-block;
 		z-index: 2;
-		background: #0b68e3 url(/images/common/hd_tel.png) no-repeat center
+		background: #134a8e url(/images/common/hd_tel.png) no-repeat center
 			center;
 	}
 }
@@ -489,7 +489,7 @@
 		display: block;
 	}
 	#hd_wrap.hd-up #gnb_menu {
-		background: #0b68e3
+		background: #134a8e
 	}
 	#gnb_menu_box {
 		width: 100%;
@@ -521,7 +521,7 @@
 #ft_wrap {
 	width: 100%;
 	padding: 50px 0;
-	background: #252525;
+	background: #134a8e;
 	color: rgba(255, 255, 255, 0.25);
 	font-size: 16px;
 	box-sizing: border-box;
