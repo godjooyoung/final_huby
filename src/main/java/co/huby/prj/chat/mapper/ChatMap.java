@@ -1,6 +1,7 @@
 package co.huby.prj.chat.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.annotation.MapperScan;
 
@@ -19,11 +20,11 @@ public interface ChatMap {
 
 	public List<InterviewVo> getRoomList(InterviewVo vo) throws Exception;
 
-	public List<InterviewVo> getRoomList2(String str) throws Exception;
+	public List<InterviewVo> getRoomList2(InterviewVo vo) throws Exception;
 
-	public MessageVo getRecentMessage(String str) throws Exception;
+	public MessageVo getRecentMessage(MessageVo vo) throws Exception;
 
-	public String getCompany(String str) throws Exception;
+	public List<Map> getName(InterviewVo vo) throws Exception;
 
 	public List<InterviewVo> getRoomListCompany(String str) throws Exception;
 

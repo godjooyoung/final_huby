@@ -1,8 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="co.huby.prj.Applistner"%>
 <%=session.getAttribute("loginId")%>
 <c:set var="user" value='<%=session.getAttribute("loginId")%>' />
+
+
+
+
+<form id="ivList2" name="ivList2" method="post">
+	<table>
+		<thead>
+			<tr>
+				<th>인터뷰시작</th>
+				<th>면접자</th>
+				<th>개인회원</th>
+				<th>기업회원</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="list" items="${companyChatList}">
+				<tr onclick="goChat(window.event, '${list.interview_id}')">
+					<td>${list.interview_start}</td>
+					<td>${list.member_name}</td>
+					<td>${list.member_id}</td>
+					<td>${list.company_id}</td>
+					<td><c:if test="${fn:contains(connId, list.member_id)}">
+							<font color="red">현재접속중</font>
+						</c:if></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+</form>
+
+
+
+
+
+
 <script>
 	try {
 		Typekit.load({
@@ -827,7 +864,7 @@ body {
 				<img id="profile-img"
 					src="http://emilcarlsson.se/assets/mikeross.png" class="online"
 					alt="" />
-				<p>내이름나올곳</p>
+				<p>${loginName}</p>
 				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
 				<div id="status-options">
 					<ul>
@@ -859,70 +896,25 @@ body {
 		</div>
 		<div id="contacts">
 			<ul>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status online"></span> <img
-							src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-						<div class="meta">
-							<p class="name">채팅목록에 나올 이름</p>
-							<p class="preview">여기는 가장 최근 메세지</p>
+				<c:forEach var="list" items="${companyChatList}">
+					<li class="contact">
+						<div class="wrap">
+							<span class="contact-status online"></span> <img
+								src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
+							<div class="meta">
+								<p class="name">${list.member_name}</p>
+								<p class="preview">${recent.message_content }</p>
+							</div>
 						</div>
-					</div>
-				</li>
+					</li>
+				</c:forEach>
 				<li class="contact active">
 					<div class="wrap">
 						<span class="contact-status busy"></span> <img
 							src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
 						<div class="meta">
 							<p class="name">현재대화중인 사람이름</p>
-							<p class="preview">마지막 대화내용</p>
-						</div>
-					</div>
-				</li>
-
-
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status busy"></span> <img
-							src="http://emilcarlsson.se/assets/jessicapearson.png" alt="" />
-						<div class="meta">
-							<p class="name">Jessica Pearson</p>
-							<p class="preview">Have you finished the draft on the
-								Hinsenburg deal?</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span> <img
-							src="http://emilcarlsson.se/assets/haroldgunderson.png" alt="" />
-						<div class="meta">
-							<p class="name">Harold Gunderson</p>
-							<p class="preview">Thanks Mike! :)</p>
-						</div>
-					</div>
-				</li>
-
-
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span> <img
-							src="http://emilcarlsson.se/assets/charlesforstman.png" alt="" />
-						<div class="meta">
-							<p class="name">Charles Forstman</p>
-							<p class="preview">Mike, this isn't over.</p>
-						</div>
-					</div>
-				</li>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span> <img
-							src="http://emilcarlsson.se/assets/jonathansidwell.png" alt="" />
-						<div class="meta">
-							<p class="name">Jonathan Sidwell</p>
-							<p class="preview">
-								<span>You:</span> That's bullshit. This deal is solid.
-							</p>
+							<p class="preview">${recent.message_content }</p>
 						</div>
 					</div>
 				</li>
