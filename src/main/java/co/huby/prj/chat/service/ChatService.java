@@ -20,7 +20,7 @@ public interface ChatService {
 
 	public String getName(String str) throws Exception;
 
-	public List<MessageVo> getMessageList(String str) throws Exception;
+	public List<MessageVo> getMessageList(MessageVo vo) throws Exception;
 
 	public List<InterviewVo> getRoomList(InterviewVo vo) throws Exception;
 

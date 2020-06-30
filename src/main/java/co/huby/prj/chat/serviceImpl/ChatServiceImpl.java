@@ -23,7 +23,7 @@ public class ChatServiceImpl implements ChatService {
 	public void createRoom(InterviewVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		session.insert(namespace + ".createRoom", vo);
-		
+
 	}
 
 	@Override
@@ -54,12 +54,6 @@ public class ChatServiceImpl implements ChatService {
 	public String getName(String str) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace + ".getName", str);
-	}
-
-	@Override
-	public List<MessageVo> getMessageList(String str) throws Exception {
-		// TODO Auto-generated method stub
-		return session.selectList(namespace + ".getMessageList", str);
 	}
 
 	// @Override
@@ -165,6 +159,12 @@ public class ChatServiceImpl implements ChatService {
 	public List<InterviewVo> getRoomList2(InterviewVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectList(namespace + ".getRoomList2", vo);
+	}
+
+	@Override
+	public List<MessageVo> getMessageList(MessageVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace + ".getMessageList", vo);
 	}
 
 }
