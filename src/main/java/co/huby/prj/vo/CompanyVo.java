@@ -20,8 +20,7 @@ public class CompanyVo {
 	private String homepage;
 	private Date company_date;
 	private String job_name;
-	private String company_pwcheck;
-	
+	private String company_pwcheck;;
 	
 	//getter setter
 	
