@@ -67,7 +67,7 @@ public class CompanyController {
 
 	@RequestMapping("/resumeDetail.do")
 	public ModelAndView resumeDetail(Model model, HttpServletRequest request, VideoVo videoVo, MemberVo memberVo,
-			ResumeVo resumeVo) throws Exception {
+		ResumeVo resumeVo) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String videoid = (String) request.getParameter("video_id");
 		String memberId = (String) request.getParameter("member_id");

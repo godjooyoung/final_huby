@@ -6,35 +6,78 @@
 
 <!-- !PAGE CONTENT! -->
 <!-- !기업회원에게 매칭해서 자기소개영상띄워주는 페이지! -->
-<div class="w3-main w3-content w3-padding"
-	style="max-width: 1200px; margin-top: 100px"></div>
+<div class="w3-main w3-content w3-padding" style="max-width: 1200px;"></div>
 
-<!-- First Photo Grid-->
-<div class="w3-row-padding w3-padding-16 w3-center" id="food">
+<!-- 일단...
+<div class="w3-row-padding w3-padding-16 w3-center">
 	<c:forEach var="matched" items="${matched}">
 		<div class="w3-quarter">
-			<img src="download.do?name='${matched.video_img }'" alt="thumnail"
+			<img src="download.do?name=${matched.video_img }" alt="thumnail"
 				style="width: 100%;"
+				onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
 				onclick="location.href='resumeDetail.do?video_id=${matched.video_id}&member_id=${matched.member_id }'">
-			<button class="w3-button w3-padding-small w3-xlarge"
+			<div class="likebtn" 
 				id="btn${matched.video_id }" name="likeBtn"
-				value="${matched.video_id}" type="button"
+				value="${matched.video_id}"
 				onclick="clickLike(${matched.video_id})">
-				<font id="font${matched.video_id }" color="black" data-count="0">
-					<b> <i class="fas fa-heart"></i>
-				</b>
+				<font id="font${matched.video_id }" color="white" 
+					  style="-webkit-text-stroke: 1px black; 
+					  font-size: xx-large;">
+					<b> <i class="fas fa-heart"></i> </b>
 				</font>
-			</button>
-			<h3>#${matched.code_name }</h3>
-			<p>${matched.video_contents }</p>
+			</div>
+			<h3>#${matched.code_name}</h3>
+			<p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:300px;
+			font-weight: bold; text-shadow: 1px 1px 2px white;">
+			${matched.video_contents}
+			</p>
 		</div>
+	</c:forEach>
+</div>
+<!-- 일단 END -->
+
+<!-- 다시시도 -->
+<div class="w3-row-padding w3-padding-16 w3-center">
+	<c:forEach var="matched" items="${matched}">
+		<div class="w3-quarter">
+			<div class='wrap' style='position:relative;'>
+				<div class="inner01" style="position:absolute; left:3%; top:3%;">
+					<h4 style="align:left; text-shadow: 1px 1px 2px white; font-weight: bolder; 
+				 	padding-top:5px; padding-left:5px;">
+				 		#${matched.code_name}
+					</h4>
+				</div>
+				<div class="inner02" style="position:absolute; left:5%; top:5%;">
+					<br>
+					<p style="text-align:left;overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:250px;
+						font-weight: bold; text-shadow: 1px 1px 2px white;">
+						${matched.video_contents}
+					</p>
+				</div>
+			<img src="download.do?name=${matched.video_img }" alt="thumnail"
+				style="width: 100%;"
+				onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
+				onclick="location.href='resumeDetail.do?video_id=${matched.video_id}&member_id=${matched.member_id }'">
+			<div class="inner03"
+				style="position:absolute; left:87%; top:4%"; 
+				id="btn${matched.video_id }" name="likeBtn"
+				value="${matched.video_id}"
+				onclick="clickLike(${matched.video_id})">
+				<font id="font${matched.video_id }" color="white" style="-webkit-text-stroke: 1px black; font-size: xx-large;" data-count="0">
+					<b> <i class="fas fa-heart"></i> </b>
+				</font>
+			</div>
+			</div>
+			<br>
+		</div>
+
 	</c:forEach>
 </div>
 
 
 <!-- Second Photo Grid-->
-<div class="w3-row-padding w3-padding-16 w3-center" id="morePlace">
-
+<div class="w3-row-padding w3-padding-16 w3-center" style="position:relative;" id="morePlace">
+<!-- 여기에 붙음!!!!!!!!!!!! -->
 </div>
 <!-- Grid END -->
 
@@ -49,20 +92,18 @@
 
 <hr id="about">
 
-
+<div class="w3-main w3-content w3-padding" style="max-width:1200px; height:50px"></div>
 <script>
 	var count_more_button_click = 0;
 	//좋아요 버튼 클릭하면 하트 색이 바뀌고 버튼의 벨류가 넘어가서 인설트된다.
 	function clickLike(video_id){
 		var heart = "font"+video_id;
-		var viedoid = "btn"+video_id;
 		
-		if(document.getElementById(heart).color == "black"){
+		if(document.getElementById(heart).color == "white"){
 		document.getElementById(heart).color="red";
 		}else{
-			document.getElementById(heart).color = "black";
+			document.getElementById(heart).color = "white";
 		}
-		//var vid= document.getElementById(viedoid).value;
 		var video_id = video_id;
 		
 		if (document.getElementById(heart).color == "red") {
@@ -70,7 +111,6 @@
 			type:"get",
 			url:"companyLikeVideo.do",
 			data : {'video_id': video_id },  
-			//contentType: 'application/json', 
 			success: function(){
 			 alert("스크랩했습니다");		
 			},
@@ -80,7 +120,7 @@
 		})//end ajax
 		}
 		
-		else if (document.getElementById(heart).color == "black") {
+		else if (document.getElementById(heart).color == "white") {
 			
 			$.ajax({
 				type:"get",
@@ -116,18 +156,53 @@
 			 console.log(data.length);
 			if (data.length !=0){
 			 $.each(data, function(idx,item){	
-					$('<div class="w3-quarter">').html("<img src='download.do?name="+item.video_img+"' "+
-							"alt='thumnail' style='width: 100%;' onclick=\"location.href='resumeDetail.do?video_id=" + item.video_id + "&member_id=" +item.member_id + "'\">"
-							+"<button class='w3-button w3-padding-small w3-xlarge'id='btn"+item.video_id+"' name='likeBtn' value='" + item.video_id + "' type='button' onclick='clickLike(" + 
-							item.video_id + ")'>"+
-							"<font id='font" +item.video_id+ "' color='black' data-count='0'> <b> <i class='fas fa-heart'></i> </b> </font> </button>"
-							+" <h3>#"+ item.code_name+ " </h3><p>"+ item.video_contents +
-							"</p>")
+					$('<div class=\"w3-quarter\">').html(
+							
+							"<div class='wrap' style='position:relative; width:100%;'>"
+							+"<div class='inner01' style='position:absolute; left:3%; top:3%;'>"
+							+"<h4 style='align:left; text-shadow: 1px 1px 2px white; font-weight: bolder;"
+							+"padding-top:5px; padding-left:5px;'>"
+							+"#"
+							+item.code_name
+							+"</h4>"
+							+"</div>"
+							+"<div class='inner02' style='position:absolute; left:5%; top:5%;'>"
+							+"<br>"
+							+"<p style='overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:250px;"
+							+"font-weight: bold; text-shadow: 1px 1px 2px white;'>"
+							+item.video_contents
+							+"</p></div>"
+							+"<img src='download.do?name="
+							+item.video_img
+							+"' alt='썸네일'"
+							+"style='width:100%;' onerror=\""
+							+"this.src=\'"
+							+"${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'\""
+							+"onclick=\"location.href='resumeDetail.do?video_id="
+							+item.video_id
+							+"&member_id="
+							+item.member_id
+							+"'\">"
+							+"<div class='inner03' style='position:absolute; left:87%; top:4%'; id='btn"
+							+item.video_id
+							+"' name='likeBtn' value='"
+							+item.video_id
+							+"' onclick=\"clickLike('"
+							+item.video_id
+							+"')\">"
+							+"<font id=\"font"
+							+item.video_id
+							+"\" color='white' style=\"-webkit-text-stroke: 1px black; font-size: xx-large;\" data-count=\"0\">"
+							+"<b> <i class=\"fas fa-heart\"></i> </b> </font></div></div><br>")
 					.appendTo(place);
 				});
 			}else if(data.length ==0){
 				$(load_mord_btn).empty();
-				$('<div align="center">').html("<br><br><br><h4><b><u>더이상 없어요..ㅜㅜ</u></b></h4>").appendTo(place);
+				$('<div class=\"\">').html(
+						"<div class='wrap' style='position:relative; width:100%;'>"
+						+"<h4><b><u>더이상 없어요..ㅜㅜ</u></b></h4>"
+						+"</div>"
+						).appendTo(place);
 			};//endif
 			},
 			error: function(){
