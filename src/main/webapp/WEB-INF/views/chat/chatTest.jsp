@@ -1,45 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html class=''>
-<head>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<link
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<script
-	src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script>
-<script
-	src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script>
-<script
-	src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>
-<meta charset='UTF-8'>
-<meta name="robots" content="noindex">
-<link rel="shortcut icon" type="image/x-icon"
-	href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
-<link rel="mask-icon" type=""
-	href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg"
-	color="#111" />
-<link rel="canonical"
-	href="https://codepen.io/emilcarlsson/pen/ZOQZaV?limit=all&page=74&q=contact+" />
-<link
-	href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300'
-	rel='stylesheet' type='text/css'>
-
-<script src="https://use.typekit.net/hoy3lrg.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%=session.getAttribute("loginId")%>
+<c:set var="user" value='<%=session.getAttribute("loginId")%>' />
 <script>
 	try {
 		Typekit.load({
@@ -48,30 +11,25 @@
 	} catch (e) {
 	}
 </script>
-<link rel='stylesheet prefetch'
-	href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
-<link rel='stylesheet prefetch'
-	href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
 <style class="cp-pen-styles">
 body {
-	display: flex;
+	display: contents;
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
-	background: #27ae60;
 	font-family: "proxima-nova", "Source Sans Pro", sans-serif;
 	font-size: 1em;
 	letter-spacing: 0.1px;
-	color: #32465a;
+	color: #134a8e;
 	text-rendering: optimizeLegibility;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 	-webkit-font-smoothing: antialiased;
 }
 
 #frame {
-	width: 95%;
+	width: 100%;
 	min-width: 360px;
-	max-width: 1000px;
+	max-width: 2000px;
 	height: 92vh;
 	min-height: 300px;
 	max-height: 720px;
@@ -88,10 +46,10 @@ body {
 #frame #sidepanel {
 	float: left;
 	min-width: 280px;
-	max-width: 340px;
+	max-width: 400px;
 	width: 40%;
 	height: 100%;
-	background: #2c3e50;
+	background: #134a8e;
 	color: #f5f5f5;
 	overflow: hidden;
 	position: relative;
@@ -422,7 +380,7 @@ body {
 #frame #sidepanel #search input {
 	font-family: "proxima-nova", "Source Sans Pro", sans-serif;
 	padding: 10px 0 10px 46px;
-	width: calc(100% - 25px);
+	width: calc(100% - 0px);
 	border: none;
 	background: #32465a;
 	color: #f5f5f5;
@@ -472,7 +430,7 @@ body {
 
 #frame #sidepanel #contacts::-webkit-scrollbar {
 	width: 8px;
-	background: #2c3e50;
+	background: #134a8e;
 }
 
 #frame #sidepanel #contacts::-webkit-scrollbar-thumb {
@@ -481,7 +439,7 @@ body {
 
 #frame #sidepanel #contacts ul li.contact {
 	position: relative;
-	padding: 10px 0 15px 0;
+	padding: 15px 0 15px 10px;
 	font-size: 0.9em;
 	cursor: pointer;
 }
@@ -524,7 +482,7 @@ body {
 	width: 10px;
 	height: 10px;
 	border-radius: 50%;
-	border: 2px solid #2c3e50;
+	border: 2px solid #134a8e;
 	background: #95a5a6;
 }
 
@@ -621,13 +579,13 @@ body {
 }
 
 #frame #sidepanel #bottom-bar button:nth-child(1) {
-	border-right: 1px solid #2c3e50;
+	border-right: 1px solid #134a8e;
 }
 
 @media screen and (max-width: 735px) {
 	#frame #sidepanel #bottom-bar button:nth-child(1) {
 		border-right: none;
-		border-bottom: 1px solid #2c3e50;
+		border-bottom: 1px solid #134a8e;
 	}
 }
 
@@ -669,7 +627,7 @@ body {
 
 @media screen and (min-width: 900px) {
 	#frame .content {
-		width: calc(100% - 340px);
+		width: calc(100% - 400px);
 	}
 }
 
@@ -709,11 +667,13 @@ body {
 }
 
 #frame .content .messages {
+	width: 100%;
 	height: auto;
 	min-height: calc(100% - 93px);
 	max-height: calc(100% - 93px);
 	overflow-y: scroll;
 	overflow-x: hidden;
+	height: auto;
 }
 
 @media screen and (max-width: 735px) {
@@ -799,7 +759,7 @@ body {
 	float: left;
 	border: none;
 	width: calc(100% - 90px);
-	padding: 11px 32px 10px 8px;
+	padding: 15px 32px 10px 15px;
 	font-size: 0.8em;
 	color: #32465a;
 }
@@ -860,303 +820,320 @@ body {
 	outline: none;
 }
 </style>
-</head>
-<body>
-	<!-- 
-
-A concept for a chat interface. 
-
-Try writing a new message! :)
-
-
-Follow me here:
-Twitter: https://twitter.com/thatguyemil
-Codepen: https://codepen.io/emilcarlsson/
-Website: http://emilcarlsson.se/
-
--->
-
-	<div id="frame">
-		<div id="sidepanel">
-			<div id="profile">
-				<div class="wrap">
-					<img id="profile-img"
-						src="http://emilcarlsson.se/assets/mikeross.png" class="online"
-						alt="" />
-					<p>내이름나올곳</p>
-					<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
-					<div id="status-options">
-						<ul>
-							<li id="status-online" class="active"><span
-								class="status-circle"></span>
-								<p>Online</p></li>
-							<li id="status-away"><span class="status-circle"></span>
-								<p>Away</p></li>
-							<li id="status-busy"><span class="status-circle"></span>
-								<p>Busy</p></li>
-							<li id="status-offline"><span class="status-circle"></span>
-								<p>Offline</p></li>
-						</ul>
-					</div>
-					<div id="expanded">
-						<label for="twitter"><i class="fa fa-facebook fa-fw"
-							aria-hidden="true"></i></label> <input name="twitter" type="text"
-							value="mikeross" /> <label for="twitter"><i
-							class="fa fa-twitter fa-fw" aria-hidden="true"></i></label> <input
-							name="twitter" type="text" value="ross81" /> <label
-							for="twitter"><i class="fa fa-instagram fa-fw"
-							aria-hidden="true"></i></label> <input name="twitter" type="text"
-							value="mike.ross" />
-					</div>
+<div id="frame">
+	<div id="sidepanel">
+		<div id="profile">
+			<div class="wrap">
+				<img id="profile-img"
+					src="http://emilcarlsson.se/assets/mikeross.png" class="online"
+					alt="" />
+				<p>내이름나올곳</p>
+				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
+				<div id="status-options">
+					<ul>
+						<li id="status-online" class="active"><span
+							class="status-circle"></span>
+							<p>Online</p></li>
+						<li id="status-away"><span class="status-circle"></span>
+							<p>Away</p></li>
+						<li id="status-busy"><span class="status-circle"></span>
+							<p>Busy</p></li>
+						<li id="status-offline"><span class="status-circle"></span>
+							<p>Offline</p></li>
+					</ul>
 				</div>
-			</div>
-			<div id="search">
-				<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-				<input type="text" placeholder="검색하세욘" />
-			</div>
-			<div id="contacts">
-				<ul>
-					<li class="contact">
-						<div class="wrap">
-							<span class="contact-status online"></span> <img
-								src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-							<div class="meta">
-								<p class="name">채팅목록에 나올 이름</p>
-								<p class="preview">여기는 가장 최근 메세지</p>
-							</div>
-						</div>
-					</li>
-					<li class="contact active">
-						<div class="wrap">
-							<span class="contact-status busy"></span> <img
-								src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-							<div class="meta">
-								<p class="name">현재대화중인 사람이름</p>
-								<p class="preview">마지막 대화내용</p>
-							</div>
-						</div>
-					</li>
-					<li class="contact">
-						<div class="wrap">
-							<span class="contact-status away"></span> <img
-								src="http://emilcarlsson.se/assets/rachelzane.png" alt="" />
-							<div class="meta">
-								<p class="name">Rachel Zane</p>
-								<p class="preview">I was thinking that we could have chicken
-									tonight, sounds good?</p>
-							</div>
-						</div>
-					</li>
-					<li class="contact">
-						<div class="wrap">
-							<span class="contact-status online"></span> <img
-								src="http://emilcarlsson.se/assets/donnapaulsen.png" alt="" />
-							<div class="meta">
-								<p class="name">Donna Paulsen</p>
-								<p class="preview">Mike, I know everything! I'm Donna..</p>
-							</div>
-						</div>
-					</li>
-					<li class="contact">
-						<div class="wrap">
-							<span class="contact-status busy"></span> <img
-								src="http://emilcarlsson.se/assets/jessicapearson.png" alt="" />
-							<div class="meta">
-								<p class="name">Jessica Pearson</p>
-								<p class="preview">Have you finished the draft on the
-									Hinsenburg deal?</p>
-							</div>
-						</div>
-					</li>
-					<li class="contact">
-						<div class="wrap">
-							<span class="contact-status"></span> <img
-								src="http://emilcarlsson.se/assets/haroldgunderson.png" alt="" />
-							<div class="meta">
-								<p class="name">Harold Gunderson</p>
-								<p class="preview">Thanks Mike! :)</p>
-							</div>
-						</div>
-					</li>
-					<li class="contact">
-						<div class="wrap">
-							<span class="contact-status"></span> <img
-								src="http://emilcarlsson.se/assets/danielhardman.png" alt="" />
-							<div class="meta">
-								<p class="name">Daniel Hardman</p>
-								<p class="preview">We'll meet again, Mike. Tell Jessica I
-									said 'Hi'.</p>
-							</div>
-						</div>
-					</li>
-					<li class="contact">
-						<div class="wrap">
-							<span class="contact-status busy"></span> <img
-								src="http://emilcarlsson.se/assets/katrinabennett.png" alt="" />
-							<div class="meta">
-								<p class="name">Katrina Bennett</p>
-								<p class="preview">I've sent you the files for the Garrett
-									trial.</p>
-							</div>
-						</div>
-					</li>
-					<li class="contact">
-						<div class="wrap">
-							<span class="contact-status"></span> <img
-								src="http://emilcarlsson.se/assets/charlesforstman.png" alt="" />
-							<div class="meta">
-								<p class="name">Charles Forstman</p>
-								<p class="preview">Mike, this isn't over.</p>
-							</div>
-						</div>
-					</li>
-					<li class="contact">
-						<div class="wrap">
-							<span class="contact-status"></span> <img
-								src="http://emilcarlsson.se/assets/jonathansidwell.png" alt="" />
-							<div class="meta">
-								<p class="name">Jonathan Sidwell</p>
-								<p class="preview">
-									<span>You:</span> That's bullshit. This deal is solid.
-								</p>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-			<div id="bottom-bar">
-				<button id="addcontact">
-					<i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add
-						contact</span>
-				</button>
-				<button id="settings">
-					<i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span>
-				</button>
+				<div id="expanded">
+					<label for="twitter"><i class="fa fa-facebook fa-fw"
+						aria-hidden="true"></i></label> <input name="twitter" type="text"
+						value="mikeross" /> <label for="twitter"><i
+						class="fa fa-twitter fa-fw" aria-hidden="true"></i></label> <input
+						name="twitter" type="text" value="ross81" /> <label for="twitter"><i
+						class="fa fa-instagram fa-fw" aria-hidden="true"></i></label> <input
+						name="twitter" type="text" value="mike.ross" />
+				</div>
 			</div>
 		</div>
-		<div class="content">
-			<div class="contact-profile">
-				<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-				<p>Harvey Specter</p>
-				<div class="social-media">
-					<i class="fa fa-facebook" aria-hidden="true"></i> <i
-						class="fa fa-twitter" aria-hidden="true"></i> <i
-						class="fa fa-instagram" aria-hidden="true"></i>
-				</div>
-			</div>
-			<div class="messages">
-				<ul>
-					<li class="sent"><img
-						src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-						<p>How the hell am I supposed to get a jury to believe you
-							when I am not even sure that I do?!</p></li>
-					<li class="replies"><img
-						src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-						<p>When you're backed against the wall, break the god damn
-							thing down.</p></li>
-					<li class="replies"><img
-						src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-						<p>Excuses don't win championships.</p></li>
-					<li class="sent"><img
-						src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-						<p>Oh yeah, did Michael Jordan tell you that?</p></li>
-					<li class="replies"><img
-						src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-						<p>No, I told him that.</p></li>
-					<li class="replies"><img
-						src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-						<p>What are your choices when someone puts a gun to your head?</p>
-					</li>
-					<li class="sent"><img
-						src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-						<p>What are you talking about? You do what they say or they
-							shoot you.</p></li>
-					<li class="replies"><img
-						src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-						<p>Wrong. You take the gun, or you pull out a bigger one. Or,
-							you call their bluff. Or, you do any one of a hundred and forty
-							six other things.</p></li>
-				</ul>
-			</div>
-			<div class="message-input">
-				<div class="wrap">
-					<input type="text" placeholder="Write your message..." /> <i
-						class="fa fa-paperclip attachment" aria-hidden="true"></i>
-					<button class="submit">
-						<i class="fa fa-paper-plane" aria-hidden="true"></i>
-					</button>
-				</div>
-			</div>
+		<div id="search">
+			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+			<input type="text" placeholder="검색하세욘" />
+		</div>
+		<div id="contacts">
+			<ul>
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status online"></span> <img
+							src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
+						<div class="meta">
+							<p class="name">채팅목록에 나올 이름</p>
+							<p class="preview">여기는 가장 최근 메세지</p>
+						</div>
+					</div>
+				</li>
+				<li class="contact active">
+					<div class="wrap">
+						<span class="contact-status busy"></span> <img
+							src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+						<div class="meta">
+							<p class="name">현재대화중인 사람이름</p>
+							<p class="preview">마지막 대화내용</p>
+						</div>
+					</div>
+				</li>
+
+
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status busy"></span> <img
+							src="http://emilcarlsson.se/assets/jessicapearson.png" alt="" />
+						<div class="meta">
+							<p class="name">Jessica Pearson</p>
+							<p class="preview">Have you finished the draft on the
+								Hinsenburg deal?</p>
+						</div>
+					</div>
+				</li>
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status"></span> <img
+							src="http://emilcarlsson.se/assets/haroldgunderson.png" alt="" />
+						<div class="meta">
+							<p class="name">Harold Gunderson</p>
+							<p class="preview">Thanks Mike! :)</p>
+						</div>
+					</div>
+				</li>
+
+
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status"></span> <img
+							src="http://emilcarlsson.se/assets/charlesforstman.png" alt="" />
+						<div class="meta">
+							<p class="name">Charles Forstman</p>
+							<p class="preview">Mike, this isn't over.</p>
+						</div>
+					</div>
+				</li>
+				<li class="contact">
+					<div class="wrap">
+						<span class="contact-status"></span> <img
+							src="http://emilcarlsson.se/assets/jonathansidwell.png" alt="" />
+						<div class="meta">
+							<p class="name">Jonathan Sidwell</p>
+							<p class="preview">
+								<span>You:</span> That's bullshit. This deal is solid.
+							</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div id="bottom-bar">
+			<button id="addcontact">
+				<i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add
+					contact</span>
+			</button>
+			<button id="settings">
+				<i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span>
+			</button>
 		</div>
 	</div>
-	<script
-		src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
-	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-	<script>
-		$(".messages").animate({
-			scrollTop : $(document).height()
-		}, "fast");
+	<div class="content">
+		<div class="contact-profile">
+			<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+			<p>Harvey Specter</p>
+			<div class="social-media">
+				<i class="fa fa-facebook" aria-hidden="true"></i> <i
+					class="fa fa-twitter" aria-hidden="true"></i> <i
+					class="fa fa-instagram" aria-hidden="true"></i>
+			</div>
+		</div>
 
-		$("#profile-img").click(function() {
-			$("#status-options").toggleClass("active");
-		});
+		<!-- 메시지 창  -->
+		<div class="messages">
+			<ul>
+				<c:forEach var="contents" items="${message}">
+					<c:choose>
+						<c:when test="${contents.message_receiver == (loginId)}">
+							<li class="sent"><img
+								src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
+								<p>${contents.message_content}</p> <br> <span
+								style='float: left; font-size: 9px; text-align: left;'>${contents.message_sandtime }
+							</span></li>
+						</c:when>
+						<c:otherwise>
+							<li class="replies"><img
+								src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+								<p>${contents.message_content}</p> <br> <span
+								style='float: right; font-size: 9px; text-align: right;'>${contents.message_sandtime }
+							</span></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</ul>
+		</div>
+		<!-- end 메시지 창  -->
 
-		$(".expand-button").click(function() {
-			$("#profile").toggleClass("expanded");
-			$("#contacts").toggleClass("expanded");
-		});
+		<!-- 메시지 입력 창  -->
+		<div class="message-input">
+			<div class="wrap">
+				<input type="text" placeholder="메시지를 입력하세요." id="message" /> <i
+					class="fa fa-paperclip attachment" aria-hidden="true"></i>
+				<button class="submit" id="sendBtn">
+					<i class="fa fa-paper-plane" aria-hidden="true"></i>
+				</button>
+			</div>
+		</div>
+		<!-- end 메시지 입력 창  -->
 
-		$("#status-options ul li").click(function() {
+	</div>
+</div>
+<script>
+	$(".messages").animate({
+		scrollTop : $(document).height()
+	}, "fast");
+
+	$("#profile-img").click(function() {
+		$("#status-options").toggleClass("active");
+	});
+
+	$(".expand-button").click(function() {
+		$("#profile").toggleClass("expanded");
+		$("#contacts").toggleClass("expanded");
+	});
+
+	$("#status-options ul li").click(function() {
+		$("#profile-img").removeClass();
+		$("#status-online").removeClass("active");
+		$("#status-away").removeClass("active");
+		$("#status-busy").removeClass("active");
+		$("#status-offline").removeClass("active");
+		$(this).addClass("active");
+
+		if ($("#status-online").hasClass("active")) {
+			$("#profile-img").addClass("online");
+		} else if ($("#status-away").hasClass("active")) {
+			$("#profile-img").addClass("away");
+		} else if ($("#status-busy").hasClass("active")) {
+			$("#profile-img").addClass("busy");
+		} else if ($("#status-offline").hasClass("active")) {
+			$("#profile-img").addClass("offline");
+		} else {
 			$("#profile-img").removeClass();
-			$("#status-online").removeClass("active");
-			$("#status-away").removeClass("active");
-			$("#status-busy").removeClass("active");
-			$("#status-offline").removeClass("active");
-			$(this).addClass("active");
+		}
+		;
 
-			if ($("#status-online").hasClass("active")) {
-				$("#profile-img").addClass("online");
-			} else if ($("#status-away").hasClass("active")) {
-				$("#profile-img").addClass("away");
-			} else if ($("#status-busy").hasClass("active")) {
-				$("#profile-img").addClass("busy");
-			} else if ($("#status-offline").hasClass("active")) {
-				$("#profile-img").addClass("offline");
+		$("#status-options").removeClass("active");
+	});
+
+	function newMessage() {
+		var msg = $(".message-input input").val();
+		if (msg != "") {
+			message = {};
+			message.message_content = $("#message").val();
+			message.cmd = "message";
+			message.message_receiver = '${loginId}' == '${room.company_id}' ? '${room.member_id}'
+					: '${room.company_id}';
+			message.message_sender = '${loginId}'
+			message.interview_id = '${room.interview_id}';
+			message.member_id = '${room.member_id}';
+			message.company_id = '${room.company_id}';
+			message.message_type = 'CHAT';
+		}
+
+		sock.send(JSON.stringify(message)); //웹소켓으로 메시지를 보내겠어
+		$("#message").val("");
+	}
+
+	function getTimeStamp() {
+		var d = new Date();
+		var s = leadingZeros(d.getFullYear(), 4) + '-'
+				+ leadingZeros(d.getMonth() + 1, 2) + '-'
+				+ leadingZeros(d.getDate(), 2) + ' ' +
+
+				leadingZeros(d.getHours(), 2) + ':'
+				+ leadingZeros(d.getMinutes(), 2) + ':'
+				+ leadingZeros(d.getSeconds(), 2);
+
+		return s;
+	}
+
+	function leadingZeros(n, digits) {
+		var zero = '';
+		n = n.toString();
+		if (n.length < digits) {
+			for (i = 0; i < digits - n.length; i++)
+				zero += '0';
+		}
+		return zero + n;
+	}
+
+	function appendMessage(msg) {
+		if (msg == '') {
+			return false;
+		} else {
+			var t = getTimeStamp();
+			console.log(msg)
+			if (msg.message_sender == '${loginId}') {
+				$("#messages")
+						.append(
+								$(
+										'<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /><p>'
+												+ msg.message_content
+												+ '</p>' + '<br><span style="float: right; font-size: 9px; text-align: right;">' + t + '</span></li>').appendTo(
+										$('.messages ul')));
 			} else {
-				$("#profile-img").removeClass();
+				$("#messages")
+						.append(
+								$(
+										'<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>'
+												+ msg.message_content
+												+ '</p>' + '<br><span style="float: left; font-size: 9px; text-align: left;">' + t + '</span></li>').appendTo(
+										$('.messages ul')));
 			}
-			;
 
-			$("#status-options").removeClass("active");
+			var chatAreaHeight = $("#chatArea").height();
+			var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
+			$("#chatArea").scrollTop(maxScroll);
+
+		}
+	}
+
+	$('.message-input input').val(null);
+	$('.contact.active .preview').html(
+			'<span>You: </span>' + message);
+	$(".messages").animate({
+		scrollTop : $(document).height()
+	}, "fast");
+
+	$('.submit').click(function() {
+		newMessage();
+	});
+
+	$(window).on('keydown', function(e) {
+		if (e.which == 13) {
+			newMessage();
+			return false;
+		}
+	});
+
+	$(document).ready(function() {
+		$('#message').keypress(function(event) {
+			var keycode = (event.keyCode ? event.keyCode : event.which);
+			if (keycode == '13') {
+				newMessage();
+			}
+			event.stopPropagation();
 		});
 
-		function newMessage() {
-			message = $(".message-input input").val();
-			if ($.trim(message) == '') {
-				return false;
-			}
-			$(
-					'<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>'
-							+ message + '</p></li>')
-					.appendTo($('.messages ul'));
-			$('.message-input input').val(null);
-			$('.contact.active .preview').html('<span>You: </span>' + message);
-			$(".messages").animate({
-				scrollTop : $(document).height()
-			}, "fast");
-		};
-
-		$('.submit').click(function() {
+		$('#sendBtn').click(function() {
 			newMessage();
 		});
-
-		$(window).on('keydown', function(e) {
-			if (e.which == 13) {
-				newMessage();
-				return false;
-			}
+		$('#enterBtn').click(function() {
+			connect();
 		});
-		//# sourceURL=pen.js
-	</script>
-</body>
-</html>
+		$('#exitBtn').click(function() {
+			disconnect();
+		});
+	});
+</script>

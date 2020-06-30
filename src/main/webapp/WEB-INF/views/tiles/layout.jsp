@@ -101,7 +101,6 @@ body, h1, h2, h3, h4, h5, h6 {
 		<tiles:insertAttribute name="top" />
 		<br> <br> <br>
 		<div id="msgAlert"></div>
-		<div id="msgAlert">메시지Alert</div>
 		<div id="contents">
 			<tiles:insertAttribute name="body" />
 			<tiles:insertAttribute name="footer" />
