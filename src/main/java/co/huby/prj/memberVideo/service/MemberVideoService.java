@@ -9,5 +9,7 @@ public interface MemberVideoService {
 
 	void memberVideoInsert(HashMap<String, String> map) throws Exception;
 
-	List<VideoVo> selectVideoName(VideoVo vo);
+	int memberVideoCount(String member_id);
+	
+	List<String> memberSelect(String member_id);
 }
