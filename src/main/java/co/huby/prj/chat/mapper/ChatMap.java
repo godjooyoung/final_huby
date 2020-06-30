@@ -15,12 +15,6 @@ public interface ChatMap {
 
 	public void insertMessage(MessageVo vo) throws Exception;
 
-	public String getMember(InterviewVo vo) throws Exception;
-
-	public String getProfile(String str) throws Exception;
-
-	public String getName(String str) throws Exception;
-
 	public List<MessageVo> getMessageList(MessageVo vo) throws Exception;
 
 	public List<InterviewVo> getRoomList(InterviewVo vo) throws Exception;

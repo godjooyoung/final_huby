@@ -11,7 +11,8 @@
 <div class="w3-row-padding w3-padding-16 w3-center" id="food">
 	<c:forEach var="firstList" items="${firstList}">
 		<div class="w3-quarter">
-			<img src="${pageContext.request.contextPath}/resources/img/common/${firstList.VIDEO_IMG}"
+			<img src="download.do?name=${firstList.VIDEO_IMG}"
+				onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
 				alt="thumnail" style="width: 100%;" onclick="location.href='resumeDetail.do?video_id=${firstList.video_id}&member_id=${firstList.member_id }'">
 			<button class="w3-button w3-padding-small w3-xlarge"
 				id="btn${firstList.VIDEO_ID }" name="likeBtn"

@@ -25,8 +25,8 @@ public interface AlarmMap {
 	int alarmupdatecheck(AlarmVo vo);
 	int memberreadstate(String personid);
 	int companyreadstate(String companyid);
-	int memcountselect(String loginId);
-	int companycountselect(String loginId);
+	int memcountselect(AlarmVo vo);
+	int companycountselect(AlarmVo vo);
 	int countselect(String loginId, String loginType);
 	
 }

@@ -311,6 +311,7 @@
 			v.video_id as "video_id",
 			v.video_contents as "video_contents",
 			v.video_img as "video_img",
+			v.video_location as "video_location",
 			v.member_id as "member_id"
 			FROM video v
 			Join code c

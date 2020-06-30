@@ -13,15 +13,16 @@
 			<div class="w3-third">
 				<div class="w3-white w3-text-grey w3-card-4">
 					<div class="w3-display-container">
-						<img
-							src="${pageContext.request.contextPath}/resources/img/common/${applyman.video_img}"
-							style="width: 100%" alt="self-video">
+					<!--<img
+							src="download.do?name=${applyman.video_img}"
+							onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
+							style="width: 100%" alt="self-video">  -->	
+						<video width="100%" controls poster="download.do?name=${applyman.video_img}" playsinline preload="none">
+ 						<source src="download.do?name=${applyman.video_location }" type="video/mp4">영상이 없습니다.
+ 						</video>
 						<div class="w3-display-topleft w3-container w3-text-black">
 							<br>
 							<h2><b><u>${applyman.member_name}</u> 지원자</b></h2>
-						</div>
-						<div class="w3-display-bottomleft w3-container w3-text-black">
-							<br>
 							<h3 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:340px;"><b>#${applyman.code_name}</b></h3>
 							<h3><b>${applyman.video_contents}</b></h3>
 						</div>

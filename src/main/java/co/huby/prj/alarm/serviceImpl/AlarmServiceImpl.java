@@ -91,24 +91,31 @@ public class AlarmServiceImpl implements AlarmService {
 	}
 
 	@Override
-	public int memcountselect(String personid) {
+	public int memcountselect(AlarmVo vo) {
 		// TODO Auto-generated method stub
-		return map.memcountselect(personid);
+		return map.memcountselect(vo);
 	}
 
 	@Override
-	public int companycountselect(String companyid) {
+	public int companycountselect(AlarmVo vo) {
 		// TODO Auto-generated method stub
-		return map.companycountselect(companyid);
+		return map.companycountselect(vo);
 	}
 
 	@Override
 	public int countselect(String loginId, String loginType) {
-		if (loginType .equals("U")) {
-			return map.memcountselect(loginId);
-		} else {
-			return map.companycountselect(loginId);
-		}
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
+	//@Override
+	//public int countselect(String loginId, String loginType) {
+	//	if (loginType .equals("U")) {
+	//		return map.memcountselect(loginId);
+	//	} else {
+	//		return map.companycountselect(loginId);
+	//	}
+	//}
+	
+	
 }

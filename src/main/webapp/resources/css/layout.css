@@ -585,3 +585,22 @@
 		display: none;
 	}
 }
+
+.alarmimg{
+	float: unset;
+    left: 8%;
+   /*  margin-left: -px; */
+    top: 7px;
+    position: absolute;
+    z-index: 2;
+	
+}
+.alarmimg img{
+	 width: 40px;
+}
+
+.alarmimg img .badge badge-light{
+	position: absolute;
+	float: unset;
+	top: 10px;
+}

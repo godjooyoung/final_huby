@@ -20,7 +20,7 @@ public interface AlarmService {
 	List<AlarmVo> companyselect(CompanyVo vo) throws Exception;
 	int memberreadstate(String personid);
 	int companyreadstate(String companyid);
-	int memcountselect(String loginId);
-	int companycountselect(String loginId);
+	int memcountselect(AlarmVo vo);
+	int companycountselect(AlarmVo vo);
 	int countselect(String loginId, String loginType);
 }
