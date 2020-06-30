@@ -1,17 +1,83 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <style>
-	table, tr, td{ border: 1px solid black ;
-				border-collapse: collapse;
-	}
-	
+.mb-60 {
+	margin-bottom: 60px;
+}
+
+.services-inner {
+	border: 2px solid #48c7ec;
+	margin-left: 35px;
+	transition: .3s;
+}
+
+.our-services-img {
+	float: left;
+	margin-left: -36px;
+	margin-right: 22px;
+	margin-top: 28px;
+}
+
+.our-services-text {
+	padding-right: 10px;
+}
+
+.our-services-text {
+	overflow: hidden;
+	padding: 28px 0 25px;
+}
+
+.our-services-text h4 {
+	color: #222222;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	margin-bottom: 8px;
+	padding-bottom: 10px;
+	position: relative;
+	text-transform: uppercase;
+}
+
+.our-services-text h4::before {
+	background: #ec6d48 none repeat scroll 0 0;
+	bottom: 0;
+	content: "";
+	height: 1px;
+	position: absolute;
+	width: 35px;
+}
+
+.our-services-wrapper:hover .services-inner {
+	background: #fff none repeat scroll 0 0;
+	border: 2px solid transparent;
+	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.our-services-text p {
+	margin-bottom: 0;
+}
+
+p {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 26px;
+	color: #666;
+	margin-bottom: 15px;
+}
 </style>
 <script>
 	function resumedelete(rid){
@@ -64,15 +130,9 @@
 	
 
 	
-	function resumeupdateAjax(rid){
-		
-		if($("#ajaxTest2").css("display") == "none") {
-			$("#ajaxTest").attr("style", "float:left;");
-			$("#ajaxTest2").show();
-		}else{
-			$("#ajaxTest").attr("style", "");
-			$("#ajaxTest2").hide();
-		}
+	function resumeupdateAjax(e,rid){
+		var ajaxresume = $("#ajaxTest2").toggle();
+		$(e.target).closest(".ajaxResumePage").append(ajaxresume);
 		
 		$.ajax({
 		    url: "resumeUpdateAjax.do",
@@ -149,14 +209,16 @@
 	}
 
 	
-	function ajaxSkillUpdatePage(sid){
+	function ajaxSkillUpdatePage(e, sid){
 		if($("#ajaxSkill2").css("display") == "none"){
-			$("#ajaxSkill1").attr("style","float:left;");
+			$("#ajaxSkill1"+sid).parent().append($("#ajaxSkill2"));
 			$("#ajaxSkill2").show();
+			$("#ajaxSkill1"+sid).hide();
+			
 			$("#ajaxSkillInsertBtn").hide();
 			$("#ajaxSkillSaveBtn").show();
 		}else{
-			$("#ajaxSkill1").attr("style","");
+			$("[id^=ajaxSkill1]").show();
 			$("#ajaxSkill2").hide();
 		}
 		
@@ -184,6 +246,7 @@
 		    url: "ajaxSkillUpdate.do",
 		    type: "post",
 		    dataType: "json",
+		    async: false,
 		    data: {
 		    	'skill_id':skill_id,
 		    	'skill_name':skill_name,
@@ -192,16 +255,19 @@
 		    success: function(data){
 		    	if(data==1){
 		    		alert("스킬관리 수정이 정상적으로 되었습니다.")
+		    		$("#skill_id_"+skill_id).html(skill_id);
+		    		$("#skill_name_"+skill_id).html(skill_name);
+		    		$("#skill_level_"+skill_id).html(skill_level);
+		    		$("[id^=ajaxSkill1]").show();
+		    		$("#ajaxSkill2").hide();	
+		    		
 		    	}else{
 		    		alert("스킬수정 처리가 실패하였습니다.")
 		    	}
 		    	
-		    	$("#skill_id_"+skill_id).text(skill_id)
-	    		$("#skill_name_"+skill_id).text(skill_name)
-	    		$("#skill_level_"+skill_id).text(skill_level)
+		    	
 	    		
-	    		$("#ajaxSkill1").attr("style","");
-	    		$("#ajaxSkill2").hide();
+	    		
 		    },
 		    error: function (request, status, error){
 		    }
@@ -266,208 +332,170 @@
 </script>
 </head>
 <body>
-<div align="center">
-<button class="btn-primary" type="button" onclick="location.href='resumeinsertpage.do'">이력서등록</button><br>
-<button class="btn-primary" type="button" onclick="resumeCheckDelete()">이력서삭제하기</button><br>
-</div>
-
-<div>
-	<div id="ajaxTest" align="center">
-	<h1>이력서 관리</h1>
-	<form id="frm" name="frm" method="post">
-	<br>
-	<table>
-	<tr>
-	<c:forEach items="${ rlist }" var="list">
-	<td>
-		<input type="checkbox" id=resumeDelete name="resumeDelete" value=${ list.resume_id }>
-		<div>${ list.resume_id }</div>
-		<div id="div_resume_title_${list.resume_id}">${ list.resume_title }</div>
-		<div id="div_hope_job_${list.resume_id}">${ list.job_name }</div>
-		<div id="div_hope_salary_${list.resume_id}">${ list.hope_salary }</div>
-		<div id="div_hope_location_${list.resume_id}">${ list.hope_location }</div>
-		<div id="div_final_education_${list.resume_id}">${ list.final_education }</div>
-		<%-- <div id="div_select_resume_${list.resume_id}">${ list.select_resume }</div>
-		<div id="div_select_poublic_${list.resume_id}">${ list.select_public }</div> --%>
-		<button type="button" class="btn-primary" onclick="resumedelete(${ list.resume_id })">이력서 삭제</button><br>
-		<%-- <button type="button" class="btn-primary" onclick="resumeupdate(${ list.resume_id })">이력서 수정</button><br> --%>
-		<button type="button" class="btn-primary" onclick="resumeupdateAjax(${ list.resume_id })">이력서 수정</button><br>
-	</td>
-	</c:forEach>
-	</tr>
-	</table>
-	<input type="hidden" id="rid" name="resume_id">
-	</form>
-	</div>
-	<div id="ajaxTest2" align="center" style="display:none;">
-	<h1>이력서 관리</h1>
-	<br>
-	<table>
-	<tr>
-	<td>
-		번호<input type="text" id="resume_id" value="text" readonly="readonly"><br>
-		제목<input type="text" id="resume_title" value="text"><br>
-		<!-- 희망직무<input type="text" id="resume_hope_job" value="text"><br> -->
-		희망직무<select class="form-control input-md" id="resume_hope_job">
-				<option value="">종목 선택</option>
-				<c:forEach items="${ codeList }" var="clist">
-					<option value="${ clist.code_id }">${ clist.code_name}</option>
-				</c:forEach>
-			</select>
-		희망급여<input type="text" id="resume_hope_salary" value="text"><br>
-		희망지역<select class="form-control input-md" id="resume_hope_location">
-		  		<option value="">지역 선택</option>
-		  		<option value="서울">서울</option>
-		  		<option value="인천">인천</option>
-		  		<option value="경기">경기</option>
-		  		<option value="부산">부산</option>
-		  		<option value="대구">대구</option>
-		  		<option value="광주">광주</option>
-		  		<option value="대전">대전</option>
-		  		<option value="울산">울산</option>
-		  		<option value="세종">세종</option>
-		  		<option value="강원">강원</option>
-		  		<option value="경남">경남</option>
-		  		<option value="경북">경북</option>
-		  		<option value="전남">전남</option>
-		  		<option value="전북">전북</option>
-		  		<option value="충남">충남</option>
-		  		<option value="충북">충북</option>
-		  		<option value="제주">제주</option>
-		  		<option value="강원.">강원</option>
-		  		<option value="전국">전국</option>
-		  	</select><br>
-		최종학력<input type="text" id="resume_final_education" value="text"><br>
-		<!-- 대표설정<input type="radio" id="resume_select_resume_Y" name="resume_select_resume" value="Y">Y
-			<input type="radio" id="resume_select_resume_N" name="resume_select_resume" value="N">N
-			<br>
-		공개여부<input type="radio" id="resume_select_public_Y" name="resume_select_public" value="Y">Y
-			<input type="radio" id="resume_select_public_N" name="resume_select_public" value="N">N
-		<br> -->
-		한마디<input type="text" id="resume_coment" value="text"><br>
-		<div align="center">
-		<button type="button" class="btn-primary" onclick="ajaxResumeUpdate()">수정하기</button>
+	<div class="container">
+		<h2>이력서 관리</h2>
+		<button class="btn-primary" type="button" onclick="location.href='resumeinsertpage.do'">이력서등록</button>
+		<div class="row">
+			<c:forEach items="${ rlist }" var="list">
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 ajaxResumePage">
+					<div class="our-services-wrapper mb-60">
+						<div class="services-inner">
+							<div class="our-services-img">
+								<img
+									src="https://www.orioninfosolutions.com/assets/img/icon/Agricultural-activities.png"
+									width="68px" alt="">
+							</div>
+							<div class="our-services-text">
+								<h4>${ list.resume_title }</h4>
+								<p>${ list.job_name }</p>
+								<p>${ list.hope_salary }</p>
+								<p>${ list.hope_location }</p>
+								<p>${ list.final_education  }</p>
+							</div>
+								<button type="button" class="btn-primary" onclick="resumedelete(${ list.resume_id })">이력서 삭제</button>
+								<button type="button" class="btn-primary" onclick="resumeupdateAjax(window.event,${ list.resume_id })">이력서 수정</button><br>
+						</div>
+					</div>
+				
+				</div>
+			</c:forEach>
 		</div>
-	</td>
-	</tr>
-	</table>
-	<input type="hidden" id="rid" name="resume_id">
-	</div>
-</div>
-<br>
-
-<div align="center">
-<button class="btn-primary" type="button" onclick="skillInsertPage()">스킬 등록</button>
-</div>
-<!-- 스킬관리 시작 -->
-<div align="center" id="ajaxSkill1">
-<h1>스킬 관리</h1>
-<form id="frm2" name="frm2" method="post">
-<br>
-<table>
-<tr id="tr_skill">
-<c:forEach items="${ slist }" var="skill">
-<td>
-<div id="skill_id_${ skill.SKILL_ID }">${ skill.SKILL_ID }</div>
-<div id="skill_name_${ skill.SKILL_ID }">${ skill.SKILL_NAME }</div>
-<div id="skill_level_${ skill.SKILL_ID }">${ skill.SKILL_LEVEL }</div>
-<button type="button" class="btn-primary" onclick="skillDelete(${ skill.SKILL_ID })">스킬 삭제</button><br>
-<%-- <button type="button" class="btn-primary" onclick="skillUpdatePage(${ skill.SKILL_ID })">스킬 수정</button><br> --%>
-<button type="button" class="btn-primary" onclick="ajaxSkillUpdatePage(${ skill.SKILL_ID })">스킬 수정</button>
-</td>
-</c:forEach>
-</tr>
-</table>
-<input type="hidden" id="sid" name="skill_id">
-</form>
-</div>
-<!-- 스킬관리 끝 -->
-<!-- 스킬관리 시작 -->
-<div align="center" id="ajaxSkill2" style="display:none;">
-<h1>스킬 관리</h1>
-<br>
-<table>
-<tr>
-<td>
-스킬번호:<input id="skill_id" type="text" readonly="readonly"><br>
-스킬명:<input id="skill_name" type="text"><br>
-스킬레벨:<input id="skill_level" type="text"><br>
-<div align="center">
-<button type="button" class="btn-primary" id="ajaxSkillSaveBtn" onclick="ajaxSkillUpdate()">저장하기</button>
-<button type="button" class="btn-primary" id="ajaxSkillInsertBtn" onclick="ajaxSkillInsert()" style="display: none;">등록하기</button>
-</div>
-</td>
-</tr>
-</table>
-<input type="hidden" id="sid" name="skill_id">
-</div>
-<!-- 스킬관리 끝 -->
-<br>
-<br>
-<br>
-
-
-
-
-
-<div align="center">
-<button class="btn-primary" type="button" onclick="location.href='careerInsertPage.do'">커리어 등록</button>
-</div>
-<!-- 커리어 관리 시작 -->
-<div id="ajaxCareer1" align="center">
-<h1>커리어 관리</h1>
-<form id="frm3" name="frm3" method="post">
-<br>
-<table>
-<tr>
-<c:forEach items="${ clist }" var="career">
-<td>
-<fmt:formatDate value="${career.start_date}" pattern="yyyy-MM-dd" var="startDate" />
-<fmt:formatDate value="${career.end_date}" pattern="yyyy-MM-dd" var="endDate" />
-${ career.career_id }<br>
-${ startDate }<br>
-${ endDate }<br>
-${ career.company_name }<br>
-${ career.career_content}<br>
-${ career.job_name }<br>
-${ career.job_position }<br>
-<button type="button" class="btn-primary" onclick="careerDelete(${ career.career_id })">커리어 삭제</button><br>
-<button type="button" class="btn-primary" onclick="careerUpdatePage(${ career.career_id })">커리어 수정</button><br>
-</td>
-</c:forEach>
-</tr>
-</table>
-<input type="hidden" id="cid" name="career_id">
-</form>
-</div>
-<!-- 커리어 관리 끝 -->
-<!-- 커리어 관리 시작 -->
-<div align="center" id="ajaxCareer2" style="display: none">
-<h1>커리어 관리</h1>
-<form id="frm3" name="frm3" method="post">
-<br>
-<table>
-<tr>
-<c:forEach items="${ clist }" var="career">
-<td>
-<fmt:formatDate value="${career.start_date}" pattern="yyyy-MM-dd" var="startDate" />
-<fmt:formatDate value="${career.end_date}" pattern="yyyy-MM-dd" var="endDate" />
-${ career.career_id }<br>
-${ startDate }<br>
-${ endDate }<br>
-${ career.company_name }<br>
-${ career.career_content}<br>
-${ career.job_name }<br>
-${ career.job_position }<br>
-<button type="button" class="btn-primary" onclick="careerDelete(${ career.career_id })">커리어 삭제</button><br>
-<button type="button" class="btn-primary" onclick="careerUpdatePage(${ career.career_id })">커리어 수정</button><br>
-</td>
-</c:forEach>
-</tr>
-</table>
-<input type="hidden" id="cid" name="career_id">
-</form>
-</div>
-<!-- 커리어 관리 끝 -->
+		<div class="row">
+				<div id="ajaxTest2" class="col-sm-12" style="display: none;">
+					<form id="frm" name="frm" method="post">
+					<div class="our-services-wrapper mb-60">
+						<div class="services-inner">
+							<div class="our-services-img">
+								<img
+									src="https://www.orioninfosolutions.com/assets/img/icon/Agricultural-activities.png"
+									width="68px" alt="">
+							</div>
+							<div class="our-services-text">
+								<h4>제목<input type="text" id="resume_title" value="text"></h4>
+								<p>	희망직무<select class="form-control input-md" id="resume_hope_job">
+									<option value="">종목 선택</option>
+									<c:forEach items="${ codeList }" var="clist">
+										<option value="${ clist.code_id }">${ clist.code_name}</option>
+									</c:forEach>
+								</select></p>
+								<p>희망급여<input type="text" id="resume_hope_salary" value="text"></p>
+								<p>희망지역<select class="form-control input-md" id="resume_hope_location">
+									  		<option value="">지역 선택</option>
+									  		<option value="서울">서울</option>
+									  		<option value="인천">인천</option>
+									  		<option value="경기">경기</option>
+									  		<option value="부산">부산</option>
+									  		<option value="대구">대구</option>
+									  		<option value="광주">광주</option>
+									  		<option value="대전">대전</option>
+									  		<option value="울산">울산</option>
+									  		<option value="세종">세종</option>
+									  		<option value="강원">강원</option>
+									  		<option value="경남">경남</option>
+									  		<option value="경북">경북</option>
+									  		<option value="전남">전남</option>
+									  		<option value="전북">전북</option>
+									  		<option value="충남">충남</option>
+									  		<option value="충북">충북</option>
+									  		<option value="제주">제주</option>
+									  		<option value="강원.">강원</option>
+									  		<option value="전국">전국</option>
+									  	</select><br></p>
+								<p>최종학력<input type="text" id="resume_final_education" value="text"></p>
+								<p>한마디<input type="text" id="resume_coment" value="text"></p>
+									<div align="center">
+									<button type="button" class="btn-primary" onclick="ajaxResumeUpdate()">수정하기</button>
+									</div>
+							</div>
+								<button type="button" class="btn-primary" onclick="resumedelete(${ list.resume_id })">이력서 삭제</button>
+								<button type="button" class="btn-primary" onclick="resumeupdateAjax(${ list.resume_id })">이력서 수정</button><br>
+								<input type="hidden" id="rid" name="resume_id">
+						</div>
+					</div>
+					</form>
+				</div>
+		</div>
+		<input type="hidden" id="rid" name="resume_id">
+		<h2>커리어 관리</h2>
+		<button class="btn-primary" type="button" onclick="location.href='careerInsertPage.do'">커리어 등록</button>
+		<form id="frm3" name="frm3" method="post">
+		<div class="row">
+			<c:forEach items="${ clist }" var="career">
+			<fmt:formatDate value="${career.start_date}" pattern="yyyy-MM-dd" var="startDate" />
+			<fmt:formatDate value="${career.end_date}" pattern="yyyy-MM-dd" var="endDate" />
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+					<div class="our-services-wrapper mb-60">
+						<div class="services-inner">
+							<div class="our-services-img">
+								<img
+									src="https://www.orioninfosolutions.com/assets/img/icon/Agricultural-activities.png"
+									width="68px" alt="">
+							</div>
+							<div class="our-services-text">
+								<h4>${ career.company_name }</h4>
+								<p>${ startDate }</p>
+								<p>${ endDate  }</p>
+								<p>${ career.career_content} }</p>
+								<p>${ career.job_name  }</p>
+								<p>${ career.job_position  }</p>
+							</div>
+							<button type="button" class="btn-primary" onclick="careerDelete(${ career.career_id })">커리어 삭제</button>
+							<button type="button" class="btn-primary" onclick="careerUpdatePage(${ career.career_id })">커리어 수정</button><br>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+		<input type="hidden" id="cid" name="career_id">
+		</form>
+		
+		<!-- 스킬관리 진짜 폼 시작 -->
+		<h2>스킬 관리</h2>
+		<button class="btn-primary" type="button" onclick="skillInsertPage()">스킬 등록</button>
+		<form id="frm2" name="frm2" method="post">
+		<div class="row">
+			<c:forEach items="${ slist }" var="skill">
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" >
+					<div class="our-services-wrapper mb-60" id="ajaxSkill1${ skill.SKILL_ID }">
+						<div class="services-inner">
+							<div class="our-services-img">
+								<img
+									src="https://www.orioninfosolutions.com/assets/img/icon/Agricultural-activities.png"
+									width="68px" alt="">
+							</div>
+							<div class="our-services-text">
+								<h4 id="skill_name_${ skill.SKILL_ID }">${ skill.SKILL_NAME }</h4>
+								<p id="skill_level_${ skill.SKILL_ID }">${ skill.SKILL_LEVEL }</p>
+							</div>
+							<button type="button" class="btn-primary" onclick="skillDelete(${ skill.SKILL_ID })">스킬 삭제</button>
+							<button type="button" class="btn-primary" onclick="ajaxSkillUpdatePage(window.event, ${ skill.SKILL_ID })">스킬 수정</button>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+		<input type="hidden" id="sid" name="skill_id">
+		</form>
+		
+		<!-- 수정 폼 시작 -->
+					<div class="our-services-wrapper mb-60" style="display: none;" id="ajaxSkill2">
+						<div class="services-inner">
+							<div class="our-services-img">
+								<img
+									src="https://www.orioninfosolutions.com/assets/img/icon/Agricultural-activities.png"
+									width="68px" alt="">
+							</div>
+							<div class="our-services-text">
+								<!-- <p>스킬번호:<input id="skill_id" type="text" readonly="readonly"></p> -->
+								<p><input id="skill_id" type="hidden"></p>
+								<p>스킬명:<input id="skill_name" type="text"></p>
+								<p>스킬레벨:<input id="skill_level" type="text"></p>
+							</div>
+							<button type="button" class="btn-primary" id="ajaxSkillSaveBtn" onclick="ajaxSkillUpdate()">저장하기</button>
+							<button type="button" class="btn-primary" id="ajaxSkillInsertBtn" onclick="ajaxSkillInsert()" style="display: none;">등록하기</button>
+						</div>
+					</div>
+				</div>
+		<!-- 수정폼 끝 -->
 </body>
 </html>

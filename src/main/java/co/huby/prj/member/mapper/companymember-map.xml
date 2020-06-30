@@ -32,6 +32,9 @@
 					<if test="homepage != null and homepage != ''"> 
 					homepage, 
 					</if>
+					<if test="company_photo != null and company_photo != ''"> 
+					company_photo, 
+					</if>
 					company_date) 
 		VALUES(#{company_id},#{regist_number},#{company_name},
 				#{company_pw},#{company_tel},
@@ -52,6 +55,9 @@
 				<if test="homepage != null and homepage != ''">
 				#{homepage},
 				</if>
+				<if test="company_photo != null and company_photo != ''"> 
+				#{company_photo}, 
+				</if>
 				sysdate)
 				
 	</insert>
@@ -70,7 +76,7 @@
 	
 	<select id="companySelectOne" resultType="CompanyVo" parameterType="CompanyVo">
 		SELECT company_id, regist_number, company_name, company_pw, company_tel, 
-				company_email, ceo_name, business_type, company_addr, business_category, 
+				company_email, ceo_name, business_type, company_addr, business_category, company_photo, 
 				company_birth, company_sales, homepage, company_date, (select code_name from code where code_id = business_type ) as job_name
 		FROM COMPANY WHERE COMPANY_ID = #{company_id}
 	</select>
@@ -107,6 +113,9 @@
 	    </if>
 		<if test="homepage != null and homepage != ''">
 	    ,homepage = #{homepage}
+	    </if>
+	    <if test="company_photo != null and company_photo != ''">
+	    ,company_photo = #{company_photo}
 	    </if>
 	</set>
 	where company_id = #{company_id}

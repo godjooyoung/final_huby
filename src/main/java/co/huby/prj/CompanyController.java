@@ -1,5 +1,7 @@
 package co.huby.prj;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -15,12 +17,14 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.huby.prj.board.service.BoardService;
 import co.huby.prj.code.service.CodeService;
 import co.huby.prj.code.service.CodeVo;
 import co.huby.prj.member.service.CompanyMemberService;
+import co.huby.prj.member.service.FileRenamePolicy;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.CompanyVo;
@@ -54,9 +58,25 @@ public class CompanyController {
 	BCryptPasswordEncoder pwdEncoder;
 
 	@RequestMapping("/CompanyInsertJoin.do")
-	public ModelAndView CompanyInsertJFoin(Model model, CompanyVo vo) {
+	public ModelAndView CompanyInsertJFoin(Model model, CompanyVo vo, HttpServletRequest request) throws IllegalStateException, IOException {
 		ModelAndView mav = new ModelAndView();
+		
+		MultipartFile uploadFile = vo.getCuploadfile();
+		String path = request.getSession().getServletContext().getRealPath("/resources/FileUpload");
+		System.out.println("@@@@@@@@" + path);
+		
+		if (uploadFile != null && uploadFile.getSize()>0) {
+			String fileName = uploadFile.getOriginalFilename();
+			File file = new File(path, fileName);
+			file = new FileRenamePolicy().rename(file);
+			uploadFile.transferTo(file);
+			vo.setCompany_photo(file.getName());
+		} else {
+			vo.setCompany_photo("");
+		}
+		
 		int n = companyMemberService.companyMemberInsert(vo);
+		
 		if (n == 1) {
 			mav.setViewName("no/common/login");
 		} else {
@@ -103,9 +123,24 @@ public class CompanyController {
 	}
 	
 	@RequestMapping("/companyInfoUpdate.do")
-	public String companyInfoUpdate(Model model, HttpServletRequest request, CompanyVo cvo) {
+	public String companyInfoUpdate(Model model, HttpServletRequest request, CompanyVo cvo) throws IllegalStateException, IOException {
 		String id = (String) request.getSession().getAttribute("loginId");
 		cvo.setCompany_id(id);
+		
+		MultipartFile uploadFile = cvo.getCuploadfile();
+		String path = request.getSession().getServletContext().getRealPath("/resources/FileUpload");
+		System.out.println("@@@@@@@@" + path);
+		System.out.println("@@@@@@@@@@@@@@@@@"+uploadFile.getSize());
+		if (uploadFile != null && uploadFile.getSize()>0) {
+			String fileName = uploadFile.getOriginalFilename();
+			File file = new File(path, fileName);
+			file = new FileRenamePolicy().rename(file);
+			uploadFile.transferTo(file);
+			cvo.setCompany_photo(file.getName());
+		} else {
+			cvo.setCompany_photo("");
+		}
+		
 		
 		int n = companyMemberService.companyMemberUpdate(cvo);
 		

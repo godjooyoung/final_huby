@@ -53,7 +53,9 @@ public class ResumeController {
 	}
 	
 	@RequestMapping("resumeinsertpage.do")
-	public String resumeinsertpage(Model model, HttpServletRequest request, ResumeVo vo) {
+	public String resumeinsertpage(Model model, HttpServletRequest request, ResumeVo vo) throws Exception {
+		List<CodeVo> codeList = codeService.SelectAll();
+		model.addAttribute("codeList", codeList);
 		
 		return "person/resume/resumeinsertpage";
 	}
