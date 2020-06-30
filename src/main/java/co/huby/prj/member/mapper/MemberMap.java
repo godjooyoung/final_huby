@@ -34,4 +34,5 @@ public interface MemberMap{
 	int habitDelete(HabitVo vo) throws Exception;
 	int pwUpdate(MemberVo vo) throws Exception;
 	int selectSkillId() throws Exception;
+	List<SkillsVo> skillAll(SkillsVo vo) throws Exception;
 }

@@ -176,4 +176,33 @@ public class ResumeController {
 		map.put("result", n);
 		return map;
 	}
+	
+	@ResponseBody
+	@RequestMapping("ajaxCareerUpdatePage.do")
+	public CareerVo ajaxCareerUpdatePage(Model model, CareerVo cvo) throws Exception {
+		CareerVo checkCvo = memberService.careerSelect(cvo); 
+		return checkCvo;
+	}
+	
+	@ResponseBody
+	@RequestMapping("ajaxCareerUpdate.do")
+	public int ajaxCareerUpdate(Model model, CareerVo cvo) throws Exception{
+		int n = memberService.careerUpdate(cvo);
+		return n;
+	}
+	
+	@RequestMapping("checkSKillDelete.do")
+	public String checkSKillDelete(Model model, HttpServletRequest request, SkillsVo svo, Map mvo) throws Exception {
+		System.out.println("@@@@@@@@@"+mvo.get("SKILL_ID"));
+		
+		String[] skillArray = request.getParameterValues("skillCheck");
+		
+		for(int i=0; i<skillArray.length; i++) {
+			SkillsVo arraySvo = new SkillsVo();
+			svo.setSkill_id(skillArray[i]);
+			memberService.skillDelete(arraySvo);
+		}
+		return "redirect:resumemanagement.do";
+	}
+	
 }

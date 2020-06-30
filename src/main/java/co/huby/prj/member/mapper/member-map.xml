@@ -136,13 +136,26 @@
 	
 	<update id="careerUpdate" parameterType="CareerVo">
 		update career
-		set 
-			start_date = #{start_date},
-		    end_date = #{end_date},
-		    company_name = #{company_name},
-		    career_content = #{career_content},
-		    job = #{job},
-		    job_position = #{job_position}
+		<set> 
+			<if test="start_date != null">
+			start_date = #{start_date}
+			</if>
+			<if test="end_date != null">
+		    ,end_date = #{end_date}
+		    </if>
+		    <if test="company_name != null and company_name != ''">
+		    ,company_name = #{company_name}
+		    </if>
+		    <if test="career_content != null and career_content != ''">
+		    ,career_content = #{career_content}
+		    </if>
+		    <if test="job != null and job != ''">
+		    ,job = #{job}
+		    </if>
+		    <if test="job_position != null and job_position != ''">
+		    ,job_position = #{job_position}
+		    </if>
+		</set>
 		where career_id = #{career_id}
 	</update>
 	
@@ -190,6 +203,10 @@
 	
 	<select id="selectSkillId" resultType="int">
 		select max(skill_id) from skills
+	</select>
+	
+	<select id="skillAll" resultType="SkillsVo" parameterType="SkillsVo">
+		select * from skills where member_id = #{member_id}
 	</select>
 	<!-- <select id="getSelect" parameterType="MemberVO" resultType="MemberVO">
 		SELECT * FROM MEMBER WHERE ID = #{ID}
