@@ -38,32 +38,6 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
-	public String getMember(InterviewVo vo) throws Exception {
-		List<InterviewVo> intervo = session.selectList(namespace + ".getCompany", vo);
-
-		return intervo.get(0).getMember_id();
-	}
-
-	@Override
-	public String getProfile(String str) throws Exception {
-		// TODO Auto-generated method stub
-		return session.selectOne(namespace + ".getProfile", str);
-	}
-
-	@Override
-	public String getName(String str) throws Exception {
-		// TODO Auto-generated method stub
-		return session.selectOne(namespace + ".getName", str);
-	}
-
-	// @Override
-	/*
-	 * public List<InterviewVo> getRoomList(String str) throws Exception { // TODO
-	 * Auto-generated method stub return session.selectList(namespace +
-	 * ".getRoomList", str); }
-	 */
-
-	@Override
 	public String getCompany(String str) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace + ".getCompany", str);

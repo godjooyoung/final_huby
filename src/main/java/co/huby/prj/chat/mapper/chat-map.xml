@@ -21,19 +21,6 @@
 		(MESSAGE_SEQ.nextval,#{message_sender},#{message_receiver},#{message_content},#{interview_id},#{member_id},#{company_id})
 	</insert>
 
-	<select id="getMember" resultType="MessageVo"> SELECT member_id FROM
-		message
-		WHERE company_id = #{company_id} AND resume_id = #{resume_id}
-	</select>
-	<select id="getProfile" resultType="MemberVo"> SELECT member_photo from
-		member
-		WHERE member_id = #{member_id}
-	</select>
-	<select id="getName" resultType="MemberVo">
-		select member_name from member
-		where member_id = #{member_id}
-	</select>
-
 	<select id="getMessageList" resultType="MessageVo"> <!-- 대화내용 불러오기 -->
 		select * from message
 		where interview_id = #{interview_id} order by

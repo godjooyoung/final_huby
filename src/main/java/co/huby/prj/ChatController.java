@@ -30,7 +30,7 @@ public class ChatController {
 		message.setInterview_id(vo.getInterview_id());
 		List<MessageVo> list = chatService.getMessageList(message);
 		model.addAttribute("message", list);
-		return "company/chat/chat";
+		return "company/chat/chatTest";
 
 	}
 
