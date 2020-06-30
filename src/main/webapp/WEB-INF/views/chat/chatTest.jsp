@@ -1080,7 +1080,9 @@ body {
 								$(
 										'<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /><p>'
 												+ msg.message_content
-												+ '</p>' + '<br><span style="float: right; font-size: 9px; text-align: right;">' + t + '</span></li>').appendTo(
+												+ '</p>'
+												+ '<br><span style="float: right; font-size: 9px; text-align: right;">'
+												+ t + '</span></li>').appendTo(
 										$('.messages ul')));
 			} else {
 				$("#messages")
@@ -1088,7 +1090,9 @@ body {
 								$(
 										'<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>'
 												+ msg.message_content
-												+ '</p>' + '<br><span style="float: left; font-size: 9px; text-align: left;">' + t + '</span></li>').appendTo(
+												+ '</p>'
+												+ '<br><span style="float: left; font-size: 9px; text-align: left;">'
+												+ t + '</span></li>').appendTo(
 										$('.messages ul')));
 			}
 
@@ -1100,8 +1104,7 @@ body {
 	}
 
 	$('.message-input input').val(null);
-	$('.contact.active .preview').html(
-			'<span>You: </span>' + message);
+	$('.contact.active .preview').html('<span>You: </span>' + message);
 	$(".messages").animate({
 		scrollTop : $(document).height()
 	}, "fast");
