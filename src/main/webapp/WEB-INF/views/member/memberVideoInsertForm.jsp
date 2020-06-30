@@ -15,7 +15,6 @@
 								alert("영상은 3개까지 등록 가능합니다. 기존의 영상을 삭제 후 다시 실행해 주세요.");
 								$('#btnSend').attr('disabled',true);
 								return
-								
 							}
 							$('form')
 									.ajaxForm(
@@ -53,9 +52,14 @@
 															+ '<source src="download.do?name='
 															+ data.video_location
 															+ '" type="video/mp4" />'
-															+ '</video>';
-													$('#div_videoInsert')
-															.append(video);
+															+ '</video>'
+															+'<span class="hoverBtn">'
+															+'<a href="#">'
+															+'삭제하기'
+															+'</a>'
+															+'</span>'
+													$('<div>').addClass('div_videoInsert').html(video)
+															.appendTo('#list');
 												},
 												error : function(e) {
 													console.log(e);
@@ -69,9 +73,32 @@
 
 											}).submit();
 						});
-		autosize(document.querySelectorAll('textarea'));
+		$('.deleteBtn').on('click',function(){
+			if(confirm("영상을 삭제하시겠습니까?")){
 				
-
+			var videoId = $(this).attr('data');
+			
+				$.ajax({
+						dataType:'json',
+						data:{'videoId':videoId},
+					type:"POST",
+					url:"memberVideoDelete.do",
+					
+				success:function(){
+					alert("삭제되었습니다.");
+					$('.div_videoInsert').remove();
+				},
+				error:function(err){
+					console.log(err)
+				}
+						
+				});
+			
+			}else{
+					return false;
+				};
+	});
+	
 	});
 </script>
 
@@ -105,6 +132,18 @@
 	padding: 10px;
 	float: center;
 	width: 10%;
+	margin: 0 auto;
+}
+
+/* .hoverBtn {
+	display: none;
+}
+
+video:hover+.hoverBtn {
+	display: block;
+} */
+.div_videoInsert {
+	display: inline-block;
 }
 </style>
 <div>
@@ -114,7 +153,6 @@
 	</div>
 	<div id="status"></div>
 </div>
-<div id="div_videoInsert"></div>
 <div id="div_gifInsert"></div>
 <div class="container h-100">
 	<div class="row h-100 justify-content-center align-items-center">
@@ -122,13 +160,15 @@
 			method="post" enctype="multipart/form-data">
 			<div class="form-group">
 				<div style="padding-top: 10px">
-					<input type=text list=browsers name="hashtag" required>
+					<input type=text list=browsers name="hashtag"
+						placeholder="지원 분야를 선택해주세요" size="25" required>
 					<datalist id=browsers>
 						<c:forEach var="RegionNameList" items="${RegionName }">
 							<option value="${RegionNameList.code_name }">
 						</c:forEach>
 					</datalist>
 				</div>
+				<br />
 				<div>
 					<textarea name="textarea" style="width: 100%" rows="10"
 						id="textarea"></textarea>
@@ -141,13 +181,18 @@
 				</div>
 			</div>
 		</form>
-		<c:forEach var="matched" items="${videoName}">
-			<div class="w3-quarter" id="div_videoInsert">
-				<video width="360" height="640" controls>
-					<source src="download.do?name=${matched.video_location }"
-						type="video/mp4" />
-				</video>
-			</div>
-		</c:forEach>
 	</div>
+</div>
+<div id="list">
+	<c:forEach var="matched" items="${videoName}">
+		<div class="div_videoInsert">
+			<video width="360" height="640" controls>
+				<source src="download.do?name=${matched.video_location }"
+					type="video/mp4" />
+			</video>
+			<span class="hoverBtn"> <a class="deleteBtn" href="#"
+				data="${matched.video_id }">삭제하기</a>
+			</span>
+		</div>
+	</c:forEach>
 </div>

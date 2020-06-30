@@ -34,4 +34,16 @@ public class MemberVideoServiceImpl implements MemberVideoService {
 
 	}
 
+	@Override
+	public void memberVideoDelete(String video_id) {
+		mapper.memberVideoDelete(video_id);
+		
+	}
+
+	@Override
+	public VideoVo memberVideoId(String video_id) {
+		// TODO Auto-generated method stub
+		return mapper.memberVideoId(video_id);
+	}
+
 }
