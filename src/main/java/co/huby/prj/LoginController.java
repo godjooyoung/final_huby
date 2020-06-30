@@ -149,9 +149,15 @@ public class LoginController {
 		return "no/common/login";
 	}
 	
-	@RequestMapping("/logintest.do")
-	public String logintest(Model model, HttpServletRequest request) {
-		
-		return "no/common/logintest";
+	@RequestMapping("/unionJoinForm.do")
+	public String unionJoinForm(Model model, HttpServletRequest request) throws Exception {
+		List<CodeVo> typeVo = codeService.SelectAll();
+		model.addAttribute("typeVo",typeVo);
+		return "no/common/unionJoinForm";
+	}
+	
+	@RequestMapping("/infoupdatetest.do")
+	public String infoupdatetest(Model model, HttpServletRequest request) throws Exception {
+		return "person/member/myInfoUpdatePage2";
 	}
 }
