@@ -394,6 +394,7 @@
 		}); */
 	}
 </script>
+<<<<<<< HEAD
 <body>
     <div class="container">
        <div class="Back">
@@ -401,7 +402,17 @@
         </div>
         <p class="h2 text-center"></p>
         <form class="form-horizontal" id="frm" name="frm" method="post" style="width: 500px; margin: auto;"
+=======
+<body>
+    <div class="container">
+       <div class="Back">
+            <i class="fa fa-arrow-left" onclick="back()"></i>
+        </div>
+        <p class="h2 text-center"></p>
+        <form class="form-horizontal" id="frm" name="frm" method="post" style="width: 500px; margin: auto;"
+>>>>>>> branch 'master' of https://github.com/godjooyoung/final_huby.git
 			enctype="multipart/form-data" action="myInfoUpdate.do"
+<<<<<<< HEAD
 			onsubmit="return joincheck()">
             <div class="preview text-center">
                 <img src="${pageContext.request.contextPath}/resources/FileUpload/${mlist.member_photo }" style="width: 150px; height: 200px" alt="Avatar">
@@ -414,21 +425,52 @@
             <div class="form-group">
                 <label>아이디</label>
                 <input class="form-control input-md" type="text" id="member_id"
+=======
+			onsubmit="return joincheck()">
+            <div class="preview text-center">
+                <img src="${pageContext.request.contextPath}/resources/FileUpload/${mlist.member_photo }" style="width: 150px; height: 200px" alt="Avatar">
+                <div class="browse-button">
+                    <i class="fa fa-pencil-alt"></i>
+                    <input type="file" id="member_photo" name="uploadFile" maxlength="50">
+                </div>
+                <span class="Error"></span>
+            </div>
+            <div class="form-group">
+                <label>아이디</label>
+                <input class="form-control input-md" type="text" id="member_id"
+>>>>>>> branch 'master' of https://github.com/godjooyoung/final_huby.git
 							name="member_id" required="required" maxlength="20"
 							value="${ mlist.member_id }" readonly="readonly"> <span
+<<<<<<< HEAD
 							class="help-block" class="error" id="overlap"></span>
             </div>
             <div class="form-group">
                 <label>이름</label>
                 <input class="form-control input-md" type="text" id="member_name"
+=======
+							class="help-block" class="error" id="overlap"></span>
+            </div>
+            <div class="form-group">
+                <label>이름</label>
+                <input class="form-control input-md" type="text" id="member_name"
+>>>>>>> branch 'master' of https://github.com/godjooyoung/final_huby.git
 							name="member_name" required="required" maxlength="5"
 							readonly="readonly" value="${ mlist.member_name }"> <span
+<<<<<<< HEAD
 							class="help-block" id="namecheck"></span>
             </div>
             <div class="form-group">
                 <label>생일</label>
                 <fmt:formatDate value="${ mlist.member_birth }"
 
+=======
+							class="help-block" id="namecheck"></span>
+            </div>
+            <div class="form-group">
+                <label>생일</label>
+                <fmt:formatDate value="${ mlist.member_birth }"
+
+>>>>>>> branch 'master' of https://github.com/godjooyoung/final_huby.git
 							pattern="yyyy-MM-dd" var="member_birth" />
 						<input class="form-control input-md" type="text" id="member_birth"
 							name="" required="required" readonly="readonly"
@@ -498,9 +540,16 @@
     </div>
   </div>
 					</div>
+<<<<<<< HEAD
 				</div>
 			
         </form>
     </div>
+=======
+				</div>
+			
+        </form>
+    </div>
+>>>>>>> branch 'master' of https://github.com/godjooyoung/final_huby.git
 </body>
 </html>
