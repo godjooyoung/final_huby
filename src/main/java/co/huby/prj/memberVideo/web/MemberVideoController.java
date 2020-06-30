@@ -125,7 +125,7 @@ public class MemberVideoController {
 		
 		VideoVo vo = memberVideoService.memberVideoId(video_id);
 		memberVideoService.memberVideoDelete(video_id);
-		File file2 = new File(outputPath + vo.);
+		File file2 = new File(outputPath + vo);
 		file2.delete();
 		File file3 = new File(outputPath + vo);
 		file3.delete();
