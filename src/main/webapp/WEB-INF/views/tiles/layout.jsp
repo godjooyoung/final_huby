@@ -143,7 +143,7 @@ body, h1, h2, h3, h4, h5, h6 {
 				$('#msgAlert').html(data);
 				//alert('면접요청이 들어왔습니다');
 			} else if (obj.message_type == 'ALARM') {
-				$('#count').html(data);
+				$('#count').html(JSON.parse(data).message_content);
 			}
 		};
 		sock.onclose = function() {

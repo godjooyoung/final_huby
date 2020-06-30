@@ -87,13 +87,13 @@
 	<select id ="memcountselect" resultType="int">
 	  SELECT COUNT(MEMBER_ID)
       FROM ALARM
-      WHERE MEMBER_ID = #{value} AND MEMBERREAD_STATE = 'N'
+      WHERE MEMBER_ID = #{member_id} AND MEMBERREAD_STATE = 'N'
 	</select>
 	
 	<select id ="companycountselect" resultType="int">
 	  SELECT COUNT(COMPANY_ID)
       FROM ALARM
-      WHERE COMPANY_ID = #{value} AND MEMBERREAD_STATE = 'N' AND alarm_current = 'Y'
+      WHERE COMPANY_ID = #{company_id} AND COMPANYREAD_STATE = 'N' AND alarm_current = 'Y'
 	</select>
 	
 	

@@ -44,7 +44,7 @@ public class AlarmController {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		ArrayList<AlarmVo> list = alarmService.companyalarmlist(companyid);
 		model.addAttribute("companyalarmlist", list);
-		//알림 내역 페이지 조회 시 기업 읽음 상태 Y로 업데이트
+		// 알림 내역 페이지 조회 시 기업 읽음 상태 Y로 업데이트
 		alarmService.companyreadstate(companyid);
 		return "company/alarm/companyalarmlist";
 	}
@@ -54,7 +54,7 @@ public class AlarmController {
 		String personid = (String) request.getSession().getAttribute("loginId");
 		ArrayList<AlarmVo> list = alarmService.personalarmlist(personid);
 		model.addAttribute("personalarmlist", list);
-		//알림 내역 페이지 조회 시 개인 읽음 상태 Y로 업데이트
+		// 알림 내역 페이지 조회 시 개인 읽음 상태 Y로 업데이트
 		alarmService.memberreadstate(personid);
 		return "person/alarm/personalarmlist";
 	}
@@ -67,27 +67,37 @@ public class AlarmController {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
-			vo.setAlarm_id(request.getParameter("alarmid"));
+		vo.setAlarm_id(request.getParameter("alarmid"));
+		vo.setCompany_id(request.getParameter("companyid"));
+		vo.setMember_id(request.getParameter("memberid"));
+		int count = alarmService.currentY(vo);
+		if (handler.users.get(vo.getCompany_id()) != null) {
+			WebSocketSession rcvSession = (WebSocketSession) handler.users.get(vo.getCompany_id());
+			MessageVo messageVo = new MessageVo();
 			vo.setCompany_id(request.getParameter("companyid"));
-			vo.setMember_id(request.getParameter("memberid"));
-			int count = alarmService.currentY(vo);
-			alarmService.currentY(vo);
-			
-			if(count==1) {
-			vo2.setCompany_id(request.getParameter("companyid"));
-			vo2.setMember_id(request.getParameter("memberid"));
-			chatService.createRoom(vo2);
-			}
-			return count;
-		}
-		
+			int countselect = alarmService.companycountselect(vo);
+			messageVo.setMessage_content(Integer.toString(countselect));
+			messageVo.setMessage_type("ALARM");
+			Gson gson = new GsonBuilder().create();
+			String json = gson.toJson(messageVo);
+			System.out.println(json + "=================================");
+			rcvSession.sendMessage(new TextMessage(json));
 
-		/*PrintWriter out = response.getWriter();
-		out.print("<script>");
-		out.print("location.href='personalarm.do';");
-		out.print("</script>");*/
-		// return "person/alarm/personalarmlist";
-	
+			if (count == 1) {
+				vo2.setCompany_id(request.getParameter("companyid"));
+				vo2.setMember_id(request.getParameter("memberid"));
+				chatService.createRoom(vo2);
+			}
+		}
+		return count;
+	}
+
+	/*
+	 * PrintWriter out = response.getWriter(); out.print("<script>");
+	 * out.print("location.href='personalarm.do';"); out.print("</script>");
+	 */
+	// return "person/alarm/personalarmlist";
+
 	// 알람 거절 update
 	/*
 	 * @RequestMapping("/currentN.do") public String currentN(AlarmVo vo, Model
@@ -124,19 +134,19 @@ public class AlarmController {
 	@RequestMapping(value = "/interviewRe.do")
 	public Map interviewRe(HttpServletRequest request, AlarmVo vo) throws IOException {
 		String loginId = (String) request.getSession().getAttribute("loginId");
-		String loginType = (String) request.getSession().getAttribute("loginType");
 
 		vo.setCompany_id(loginId);
 		int count = alarmService.alarmInsert(vo);
-		if(handler.users.get(vo.getMember_id()) != null) {
+		if (handler.users.get(vo.getMember_id()) != null) {
 			WebSocketSession rcvSession = (WebSocketSession) handler.users.get(vo.getMember_id());
 			MessageVo messageVo = new MessageVo();
-			int countselect = alarmService.countselect(loginId, loginType);
+			vo.setMember_id(request.getParameter("member_id"));
+			int countselect = alarmService.memcountselect(vo);
 			messageVo.setMessage_content(Integer.toString(countselect));
 			messageVo.setMessage_type("ALARM");
 			Gson gson = new GsonBuilder().create();
 			String json = gson.toJson(messageVo);
-			System.out.println(json+"=================================");
+			System.out.println(json + "=================================");
 			rcvSession.sendMessage(new TextMessage(json));
 		}
 		return Collections.singletonMap("count", count);
@@ -144,38 +154,49 @@ public class AlarmController {
 		// return vo;
 
 	}
-	//개인이 면접제의 상세보기 버튼 클릭 시 회사 정보
+
+	// 개인이 면접제의 상세보기 버튼 클릭 시 회사 정보
 	@ResponseBody
 	@RequestMapping(value = "/companyselect.do")
-	public List<AlarmVo> companyselect(HttpServletRequest request, CompanyVo vo) throws Exception{
+	public List<AlarmVo> companyselect(HttpServletRequest request, CompanyVo vo) throws Exception {
 		vo.setCompany_id(request.getParameter("company_id"));
 		List<AlarmVo> list = alarmService.companyselect(vo);
 		return list;
-		
+
 	}
-	
-	
-	//기업이 개인에게 입사지원요청 시 공고목록 
+
+	// 기업이 개인에게 입사지원요청 시 공고목록
 	@ResponseBody
 	@RequestMapping(value = "/comemploymentlist.do")
 	public List<Map> applyRe(HttpServletRequest request) throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
-		
-		//vo2.setCompany_id(companyid);
+
+		// vo2.setCompany_id(companyid);
 		List<Map> list = alarmService.comemploymentlist(companyid);
 		return list;
-		
+
 	}
-	
+
 	// 입사 지원 insert
 	@ResponseBody
 	@RequestMapping(value = "/applyRe.do")
-	public Map applyRe(HttpServletRequest request, AlarmVo vo) {
+	public Map applyRe(HttpServletRequest request, AlarmVo vo) throws IOException {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 
 		vo.setCompany_id(companyid);
 		int count = alarmService.alarmInsert(vo);
-		alarmService.alarmInsert(vo);
+		if (handler.users.get(vo.getMember_id()) != null) {
+			WebSocketSession rcvSession = (WebSocketSession) handler.users.get(vo.getMember_id());
+			MessageVo messageVo = new MessageVo();
+			vo.setMember_id(request.getParameter("member_id"));
+			int countselect = alarmService.memcountselect(vo);
+			messageVo.setMessage_content(Integer.toString(countselect));
+			messageVo.setMessage_type("ALARM");
+			Gson gson = new GsonBuilder().create();
+			String json = gson.toJson(messageVo);
+			System.out.println(json + "=================================");
+			rcvSession.sendMessage(new TextMessage(json));
+		}
 		return Collections.singletonMap("count", count);
 	}
 }
