@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	function applyinfoall(cid, eid){
@@ -43,12 +39,22 @@
 <p>회사전화번호: ${ empMatch.COMPANY_TEL }</p>
 <p>회사설립일: ${ empMatch.COMPANY_BIRTH }</p>
 <p>회사주소: ${ empMatch.COMPANY_ADDR }</p>
+<p>마감상태!!  ${ empMatch.COMPLETE }</p>
 
 
 
 <hr style="border: solid 10px red;">
 <br>
-<button class="btn-primary" type="button" style="height: 50px; size: 50px;" onclick="applyinfoall('${empMatch.COMPANY_ID}','${empMatch.EMPLOYMENT_ID}')">지원하기</button>
+<c:set var="complete_state" value="${ empMatch.COMPLETE }" />
+<c:choose>
+<c:when  test="${complete_state == 'N'}"> 
+<button class="btn btn-primary" type="button" style="height: 50px; size: 50px;" onclick="applyinfoall('${empMatch.COMPANY_ID}','${empMatch.EMPLOYMENT_ID}')">지원하기</button>
+</c:when>
+<c:when test="${complete_state == 'Y'}"> 
+<button class="btn btn-secondary" type="button" style="height: 50px; size: 50px;" onclick="#">마감된 공고입니다.</button>
+</c:when>
+</c:choose>
+
 </div>
 <input type="hidden" id="COMPANY_ID" name="COMPANY_ID">
 <input type="hidden" id="EMPLOYMENT_ID" name="EMPLOYMENT_ID">

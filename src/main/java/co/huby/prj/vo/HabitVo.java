@@ -1,5 +1,6 @@
 package co.huby.prj.vo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class HabitVo {
@@ -12,23 +13,8 @@ public class HabitVo {
 	private String cnt;
 	private String checked;
 	//getter setter
-	
-	
-	
 	public String getHabit_id() {
 		return habit_id;
-	}
-	public String getChecked() {
-		return checked;
-	}
-	public void setChecked(String checked) {
-		this.checked = checked;
-	}
-	public String getCnt() {
-		return cnt;
-	}
-	public void setCnt(String cnt) {
-		this.cnt = cnt;
 	}
 	public void setHabit_id(String habit_id) {
 		this.habit_id = habit_id;
@@ -57,4 +43,18 @@ public class HabitVo {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+	public String getCnt() {
+		return cnt;
+	}
+	public void setCnt(String cnt) {
+		this.cnt = cnt;
+	}
+	public String getChecked() {
+		return checked;
+	}
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
+
+	
 }
