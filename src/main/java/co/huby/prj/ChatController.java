@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.vo.InterviewVo;
+import co.huby.prj.vo.MessageVo;
+import oracle.jdbc.driver.Message;
 
 @Controller
 public class ChatController {
@@ -21,17 +23,25 @@ public class ChatController {
 	// Handler handler;
 
 	@RequestMapping(value = "/company_chat.do") // 기업회원 채팅창
-	public String getChatViewPage(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
+	public String getChatViewPage(Model model, HttpServletRequest request, InterviewVo vo, MessageVo message)
+			throws Exception {
 		vo = chatService.isRoom(vo);
 		model.addAttribute("room", vo);
+		message.setInterview_id(vo.getInterview_id());
+		List<MessageVo> list = chatService.getMessageList(message);
+		model.addAttribute("message", list);
 		return "company/chat/chat";
 
 	}
 
 	@RequestMapping(value = "/person_chat.do") // 개인회원 채팅창
-	public String getChatViewPage2(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
+	public String getChatViewPage2(Model model, HttpServletRequest request, InterviewVo vo, MessageVo message)
+			throws Exception {
 		vo = chatService.isRoom(vo);
 		model.addAttribute("room", vo);
+		message.setInterview_id(vo.getInterview_id());
+		List<MessageVo> list = chatService.getMessageList(message);
+		model.addAttribute("message", list);
 		return "person/chat/chat";
 
 	}
