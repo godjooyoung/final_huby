@@ -1,5 +1,7 @@
 package co.huby.prj.resume;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,8 +9,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +25,7 @@ import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.resume.service.ResumeService;
 import co.huby.prj.vo.CareerVo;
+import co.huby.prj.vo.HabitVo;
 import co.huby.prj.vo.ResumeVo;
 import co.huby.prj.vo.SkillsVo;
 
@@ -33,6 +39,21 @@ public class ResumeController {
 	EmploymentService employmentService;
 	@Autowired
 	CodeService codeService;
+	
+	@InitBinder
+	public void allowEmptyDateBinding(WebDataBinder binder) {
+		/*
+		 * // Custom String Editor. tell spring to set empty values as null instead of
+		 * empty string. binder.registerCustomEditor( String.class, new
+		 * StringTrimmerEditor( true ));
+		 */
+
+		// Custom Date Editor
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		simpleDateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(simpleDateFormat, false));
+	}
 	
 	@RequestMapping("/resumemanagement.do")
 	public String resumemanagement(Model model, HttpServletRequest request, MemberVo vo) throws Exception {
@@ -192,17 +213,64 @@ public class ResumeController {
 	}
 	
 	@RequestMapping("checkSKillDelete.do")
-	public String checkSKillDelete(Model model, HttpServletRequest request, SkillsVo svo, Map mvo) throws Exception {
-		System.out.println("@@@@@@@@@"+mvo.get("SKILL_ID"));
+	public String checkSKillDelete(Model model, HttpServletRequest request, SkillsVo svo) throws Exception {
 		
-		String[] skillArray = request.getParameterValues("skillCheck");
+		String[] skillArray = request.getParameterValues("skill_id");
 		
 		for(int i=0; i<skillArray.length; i++) {
 			SkillsVo arraySvo = new SkillsVo();
-			svo.setSkill_id(skillArray[i]);
+			arraySvo.setSkill_id(skillArray[i]);
 			memberService.skillDelete(arraySvo);
 		}
 		return "redirect:resumemanagement.do";
 	}
 	
+	@RequestMapping("checkCareerDelete.do")
+	public String checkCareerDelete(Model model, HttpServletRequest request, CareerVo cvo) throws Exception {
+		
+		String[] careerArray = request.getParameterValues("career_id");
+		
+		for(int i=0; i<careerArray.length; i++) {
+			CareerVo arrayCvo = new CareerVo();
+			arrayCvo.setCareer_id(careerArray[i]);
+			memberService.careerDelete(arrayCvo);
+		}
+		return "redirect:resumemanagement.do";
+	}
+	
+	@RequestMapping("checkResumeDelete.do")
+	public String checkResumeDelete(Model model, HttpServletRequest request, ResumeVo rvo) throws Exception {
+		
+		String[] resumeArray = request.getParameterValues("resume_id");
+		
+		for(int i=0; i<resumeArray.length; i++) {
+			ResumeVo arrayRvo = new ResumeVo();
+			arrayRvo.setResume_id(resumeArray[i]);
+			resumeService.resumeDelete(arrayRvo);
+		}
+		return "redirect:resumemanagement.do";
+	}
+	
+	@ResponseBody
+	@RequestMapping("habitChartData.do")
+	public List<HabitVo> habitChartData(Model model, HttpServletRequest request, HabitVo hvo, MemberVo mvo) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		mvo.setMember_id(id);
+		List<HabitVo> result = resumeService.selecthabit(mvo);
+		
+		return result;
+	}
+	
+	@RequestMapping("habitDelete.do")
+	public String habitDelete(Model model, HttpServletRequest request, HabitVo hvo) throws Exception {
+		
+		String[] habitArray = request.getParameterValues("habit_id");
+		
+		for(int i=0; i<habitArray.length; i++) {
+			HabitVo arrayHvo = new HabitVo();
+			arrayHvo.setHabit_id(habitArray[i]);
+			memberService.habitDelete(arrayHvo);
+		}
+		return "redirect:habitManagement.do";
+	}
 }

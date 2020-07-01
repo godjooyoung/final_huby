@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-${ sessionScope.companyVo.company_id }
 <br>
 <div class="w3-container">
 	<h2 align="center">지원내역</h2>
@@ -32,7 +31,7 @@ ${ sessionScope.companyVo.company_id }
 							<span class="w3-large">공고내용: ${alist.EMPLOYMENT_CONTENTS}</span><br>채용공고기간${ alist.EMPLOYMENT_TIME } &nbsp;&nbsp; <span>지원시간: ${alist.APPLY_DATE}  </span>
 						</div></li>
 				</ul>
-						<div id="appendemp${alist.EMPLOYMENT_ID}" style="display: none;"></div>
+						<p id="appendemp${alist.EMPLOYMENT_ID}" style="display: none;"></p>
 				<%-- <ul class="nav nav-pills flex-column" id="emp${alist.EMPLOYMENT_TIME}"></ul> --%>
 				<br>
 			</c:forEach>

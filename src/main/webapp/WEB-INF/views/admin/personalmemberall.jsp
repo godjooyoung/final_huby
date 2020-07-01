@@ -17,16 +17,26 @@
 <div align="center">
 <h1> 개인회원 목록 </h1>
 <table>
-<tr style="background: lightyellow">
+<tr style="background: light_gray">
 <td>아이디</td>
 <td>이름</td>
+<td>생일</td>
 <td>주소</td>
+<td>전화번호</td>
+<td>이메일</td>
+<td>성별</td>
+<td>가입일</td>
 </tr>
 <c:forEach items="${ mlist }" var="member">
 <tr>
 <td>${ member.member_id }</td>
 <td>${ member.member_name }</td>
+<td>${ member.member_birth }</td>
 <td>${ member.member_addr }</td>
+<td>${ member.member_tel }</td>
+<td>${ member.member_email }</td>
+<td>${ member.member_gender }</td>
+<td>${ member.member_date }</td>
 </tr>
 </c:forEach>
 </table>

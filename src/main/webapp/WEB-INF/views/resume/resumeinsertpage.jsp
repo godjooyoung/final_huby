@@ -260,7 +260,7 @@
                                     </div>
                                 </div>
                                
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">대표 설정 여부</div>
@@ -278,7 +278,7 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="select_public" name="select_public" value="Y">Y
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="select_public" name="select_public" value="N">N
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <div class="input-group mb-2">

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.resume.mapper.ResumeMap;
 import co.huby.prj.resume.service.ResumeService;
+import co.huby.prj.vo.HabitVo;
 import co.huby.prj.vo.ResumeVo;
 
 @Service("resumeService")
@@ -44,6 +45,12 @@ public class ResumeServiceImpl implements ResumeService {
 	public int resumeDelete(ResumeVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.resumeDelete(vo);
+	}
+
+	@Override
+	public List<HabitVo> selecthabit(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.selecthabit(vo);
 	}
 
 }
