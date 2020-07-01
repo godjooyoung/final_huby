@@ -107,5 +107,7 @@
 </div>
 <input type="hidden" id="habit_id" name="habit_id">
 </form>
+<video width="360" height="640" controls><source src="download.do?name=data.video_locationtype="video/mp4" /></video>
+													
 </body>
 </html>

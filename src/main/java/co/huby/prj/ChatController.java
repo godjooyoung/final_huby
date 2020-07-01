@@ -88,7 +88,7 @@ public class ChatController {
 		Map map = chatService.getName(vo);
 		message.setInterview_id(vo.getInterview_id());
 		List<MessageVo> messageList = chatService.getMessageList(message);
-		HashMap<String, Object> result = new HashMap<>();
+		HashMap<String, Object> result = new HashMap<String, Object>();
 		result.put("result", messageList);
 		result.put("interview", vo);
 		result.put("name", map);

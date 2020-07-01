@@ -47,8 +47,25 @@
 			<div id="checkvideo" class="w3-third">
 				<div class="w3-white w3-text-grey w3-card-4">
 					<div class="w3-display-container">
+					<!--<img
+							src="download.do?name=${applyman.video_img}"
+							onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
+							style="width: 100%" alt="self-video">  -->	
+						<video width="100%" controls poster="download.do?name=${vlist[0].VIDEO_IMG}" playsinline preload="none">
+ 						<source src="download.do?name=${vlist[0].VIDEO_LOCATION }" type="video/mp4">영상이 없습니다.
+ 						</video>
+						<div class="w3-display-topleft w3-container w3-text-black">
+							<br>
+							<h2><b><u>${vlist[0].MEMBER_NAME}</u> 지원자</b></h2>
+							<h3 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:340px;"><b>#${applyman.code_name}</b></h3>
+							<h3><b>${vlist[0].VIDEO_CONTENTS}</b></h3>
+						</div>
+					</div>
+					<%-- <div class="w3-display-container">
 					<c:if test="${ not empty vlist[0].VIDEO_IMG }">
-						<img src="${pageContext.request.contextPath}/resources/img/common/${vlist[0].VIDEO_IMG }" style="width: 100%" alt="Avatar">
+						<video width="100%" controls poster="download.do?name=${vlist[0].VIDEO_IMG }" playsinline preload="none">
+						<source src="download.do?name=${vlist[0].VIDEO_LOCATION }" type="video/mp4">영상이 없습니다.
+ 						</video>
 					</c:if>
 					<c:if test="${ empty vlist[0].VIDEO_IMG }">
 						<img src="${pageContext.request.contextPath}/resources/img/employment01.JPG" style="width: 100%" alt="Avatar">
@@ -57,13 +74,19 @@
 						<div class="w3-display-bottomleft w3-container w3-text-black">
 							<h2>${member.member_name}</h2>
 						</div>
-					</div>
+					</div> --%>
 					<div class="w3-container">
 						<p id="v_hashtag">${video.HASHTAG}</p>
 						<p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_name}</p>
 						<p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_addr}</p>
 						<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_email}</p>
-						<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_gender}</p>
+						<c:if test="${sessionScope.personalVo.member_gender == 'M'}">
+							<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>남자</p>
+						</c:if>
+						<c:if test="${sessionScope.personalVo.member_gender == 'Y'}">
+							<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>여자</p>
+						</c:if>
+						<%-- <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_gender}</p> --%>
 						<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_tel}</p>
 						<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_birth}</p>
 						<hr>
