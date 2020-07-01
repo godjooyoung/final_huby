@@ -1,13 +1,12 @@
 package co.huby.prj.chat.serviceImpl;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.inject.Inject;
-
-import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.huby.prj.chat.mapper.ChatMap;
 import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.vo.InterviewVo;
 import co.huby.prj.vo.MessageVo;
@@ -15,130 +14,89 @@ import co.huby.prj.vo.MessageVo;
 @Service
 public class ChatServiceImpl implements ChatService {
 
-	@Inject
-	private SqlSession session;
-	private static String namespace = "co.huby.prj.chat.mapper.ChatMap";
+	@Autowired
+	private ChatMap map;
 
 	@Override
-	public void createRoom(InterviewVo vo) throws Exception {
-		// TODO Auto-generated method stub
-		session.insert(namespace + ".createRoom", vo);
+	public List<InterviewVo> createRoom(InterviewVo vo) throws Exception {
+		return map.createRoom(vo);
 
 	}
 
 	@Override
 	public InterviewVo isRoom(InterviewVo vo) throws Exception {
-		// TODO Auto-generated method stub
-		InterviewVo interVo = null;
-		interVo = session.selectOne(namespace + ".isRoom", vo);
-		System.out.println("ss");
-		System.out.println(interVo);
-
-		return interVo;
-	}
-
-	@Override
-	public String getCompany(String str) throws Exception {
-		// TODO Auto-generated method stub
-		return session.selectOne(namespace + ".getCompany", str);
+		return map.isRoom(vo);
 	}
 
 	@Override
 	public List<InterviewVo> getRoomListCompany(String str) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectList(namespace + ".getRoomListCompany", str);
+		return map.getRoomListCompany(str);
 	}
 
 	@Override
 	public void updateReadTime(String resume_id, String member_id, String company_id) throws Exception {
 		// TODO Auto-generated method stub
-		HashMap<String, Object> map = new HashMap<String, Object>();
-
-		map.put("company_id", company_id);
-		map.put("member_id", member_id);
-		map.put("resume_id", resume_id);
-		session.update(namespace + ".updateReadTime", map);
+		map.updateReadTime(resume_id, member_id, company_id);
 	}
 
 	@Override
 	public void updateReadTimeCompany(String resume_id, String member_id, String company_id) throws Exception {
 		// TODO Auto-generated method stub
-		HashMap<String, Object> map = new HashMap<String, Object>();
-
-		map.put("company_id", company_id);
-		map.put("member_id", member_id);
-		map.put("resume_id", resume_id);
-		session.update(namespace + ".updateReadTimeCompany", map);
+		map.updateReadTimeCompany(resume_id, member_id, company_id);
 
 	}
 
 	@Override
 	public int getUnReadCount(String company_id, String resume_id, String member_id) throws Exception {
-		// TODO Auto-generated method stub
-		HashMap<String, Object> map = new HashMap<String, Object>();
-
-		map.put("company_id", company_id);
-		map.put("member_id", member_id);
-		map.put("resume_id", resume_id);
-
-		return session.selectOne(namespace + ".getUnReadCount", map);
+		return map.getUnReadCountCompany(company_id, resume_id, member_id);
 	}
 
 	@Override
 	public int getUnReadCountCompany(String company_id, String resume_id, String member_id) throws Exception {
 		// TODO Auto-generated method stub
-		HashMap<String, Object> map = new HashMap<String, Object>();
-
-		map.put("company_id", company_id);
-		map.put("member_id", member_id);
-		map.put("resume_id", resume_id);
-
-		return session.selectOne(namespace + ".getUnReadCountCompany", map);
+		return map.getUnReadCountCompany(company_id, resume_id, member_id);
 	}
 
 	@Override
 	public int getAllCount(String str) {
-		// TODO Auto-generated method stub
-		HashMap<String, Object> map = new HashMap<String, Object>();
-
-		map.put("member_id", str);
-		map.put("company_id", str);
-		if (session.selectOne(namespace + ".getAllCount", map) == null) {
-			return 0;
-		} else {
-
-			return session.selectOne(namespace + ".getAllCount", map);
-		}
+		return map.getAllCount(str);
 	}
 
 	@Override
 	public void insertMessage(MessageVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		session.insert(namespace + ".insertMessage", vo);
-	}
-
-	@Override
-	public MessageVo getRecentMessage(String str) throws Exception {
-		// TODO Auto-generated method stub
-		return session.selectOne(namespace + ".getRecentMessage", str);
+		map.insertMessage(vo);
 	}
 
 	@Override
 	public List<InterviewVo> getRoomList(InterviewVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectList(namespace + ".getRoomList", vo);
-	}
-
-	@Override
-	public List<InterviewVo> getRoomList2(InterviewVo vo) throws Exception {
-		// TODO Auto-generated method stub
-		return session.selectList(namespace + ".getRoomList2", vo);
+		return map.getRoomList(vo);
 	}
 
 	@Override
 	public List<MessageVo> getMessageList(MessageVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectList(namespace + ".getMessageList", vo);
+		return map.getMessageList(vo);
+	}
+
+	@Override
+	public MessageVo getRecentMessage(MessageVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.getRecentMessage(vo);
+	}
+
+	@Override
+	public List<InterviewVo> getRoomList2(InterviewVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.getRoomList2(vo);
+	}
+
+	@Override
+	public List<Map> getName(InterviewVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.getName(vo);
 	}
 
 }

@@ -2,6 +2,8 @@ package co.huby.prj.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class CompanyVo {
 	//company
 	//기업회원
@@ -20,13 +22,28 @@ public class CompanyVo {
 	private String homepage;
 	private Date company_date;
 	private String job_name;
-	private String company_pwcheck;;
+	private String company_pwcheck;
+	private MultipartFile cuploadfile;
+	private String company_photo;
 	
 	//getter setter
 	
 	
+	
 	public String getCompany_id() {
 		return company_id;
+	}
+	public String getCompany_photo() {
+		return company_photo;
+	}
+	public void setCompany_photo(String company_photo) {
+		this.company_photo = company_photo;
+	}
+	public MultipartFile getCuploadfile() {
+		return cuploadfile;
+	}
+	public void setCuploadfile(MultipartFile cuploadfile) {
+		this.cuploadfile = cuploadfile;
 	}
 	public String getCompany_pwcheck() {
 		return company_pwcheck;

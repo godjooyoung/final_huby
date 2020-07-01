@@ -12,7 +12,6 @@ public class ResumeVo {
 	private String select_public;
 	private String resume_coment;
 	private String job_name;
-	//gs
 	
 	
 	public String getResume_id() {

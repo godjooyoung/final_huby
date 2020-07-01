@@ -1,21 +1,90 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<title>Insert title here</title>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/>
 <style>
-	.r_num1{ width: 30px }
-	.r_num2{ width: 25px }
-	.r_num3{ width: 50px }
-	.tel1{ width: 30px }
-	.tel2{ width: 40px }
-	.tel3{ width: 40px }
+.container
+{
+    width: 500px;
+    margin: 20px auto;
+}
+
+.preview
+{
+    padding: 10px;
+    position: relative;
+}
+
+.preview i
+{
+    color: white;
+    font-size: 35px;
+    transform: translate(50px,130px);
+}
+
+.preview-img
+{
+    border-radius: 100%;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.7);
+}
+
+.browse-button
+{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    position: absolute; /* Tweak the position property if the element seems to be unfit */
+    top: 10px;
+    left: 132px;
+    background: linear-gradient(180deg, transparent, black);
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+.browse-button:hover
+{
+    opacity: 1;
+}
+
+.browse-input
+{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    transform: translate(-1px,-26px);
+    opacity: 0;
+}
+
+.form-group
+{
+    width:  250px;
+    margin: 10px auto;
+}
+
+.form-group input
+{
+    transition: 0.3s linear;
+}
+
+.form-group input:focus
+{
+    border: 1px solid crimson;
+    box-shadow: 0 0 0 0;
+}
+
+.Error
+{
+    color: crimson;
+    font-size: 13px;
+}
+
+.Back
+{
+    font-size: 25px;
+}
 </style>
+    
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function sample4_execDaumPostcode() {
@@ -226,8 +295,6 @@ function pwupdatecheck(){
 		return;
 	}
 	
-	var result;
-	
 	if(pwcheck != null && pwcheck != ""){
 		$.ajax({
 		    url:'companyPwUpdateCheck.do', //request 보낼 서버의 경로
@@ -259,176 +326,114 @@ function pwupdatecheck(){
 	} else {
 		alert("변경할 패스워드가 서로 일치하지않습니다.");
 	}
-		
-	
-}
 </script>
-</head>
+<script>
+	function back(){
+		history.back();
+	}
+</script>
 <body>
-<h1 align="center">기업정보 변경</h1><br>
-<form class="form-horizontal" id="frm" name="frm" method="post" action="companyInfoUpdate.do" onsubmit="return updatecheck()">
-
-<!-- Form Name -->
-
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">아이디</label>  
-  <div class="col-md-4">
-	 <input class="form-control input-md" type="text" id="company_id" name="company_id" required="required" readonly="readonly" maxlength="20" value="${ cvo.company_id }">
-	 <span class="help-block" id="overlap"></span>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">사업자등록번호</label>  
-  <div class="col-md-4">
-  	<input class="form-control input-md" type="text" id="regist_number" name="regist_number" required="required" readonly="readonly" maxlength="12" value="${ cvo.regist_number }">
-    <span class="help-block" id="r_numblur"></span>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">회사명</label>  
-  <div class="col-md-4">
-  	<input class="form-control input-md" type="text" id="company_name" name="company_name" required="required" maxlength="5" value="${ cvo.company_name }" readonly="readonly">
-    <span class="help-block" id="nameblur"></span>
-  </div>
-</div>
-
-<!-- Text input-->
-<!-- <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">비밀번호</label>  
-  <div class="col-md-4">
- 	 <input class="form-control input-md" type="password" id="company_pw" name="company_pw" maxlength="20">
- 	 <span class="help-block" id="pwblur"></span> 
-  </div>
-</div> -->
-
-<!-- Text input-->
-<!-- <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">비밀번호 확인</label>  
-  <div class="col-md-4">
- 	 <input class="form-control input-md" type="password" id="company_pw2" name="company_pw2" maxlength="20"><br>
- 	 <span class="help-block" id="pwblur2"></span> 
-  </div>
-</div> -->
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">전화번호</label>  
-  <div class="col-md-4">
-  	<input class="form-control input-md" type="text" id="company_tel" name="company_tel" required="required" onblur="telcheck()" maxlength="13" value="${ cvo.company_tel }">
-  	<span class="help-block" id="telblur"></span> 
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">이메일</label>  
-  <div class="col-md-4">
-  	<input class="form-control input-md" type="text" id="company_email" name="company_email" onblur="emailcheck()" maxlength="30" value="${ cvo.company_email }">
-  	<span class="help-block" id="emailblur"></span> 
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">CEO이름</label>  
-  <div class="col-md-4">
-  	<input class="form-control input-md" type="text" id="ceo_name" name="ceo_name" required="required" maxlength="5" onblur="ceonamecheck()" value="${ cvo.ceo_name }">
-  	<span class="help-block" id="ceoblur"></span> 
-  </div>
-</div>
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">종목</label>  
-  <div class="col-md-4">	
-  	<!-- <input class="form-control input-md" type="text" id="business_type" name="business_type" required="required" maxlength="15" placeholder="Enter Your Company Code"> -->
-  	<select class="form-control input-md" id="business_type" name="business_type" required="required" onchange="typecheck(this.value)">
-  		<option value="">종목 선택</option>
-  		<c:forEach items="${ typeVo }" var="type">
-  		<option value="${ type.code_id }" ${type.code_id == cvo.business_type ? 'selected="selected"':''}>${ type.code_name }</option>
-  		</c:forEach>
-  	</select>
-  	<script>
-  		//$("#business_type").val("${ cvo.business_type }")
-  		//$("#job").val("${param.hope_job}");
-  	</script>
-  	<span class="help-block" id="typeblur"></span> 
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">주소</label>  
-  <div class="col-md-4">
-  	<input class="form-control input-md" type="text" id="company_addr1" name="company_addr1" maxlength="50" value="${ cvo.company_addr }"><!-- 
-  	<input class="form-control input-md" type="text" id="company_addr2" name="company_addr2" placeholder="Detail Company Address" maxlength="50"> -->
-  	<input class="btn btn-primary" type="button" onclick="sample4_execDaumPostcode()" value="주소 찾기">
-  	<input type="hidden" id="company_addr" name="company_addr">
-  	<span class="help-block" id=""></span> 
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">카테고리</label>  
-  <div class="col-md-4">
-  	<input class="form-control input-md" type="text" id="business_category" name="business_category" required="required" onblur="bcategorycheck()" maxlength="5" value="${ cvo.business_category }"><br>
-  	<span class="help-block" id="bcategoryblur"></span> 
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">설립일</label>  
-  <div class="col-md-4">
-  <fmt:formatDate value="${ cvo.company_birth }" pattern="yyyy-MM-dd" var="companyBirth" />
-  	<input class="form-control input-md" type="date" id="company_birth" name="company_birth" onchange="change(this.value)" value="${ companyBirth }">
-  	<span class="help-block" id=""></span> 
-  </div>  
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">매출액</label>  
-  <div class="col-md-4">
-  	<!-- <input class="form-control input-md" type="text" id="company_sales" name="company_sales" placeholder="Enter Your Company Sales" maxlength="10"><br> -->
-  	<select class="form-control input-md" type="text" id="company_sales" name="company_sales" onchange="salescheck(this.value)">
-  		<option value="">매출액 선택</option>
-  		<option value="5,000만원 이하">5,000만원 이하</option>  		
-  		<option value="5,000만원 ~ 1억">5,000만원 ~ 1억</option>
-  		<option value="1억 ~ 5억">1억 ~ 5억</option>
-  		<option value="10억이상">10억이상</option>  		
-  	</select>
-  	<script>
-  		$("#company_sales").val("${cvo.company_sales}")
-  	</script>
-  	<span class="help-block" id="salesblur"></span> 
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">홈페이지</label>  
-  <div class="col-md-4">
-  	<input class="form-control input-md" type="text" id="homepage" name="homepage" onblur="homepagecheck()" maxlength="30" value="${cvo.homepage}"><br>
-  	<span class="help-block" id="homepageblur"></span> 
-  </div>
-</div>
-
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="singlebutton"></label>
-  <div class="col-md-4">
-    <input class="btn btn-success" type="submit" value="수정하기">
-    <input class="btn btn-success" type="reset"" value="취소">
-    <input class="btn btn-success" type="button" value="로그인 홈" onclick="location.href='login.do'">
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">비밀번호 변경</button>
-
+    <div class="container">
+       <div class="Back">
+            <i class="fa fa-arrow-left" onclick="back()"></i>
+        </div>
+        <p class="h2 text-center"></p>        
+        <form class="form-horizontal" id="frm" name="frm" method="post" enctype="multipart/form-data" action="companyInfoUpdate.do" onsubmit="return updatecheck()">
+            <div class="preview text-center">
+                <img src="${pageContext.request.contextPath}/resources/FileUpload/${ cvo.company_photo }" style="width: 150px; height: 200px" alt="Avatar">
+                <div class="browse-button">
+                    <i class="fa fa-pencil-alt"></i>
+                    <input type="file" id="company_photo" name="cuploadfile">
+                </div>
+                <span class="Error"></span>
+            </div>
+            <div class="form-group">
+                <label>아이디</label>
+                <input class="form-control input-md" type="text" id="company_id" name="company_id" required="required" readonly="readonly" maxlength="20" value="${ cvo.company_id }">
+	 			<span class="help-block" id="overlap"></span>
+            </div>
+            <div class="form-group">
+                <label>사업자 등록번호</label>
+                  	<input class="form-control input-md" type="text" id="regist_number" name="regist_number" required="required" readonly="readonly" maxlength="12" value="${ cvo.regist_number }">
+    				<span class="help-block" id="r_numblur"></span>
+            </div>
+            <div class="form-group">
+                <label>회사명</label>
+                  	<input class="form-control input-md" type="text" id="company_name" name="company_name" required="required" maxlength="5" value="${ cvo.company_name }" readonly="readonly">
+    				<span class="help-block" id="nameblur"></span>
+            </div>
+            <div class="form-group">
+                <label>전화번호</label><br/>
+                  	<input class="form-control input-md" type="text" id="company_tel" name="company_tel" required="required" onblur="telcheck()" maxlength="13" value="${ cvo.company_tel }">
+  					<span class="help-block" id="telblur"></span> 
+            </div>
+            <div class="form-group">
+                <label>이메일</label><br/>
+                  	<input class="form-control input-md" type="text" id="company_email" name="company_email" onblur="emailcheck()" maxlength="30" value="${ cvo.company_email }">
+  					<span class="help-block" id="emailblur"></span> 
+            </div>
+            <div class="form-group">
+                <label>CEO이름</label><br/>
+                  	<input class="form-control input-md" type="text" id="ceo_name" name="ceo_name" required="required" maxlength="5" onblur="ceonamecheck()" value="${ cvo.ceo_name }">
+  					<span class="help-block" id="ceoblur"></span> 
+            </div>
+            <div class="form-group">
+                <label>종목</label><br/>
+                  	<select class="form-control input-md" id="business_type" name="business_type" required="required" onchange="typecheck(this.value)">
+			  		<option value="">종목 선택</option>
+			  		<c:forEach items="${ typeVo }" var="type">
+			  		<option value="${ type.code_id }" ${type.code_id == cvo.business_type ? 'selected="selected"':''}>${ type.code_name }</option>
+			  		</c:forEach>
+			  	</select>
+			  	<script>
+			  		$("#business_type").val("${ cvo.business_type }")
+			  		$("#job").val("${param.hope_job}");
+			  	</script>
+  					<span class="help-block" id="typeblur"></span> 
+            </div>
+            <div class="form-group">
+                <label>주소</label><br/>
+               	  	<input class="form-control input-md" type="text" id="company_addr1" name="company_addr1" maxlength="50" value="${ cvo.company_addr }"><!-- 
+				  	<input class="form-control input-md" type="text" id="company_addr2" name="company_addr2" placeholder="Detail Company Address" maxlength="50"> -->
+				  	<input class="btn btn-primary" type="button" onclick="sample4_execDaumPostcode()" value="주소 찾기">
+				  	<input type="hidden" id="company_addr" name="company_addr">
+				  	<span class="help-block" id=""></span> 
+            </div>
+            <div class="form-group">
+                <label>카테고리</label><br/>
+               	  	<input class="form-control input-md" type="text" id="business_category" name="business_category" required="required" onblur="bcategorycheck()" maxlength="5" value="${ cvo.business_category }"><br>
+					<span class="help-block" id="bcategoryblur"></span> 
+            </div>
+            <div class="form-group">
+                <label>설립일</label><br/>
+                  	<fmt:formatDate value="${ cvo.company_birth }" pattern="yyyy-MM-dd" var="companyBirth" />
+           	  	  	  	<input class="form-control input-md" type="text" id="company_birth" name="company_birth" onchange="change(this.value)" value="${ companyBirth }" readonly="readonly">
+				  	<span class="help-block" id=""></span> 
+            </div>
+            <div class="form-group">
+                <label>매출액</label><br/>
+               	  	<select class="form-control input-md" type="text" id="company_sales" name="company_sales" onchange="salescheck(this.value)">
+				  		<option value="">매출액 선택</option>
+				  		<option value="5,000만원 이하">5,000만원 이하</option>  		
+				  		<option value="5,000만원 ~ 1억">5,000만원 ~ 1억</option>
+				  		<option value="1억 ~ 5억">1억 ~ 5억</option>
+				  		<option value="10억이상">10억이상</option>  		
+				  	</select>
+				  	<script>
+				  		$("#company_sales").val("${cvo.company_sales}")
+				  	</script>
+  	<span class="help-block" id="salesblur"></span>  
+            </div>
+            <div class="form-group">
+                <label>홈페이지</label><br/>
+            	  	  	<input class="form-control input-md" type="text" id="homepage" name="homepage" onblur="homepagecheck()" maxlength="30" value="${cvo.homepage}"><br>
+						<span class="help-block" id="homepageblur"></span> 
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary btn-block" type="submit" value="정보 수정하기"/>
+                <button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#myModal">비밀번호 변경</button>
+            
+					<div class="col-md-8">
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -447,18 +452,17 @@ function pwupdatecheck(){
 		</div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="pwupdatecheck()">변경하기</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="pwupdatecheck()">변경하기</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
         </div>
       </div>
       
     </div>
   </div>
-  </div>
-</div>
-
-
-
-</form>
+					</div>
+				</div>
+			
+        </form>
+    </div>
 </body>
 </html>

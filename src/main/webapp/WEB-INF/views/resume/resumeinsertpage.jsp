@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -222,7 +223,13 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">희망직업</div>
                                         </div>
-                                        <input type="text" class="form-control" id="hope_job" name="hope_job" placeholder="Second hope_job" required="required"></input>
+                                        <!-- <input type="text" class="form-control" id="hope_job" name="hope_job" placeholder="Second hope_job" required="required"></input> -->
+                                        <select class="form-control input-md" id="hope_job" name="hope_job" required="required" onchange="typecheckc(this.value)">
+										  		<option value="">종목 선택</option>
+										  		<c:forEach items="${ codeList }" var="type">
+										  		<option value=${ type.code_id }>${ type.code_name }</option>
+										  		</c:forEach>
+										  </select>
                                     </div>
                                 </div>
 

@@ -1,14 +1,14 @@
 package co.huby.prj.chat.service;
 
 import java.util.List;
+import java.util.Map;
 
 import co.huby.prj.vo.InterviewVo;
 import co.huby.prj.vo.MessageVo;
 
-
 public interface ChatService {
 
-	public void createRoom(InterviewVo vo) throws Exception;
+	public List<InterviewVo> createRoom(InterviewVo vo) throws Exception;
 
 	public InterviewVo isRoom(InterviewVo vo) throws Exception;
 
@@ -20,9 +20,9 @@ public interface ChatService {
 
 	public List<InterviewVo> getRoomList2(InterviewVo vo) throws Exception;
 
-	public MessageVo getRecentMessage(String str) throws Exception;
+	public MessageVo getRecentMessage(MessageVo vo) throws Exception;
 
-	public String getCompany(String str) throws Exception;
+	public List<Map> getName(InterviewVo vo) throws Exception;
 
 	public List<InterviewVo> getRoomListCompany(String str) throws Exception;
 

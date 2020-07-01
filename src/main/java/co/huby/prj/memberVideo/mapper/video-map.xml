@@ -10,13 +10,23 @@
 		#{video_contents},
 		#{member_id},
 		#{video_img},
-		(select code_id from code where code_name = #{hashtag}),
+		(select code_id from code where code_name =
+		#{hashtag}),
 		#{video_location})
 	</insert>
 	<select id="memberVideoCount" resultType="int">
-		SELECT COUNT(MEMBER_ID ) FROM VIDEO WHERE MEMBER_ID = #{value}
+		SELECT COUNT(MEMBER_ID
+		) FROM VIDEO WHERE MEMBER_ID = #{value}
 	</select>
 	<select id="memberSelect" resultType="co.huby.prj.vo.VideoVo">
-		select video_location from video where member_id = #{value}
+		SELECT VIDEO_LOCATION,VIDEO_ID, VIDEO_IMG, VIDEO_LOCATION FROM
+		VIDEO WHERE MEMBER_ID = #{value}
+	</select>
+	<delete id="memberVideoDelete"
+		parameterType="String">
+		DELETE FROM VIDEO WHERE VIDEO_ID = #{value}
+	</delete>
+	<select id="memberVideoId" resultType="co.huby.prj.vo.VideoVo">
+		SELECT VIDEO_IMG, VIDEO_LOCATION FROM VIDEO WHERE VIDEO_ID=#{video_id}
 	</select>
 </mapper>

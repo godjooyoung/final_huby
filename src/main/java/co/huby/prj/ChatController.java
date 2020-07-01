@@ -25,11 +25,19 @@ public class ChatController {
 	@RequestMapping(value = "/company_chat.do") // 기업회원 채팅창
 	public String getChatViewPage(Model model, HttpServletRequest request, InterviewVo vo, MessageVo message)
 			throws Exception {
+		String companyid = (String) request.getSession().getAttribute("loginId");
+		String memberid = (String) request.getSession().getAttribute("personalVo");
+		vo.setCompany_id(companyid);
+		vo.setMember_id(memberid);
+		List<InterviewVo> list = chatService.getRoomList2(vo);
+		model.addAttribute("companyChatList", list);
 		vo = chatService.isRoom(vo);
 		model.addAttribute("room", vo);
 		message.setInterview_id(vo.getInterview_id());
-		List<MessageVo> list = chatService.getMessageList(message);
-		model.addAttribute("message", list);
+		List<MessageVo> messageList = chatService.getMessageList(message);
+		model.addAttribute("message", messageList);
+		message = chatService.getRecentMessage(message);
+		model.addAttribute("recent", message);
 		return "company/chat/chatTest";
 
 	}

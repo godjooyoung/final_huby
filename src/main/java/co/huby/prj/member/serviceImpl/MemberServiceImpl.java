@@ -164,5 +164,11 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return map.selectSkillId();
 	}
+
+	@Override
+	public List<SkillsVo> skillAll(SkillsVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.skillAll(vo);
+	}
 	
 }

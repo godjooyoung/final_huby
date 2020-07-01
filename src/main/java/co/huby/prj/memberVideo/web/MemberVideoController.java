@@ -23,12 +23,14 @@ import org.springframework.web.servlet.ModelAndView;
 import co.huby.prj.board.service.BoardService;
 import co.huby.prj.code.service.CodeService;
 import co.huby.prj.code.service.CodeVo;
+import co.huby.prj.member.service.MemberService;
 import co.huby.prj.memberVideo.service.MemberVideoService;
 import co.huby.prj.vo.VideoVo;
 import net.bramp.ffmpeg.FFmpeg;
 import net.bramp.ffmpeg.FFmpegExecutor;
 import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
+import net.bramp.ffmpeg.options.VideoEncodingOptions;
 
 @Controller
 public class MemberVideoController {
@@ -118,4 +120,16 @@ public class MemberVideoController {
 		return map;
 	}
 
+	@RequestMapping("/memberVideoDelete.do")
+	public String memberVideoDelete(@RequestParam(value = "videoId") String video_id) {
+		
+		VideoVo vo = memberVideoService.memberVideoId(video_id);
+		memberVideoService.memberVideoDelete(video_id);
+		File file2 = new File(outputPath + vo);
+		file2.delete();
+		File file3 = new File(outputPath + vo);
+		file3.delete();
+
+		return "person/member/memberVideoInsertForm";
+	}
 }

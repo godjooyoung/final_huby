@@ -140,7 +140,7 @@ public class MemberController {
 		String path = request.getSession().getServletContext().getRealPath("/resources/FileUpload");
 		System.out.println("@@@@@@@@" + path);
 
-		if (!uploadFile.isEmpty()) {
+		if (uploadFile != null && uploadFile.getSize()>0) {
 			String fileName = uploadFile.getOriginalFilename();
 			File file = new File(path, fileName);
 			file = new FileRenamePolicy().rename(file);

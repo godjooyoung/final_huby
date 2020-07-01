@@ -1088,7 +1088,7 @@ function joincheckc(){
                             </div>
                             <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <h3  class="register-heading">기업 회원가입</h3>
-                                <form class="form-horizontal" id="frm2" name="frm2" method="post" action="CompanyInsertJoin.do" onsubmit="return joincheckc()">
+                                <form class="form-horizontal" id="frm2" name="frm2" method="post" enctype="multipart/form-data" action="CompanyInsertJoin.do" onsubmit="return joincheckc()">
                                 <div class="row register-form">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -1120,8 +1120,11 @@ function joincheckc(){
                                             <span class="help-block" id="emailblur"></span>
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control input-md" type="text" id="homepage" name="homepage" onblur="homepagecheckc()" maxlength="30" placeholder="Enter Your Company Homepage Address"><br>
+                                            <input class="form-control input-md" type="text" id="homepage" name="homepage" onblur="homepagecheckc()" maxlength="30" placeholder="Enter Your Company Homepage Address">
   											<span class="help-block" id="homepageblur"></span> 
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="file" id="company_photo" name="cuploadfile" maxlength="50"> 
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -1162,7 +1165,7 @@ function joincheckc(){
 										  	<input type="hidden" id="company_addr" name="company_addr">
 										  	<span class="help-block" id=""></span> 
                                         </div>
-                                        <input type="submit" class="btnRegister"  value="가입하기"/>
+                                        <input type="submit" class="btnRegister" value="가입하기" />
                                     </div>
                                 </div>
                                 </form>

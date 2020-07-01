@@ -78,18 +78,19 @@
 		jdbcType=VARCHAR}
 	</select>
 
-	<select id="getRecentMessage" resultType="MessageVO">
-		select m.*, resume_id,
-		company_id from MESSAGE m left outer join resume r on
-		m.resume_id =
-		r.resume_id
-		where interview_id = #{interview_id} order by
-		message_id
-		desc limit 1
+	<select id="getRecentMessage" resultType="MessageVO">  <!-- 최근메세지 가져오기 -->
+		select * from MESSAGE where interview_id = ${interview_id} and
+		rownum<![CDATA[<=]]>1
+		order by message_id desc
 	</select>
-	<select id="getCompany" resultType="String"> select company_id from
-		company where company_id = #{company_id}
+
+	<select id="getName" parameterType="string" resultType="map"> <!-- 이름가져오기 -->
+		select c.company_name, m.member_name, i.interview_id from company c, member
+		m, interview i
+		where i.company_id = c.company_id and i.member_id = m.member_id and
+		interview_id = #{interview_id}
 	</select>
+
 	<update id="updateReadTime">
 		update MESSAGE set message_readTime = NOW() where
 		company_id = #{company_id}
@@ -99,6 +100,7 @@
 		message_sender = company_id and
 		member_id = #{member_id}
 	</update>
+
 	<update id="updateReadTimeCompany"> update MESSAGE set message_readTime = NOW() where
 		company_id = #{company_id} AND resume_id = #{resume_id} AND
 		message_readTime
@@ -106,6 +108,7 @@
 		member_id =
 		#{member_id}
 	</update>
+
 	<select id="getUnReadCount" resultType="int"> select * from MESSAGE
 		where member_id = #{member_id} and company_id = #{company_id} AND
 		resume_id
@@ -113,6 +116,7 @@
 		message_sender
 		= company_id
 	</select>
+
 	<select id="getUnReadCountCompany" resultType="int">
 		select * from
 		MESSAGE where company_id =#{company_id} and resume_id =
@@ -121,6 +125,7 @@
 		and
 		member_id = #{member_id}
 	</select>
+
 	<select id="getAllCount" resultType="int">
 		select * from MESSAGE WHERE
 		(company_id = #{company_id} and message_readtime
