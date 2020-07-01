@@ -87,6 +87,7 @@ public class AlarmController {
 				vo2.setCompany_id(request.getParameter("companyid"));
 				vo2.setMember_id(request.getParameter("memberid"));
 				chatService.createRoom(vo2);
+				System.out.println(count);
 			}
 		}
 		return count;

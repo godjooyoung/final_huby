@@ -51,8 +51,11 @@
 				dataType: 'json',
 				success:
 					function(data){
-					if(data.count == 1)
+					if(data == 1){
 						alert("면접 수락이 완료되었습니다.")
+						$('.btn').attr('disabled', true);
+						return
+					}
 				}
 			});
 		});
