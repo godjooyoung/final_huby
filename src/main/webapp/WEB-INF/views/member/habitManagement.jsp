@@ -12,6 +12,10 @@
 <title>Insert title here</title>
 <style>
 	#div1{color: red}
+	#overhid{
+	overflow: hidden;
+    height: 100px;
+    }
 </style>
 <script>
 	function habitcheck(hid){
@@ -68,14 +72,14 @@
 
       // Set chart options
       var options = {'title':'습관을 잘 지키자',
-                     'width':400,
+                     'width':345,
                      'height':300,
                      'bar': {groupWidth: '50%'},
                      'hAxis': { gridlines: { count: 5 } }               
       };
 
       // Instantiate and draw our chart, passing in some options.
-      var chart = new google.visualization.BarChart(document.querySelector('#chart_div'));
+      var chart = new google.visualization.ColumnChart(document.querySelector('#chart_div'));
       chart.draw(google.visualization.arrayToDataTable(chartData), options);
     }
           
@@ -106,8 +110,26 @@
 </c:forEach>
 </div>
 <input type="hidden" id="habit_id" name="habit_id">
-</form>
-<video width="360" height="640" controls><source src="download.do?name=data.video_locationtype="video/mp4" /></video>
-													
+<input type="hidden" id="habit_cnt" name="habit_cnt" value="${ habit.cnt }">
+</form>			
+
+<div class="container">
+    <h3 align="center">습관 관리</h3>
+  <hr/>
+  <div class="row">
+    <c:forEach items="${ hlist }" var="habit">
+    <div class="col-md-4" style="table-layout: fixed;">
+		<div class="card">
+			<img class="card-img-top" src="http://gdurl.com/ow9D" alt="Card image cap">
+			<!-- <div id="chart_div"></div> -->
+   				<h5 class="card-title">습관명</h5>
+   				<p class="card-text">시작시간</p>
+   				<p class="card-text">최근인증시간</p>
+   				<a class="btn btn-primary" style="color: white">인증</a>
+		</div>
+	</div>
+	</c:forEach>
+  </div>104203 104178 104203
+</div>								
 </body>
 </html>

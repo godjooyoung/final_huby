@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.huby.prj.board.service.EmploymentService;
+import co.huby.prj.code.service.CodeService;
+import co.huby.prj.code.service.CodeVo;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.ResumeVo;
@@ -27,6 +29,8 @@ public class MemberHomeController {
 
 	@Autowired
 	private EmploymentService employmentService;
+	@Autowired
+	CodeService codeService;
 
 	@RequestMapping(value = "/employmentMatch.do")
 	public String memberHome(Model model, HttpServletRequest request, ResumeVo vo) throws Exception {
@@ -100,9 +104,7 @@ public class MemberHomeController {
 	public String applyManagement(Model model, @RequestParam Map mapvo, HttpServletRequest request, HttpServletResponse response ,MemberVo mvo) throws Exception {
 		String id = (String) request.getSession().getAttribute("loginId");
 		mvo.setMember_id(id);
-		
 		List<Map> amapvo = employmentService.applyList(mvo);
-		
 		model.addAttribute("alist", amapvo);
 		
 		return "person/member/applyManagement";
@@ -119,12 +121,22 @@ public class MemberHomeController {
 	@RequestMapping(value = "/areaEmployment.do")
 	public String areaEmployment(Model model, EmploymentsVo evo) throws Exception {
 		List<Map> checkMap = employmentService.employmentList(evo);
-		
-		
 		model.addAttribute("elist", checkMap);
 		
 		return "person/member/areaEmployment";
 	}
 	
+	@RequestMapping(value = "/resumePreview.do")
+	public String resumePreview(Model model, HttpServletRequest request) throws Exception {
+		List<CodeVo> codeList = codeService.SelectAll();
+		model.addAttribute("clist", codeList);
+		return "no/member/resumePreview";
+	}
 	
+	@RequestMapping(value = "/careerPreview.do")
+	public String careerPreview(Model model, HttpServletRequest request, CodeVo cvo) throws Exception {
+		List<CodeVo> codeList = codeService.SelectAll();
+		model.addAttribute("clist", codeList);
+		return "no/member/careerPreview";
+	}
 }

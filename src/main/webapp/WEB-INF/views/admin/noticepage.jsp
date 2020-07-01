@@ -22,8 +22,8 @@
 </script>
 <h1 align="center" style="color: #2B333E">공 지 사 항</h1><br>
 <div align="center">
-<button type="button" class="btn-primary" onclick="location.href='noticeInsertPage.do'"> 글 작성하기 </button><br>
-</div>
+<button type="button" class="btn-primary" onclick="location.href='noticeInsertPage.do'"> 글 작성하기 </button>
+</div><br><br>
 <!-- <div id="notice_table">
 	<div class="notice_row" style="background-color: #2B333E">
 		<span class="notice_cell notice_col1" style="color: white">번호</span> 
@@ -40,13 +40,13 @@
 </div> -->
 <form id="frm" name="frm" method="post">
 <div id="table">
-<div class="row">
+<div class="row" style="background: lightgray; font-size: larger; font-weight: bolder; color: black;">
 <span class="cell col1">작성자</span>
 <span class="cell col2">제목</span>
 <span class="cell col3">작성일</span>
 </div>
 <c:forEach items="${ nlist }" var="notice">
-<div class="row" onclick="noticeSelectOne(${notice.notice_id})">
+<div class="row" onclick="noticeSelectOne(${notice.notice_id})" style="color: black">
 <span class="cell col1">${ notice.admin_id }</span>
 <span class="cell col2">${ notice.notice_title }</span>
 <fmt:formatDate value="${ notice.notice_date }" pattern="yyyy-MM-dd" var="notice_date" />

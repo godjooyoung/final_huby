@@ -82,10 +82,10 @@ public class ResumeController {
 	}
 	
 	@RequestMapping("resumeinsert.do")
-	public ModelAndView resumeinsert(Model model, HttpServletRequest request, ResumeVo vo) throws Exception {
+	public ModelAndView resumeinsert(Model model, HttpServletRequest request, ResumeVo vo, MemberVo mvo) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		String mvo = (String) request.getSession().getAttribute("loginId");
-		vo.setMember_id(mvo);
+		String memberid = (String) request.getSession().getAttribute("loginId");
+		vo.setMember_id(memberid);
 		
 		int n = resumeService.resumeInsert(vo);
 		
@@ -104,6 +104,7 @@ public class ResumeController {
 		int n = resumeService.resumeDelete(vo);
 		
 		if(n == 1) {
+			
 			mav.setViewName("redirect:resumemanagement.do");
 		}else {
 			mav.setViewName("redirect:resumemanagement.do");

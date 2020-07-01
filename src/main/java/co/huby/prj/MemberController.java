@@ -262,8 +262,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "/habitUpdate.do")
 	public String habitUpdate(Model model,HabitVo hvo) throws Exception {
-		
-		
 		int n = memberService.habitUpdate(hvo);
 		
 		return "redirect:habitManagement.do";

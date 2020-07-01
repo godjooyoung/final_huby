@@ -32,8 +32,8 @@
 	</div>
 </div> -->
 <div class="row" >
-      <div id="middlegood1" onclick="location.href='personalmemberall.do'" class="col-sm-6" style="background-color:lightblue; height: 700px">개인회원</div>
-      <div id="middlegood1" onclick="location.href='companymemberall.do'" class="col-sm-6" style="background-color:lightyellow; height: 700px">기업회원</div>
+      <div id="middlegood1" onclick="location.href='personalmemberall.do'" class="col-sm-6" style="background-color:lightblue; height: 700px">개  인  회  원</div>
+      <div id="middlegood1" onclick="location.href='companymemberall.do'" class="col-sm-6" style="background-color:#84A7D3; height: 700px">기  업  회  원</div>
 </div>
     <br>
 <jsp:include page="/WEB-INF/views/adminlayout/footer.jsp"></jsp:include>

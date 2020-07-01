@@ -160,7 +160,21 @@ p {
 		$("[id^=ajaxTest1]").show();
 	}
 	
-	
+	 function resumeView(){
+		var url = "resumePreview.do";
+		var preview = window.open(url,"fullscreen", "scrollbars=1");
+	}
+	 
+	 function CareerView(){
+		var url = "careerPreview.do";
+		var preview = window.open(url,"fullscreen", "scrollbars=1");
+	}
+	 
+	 function skillView(){
+		var url = "careerPreview.do";
+		var preview = window.open(url,"fullscreen", "scrollbars=1");
+	 }
+	 
 	/* function resumeupdateAjax(e,rid){
 		var ajaxresume = $("#ajaxTest2").toggle();
 		
@@ -479,7 +493,8 @@ p {
 	<div class="container">
 		<!-- 이력서 관리 폼 시작 -->
 		<h2>이력서 관리</h2>
-		<button class="btn-primary" type="button" onclick="location.href='resumeinsertpage.do'">이력서등록</button>
+		<!-- <button class="btn-primary" type="button" onclick="location.href='resumeinsertpage.do'">이력서등록</button> -->
+		<button class="btn-primary" type="button" onclick="resumeView()">이력서 등록</button>
 		<button class="btn-primary" type="button" onclick="checkResumeDelete()">이력서 삭제</button>
 		<form id="frm" name="frm" method="post">
 		<div class="row">
@@ -568,7 +583,8 @@ p {
 		
 		<!-- 커리어 관리 폼 시작 -->
 		<h2>커리어 관리</h2>
-		<button class="btn-primary" type="button" onclick="location.href='careerInsertPage.do'">커리어 등록</button>
+		<!-- <button class="btn-primary" type="button" onclick="location.href='careerInsertPage.do'">커리어 등록</button> -->
+		<button class="btn-primary" type="button" onclick="CareerView()">커리어 등록</button>
 		<button class="btn-primary" type="button" onclick="checkCareerDelete()">커리어 삭제</button>
 		<form id="frm3" name="frm3" method="post">
 		<div class="row">
@@ -580,14 +596,13 @@ p {
 						<div class="services-inner">
 							<div class="our-services-img">
 								<img
-									src="https://www.orioninfosolutions.com/assets/img/icon/Agricultural-activities.png"
-									width="68px" alt="">
+									src="https://www.orioninfosolutions.com/assets/img/icon/Agricultural-activities.png" width="68px" alt="">
 							</div>
 							<div class="our-services-text">
 								<h4 id="career_name_${ career.career_id }">${ career.company_name }<input type="checkbox" id="career_id" name="career_id" value="${ career.career_id }"></h4>
 								<p id="start_date_${ career.career_id }">${ startDate }</p>
 								<p id="end_date_${ career.career_id }">${ endDate  }</p>
-								<p id="career_content_${ career.career_id }">${ career.career_content} }</p>
+								<p id="career_content_${ career.career_id }">${ career.career_content}</p>
 								<p id="job_${ career.career_id }">${ career.job_name  }</p>
 								<p id="job_position_${ career.career_id }">${ career.job_position  }</p>
 							</div>
@@ -639,7 +654,8 @@ p {
 		
 		<!-- 스킬관리  폼 시작 -->
 		<h2>스킬 관리</h2>
-		<button class="btn-primary" type="button" onclick="skillInsertPage()">스킬 등록</button>
+		<!-- <button class="btn-primary" type="button" onclick="skillInsertPage()">스킬 등록</button> -->
+		<button class="btn-primary" type="button" onclick="skillView()">스킬 등록</button>
 		<button class="btn-primary" type="button" onclick="checkSKillDelete()">스킬 삭제</button>
 		<form id="frm2" name="frm2" method="post">
 		<div class="row">
