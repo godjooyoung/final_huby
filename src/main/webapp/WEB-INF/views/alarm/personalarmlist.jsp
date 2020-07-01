@@ -80,6 +80,7 @@
 </script>
 
 <div class="alarmlist">
+
 	<c:forEach var="list" items="${personalarmlist }"> 
 	<div id="alarmdiv">
 		[${list.company_name }]
