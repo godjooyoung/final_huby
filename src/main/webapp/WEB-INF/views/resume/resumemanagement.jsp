@@ -129,8 +129,20 @@ p {
 	}
 	
 	function checkSKillDelete(){
-		$("#frm2").attr("action", "checkSKillDelete.do")
+		/* var sid = $("#skill_id").val();
+		$("#sid").val(sid); */
+		$("#frm2").attr("action", "checkSKillDelete.do");
 		document.frm2.submit();
+	}
+	
+	function checkCareerDelete(){
+		$("#frm3").attr("action", "checkCareerDelete.do");
+		document.frm3.submit();
+	}
+	
+	function checkResumeDelete(){
+		$("#frm").attr("action", "checkResumeDelete.do");
+		document.frm.submit();
 	}
 	
 	function ajaxSkillUpdateCancle(){
@@ -404,8 +416,8 @@ p {
 			 data: {'career_id':cid},
 			 success: function(data){
 				 $("#company_name").val(data.company_name);
-				 $("#start_date").val(data.start_date);
-				 $("#end_date").val(data.end_date);
+				 $("#start_date").val(data.start_date.substr(0,10));
+				 $("#end_date").val(data.end_date.substr(0,10));
 				 $("#career_content").val(data.career_content);
 				 $("#job").val(data.job);
 				 $("#job_position").val(data.job_position);
@@ -425,6 +437,7 @@ p {
 		 var career_content = $("#career_content").val();
 		 var job_position = $("#job_position").val();
 		 var job = $("#job").val();
+		 var job_name = $("#job option:checked").text();
 		 
 		 $.ajax({
 			    url: "ajaxCareerUpdate.do",
@@ -444,11 +457,11 @@ p {
 			    	if(data==1){
 			    		alert("스킬관리 수정이 정상적으로 되었습니다.")
 			    		$("#start_date_"+career_id).html(start_date);
-			    		$("#end_date"+career_id).html(end_date);
-			    		$("#company_name"+career_id).html(company_name);
-			    		$("#career_content"+career_id).html(career_content);
-			    		$("#job"+career_id).html(job);
-			    		$("#job_position"+career_id).html(job_position);
+			    		$("#end_date_"+career_id).html(end_date);
+			    		$("#company_name_"+career_id).html(company_name);
+			    		$("#career_content_"+career_id).html(career_content);
+			    		$("#job_"+career_id).html(job_name);
+			    		$("#job_position_"+career_id).html(job_position);
 			    		$("[id^=ajaxCareer1]").show();
 			    		$("#ajaxCareer2").hide();	
 			    		
@@ -467,6 +480,7 @@ p {
 		<!-- 이력서 관리 폼 시작 -->
 		<h2>이력서 관리</h2>
 		<button class="btn-primary" type="button" onclick="location.href='resumeinsertpage.do'">이력서등록</button>
+		<button class="btn-primary" type="button" onclick="checkResumeDelete()">이력서 삭제</button>
 		<form id="frm" name="frm" method="post">
 		<div class="row">
 			<c:forEach items="${ rlist }" var="list">
@@ -481,21 +495,20 @@ p {
 									width="68px" alt="">
 							</div>
 							<div class="our-services-text">
-								<h4 id="resume_title_${list.resume_id}">${ list.resume_title }</h4>
+								<h4 id="resume_title_${list.resume_id}">${ list.resume_title }<input type="checkbox" id="resume_id" name="resume_id" value="${ list.resume_id }"></h4>
 								<p id="hope_job_${list.resume_id}">${ list.job_name }</p>
 								<p id="hope_salary_${list.resume_id}">${ list.hope_salary }</p>
 								<p id="hope_location_${list.resume_id}">${ list.hope_location }</p>
 								<p id="final_education_${list.resume_id}">${ list.final_education  }</p>
 								<p id="resume_coment_${list.resume_id}">${ list.resume_coment  }</p>
 							</div>
-							<button type="button" class="btn-primary" onclick="resumedelete(${ list.resume_id })">이력서 삭제</button>
-								<button type="button" class="btn-primary" onclick="resumeupdateAjax(window.event,${ list.resume_id })">이력서 수정</button><br>
+							<%-- <button type="button" class="btn-primary" onclick="resumedelete(${ list.resume_id })">이력서 삭제</button> --%>
+							<button type="button" class="btn-primary" onclick="resumeupdateAjax(window.event,${ list.resume_id })">이력서 수정</button><br>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
-		<input type="hidden" id="rid" name="resume_id">
 		</form>
 		<!-- 이력서 관리 폼 끝 -->
 		
@@ -556,6 +569,7 @@ p {
 		<!-- 커리어 관리 폼 시작 -->
 		<h2>커리어 관리</h2>
 		<button class="btn-primary" type="button" onclick="location.href='careerInsertPage.do'">커리어 등록</button>
+		<button class="btn-primary" type="button" onclick="checkCareerDelete()">커리어 삭제</button>
 		<form id="frm3" name="frm3" method="post">
 		<div class="row">
 			<c:forEach items="${ clist }" var="career">
@@ -570,21 +584,20 @@ p {
 									width="68px" alt="">
 							</div>
 							<div class="our-services-text">
-								<h4 id="career_name_${ career.career_id }">${ career.company_name }</h4>
+								<h4 id="career_name_${ career.career_id }">${ career.company_name }<input type="checkbox" id="career_id" name="career_id" value="${ career.career_id }"></h4>
 								<p id="start_date_${ career.career_id }">${ startDate }</p>
 								<p id="end_date_${ career.career_id }">${ endDate  }</p>
 								<p id="career_content_${ career.career_id }">${ career.career_content} }</p>
 								<p id="job_${ career.career_id }">${ career.job_name  }</p>
 								<p id="job_position_${ career.career_id }">${ career.job_position  }</p>
 							</div>
-							<button type="button" class="btn-primary" onclick="careerDelete(${ career.career_id })">커리어 삭제</button>
+							<%-- <button type="button" class="btn-primary" onclick="careerDelete(${ career.career_id })">커리어 삭제</button> --%>
 							<button type="button" class="btn-primary" onclick="ajaxCareerUpdatePage(window.event, ${career.career_id})">커리어 수정</button>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
-		<input type="hidden" id="cid" name="career_id">
 		</form>
 		<!-- 커리어 관리 폼 끝 -->
 		
@@ -640,7 +653,7 @@ p {
 									width="68px" alt="">
 							</div>
 							<div class="our-services-text">
-								<h4 id="skill_name_${ skill.SKILL_ID }">${ skill.SKILL_NAME }<input type="checkbox" id="SKILL_ID" name="SKILL_ID" value="${ skill.SKILL_ID }"></h4>
+								<h4 id="skill_name_${ skill.SKILL_ID }">${ skill.SKILL_NAME }<input type="checkbox" id="skill_id" name="skill_id" value="${ skill.SKILL_ID }"></h4>
 								<p id="skill_level_${ skill.SKILL_ID }">${ skill.SKILL_NAME }</p>
 							</div>
 							<%-- <button type="button" class="btn-primary" onclick="skillDelete(${ skill.SKILL_ID })">스킬 삭제</button> --%>
@@ -648,7 +661,7 @@ p {
 						</div>
 					</div>
 				</div>
-			<input type="hidden" id="sid" name="skill_id">
+			<!-- <input type="hidden" id="sid" name="skill_id"> -->
 			</c:forEach>
 		</div>
 		</form>

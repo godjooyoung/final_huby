@@ -2,11 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="co.huby.prj.memberVideo.mapper.MemberVideoMap">
 	<insert id="memberVideoInsert" parameterType="map">
+	<selectKey resultType="String" keyProperty="video_id" order="BEFORE">
+		SELECT VIDEO_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
 		INSERT INTO VIDEO
 		(VIDEO_ID, VIDEO_CONTENTS, MEMBER_ID, VIDEO_IMG,HASHTAG,
 		VIDEO_LOCATION)
 		VALUES(
-		VIDEO_SEQ.NEXTVAL,
+		#{video_id},
 		#{video_contents},
 		#{member_id},
 		#{video_img},

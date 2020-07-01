@@ -37,21 +37,14 @@ public class HomeController {
 
 	@Autowired
 	private BoardService boardService;
-	
+	/*
 	@InitBinder
 	public void allowEmptyDateBinding(WebDataBinder binder) {
-		/*
-		 * // Custom String Editor. tell spring to set empty values as null instead of
-		 * empty string. binder.registerCustomEditor( String.class, new
-		 * StringTrimmerEditor( true ));
-		 */
-
-		// Custom Date Editor
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		simpleDateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(simpleDateFormat, false));
-	}
+	}*/
 	
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -240,7 +233,7 @@ public class HomeController {
 		return "company/company/companyEmploymentListView";
 	}
 	
-	/*공고 목록에서 클릭하면 상세로 넘어갑니다.*/
+	/*공고 목록에서 공고를 클릭하면 내용 상세뷰로 넘어갑니다.*/
 	@RequestMapping(value = "/employmentsDetailsforCom.do")
 	public String employmentDetails (Model model, HttpServletRequest request, EmploymentsVo vo) throws Exception	{
 		String companyid = (String) request.getSession().getAttribute("loginId");
@@ -261,14 +254,25 @@ public class HomeController {
 		String title = request.getParameter("title");
 		String contents = request.getParameter("contents");
 		String prefer = request.getParameter("prefer");
-		
-		System.out.println("제목 : " + title);
+		String salary =request.getParameter("salary");
+		String job = request.getParameter("job");
+		String graduate = request.getParameter("graduate");
+		String position = request.getParameter("position");
+		String career =request.getParameter("career");
+		String worktype =request.getParameter("worktype");
 		
 		vo.setCompany_id(companyid);
 		vo.setEmployment_id(emplomentid);
 		vo.setEmployment_title(title);
 		vo.setEmployment_contents(contents);
 		vo.setEmployment_prefer(prefer);
+		vo.setHope_salary(salary);
+		vo.setHope_job(job);
+		vo.setHope_graduate(graduate);
+		vo.setHope_job_position(position);
+		vo.setHope_career(career);
+		vo.setHope_work_type(worktype);
+		
 		model.addAttribute("before", vo);
 		return "company/company/employmentModify";
 	}
@@ -277,7 +281,7 @@ public class HomeController {
 	@RequestMapping(value = "/employupdate.do")
 	public String employupdate (Model model, HttpServletRequest request, EmploymentsVo vo) throws Exception{ 
 		String companyid = (String) request.getSession().getAttribute("loginId");
-		String emp_id = request.getParameter("emp_id");
+		String emp_id = request.getParameter("employment_id");
 		String title =request.getParameter("title");
 		String career = request.getParameter("career");
 		String prefer = request.getParameter("prefer");
@@ -292,6 +296,7 @@ public class HomeController {
 		//시간 변환
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
 		Date d = df.parse(time);
+		
 		//지역 다중선택시 배열에 담김
 		String[] locations = request.getParameterValues("location"); 
 		String location = "";
@@ -315,6 +320,7 @@ public class HomeController {
 		vo.setHope_salary(salary);
 		//vo에 담은 값으로 쿼리 진행
 		boardService.modify_employment(vo);
+		
 		return "redirect:forcomemploymentsList.do";
 	}
 	

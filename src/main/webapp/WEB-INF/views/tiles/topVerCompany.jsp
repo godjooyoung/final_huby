@@ -18,7 +18,7 @@
 		<div class="alarmimg">
 			<a href="companyalarm.do"> <img
 				src="${pageContext.request.contextPath}/resources/img/common/alarm1.png" /></a>
-			<span id="count" class="badge badge-light" 
+			<span id="count" class="badge badge-danger" 
 			style="position: absolute;
     		top: 0px;
     		left: 25px;"></span>

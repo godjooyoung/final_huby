@@ -158,8 +158,7 @@ html, body, h1, h2, h3, h4, h5, h6 {
 		//입사지원요청 클릭 시 공고목록
 		function comemploymentlist(member_id) {
 
-			$
-					.ajax({
+			$.ajax({
 						type : "get",
 						url : "comemploymentlist.do",
 						data : {
@@ -170,21 +169,14 @@ html, body, h1, h2, h3, h4, h5, h6 {
 							console.log(data);
 							for (i = 0; i < data.length; i++) {
 								$('<div>')
-										.append(
-												$('<span>').html(
-														data[i].EMPLOYMENT_ID))
-										.append(
-												$('<span>')
-														.html(
-																data[i].EMPLOYMENT_TITLE))
-										.append(
-												'<input type="button" id="btn" class="btn btn-Warning" value="입사 지원 요청하기">')
+										.append($('<span>').html(data[i].EMPLOYMENT_ID).hide())
+										.append($('<span>').html(data[i].EMPLOYMENT_TITLE))
+										.append('<input type="button" id="btn" class="btn btn-outline-primary btn-sm" value="입사 지원 요청하기">')
 										.appendTo($('#btnsubmit'))
 							}
-
 						}
 					})
-		}
+				}
 
 		//입사지원요청 insert
 		function applyRe() {

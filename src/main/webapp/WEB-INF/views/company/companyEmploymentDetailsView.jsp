@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <br><br><br><br>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <h1>공고 상세 페이지</h1>
     <table>
     <tr>
@@ -14,8 +14,8 @@
     	</td>
     </tr>
     <tr>
-    	<td>
-    		*${employmentsDetails.employment_time}
+    	<td>*
+    	<fmt:formatDate pattern ="yyyy년MM월dd일 까지" value="${employmentsDetails.employment_time}"/>
     	</td>
     	<td>
     		*${employmentsDetails.hope_salary}
@@ -63,6 +63,13 @@
 	<input type="hidden" name ="title" id="title" value="${employmentsDetails.employment_title}">
 	<input type="hidden" name ="contents" id="contents" value="${employmentsDetails.employment_contents}">
 	<input type="hidden" name ="prefer" id="prefer" value="${employmentsDetails.employment_prefer}">
+	<input type="hidden" name="salary" id="salary" value="${employmentsDetails.hope_salary}"> 
+	<input type="hidden" name="job" id="job" value="${employmentsDetails.hope_job}"> 
+	<input type="hidden" name="graduate" id="graduate" value="${employmentsDetails.hope_graduate}"> 
+	<input type="hidden" name="position" id="position" value="${employmentsDetails.hope_job_position}"> 
+	<input type="hidden" name="career" id="career" value="${employmentsDetails.hope_career}"> 
+	<input type="hidden" name="worktype" id="worktype" value="${employmentsDetails.hope_work_type}"> 
+
 	<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" onclick="subm('modi')"> 
 	<input type="button"  class="btn btn-primary" value="삭제"  id="btnDelete" onclick="subm('dele')">
 	<input type="button"  class="btn btn-success" value="마감"  id="btnComplete" onclick="subm('complete')">

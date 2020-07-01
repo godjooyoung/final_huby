@@ -16,15 +16,15 @@
 				src="${pageContext.request.contextPath}/resources/img/common/huby_icon_clear_01.png" />
 			</a>
 		</div>
-		
 		<div class="alarmimg">
 			<a href="personalarm.do"> <img
 				src="${pageContext.request.contextPath}/resources/img/common/alarm1.png" /></a>
-			<span id="count" class="badge badge-light" 
+			<span id="count" class="badge badge-danger" 
 			style="position: absolute;
     		top: 0px;
     		left: 25px;"></span>
 		</div>
+		
 
 		<div id="gnb_tel" class="hd_gnb_tel">
 			<a href="employmentMatch.do"></a>

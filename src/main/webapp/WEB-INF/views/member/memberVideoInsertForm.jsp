@@ -8,9 +8,9 @@
 		var percent = $('.percent');
 		var status = $('#status');
 		var img = "<p><img src='${pageContext.request.contextPath}/resources/img/common/progress.gif'></p>"
-		$('#btnSend')
-				.click(
-						function() {
+		$(document).on('click', '#btnSend',function(){
+			
+				
 							if($("video").length >=3){
 								alert("영상은 3개까지 등록 가능합니다. 기존의 영상을 삭제 후 다시 실행해 주세요.");
 								$('#btnSend').attr('disabled',true);
@@ -54,7 +54,9 @@
 															+ '" type="video/mp4" />'
 															+ '</video>'
 															+'<span class="hoverBtn">'
-															+'<a href="#">'
+															+'<a href="#" class="deleteBtn" + data="'
+															+ data.video_id
+															+'">'
 															+'삭제하기'
 															+'</a>'
 															+'</span>'
@@ -72,21 +74,23 @@
 												}
 
 											}).submit();
-						});
-		$('.deleteBtn').on('click',function(){
+		});
+		$(document).on('click','.deleteBtn',function(){
 			if(confirm("영상을 삭제하시겠습니까?")){
 				
 			var videoId = $(this).attr('data');
-			
+			var btn = $(this)
 				$.ajax({
 						dataType:'json',
 						data:{'videoId':videoId},
 					type:"POST",
 					url:"memberVideoDelete.do",
 					
-				success:function(){
+				success:function(data){
+					if(data.data=="true"){
+					btn.closest('.div_videoInsert').remove();
 					alert("삭제되었습니다.");
-					$('.div_videoInsert').remove();
+					}
 				},
 				error:function(err){
 					console.log(err)

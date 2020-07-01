@@ -42,7 +42,7 @@
 		<div class="w3-quarter">
 			<div class='wrap' style='position:relative;'>
 				<div class="inner01" style="position:absolute; left:3%; top:3%;">
-					<h4 style="align:left; text-shadow: 1px 1px 2px white; font-weight: bolder; 
+					<h4 style="align:left; color:white; text-shadow: 2px 2px 5px black; font-weight: bolder; 
 				 	padding-top:5px; padding-left:5px;">
 				 		#${matched.code_name}
 					</h4>
@@ -50,7 +50,7 @@
 				<div class="inner02" style="position:absolute; left:5%; top:5%;">
 					<br>
 					<p style="text-align:left;overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:250px;
-						font-weight: bold; text-shadow: 1px 1px 2px white;">
+						font-weight: bold;  color:white; text-shadow: 2px 2px 5px black; ">
 						${matched.video_contents}
 					</p>
 				</div>

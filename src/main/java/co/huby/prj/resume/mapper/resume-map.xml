@@ -101,4 +101,8 @@
 			</if>
 		where resume_id = #{resume_id}
 	</update>
+	
+	<select id="selecthabit" resultType="HabitVo" parameterType="MemberVo">
+		select * from habit where member_id = #{member_id}
+	</select>
 </mapper>

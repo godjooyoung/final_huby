@@ -284,12 +284,12 @@ public class MemberController {
 		return "redirect:habitManagement.do";
 	}
 	
-	@RequestMapping(value = "/habitDelete.do")
+	/*@RequestMapping(value = "/habitDelete.do")
 	public String habitDelete(Model model, HabitVo hvo) throws Exception {
 		int n = memberService.habitDelete(hvo);
 		
 		return "redirect:habitManagement.do";
-	}
+	}*/
 	
 	@RequestMapping(value = "/pwUpdate.do")
 	public String pwUpdate(Model model, MemberVo mvo, HttpServletRequest request) throws Exception {

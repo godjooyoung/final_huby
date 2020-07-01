@@ -2,6 +2,8 @@ package co.huby.prj.memberVideo.web;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -120,16 +123,19 @@ public class MemberVideoController {
 		return map;
 	}
 
+	@ResponseBody
 	@RequestMapping("/memberVideoDelete.do")
-	public String memberVideoDelete(@RequestParam(value = "videoId") String video_id) {
-		
-		VideoVo vo = memberVideoService.memberVideoId(video_id);
-		memberVideoService.memberVideoDelete(video_id);
-		File file2 = new File(outputPath + vo);
+	public Map memberVideoDelete(@RequestParam Map<String, Object> map) {
+		String vId = (String) map.get("videoId");
+		VideoVo vo = memberVideoService.memberVideoId(vId);
+		memberVideoService.memberVideoDelete(vId);
+		File file2 = new File(outputPath + vo.getVideo_img());
 		file2.delete();
-		File file3 = new File(outputPath + vo);
+		File file3 = new File(outputPath + vo.getVideo_location());
 		file3.delete();
-
-		return "person/member/memberVideoInsertForm";
+		
+		
+		
+		return Collections.singletonMap("data","true");
 	}
 }

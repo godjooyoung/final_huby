@@ -2,11 +2,15 @@ package co.huby.prj.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CareerVo {
 	//career
 	//개인회원이 가지는 경력에 대한 상세 테이블입니다.
 	private String career_id; //경력 고유 아이디
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date start_date;
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date end_date;
 	private String company_name; //주영주식회사
 	private String career_content; // sns 서비스 개발 
