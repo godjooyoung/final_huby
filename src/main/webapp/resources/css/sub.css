@@ -24,13 +24,6 @@
 #sub_vis_wrap.sub05 .visual-area .visual-area-txt.sub05{display:block;}
 #sub_vis_wrap.sub06 .visual-area .visual-area-txt.sub06{display:block;}
 
-#sub_vis_wrap.sub01 .visual-area { background-image:url("../images/sub/sub_vis_01.png");}
-#sub_vis_wrap.sub02 .visual-area { background-image:url("../images/sub/sub_vis_02.png");}
-#sub_vis_wrap.sub03 .visual-area { background-image:url("../images/sub/sub_vis_03.png");}
-#sub_vis_wrap.sub04 .visual-area { background-image:url("../images/sub/sub_vis_04.png");}
-#sub_vis_wrap.sub05 .visual-area { background-image:url("../images/sub/sub_vis_05.png");}
-#sub_vis_wrap.sub06 .visual-area { background-image:url("../images/sub/sub_vis_06.png");}
-
 @media all and (max-width:1240px) {
 	.visual-area .visual-area-txt{box-sizing:border-box; padding-left:2.5%;}
 }
