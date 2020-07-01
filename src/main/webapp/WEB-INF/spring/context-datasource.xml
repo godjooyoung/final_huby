@@ -9,9 +9,9 @@
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
-			value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="mp2" />
-		<property name="password" value="mp2" />
+			value="jdbc:oracle:thin:@192.168.0.92:1521:xe" />
+		<property name="username" value="Huby" />
+		<property name="password" value="1234" />
 	</bean>
 
 	<bean id="dataSource"
