@@ -18,8 +18,8 @@ public class ChatServiceImpl implements ChatService {
 	private ChatMap map;
 
 	@Override
-	public List<InterviewVo> createRoom(InterviewVo vo) throws Exception {
-		return map.createRoom(vo);
+	public void createRoom(InterviewVo vo) throws Exception {
+		map.createRoom(vo);
 
 	}
 

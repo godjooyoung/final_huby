@@ -52,8 +52,6 @@
 				success:
 					function(data){
 					if(data.count == 1)
-						alert("면접 수락이 완료되었습니다.");
-					else
 						alert("면접 수락이 완료되었습니다.")
 				}
 			});

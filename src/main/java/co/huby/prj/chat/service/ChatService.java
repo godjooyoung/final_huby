@@ -8,7 +8,7 @@ import co.huby.prj.vo.MessageVo;
 
 public interface ChatService {
 
-	public List<InterviewVo> createRoom(InterviewVo vo) throws Exception;
+	public void createRoom(InterviewVo vo) throws Exception;
 
 	public InterviewVo isRoom(InterviewVo vo) throws Exception;
 
