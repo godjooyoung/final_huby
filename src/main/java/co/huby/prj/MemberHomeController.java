@@ -139,4 +139,9 @@ public class MemberHomeController {
 		model.addAttribute("clist", codeList);
 		return "no/member/careerPreview";
 	}
+	
+	@RequestMapping(value = "/skillPreview.do")
+	public String skillPreview(Model model, HttpServletRequest request, CodeVo cvo) throws Exception {
+		return "no/member/skillPreview";
+	}
 }

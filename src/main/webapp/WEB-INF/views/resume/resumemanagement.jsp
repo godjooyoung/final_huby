@@ -171,7 +171,7 @@ p {
 	}
 	 
 	 function skillView(){
-		var url = "careerPreview.do";
+		var url = "skillPreview.do";
 		var preview = window.open(url,"fullscreen", "scrollbars=1");
 	 }
 	 
@@ -656,7 +656,7 @@ p {
 		<h2>스킬 관리</h2>
 		<!-- <button class="btn-primary" type="button" onclick="skillInsertPage()">스킬 등록</button> -->
 		<button class="btn-primary" type="button" onclick="skillView()">스킬 등록</button>
-		<button class="btn-primary" type="button" onclick="checkSKillDelete()">스킬 삭제</button>
+		<button class="btn-primary" type="button" onclick="checkSKillDelete()">스킬 삭제</button><br><br>
 		<form id="frm2" name="frm2" method="post">
 		<div class="row">
 			<c:forEach items="${ slist }" var="skill">
@@ -670,7 +670,7 @@ p {
 							</div>
 							<div class="our-services-text">
 								<h4 id="skill_name_${ skill.SKILL_ID }">${ skill.SKILL_NAME }<input type="checkbox" id="skill_id" name="skill_id" value="${ skill.SKILL_ID }"></h4>
-								<p id="skill_level_${ skill.SKILL_ID }">${ skill.SKILL_NAME }</p>
+								<p id="skill_level_${ skill.SKILL_ID }">${ skill.SKILL_LEVEL }</p>
 							</div>
 							<%-- <button type="button" class="btn-primary" onclick="skillDelete(${ skill.SKILL_ID })">스킬 삭제</button> --%>
 							<button type="button" class="btn-primary" onclick="ajaxSkillUpdatePage(window.event, ${ skill.SKILL_ID })">스킬 수정</button>
@@ -696,7 +696,21 @@ p {
 								<!-- <p>스킬번호:<input id="skill_id" type="text" readonly="readonly"></p> -->
 								<p><input id="skill_id" type="hidden"></p>
 								<p>스킬명:<input id="skill_name" type="text"></p>
-								<p>스킬레벨:<input id="skill_level" type="text"></p>
+								<p>스킬레벨:<select class="form-control input-md" id="skill_level" name="skill_level" required="required" onchange="typecheck(this.value)">
+									  		<option value="10">10</option>
+									  		<option value="20">20</option>
+									  		<option value="30">30</option>
+									  		<option value="40">40</option>
+									  		<option value="50">50</option>
+									  		<option value="60">60</option>
+									  		<option value="70">70</option>
+									  		<option value="80">80</option>
+									  		<option value="90">90</option>
+									  		<option value="100">100</option>
+									  	</select></p>
+									  	<script>
+											$("#skill_level").val("${param.skill_level}");
+										</script>
 							</div>
 							<button type="button" class="btn-primary" id="ajaxSkillSaveBtn" onclick="ajaxSkillUpdate()">저장하기</button>
 							<button type="button" class="btn-primary" id="ajaxSkillCancleBtn" onclick="ajaxSkillUpdateCancle()">취소</button>

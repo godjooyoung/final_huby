@@ -16,73 +16,41 @@
     <fieldset>
 
         <!-- Form Name -->
-        <legend>커리어 등록</legend>
+        <legend>스킬 등록</legend>
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="name">회사명</label>  
+          <label class="col-md-4 control-label" for="name">스킬이름</label>  
           <div class="col-md-4">
-          <input id="company_name" name="company_name" type="text" class="form-control input-md" required="required">
+          <input id="skill_name" name="skill_name" type="text" class="form-control input-md" required="required">
           <span class="help-block"></span>  
           </div>
         </div>
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="phone">시작기간</label>  
+          <label class="col-md-4 control-label" for="email">스킬레벨</label>  
           <div class="col-md-4">
-          <input id="start_date" name="start_date" type="date" class="form-control input-md" required="required">
-          <span class="help-block"></span>  
+          <select class="form-control input-md" id="skill_level" name="skill_level" required="required" onchange="typecheck(this.value)">
+	  		<option value="10">10</option>
+	  		<option value="20">20</option>
+	  		<option value="30">30</option>
+	  		<option value="40">40</option>
+	  		<option value="50">50</option>
+	  		<option value="60">60</option>
+	  		<option value="70">70</option>
+	  		<option value="80">80</option>
+	  		<option value="90">90</option>
+	  		<option value="100">100</option>
+	  	</select>
           </div>
         </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="email">종료기간</label>  
-          <div class="col-md-4">
-          <input id="end_date" name="end_date" type="date" class="form-control input-md" required="required">
-          <span class="help-block"></span>  
-          </div>
-        </div>
-
-        <!-- Password input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="password">업무직종</label>
-          <div class="col-md-4">
-            <select class="form-control input-md" id="job" name="job" required="required" onchange="typecheck(this.value)">
-		  		<option value="">종목 선택</option>
-		  		<c:forEach items="${ clist }" var="type">
-		  		<option value=${ type.code_id }>${ type.code_name }</option>
-		  		</c:forEach>
-		  	</select>  
-          </div>
-        </div>
-
-        <!-- Password input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="rpassword">업무직책</label>
-          <div class="col-md-4">
-            <input id="job_position" name="job_position" type="text" class="form-control input-md" required="required">
-            <span class="help-block"></span>  
-          </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="address1">업무내용</label>  
-          <div class="col-md-4">
-          <input id="career_content" name="career_content" type="text" class="form-control input-md" required="required">
-    		<span class="help-block"></span>  
-          </div>
-        </div>
-
-        
 
         <!-- Button (Double) -->
         <div class="form-group">
           <label class="col-md-4 control-label" for="save"></label>
           <div class="col-md-8">
-            <input type="button" id="save" name="save" class="btn btn-success" onclick="careerInsertGo()" value="등록하기">
+            <input type="button" id="save" name="save" class="btn btn-success" onclick="skillInsertGo()" value="등록하기">
             <input type="reset" name="cancel" class="btn btn-danger" value="취소">
             <input type="button" name="cancel" class="btn btn-primary" onclick="winclose()" value="창닫기">
           </div>
@@ -93,14 +61,14 @@
         		window.close();
         	}
         	
-        	function careerInsertGo(){
+        	function skillInsertGo(){
         	/* opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#resume_title").html();
         	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#hope_job").html();
         	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#hope_salary").html();
         	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#hope_location").html();
         	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#final_education").html();
         	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#resume_coment").html(); */
-        	$("#frm").attr("action","careerInsert.do");
+        	$("#frm").attr("action","skillInsert.do");
         	document.frm.submit();
         	
     		window.close();
