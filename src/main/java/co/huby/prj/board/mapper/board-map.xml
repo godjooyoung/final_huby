@@ -234,7 +234,7 @@
 	
 	<select id ="get_empDetailsForCom"  parameterType="co.huby.prj.vo.EmploymentsVo" 
 	resultType="co.huby.prj.vo.EmploymentsVo">
-	SELECT * FROM EMPLOYMENTS WHERE EMPLOYMENT_ID =#{employment_id}
+	SELECT * FROM EMPLOYMENTS WHERE EMPLOYMENT_ID =#{employment_id , jdbcType=VARCHAR}
 	</select>
 	
 	<update id="modify_employment" parameterType="co.huby.prj.vo.EmploymentsVo" >
