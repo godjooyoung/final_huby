@@ -22,8 +22,8 @@ public interface ChatService {
 
 	public MessageVo getRecentMessage(MessageVo vo) throws Exception;
 
-	public List<Map> getName(InterviewVo vo) throws Exception;
-
+	public Map getName(InterviewVo vo) throws Exception;
+	
 	public List<InterviewVo> getRoomListCompany(String str) throws Exception;
 
 	public void updateReadTime(String resume_id, String member_id, String company_id) throws Exception;
@@ -35,5 +35,6 @@ public interface ChatService {
 	public int getUnReadCountCompany(String company_id, String resume_id, String member_id) throws Exception;
 
 	public int getAllCount(String str);
+
 
 }

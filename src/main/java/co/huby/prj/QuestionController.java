@@ -61,17 +61,17 @@ public class QuestionController {
 	 * 
 	 * return mav; }
 	 */
-	@RequestMapping(value = "/qInsertPageC.do") // 문의등록페이지
+	@RequestMapping(value = "/qInsertPageC.do") // 기업 문의등록페이지
 	public String qInsertPageC(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
-		return "person/qna/qInsertPageC";
+		return "company/qna/qInsertPageC";
 	}
 	
-	@RequestMapping(value = "/qInsertPageM.do") // 문의등록페이지
+	@RequestMapping(value = "/qInsertPageM.do") // 개인 문의등록페이지
 	public String qInsertMember(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
 		return "person/qna/qInsertPage";
 	}
 
-	@RequestMapping(value = "/qListMember.do") // 문의리스트
+	@RequestMapping(value = "/qListMember.do") // 개인 문의리스트
 	public String qListMember(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
 		String memberid = (String) request.getSession().getAttribute("loginId");
 		vo.setMember_id(memberid);
@@ -80,7 +80,7 @@ public class QuestionController {
 		return "person/qna/qListMember";
 	}
 
-	@RequestMapping(value = "/qListCompany.do") // 문의리스트
+	@RequestMapping(value = "/qListCompany.do") // 기업 문의리스트
 	public String qListCompany(Model model, HttpServletRequest request, QuestionVo vo) throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		vo.setCompany_id(companyid);

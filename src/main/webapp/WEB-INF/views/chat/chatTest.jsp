@@ -3,43 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="co.huby.prj.Applistner"%>
-<%=session.getAttribute("loginId")%>
-<c:set var="user" value='<%=session.getAttribute("loginId")%>' />
-
-
-
-
-<form id="ivList2" name="ivList2" method="post">
-	<table>
-		<thead>
-			<tr>
-				<th>인터뷰시작</th>
-				<th>면접자</th>
-				<th>개인회원</th>
-				<th>기업회원</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="list" items="${companyChatList}">
-				<tr onclick="goChat(window.event, '${list.interview_id}')">
-					<td>${list.interview_start}</td>
-					<td>${list.member_name}</td>
-					<td>${list.member_id}</td>
-					<td>${list.company_id}</td>
-					<td><c:if test="${fn:contains(connId, list.member_id)}">
-							<font color="red">현재접속중</font>
-						</c:if></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-</form>
-
-
-
-
-
-
+<br>
+<br>
+<br>
+<br>
 <script>
 	try {
 		Typekit.load({
@@ -898,13 +865,21 @@ body {
 			<ul>
 				<c:forEach var="list" items="${companyChatList}">
 					<li class="contact">
-						<div class="wrap">
+						<div class="wrap"
+							onclick="ajaxSelectChat(window.event,'${list.interview_id }','${list.member_id }')">
 							<span class="contact-status online"></span> <img
 								src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
 							<div class="meta">
 								<p class="name">${list.member_name}</p>
 								<p class="preview">${recent.message_content }</p>
 							</div>
+							<form id ="insert">
+								<input type="hidden" name="interview_id" value="${list.interview_id}">
+								<input type="hidden" name="company_id" value="${list.company_id}">
+								<input type="hidden" name="member_id" value="${list.member_id}">
+								<input type="hidden" name="receiver" value="${list.member_id}">
+								<input type="hidden" name="sender" value="${list.company_id}">
+								<input type="hidden" name="message_content" value="${message_content}"></form>
 						</div>
 					</li>
 				</c:forEach>
@@ -933,7 +908,7 @@ body {
 	<div class="content">
 		<div class="contact-profile">
 			<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-			<p>Harvey Specter</p>
+			<p id="name"></p>
 			<div class="social-media">
 				<i class="fa fa-facebook" aria-hidden="true"></i> <i
 					class="fa fa-twitter" aria-hidden="true"></i> <i
@@ -943,13 +918,14 @@ body {
 
 		<!-- 메시지 창  -->
 		<div class="messages">
-			<ul>
+			<ul id="message_content">
 				<c:forEach var="contents" items="${message}">
 					<c:choose>
 						<c:when test="${contents.message_receiver == (loginId)}">
 							<li class="sent"><img
 								src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
 								<p>${contents.message_content}</p> <br> <span
+								id="message_sandtime"
 								style='float: left; font-size: 9px; text-align: left;'>${contents.message_sandtime }
 							</span></li>
 						</c:when>
@@ -981,6 +957,9 @@ body {
 	</div>
 </div>
 <script>
+	var message = {};
+	message.message_type = 'CHAT';
+
 	$(".messages").animate({
 		scrollTop : $(document).height()
 	}, "fast");
@@ -1021,19 +1000,10 @@ body {
 	function newMessage() {
 		var msg = $(".message-input input").val();
 		if (msg != "") {
-			message = {};
 			message.message_content = $("#message").val();
-			message.cmd = "message";
-			message.message_receiver = '${loginId}' == '${room.company_id}' ? '${room.member_id}'
-					: '${room.company_id}';
-			message.message_sender = '${loginId}'
-			message.interview_id = '${room.interview_id}';
-			message.member_id = '${room.member_id}';
-			message.company_id = '${room.company_id}';
-			message.message_type = 'CHAT';
+			sock.send(JSON.stringify(message)); //웹소켓으로 메시지를 보내겠어
 		}
 
-		sock.send(JSON.stringify(message)); //웹소켓으로 메시지를 보내겠어
 		$("#message").val("");
 	}
 
@@ -1131,4 +1101,43 @@ body {
 			disconnect();
 		});
 	});
+</script>
+<script>
+	function ajaxSelectChat(e, chat) {
+		
+		var i = $(e.target).closest(".wrap")
+		i.addClass("selectChat");
+		var frm = i.find("form").get(0);
+		var company_id = frm.company_id.value
+		var member_id = frm.member_id.value
+		message.message_receiver = '${loginId}' == company_id ? member_id : company_id;
+		message.message_sender = '${loginId}'
+		message.interview_id = frm.interview_id.value;
+		message.member_id = frm.member_id.value;
+		message.company_id = frm.company_id.value;
+			
+		
+		$.ajax({
+			url : "ajaxSelectChat.do",
+			type : "post",
+			dataType : "json",
+			data : {
+				'interview_id' : chat
+			},
+			success : function(data) {
+				$('#message_content').empty();
+				$('#name').empty();
+				$('#name').append(data.name.MEMBER_NAME);
+				for (var i = 0; i < data.result.length; i++) {
+					$('#message_content')
+							.append(data.result[i].message_content);
+				}
+				if (data.result.length == 0) {
+					$('#message_content').append("대화내용이 없슴니다,");
+				}
+			},
+			error : function(request, status, error) {
+			}
+		});
+	}
 </script>

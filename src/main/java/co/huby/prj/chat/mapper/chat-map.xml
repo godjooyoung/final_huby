@@ -10,7 +10,7 @@
 
 	<select id="isRoom" resultType="InterviewVo"> <!-- 인터뷰 불러오기 -->
 		SELECT * FROM interview WHERE
-		interview_id = #{interview_id}
+		interview_id = #{interview_id, jdbcType=VARCHAR}
 	</select>
 
 	<insert id="insertMessage"> <!-- 메시지 저장 -->
@@ -23,7 +23,7 @@
 
 	<select id="getMessageList" resultType="MessageVo"> <!-- 대화내용 불러오기 -->
 		select * from message
-		where interview_id = #{interview_id} order by
+		where interview_id = #{interview_id, jdbcType=VARCHAR} order by
 		message_id
 	</select>
 
@@ -79,16 +79,17 @@
 	</select>
 
 	<select id="getRecentMessage" resultType="MessageVO">  <!-- 최근메세지 가져오기 -->
-		select * from MESSAGE where interview_id = ${interview_id} and
+		select * from MESSAGE where interview_id = ${interview_id,
+		jdbcType=VARCHAR} and
 		rownum<![CDATA[<=]]>1
 		order by message_id desc
 	</select>
 
-	<select id="getName" parameterType="string" resultType="map"> <!-- 이름가져오기 -->
+	<select id="getName" resultType="map"> <!-- 이름가져오기 -->
 		select c.company_name, m.member_name, i.interview_id from company c, member
 		m, interview i
 		where i.company_id = c.company_id and i.member_id = m.member_id and
-		interview_id = #{interview_id}
+		interview_id = #{interview_id, jdbcType=VARCHAR}
 	</select>
 
 	<update id="updateReadTime">

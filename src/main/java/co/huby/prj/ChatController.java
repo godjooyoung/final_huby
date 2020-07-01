@@ -1,6 +1,8 @@
 package co.huby.prj;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.huby.prj.chat.service.ChatService;
 import co.huby.prj.vo.InterviewVo;
 import co.huby.prj.vo.MessageVo;
-import oracle.jdbc.driver.Message;
 
 @Controller
 public class ChatController {
@@ -22,8 +24,8 @@ public class ChatController {
 	// @Autowired
 	// Handler handler;
 
-	@RequestMapping(value = "/company_chat.do") // 기업회원 채팅창
-	public String getChatViewPage(Model model, HttpServletRequest request, InterviewVo vo, MessageVo message)
+	@RequestMapping(value = "/company_chatList.do") // 기업회원 채팅창
+	public String getChatViewPage(Model model, HttpServletRequest request, InterviewVo vo)
 			throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		String memberid = (String) request.getSession().getAttribute("personalVo");
@@ -31,13 +33,10 @@ public class ChatController {
 		vo.setMember_id(memberid);
 		List<InterviewVo> list = chatService.getRoomList2(vo);
 		model.addAttribute("companyChatList", list);
-		vo = chatService.isRoom(vo);
-		model.addAttribute("room", vo);
-		message.setInterview_id(vo.getInterview_id());
-		List<MessageVo> messageList = chatService.getMessageList(message);
-		model.addAttribute("message", messageList);
-		message = chatService.getRecentMessage(message);
-		model.addAttribute("recent", message);
+		
+		
+		// message = chatService.getRecentMessage(message);
+		// model.addAttribute("recent", message);
 		return "company/chat/chatTest";
 
 	}
@@ -47,6 +46,7 @@ public class ChatController {
 			throws Exception {
 		vo = chatService.isRoom(vo);
 		model.addAttribute("room", vo);
+		
 		message.setInterview_id(vo.getInterview_id());
 		List<MessageVo> list = chatService.getMessageList(message);
 		model.addAttribute("message", list);
@@ -66,28 +66,33 @@ public class ChatController {
 
 	}
 
-	@RequestMapping(value = "/company_chatList.do") // 기업회원 채팅리스트
-	public String companyChatList(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
-		String companyid = (String) request.getSession().getAttribute("loginId");
-		String memberid = (String) request.getSession().getAttribute("personalVo");
-		vo.setCompany_id(companyid);
-		vo.setMember_id(memberid);
-		List<InterviewVo> list = chatService.getRoomList2(vo);
-		model.addAttribute("companyChatList", list);
-		return "company/chat/companyChatList";
+	/*
+	 * @RequestMapping(value = "/company_chatList.do") // 기업회원 채팅리스트 public String
+	 * companyChatList(Model model, HttpServletRequest request, InterviewVo vo)
+	 * throws Exception { String companyid = (String)
+	 * request.getSession().getAttribute("loginId"); String memberid = (String)
+	 * request.getSession().getAttribute("personalVo"); vo.setCompany_id(companyid);
+	 * vo.setMember_id(memberid); List<InterviewVo> list =
+	 * chatService.getRoomList2(vo); model.addAttribute("companyChatList", list);
+	 * return "company/chat/companyChatList";
+	 * 
+	 * }
+	 */
 
+	@ResponseBody
+	@RequestMapping(value = "/ajaxSelectChat.do")
+	public HashMap<String, Object> ajaxSelectChat(InterviewVo vo, MessageVo message, Model model,
+			HttpServletRequest request) throws Exception {
+		String intervie_id = request.getParameter("interview_id");
+		vo.setInterview_id(intervie_id);
+		Map map = chatService.getName(vo);
+		message.setInterview_id(vo.getInterview_id());
+		List<MessageVo> messageList = chatService.getMessageList(message);
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("result", messageList);
+		result.put("interview", vo);
+		result.put("name", map);
+		return result;
 	}
 
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/insertMessage.do") public String
-	 * insertMessage(MessageVo vo, Model model, HttpServletRequest request) throws
-	 * Exception { String loginId = (String)
-	 * request.getSession().getAttribute("loginId"); String msg =
-	 * request.getParameter("message_contents"); vo.setMessage_sender(loginId);
-	 * vo.setMessage_contents(msg);
-	 * vo.setCompany_id(request.getParameter("company_id"));
-	 * chatService.insertMessage(vo); return null; }
-	 */
 }

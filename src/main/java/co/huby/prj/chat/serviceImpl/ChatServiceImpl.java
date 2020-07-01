@@ -94,7 +94,7 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
-	public List<Map> getName(InterviewVo vo) throws Exception {
+	public Map getName(InterviewVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.getName(vo);
 	}

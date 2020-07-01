@@ -24,7 +24,7 @@ public interface ChatMap {
 
 	public MessageVo getRecentMessage(MessageVo vo) throws Exception;
 
-	public List<Map> getName(InterviewVo vo) throws Exception;
+	public Map getName(InterviewVo vo) throws Exception;
 
 	public List<InterviewVo> getRoomListCompany(String str) throws Exception;
 
