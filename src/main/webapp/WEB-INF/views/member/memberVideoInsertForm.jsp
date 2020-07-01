@@ -5,7 +5,7 @@
 <script>
 	$(function() {
 		var bar = $('.bar');
-		var percent = $('.percent');
+		var percent = $('.percent'); 
 		var status = $('#status');
 		var img = "<p><img src='${pageContext.request.contextPath}/resources/img/common/progress.gif'></p>"
 		$(document).on('click', '#btnSend',function(){
