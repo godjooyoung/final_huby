@@ -69,7 +69,7 @@
 	<select id="comemploymentlist" parameterType="map" resultType="map">
 		SELECT EMPLOYMENT_ID, EMPLOYMENT_TITLE, EMPLOYMENT_TIME, COMPANY_ID
 		FROM EMPLOYMENTS
-		WHERE COMPANY_ID = #{company_id }
+		WHERE COMPANY_ID = #{company_id } AND EMPLOYMENT_TIME > SYSDATE
 	</select>
 	
 	<select id="companyselect" parameterType="co.huby.prj.vo.CompanyVo" resultType="co.huby.prj.vo.CompanyVo">

@@ -19,7 +19,8 @@
 <script type="text/javascript">
 
 	//면접제의 상세보기
-	function interviewOk(company_id,member_id,alarm_id) {
+	function interviewOk(e,company_id,member_id,alarm_id) {
+		var button = $(e.target).next()
 		$.ajax({
 			type:"get",
 			url:"companyselect.do",
@@ -28,11 +29,11 @@
 			success:
 				function(data){
 					console.log(data);
-						$("#btnsubmit").append("업종 " + data[0].business_type + "<br>" 
-													+ "주소 " + data[0].company_addr + "<br>" 
-													+ "업태 " + data[0].business_category + "<br>" )
-						          .append($('<input type="button" id="btn" class="btn btn-Warning" value="면접수락">').data("companyid", company_id).data("memberid", member_id).data("alarmid", alarm_id))
-						          .appendTo($('#btnsubmit'))
+						button.append("<br>" +"업종: " + data[0].business_type + "<br>" 
+													+ "주소: " + data[0].company_addr + "<br>" 
+													+ "업태: " + data[0].business_category + "<br>" )
+						          .append($('<input type="button" id="btn" class="btn btn-primary" value="면접수락">').data("companyid", company_id).data("memberid", member_id).data("alarmid", alarm_id))
+						        
 					
 			}
 		})
@@ -79,24 +80,26 @@
 </script>
 
 <div class="alarmlist">
-	<c:forEach var="list" items="${personalarmlist }">
-		<br>[${list.company_name }]
+	<c:forEach var="list" items="${personalarmlist }"> 
+	<div id="alarmdiv">
+		[${list.company_name }]
 				${list.alarm_message }
 				${list.alarm_time }<br>
 			<c:if test="${list.alarm_message eq '면접제의' }">
-				<div id="btnsubmit"></div>
 				<input type="button" value="회사정보보기"
-					onclick="interviewOk('${list.company_id}','${list.member_id }','${list.alarm_id }')">
+					onclick="interviewOk(window.event,'${list.company_id}','${list.member_id }','${list.alarm_id }')">
+				<div id="btnsubmit"></div> 
 				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }','${list.company_id}','${list.member_id}')">
 			</c:if>
+ 				
 			<c:if test="${list.alarm_message eq '입사지원요청' }">
 				<input type="button" value="공고보기"
 				onclick="applyOk('${list.alarm_id}','${list.company_id}','${list.member_id}','${list.alarm_message }','${list.employment_id }')">
 				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }')">
 			</c:if>
-
+		 </div>
 	</c:forEach>
-</div>
+	</div>
 
 <form action="currentY.do" method='POST' name="frmok" id="frmok">
 	<input type="hidden" name="alarmid"> <input type="hidden"
