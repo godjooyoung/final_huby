@@ -941,8 +941,8 @@ body {
 		<!-- 메시지 입력 창  -->
 		<div class="message-input">
 			<div class="wrap">
-				<input type="text" placeholder="메시지를 입력하세요." id="message" /> <i
-					class="fa fa-paperclip attachment" aria-hidden="true"></i>
+				<input type="text" placeholder="메시지를 입력하세요." id="message" /> <button type="button" id="cameraChat" onclick="location.href='cameraChat.do'"><i
+					class="fa fa-paperclip attachment" aria-hidden="true"></i></button>
 				<button class="submit" id="sendBtn">
 					<i class="fa fa-paper-plane" aria-hidden="true"></i>
 				</button>
