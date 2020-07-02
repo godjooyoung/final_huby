@@ -84,35 +84,32 @@
 <table class="table">
 <thead class="thead-light">
 	<tr>
-		<th scope="col">기업명</th>
-		<th scope="col">알림메세지</th>
-		<th scope="col">알림일시</th>
-		<th scope="col"></th>
-		<th scope="col"></th>
+		<th>기업명</th>
+		<th>알림메세지</th>
+		<th>알림일시</th>
+		<th></th>
 	</tr>
 </thead>
 <tbody>
 	<c:forEach var="list" items="${personalarmlist }"> 
-	<div id="alarmdiv">
 			<tr>
 				<td>${list.company_name }</td>
 				<td>${list.alarm_message }</td>
 				<td>${list.alarm_time }</td>
 				
-			<td><c:if test="${list.alarm_message eq '면접제의' }">
-				<input type="button" value="회사정보보기"
+			<c:if test="${list.alarm_message eq '면접제의' }">
+				<td><input type="button" value="회사정보보기"
 					onclick="interviewOk(window.event,'${list.company_id}','${list.member_id }','${list.alarm_id }')">
-				<div id="btnsubmit"></div> </td>
-				<td><input type="button" value="거절" onclick="alarmRe('${list.alarm_id }','${list.company_id}','${list.member_id}')"></td>
-			</c:if>
- 				
+				<div id="btnsubmit"></div>
+				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }','${list.company_id}','${list.member_id}')">
+			</td></c:if>
+			
 			<c:if test="${list.alarm_message eq '입사지원요청' }">
-				<input type="button" value="공고보기"
+				<td><input type="button" value="공고보기"
 				onclick="applyOk('${list.alarm_id}','${list.company_id}','${list.member_id}','${list.alarm_message }','${list.employment_id }')">
 				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }')">
-			</c:if>
+			</td></c:if>
 			</tr>
-		 </div>
 	</c:forEach>
 	</tbody>
 	</table>
