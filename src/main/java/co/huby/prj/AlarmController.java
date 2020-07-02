@@ -200,4 +200,17 @@ public class AlarmController {
 		}
 		return Collections.singletonMap("count", count);
 	}
+	
+	//기업이 알람 선택 후 delete
+	@RequestMapping("checkAlarmDelete.do")
+	public String checkAlarmDelete(Model model, HttpServletRequest request, AlarmVo vo) throws Exception{
+		String[] alarmArray = request.getParameterValues("alarm_id");
+		for(int i=0; i<alarmArray.length; i++) {
+			AlarmVo arrayAvo = new AlarmVo();
+			arrayAvo.setAlarm_id(alarmArray[i]);
+			alarmService.alarmdelete(arrayAvo);
+		}
+		return "redirect:personalarm.do";
+	}
+	
 }

@@ -25,7 +25,7 @@
 	</select>
 	
 	<select id="companyalarmlist" parameterType="string" resultType="co.huby.prj.alarm.service.AlarmVo">
-		SELECT M.MEMBER_NAME member_name, A.ALARM_MESSAGE alarm_message, A.ALARM_CURRENT alarm_current, A.COMPANYREAD_STATE companyread_state
+		SELECT M.MEMBER_NAME member_name, A.ALARM_MESSAGE alarm_message, A.ALARM_CURRENT alarm_current, A.COMPANYREAD_STATE companyread_state, A.ALARM_ID alarm_id
 		FROM ALARM A
 		JOIN MEMBER M
 		ON A.MEMBER_ID = M.MEMBER_ID

@@ -7,7 +7,7 @@
 <style>
 .alarmlist {
 	margin: 0;
-	height: 700px;
+	height: 500px;
 }
 </style>
 <br>
@@ -81,17 +81,29 @@
 </script>
 
 <div class="alarmlist">
-
+<table class="table">
+<thead class="thead-light">
+	<tr>
+		<th scope="col">기업명</th>
+		<th scope="col">알림메세지</th>
+		<th scope="col">알림일시</th>
+		<th scope="col"></th>
+		<th scope="col"></th>
+	</tr>
+</thead>
+<tbody>
 	<c:forEach var="list" items="${personalarmlist }"> 
 	<div id="alarmdiv">
-		[${list.company_name }]
-				${list.alarm_message }
-				${list.alarm_time }<br>
-			<c:if test="${list.alarm_message eq '면접제의' }">
+			<tr>
+				<td>${list.company_name }</td>
+				<td>${list.alarm_message }</td>
+				<td>${list.alarm_time }</td>
+				
+			<td><c:if test="${list.alarm_message eq '면접제의' }">
 				<input type="button" value="회사정보보기"
 					onclick="interviewOk(window.event,'${list.company_id}','${list.member_id }','${list.alarm_id }')">
-				<div id="btnsubmit"></div> 
-				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }','${list.company_id}','${list.member_id}')">
+				<div id="btnsubmit"></div> </td>
+				<td><input type="button" value="거절" onclick="alarmRe('${list.alarm_id }','${list.company_id}','${list.member_id}')"></td>
 			</c:if>
  				
 			<c:if test="${list.alarm_message eq '입사지원요청' }">
@@ -99,8 +111,11 @@
 				onclick="applyOk('${list.alarm_id}','${list.company_id}','${list.member_id}','${list.alarm_message }','${list.employment_id }')">
 				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }')">
 			</c:if>
+			</tr>
 		 </div>
 	</c:forEach>
+	</tbody>
+	</table>
 	</div>
 
 <form action="currentY.do" method='POST' name="frmok" id="frmok">
