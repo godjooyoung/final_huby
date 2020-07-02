@@ -32,7 +32,7 @@
 <div id="sub_content_wrap" class="sub0101">
 	<div class="ov inner center" style="margin: 10% auto 2%;">
 <!-- 실제소스 -->
-<form method="POST" action="comEmpInsert.do" class="w3-container w3-card w3-text-blue w3-margin">
+<form method="POST" action="comEmpInsert.do" class="w3-container w3-text-blue w3-margin">
 	<br>
 	<h2>공고 작성하기</h2>
 	<div class="w3-row w3-section">

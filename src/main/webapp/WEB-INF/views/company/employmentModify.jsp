@@ -33,7 +33,7 @@
 <h2>
 	공고 수정하기
 </h2>
-<form id ="modifyFrm" method="POST" action="employupdate.do" class="w3-container w3-card w3-text-blue w3-margin">
+<form id ="modifyFrm" method="POST" action="employupdate.do" class="w3-container w3-text-blue w3-margin">
   <!-- 공고제목 -->
   <br>
   <input type='hidden' name="employment_id" id="employment_id" value='${before.employment_id }'>

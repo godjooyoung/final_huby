@@ -27,6 +27,182 @@
 	<div class="ov inner center" style="margin: 10% auto 2%;">    
     <!-- 실제소스 -->
     
+    <!-- ---------============================================= -->
+    <div class="w3-row">
+  		<h1 class="w3-xlarge w3-text-grey">공고 타이틀이 여기들어옵니다.타타타타타타타타타타타</h1>
+	</div>
+	<div class="w3-row">
+		<div class="w3-half w3-container w3-xlarge w3-text-grey">
+	  	<div>공고내용이 여기들어옵니다<br>
+	  	- 내용내요앤요ㅐㄴ요내ㅛ애뇨애뇨애뇨애ㅛ내요<br>
+	  	- 내용내요앤요ㅐㄴ요내ㅛ애뇨애뇨애뇨애ㅛ내요</div>
+		</div>
+		<div class="w3-half w3-container w3-xlarge w3-text-grey">
+	  	<div>우대사항우대<br>
+	  	- 내용내요앤요ㅐㄴ요내ㅛ애뇨애뇨애뇨애ㅛ내요<br>
+	  	- 내용내요앤요ㅐㄴ요내ㅛ애뇨애뇨애뇨애ㅛ내요</div>
+		</div>
+	</div>
+		<!-- Second Grid: Resent -->
+		<div class="w3-panel w3-text-grey">
+		<h4>MOST RECENT WORK:</h4>
+		</div>
+		<div class="w3-row">
+		<div class="w3-half w3-container">
+		 
+		</div>
+		<div class="w3-half w3-container">
+		  
+		  <p class="w3-xlarge w3-text-grey">
+		  Demos, Logos, Reports, Names, Events, Media, Wordpress, Google, Books, Optimisations</p>
+		</div>
+		</div>
+
+<!-- Footer -->
+<div class="w3-row w3-section">
+  <div class="w3-third w3-container w3-black w3-large" style="height:250px">
+  	<br>
+    <h2>지원자격</h2>
+    <p><i class="fa fa-map-marker" style="width:30px"></i> Chicago, US</p>
+    <p><i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515</p>
+    <p><i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com</p>
+  </div>
+  <div class="w3-third w3-center w3-large w3-dark-grey w3-text-white" style="height:250px">
+    <br>
+    <h2>근무조건</h2>
+    <p>If you have an idea.</p>
+    <p>What are you waiting for?</p>
+  </div>
+  <div class="w3-third w3-center w3-large w3-grey w3-text-white" style="height:250px">
+    <br>
+    <h2>모집형태</h2>
+    <i class="w3-xlarge fa fa-facebook-official"></i><br>
+    <i class="w3-xlarge fa fa-pinterest-p"></i><br>
+    <i class="w3-xlarge fa fa-twitter"></i><br>
+    <i class="w3-xlarge fa fa-flickr"></i><br>
+    <i class="w3-xlarge fa fa-linkedin"></i>
+  </div>
+</div>
+
+    
+    
+    
+    <!-- ---------------------------- -->
+    <div class="w3-container w3-blue w3-margin-bottom">
+		<h2>공고타이틀 자리</h2>
+	</div>
+	<div class="w3-row-padding ">
+		<div class="w3-twothird">
+			  <h2>여기에 공ㄱ소내용 때려박는다</h2>
+			  <p>Chardonnay is the world's most popular wine grape.</p>
+			  <p>The taste of the Chardonnay grape is very neutral and easy to like.</p>
+			  <p>Many of the Chardonnay flavors are derived from terroir and oak-aging.</p>
+			  <p>The flavors varies from noticeable acidity (Cold Climates), to crisply and mineral (Chablis, France) 
+			  with flavors of green plum, apple and pear, to heavy oak and tropical fruit flavors (the New World). </p>
+			  <p>In cooler climates Chardonnay tends to be under-riped. </p>
+			  <p>In warmer climates the flavors tend to vary from lemon to peach and melon.</p>
+			  <p>In very warm climates Chardonnay tends to be over-riped.</p>
+			  <p>Oaked Chardonnay tends to have softer acidity and more fruit flavors with 
+			  added butter, cream and hazelnut notes.</p>
+			  <h2>여기에 우대내용 때려박는다</h2>
+			 우대우대ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+ 		</div>
+		<div class="w3-third">
+
+  			<h2>지원자격</h2>
+ 			<table class="w3-table w3-striped w3-bordered w3-border">
+  				<thead class="w3-blue">
+  					<th style="width:30%">경력</th>
+  				</thead>
+  				<tr>
+  					<td style="width:30%">희망커리어자리</td>
+  				</tr>
+  				<thead class="w3-blue">
+  					<th style="width:30%">학력</th>
+  				</thead>
+  				<tr>
+  					<td>희망학력자리</td>
+  				</tr>
+  			</table>
+  			
+  			<h2>근무조건</h2>
+ 			<table class="w3-table w3-striped w3-bordered w3-border">
+  				<thead class="w3-blue">
+  					<th style="width:30%">임금</th>
+  				</thead>
+  				<tr>
+  					<td style="width:30%">희망샐러리</td>
+  				</tr>
+  				<thead class="w3-blue">
+  					<th style="width:30%">지역</th>
+  				</thead>
+  				<tr>
+  					<td>희망로케</td>
+  				</tr>
+  			</table>
+  			
+  			<h2>고용형태</h2>
+ 			<table class="w3-table w3-striped w3-bordered w3-border">
+  				<thead class="w3-teal">
+  					<th style="width:30%">고용형태</th>
+  				</thead>
+  				<tr>
+  					<td style="width:30%">정규인턴등등</td>
+  				</tr>
+  			</table>
+  			
+  			<h2>모집 직종</h2>
+ 			<table class="w3-table w3-striped w3-bordered w3-border">
+  				<thead class="w3-teal">
+  					<th style="width:30%">직종</th>
+  				</thead>
+  				<tr>
+  					<td style="width:30%">잡 내용</td>
+  				</tr>
+  				<thead class="w3-teal">
+  					<th style="width:30%">근무포지션</th>
+  				</thead>
+  				<tr>
+  					<td style="width:30%">연구직</td>
+  				</tr>
+  			</table>
+	</div>
+
+
+
+</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- ---------------------------- -->
     <h1>공고 상세 페이지</h1>
     <table>
     <tr>
