@@ -11,21 +11,32 @@
 		<div class="w3-row-padding">
 			<!-- Left Column -->
 			<div class="w3-third">
-				<div class="w3-white w3-text-grey w3-card-4">
+				<div class="w3-white w3-text-grey w3-card">
 					<div class="w3-display-container">
 					<!--<img
 							src="download.do?name=${applyman.video_img}"
 							onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
-							style="width: 100%" alt="self-video">  -->	
+							style="width: 100%" alt="self-video">  -->
+						<div class='wrap' style='position:relative;'>
+						<div class="inner01" style="position:absolute; left:3%; top:3%;">
+						<h4 style="align:left; color:white; text-shadow: 2px 2px 5px black; font-weight: bolder; 
+				 			padding-top:5px; padding-left:5px;">
+				 			<b><u>${applyman.member_name}</u> 지원자</b><br>
+				 			#${applyman.code_name}
+						</h4>
+						</div>
+						<div class="inner02" style="position:absolute; left:5%; top:5%;">
+						<br><br>
+						<p style="text-align:left;overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:250px;
+							font-weight: bold;  color:white; text-shadow: 2px 2px 5px black; ">
+							${applyman.video_contents}
+						</p>
+						</div>
 						<video width="100%" controls poster="download.do?name=${applyman.video_img}" playsinline preload="none">
  						<source src="download.do?name=${applyman.video_location }" type="video/mp4">영상이 없습니다.
  						</video>
-						<div class="w3-display-topleft w3-container w3-text-black">
-							<br>
-							<h2><b><u>${applyman.member_name}</u> 지원자</b></h2>
-							<h3 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:340px;"><b>#${applyman.code_name}</b></h3>
-							<h3><b>${applyman.video_contents}</b></h3>
 						</div>
+						
 					</div>
 					<br>
 					<div class="w3-container">

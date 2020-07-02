@@ -8,40 +8,44 @@
 
 <!-- First Photo Grid-->
 <div class="w3-row-padding w3-padding-16 w3-center">
-	<c:forEach var="firstList" items="${firstList}">
-		<div class="w3-quarter">
-			<div class='wrap' style='position:relative;'>
-				<div class="inner01" style="position:absolute; left:3%; top:3%;">
-					<h4 style="align:left;  color:white; text-shadow: 2px 2px 5px black;  font-weight: bolder; 
-				 	padding-top:5px; padding-left:5px;">
-				 		#${firstList.CODE_NAME}
-					</h4>
+		<c:set var="firstList" value="${firstList}" />
+		<c:if test="${empty firstList}">
+		아직 올려진 영상이 없습니다.
+		</c:if>
+		<c:forEach var="firstList" items="${firstList}">
+			<div class="w3-quarter">
+				<div class='wrap' style='position:relative;'>
+					<div class="inner01" style="position:absolute; left:3%; top:3%;">
+						<h4 style="align:left;  color:white; text-shadow: 2px 2px 5px black;  font-weight: bolder; 
+					 	padding-top:5px; padding-left:5px;">
+					 		#${firstList.CODE_NAME}
+						</h4>
+					</div>
+					<div class="inner02" style="position:absolute; left:5%; top:5%;">
+						<br>
+						<p style="text-align:left;overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:250px;
+							font-weight: bold;  color:white; text-shadow: 2px 2px 5px black; ">
+							${firstList.VIDEO_CONTENTS}
+						</p>
+					</div>
+				<img src="download.do?name=${firstList.VIDEO_IMG }" alt="thumnail"
+					style="width: 100%;"
+					onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
+					onclick="location.href='resumeDetail.do?video_id=${firstList.VIDEO_ID}&member_id=${firstList.MEMBER_ID }'">
+				<div class="inner03"
+					style="position:absolute; left:87%; top:4%"; 
+					id="btn${firstList.VIDEO_ID }" name="likeBtn"
+					value="${firstList.VIDEO_ID}"
+					onclick="clickLike(${firstList.VIDEO_ID})">
+					<font id="font${firstList.VIDEO_ID }" color="white" style="-webkit-text-stroke: 1px black; font-size: xx-large;" data-count="0">
+						<b> <i class="fas fa-heart"></i> </b>
+					</font>
 				</div>
-				<div class="inner02" style="position:absolute; left:5%; top:5%;">
-					<br>
-					<p style="text-align:left;overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:250px;
-						font-weight: bold;  color:white; text-shadow: 2px 2px 5px black; ">
-						${firstList.VIDEO_CONTENTS}
-					</p>
 				</div>
-			<img src="download.do?name=${firstList.VIDEO_IMG }" alt="thumnail"
-				style="width: 100%;"
-				onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
-				onclick="location.href='resumeDetail.do?video_id=${firstList.VIDEO_ID}&member_id=${firstList.MEMBER_ID }'">
-			<div class="inner03"
-				style="position:absolute; left:87%; top:4%"; 
-				id="btn${firstList.VIDEO_ID }" name="likeBtn"
-				value="${firstList.VIDEO_ID}"
-				onclick="clickLike(${firstList.VIDEO_ID})">
-				<font id="font${firstList.VIDEO_ID }" color="white" style="-webkit-text-stroke: 1px black; font-size: xx-large;" data-count="0">
-					<b> <i class="fas fa-heart"></i> </b>
-				</font>
+				<br>
 			</div>
-			</div>
-			<br>
-		</div>
-		
-	</c:forEach>
+			</c:forEach>
+
 </div>
 <!-- Grid END -->
 <!-- Second Photo Grid-->

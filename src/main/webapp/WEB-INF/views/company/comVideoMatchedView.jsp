@@ -37,6 +37,7 @@
 <!-- 일단 END -->
 
 <!-- 다시시도 -->
+
 <div class="w3-row-padding w3-padding-16 w3-center">
 	<c:forEach var="matched" items="${matched}">
 		<div class="w3-quarter">
@@ -81,13 +82,20 @@
 </div>
 <!-- Grid END -->
 
-
-<!-- Pagination -->
-<div class="w3-center w3-padding-32">
+<c:set var="matched" value="${matched}" />
+<c:if test="${empty matched}">
+		매치된 영상이 없습니다. 공고를 내보세요~ 맞춤 인재를 추천해드립니다.
+</c:if>
+<c:set var="matched" value="${matched}" />
+<c:if test="${not empty matched}">
+		<!-- Pagination -->
+	<div class="w3-center w3-padding-32">
 	<div class="w3-bar">
 		<font color="#134a8e" onclick="loadVideoData_more('4')" id="loadData">MORE</font></a>
 	</div>
 </div>
+		
+</c:if>
 
 
 <hr id="about">
