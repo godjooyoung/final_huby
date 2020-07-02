@@ -939,15 +939,16 @@ body {
 		<!-- end 메시지 입력 창  -->
 	</div>
 </div>
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script>
-	var message = {};
-	message.message_type = 'CHAT';
-	
 	$(".messages").animate({ scrollTop : $(document).height()}, "fast");
 	$(".expand-button").click(function() {
 		$("#profile").toggleClass("expanded");
 		$("#contacts").toggleClass("expanded");
 	});
+	var message = {};
+	message.message_type = 'CHAT';
+	
 
 	function newMessage() {
 		var msg = $(".message-input input").val();
@@ -956,9 +957,8 @@ body {
 			sock.send(JSON.stringify(message)); //웹소켓으로 메시지를 보내겠어
 		}
 		$("#message").val(""); //입력한후 폼에서 삭제
+	$(".messages").animate({scrollTop : $(document).height()}, "fast")
 	}
-	$(".messages").animate({
-		scrollTop : $(document).height()}, "fast")
 		
 	function getTimeStamp() {
 		var d = new Date();
@@ -1063,6 +1063,7 @@ body {
 														+ "</p><br><span style='float: left; font-size: 9px; text-align: left;'>"
 														+ t + "</span></li>");
 							}
+							$(".messages").animate({scrollTop : $(document).height()}, "fast");
 						}
 						if (data.result.length == 0) {$('#message_content').append("대화내용이 없슴니다,");
 						}
