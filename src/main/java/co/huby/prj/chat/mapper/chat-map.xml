@@ -85,8 +85,8 @@
 		order by message_id desc
 	</select>
 
-	<select id="getName" resultType="map"> <!-- 이름가져오기 -->
-		select c.company_name, m.member_name, i.interview_id from company c, member
+	<select id="getName" resultType="map"> <!-- 이름 사진 가져오기 -->
+		select c.company_name, m.member_name, i.interview_id, c.company_photo, m.member_photo from company c, member
 		m, interview i
 		where i.company_id = c.company_id and i.member_id = m.member_id and
 		interview_id = #{interview_id, jdbcType=VARCHAR}

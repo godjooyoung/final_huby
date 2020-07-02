@@ -86,7 +86,7 @@ body, h1, h2, h3, h4, h5, h6 {
 <body id="page-top">
 	<div id="wrapper">
 		<tiles:insertAttribute name="top" />
-		<br> <br> <br>
+		<br> <br>
 		<div id="msgAlert"></div>
 		<div id="contents">
 			<tiles:insertAttribute name="body" />

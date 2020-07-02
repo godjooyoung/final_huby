@@ -3,14 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="co.huby.prj.Applistner"%>
-<script>
-	try {
-		Typekit.load({
-			async : true
-		});
-	} catch (e) {
-	}
-</script>
+<br>
+<c:set var="connId" value="<%=Applistner.getUserList()%>" />
 <style class="cp-pen-styles">
 body {
 	display: contents;
@@ -669,10 +663,10 @@ body {
 #frame .content .messages {
 	width: 100%;
 	height: auto;
-	min-height: calc(100% - 93px);
-	max-height: calc(100% - 93px);
+	min-height: calc(100% - 95px);
+	max-height: calc(100% - 95px);
 	overflow-y: scroll;
-	overflow-x: hidden;
+	overflow-x: scroll;
 	height: auto;
 }
 
@@ -747,7 +741,6 @@ body {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	z-index: 99;
 }
 
 #frame .content .message-input .wrap {
@@ -820,28 +813,20 @@ body {
 	outline: none;
 }
 </style>
+<script>
+	try {
+		Typekit.load({
+			async : true
+		});
+	} catch (e) {}
+</script>
 <div id="frame">
 	<div id="sidepanel">
 		<div id="profile">
 			<div class="wrap">
-				<img id="profile-img"
-					src="http://emilcarlsson.se/assets/mikeross.png" class="online"
-					alt="" />
+				<img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
 				<p>${loginName}</p>
 				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
-				<div id="status-options">
-					<ul>
-						<li id="status-online" class="active"><span
-							class="status-circle"></span>
-							<p>Online</p></li>
-						<li id="status-away"><span class="status-circle"></span>
-							<p>Away</p></li>
-						<li id="status-busy"><span class="status-circle"></span>
-							<p>Busy</p></li>
-						<li id="status-offline"><span class="status-circle"></span>
-							<p>Offline</p></li>
-					</ul>
-				</div>
 				<div id="expanded">
 					<label for="twitter"><i class="fa fa-facebook fa-fw"
 						aria-hidden="true"></i></label> <input name="twitter" type="text"
@@ -875,7 +860,8 @@ body {
 								<input type="hidden" name="member_id" value="${list.member_id}">
 								<input type="hidden" name="receiver" value="${list.member_id}">
 								<input type="hidden" name="sender" value="${list.company_id}">
-								<input type="hidden" name="message_content" value="${message_content}"></form>
+								<input type="hidden" name="message_content" value="${message_content}">
+							</form>
 						</div>
 					</li>
 				</c:forEach>
@@ -893,8 +879,8 @@ body {
 		</div>
 		<div id="bottom-bar">
 			<button id="addcontact">
-				<i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add
-					contact</span>
+				<i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> 
+				<span>Add contact</span>
 			</button>
 			<button id="settings">
 				<i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span>
@@ -906,9 +892,9 @@ body {
 			<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
 			<p id="name"></p>
 			<div class="social-media">
-				<i class="fa fa-facebook" aria-hidden="true"></i> <i
-					class="fa fa-twitter" aria-hidden="true"></i> <i
-					class="fa fa-instagram" aria-hidden="true"></i>
+				<i class="fa fa-facebook" aria-hidden="true"></i> 
+				<i class="fa fa-twitter" aria-hidden="true"></i> 
+				<i class="fa fa-instagram" aria-hidden="true"></i>
 			</div>
 		</div>
 
@@ -918,18 +904,17 @@ body {
 				<c:forEach var="contents" items="${message}">
 					<c:choose>
 						<c:when test="${contents.message_receiver == (loginId)}">
-							<li class="sent"><img
-								src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-								<p>${contents.message_content}</p> <br> <span
-								id="message_sandtime"
-								style='float: left; font-size: 9px; text-align: left;'>${contents.message_sandtime }
+							<li class="sent">
+							<img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
+								<p>${contents.message_content}</p> <br> 
+								<span id="message_sandtime" style='float: left; font-size: 9px; text-align: left;'>${contents.message_sandtime }
 							</span></li>
 						</c:when>
 						<c:otherwise>
-							<li class="replies"><img
-								src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-								<p>${contents.message_content}</p> <br> <span
-								style='float: right; font-size: 9px; text-align: right;'>${contents.message_sandtime }
+							<li class="replies">
+							<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+								<p>${contents.message_content}</p> <br> 
+								<span style='float: right; font-size: 9px; text-align: right;'>${contents.message_sandtime }
 							</span></li>
 						</c:otherwise>
 					</c:choose>
@@ -941,34 +926,26 @@ body {
 		<!-- 메시지 입력 창  -->
 		<div class="message-input">
 			<div class="wrap">
-				<input type="text" placeholder="메시지를 입력하세요." id="message" /> <button type="button" id="cameraChat" onclick="location.href='cameraChat.do'"><i
-					class="fa fa-paperclip attachment" aria-hidden="true"></i></button>
+				<input type="text" placeholder="메시지를 입력하세요." id="message" />
+				<a href="cameraChat.do"><i class="fa fa-paperclip attachment" aria-hidden="true"></i></a>
 				<button class="submit" id="sendBtn">
 					<i class="fa fa-paper-plane" aria-hidden="true"></i>
 				</button>
 			</div>
 		</div>
 		<!-- end 메시지 입력 창  -->
-
 	</div>
 </div>
 <script>
 	var message = {};
 	message.message_type = 'CHAT';
 
-	$(".messages").animate({
-		scrollTop : $(document).height()
-	}, "fast");
-
-	$("#profile-img").click(function() {
-		$("#status-options").toggleClass("active");
-	});
-
+	$(".messages").animate({ scrollTop : $(document).height()}, "fast");
+	$("#profile-img").click(function() { $("#status-options").toggleClass("active");});
 	$(".expand-button").click(function() {
 		$("#profile").toggleClass("expanded");
 		$("#contacts").toggleClass("expanded");
 	});
-
 	$("#status-options ul li").click(function() {
 		$("#profile-img").removeClass();
 		$("#status-online").removeClass("active");
@@ -999,7 +976,6 @@ body {
 			message.message_content = $("#message").val();
 			sock.send(JSON.stringify(message)); //웹소켓으로 메시지를 보내겠어
 		}
-
 		$("#message").val("");
 	}
 
@@ -1031,27 +1007,16 @@ body {
 			return false;
 		} else {
 			var t = getTimeStamp();
-			console.log(msg)
 			if (msg.message_sender == '${loginId}') {
-				$("#messages")
-						.append(
-								$(
-										'<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /><p>'
-												+ msg.message_content
-												+ '</p>'
-												+ '<br><span style="float: right; font-size: 9px; text-align: right;">'
-												+ t + '</span></li>').appendTo(
-										$('.messages ul')));
+				$("#messages").append($('<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /><p>'
+										+ msg.message_content + '</p>' 
+										+ '<br><span style="float: right; font-size: 9px; text-align: right;">'
+										+ t + '</span></li>').appendTo($('.messages ul')));
 			} else {
-				$("#messages")
-						.append(
-								$(
-										'<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>'
-												+ msg.message_content
-												+ '</p>'
-												+ '<br><span style="float: left; font-size: 9px; text-align: left;">'
-												+ t + '</span></li>').appendTo(
-										$('.messages ul')));
+				$("#messages").append($('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>'
+										+ msg.message_content + '</p>'
+										+ '<br><span style="float: left; font-size: 9px; text-align: left;">'
+										+ t + '</span></li>').appendTo($('.messages ul')));
 			}
 
 			var chatAreaHeight = $("#chatArea").height();
@@ -1063,9 +1028,7 @@ body {
 
 	$('.message-input input').val(null);
 	$('.contact.active .preview').html('<span>You: </span>' + message);
-	$(".messages").animate({
-		scrollTop : $(document).height()
-	}, "fast");
+	$(".messages").animate({scrollTop : $(document).height()}, "fast");
 
 	$('.submit').click(function() {
 		newMessage();
@@ -1111,7 +1074,7 @@ body {
 		message.member_id = frm.member_id.value;
 		message.company_id = frm.company_id.value;
 			
-var t = getTimeStamp();
+		var t = getTimeStamp();
 		
 		$.ajax({
 			url : "ajaxSelectChat.do",
@@ -1126,18 +1089,15 @@ var t = getTimeStamp();
 				$('#name').append(data.name.MEMBER_NAME);
 				for (var i = 0; i < data.result.length; i++) {
 					if (data.result[i].message_sender == '${loginId}') {
-					$('#message_content').append(
-							"<li class='replies'><img src='http://emilcarlsson.se/assets/harveyspecter.png' alt='' /><p>" + data.result[i].message_content + "</p><br><span style='float: right; font-size: 9px; text-align: right;'>" + t + "</span></li>");
-				}else{
-					$('#message_content').append(
-							"<li class='sent'><img src='http://emilcarlsson.se/assets/mikeross.png' alt='' /><p>" 
-							+ data.result[i].message_content + "</p><br><span style='float: left; font-size: 9px; text-align: left;'>" + t + "</span></li>");
+						$('#message_content').append("<li class='replies'><img src='http://emilcarlsson.se/assets/harveyspecter.png' alt='' /><p>" + data.result[i].message_content + "</p><br><span style='float: right; font-size: 9px; text-align: right;'>" + t + "</span></li>");
+				} else {
+					$('#message_content').append("<li class='sent'><img src='http://emilcarlsson.se/assets/mikeross.png' alt='' /><p>" 
+										+ data.result[i].message_content 
+										+ "</p><br><span style='float: left; font-size: 9px; text-align: left;'>" 
+										+ t + "</span></li>");
 				}					
-				
-					}
-					if (data.result.length == 0) {
-						$('#message_content').append("대화내용이 없슴니다,");
-					
+			}
+					if (data.result.length == 0) {$('#message_content').append("대화내용이 없슴니다,");
 				}
 			},
 			error : function(request, status, error) {
