@@ -3,18 +3,31 @@ package co.huby.prj.vo;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class HabitVo {
 	//habit
 	private String habit_id;
 	private String habit_name;
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date habit_start_date;
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date habit_log_date;
 	private String member_id;
 	private String cnt;
 	private String checked;
+	private String per;
+	
 	//getter setter
+	
 	public String getHabit_id() {
 		return habit_id;
+	}
+	public String getPer() {
+		return per;
+	}
+	public void setPer(String per) {
+		this.per = per;
 	}
 	public void setHabit_id(String habit_id) {
 		this.habit_id = habit_id;

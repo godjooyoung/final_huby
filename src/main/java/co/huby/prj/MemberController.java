@@ -274,12 +274,25 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/habitInsert.do")
-	public String habitInsert(Model model, HttpServletRequest request, HabitVo hvo, MemberVo mvo) throws Exception {
+	public ModelAndView habitInsert(Model model, HttpServletRequest request, HabitVo hvo, MemberVo mvo) throws Exception {
+		ModelAndView mav = new ModelAndView();
 		String id = (String) request.getSession().getAttribute("loginId");
 		hvo.setMember_id(id);
 		int n = memberService.habitInsert(hvo);
 		
-		return "redirect:habitManagement.do";
+		if(n==1) {
+			String memberid = (String) request.getSession().getAttribute("loginId");
+			mvo.setMember_id(memberid);
+			List<HabitVo> list = memberService.habitSelectAll(mvo);
+			model.addAttribute("hlist", list);
+			mav.setViewName("person/member/habitManagement");
+		}else {
+			String num = "0";
+			model.addAttribute("error", num);
+			mav.setViewName("person/member/habitInsertPage");
+		}
+		
+		return mav;
 	}
 	
 	/*@RequestMapping(value = "/habitDelete.do")

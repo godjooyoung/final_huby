@@ -404,7 +404,7 @@
 			enctype="multipart/form-data" action="myInfoUpdate.do"
 			onsubmit="return joincheck()">
             <div class="preview text-center">
-                <img src="${pageContext.request.contextPath}/resources/FileUpload/${mlist.member_photo }" style="width: 150px; height: 200px" alt="Avatar">
+                <img src="${pageContext.request.contextPath}/resources/FileUpload/${ mlist.member_photo }" style="width: 150px; height: 200px" alt="Avatar">
                 <div class="browse-button">
                     <i class="fa fa-pencil-alt"></i>
                     <input type="file" id="member_photo" name="uploadFile" maxlength="50">
