@@ -265,7 +265,7 @@ public class ResumeController {
 	@RequestMapping("habitDelete.do")
 	public String habitDelete(Model model, HttpServletRequest request, HabitVo hvo) throws Exception {
 		
-		String[] habitArray = request.getParameterValues("habit_id");
+		String[] habitArray = request.getParameterValues("habit_id_check");
 		
 		for(int i=0; i<habitArray.length; i++) {
 			HabitVo arrayHvo = new HabitVo();

@@ -10,7 +10,7 @@
 .visual-area {position:relative;width:100%; line-height:1.4; box-sizing:border-box;overflow:hidden; background-repeat:no-repeat; background-position:center center; background-size:cover}
 .visual-area:after{content:""; display:inline-block; position:absolute; top:0; left:0; width:100%; height:100%; background:url(/images/sub/mian_vis_dot.png) repeat}
 .visual-area .visual-area-in{ position:relative;display:table;width:100%; height:auto;  z-index:2}
-.visual-area .visual-area-txt {position:relative; display:none; height:522px; box-sizing:border-box;color:#50473f; padding:200px 0 0; }
+.visual-area .visual-area-txt {position:relative; display:none; height:322px; box-sizing:border-box;color:#134a8e; padding:60px 0 0; }
 .visual-area .visual-area-txt .tit { margin:0px 0 10px; font-size:46px; font-weight:600;}
 .visual-area .visual-area-txt p{font-weight:300;}
 .visual-area .visual-area-txt .en{position:absolute;  font-family: 'Arizonia', cursive; font-size:60px; margin:-170px 0 0 75px; color:rgba(255,255,255,0.3)}
@@ -28,10 +28,10 @@
 	.visual-area .visual-area-txt{box-sizing:border-box; padding-left:2.5%;}
 }
 @media all and (max-width:1000px) {
-	.visual-area .visual-area-txt{height:500px;}
+	.visual-area .visual-area-txt{height:300px;}
 }
 @media all and (max-width:640px) {
-	.visual-area .visual-area-txt{height:450px;}
+	.visual-area .visual-area-txt{height:250px;}
 }
 @media all and (max-width:550px) {
 	.visual-area{background-position:60%;}
@@ -48,8 +48,8 @@
 .sub_menu_tit{display:none;}
 .sub_menu_wrap{position:absolute; z-index:2; width:1200px; left:50%; margin-left:-600px; margin-top:-80px; }
 .sub_menu_wrap .sub_menu_box{display:none; width:100%; overflow:hidden; text-align:center; box-sizing:border-box;}
-.sub_menu_wrap .sub_menu_box li{box-sizing:border-box; float:left; width:160px; height:160px; line-height:160px; margin-right:10px; color:#FFF; font-weight:300; background:#978D82; transition-duration: 200ms;   transition-property: all;   transition-timing-function: ease;}
-.sub_menu_wrap .sub_menu_box li:hover{background:#726659; transition-duration: 200ms;   transition-property: all;   transition-timing-function: ease;}
+.sub_menu_wrap .sub_menu_box li{box-sizing:border-box; float:left; width:160px; height:160px; line-height:160px; margin-right:10px; color:#FFF; font-weight:300; background:#134a8e; transition-duration: 200ms;   transition-property: all;   transition-timing-function: ease;}
+.sub_menu_wrap .sub_menu_box li:hover{background:#0c2f59; transition-duration: 200ms;   transition-property: all;   transition-timing-function: ease;}
 .sub_menu_wrap .sub_menu_box li a{display:inline-block; width:100%; height:100%; color:inherit; font-size:inherit; font-weight:inherit;}
 
 .page01 .sub_menu_wrap .sub_menu_box li.m1,
@@ -57,7 +57,7 @@
 .page03 .sub_menu_wrap .sub_menu_box li.m3,
 .page04 .sub_menu_wrap .sub_menu_box li.m4,
 .page05 .sub_menu_wrap .sub_menu_box li.m5,
-.page06 .sub_menu_wrap .sub_menu_box li.m6{background:#726659; font-weight:400; color:#fff}
+.page06 .sub_menu_wrap .sub_menu_box li.m6{background:#134a8e; font-weight:400; color:#fff}
 
 .sub01 .sub_menu_box.sub01,
 .sub02 .sub_menu_box.sub02,
@@ -78,7 +78,7 @@
 	.page03 .sub_menu_wrap .sub_menu_box li.m3,
 	.page04 .sub_menu_wrap .sub_menu_box li.m4,
 	.page05 .sub_menu_wrap .sub_menu_box li.m5,
-	.page06 .sub_menu_wrap .sub_menu_box li.m6{background:#726659; font-weight:500; color:#fff}
+	.page06 .sub_menu_wrap .sub_menu_box li.m6{background:#134a8e; font-weight:500; color:#fff}
 	
 	/*.sub01 .sub_menu_box.sub01,
 	.sub02 .sub_menu_box.sub02,

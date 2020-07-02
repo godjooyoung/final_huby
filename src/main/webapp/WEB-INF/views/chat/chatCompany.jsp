@@ -3,10 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="co.huby.prj.Applistner"%>
-<br>
-<br>
-<br>
-<br>
 <script>
 	try {
 		Typekit.load({

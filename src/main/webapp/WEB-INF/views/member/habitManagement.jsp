@@ -52,7 +52,7 @@
     // instantiates the pie chart, passes in the data and
     // draws it.
     function drawChart(hid) {
-      
+      var habitid = $("#habit_id").val();
       // AJAX로 데이터
       var chartData = [];
       $.ajax({
@@ -62,14 +62,16 @@
 			type : "json",
 			success : function(data) { // [ {} ] --> [ [] ]로 바꾸는 형태
 			//ajax결과를 chart에 맞는 data 형태로 가공
-			chartData.push(['습관명','성공건수'])
 			for(i=0; i<data.length; i++) {
+				var chartData2 = [];
+				chartData2.push(['습관명','성공건수'])
 				var subarr = [data[i].habit_name, parseInt(data[i].cnt) ];
-				chartData.push(subarr);
+				chartData2.push(subarr);
+				chartData.push(chartData2);
 				}
 			}
       });
-
+console.log(chartData);
       // Set chart options
       var options = {'title':'습관을 잘 지키자',
                      'width':345,
@@ -79,15 +81,17 @@
       };
 
       // Instantiate and draw our chart, passing in some options.
-      var chart = new google.visualization.ColumnChart(document.querySelector('#chart_div'));
-      chart.draw(google.visualization.arrayToDataTable(chartData), options);
+      	 for(var i=0; i<chartData.length; i++){
+	      var chart = new google.visualization.BarChart(document.querySelector('#chart_div'+i));
+	      chart.draw(google.visualization.arrayToDataTable(chartData[i]), options);
+      	 }
     }
           
 
   </script>
 </head>
 <body>
-<div id="chart_div"></div>
+<!-- <div id="chart_div"></div> -->
 <form id="frm" name="frm" method="post">
 <div align="center">
 <button class="btn-primary" onclick="habitInsertPage()"> 습관 등록하기 </button>
@@ -95,16 +99,17 @@
 <h1>습관 관리</h1>
 <br>
 <c:forEach items="${ hlist }" var="habit">
-습관명:${ habit.habit_name }<input type="checkbox" id="habit_id" name="habit_id" value="${habit.habit_id}"><br>
+습관명:${ habit.habit_name }<input type="checkbox" id="habit_id_check" name="habit_id_check" value="${habit.habit_id}"><br>
 <fmt:formatDate value="${ habit.habit_start_date }" pattern="yyyy-MM-dd" var="habit_start_date" />
 시작시간:${ habit_start_date }<br>
 <fmt:formatDate value="${ habit.habit_log_date }" pattern="yyyy-MM-dd HH:mm:ss" var="habit_log_date" />
 최근체크시간:${ habit_log_date }<br>
 체크:${ habit.cnt }&nbsp;&nbsp;&nbsp;
+
 <button type="button" class="btn-primary" onclick="habitcheck(${habit.habit_id})"
 <c:if test="${ habit.checked == 1 }">disabled
-</c:if>
->인증</button><br>
+</c:if>>
+인증</button><br>
 <%-- <button type="button" class="btn-primary" onclick="habitDelete(${habit.habit_id})">습관 삭제</button> --%>
 <br><br><br>
 </c:forEach>
@@ -117,19 +122,21 @@
     <h3 align="center">습관 관리</h3>
   <hr/>
   <div class="row">
-    <c:forEach items="${ hlist }" var="habit">
+    <c:forEach items="${ hlist }" var="habit" varStatus="var">
     <div class="col-md-4" style="table-layout: fixed;">
 		<div class="card">
-			<img class="card-img-top" src="http://gdurl.com/ow9D" alt="Card image cap">
-			<!-- <div id="chart_div"></div> -->
-   				<h5 class="card-title">습관명</h5>
-   				<p class="card-text">시작시간</p>
-   				<p class="card-text">최근인증시간</p>
+			<!-- <img class="card-img-top" src="http://gdurl.com/ow9D" alt="Card image cap"> -->
+			<div id="chart_div${ var.index }"></div>
+   				<h5 class="card-title">습관명:${ habit.habit_name }</h5>
+   				<fmt:formatDate value="${ habit.habit_start_date }" pattern="yyyy-MM-dd" var="habit_start_date" />
+   				<p class="card-text">시작시간:${ habit_start_date }</p>
+   				<fmt:formatDate value="${ habit.habit_log_date }" pattern="yyyy-MM-dd HH:mm:ss" var="habit_log_date" />
+   				<p class="card-text">최근인증시간:${ habit_log_date }</p>
    				<a class="btn btn-primary" style="color: white">인증</a>
 		</div>
 	</div>
 	</c:forEach>
-  </div>104203 104178 104203
+  </div>
 </div>								
 </body>
 </html>

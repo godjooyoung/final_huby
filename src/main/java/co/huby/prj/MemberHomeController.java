@@ -92,8 +92,12 @@ public class MemberHomeController {
 		mapvo.put("member_id", id);
 		
 		int n = employmentService.applyInsert(mapvo);
-		if(n==1) {
-			mav.setViewName("redirect:applyManagement.do");
+		if(n==10) {
+			String id2 = (String) request.getSession().getAttribute("loginId");
+			mvo.setMember_id(id2);
+			List<Map> amapvo = employmentService.applyList(mvo);
+			model.addAttribute("alist", amapvo);
+			mav.setViewName("person/member/applyManagement");
 		}else {
 			mav.setViewName("redirect:applyinfoall.do");
 		}

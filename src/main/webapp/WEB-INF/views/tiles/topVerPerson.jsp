@@ -11,9 +11,9 @@
 	<div id="hd_gnb" class="gnb_pc">
 		<div class="hd_gnb_logo">
 			<a href="employmentMatch.do"> <img class="b"
-				src="${pageContext.request.contextPath}/resources/img/common/huby_icon_clear_01.png" />
+				src="${pageContext.request.contextPath}/resources/img/common/logo_horison.png" />
 				<img class="t"
-				src="${pageContext.request.contextPath}/resources/img/common/huby_icon_clear_01.png" />
+				src="${pageContext.request.contextPath}/resources/img/common/logo_horison.png" />
 			</a>
 		</div>
 		<div class="alarmimg">

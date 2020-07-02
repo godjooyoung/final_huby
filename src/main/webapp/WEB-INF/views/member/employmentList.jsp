@@ -214,9 +214,10 @@
 		alert(empid)
 		var emp_id = empid;
 		var formTag = "empfrmforapply"+emp_id;
-			//document.getElementById(formTag).action="applyinfoall.do";
-			//document.getElementById(formTag).method="post";
+			document.getElementById(formTag).action="applyinfoall.do";
+			document.getElementById(formTag).method="post";
 			document.getElementById(formTag).submit();
+			
 			
 		//applyinfoall.do'\">"
 	};//go_apply_page
