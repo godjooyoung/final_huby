@@ -64,24 +64,33 @@
 			//ajax결과를 chart에 맞는 data 형태로 가공
 			for(i=0; i<data.length; i++) {
 				var chartData2 = [];
-				chartData2.push(['습관명','성공건수'])
-				var subarr = [data[i].habit_name, parseInt(data[i].cnt) ];
+				chartData2.push(['습관명','%'])
+				var subarr = [data[i].habit_name, parseInt(data[i].per)];
+				console.log(data[i].per);
 				chartData2.push(subarr);
 				chartData.push(chartData2);
 				}
 			}
       });
-console.log(chartData);
-      // Set chart options
-      var options = {'title':'습관을 잘 지키자',
-                     'width':345,
-                     'height':300,
-                     'bar': {groupWidth: '50%'},
-                     'hAxis': { gridlines: { count: 5 } }               
-      };
+
 
       // Instantiate and draw our chart, passing in some options.
       	 for(var i=0; i<chartData.length; i++){
+      		 var fontColor = 'green'; 
+      		 console.log("@@@@@"+chartData[i][1][1]);
+      		 if(chartData[i][1][1] <= 50){
+      			 fontColor = '#e2431e';
+      		 }
+      		 // Set chart options
+      	      var options = {'title':'습관을 잘 지키자',
+      	                     'width':345,
+      	                     'height':300,
+      	                     'bar': {groupWidth: '30%'},
+      	                     'hAxis': { gridlines: { count: 0 }, minValue: 0,maxValue: 100  },
+      	                     'colors': [fontColor]
+      	      };
+      		 
+      		 
 	      var chart = new google.visualization.BarChart(document.querySelector('#chart_div'+i));
 	      chart.draw(google.visualization.arrayToDataTable(chartData[i]), options);
       	 }
@@ -94,11 +103,14 @@ console.log(chartData);
 <!-- <div id="chart_div"></div> -->
 <form id="frm" name="frm" method="post">
 <div align="center">
+<div>
 <button class="btn-primary" onclick="habitInsertPage()"> 습관 등록하기 </button>
 <button class="btn-primary" onclick="habitDelete()"> 습관 삭제하기 </button>
+</div><br>
 <h1>습관 관리</h1>
 <br>
-<c:forEach items="${ hlist }" var="habit">
+<!-- 기존 작업 시작 -->
+<%-- <c:forEach items="${ hlist }" var="habit">
 습관명:${ habit.habit_name }<input type="checkbox" id="habit_id_check" name="habit_id_check" value="${habit.habit_id}"><br>
 <fmt:formatDate value="${ habit.habit_start_date }" pattern="yyyy-MM-dd" var="habit_start_date" />
 시작시간:${ habit_start_date }<br>
@@ -110,16 +122,10 @@ console.log(chartData);
 <c:if test="${ habit.checked == 1 }">disabled
 </c:if>>
 인증</button><br>
-<%-- <button type="button" class="btn-primary" onclick="habitDelete(${habit.habit_id})">습관 삭제</button> --%>
 <br><br><br>
-</c:forEach>
-</div>
-<input type="hidden" id="habit_id" name="habit_id">
-<input type="hidden" id="habit_cnt" name="habit_cnt" value="${ habit.cnt }">
-</form>			
-
+</c:forEach> --%>
+<!-- 기존 작업 끝 -->
 <div class="container">
-    <h3 align="center">습관 관리</h3>
   <hr/>
   <div class="row">
     <c:forEach items="${ hlist }" var="habit" varStatus="var">
@@ -127,16 +133,26 @@ console.log(chartData);
 		<div class="card">
 			<!-- <img class="card-img-top" src="http://gdurl.com/ow9D" alt="Card image cap"> -->
 			<div id="chart_div${ var.index }"></div>
-   				<h5 class="card-title">습관명:${ habit.habit_name }</h5>
+   				<h5 class="card-title" style="font-weight: bolder;">습관명:${ habit.habit_name }<input type="checkbox" id="habit_id_check" name="habit_id_check" value="${habit.habit_id}"></h5>
    				<fmt:formatDate value="${ habit.habit_start_date }" pattern="yyyy-MM-dd" var="habit_start_date" />
-   				<p class="card-text">시작시간:${ habit_start_date }</p>
+   				<p class="card-text" style="font-weight: bolder;">시작시간:${ habit_start_date }</p>
    				<fmt:formatDate value="${ habit.habit_log_date }" pattern="yyyy-MM-dd HH:mm:ss" var="habit_log_date" />
-   				<p class="card-text">최근인증시간:${ habit_log_date }</p>
-   				<a class="btn btn-primary" style="color: white">인증</a>
+   				<p class="card-text" style="font-weight: bolder;">최근인증시간:${ habit_log_date }</p>
+   				<button type="button" class="btn btn-primary" style="color: white; font-weight: bolder;" onclick="habitcheck(${habit.habit_id})"
+					<c:if test="${ habit.checked == 1 }">disabled
+				</c:if>>인증</button>
 		</div>
 	</div>
 	</c:forEach>
   </div>
-</div>								
+</div>		
+
+
+</div>
+<input type="hidden" id="habit_id" name="habit_id">
+<input type="hidden" id="habit_cnt" name="habit_cnt" value="${ habit.cnt }">
+</form>			
+
+						
 </body>
 </html>

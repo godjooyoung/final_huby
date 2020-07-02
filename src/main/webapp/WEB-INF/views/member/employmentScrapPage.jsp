@@ -40,7 +40,7 @@
 							<div class="w3-modal-content">
 								<div class="w3-container">
 									<br> <span
-											onclick="document.getElementById('id01').style.display='none'"
+											onclick="modalOff(event,${empLikeList.EMPLOYMENT_LIKE_ID})"
 											class="w3-button w3-display-topright">&times;</span>
 											<p>메모를 작성하면 스크랩 관리가 쉬워집니다.</p>
 										<form action="write_memo_for_Scrap.do" id="memofrm" name="memofrm">
@@ -73,7 +73,7 @@
 								<div class="w3-modal-content">
 									<div class="w3-container">
 										<br> <span
-											onclick="document.getElementById('id02').style.display='none'"
+											onclick="modalOff(event,${empLikeList.EMPLOYMENT_LIKE_ID})"
 											class="w3-button w3-display-topright">&times;</span>
 										<p>메모를 수정하시나요?</p>
 										<form action="write_memo_for_Scrap.do" id="memofrm" name="memofrm">
@@ -100,6 +100,13 @@
 <input type="hidden" value="" name="sid" id="inputsid">
 </form>
 <script>
+function modalOff(e, sid){
+	var scrap_id = sid;
+	var modal_id = "modal"+ scrap_id;
+	document.getElementById(modal_id).style.display='none'
+	
+}
+
 function scrapDelete(e, sid){
 	var scrap_id = sid;
 	alert("취소버튼 정상 클리끗ㅎ");

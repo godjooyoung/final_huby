@@ -89,6 +89,7 @@
 				success:function(data){
 					if(data.data=="true"){
 					btn.closest('.div_videoInsert').remove();
+					$('#btnSend').attr('disabled',false);
 					alert("삭제되었습니다.");
 					}
 				},
