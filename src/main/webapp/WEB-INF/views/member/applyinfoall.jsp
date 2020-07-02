@@ -33,6 +33,7 @@
 	}
 </script>
 <body>
+
 <form id="frm" name="frm" method="post">
 	<br>
 	<br>
@@ -212,7 +213,7 @@
 							<!-- <b>소개</b> -->
 						</h5>
 						<h6 class="w3-text-teal">
-							<%-- <i class="fa fa-calendar fa-fw w3-margin-right"></i>${resume.resume_coment} --%>
+							<i class="fa fa-calendar fa-fw w3-margin-right"></i>${resume.resume_coment}
 						</h6>
 						<c:forEach items="${ clist }" var="career">
 						<p>${ career.COMPANY_NAME } | ${ career.CAREER_CONTENT } | { career.JOB } | ${ career.JOB_POSITION } | ${ career.START_DATE } | ${ career.END_DATE }</p>
@@ -238,7 +239,7 @@
 	<input type="hidden" id="employment_id" name="employment_id" value="${ mapvo.EMPLOYMENT_ID }">
 	<input type="hidden" id="resume_id" name="resume_id" value="${ rlist[0].RESUME_ID }">
 	<input type="hidden" id="video_id" name="video_id" value="${ vlist[0].VIDEO_ID }">
-	<input type="hidden" id="member_id" name="member_id" value="${sessionScope.personalVo.member_id}">
+	<%-- <input type="hidden" id="member_id" name="member_id" value="${sessionScope.personalVo.member_id}"> --%>
 </form>
 </body>
 </html>
