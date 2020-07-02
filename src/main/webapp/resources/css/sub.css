@@ -35,7 +35,7 @@
 }
 @media all and (max-width:550px) {
 	.visual-area{background-position:60%;}
-	.visual-area .visual-area-txt{height:400px; padding:180px 0 0;}
+	.visual-area .visual-area-txt{height:200px; padding:90px 0 0;}
 	.visual-area .visual-area-txt{padding-left:10px}
 	.visual-area .visual-area-txt .tit {font-size:40px; margin:0;}
 	.visual-area .visual-area-txt .en{font-size:45px; margin:-130px 0 0 75px;}

@@ -1097,8 +1097,7 @@ body {
 			disconnect();
 		});
 	});
-</script>
-<script>
+
 	function ajaxSelectChat(e, chat) {
 		
 		var i = $(e.target).closest(".wrap")
@@ -1112,6 +1111,7 @@ body {
 		message.member_id = frm.member_id.value;
 		message.company_id = frm.company_id.value;
 			
+var t = getTimeStamp();
 		
 		$.ajax({
 			url : "ajaxSelectChat.do",
@@ -1125,11 +1125,19 @@ body {
 				$('#name').empty();
 				$('#name').append(data.name.MEMBER_NAME);
 				for (var i = 0; i < data.result.length; i++) {
-					$('#message_content')
-							.append(data.result[i].message_content);
-				}
-				if (data.result.length == 0) {
-					$('#message_content').append("대화내용이 없슴니다,");
+					if (data.result[i].message_sender == '${loginId}') {
+					$('#message_content').append(
+							"<li class='replies'><img src='http://emilcarlsson.se/assets/harveyspecter.png' alt='' /><p>" + data.result[i].message_content + "</p><br><span style='float: right; font-size: 9px; text-align: right;'>" + t + "</span></li>");
+				}else{
+					$('#message_content').append(
+							"<li class='sent'><img src='http://emilcarlsson.se/assets/mikeross.png' alt='' /><p>" 
+							+ data.result[i].message_content + "</p><br><span style='float: left; font-size: 9px; text-align: left;'>" + t + "</span></li>");
+				}					
+				
+					}
+					if (data.result.length == 0) {
+						$('#message_content').append("대화내용이 없슴니다,");
+					
 				}
 			},
 			error : function(request, status, error) {
