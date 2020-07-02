@@ -537,7 +537,8 @@ p {
 								<img src="https://www.orioninfosolutions.com/assets/img/icon/Agricultural-activities.png" width="68px" alt="">
 							</div>
 							<div class="our-services-text">
-								<h4>제목<input type="text" id="resume_title" value="text"></h4>
+								<h4>제목</h4>
+								<input type="text" class="form-control input-md" id="resume_title" value="text">
 								<p>	희망직무<select class="form-control input-md" id="resume_hope_job">
 									<option value="">종목 선택</option>
 									<c:forEach items="${ codeList }" var="clist">
@@ -545,7 +546,36 @@ p {
 									</c:forEach>
 								</select></p>
 								<p><input type="hidden" id="resume_id" name="resume_id"></p>
-								<p>희망급여<input type="text" id="resume_hope_salary" value="text"></p>
+								<!-- <p>희망급여<input type="text" id="resume_hope_salary" value="text"></p> -->
+								<p>희망급여
+								<select class="form-control input-md" id="resume_hope_salary" required="required">
+					      			<option value="" disabled selected>선택</option>
+									<option value="회사내규">회사 내규에 따름</option>
+									<option value="1,400만원">1,400만원 이하</option>
+									<option value="1,400~1,600만원">1,400~1,600만 원</option>
+									<option value="1,600~1,800만원">1,600~1,800만원</option>
+									<option value="1,800~2,000만원">1,800~2,000만원</option>
+									<option value="2,000~2,200만원">2,000~2,200만원</option>
+									<option value="2,200~2,400만원">2,200~2,400만원</option>
+									<option value="2,400~2,600만원">2,400~2,600만원</option>
+									<option value="2,600~2,800만원">2,600~2,800만원</option>
+									<option value="2,800~3,000만원">2,800~3,000만원</option>
+									<option value="3,000~3,200만원">3,000~3,200만원</option>
+									<option value="3,200~3,400만원">3,200~3,400만원</option>
+									<option value="3,400~3,600만원">3,400~3,600만원</option>
+									<option value="3,600~3,800만원">3,600~3,800만원</option>
+									<option value="3,800~4,000만원">3,800~4,000만원</option>
+									<option value="4,000~5,000만원">4,000~5,000만원</option>
+									<option value="5,000~6,000만원">5,000~6,000만원</option>
+									<option value="6,000~7,000만원">6,000~7,000만원</option>
+									<option value="7,000~8,000만원">7,000~8,000만원</option>
+									<option value="8,000~9,000만원">8,000~9,000만원</option>
+									<option value="9,000~1억원">9,000~1억원</option>
+								</select>
+								</p>
+								<script>
+									$("#resume_hope_salary").val("${param.resume_hope_salary}");
+								</script>
 								<p>희망지역<select class="form-control input-md" id="resume_hope_location">
 									  		<option value="">지역 선택</option>
 									  		<option value="서울">서울</option>
@@ -567,13 +597,13 @@ p {
 									  		<option value="제주">제주</option>
 									  		<option value="강원.">강원</option>
 									  		<option value="전국">전국</option>
-									  	</select><br></p>
-									<p>최종학력<input type="text" id="resume_final_education" value="text"></p>
-									<p>한마디<input type="text" id="resume_coment" value="text"></p>
-									<div align="center">
+									  	</select></p>
+									<p>최종학력</p>
+									<input type="text" class="form-control input-md" id="resume_final_education" value="text">
+									<p>한마디</p>
+									<input type="text" class="form-control input-md" id="resume_coment" value="text">
 									<button type="button" class="btn-primary" onclick="ajaxResumeUpdate()">수정하기</button>
 									<button type="button" class="btn-primary" id="ajaxResumeCancleBtn" onclick="ajaxResumeCancle()">취소</button>
-									</div>
 							</div>
 						</div>
 					</div>
@@ -627,10 +657,14 @@ p {
 							</div>
 							<div class="our-services-text">
 								<p><input id="career_id" type="hidden"></p>
-								<p>시작시간:<input id="start_date" type="date"></p>
-								<p>종료기간:<input id="end_date" type="date"></p>
-								<p>회사명:<input id="company_name" type="text"></p>
-								<p>내용:<input id="career_content" type="text"></p>
+								<p>시작시간</p>
+								<input class="form-control input-md" id="start_date" type="date">
+								<p>종료기간</p>
+								<input class="form-control input-md" id="end_date" type="date">
+								<p>회사명</p>
+								<input class="form-control input-md" id="company_name" type="text">
+								<p>내용</p>
+								<input class="form-control input-md" id="career_content" type="text">
 								<p>직무:<select class="form-control input-md" id="job">
 									<option value="">종목 선택</option>
 									<c:forEach items="${ codeList }" var="clist">
@@ -640,8 +674,18 @@ p {
 								<script>
 									$("#job").val("${param.job}");
 								</script>
-								<p>직급:<input id="job_position" type="text"></p>
-								
+								<p>직급</p>
+								<select class="form-control input-md" id="job_position" required="required">
+					  				<option value="" disabled selected>선택</option>
+					  				<option value="사원">사원급</option>
+					  				<option value="대리">대리급</option>
+					  				<option value="과장">과장급</option>
+					  				<option value="차장">차장급</option>
+					  				<option value="팀장">팀장급</option>
+								</select>
+								<script>
+									$("#job_position").val("${param.job_position}");
+								</script>
 							</div>
 							<button type="button" class="btn-primary" id="ajaxCareerSaveBtn" onclick="ajaxCareerSave()">커리어 저장하기</button>
 							<button type="button" class="btn-primary" id="ajaxCareerCancleBtn" onclick="ajaxCareerCancle()">취소</button>
@@ -671,6 +715,7 @@ p {
 							<div class="our-services-text">
 								<h4 id="skill_name_${ skill.SKILL_ID }">${ skill.SKILL_NAME }<input type="checkbox" id="skill_id" name="skill_id" value="${ skill.SKILL_ID }"></h4>
 								<p id="skill_level_${ skill.SKILL_ID }">${ skill.SKILL_LEVEL }</p>
+								
 							</div>
 							<%-- <button type="button" class="btn-primary" onclick="skillDelete(${ skill.SKILL_ID })">스킬 삭제</button> --%>
 							<button type="button" class="btn-primary" onclick="ajaxSkillUpdatePage(window.event, ${ skill.SKILL_ID })">스킬 수정</button>
@@ -695,7 +740,8 @@ p {
 							<div class="our-services-text">
 								<!-- <p>스킬번호:<input id="skill_id" type="text" readonly="readonly"></p> -->
 								<p><input id="skill_id" type="hidden"></p>
-								<p>스킬명:<input id="skill_name" type="text"></p>
+								<p>스킬명</p>
+								<input class="form-control input-md" id="skill_name" type="text">
 								<p>스킬레벨:<select class="form-control input-md" id="skill_level" name="skill_level" required="required" onchange="typecheck(this.value)">
 									  		<option value="10">10</option>
 									  		<option value="20">20</option>

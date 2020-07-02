@@ -45,7 +45,30 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="email">희망급여</label>  
           <div class="col-md-4">
-          <input id="hope_salary" name="hope_salary" type="text" class="form-control input-md" required="required">
+          <select class="form-control input-md" id="hope_salary" name="hope_salary" required="required">
+   			<option value="" disabled selected>선택</option>
+			<option value="회사내규">회사 내규에 따름</option>
+			<option value="1,400만원">1,400만원 이하</option>
+			<option value="1,400~1,600만원">1,400~1,600만 원</option>
+			<option value="1,600~1,800만원">1,600~1,800만원</option>
+			<option value="1,800~2,000만원">1,800~2,000만원</option>
+			<option value="2,000~2,200만원">2,000~2,200만원</option>
+			<option value="2,200~2,400만원">2,200~2,400만원</option>
+			<option value="2,400~2,600만원">2,400~2,600만원</option>
+			<option value="2,600~2,800만원">2,600~2,800만원</option>
+			<option value="2,800~3,000만원">2,800~3,000만원</option>
+			<option value="3,000~3,200만원">3,000~3,200만원</option>
+			<option value="3,200~3,400만원">3,200~3,400만원</option>
+			<option value="3,400~3,600만원">3,400~3,600만원</option>
+			<option value="3,600~3,800만원">3,600~3,800만원</option>
+			<option value="3,800~4,000만원">3,800~4,000만원</option>
+			<option value="4,000~5,000만원">4,000~5,000만원</option>
+			<option value="5,000~6,000만원">5,000~6,000만원</option>
+			<option value="6,000~7,000만원">6,000~7,000만원</option>
+			<option value="7,000~8,000만원">7,000~8,000만원</option>
+			<option value="8,000~9,000만원">8,000~9,000만원</option>
+			<option value="9,000~1억원">9,000~1억원</option>
+		</select>
           <span class="help-block"></span>  
           </div>
         </div>
@@ -54,7 +77,28 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="password">희망지역</label>
           <div class="col-md-4">
-            <input id="hope_location" name="hope_location" type="text" class="form-control input-md" required="required">
+            <select class="form-control input-md" id="hope_location" name="hope_location" required="required">
+		  		<option value="">지역 선택</option>
+		  		<option value="서울">서울</option>
+		  		<option value="인천">인천</option>
+		  		<option value="경기">경기</option>
+		  		<option value="부산">부산</option>
+		  		<option value="대구">대구</option>
+		  		<option value="광주">광주</option>
+		  		<option value="대전">대전</option>
+		  		<option value="울산">울산</option>
+		  		<option value="세종">세종</option>
+		  		<option value="강원">강원</option>
+		  		<option value="경남">경남</option>
+		  		<option value="경북">경북</option>
+		  		<option value="전남">전남</option>
+		  		<option value="전북">전북</option>
+		  		<option value="충남">충남</option>
+		  		<option value="충북">충북</option>
+		  		<option value="제주">제주</option>
+		  		<option value="강원.">강원</option>
+		  		<option value="전국">전국</option>
+		  	</select>
             <span class="help-block"></span>  
           </div>
         </div>

@@ -428,7 +428,6 @@
             <div class="form-group">
                 <label>생일</label>
                 <fmt:formatDate value="${ mlist.member_birth }"
-
 							pattern="yyyy-MM-dd" var="member_birth" />
 						<input class="form-control input-md" type="text" id="member_birth"
 							name="" required="required" readonly="readonly"

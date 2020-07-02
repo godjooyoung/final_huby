@@ -9,6 +9,16 @@ public class VideoVo {
 	private String company_id;
 	private String member_id;
 	private String video_location;
+	private String job_name;
+	
+
+	public String getJob_name() {
+		return job_name;
+	}
+
+	public void setJob_name(String job_name) {
+		this.job_name = job_name;
+	}
 
 	public String getVideo_location() {
 		return video_location;

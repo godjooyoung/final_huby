@@ -42,7 +42,7 @@
 		resume_id, member_id, resume_title, hope_job, hope_salary,
 		hope_location,
 		final_education, select_resume, select_public,
-		resume_coment
+		resume_coment, (select code_name from code c where c.code_id = hope_job) as job_name
 		from resume
 		where member_id
 		= #{member_id}
@@ -51,7 +51,7 @@
 	<select id="videoAll" resultType="map" parameterType="map">
 		select
 		video_id, video_contents, video_img, hashtag, company_id, member_id,
-		video_location
+		video_location, (select code_name from code c where c.code_id = hashtag) as job_name
 		from video
 		where member_id = #{member_id}
 	</select>
@@ -73,9 +73,10 @@
 	</select>
 	
 	<select id="habitAll" resultType="map" parameterType="map">
-		select habit_id, habit_name, habit_start_date, HABIT_LOG_DATE, member_id,cnt
+		select habit_id, habit_name, habit_start_date, habit_log_date, member_id, cnt, case when trunc(habit_log_date) = trunc(sysdate) then 1 else 0 end as checked, round(cnt/CEIL(trunc(sysdate)+1-trunc(habit_start_date))*100) as per
 		from habit
 		where member_id = #{member_id}
+		order by habit_start_date
 	</select>
 
 	<select id="employmentList" resultType="map" parameterType="map">

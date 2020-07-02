@@ -62,7 +62,14 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="rpassword">업무직책</label>
           <div class="col-md-4">
-            <input id="job_position" name="job_position" type="text" class="form-control input-md" required="required">
+            <select class="form-control input-md" input id="job_position" name="job_position" required="required">
+  				<option value="" disabled selected>선택</option>
+  				<option value="사원">사원급</option>
+  				<option value="대리">대리급</option>
+  				<option value="과장">과장급</option>
+  				<option value="차장">차장급</option>
+  				<option value="팀장">팀장급</option>
+			</select>
             <span class="help-block"></span>  
           </div>
         </div>

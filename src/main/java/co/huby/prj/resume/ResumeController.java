@@ -90,7 +90,19 @@ public class ResumeController {
 		int n = resumeService.resumeInsert(vo);
 		
 		if(n == 1) {
-			mav.setViewName("redirect:resumemanagement.do");
+			String id = (String) request.getSession().getAttribute("loginId");
+			mvo.setMember_id(id);
+			List<ResumeVo> checkRvo = resumeService.SelectAll(mvo);
+			List<Map> svo = employmentService.skillsAll(mvo);
+			List<CareerVo> cvo = memberService.careerAll(mvo);
+			List<CodeVo> codeList = codeService.SelectAll();
+			
+			model.addAttribute("rlist" ,checkRvo);
+			model.addAttribute("slist", svo);
+			model.addAttribute("clist", cvo);
+			model.addAttribute("codeList", codeList);
+			
+			mav.setViewName("person/resume/resumemanagement");
 		}else {
 			mav.setViewName("redirect:resumemanagement.do");
 		}

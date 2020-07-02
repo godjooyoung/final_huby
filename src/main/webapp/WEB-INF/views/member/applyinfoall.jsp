@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,32 +53,17 @@
 							src="download.do?name=${applyman.video_img}"
 							onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
 							style="width: 100%" alt="self-video">  -->	
-						<video width="100%" controls poster="download.do?name=${vlist[0].VIDEO_IMG}" playsinline preload="none">
- 						<source src="download.do?name=${vlist[0].VIDEO_LOCATION }" type="video/mp4">영상이 없습니다.
+						<video id="v_img" width="100%" controls poster="download.do?name=${vlist[0].VIDEO_IMG}" playsinline preload="none">
  						</video>
+ 						<source id="v_location" src="download.do?name=${vlist[0].VIDEO_LOCATION }" type="video/mp4">
 						<div class="w3-display-topleft w3-container w3-text-black">
 							<br>
 							<h2><b><u>${vlist[0].MEMBER_NAME}</u> 지원자</b></h2>
-							<h3 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:340px;"><b>#${applyman.code_name}</b></h3>
-							<h3><b>${vlist[0].VIDEO_CONTENTS}</b></h3>
+							<p id="v_hashtag">${vlist[0].JOB_NAME}</p>
+							<p id="v_content"><b>${vlist[0].VIDEO_CONTENTS}</b></h3>
 						</div>
 					</div>
-					<%-- <div class="w3-display-container">
-					<c:if test="${ not empty vlist[0].VIDEO_IMG }">
-						<video width="100%" controls poster="download.do?name=${vlist[0].VIDEO_IMG }" playsinline preload="none">
-						<source src="download.do?name=${vlist[0].VIDEO_LOCATION }" type="video/mp4">영상이 없습니다.
- 						</video>
-					</c:if>
-					<c:if test="${ empty vlist[0].VIDEO_IMG }">
-						<img src="${pageContext.request.contextPath}/resources/img/employment01.JPG" style="width: 100%" alt="Avatar">
-					</c:if>
-						<p id="v_content">${video.VIDEO_CONTENTS}</p>
-						<div class="w3-display-bottomleft w3-container w3-text-black">
-							<h2>${member.member_name}</h2>
-						</div>
-					</div> --%>
 					<div class="w3-container">
-						<p id="v_hashtag">${video.HASHTAG}</p>
 						<p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_name}</p>
 						<p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_addr}</p>
 						<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_email}</p>
@@ -89,7 +75,8 @@
 						</c:if>
 						<%-- <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_gender}</p> --%>
 						<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_tel}</p>
-						<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>${sessionScope.personalVo.member_birth}</p>
+						<fmt:formatDate value="${sessionScope.personalVo.member_birth}" pattern="yyyy-MM-dd" var="member_birth" />
+						<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>${member_birth}</p>
 						<hr>
 					</div>
 				</div>
@@ -117,7 +104,7 @@
 						<h5 class="w3-opacity">
 							<b>희망직무</b>
 						</h5>
-						<p id="r_hope">${rlist[0].HOPE_JOB}</p>
+						<p id="r_hope">${rlist[0].JOB_NAME}</p>
 						<hr>
 					</div>
 					<div class="w3-container">
@@ -177,10 +164,15 @@
 							<%-- <i class="fa fa-calendar fa-fw w3-margin-right"></i>${resume.resume_coment} --%>
 						</h6>
 						<c:forEach items="${ slist }" var="skill">
-						<p>${ skill.SKILL_NAME } | ${ skill.SKILL_LEVEL }</p>
+						<p>${ skill.SKILL_NAME }</p>
+						<div clas="w3-light-grey w3-round-large">
+						<div class='w3-container w3-blue w3-center w3-round-large w3-tiny' style='width:${ skill.SKILL_LEVEL }%'>
+						${ skill.SKILL_LEVEL } lv
+						</div>
+						</div>
 						</c:forEach>
 						<hr>
-					</div>
+					</div><br>
 
 
 				</div>
@@ -197,7 +189,8 @@
 							<%-- <i class="fa fa-calendar fa-fw w3-margin-right"></i>${resume.resume_coment} --%>
 						</h6>
 						<c:forEach items="${ hlist }" var="habit">
-						<p>${ habit.HABIT_NAME} | ${habit.HABIT_START_DATE } | ${ habit.HABIT_COUNT }</p>
+						<fmt:formatDate value="${habit.HABIT_START_DATE }" pattern="yyyy-MM-dd" var="habit_date" />
+						<p>습관명:${ habit.HABIT_NAME} | 시작일:${ habit_date } | 성공률${ habit.PER }%</p>
 						</c:forEach>
 						<hr>
 					</div>
@@ -216,7 +209,9 @@
 							<i class="fa fa-calendar fa-fw w3-margin-right"></i>${resume.resume_coment}
 						</h6>
 						<c:forEach items="${ clist }" var="career">
-						<p>${ career.COMPANY_NAME } | ${ career.CAREER_CONTENT } | { career.JOB } | ${ career.JOB_POSITION } | ${ career.START_DATE } | ${ career.END_DATE }</p>
+						<fmt:formatDate value="${ career.START_DATE }" pattern="yyyy-MM-dd" var="start_date" />
+						<fmt:formatDate value="${ career.END_DATE }" pattern="yyyy-MM-dd" var="end_date" />
+						<p>회사명:${ career.COMPANY_NAME } | 직무:{ career.JOB } | 직무내용:${ career.CAREER_CONTENT } | 직책:${ career.JOB_POSITION } | 기간:${ start_date }~${ end_date }</p>
 						</c:forEach>
 						<hr>
 					</div>

@@ -29,18 +29,18 @@
 								<%-- <img class="img-fluid"
 									src="${pageContext.request.contextPath}/resources/FileUpload/Chrysanthemum.jpg"
 									alt="Card image cap"> --%>
-								<video controls autoplay loop>
-								<source src="${pageContext.request.contextPath}/resources/FileUpload/Wildlife.wmv" type="video/mp4">
-								</video>
+								<video id="v_img" width="100%" controls poster="download.do?name=${video.VIDEO_IMG}" playsinline preload="none">
+		 						</video>
+		 						<source id="v_location" src="download.do?name=${video.VIDEO_LOCATION }" type="video/mp4">
 								<!--Card content-->
 								<div class="card-body" id="checkvideo">
 									<!--Title-->
-									<h4 class="card-title" id="v_hashtag">${video.HASHTAG}</h4>
+									<h4 class="card-title" id="v_hashtag">${video.JOB_NAME}</h4>
 									<input type="hidden" id="video_id" name="video_id" value="${video.VIDEO_ID}">
 									<!--Text-->
 									<p class="card-text" id="v_content">${video.VIDEO_CONTENTS}</p>
-									<p class="card-text" id="v_img">${video.VIDEO_IMG}</p>
-									<p class="card-text" id="v_location">${video.VIDEO_LOCATION}</p>
+									<%-- <p class="card-text" id="v_img">${video.VIDEO_IMG}</p> --%>
+									<%-- <p class="card-text" id="v_location">${video.VIDEO_LOCATION}</p> --%>
 									<input type="radio" id="vselect" name="vselect" value="vselect" checked="checked">&nbsp;&nbsp; Pick
 								</div>
 							</div>
@@ -72,7 +72,7 @@
 									<h4 class="card-title" id="r_title">${resume.RESUME_TITLE}</h4>
 									<input type="hidden" id="resume_id" name="resume_id" value="${resume.RESUME_ID}">
 									<!--Text-->
-									<p class="card-text" id="r_hope">${resume.HOPE_JOB}</p>
+									<p class="card-text" id="r_hope">${resume.JOB_NAME}</p>
 									<p class="card-text" id="r_salary">${resume.HOPE_SALARY}</p>
 									<p class="card-text" id="r_location">${resume.HOPE_LOCATION}</p>
 									<p class="card-text" id="r_education">${resume.FINAL_EDUCATION}</p>
@@ -99,9 +99,9 @@
 		var vchecked = $(document).find("[name='vselect']:checked").closest("#checkvideo");
 
 		opener.document.getElementById("v_hashtag").innerHTML = vchecked.find("#v_hashtag").html();
-		/* opener.document.getElementById("v_content").innerHTML = vchecked.find("#v_content").html(); */
-		/* opener.document.getElementById("v_img").innerHTML = vchecked.find("#v_img").html();
-		opener.document.getElementById("v_location").innerHTML = vchecked.find("#v_location").html(); */
+		opener.document.getElementById("v_content").innerHTML = vchecked.find("#v_content").html();
+		opener.document.getElementById("v_img").innerHTML = vchecked.find("#v_img").html();
+		opener.document.getElementById("v_location").innerHTML = vchecked.find("#v_location").html();
 
 		opener.document.getElementById("r_title").innerHTML = rchecked.find("#r_title").html(); 
 		opener.document.getElementById("r_hope").innerHTML = rchecked.find("#r_hope").html();

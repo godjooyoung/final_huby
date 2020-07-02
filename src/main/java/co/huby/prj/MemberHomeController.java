@@ -58,11 +58,13 @@ public class MemberHomeController {
 		mvo.setMember_id(id);
 		mapvo.put("employment_id", employment_id);
 
+		List<CodeVo> codeList = codeService.SelectAll();
 		List<Map> lmapvo = employmentService.resumeAll(mvo);
 		List<Map> vmapvo = employmentService.videoAll(mvo);
 		List<Map> smapvo = employmentService.skillsAll(mvo);
 		List<Map> cmapvo = employmentService.careerAll(mvo);
 		List<Map> hmapvo = employmentService.habitAll(mvo);
+		
 
 		model.addAttribute("rlist", lmapvo);
 		model.addAttribute("vlist", vmapvo);
@@ -70,6 +72,7 @@ public class MemberHomeController {
 		model.addAttribute("clist", cmapvo);
 		model.addAttribute("hlist", hmapvo);
 		model.addAttribute("mapvo", mapvo);
+		model.addAttribute("codelist", codeList);
 
 		return "person/member/applyinfoall";
 	}
