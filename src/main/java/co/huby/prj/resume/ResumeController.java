@@ -66,6 +66,7 @@ public class ResumeController {
 		List<CodeVo> codeList = codeService.SelectAll();
 		
 		model.addAttribute("rlist" ,checkRvo);
+		model.addAttribute("rlistCnt" ,checkRvo.size());
 		model.addAttribute("slist", svo);
 		model.addAttribute("clist", cvo);
 		model.addAttribute("codeList", codeList);
@@ -107,6 +108,17 @@ public class ResumeController {
 			mav.setViewName("redirect:resumemanagement.do");
 		}
 		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/resumeInsertAjax.do")
+	public int resumeInsertAjax(Model model, HttpServletRequest request, ResumeVo rvo) throws Exception {
+		String memberid = (String) request.getSession().getAttribute("loginId");
+		rvo.setMember_id(memberid);
+		
+		int n = resumeService.resumeInsert(rvo);
+		
+		return n;
 	}
 	
 	@RequestMapping("resumedelete.do")
@@ -196,19 +208,14 @@ public class ResumeController {
 		return n;
 	}
 	
+//	이력서 관리 페이지 -> 스킬 이력서 Ajax 등록 처리
 	@ResponseBody
-	@RequestMapping("ajaxSkillInsert.do")
-	public Map ajaxSkillInsert(Model model, HttpServletRequest request, SkillsVo svo) throws Exception {
+	@RequestMapping("skillInsertAjax.do")
+	public int skillInsertAjax(Model model, HttpServletRequest request, SkillsVo svo) throws Exception {
 		String id = (String) request.getSession().getAttribute("loginId");
 		svo.setMember_id(id);
-		Map map = new HashMap<String, Object>();
 		int n = memberService.skillInsert(svo);
-		
-		int skillId = memberService.selectSkillId();
-		
-		map.put("skillId",skillId);
-		map.put("result", n);
-		return map;
+		return n;
 	}
 	
 	@ResponseBody

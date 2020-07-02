@@ -1,16 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="co.huby.prj.admin.mapper.AdminMap">
-	<select id="memberSelectAll" resultType="MemberVo">
-		select * from member
+	<select id="memberSelectAll" resultType="MemberVo" parameterType="MemberVo">
+		select rn, b.*
+		from
+			(
+				select rownum rn, a.*
+				from
+					(
+					select member_id,
+							member_pw,
+							member_name,
+							member_birth,
+							member_addr,
+							member_tel,
+							member_email,
+							member_gender,
+							member_date,
+							member_photo	
+					from member
+				) a
+			) b
+		where rn between
+		#{first} and #{last}
+		order by member_name
 	</select>
 	
-	<select id="companySelectAll" resultType="CompanyVo">
-		select * from company
+	<select id="companySelectAll" resultType="CompanyVo" parameterType="CompanyVo">
+		select rn, b.*
+		from
+		    (
+		        select rownum rn, a.*
+		        from
+		            (
+		                select
+		                    company_id,
+		                    regist_number,
+		                    company_name,
+		                    company_pw,
+		                    company_tel,
+		                    company_email,
+		                    ceo_name,
+		                    business_type,
+		                    company_addr,
+		                    business_category,
+		                    company_birth,
+		                    company_sales,
+		                    homepage,
+		                    company_date,
+		                    company_photo
+		                from company
+		            ) a
+		    ) b
+		where rn between #{first} and #{last}
+		order by company_name
 	</select>
 	
-	<select id="noticeSelectAll" resultType="NoticeVo">
-		select * from notice
+	<select id="noticeSelectAll" resultType="NoticeVo" parameterType="NoticeVo">
+		select
+		    rn,
+		    b.*
+		from
+		    (
+		        select
+		            rownum rn,
+		            a.*
+		        from
+		            (
+		                select
+		                    notice_id,
+		                    notice_title,
+		                    notice_date,
+		                    notice_contents,
+		                    admin_id
+		                from
+		                    notice
+		            ) a
+		    ) b
+		where
+		    rn between #{first} and #{last}
+		order by notice_date
 	</select>
 	
 	<insert id="noticeInsert" parameterType="NoticeVo">
@@ -46,4 +115,16 @@
 		delete from notice
 		where notice_id = #{notice_id}
 	</delete>
+	
+	<select id="memberCnt" resultType="int">
+		select COUNT(*) from member
+	</select>
+	
+	<select id="CompanyCnt" resultType="int">
+		select COUNT(*) from company
+	</select>
+	
+	<select id="noticeCnt" resultType="int">
+		select COUNT(*) from notice
+	</select>
 </mapper>

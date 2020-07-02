@@ -161,6 +161,13 @@ p {
 	}
 	
 	 function resumeView(){
+		var resumeCnt = $('input[name="resume_id"]').length-1;
+
+		if(resumeCnt >= 3){
+			alert("이력서는 최대 3개까지 등록 가능합니다.");
+			return;
+		}
+		
 		var url = "resumePreview.do";
 		var preview = window.open(url,"fullscreen", "scrollbars=1");
 	}
@@ -354,64 +361,6 @@ p {
 		    }
 		  });
 	}
-	 
-	 function ajaxSkillInsertPage(){
-		 if($("#ajaxSkill2").css("display") == "none") {
-		 		$("#ajaxSkill1").attr("style","float:left;");
-		 		$("#ajaxSkill2").show();
-		 		$("#skill_id").val("");
-		 		$("#skill_name").val("");
-		 		$("#skill_level").val("");
-		 		$("#ajaxSkillSaveBtn").hide();
-		 		$("#ajaxSkillInsertBtn").show();
-		 }else{
-			 $("#ajaxSkill1").attr("style","");
-			 $("#ajaxSkill2").hide();
-		 }
-	 }
-	 
-	 function ajaxSkillInsert(){
-		 var skill_name = $("#skill_name").val();
-		 var skill_level = $("#skill_level").val();
-		 
-		 $.ajax({
-			    url: "ajaxSkillInsert.do",
-			    type: "post",
-			    dataType: "json",
-			    data: {
-			    	'skill_name':skill_name,
-			    	'skill_level':skill_level
-			    },
-			    success: function(data){
-			    	if(data.result==1){
-			    		alert("정상적으로 스킬이 등록 되었습니다.")
-			    	}else{
-			    		alert("ERROR 스킬이 등록되지 않았습니다.")
-			    	}
-			    	
-			    	var skillId = data.skillId;
-			    	
-			    	var skillHtml = '';
-			    	skillHtml += '<td>';
-			    	skillHtml +=	'<div id="skill_id_'+skillId+'">'+skillId+'</div>';
-			    	skillHtml +=	'<div id="skill_name_'+skillId+'">'+skill_name+'</div>';
-			    	skillHtml +=	'<div id="skill_level_'+skillId+'">'+skill_level+'</div>';
-			    	skillHtml +=	'<button type="button" class="btn-primary" onclick="skillDelete('+skillId+')">스킬 삭제</button><br>';
-			    	skillHtml +=	'<button type="button" class="btn-primary" onclick="ajaxSkillUpdatePage('+skillId+')">스킬 수정</button><br>';
-			    	skillHtml += '</td>';
-			    	
-			    	$("#tr_skill").append(skillHtml);
-			    	
-			    	$("#ajaxSkill1").attr("style","");
-			    	$("#ajaxSkill2").hide();
-			    	
-			    },
-			    error: function (request, status, error){
-			    }
-			  });
-	 }
-	 
-	 
 	 
 	 function ajaxCareerUpdatePage(e,cid){
 		 if($("#ajaxCareer2").css("display") == "none"){

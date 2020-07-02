@@ -139,14 +139,40 @@
         	}
         	
         	function resumeInsertGo(){
-        	/* opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#resume_title").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#hope_job").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#hope_salary").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#hope_location").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#final_education").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#resume_coment").html(); */
-        	$("#frm").attr("action","resumeinsert.do");
-        	document.frm.submit();
+        	var resume_title = $("#resume_title").val();
+        	var hope_job = $("#hope_job").val();
+        	var hope_salary = $("#hope_salary").val();
+        	var hope_location = $("#hope_location").val();
+        	var final_education = $("#final_education").val();
+        	var resume_coment = $("#resume_coment").val();
+        	
+        	/* $("#frm").attr("action","resumeinsert.do");
+        	document.frm.submit(); */
+        	
+        	$.ajax({
+    		    url: "resumeInsertAjax.do",
+    		    type: "post",
+    		    dataType: "json",
+    		    async: false,
+    		    data: {
+    		    	'resume_title':resume_title,
+    		    	'hope_job':hope_job,
+    		    	'hope_salary':hope_salary,
+    		    	'hope_location':hope_location,
+    		    	'final_education':final_education,
+    		    	'resume_coment':resume_coment
+    		    },
+    		    success: function(data){
+    		    	if(data==1){
+    		    		opener.parent.location.reload();
+    		    	}else{
+    		    		alert("이력서 등록 에러. 관리자 문의.")
+    		    	}
+    		    },
+    		    error: function (request, status, error){
+    		    }
+    		  });
+
         	
     		window.close();
         	}

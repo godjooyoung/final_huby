@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import co.huby.prj.board.service.QuestionService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.CompanyVo;
 import co.huby.prj.vo.NoticeVo;
+import co.huby.prj.vo.Paging;
 import co.huby.prj.vo.QuestionVo;
 
 @Controller
@@ -35,8 +38,22 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/noticePage.do")
-	public String noticePage(Model model) {
-		List<NoticeVo> checkVo = adminService.noticeSelectAll();
+	public String noticePage(Model model,NoticeVo nvo, HttpServletRequest request) {
+		Paging paging = new Paging();
+		paging.setPageUnit(10);
+		String page = request.getParameter("page");
+		int p = 1;
+		if (page != null)
+			p = Integer.parseInt(page);
+		paging.setPage(p);
+		nvo.setFirst(paging.getFirst());
+		nvo.setLast(paging.getLast());
+		int count = adminService.noticeCnt();
+		
+		paging.setTotalRecord(count);
+		
+		List<NoticeVo> checkVo = adminService.noticeSelectAll(nvo);
+		model.addAttribute("paging", paging);
 		model.addAttribute("nlist",checkVo);
 		return "no/admin/noticepage";
 	}
@@ -86,15 +103,43 @@ public class AdminController {
 	}
 	
 	@RequestMapping("personalmemberall.do")
-	public String personalmemberall(Model model) {
-		List<MemberVo> checkVo = adminService.memberSelectAll();
+	public String personalmemberall(Model model, MemberVo mvo, HttpServletRequest request) {
+		Paging paging = new Paging();
+		paging.setPageUnit(10);
+		String page = request.getParameter("page");
+		int p = 1;
+		if (page != null)
+			p = Integer.parseInt(page);
+		paging.setPage(p);
+		mvo.setFirst(paging.getFirst());
+		mvo.setLast(paging.getLast());
+		int count = adminService.memberCnt();
+		
+		paging.setTotalRecord(count);
+		
+		List<MemberVo> checkVo = adminService.memberSelectAll(mvo);
+		model.addAttribute("paging", paging);
 		model.addAttribute("mlist", checkVo);
 		return "no/admin/personalmemberall";
 	}
 	
 	@RequestMapping("companymemberall.do")
-	public String companymemberall(Model model) {
-		List<CompanyVo> checkVo = adminService.companySelectAll();
+	public String companymemberall(Model model, CompanyVo cvo, HttpServletRequest request) {
+		Paging paging = new Paging();
+		paging.setPageUnit(10);
+		String page = request.getParameter("page");
+		int p = 1;
+		if (page != null)
+			p = Integer.parseInt(page);
+		paging.setPage(p);
+		cvo.setFirst(paging.getFirst());
+		cvo.setLast(paging.getLast());
+		int count = adminService.CompanyCnt();
+		
+		paging.setTotalRecord(count);
+		
+		List<CompanyVo> checkVo = adminService.companySelectAll(cvo);
+		model.addAttribute("paging", paging);
 		model.addAttribute("clist", checkVo);
 		return "no/admin/companymemberall";
 	}
@@ -148,5 +193,5 @@ public class AdminController {
 		int n = questionService.qUpdateAdmin(qvo);
 		
 		return "redirect:qnaPage.do";
-	}	
+	}
 }

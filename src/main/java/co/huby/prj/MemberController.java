@@ -155,21 +155,6 @@ public class MemberController {
 		return "redirect:myInfoUpdatePage.do";
 	}
 	
-	@RequestMapping(value = "/skillInsertPage.do")
-	public String skillInsertPage(Model model) throws Exception {
-		return "person/member/skillInsertPage";
-	}
-	
-	@RequestMapping(value = "/skillInsert.do")
-	public String skillInsert(Model model, HttpServletRequest request, SkillsVo svo) throws Exception {
-		String id = (String) request.getSession().getAttribute("loginId");
-		svo.setMember_id(id);
-		
-		int n = memberService.skillInsert(svo);
-		
-		return "redirect:resumemanagement.do";
-	}
-	
 	@RequestMapping(value = "/skillDelete.do")
 	public String skillDelete(Model model, HttpServletRequest request, SkillsVo svo) throws Exception {
 		
@@ -199,19 +184,25 @@ public class MemberController {
 	public String careerInsertPage(Model model) throws Exception {
 		List<CodeVo> typeVo = codeService.SelectAll();
 		model.addAttribute("typeVo",typeVo);
-		
 		return "person/member/careerInsertPage";
 	}
 	
+//	이력서 등록 페이지 -> 커리어 등록 AJAX처리
 	@RequestMapping(value = "/careerInsert.do")
 	public String careerInsert(Model model, HttpServletRequest request, CareerVo cvo) throws Exception {
 		String id = (String) request.getSession().getAttribute("loginId");
 		cvo.setMember_id(id);
-		
-		
 		int n = memberService.careerinsert(cvo);
-		
 		return "redirect:resumemanagement.do";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/careerInsertAjax.do")
+	public int careerInsertAjax(Model model, HttpServletRequest request, CareerVo cvo) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		cvo.setMember_id(id);
+		int n = memberService.careerinsert(cvo);
+		return n;
 	}
 	
 	@RequestMapping(value = "/careerDelete.do")

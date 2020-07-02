@@ -12,7 +12,6 @@
 </head>
 <body>
 <div style="margin: 30px 30px 30px 30px;">
-<form class="form-horizontal" id="frm" name="frm" method="post">
     <fieldset>
 
         <!-- Form Name -->
@@ -20,7 +19,7 @@
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="name">스킬이름</label>  
+          <label class="col-md-4 control-label" for="email">스킬이름</label>  
           <div class="col-md-4">
           <input id="skill_name" name="skill_name" type="text" class="form-control input-md" required="required">
           <span class="help-block"></span>  
@@ -60,21 +59,36 @@
         	function winclose(){
         		window.close();
         	}
-        	
+        </script>
+        <script>
         	function skillInsertGo(){
-        	/* opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#resume_title").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#hope_job").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#hope_salary").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#hope_location").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#final_education").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#resume_coment").html(); */
-        	$("#frm").attr("action","skillInsert.do");
-        	document.frm.submit();
-        	
-    		window.close();
+        		var skill_name = $("#skill_name").val();
+        		var skill_level = $("#skill_level").val();
+        		
+        		$.ajax({
+        		    url: "skillInsertAjax.do",
+        		    type: "post",
+        		    dataType: "json",
+        		    async: false,
+        		    data: {
+        		    	'skill_name':skill_name,
+        		    	'skill_level':skill_level
+        		    },
+        		    success: function(data){
+        		    	if(data==1){
+        		    		opener.parent.location.reload();
+        		    	}else{
+        		    		alert("스킬 등록 에러. 관리자 문의.")
+        		    	}
+        		    },
+        		    error: function (request, status, error){
+        		    }
+        		  });
+        		
+        		window.close();
         	}
         </script>
-        </form>
+        
 </div>
 </body>
 </html>

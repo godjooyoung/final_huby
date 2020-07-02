@@ -17,21 +17,21 @@ public class AdminServiceImpl implements AdminService {
 	AdminMap map;
 
 	@Override
-	public List<MemberVo> memberSelectAll() {
+	public List<MemberVo> memberSelectAll(MemberVo vo) {
 		// TODO Auto-generated method stub
-		return map.memberSelectAll();
+		return map.memberSelectAll(vo);
 	}
 
 	@Override
-	public List<CompanyVo> companySelectAll() {
+	public List<CompanyVo> companySelectAll(CompanyVo vo) {
 		// TODO Auto-generated method stub
-		return map.companySelectAll();
+		return map.companySelectAll(vo);
 	}
 
 	@Override
-	public List<NoticeVo> noticeSelectAll() {
+	public List<NoticeVo> noticeSelectAll(NoticeVo vo) {
 		// TODO Auto-generated method stub
-		return map.noticeSelectAll();
+		return map.noticeSelectAll(vo);
 	}
 
 	@Override
@@ -58,5 +58,21 @@ public class AdminServiceImpl implements AdminService {
 		return map.noticeDelete(vo);
 	}
 
-	
+	@Override
+	public int memberCnt() {
+		// TODO Auto-generated method stub
+		return map.memberCnt();
+	}
+
+	@Override
+	public int CompanyCnt() {
+		// TODO Auto-generated method stub
+		return map.CompanyCnt();
+	}
+
+	@Override
+	public int noticeCnt() {
+		// TODO Auto-generated method stub
+		return map.noticeCnt();
+	}
 }

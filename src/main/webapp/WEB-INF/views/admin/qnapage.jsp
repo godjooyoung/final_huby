@@ -90,7 +90,7 @@
 }
 
 #timeline .timeline-movement {
-	border-bottom: solid 1px #000080;
+	/* border-bottom: solid 1px #000080; */
 	position: relative;
 }
 
@@ -160,16 +160,10 @@ function answer(qid){
 		<div class="row timeline-movement timeline-movement-top"></div>
 		<div class="row timeline-movement">
 			<div class="col-sm-6  timeline-item">
-				<div class="row">
-					<h1 align="center">개인 문의 내역</h1>
-				</div>
+					<h1 align="center" style="color: green">개인 QnA</h1>
 			</div>
 			<div class="col-sm-6  timeline-item">
-				<div class="row">
-					<div class="row">
-					<h1 align="center">기업 문의 내역</h1>
-				</div>
-				</div>
+					<h1 align="center" style="color: red">기업 QnA</h1>
 			</div>
 			<div class="col-sm-6  timeline-item">
 			<c:forEach items="${ qlist }" var="qlist">

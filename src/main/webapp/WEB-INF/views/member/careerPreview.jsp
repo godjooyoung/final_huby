@@ -101,14 +101,38 @@
         	}
         	
         	function careerInsertGo(){
-        	/* opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#resume_title").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#hope_job").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#hope_salary").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#hope_location").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#final_education").html();
-        	opener.document.getElementById("v_hashtag").innerHTML = document.getElementById.find("#resume_coment").html(); */
-        	$("#frm").attr("action","careerInsert.do");
-        	document.frm.submit();
+        	/* $("#frm").attr("action","careerInsert.do");
+            document.frm.submit(); */
+         	var company_name = $("#company_name").val();
+        	var start_date = $("#start_date").val();
+         	var end_date = $("#end_date").val();
+         	var job = $("#job").val()
+         	var job_position = $("#job_position").val();
+         	var career_content = $("#career_content").val();
+         	
+        	$.ajax({
+    		    url: "careerInsertAjax.do",
+    		    type: "post",
+    		    dataType: "json",
+    		    async: false,
+    		    data: {
+    		    	'company_name':company_name,
+    		    	'start_date':start_date,
+    		    	'end_date':end_date,
+    		    	'job':job,
+    		    	'job_position':job_position,
+    		    	'career_content':career_content
+    		    },
+    		    success: function(data){
+    		    	if(data==1){
+    		    		opener.parent.location.reload();
+    		    	}else{
+    		    		alert("커리어 등록 에러. 관리자 문의.")
+    		    	}
+    		    },
+    		    error: function (request, status, error){
+    		    }
+    		  });
         	
     		window.close();
         	}

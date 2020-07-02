@@ -6,6 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script>
+	function gopage(p) {
+		location.href = window.location.pathname + "?page=" + p;
+	}
+</script>
 </head>
 <body>
 <br>
@@ -37,6 +42,30 @@
 			</c:forEach>
 
 	</div>
+</div>
+<div align="center">
+<nav id="paging" aria-label="Page navigation example">
+	<ul class="pagination">
+		<c:if test="${paging.startPage>1}">
+			<li class="page-item"><a class="page-link"
+				href="javascript:void(0);" onclick="gopage(${paging.startPage-1})">이전</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i">
+			<c:if test="${i != paging.page}">
+				<li class="page-item"><a class="page-link"
+					href="javascript:void(0);" onclick="gopage(${i})">${i}</a>
+			</c:if>
+			<c:if test="${i == paging.page}">
+				<li class="page-item active"><a class="page-link"
+					href="javascript:void(0);" onclick="gopage(${i})">${i}</a>
+			</c:if>
+		</c:forEach>
+		<c:if test="${paging.endPage<paging.totalPageCount}">
+			<li class="page-item"><a class="page-link"
+				href="javascript:void(0);" onclick="gopage(${paging.endPage+1})">다음</a>
+		</c:if>
+	</ul>
+</nav>
 </div>
 <form id="frm_go_page" name="frm_go_page" action="selectresumepage.do" method="post">
 <input type="hidden" value="" name="employment_id" id="go_page_input">

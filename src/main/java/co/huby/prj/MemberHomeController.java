@@ -22,6 +22,8 @@ import co.huby.prj.code.service.CodeService;
 import co.huby.prj.code.service.CodeVo;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.EmploymentsVo;
+import co.huby.prj.vo.NoticeVo;
+import co.huby.prj.vo.Paging;
 import co.huby.prj.vo.ResumeVo;
 
 @Controller
@@ -114,7 +116,19 @@ public class MemberHomeController {
 	public String applyManagement(Model model, @RequestParam Map mapvo, HttpServletRequest request, HttpServletResponse response ,MemberVo mvo) throws Exception {
 		String id = (String) request.getSession().getAttribute("loginId");
 		mvo.setMember_id(id);
+		Paging paging = new Paging();
+		paging.setPageUnit(10);
+		String page = request.getParameter("page");
+		int p = 1;
+		if (page != null)
+			p = Integer.parseInt(page);
+		paging.setPage(p);
+		mvo.setFirst(paging.getFirst());
+		mvo.setLast(paging.getLast());
+		int count = employmentService.applyCnt();
+		paging.setTotalRecord(count);
 		List<Map> amapvo = employmentService.applyList(mvo);
+		model.addAttribute("paging",paging);
 		model.addAttribute("alist", amapvo);
 		
 		return "person/member/applyManagement";

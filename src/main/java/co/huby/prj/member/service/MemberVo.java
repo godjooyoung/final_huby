@@ -17,13 +17,35 @@ public class MemberVo {
 	private String member_photo;
 	private MultipartFile uploadFile;
 	private String member_pwcheck;
+	private int first;
+	private int last;
+	
+	
 	
 	public MemberVo() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	
+	public int getFirst() {
+		return first;
+	}
+	public void setFirst(int first) {
+		this.first = first;
+	}
+
+	public int getLast() {
+		return last;
+	}
+
+
+
+	public void setLast(int last) {
+		this.last = last;
+	}
+
+
+
 	public String getMember_pwcheck() {
 		return member_pwcheck;
 	}

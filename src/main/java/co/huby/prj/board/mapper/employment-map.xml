@@ -147,4 +147,8 @@
 		from employments
 		where hope_location = #{hope_location}
 	</select>
+	
+	<select id="applyCnt" resultType="int">
+		select COUNT(*) from apply
+	</select>
 </mapper>

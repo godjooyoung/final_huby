@@ -132,7 +132,7 @@
     <div class="col-md-4" style="table-layout: fixed;">
 		<div class="card">
 			<!-- <img class="card-img-top" src="http://gdurl.com/ow9D" alt="Card image cap"> -->
-			<div id="chart_div${ var.index }"></div>
+			<div id="chart_div${ var.index }"></div><br>
    				<h5 class="card-title" style="font-weight: bolder;">습관명:${ habit.habit_name }<input type="checkbox" id="habit_id_check" name="habit_id_check" value="${habit.habit_id}"></h5>
    				<fmt:formatDate value="${ habit.habit_start_date }" pattern="yyyy-MM-dd" var="habit_start_date" />
    				<p class="card-text" style="font-weight: bolder;">시작시간:${ habit_start_date }</p>

@@ -25,6 +25,8 @@ public class CompanyVo {
 	private String company_pwcheck;
 	private MultipartFile cuploadfile;
 	private String company_photo;
+	private int first;
+	private int last;
 	
 	//getter setter
 	
@@ -32,6 +34,18 @@ public class CompanyVo {
 	
 	public String getCompany_id() {
 		return company_id;
+	}
+	public int getFirst() {
+		return first;
+	}
+	public void setFirst(int first) {
+		this.first = first;
+	}
+	public int getLast() {
+		return last;
+	}
+	public void setLast(int last) {
+		this.last = last;
 	}
 	public String getCompany_photo() {
 		return company_photo;
