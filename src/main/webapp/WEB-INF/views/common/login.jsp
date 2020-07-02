@@ -13,6 +13,7 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<meta charset="UTF-8" name="viewport" content="width=device-width, user-scalable=no">
 <style>
 * {
   margin: 0px auto;
@@ -511,6 +512,8 @@ margin-left: 30px;
 	<button type="button" class="btn-primary" onclick="location.href='gotest.do'">뷰확인용
 		테스트</button>
 	<button type="button" class="btn-primary" onclick="location.href='index.do'">관리자페이지
+		로그인 없음</button>
+	<button type="button" class="btn-primary" onclick="location.href='coemdeview.do'">디테일뷰
 		로그인 없음</button>
 </div>
 <script>

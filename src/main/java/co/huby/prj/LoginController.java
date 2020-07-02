@@ -158,4 +158,9 @@ public class LoginController {
 	public String infoupdatetest(Model model, HttpServletRequest request) throws Exception {
 		return "person/member/myInfoUpdatePage2";
 	}
+	
+	@RequestMapping("/coemdeview.do")
+	public String coemdeview(Model model, HttpServletRequest request) throws Exception {
+		return "person/company/companyEmploymentDetailsView";
+	}
 }

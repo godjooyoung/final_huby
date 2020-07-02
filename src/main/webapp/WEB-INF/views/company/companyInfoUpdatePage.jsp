@@ -3,10 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/>
+<meta charset="UTF-8" name="viewport" content="width=device-width, user-scalable=no">
 <style>
 .container
 {
-    width: 500px;
+    width: 400px;
     margin: 20px auto;
 }
 
@@ -58,7 +59,7 @@
 
 .form-group
 {
-    width:  250px;
+    /* width:  250px; */
     margin: 10px auto;
 }
 
