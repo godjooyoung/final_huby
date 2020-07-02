@@ -26,70 +26,11 @@
 <div id="sub_content_wrap" class="sub0101">
 	<div class="ov inner center" style="margin: 10% auto 2%;">    
     <!-- 실제소스 -->
-    
-    <!-- ---------============================================= -->
-    <div class="w3-row">
-  		<h1 class="w3-xlarge w3-text-grey">공고 타이틀이 여기들어옵니다.타타타타타타타타타타타</h1>
-	</div>
-	<div class="w3-row">
-		<div class="w3-half w3-container w3-xlarge w3-text-grey">
-	  	<div>공고내용이 여기들어옵니다<br>
-	  	- 내용내요앤요ㅐㄴ요내ㅛ애뇨애뇨애뇨애ㅛ내요<br>
-	  	- 내용내요앤요ㅐㄴ요내ㅛ애뇨애뇨애뇨애ㅛ내요</div>
-		</div>
-		<div class="w3-half w3-container w3-xlarge w3-text-grey">
-	  	<div>우대사항우대<br>
-	  	- 내용내요앤요ㅐㄴ요내ㅛ애뇨애뇨애뇨애ㅛ내요<br>
-	  	- 내용내요앤요ㅐㄴ요내ㅛ애뇨애뇨애뇨애ㅛ내요</div>
-		</div>
-	</div>
-		<!-- Second Grid: Resent -->
-		<div class="w3-panel w3-text-grey">
-		<h4>MOST RECENT WORK:</h4>
-		</div>
-		<div class="w3-row">
-		<div class="w3-half w3-container">
-		 
-		</div>
-		<div class="w3-half w3-container">
-		  
-		  <p class="w3-xlarge w3-text-grey">
-		  Demos, Logos, Reports, Names, Events, Media, Wordpress, Google, Books, Optimisations</p>
-		</div>
-		</div>
-
-<!-- Footer -->
-<div class="w3-row w3-section">
-  <div class="w3-third w3-container w3-black w3-large" style="height:250px">
-  	<br>
-    <h2>지원자격</h2>
-    <p><i class="fa fa-map-marker" style="width:30px"></i> Chicago, US</p>
-    <p><i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515</p>
-    <p><i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com</p>
-  </div>
-  <div class="w3-third w3-center w3-large w3-dark-grey w3-text-white" style="height:250px">
-    <br>
-    <h2>근무조건</h2>
-    <p>If you have an idea.</p>
-    <p>What are you waiting for?</p>
-  </div>
-  <div class="w3-third w3-center w3-large w3-grey w3-text-white" style="height:250px">
-    <br>
-    <h2>모집형태</h2>
-    <i class="w3-xlarge fa fa-facebook-official"></i><br>
-    <i class="w3-xlarge fa fa-pinterest-p"></i><br>
-    <i class="w3-xlarge fa fa-twitter"></i><br>
-    <i class="w3-xlarge fa fa-flickr"></i><br>
-    <i class="w3-xlarge fa fa-linkedin"></i>
-  </div>
-</div>
-
-    
-    
-    
     <!-- ---------------------------- -->
-    <div class="w3-container w3-blue w3-margin-bottom">
-		<h2>공고타이틀 자리</h2>
+    <div class="w3-container w3-margin-bottom" style="background-color:#134a8e;">
+    	<div style="vertical-align: middle;">
+    		&nbsp;<h3 style="color:white; margin-bottom:20px;">공고타이틀 자리</h3>
+    	</div>
 	</div>
 	<div class="w3-row-padding ">
 		<div class="w3-twothird">
@@ -105,103 +46,64 @@
 			  <p>Oaked Chardonnay tends to have softer acidity and more fruit flavors with 
 			  added butter, cream and hazelnut notes.</p>
 			  <h2>여기에 우대내용 때려박는다</h2>
-			 우대우대ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+			  <p>In warmer climates the flavors tend to vary from lemon to peach and melon.</p>
+			  <p>In very warm climates Chardonnay tends to be over-riped.</p>
+			  <p>Oaked Chardonnay tends to have softer acidity and more fruit flavors with 
+			  added butter, cream and hazelnut notes.</p>
  		</div>
+ 		
 		<div class="w3-third">
-
-  			<h2>지원자격</h2>
- 			<table class="w3-table w3-striped w3-bordered w3-border">
-  				<thead class="w3-blue">
-  					<th style="width:30%">경력</th>
+ 			<table class="w3-table w3-bordered w3-border">
+  				<thead class="w3" style="background-color:#1a56a1;">
+  					<h3>지원자격</h3>
   				</thead>
   				<tr>
-  					<td style="width:30%">희망커리어자리</td>
+  					<th style="width:50%">경력</th>
+  					<th style="width:50%">학력</th>
   				</tr>
-  				<thead class="w3-blue">
-  					<th style="width:30%">학력</th>
-  				</thead>
   				<tr>
-  					<td>희망학력자리</td>
+  					<td style="width:50%">희망커리어자리</td>
+  					<td style="width:50%">희망학력</td>
   				</tr>
   			</table>
   			
-  			<h2>근무조건</h2>
- 			<table class="w3-table w3-striped w3-bordered w3-border">
+  			
+ 			<table class="w3-table w3-bordered w3-border">
   				<thead class="w3-blue">
-  					<th style="width:30%">임금</th>
+  					&nbsp;
+  					<h3>근무조건</h3>
   				</thead>
   				<tr>
-  					<td style="width:30%">희망샐러리</td>
+  					<th style="width:50%">희망샐러리</th>
+  					<th style="width:50%">지역</th>
   				</tr>
-  				<thead class="w3-blue">
-  					<th style="width:30%">지역</th>
-  				</thead>
   				<tr>
-  					<td>희망로케</td>
+  					<td style="width:50%">돈</td>
+  					<td style="width:50%">지역</td>
   				</tr>
   			</table>
   			
-  			<h2>고용형태</h2>
- 			<table class="w3-table w3-striped w3-bordered w3-border">
-  				<thead class="w3-teal">
-  					<th style="width:30%">고용형태</th>
-  				</thead>
-  				<tr>
-  					<td style="width:30%">정규인턴등등</td>
-  				</tr>
-  			</table>
   			
-  			<h2>모집 직종</h2>
- 			<table class="w3-table w3-striped w3-bordered w3-border">
+ 			<table class="w3-table w3-bordered w3-border">
   				<thead class="w3-teal">
-  					<th style="width:30%">직종</th>
+  					&nbsp;
+  					<h3>모집형태</h3>
   				</thead>
   				<tr>
-  					<td style="width:30%">잡 내용</td>
+  					<th style="width:33%">고용형태</th>
+  					<th style="width:33%">모집직종</th>
+  					<th style="width:33%">근무포지션</th>
   				</tr>
-  				<thead class="w3-teal">
-  					<th style="width:30%">근무포지션</th>
-  				</thead>
   				<tr>
-  					<td style="width:30%">연구직</td>
+  					<td style="width:33%">정규인턴등등</td>
+  					<td style="width:33%">모집직종</td>
+  					<td style="width:33%">근무포지션</td>
   				</tr>
   			</table>
 	</div>
-
-
-
 </div>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
     <!-- ---------------------------- -->
     <h1>공고 상세 페이지</h1>
     <table>
