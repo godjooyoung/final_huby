@@ -5,7 +5,8 @@
 	<li class="gnb_dp1"><span>공고</span>
 		<ul class="gnb_dp2_wrap">
 			<li class="gnb_dp2"><a href="employmentList.do">전체채용공고</a></li>
-			<li class="gnb_dp2"><a href="#">맞춤채용공고</a></li>
+			<li class="gnb_dp2"><a href="employmentMatch.do">맞춤채용공고</a></li>
+			<li class="gnb_dp2"><a href="load_employment_like_list.do">스크랩</a></li>
 		</ul></li>
 	<li class="gnb_dp1"><span>채용</span>
 		<ul class="gnb_dp2_wrap">
@@ -17,9 +18,8 @@
 			<li class="gnb_dp2"><a href="resumemanagement.do">이력서관리</a></li>
 			<li class="gnb_dp2"><a href="applyManagement.do">지원내역</a></li>
 			<li class="gnb_dp2"><a href="habitManagement.do">습관</a></li>
-			<li class="gnb_dp2"><a href="load_employment_like_list.do">스크랩</a></li>
 		</ul></li>
-	<li class="gnb_dp1"><span>${ loginId }의 Page</span>
+	<li class="gnb_dp1"><span>${ loginName } 님</span>
 		<ul class="gnb_dp2_wrap">
 			<li class="gnb_dp2"><a href="myInfoUpdatePage.do">개인정보수정</a></li>
 			<li class="gnb_dp2"><a href="personalarm.do">알림</a></li>

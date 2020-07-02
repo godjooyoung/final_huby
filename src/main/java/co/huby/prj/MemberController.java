@@ -110,7 +110,7 @@ public class MemberController {
 		List<CodeVo> typeVo = codeService.SelectAll();
 		model.addAttribute("elist", list);
 		model.addAttribute("typeVo", typeVo);
-		return "person/member/employmentList";
+		return "person/member/empList";
 	}
 
 	@ResponseBody

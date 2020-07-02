@@ -25,46 +25,46 @@ public class ChatController {
 	// Handler handler;
 
 	@RequestMapping(value = "/company_chatList.do") // 기업회원 채팅창
-	public String getChatViewPage(Model model, HttpServletRequest request, InterviewVo vo)
-			throws Exception {
+	public String getChatViewPage(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		String memberid = (String) request.getSession().getAttribute("personalVo");
 		vo.setCompany_id(companyid);
 		vo.setMember_id(memberid);
 		List<InterviewVo> list = chatService.getRoomList2(vo);
 		model.addAttribute("companyChatList", list);
-		
-		
+
 		// message = chatService.getRecentMessage(message);
 		// model.addAttribute("recent", message);
-		return "company/chat/chatTest";
+		return "company/chat/chatCompany";
 
 	}
 
-	@RequestMapping(value = "/person_chat.do") // 개인회원 채팅창
+	@RequestMapping(value = "/person_chatList.do") // 개인회원 채팅창
 	public String getChatViewPage2(Model model, HttpServletRequest request, InterviewVo vo, MessageVo message)
 			throws Exception {
-		vo = chatService.isRoom(vo);
-		model.addAttribute("room", vo);
-		
-		message.setInterview_id(vo.getInterview_id());
-		List<MessageVo> list = chatService.getMessageList(message);
-		model.addAttribute("message", list);
-		return "person/chat/chat";
-
-	}
-
-	@RequestMapping(value = "/person_chatList.do") // 개인회원 채팅리스트
-	public String personChatList(Model model, HttpServletRequest request, InterviewVo vo) throws Exception {
 		String memberid = (String) request.getSession().getAttribute("loginId");
 		String companyid = (String) request.getSession().getAttribute("companyVo");
 		vo.setCompany_id(companyid);
 		vo.setMember_id(memberid);
 		List<InterviewVo> list = chatService.getRoomList(vo);
 		model.addAttribute("personChatList", list);
-		return "person/chat/personChatList";
+
+		return "person/chat/chatMember";
 
 	}
+
+	// @RequestMapping(value = "/person_chatList.do") // 개인회원 채팅리스트
+	// public String personChatList(Model model, HttpServletRequest request,
+	// InterviewVo vo) throws Exception {
+	// String memberid = (String) request.getSession().getAttribute("loginId");
+	// String companyid = (String) request.getSession().getAttribute("companyVo");
+	// vo.setCompany_id(companyid);
+	// vo.setMember_id(memberid);
+	// List<InterviewVo> list = chatService.getRoomList(vo);
+	// model.addAttribute("personChatList", list);
+	// return "person/chat/personChatList";
+	//
+	// }
 
 	/*
 	 * @RequestMapping(value = "/company_chatList.do") // 기업회원 채팅리스트 public String

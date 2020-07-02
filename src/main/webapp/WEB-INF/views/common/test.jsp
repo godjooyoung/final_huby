@@ -13,10 +13,10 @@
 			<div class="visual-area-txt inner sub01 ">
 				<div class="tit" data-aos="fade-up" data-aos-delay="300">공고목록</div>
 				<p class="fs18" data-aos="fade-up" data-aos-delay="400">
-					허빟<br>빛나는 당신을 위해
+					허빟<br>공고목록
 				</p>
 				<div class="en" data-aos="fade-up" data-aos-delay="100">About
-					Olive</div>
+					Employments</div>
 			</div>
 		</div>
 	</div>
@@ -28,10 +28,9 @@
 		</div>
 
 		<ul class="sub_menu_box sub01">
-			<li class="m1"><a href="javascript:GoPage('olive01')">공고전체</a></li>
-			<li class="m2"><a href="javascript:GoPage('olive02')">ㄱ</a></li>
-			<li class="m3"><a href="javascript:GoPage('olive03')">진료안내</a></li>
-			<li class="m4"><a href="javascript:GoPage('olive04')">둘러보기</a></li>
+			<li class="m1"><a href="javascript:GoPage('olive01')">공고관리</a></li>
+			<li class="m2"><a href="javascript:GoPage('olive02')">공고등록</a></li>
+			<li class="m3"><a href="javascript:GoPage('olive03')">지원내역</a></li>
 		</ul>
 	</div>
 </div>
