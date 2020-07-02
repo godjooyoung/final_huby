@@ -1,51 +1,98 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<div id="sub_vis_wrap" class="sub01 page01">
+	<div class="hd_box"></div>
+	<div class="visual-area ">
+		<div class="visual-area-in">
+			<div class="visual-area-txt inner sub01 ">
+				<div class="tit" data-aos="fade-up" data-aos-delay="300"> 공고 수정</div>
+				<p class="fs18" data-aos="fade-up" data-aos-delay="400">
+					시간을 허비말고 DO HUBY<br>
+					공고를 수정합니다.
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="sub_menu_wrap s-inner sub_menu_pc ">
+		<div class="sub_menu_tit">
+			
+		</div>
+
+		<ul class="sub_menu_box sub01">
+			<li class="m1"><a href="forcomemploymentsList.do">공고관리</a></li>
+			<li class="m2"><a href="empInsertPageGo.do">공고등록</a></li>
+			<li class="m3"><a href="companyEmploymentsList.do">지원내역</a></li>
+		</ul>
+	</div>
+</div>
+
+<div id="sub_content_wrap" class="sub0101">
+	<div class="ov inner center" style="margin: 10% auto 2%;">
+<!-- 수정실제소스 -->
 <h2>
 	공고 수정하기
 </h2>
-<form id ="modifyFrm" method="POST" action="employupdate.do">
-  <!-- title -->
-  <hr>
-  <h4>공고 제목</h4>
+<form id ="modifyFrm" method="POST" action="employupdate.do" class="w3-container w3-card w3-text-blue w3-margin">
+  <!-- 공고제목 -->
+  <br>
   <input type='hidden' name="employment_id" id="employment_id" value='${before.employment_id }'>
-  <input type="text" name="title" id="title" value="${before.employment_title }">
+  <div class="w3-row w3-section">
+ 		<div class="w3-col" style="width:150px">
+ 			공고제목
+ 		</div>
+   		<div class="w3-rest">
+      		<input class="w3-input w3-border" name="title" type="text" value="${before.employment_title}" required="required">
+    	</div>
+  </div>
+  <!-- 공고제목 끝 -->
   <!-- 커리어 -->
-  <h4>희망 커리어</h4>
-  <c:set var="career" value="${before.hope_career}"/>
-  <select name="career" required="required">
-  <c:choose>
-    <c:when test="${career eq '신입'}">
-        <option value="신입" selected="selected">신입</option>
-    </c:when>
-    <c:when test="${career ne '신입'}">
-        <option value="신입">신입</option>
-    </c:when>
-  </c:choose>
+  <div class="w3-row w3-section">
+  		<div class="w3-col" style="width:150px">
+  			희망 경력
+  		</div>
+    	<div class="w3-rest">
+    		<c:set var="career" value="${before.hope_career}"/>
+      		<select class="w3-select w3-border" name="career" required="required">
+			  <c:choose>
+			    <c:when test="${career eq '신입'}">
+			        <option value="신입" selected="selected">신입</option>
+			    </c:when>
+			    <c:when test="${career ne '신입'}">
+			        <option value="신입">신입</option>
+			    </c:when>
+			  </c:choose>
+			  
+			   <c:choose>
+			    <c:when test="${career eq '경력'}">
+			        <option value="경력" selected="selected">경력</option>
+			    </c:when>
+			    <c:when test="${career ne '경력'}">
+			        <option value="경력">경력</option>
+			    </c:when>
+			  </c:choose>
+			  
+			   <c:choose>
+			    <c:when test="${career eq '신입/경력'}">
+			        <option value="신입/경력" selected="selected">신입/경력</option>
+			    </c:when>
+			    <c:when test="${career ne '경력'}">
+			        <option value="신입/경력">신입/경력</option>
+			    </c:when>
+			  </c:choose>
+			  </select>
+    	</div>
+  </div>
+  <!-- 커리어 끝 -->
   
-   <c:choose>
-    <c:when test="${career eq '경력'}">
-        <option value="경력" selected="selected">경력</option>
-    </c:when>
-    <c:when test="${career ne '경력'}">
-        <option value="경력">경력</option>
-    </c:when>
-  </c:choose>
-  
-   <c:choose>
-    <c:when test="${career eq '신입/경력'}">
-        <option value="신입/경력" selected="selected">신입/경력</option>
-    </c:when>
-    <c:when test="${career ne '경력'}">
-        <option value="신입/경력">신입/경력</option>
-    </c:when>
-  </c:choose>
-  </select>
-
   <!-- 직급 -->
-  <h4>직급</h4>
+  <div class="w3-row w3-section">
+  	<div class="w3-col" style="width:150px">
+  		희망 직급
+  	</div>
+  	<div class="w3-rest">
   <c:set var="position" value="${before.hope_job_position}"/>
-  <select name="position" required="required">
+  <select class="w3-select w3-border" name="position" required="required">
   <c:choose>
     <c:when test="${position eq '사원'}">
         <option value="사원" selected="selected">사원급</option>
@@ -87,12 +134,16 @@
     </c:when>
   </c:choose>
   </select>
-  
+ </div>
+</div>
   <!-- GRADUATE -->
-  <hr>
-  <h4>학력</h4>
+  <div class="w3-row w3-section">
+  		<div class="w3-col" style="width:150px">
+  			희망 학력
+  		</div>
+  <div class="w3-rest">
   <c:set var="graduate" value="${before.hope_graduate}"/>
-  <select name="graduate" required="required">
+  <select class="w3-select w3-border" name="graduate" required="required">
   <c:choose>
     <c:when test="${graduate eq '학력무관'}">
         <option value="학력무관" selected="selected">학력무관</option>
@@ -142,11 +193,17 @@
     </c:when>
   </c:choose>
   </select>
-  
-  <hr>
-  <h4>지역</h4>
-  
-  <select name="location" multiple="multiple" required="required">
+  	</div>
+	</div>
+	
+	
+  <!-- 로케 -->
+  <div class="w3-row w3-section">
+ <div class="w3-col" style="width:150px">
+  			희망 지역
+  	</div>
+    <div class="w3-rest">
+  <select class="w3-select w3-border" name="location" required="required">
   <option value="전국"> 전국</option>
   <option value="서울"> 서울</option>
   <option value="경기"> 경기</option>
@@ -166,12 +223,18 @@
   <option value="전북"> 전북</option>
   <option value="제주"> 제주</option>
   </select>
+</div>
+</div>
+
 
   <!-- HOPE_JOB -->
-  <hr>
-  <h4>업직종</h4>
+<div class="w3-row w3-section">
+  		<div class="w3-col" style="width:150px">
+  			업직종
+  		</div>
+    	<div class="w3-rest">
   <c:set var="job" value="${before.hope_job}"/>
-  <select name="job" required="required">
+  <select class="w3-select w3-border" name="job" required="required">
   <c:choose>
     <c:when test="${job eq '104178'}">
         <option value="104178" selected="selected">예술기획 관련직</option>
@@ -478,11 +541,17 @@
     </c:when>
   </c:choose>
   </select>
-  
+  	</div>
+	</div>
   <!-- HOPE_WORK_TYPE -->
+  <div class="w3-row w3-section">
+  		<div class="w3-col" style="width:150px">
+  			근무형태
+  		</div>
+    	<div class="w3-rest">
   <c:set var="worktype" value="${before.hope_work_type}"/>
-  <h4>근무형태</h4>
-  <select name="worktype" required="required">
+ 
+  <select class="w3-select w3-border" name="worktype" required="required">
   <c:choose>
   <c:when test="${worktype eq '정규직'}">
   <option value="정규직" selected="selected">정규직</option>
@@ -554,22 +623,37 @@
   </c:when>
   </c:choose>
   </select>
+  </div>
+	</div>
    
   <!-- contents -->
-  <hr>
-  <h4>공고내용</h4>
-  <textarea form ="modifyFrm" name="contents" id="contents" rows="4" cols="100" required="required">${before.employment_contents}</textarea>
-  
+ <div class="w3-row w3-section">
+  		<div class="w3-col" style="width:150px">
+  			공고내용
+  		</div>
+    	<div class="w3-rest">
+  <textarea form ="modifyFrm" id="contents" rows="4" cols="100" class="w3-input w3-border" name="contents" required="required">${before.employment_contents}</textarea>
+  	</div>
+	</div>
+	
+	
   <!-- PREFER -->
-  <hr>
-  <h4>우대사항</h4>
-  <textarea form ="modifyFrm" name="prefer" id="prefer" rows="4" cols="100" required="required">${before.employment_prefer }</textarea>
-
+<div class="w3-row w3-section">
+  		<div class="w3-col" style="width:150px">
+  우대사항
+  </div>
+  <div class="w3-rest">
+  <textarea form ="modifyFrm" class="w3-input w3-border" name="prefer" id="prefer" rows="4" cols="100" required="required">${before.employment_prefer }</textarea>
+</div>
+</div>
   <!-- PREFER -->
-  <hr>
-  <h4>희망 연봉</h4>
+  <div class="w3-row w3-section">
+  		<div class="w3-col" style="width:150px">
+  			희망 연봉
+  		</div>
+    	<div class="w3-rest">
   <c:set var="salary" value="${before.hope_salary}"/>
-  <select name="salary" required="required">
+  <select class="w3-select w3-border" name="salary" required="required">
   <c:choose>
   <c:when test="${salary eq '회사내규'}">
   <option value="회사내규" selected="selected">회사 내규에 따름</option>
@@ -742,14 +826,22 @@
   </c:when>
   </c:choose> 
   </select>
-	
+		</div>
+	</div>
 
   <!-- EMPLOYMENT_TIME -->
-  <hr>
-  <h4>공고 기간</h4>
-	<label><input type="radio" name="time" value="2999-10-10">상시모집</label>
-	<input type="date" name="time">
-	<br>
-	
-	<button type="submit">수정완료</button>
+ <div class="w3-row w3-section">
+  		<div class="w3-col" style="width:150px">
+  공고 기간
+  </div>
+  <div class="w3-rest">
+	<input class="w3-input w3-border" type="date" name="time" required="required">
+	</div>
+	</div>
+	<p class="w3-center">
+	<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> 수정완료 </button>
+	</p>
 </form>
+<!-- 수정실제소스 끝 -->
+	</div>
+</div>

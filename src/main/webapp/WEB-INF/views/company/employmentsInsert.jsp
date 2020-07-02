@@ -3,7 +3,35 @@
 	.t {text-align: center;}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="sub_vis_wrap" class="sub01 page01">
+	<div class="hd_box"></div>
+	<div class="visual-area ">
+		<div class="visual-area-in">
+			<div class="visual-area-txt inner sub01 ">
+				<div class="tit" data-aos="fade-up" data-aos-delay="300"> 공고 등록</div>
+				<p class="fs18" data-aos="fade-up" data-aos-delay="400">
+					시간을 허비말고 DO HUBY<br>
+					허비를 통해 공고를 쉽게 등록해보세요.
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="sub_menu_wrap s-inner sub_menu_pc ">
+		<div class="sub_menu_tit">
+			
+		</div>
 
+		<ul class="sub_menu_box sub01">
+			<li class="m1"><a href="forcomemploymentsList.do">공고관리</a></li>
+			<li class="m2"><a href="empInsertPageGo.do">공고등록</a></li>
+			<li class="m3"><a href="companyEmploymentsList.do">지원내역</a></li>
+		</ul>
+	</div>
+</div>
+
+<div id="sub_content_wrap" class="sub0101">
+	<div class="ov inner center" style="margin: 10% auto 2%;">
+<!-- 실제소스 -->
 <form method="POST" action="comEmpInsert.do" class="w3-container w3-card w3-text-blue w3-margin">
 	<br>
 	<h2>공고 작성하기</h2>
@@ -216,6 +244,9 @@
 	</p>
 	
 </form>
+<!-- 실제소스 끝 -->
+	</div>
+</div>
 
 	
 	
