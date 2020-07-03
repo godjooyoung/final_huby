@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-
 <style>
 ul {
 	width: 500px;
@@ -79,10 +78,11 @@ ul {
 
 	}
 </script>
+<script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 
 <body>
 <h1 align="center">
-<img width=40px src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABUElEQVRIS9WV7U0CQRCGHypQKkAqUCtQOtAKwArECtQKxAqECrADtQKxArAC7EDzkpnNZbPLsUeOxP11HDPvM18326Hl02lZnxhwDFwB0wR4BDzZ+7uMzQMwAX7cPwYsgFPgGng1I0FvgTGgZx0JSOi5Iibxe0Aa5ymAHCT0DZyZo0ftwnFiAt1YMLKReA94BAQMJToBluYtugwl/rJjjwRRWRXYp/n0gZWXyNObmbCAMsxFnspEgspIoCGgPk0c8A5cAANAzw7cMYGNmZdFQzIHPoBLB4h8BHQtCm92CcCbq6zXptN1wK8pxb9LANWeBr2DAeJIPYKmGQS/3Kr43wCfgtLyyN6nMFsiib/ZF9kEoFHVt1S77JqIu0922cmgaXPjgMLw5Nb1Phl8VUt88BstF3lq+YWdvy3dkgwE0a2mo8tpc6HUnRJAnVby/9YBf8z7RRlnN+oyAAAAAElFTkSuQmCC"/>
+<box-icon name='bell-ring' type='solid' animation='tada' color='#134a8e' size='45px'></box-icon>
    알림내역</h1>
 <br><br><br><br><br><br>
 <div class="alarmlist">

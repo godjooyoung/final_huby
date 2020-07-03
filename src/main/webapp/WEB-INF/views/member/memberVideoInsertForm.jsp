@@ -140,6 +140,7 @@
 	
 	});
 </script>
+<script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 
 <style>
 .progress {
@@ -208,7 +209,7 @@ video:hover+.hoverBtn {
 					<div style="padding-top: 20px">
 						<input id="videoChoice" type="file" name="uploadFile"
 							accept="video/*">
-						<button type="button" id="btnSend"><box-icon name='camera' type='solid' animation='tada' ></box-icon>보내기</button>
+						<button type="button" id="btnSend"><box-icon name='camera' type='solid' animation='tada' color='#134a8e' size='40px'></box-icon></box-icon></button>
 					</div>
 				</div>
 			</form>
