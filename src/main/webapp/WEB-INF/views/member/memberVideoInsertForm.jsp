@@ -7,7 +7,6 @@
 		var bar = $('.bar');
 		var percent = $('.percent'); 
 		var status = $('#status');
-		/* var img = "<p><img src='${pageContext.request.contextPath}/resources/img/common/progress.gif'></p>" */
 		
 			function LoadingWithMask() {
 		    //화면의 높이와 너비를 구합니다.
@@ -75,8 +74,6 @@
 													if (percentComplete == 100) {
 														percent.html("처리중")
 														LoadingWithMask();
-														/* $("#div_gifInsert")
-																.append(img); */
 													}
 												},
 												success : function(data) {
@@ -84,8 +81,6 @@
 													var percentVal = '0%';
 													bar.width(percentVal);
 													percent.html(percentVal);
-													/* $("#div_gifInsert *")
-															.remove(); */
 															closeLoadingWithMask();
 															
 													var video = '<video width="360" height="640" controls>'
@@ -109,8 +104,6 @@
 													bar.width(percentVal);
 													percent.html(percentVal);
 													alert('영상이 등록되지 않았습니다.');
-													/* $("#div_gifInsert *")
-															.remove(); */
 													closeLoadingWithMask();
 												}
 
@@ -190,13 +183,6 @@ video:hover+.hoverBtn {
 	display: inline-block;
 }
 </style>
-<!-- <div>
-	<div class="progress">
-		<div class="bar"></div>
-		<div class="percent">0%</div>
-	</div>
-	<div id="status"></div>
-</div> -->
 <span style="height: 50px"></span>
 <div id="div_gifInsert">
 	<div class="container h-100">
@@ -204,7 +190,7 @@ video:hover+.hoverBtn {
 			<form id="videoForm" class="col-12" action="memberVideoInsert.do"
 				method="post" enctype="multipart/form-data">
 				<div class="form-group">
-					<div style="padding-top: 10px">
+					<div class="form-group" style="padding-top: 10px">
 						<input type=text list=browsers name="hashtag"
 							placeholder="지원 분야를 선택해주세요" size="25" required>
 						<datalist id=browsers>
@@ -222,7 +208,7 @@ video:hover+.hoverBtn {
 					<div style="padding-top: 20px">
 						<input id="videoChoice" type="file" name="uploadFile"
 							accept="video/*">
-						<button type="button" id="btnSend">보내기</button>
+						<button type="button" id="btnSend"><box-icon name='camera' type='solid' animation='tada' ></box-icon>보내기</button>
 					</div>
 				</div>
 			</form>
