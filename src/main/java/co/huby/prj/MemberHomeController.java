@@ -91,20 +91,23 @@ public class MemberHomeController {
 	}	
 	
 	@RequestMapping(value = "/applyInsert.do")
-	public ModelAndView applyInsert(Model model, @RequestParam Map mapvo, HttpServletRequest request, HttpServletResponse response ,MemberVo mvo) throws Exception {
+	public ModelAndView applyInsert(Model model, @RequestParam Map mapvo, HttpServletRequest request, HttpServletResponse response ,MemberVo mvo, ResumeVo rvo) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String id = (String) request.getSession().getAttribute("loginId");
 		mapvo.put("member_id", id);
 		
 		int n = employmentService.applyInsert(mapvo);
 		if(n==10) {
-			String id2 = (String) request.getSession().getAttribute("loginId");
-			mvo.setMember_id(id2);
-			List<Map> amapvo = employmentService.applyList(mvo);
-			model.addAttribute("alist", amapvo);
-			mav.setViewName("person/member/applyManagement");
-		}else {
-			mav.setViewName("redirect:applyinfoall.do");
+			mav.setViewName("redirect:applyManagement.do");
+		}else if(n==20){
+			String memberid = (String) request.getSession().getAttribute("loginId");
+			rvo.setMember_id(memberid);
+			List<Map> list = employmentService.getMatchedEmploymentList(rvo);
+			model.addAttribute("empMatch", list);
+			
+			String error = "error";
+			model.addAttribute("error",error);
+			mav.setViewName("person/common/memberHome");
 		}
 		return mav;
 	}
@@ -122,7 +125,7 @@ public class MemberHomeController {
 		paging.setPage(p);
 		mvo.setFirst(paging.getFirst());
 		mvo.setLast(paging.getLast());
-		int count = employmentService.applyCnt();
+		int count = employmentService.applyCnt(mvo);
 		paging.setTotalRecord(count);
 		List<Map> amapvo = employmentService.applyList(mvo);
 		model.addAttribute("paging",paging);

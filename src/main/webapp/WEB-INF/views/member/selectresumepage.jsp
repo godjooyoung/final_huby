@@ -104,6 +104,7 @@ span#middle1{
 <div align="center"> 
 <button class="btn btn-primary" type="button" style="height: 50px; size: 50px;" onclick="applyinfoall('${empMatch.COMPANY_ID}','${empMatch.employment_id}')">지원하기</button>
 </div>
+<div></div>
 </c:when>
 <c:when test="${complete_state == 'Y'}">
 <div align="center">  

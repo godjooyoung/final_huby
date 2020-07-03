@@ -71,6 +71,7 @@
 	</ul>
 </nav>
 </div>
+
 <form id="frm_go_page" name="frm_go_page" action="selectresumepage.do" method="post">
 <input type="hidden" value="" name="employment_id" id="go_page_input">
 </form>

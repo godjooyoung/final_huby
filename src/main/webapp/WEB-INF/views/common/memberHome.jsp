@@ -140,6 +140,11 @@ section .section-title {
 		document.frm.submit();
 	}
 </script>
+<script>
+	if('${error}' == 'error'){
+		alert("이미 지원한 공고입니다.");
+	}
+</script>
 <!-- Team -->
 <form id="frm" name="frm" method="post">
 	<section id="team" class="pb-5" style="width:1200px; margin:0 auto;">

@@ -32,11 +32,10 @@
 		$("#frm").attr("action","applyInsert.do");
 		document.frm.submit();
 	}
+	
 </script>
 <body>
 <br>
-${mapvo.employment_id} &nbsp;&nbsp;1버어어언<br>
-${mapvo.empid}버어어언2버어어어
 
 <form id="frm" name="frm" method="post">
 	<br>
