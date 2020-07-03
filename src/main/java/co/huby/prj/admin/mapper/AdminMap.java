@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.annotation.MapperScan;
 
 import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.AdminTableVo;
 import co.huby.prj.vo.CompanyVo;
 import co.huby.prj.vo.NoticeVo;
 
@@ -20,4 +21,5 @@ public interface AdminMap {
 	int memberCnt();
 	int CompanyCnt();
 	int noticeCnt();
+	AdminTableVo selectOne(AdminTableVo vo);
 }

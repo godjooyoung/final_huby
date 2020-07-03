@@ -23,6 +23,9 @@
 		<load-on-startup>1</load-on-startup>
 		<async-supported>true</async-supported>
 	</servlet>
+	<session-config>
+	  <session-timeout>60</session-timeout>
+	</session-config>
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>

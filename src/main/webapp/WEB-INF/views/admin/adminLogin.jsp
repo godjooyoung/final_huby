@@ -150,9 +150,9 @@ span.psw {
        .image_inner_container{
        	border-radius: 50%;
        	padding: 5px;
-        /* background: #833ab4; 
+        background: #833ab4; 
         background: -webkit-linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4); 
-        background: linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4); */
+        background: linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
        }
        .image_inner_container img{
        	height: 300px;
@@ -178,39 +178,10 @@ span.psw {
 	}
 </script>
 <script>
-	function CompanyLoginCheck() {
+	function adminLoginCheck() {
 
-		var id = document.getElementById("company_id");
-		var pw = document.getElementById("company_pw");
-
-		if (id.value == "" && pw.value == "") {
-			alert("아이디, 패스워드를 입력하세요.")
-			id.focus()
-			return false;
-		}
-
-		if (id.value == "") {
-			alert("아이디를 입력하세요.")
-			id.focus();
-			return false;
-		}
-
-		if (pw.value == "") {
-			alert("패스워드를 입력하세요.")
-			pw.focus();
-			return false;
-		}
-
-		else {
-			return true;
-		}
-	}
-</script>
-<script>
-	function PersonalLoginCheck() {
-
-		var id = document.getElementById("member_id");
-		var pw = document.getElementById("member_pw");
+		var id = document.getElementById("admin_id");
+		var pw = document.getElementById("admin_pw");
 
 		if (id.value == "" && pw.value == "") {
 			alert("아이디, 패스워드를 입력하세요.")
@@ -231,7 +202,6 @@ span.psw {
 		}
 
 		else {
-			Android.login("안녕");
 			return true;
 		}
 	}
@@ -242,49 +212,34 @@ span.psw {
 	<div class="container">
 		<div class="d-flex justify-content-center h-100">
 			<div class="image_outer_container">
-				<!-- <div class="green_icon"></div> -->
 				<div class="image_inner_container">
-					<img src="${pageContext.request.contextPath}/resources/FileUpload/HUBY5.png">
+					<img src="${pageContext.request.contextPath}/resources/FileUpload/HUBY.png">
 				</div>
 			</div>
 		</div>
 	</div>
 	
 <div align="center">
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">개인회원 로그인</button>
-<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">기업회원 로그인</button>
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">관리자 로그인</button>
 </div>
 
-<br><br>
-<div align="center">
-	<a href="unionJoinForm.do" style="color: red; font-weight: bold;">회원이 아니신가요?</a><br><br>
-</div>
-<div>
-	<button type="button" class="btn-primary" onclick="location.href='main.do' ">홈으로</button>
-	<!-- test -->
-	<button type="button" class="btn-primary" onclick="location.href='gotest.do'">뷰확인용
-		테스트</button>
-	<button type="button" class="btn-primary" onclick="location.href='index.do'">관리자페이지
-		로그인 없음</button>
-	<button type="button" class="btn-primary" onclick="location.href='coemdeview.do'">디테일뷰
-		로그인 없음</button>
-</div>
+
 
 
 
 <div id="id01" class="modal">
   
-  <form class="modal-content animate" id="frm" name="frm" method="post" action="PersonalLoginCheck.do" onsubmit="return PersonalLoginCheck();">
+  <form class="modal-content animate" id="frm" name="frm" method="post" action="adminLoginCheck.do" onsubmit="return adminLoginCheck();">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="${pageContext.request.contextPath}/resources/FileUpload/HUBY4.png" alt="Avatar" class="avatar" style="width: 300px; height: 300px;">
     </div>
     <div class="container">       
-      <label for="uname"><b>개인 아이디</b></label>
-      <input type="text" placeholder="Enter User ID" name="member_id" id="member_id" maxlength="50" required="required">
+      <label for="uname"><b>아이디</b></label>
+      <input type="text" placeholder="Enter User ID" name="admin_id" id="admin_id" maxlength="50" required="required">
 
-      <label for="psw"><b>개인 패스워드</b></label>
-      <input type="password" placeholder="Enter User Password" name="member_pw" id="member_pw" maxlength="50" required="required">
+      <label for="psw"><b>패스워드</b></label>
+      <input type="password" placeholder="Enter User Password" name="admin_pw" id="admin_pw" maxlength="50" required="required">
         
       <button type="submit" style="font-weight: bold;">로그인</button>
     </div>
@@ -299,46 +254,6 @@ span.psw {
 <script>
 // Get the modal
 var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
-
-
-<div id="id02" class="modal">
-	<form class="modal-content animate" id="frm2" name="frm2" method="post" action="CompanyLoginCheck.do">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="${pageContext.request.contextPath}/resources/FileUpload/HUBY4.png" alt="Avatar" class="avatar" style="width: 300px; height: 300px;">
-    </div>
-
-    <div class="container">
-      <label for="uname"><b>기업 아이디</b></label>
-      <input type="text" placeholder="Enter Company Id" name="company_id" id="company_id" maxlength="50" required="required">
-
-      <label for="psw"><b>기업 패스워드</b></label>
-      <input type="password" placeholder="Enter Company Password" name="company_pw" id="company_pw" maxlength="50" required="required">  
-      <button type="submit" style="font-weight: bold;">로그인</button>
-    </div>
-	
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Human Union Business Yedam</span>
-    </div>
-  </form>
-</div><br><br><br><br><br><br><br><br><br><br><br>
-<div align="center">
-<span style="background-color: white;">
-<button type="button" onclick="location.href='adminLogin.do'" style="background: white;">관리자 로그인</button>
-</span>
-</div>
-<script>
-// Get the modal
-var modal = document.getElementById('id02');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {

@@ -19,6 +19,7 @@
 		<typeAlias alias="CareerVo" type="co.huby.prj.vo.CareerVo" />
 		<typeAlias alias="NoticeVo" type="co.huby.prj.vo.NoticeVo" />
 		<typeAlias alias="HabitVo" type="co.huby.prj.vo.HabitVo" />
+		<typeAlias alias="AdminTableVo" type="co.huby.prj.vo.AdminTableVo" />
 		<typeAlias alias="QuestionVo"
 			type="co.huby.prj.vo.QuestionVo" />
 		<typeAlias alias="Paging" type="co.huby.prj.vo.Paging" />

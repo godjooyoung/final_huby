@@ -127,4 +127,13 @@
 	<select id="noticeCnt" resultType="int">
 		select COUNT(*) from notice
 	</select>
+	
+	<select id="selectOne" resultType="AdminTableVo" parameterType="AdminTableVo">
+		select admin_id 
+		from admin_table 
+		where 
+		admin_id = #{admin_id} 
+		and 
+		admin_pw = #{admin_pw}
+	</select>
 </mapper>

@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.huby.prj.admin.service.AdminService;
 import co.huby.prj.code.service.CodeService;
 import co.huby.prj.code.service.CodeVo;
 import co.huby.prj.member.service.CompanyMemberService;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.AdminTableVo;
 import co.huby.prj.vo.CompanyVo;
 
 @Controller
@@ -31,6 +33,8 @@ public class LoginController {
 	CodeService codeService;
 	@Autowired
 	BCryptPasswordEncoder pwdEncoder;
+	@Autowired
+	AdminService adminService;
 
 	@RequestMapping("/login.do")
 	public String login(Model model) {
@@ -102,6 +106,22 @@ public class LoginController {
 
 		return mav;
 	}
+	
+	@RequestMapping("/adminLoginCheck.do")
+	public ModelAndView adminLoginCheck(Model model, HttpServletRequest request, AdminTableVo vo) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		AdminTableVo vo2 = adminService.selectOne(vo);
+
+		if (vo2.getAdmin_pw().equals(vo.getAdmin_pw())) {
+				mav.setViewName("redirect:index.do");
+		}else {
+			String num = "1";
+			request.setAttribute("num", num);
+			mav.setViewName("no/admin/adminLogin");
+		}
+
+		return mav;
+	}
 
 	@ResponseBody
 	@RequestMapping("/idCheck.do")
@@ -162,5 +182,10 @@ public class LoginController {
 	@RequestMapping("/coemdeview.do")
 	public String coemdeview(Model model, HttpServletRequest request) throws Exception {
 		return "person/company/companyEmploymentDetailsView";
+	}
+	
+	@RequestMapping("/adminLogin.do")
+	public String adminLogin(Model model) throws Exception {
+		return "no/admin/adminLogin";
 	}
 }

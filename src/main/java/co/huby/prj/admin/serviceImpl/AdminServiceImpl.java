@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import co.huby.prj.admin.mapper.AdminMap;
 import co.huby.prj.admin.service.AdminService;
 import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.AdminTableVo;
 import co.huby.prj.vo.CompanyVo;
 import co.huby.prj.vo.NoticeVo;
 
@@ -74,5 +75,11 @@ public class AdminServiceImpl implements AdminService {
 	public int noticeCnt() {
 		// TODO Auto-generated method stub
 		return map.noticeCnt();
+	}
+
+	@Override
+	public AdminTableVo selectOne(AdminTableVo vo) {
+		// TODO Auto-generated method stub
+		return map.selectOne(vo);
 	}
 }

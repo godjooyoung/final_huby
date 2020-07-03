@@ -3,6 +3,7 @@ package co.huby.prj.admin.service;
 import java.util.List;
 
 import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.AdminTableVo;
 import co.huby.prj.vo.CompanyVo;
 import co.huby.prj.vo.NoticeVo;
 
@@ -17,4 +18,5 @@ public interface AdminService {
 	int memberCnt();
 	int CompanyCnt();
 	int noticeCnt();
+	AdminTableVo selectOne(AdminTableVo vo);
 }
