@@ -14,6 +14,7 @@
 			</div>
 		</div>
 	</div>
+	<!--  
 	<div class="sub_menu_wrap s-inner sub_menu_pc ">
 		<div class="sub_menu_tit"></div>
 		<ul class="sub_menu_box sub01">
@@ -22,34 +23,28 @@
 			<li class="m3"><a href="companyEmploymentsList.do">지원내역</a></li>
 		</ul>
 	</div>
+	  -->
 </div>
 <div id="sub_content_wrap" class="sub0101">
-	<div class="ov inner center" style="margin: 10% auto 2%;">    
+	<div class="ov inner center" style="margin: 0px auto 2%;">    
     <!-- 실제소스 -->
     <!-- ---------------------------- -->
     <div class="w3-container w3-margin-bottom" style="background-color:#134a8e;">
     	<div style="vertical-align: middle;">
-    		&nbsp;<h3 style="color:white; margin-bottom:20px;">공고타이틀 자리</h3>
+    		&nbsp;<h3 style="color:white; margin-bottom:10px;">${employmentsDetails.employment_title}</h3>
+    		<h5 style="color:white; margin-bottom:20px;"><fmt:formatDate pattern ="yyyy년MM월dd일 까지" value="${employmentsDetails.employment_time}"/></h5>
     	</div>
 	</div>
 	<div class="w3-row-padding ">
 		<div class="w3-twothird">
-			  <h2>여기에 공ㄱ소내용 때려박는다</h2>
-			  <p>Chardonnay is the world's most popular wine grape.</p>
-			  <p>The taste of the Chardonnay grape is very neutral and easy to like.</p>
-			  <p>Many of the Chardonnay flavors are derived from terroir and oak-aging.</p>
-			  <p>The flavors varies from noticeable acidity (Cold Climates), to crisply and mineral (Chablis, France) 
-			  with flavors of green plum, apple and pear, to heavy oak and tropical fruit flavors (the New World). </p>
-			  <p>In cooler climates Chardonnay tends to be under-riped. </p>
-			  <p>In warmer climates the flavors tend to vary from lemon to peach and melon.</p>
-			  <p>In very warm climates Chardonnay tends to be over-riped.</p>
-			  <p>Oaked Chardonnay tends to have softer acidity and more fruit flavors with 
-			  added butter, cream and hazelnut notes.</p>
-			  <h2>여기에 우대내용 때려박는다</h2>
-			  <p>In warmer climates the flavors tend to vary from lemon to peach and melon.</p>
-			  <p>In very warm climates Chardonnay tends to be over-riped.</p>
-			  <p>Oaked Chardonnay tends to have softer acidity and more fruit flavors with 
-			  added butter, cream and hazelnut notes.</p>
+			  <h2>공고내용</h2>
+			  <div>
+			  <p>${employmentsDetails.employment_contents}</p>
+			  </div>
+			  <h2>우대사항</h2>
+			  <div>
+			  <p>${employmentsDetails.employment_prefer}</p>
+			  </div>
  		</div>
  		
 		<div class="w3-third">
@@ -62,8 +57,8 @@
   					<th style="width:50%">학력</th>
   				</tr>
   				<tr>
-  					<td style="width:50%">희망커리어자리</td>
-  					<td style="width:50%">희망학력</td>
+  					<td style="width:50%">${employmentsDetails.hope_career}</td>
+  					<td style="width:50%">${employmentsDetails.hope_graduate}</td>
   				</tr>
   			</table>
   			
@@ -74,12 +69,12 @@
   					<h3>근무조건</h3>
   				</thead>
   				<tr>
-  					<th style="width:50%">희망샐러리</th>
-  					<th style="width:50%">지역</th>
+  					<th style="width:50%">임금</th>
+  					<th style="width:50%">근무지역</th>
   				</tr>
   				<tr>
-  					<td style="width:50%">돈</td>
-  					<td style="width:50%">지역</td>
+  					<td style="width:50%">${employmentsDetails.hope_salary}</td>
+  					<td style="width:50%">${employmentsDetails.hope_location}</td>
   				</tr>
   			</table>
   			
@@ -95,15 +90,13 @@
   					<th style="width:33%">근무포지션</th>
   				</tr>
   				<tr>
-  					<td style="width:33%">정규인턴등등</td>
-  					<td style="width:33%">모집직종</td>
-  					<td style="width:33%">근무포지션</td>
+  					<td style="width:33%">${employmentsDetails.hope_work_type}</td>
+  					<td style="width:33%">${employmentsDetails.hope_job}</td>
+  					<td style="width:33%">${employmentsDetails.hope_job_position}</td>
   				</tr>
   			</table>
 	</div>
 </div>
-    
-   
     <!-- ---------------------------- -->
     <h1>공고 상세 페이지</h1>
     <table>
@@ -161,7 +154,7 @@
     </tr>
     </table>
     <br>
-	
+	 <!-- ---------------------------- -->
 	<form id="formodify" name="formodify" action="">
 	<input type="hidden" name ="emp_id" id="emp_id" value="${employmentsDetails.employment_id}">
 	<input type="hidden" name ="title" id="title" value="${employmentsDetails.employment_title}">
