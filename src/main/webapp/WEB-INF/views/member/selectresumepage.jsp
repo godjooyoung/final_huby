@@ -113,7 +113,7 @@
   				<tr>
   					<td rowspan="6" colspan="3" style="border: 1px solid;">회사Logo</td>
   				</tr>
-  				<tr>
+  				<tr id="com">
   					<td colspan="2">${empMatch.COMPANY_NAME}</td>
   					<td colspan="2"><button type="button" class="btn-primary">관심기업 등록</button></td>
   				</tr>
