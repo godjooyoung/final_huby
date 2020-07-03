@@ -231,7 +231,7 @@
 	top: 0;
 	width: 60px;
 	height: 60px;
-	background: url(/images/common/hd_tel.png) no-repeat center center;
+	background: url(../resources/images/common/hd_tel.png) no-repeat center center;
 	cursor: pointer;
 }
 /**/
@@ -432,7 +432,7 @@
 	#hd_wrap.hd-up #gnb_tel {
 		display: inline-block;
 		z-index: 2;
-		background: #134a8e url(/images/common/hd_tel.png) no-repeat center
+		background: #134a8e url(../../resources/images/common/hd_tel.png) no-repeat center
 			center;
 	}
 }
@@ -471,7 +471,7 @@
 		display: block;
 		z-index: 2;
 		border-right: 1px solid rgba(255, 255, 255, 0.2);
-		background: #948778 url(/images/common/hd_tel.png) no-repeat center
+		background: #948778 url(../resources/images/common/hd_tel.png) no-repeat center
 			center;
 	}
 	#hd_wrap #gnb_menu {

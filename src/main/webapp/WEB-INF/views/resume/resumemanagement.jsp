@@ -2,18 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <style>
 .mb-60 {
 	margin-bottom: 60px;
@@ -437,13 +428,36 @@ p {
 			  });
 		}
 </script>
-</head>
-<body>
+<div id="sub_vis_wrap" class="sub01 page01">
+	<div class="hd_box"></div>
+	<div class="visual-area ">
+		<div class="visual-area-in">
+			<div class="visual-area-txt inner sub01 ">
+				<div class="tit" data-aos="fade-up" data-aos-delay="300">이력서관리</div>
+				<p class="fs18" data-aos="fade-up" data-aos-delay="400">
+					다관리해<br>내정보관리
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="sub_menu_wrap s-inner sub_menu_pc ">
+		<div class="sub_menu_tit">
+		</div>
+
+		<ul class="sub_menu_box sub01">
+			<li class="m1"><a href="#" onclick="resumeView();">이력서등록</a></li>
+			<li class="m2"><a href="#" onclick="CareerView();">커리어등록</a></li>
+			<li class="m2"><a href="#" onclick="skillView();">스킬등록</a></li>
+		</ul>
+	</div>
+</div>
+<div id="sub_content_wrap" class="sub0101">
+	<div class="ov inner center" style="margin: 10% auto 5%;">
+		<div class="sub0101_tit">여긴공고전체 보</div>
 	<div class="container">
 		<!-- 이력서 관리 폼 시작 -->
 		<h2>이력서 관리</h2>
 		<!-- <button class="btn-primary" type="button" onclick="location.href='resumeinsertpage.do'">이력서등록</button> -->
-		<button class="btn-primary" type="button" onclick="resumeView()">이력서 등록</button>
 		<button class="btn-primary" type="button" onclick="checkResumeDelete()">이력서 삭제</button>
 		<form id="frm" name="frm" method="post">
 		<div class="row">
@@ -563,7 +577,6 @@ p {
 		<!-- 커리어 관리 폼 시작 -->
 		<h2>커리어 관리</h2>
 		<!-- <button class="btn-primary" type="button" onclick="location.href='careerInsertPage.do'">커리어 등록</button> -->
-		<button class="btn-primary" type="button" onclick="CareerView()">커리어 등록</button>
 		<button class="btn-primary" type="button" onclick="checkCareerDelete()">커리어 삭제</button>
 		<form id="frm3" name="frm3" method="post">
 		<div class="row">
@@ -648,7 +661,6 @@ p {
 		<!-- 스킬관리  폼 시작 -->
 		<h2>스킬 관리</h2>
 		<!-- <button class="btn-primary" type="button" onclick="skillInsertPage()">스킬 등록</button> -->
-		<button class="btn-primary" type="button" onclick="skillView()">스킬 등록</button>
 		<button class="btn-primary" type="button" onclick="checkSKillDelete()">스킬 삭제</button><br><br>
 		<form id="frm2" name="frm2" method="post">
 		<div class="row">
@@ -713,6 +725,6 @@ p {
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
 		<!-- 수정폼 끝 -->
-</body>
-</html>

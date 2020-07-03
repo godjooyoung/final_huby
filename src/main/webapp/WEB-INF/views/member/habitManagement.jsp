@@ -1,21 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title>Insert title here</title>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
 <style>
-	#div1{color: red}
-	#overhid{
+#div1 {
+	color: red
+}
+
+#overhid {
 	overflow: hidden;
-    height: 100px;
-    }
+	height: 100px;
+}
 </style>
 <script>
 	function habitcheck(hid){
@@ -42,10 +41,9 @@
 	}
 </script>
 <script type="text/javascript">
- // Load the Visualization API and the corechart package.
+	 // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
-
-    // Set a callback to run when the Google Visualization API is loaded.
+	// Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawChart);
 
     // Callback that creates and populates a data table,
@@ -72,8 +70,6 @@
 				}
 			}
       });
-
-
       // Instantiate and draw our chart, passing in some options.
       	 for(var i=0; i<chartData.length; i++){
       		 var fontColor = 'green'; 
@@ -89,28 +85,39 @@
       	                     'hAxis': { gridlines: { count: 0 }, minValue: 0,maxValue: 100  },
       	                     'colors': [fontColor]
       	      };
-      		 
-      		 
 	      var chart = new google.visualization.BarChart(document.querySelector('#chart_div'+i));
 	      chart.draw(google.visualization.arrayToDataTable(chartData[i]), options);
       	 }
     }
-          
+</script>
 
-  </script>
-</head>
-<body>
-<!-- <div id="chart_div"></div> -->
-<form id="frm" name="frm" method="post">
-<div align="center">
-<div>
-<button class="btn-primary" onclick="habitInsertPage()"> 습관 등록하기 </button>
-<button class="btn-primary" onclick="habitDelete()"> 습관 삭제하기 </button>
-</div><br>
-<h1>습관 관리</h1>
-<br>
-<!-- 기존 작업 시작 -->
-<%-- <c:forEach items="${ hlist }" var="habit">
+<div id="sub_vis_wrap" class="sub01 page01">
+	<div class="hd_box"></div>
+	<div class="visual-area ">
+		<div class="visual-area-in">
+			<div class="visual-area-txt inner sub01 ">
+				<div class="tit" data-aos="fade-up" data-aos-delay="300">나의습관</div>
+				<p class="fs18" data-aos="fade-up" data-aos-delay="400">
+					다관리해<br>습관적어봐
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="sub_menu_wrap s-inner sub_menu_pc ">
+		<div class="sub_menu_tit"></div>
+		<ul class="sub_menu_box sub01">
+			<li class="m1"><a href="#" onclick="habitInsertPage();">습관등록</a></li>
+			<li class="m2"><a href="#" onclick="habitDelete();">습관삭제</a></li>
+		</ul>
+	</div>
+</div>
+<div id="sub_content_wrap" class="sub0101">
+	<div class="ov inner center" style="margin: 10% auto 5%;">
+		<form id="frm" name="frm" method="post">
+			<!-- <div id="chart_div"></div> -->
+
+			<!-- 기존 작업 시작 -->
+			<%-- <c:forEach items="${ hlist }" var="habit">
 습관명:${ habit.habit_name }<input type="checkbox" id="habit_id_check" name="habit_id_check" value="${habit.habit_id}"><br>
 <fmt:formatDate value="${ habit.habit_start_date }" pattern="yyyy-MM-dd" var="habit_start_date" />
 시작시간:${ habit_start_date }<br>
@@ -124,35 +131,39 @@
 인증</button><br>
 <br><br><br>
 </c:forEach> --%>
-<!-- 기존 작업 끝 -->
-<div class="container">
-  <hr/>
-  <div class="row">
-    <c:forEach items="${ hlist }" var="habit" varStatus="var">
-    <div class="col-md-4" style="table-layout: fixed;">
-		<div class="card">
-			<!-- <img class="card-img-top" src="http://gdurl.com/ow9D" alt="Card image cap"> -->
-			<div id="chart_div${ var.index }"></div><br>
-   				<h5 class="card-title" style="font-weight: bolder;">습관명:${ habit.habit_name }<input type="checkbox" id="habit_id_check" name="habit_id_check" value="${habit.habit_id}"></h5>
-   				<fmt:formatDate value="${ habit.habit_start_date }" pattern="yyyy-MM-dd" var="habit_start_date" />
-   				<p class="card-text" style="font-weight: bolder;">시작시간:${ habit_start_date }</p>
-   				<fmt:formatDate value="${ habit.habit_log_date }" pattern="yyyy-MM-dd HH:mm:ss" var="habit_log_date" />
-   				<p class="card-text" style="font-weight: bolder;">최근인증시간:${ habit_log_date }</p>
-   				<button type="button" class="btn btn-primary" style="color: white; font-weight: bolder;" onclick="habitcheck(${habit.habit_id})"
-					<c:if test="${ habit.checked == 1 }">disabled
-				</c:if>>인증</button>
-		</div>
+			<!-- 기존 작업 끝 -->
+			<div class="container">
+				<hr />
+				<div class="row">
+					<c:forEach items="${ hlist }" var="habit" varStatus="var">
+						<div class="col-md-4" style="table-layout: fixed;">
+							<div class="card">
+								<!-- <img class="card-img-top" src="http://gdurl.com/ow9D" alt="Card image cap"> -->
+								<div id="chart_div${ var.index }"></div>
+								<br>
+								<h5 class="card-title" style="font-weight: bolder;">
+									습관명:${ habit.habit_name } <input type="checkbox"
+										id="habit_id_check" name="habit_id_check"
+										value="${habit.habit_id}">
+								</h5>
+								<fmt:formatDate value="${ habit.habit_start_date }"
+									pattern="yyyy-MM-dd" var="habit_start_date" />
+								<p class="card-text" style="font-weight: bolder;">시작시간:${ habit_start_date }</p>
+								<fmt:formatDate value="${ habit.habit_log_date }"
+									pattern="yyyy-MM-dd HH:mm:ss" var="habit_log_date" />
+								<p class="card-text" style="font-weight: bolder;">최근인증시간:${ habit_log_date }</p>
+								<button type="button" class="btn btn-primary"
+									style="color: white; font-weight: bolder;"
+									onclick="habitcheck(${habit.habit_id})"
+									<c:if test="${ habit.checked == 1 }">disabled
+							</c:if>>인증</button>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+			<input type="hidden" id="habit_id" name="habit_id"> <input
+				type="hidden" id="habit_cnt" name="habit_cnt" value="${ habit.cnt }">
+		</form>
 	</div>
-	</c:forEach>
-  </div>
-</div>		
-
-
 </div>
-<input type="hidden" id="habit_id" name="habit_id">
-<input type="hidden" id="habit_cnt" name="habit_cnt" value="${ habit.cnt }">
-</form>			
-
-						
-</body>
-</html>

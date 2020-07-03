@@ -848,9 +848,8 @@ body {
 				<c:forEach var="list" items="${personChatList}">
 					<span><c:if test="${fn:contains(connId, list.member_id)}"></c:if><span
 						class="contact-status busy"></span></span>
-					<li class="contact">
-						<div class="wrap"
-							onclick="ajaxSelectChat(window.event,'${list.interview_id }','${list.member_id }')">
+					<li class="contact" data-i='${list.interview_id }' data-m='${list.member_id }'>
+						<div class="wrap">
 							<img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
 							<div class="meta">
 								<p class="name">${list.company_name}</p>
@@ -867,16 +866,6 @@ body {
 						</div>
 					</li>
 				</c:forEach>
-				<li class="contact active">
-					<div class="wrap">
-						<span class="contact-status busy"></span> <img
-							src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-						<div class="meta">
-							<p class="name">현재대화중인 사람이름</p>
-							<p class="preview">${recent.message_content }</p>
-						</div>
-					</div>
-				</li>
 			</ul>
 		</div>
 		<div id="bottom-bar">
@@ -907,7 +896,9 @@ body {
 					<c:choose>
 						<c:when test="${contents.message_receiver == (loginId)}">
 							<li class="sent">
+							<c:if test="${not empty contents.interview_id}">
 							<img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
+							</c:if>
 								<p>${contents.message_content}</p> <br> 
 								<span id="message_sandtime" style='float: left; font-size: 9px; text-align: left;'>${contents.message_sandtime }
 							</span></li>
@@ -949,7 +940,6 @@ body {
 	var message = {};
 	message.message_type = 'CHAT';
 	
-
 	function newMessage() {
 		var msg = $(".message-input input").val();
 		if (msg != "") {
@@ -957,7 +947,6 @@ body {
 			sock.send(JSON.stringify(message)); //웹소켓으로 메시지를 보내겠어
 		}
 		$("#message").val(""); //입력한후 폼에서 삭제
-	$(".messages").animate({scrollTop : $(document).height()}, "fast")
 	}
 		
 	function getTimeStamp() {
@@ -1000,7 +989,7 @@ body {
 			}
 		}
 	$('.message-input input').val(null);
-	$(".messages").animate({scrollTop : $(document).height()}, "fast");
+	$(".messages").scrollTop($(".messages").prop('scrollHeight'))
 	};
 
 	$('.submit').click(function() {
@@ -1024,10 +1013,17 @@ body {
 			disconnect();
 		});
 
-	function ajaxSelectChat(e, chat) {
+		
+	$(".contact").click(function(){
+		var interview_id = $(this).attr("data-i")
+		ajaxSelectChat($(this),interview_id);
+	})	
+		
+		
+	function ajaxSelectChat(i, chat) {
 
-		var i = $(e.target).closest(".wrap")
-		i.addClass("selectChat");
+		$(".contact").removeClass("active")
+		i.addClass("active");
 		var frm = i.find("form").get(0);
 		var company_id = frm.company_id.value
 		var member_id = frm.member_id.value
@@ -1063,13 +1059,20 @@ body {
 														+ "</p><br><span style='float: left; font-size: 9px; text-align: left;'>"
 														+ t + "</span></li>");
 							}
-							$(".messages").animate({scrollTop : $(document).height()}, "fast");
+								
 						}
 						if (data.result.length == 0) {$('#message_content').append("대화내용이 없슴니다,");
 						}
+						$(".messages").scrollTop($(".messages").prop('scrollHeight'))
 					},
 					error : function(request, status, error) {
 					}
 				});
 		}
+	
+	setTimeout(function () {
+		$(".contact").first().click()
+	},500);	
+	
+	
 </script>
