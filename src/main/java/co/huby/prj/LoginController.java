@@ -110,17 +110,24 @@ public class LoginController {
 	@RequestMapping("/adminLoginCheck.do")
 	public ModelAndView adminLoginCheck(Model model, HttpServletRequest request, AdminTableVo vo) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		AdminTableVo vo2 = adminService.selectOne(vo);
+		AdminTableVo vo2 = adminService.adminSelectOne(vo);
 
-		if (vo2.getAdmin_pw().equals(vo.getAdmin_pw())) {
-				mav.setViewName("redirect:index.do");
+		
+		if(vo2 != null) {
+			if (vo.getAdmin_pw().equals(vo2.getAdmin_pw())) {
+					mav.setViewName("redirect:index.do");
+			}else {
+				String num = "1";
+				request.setAttribute("num", num);
+				mav.setViewName("no/admin/adminLogin");
+			}
 		}else {
 			String num = "1";
 			request.setAttribute("num", num);
 			mav.setViewName("no/admin/adminLogin");
 		}
-
-		return mav;
+	
+			return mav;
 	}
 
 	@ResponseBody

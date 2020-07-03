@@ -128,12 +128,12 @@
 		select COUNT(*) from notice
 	</select>
 	
-	<select id="selectOne" resultType="AdminTableVo" parameterType="AdminTableVo">
-		select admin_id 
+	<select id="adminSelectOne" resultType="AdminTableVo" parameterType="AdminTableVo">
+		select admin_id, admin_pw
 		from admin_table 
 		where 
-		admin_id = #{admin_id} 
-		and 
-		admin_pw = #{admin_pw}
+			admin_id = #{admin_id} 
+			and 
+			admin_pw = #{admin_pw}
 	</select>
 </mapper>

@@ -18,5 +18,5 @@ public interface AdminService {
 	int memberCnt();
 	int CompanyCnt();
 	int noticeCnt();
-	AdminTableVo selectOne(AdminTableVo vo);
+	AdminTableVo adminSelectOne(AdminTableVo vo);
 }
