@@ -18,6 +18,16 @@ public class EmploymentsVo {
 	private String company_id;
 	private String hope_salary;
 	private String complete;
+	private String job_name;
+	
+	
+	
+	public String getJob_name() {
+		return job_name;
+	}
+	public void setJob_name(String job_name) {
+		this.job_name = job_name;
+	}
 	public String getComplete() {
 		return complete;
 	}

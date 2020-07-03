@@ -78,8 +78,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public AdminTableVo selectOne(AdminTableVo vo) {
+	public AdminTableVo adminSelectOne(AdminTableVo vo) {
 		// TODO Auto-generated method stub
-		return map.selectOne(vo);
+		return map.adminSelectOne(vo);
 	}
 }

@@ -229,7 +229,7 @@ span.psw {
 
 <div id="id01" class="modal">
   
-  <form class="modal-content animate" id="frm" name="frm" method="post" action="adminLoginCheck.do" onsubmit="return adminLoginCheck();">
+  <form class="modal-content animate" id="frm" name="frm" method="post" action="adminLoginCheck.do" onsubmit="return adminLoginCheck()">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="${pageContext.request.contextPath}/resources/FileUpload/HUBY4.png" alt="Avatar" class="avatar" style="width: 300px; height: 300px;">
