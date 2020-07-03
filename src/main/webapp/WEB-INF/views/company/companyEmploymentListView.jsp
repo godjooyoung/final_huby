@@ -5,7 +5,6 @@
 <style>
 	li{cursor:pointer}
 </style>
-
 <div id="sub_vis_wrap" class="sub01 page01">
 	<div class="hd_box"></div>
 	<div class="visual-area ">
