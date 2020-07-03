@@ -31,7 +31,7 @@
 				<img src="download.do?name=${firstList.VIDEO_IMG }" alt="thumnail"
 					style="width: 100%;"
 					onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
-					onclick="location.href='resumeDetail.do?video_id=${firstList.VIDEO_ID}&member_id=${firstList.MEMBER_ID }'">
+					onclick="location.href='resumeDetail.do?video_id=${firstList.VIDEO_ID}&member_id=${firstList.MEMBER_ID }&hashcode=${firstList.CODE_NAME}'">
 				<div class="inner03"
 					style="position:absolute; left:87%; top:4%"; 
 					id="btn${firstList.VIDEO_ID }" name="likeBtn"

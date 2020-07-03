@@ -31,4 +31,10 @@ public class CodeServiceImpl implements CodeService {
 		return map.selectRegionName();
 	}
 
+	@Override
+	public CodeVo get_codeAll(CodeVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.get_codeAll(vo);
+	}
+
 }

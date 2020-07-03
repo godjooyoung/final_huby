@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import co.huby.prj.board.service.BoardService;
+
 import co.huby.prj.vo.ApplyVo;
+import co.huby.prj.vo.CodeVo;
 import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.InterviewVo;
 import co.huby.prj.vo.LikeEmploymentVo;
@@ -235,14 +237,18 @@ public class HomeController {
 	
 	/*공고 목록에서 공고를 클릭하면 내용 상세뷰로 넘어갑니다.*/
 	@RequestMapping(value = "/employmentsDetailsforCom.do")
-	public String employmentDetails (Model model, HttpServletRequest request, EmploymentsVo vo) throws Exception	{
+	public String employmentDetails (Model model, HttpServletRequest request, EmploymentsVo vo, CodeVo vo2) throws Exception	{
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		String emplomentid= request.getParameter("employment_id");
+		String code_id = request.getParameter("code_id");
 		vo.setCompany_id(companyid);
 		vo.setEmployment_id(emplomentid);
+		vo2.setCode_id(code_id);
 		vo = boardService.get_empDetailsForCom(vo);
+		vo2 = boardService.get_codeName(vo2);
 		model.addAttribute("employmentsDetails", vo);
-		System.out.println(vo);
+		model.addAttribute("code", vo2);
+		System.out.println(vo2);
 		return "company/company/companyEmploymentDetailsView";
 	}
 	

@@ -9,26 +9,35 @@ html, body, h1, h2, h3, h4, h5, h6 {
 	font-family: "Roboto", sans-serif
 }
 </style>
-<!-- 여기 -->
 	<!-- Page Container -->
 	<div class="w3-content w3-margin-top" style="max-width: 1400px;">
 		<!-- The Grid -->
 		<div class="w3-row-padding">
 			<!-- Left Column -->
 			<div class="w3-third">
-				<div class="w3-white w3-text-grey w3-card-4">
+				<div class="w3-white w3-text-grey w3-card">
 					<div class="w3-display-container">
+						<div class='wrap' style='position:relative;'>
+						<div class="inner01" style="position:absolute; left:3%; top:3%;">
+						<h4 style="align:left; color:white; text-shadow: 2px 2px 5px black; font-weight: bolder; 
+				 			padding-top:5px; padding-left:5px;">
+				 			<b><u>${member.member_name}</u> 님</b><br>
+				 			#${code.code_name}
+						</h4>
+						</div>
+						<div class="inner02" style="position:absolute; left:5%; top:5%;">
+						<br><br>
+						<p style="text-align:left;overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:250px;
+							font-weight: bold;  color:white; text-shadow: 2px 2px 5px black; margin-top:2%;">
+							${video.video_contents}
+						</p>
+						</div>
 						<video width="100%" controls poster="download.do?name=${video.video_img}" playsinline preload="none">
- 						<source src="download.do?name=${video.video_location }" type="video/mp4">영상이 없습니다.
+ 						<source src="download.do?name=${video.video_location}" type="video/mp4">영상이 없습니다.
  						</video>
-						<div class="w3-display-topleft w3-container w3-text-black">
-							<br>
-							<h2><b><u>${member.member_name}</u> 님</b></h2>
-							<br>
-							<h3 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:340px;"><b>#해시태그자리해시</b></h3>
-							<h3><b>${video.video_contents}</b></h3>
 						</div>
 					</div>
+					<!-- -->
 					<br>
 					<div class="w3-container">
 						<p>
@@ -59,7 +68,12 @@ html, body, h1, h2, h3, h4, h5, h6 {
 						<hr>
 					</div>
 					<div align="center">
-					<input type="button" class="btn btn-primary w3-margin" id="button" value="면접요청" onclick="interviewRe('${applyman.member_id}')">
+					<input type="button" class="btn btn-primary w3-margin" id="button" 
+							value="면접요청" 
+							onclick="interviewRe('${applyman.member_id}')">
+					<input class="btn btn-primary w3-margin" type="button" 
+						value="입사지원요청"
+						onclick="comemploymentlist('${member.member_id}')">
 					</div>
 				</div>
 				<br>
@@ -95,7 +109,7 @@ html, body, h1, h2, h3, h4, h5, h6 {
 						<h5 class="w3-opacity">
 							<b>희망직무</b>
 						</h5>
-						<p>#</p>
+						<p>${code.code_name}</p>
 						<hr>
 					</div>
 					<div class="w3-container">
@@ -123,10 +137,10 @@ html, body, h1, h2, h3, h4, h5, h6 {
 				<br>
 				<br>
 				<br> <input type="button" value="면접요청"
-					onclick="interviewRe('${member.member_id}')"> <input
-					type="button" value="입사지원요청"
-					onclick="comemploymentlist('${member.member_id}')">
-				<div id="btnsubmit"></div>
+						onclick="interviewRe('${member.member_id}')"> 
+					<input type="button" value="입사지원요청"
+						onclick="comemploymentlist('${member.member_id}')">
+					<div id="btnsubmit"></div>
 			</div>
 
 			<!-- End Grid -->

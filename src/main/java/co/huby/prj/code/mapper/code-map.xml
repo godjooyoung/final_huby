@@ -17,6 +17,13 @@
 	<select id="selectRegionName" resultType="CodeVo">
 		SELECT CODE_NAME FROM CODE
 	</select>
+	
+	<select id="get_codeAll" resultType="CodeVo">
+		SELECT CODE_ID, CODE_PART, CODE_NAME, CODE_USE
+		FROM CODE
+		WHERE CODE_NAME = #{code_name}
+	</select>
+	
 
 
 </mapper>

@@ -37,6 +37,7 @@
 	</div>
 	<div class="w3-row-padding ">
 		<div class="w3-twothird">
+			
 			  <h2>공고내용</h2>
 			  <div>
 			  <p>${employmentsDetails.employment_contents}</p>
@@ -91,7 +92,7 @@
   				</tr>
   				<tr>
   					<td style="width:33%">${employmentsDetails.hope_work_type}</td>
-  					<td style="width:33%">${employmentsDetails.hope_job}</td>
+  					<td style="width:33%">${code.code_name}</td>
   					<td style="width:33%">${employmentsDetails.hope_job_position}</td>
   				</tr>
   			</table>
