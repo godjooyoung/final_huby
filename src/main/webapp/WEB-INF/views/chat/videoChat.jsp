@@ -10,11 +10,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div>
 	Conversation id:<input id="convId" type="text" />
 	<button onclick="window.app.createConversation()">Create</button>
-	<button onclick="window.app.createBroadcastConversation()">Create
-		broadcast</button>
 	<button onclick="window.app.joinConversation()">Join</button>
 	<button onclick="window.app.leaveConversation()">Leave</button>
-	<button onclick="window.app.upperCase()">UpperCase</button>
 </div>
 <div>
 	<ul id="log">
@@ -25,4 +22,5 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<video id="template" width="320" height="240" autoplay controls></video>
 </div>
 <script src="${pageContext.request.contextPath}/resources/js/bundle.js"></script>
+<script type="text/javascript" src="http://www.turnjs.com/lib/turn.min.js"></script>
 

@@ -7,10 +7,47 @@
 		var bar = $('.bar');
 		var percent = $('.percent'); 
 		var status = $('#status');
-		var img = "<p><img src='${pageContext.request.contextPath}/resources/img/common/progress.gif'></p>"
+		/* var img = "<p><img src='${pageContext.request.contextPath}/resources/img/common/progress.gif'></p>" */
+		
+			function LoadingWithMask() {
+		    //화면의 높이와 너비를 구합니다.
+		    var maskHeight = $(document).height();
+		    var maskWidth  = window.document.body.clientWidth;
+		     
+		    //화면에 출력할 마스크를 설정해줍니다.
+		    var mask       ="<div id='mask' style='position:absolute; z-index:9000; background-color:#000000; display:none; left:0; top:0;'></div>";
+		    var loadingImg ='';
+		      
+		    loadingImg +="<div id='loadingImg'>";
+		    loadingImg +=" <img src='${pageContext.request.contextPath}/resources/img/common/progress.gif' style='position: relative; display: block; margin: 0px auto;'/>";
+		    loadingImg +="</div>"; 
+		  
+		    //화면에 레이어 추가
+		   $("#div_gifInsert")
+		        .append(mask)
+		        .append(loadingImg)
+		        
+		    //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채웁니다.
+		    $('#mask').css({
+		            'width' : maskWidth
+		            ,'height': maskHeight
+		            ,'opacity' :'0.3'
+		    });
+		  
+		    //마스크 표시
+		    $('#mask').show();  
+		  
+		    //로딩중 이미지 표시
+		    $('#loadingImg').show();
+
+		}
+		
+		function closeLoadingWithMask() {
+		    $('#mask, #loadingImg').hide();
+		    $('#mask, #loadingImg').remove(); 
+		}
+
 		$(document).on('click', '#btnSend',function(){
-			
-				
 							if($("video").length >=3){
 								alert("영상은 3개까지 등록 가능합니다. 기존의 영상을 삭제 후 다시 실행해 주세요.");
 								$('#btnSend').attr('disabled',true);
@@ -37,8 +74,9 @@
 													percent.html(percentVal);
 													if (percentComplete == 100) {
 														percent.html("처리중")
-														$("#div_gifInsert")
-																.append(img);
+														LoadingWithMask();
+														/* $("#div_gifInsert")
+																.append(img); */
 													}
 												},
 												success : function(data) {
@@ -46,8 +84,10 @@
 													var percentVal = '0%';
 													bar.width(percentVal);
 													percent.html(percentVal);
-													$("#div_gifInsert *")
-															.remove();
+													/* $("#div_gifInsert *")
+															.remove(); */
+															closeLoadingWithMask();
+															
 													var video = '<video width="360" height="640" controls>'
 															+ '<source src="download.do?name='
 															+ data.video_location
@@ -69,8 +109,9 @@
 													bar.width(percentVal);
 													percent.html(percentVal);
 													alert('영상이 등록되지 않았습니다.');
-													$("#div_gifInsert *")
-															.remove();
+													/* $("#div_gifInsert *")
+															.remove(); */
+													closeLoadingWithMask();
 												}
 
 											}).submit();
@@ -134,10 +175,8 @@
 }
 
 .div1 {
-	padding: 10px;
-	float: center;
-	width: 10%;
-	margin: 0 auto;
+	position: relative;
+	top: 100px;
 }
 
 /* .hoverBtn {
@@ -151,41 +190,43 @@ video:hover+.hoverBtn {
 	display: inline-block;
 }
 </style>
-<div>
+<!-- <div>
 	<div class="progress">
 		<div class="bar"></div>
 		<div class="percent">0%</div>
 	</div>
 	<div id="status"></div>
-</div>
-<div id="div_gifInsert"></div>
-<div class="container h-100">
-	<div class="row h-100 justify-content-center align-items-center">
-		<form id="videoForm" class="col-12" action="memberVideoInsert.do"
-			method="post" enctype="multipart/form-data">
-			<div class="form-group">
-				<div style="padding-top: 10px">
-					<input type=text list=browsers name="hashtag"
-						placeholder="지원 분야를 선택해주세요" size="25" required>
-					<datalist id=browsers>
-						<c:forEach var="RegionNameList" items="${RegionName }">
-							<option value="${RegionNameList.code_name }">
-						</c:forEach>
-					</datalist>
+</div> -->
+<span style="height: 50px"></span>
+<div id="div_gifInsert">
+	<div class="container h-100">
+		<div class="row h-100 justify-content-center align-items-center">
+			<form id="videoForm" class="col-12" action="memberVideoInsert.do"
+				method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<div style="padding-top: 10px">
+						<input type=text list=browsers name="hashtag"
+							placeholder="지원 분야를 선택해주세요" size="25" required>
+						<datalist id=browsers>
+							<c:forEach var="RegionNameList" items="${RegionName }">
+								<option value="${RegionNameList.code_name }">
+							</c:forEach>
+						</datalist>
+					</div>
+					<br />
+					<div>
+						<textarea id="editor" name="textarea" style="width: 100%"
+							rows="10" id="textarea" placeholder="코멘트를 남기실 수 있습니다."></textarea>
+						<!-- 텍스트 에어리어는 붙여서 입력할것 떨어지면 공백이 발생한다. -->
+					</div>
+					<div style="padding-top: 20px">
+						<input id="videoChoice" type="file" name="uploadFile"
+							accept="video/*">
+						<button type="button" id="btnSend">보내기</button>
+					</div>
 				</div>
-				<br />
-				<div>
-					<textarea name="textarea" style="width: 100%" rows="10"
-						id="textarea"></textarea>
-					<!-- 텍스트 에어리어는 붙여서 입력할것 떨어지면 공백이 발생한다. -->
-				</div>
-				<div style="padding-top: 20px">
-					<input id="videoChoice" type="file" name="uploadFile"
-						accept="video/*">
-					<button type="button" id="btnSend">보내기</button>
-				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 </div>
 <div id="list">
