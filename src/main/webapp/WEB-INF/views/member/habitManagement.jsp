@@ -2,10 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <style>
 #div1 {
 	color: red
@@ -90,7 +88,6 @@
       	 }
     }
 </script>
-
 <div id="sub_vis_wrap" class="sub01 page01">
 	<div class="hd_box"></div>
 	<div class="visual-area ">
@@ -114,24 +111,6 @@
 <div id="sub_content_wrap" class="sub0101">
 	<div class="ov inner center" style="margin: 10% auto 5%;">
 		<form id="frm" name="frm" method="post">
-			<!-- <div id="chart_div"></div> -->
-
-			<!-- 기존 작업 시작 -->
-			<%-- <c:forEach items="${ hlist }" var="habit">
-습관명:${ habit.habit_name }<input type="checkbox" id="habit_id_check" name="habit_id_check" value="${habit.habit_id}"><br>
-<fmt:formatDate value="${ habit.habit_start_date }" pattern="yyyy-MM-dd" var="habit_start_date" />
-시작시간:${ habit_start_date }<br>
-<fmt:formatDate value="${ habit.habit_log_date }" pattern="yyyy-MM-dd HH:mm:ss" var="habit_log_date" />
-최근체크시간:${ habit_log_date }<br>
-체크:${ habit.cnt }&nbsp;&nbsp;&nbsp;
-
-<button type="button" class="btn-primary" onclick="habitcheck(${habit.habit_id})"
-<c:if test="${ habit.checked == 1 }">disabled
-</c:if>>
-인증</button><br>
-<br><br><br>
-</c:forEach> --%>
-			<!-- 기존 작업 끝 -->
 			<div class="container">
 				<hr />
 				<div class="row">

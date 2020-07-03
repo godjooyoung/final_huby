@@ -140,7 +140,6 @@
 	
 	});
 </script>
-
 <style>
 .progress {
 	position: relative;
@@ -183,48 +182,72 @@ video:hover+.hoverBtn {
 	display: inline-block;
 }
 </style>
-<span style="height: 50px"></span>
-<div id="div_gifInsert">
-	<div class="container h-100">
-		<div class="row h-100 justify-content-center align-items-center">
-			<form id="videoForm" class="col-12" action="memberVideoInsert.do"
-				method="post" enctype="multipart/form-data">
-				<div class="form-group">
-					<div class="form-group" style="padding-top: 10px">
-						<input type=text list=browsers name="hashtag"
-							placeholder="지원 분야를 선택해주세요" size="25" required>
-						<datalist id=browsers>
-							<c:forEach var="RegionNameList" items="${RegionName }">
-								<option value="${RegionNameList.code_name }">
-							</c:forEach>
-						</datalist>
-					</div>
-					<br />
-					<div>
-						<textarea id="editor" name="textarea" style="width: 100%"
-							rows="10" id="textarea" placeholder="코멘트를 남기실 수 있습니다."></textarea>
-						<!-- 텍스트 에어리어는 붙여서 입력할것 떨어지면 공백이 발생한다. -->
-					</div>
-					<div style="padding-top: 20px">
-						<input id="videoChoice" type="file" name="uploadFile"
-							accept="video/*">
-						<button type="button" id="btnSend"><box-icon name='camera' type='solid' animation='tada' ></box-icon>보내기</button>
-					</div>
-				</div>
-			</form>
+<div id="sub_vis_wrap" class="sub01 page01">
+	<div class="hd_box"></div>
+	<div class="visual-area ">
+		<div class="visual-area-in">
+			<div class="visual-area-txt inner sub01 ">
+				<div class="tit" data-aos="fade-up" data-aos-delay="300">나의영상</div>
+				<p class="fs18" data-aos="fade-up" data-aos-delay="400">
+					영상등록해해해해</p>
+			</div>
 		</div>
 	</div>
+	<div class="sub_menu_wrap s-inner sub_menu_pc ">
+		<div class="sub_menu_tit"></div>
+		<ul class="sub_menu_box sub01">
+			<li class="m1"><a href="#" onclick="habitInsertPage();">영상등록</a></li>
+		</ul>
+	</div>
 </div>
-<div id="list">
-	<c:forEach var="matched" items="${videoName}">
-		<div class="div_videoInsert">
-			<video width="360" height="640" controls>
-				<source src="download.do?name=${matched.video_location }"
-					type="video/mp4" />
-			</video>
-			<span class="hoverBtn"> <a class="deleteBtn" href="#"
-				data="${matched.video_id }">삭제하기</a>
-			</span>
+<div id="sub_content_wrap" class="sub0101">
+	<div class="ov inner center" style="margin: 10% auto 5%;">
+		<span style="height: 50px"></span>
+		<div id="div_gifInsert">
+			<div class="container h-100">
+				<div class="row h-100 justify-content-center align-items-center">
+					<form id="videoForm" class="col-12" action="memberVideoInsert.do"
+						method="post" enctype="multipart/form-data">
+						<div class="form-group">
+							<div class="form-group" style="padding-top: 10px">
+								<input type=text list=browsers name="hashtag"
+									placeholder="지원 분야를 선택해주세요" size="25" required>
+								<datalist id=browsers>
+									<c:forEach var="RegionNameList" items="${RegionName }">
+										<option value="${RegionNameList.code_name }">
+									</c:forEach>
+								</datalist>
+							</div>
+							<br />
+							<div>
+								<textarea id="editor" name="textarea" style="width: 100%"
+									rows="10" id="textarea" placeholder="코멘트를 남기실 수 있습니다."></textarea>
+								<!-- 텍스트 에어리어는 붙여서 입력할것 떨어지면 공백이 발생한다. -->
+							</div>
+							<div style="padding-top: 20px">
+								<input id="videoChoice" type="file" name="uploadFile"
+									accept="video/*">
+								<button type="button" id="btnSend">
+									<box-icon name='camera' type='solid' animation='tada'></box-icon>
+									보내기
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-	</c:forEach>
+		<div id="list">
+			<c:forEach var="matched" items="${videoName}">
+				<div class="div_videoInsert">
+					<video width="360" height="640" controls>
+						<source src="download.do?name=${matched.video_location }"
+							type="video/mp4" />
+					</video>
+					<span class="hoverBtn"><i class='bx bxs-camera bx-tada' style='color:#134a8e'></i><a class="deleteBtn" href="#" data="${matched.video_id }">삭제하기</a>
+					</span>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
 </div>
