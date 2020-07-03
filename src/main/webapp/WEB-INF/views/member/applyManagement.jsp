@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -33,7 +34,10 @@
 						class="w3-bar-item w3-circle w3-hide-small" style="width: 85px">
 						<div class="w3-bar-item" onclick="selectApplyList('${alist.EMPLOYMENT_ID}')">
 							<span class="w3-large">공고명: ${alist.EMPLOYMENT_TITLE}</span><br>
-							<span class="w3-large">공고내용: ${alist.EMPLOYMENT_CONTENTS}</span><br>채용공고기간${ alist.EMPLOYMENT_TIME } &nbsp;&nbsp; <span>지원시간: ${alist.APPLY_DATE}  </span>
+							<span class="w3-large">공고내용: ${alist.EMPLOYMENT_CONTENTS}</span><br>
+							<fmt:formatDate value="${ alist.EMPLOYMENT_TIME }" pattern="yyyy-MM-dd" var="EMPLOYMENT_TIME" />
+							<fmt:formatDate value="${ alist.APPLY_DATE }" pattern="yyyy-MM-dd HH:mm:ss" var="APPLY_DATE" />
+							채용공고기간${ EMPLOYMENT_TIME } &nbsp;&nbsp; <span>지원시간: ${APPLY_DATE}  </span>
 						</div></li>
 				</ul>
 						<p id="appendemp${alist.EMPLOYMENT_ID}" style="display: none;"></p>

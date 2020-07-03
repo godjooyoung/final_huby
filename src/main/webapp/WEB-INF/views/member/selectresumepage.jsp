@@ -5,7 +5,7 @@
 <script>
 	function applyinfoall(cid, eid){
 		$("#COMPANY_ID").val(cid);
-		$("#EMPLOYMENT_ID").val(eid);
+		$("#employment_id").val(eid);
 		alert(eid+"번째 공고입니다.");
 		$("#frm").attr("action","applyinfoall.do");
 		document.frm.submit();
@@ -102,7 +102,7 @@ span#middle1{
 <c:choose>
 <c:when  test="${complete_state == 'N'}">
 <div align="center"> 
-<button class="btn btn-primary" type="button" style="height: 50px; size: 50px;" onclick="applyinfoall('${empMatch.COMPANY_ID}','${empMatch.EMPLOYMENT_ID}')">지원하기</button>
+<button class="btn btn-primary" type="button" style="height: 50px; size: 50px;" onclick="applyinfoall('${empMatch.COMPANY_ID}','${empMatch.employment_id}')">지원하기</button>
 </div>
 </c:when>
 <c:when test="${complete_state == 'Y'}">
@@ -114,7 +114,7 @@ span#middle1{
 
 </div>
 <input type="hidden" id="COMPANY_ID" name="COMPANY_ID">
-<input type="hidden" id="EMPLOYMENT_ID" name="EMPLOYMENT_ID">
+<input type="hidden" id="employment_id" name="employment_id">
 </form>
 </body>
 </html>

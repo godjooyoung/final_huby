@@ -55,10 +55,7 @@ public class MemberHomeController {
 	public String applyinfoall(Model model, @RequestParam Map mapvo, HttpServletRequest request, MemberVo mvo)
 			throws Exception {
 		String id = (String) request.getSession().getAttribute("loginId");
-		String employment_id = request.getParameter("empid");
-		System.out.println("------------------"+ employment_id);
 		mvo.setMember_id(id);
-		mapvo.put("employment_id", employment_id);
 
 		List<CodeVo> codeList = codeService.SelectAll();
 		List<Map> lmapvo = employmentService.resumeAll(mvo);
