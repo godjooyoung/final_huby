@@ -80,8 +80,10 @@ public class EmploymentServiceImpl implements EmploymentService {
 			int num = 10;
 			map.applyInsert(vo);
 			return num;
-		}else {
-			return 0;
+		}else{
+			int num = 20;
+			map.applyInsert(vo);
+			return num;
 		}
 	}
 
@@ -109,9 +111,9 @@ public class EmploymentServiceImpl implements EmploymentService {
 	}
 
 	@Override
-	public int applyCnt() {
+	public int applyCnt(MemberVo vo) {
 		// TODO Auto-generated method stub
-		return map.applyCnt();
+		return map.applyCnt(vo);
 	}
 
 	@Override

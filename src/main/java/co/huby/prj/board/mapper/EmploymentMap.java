@@ -40,7 +40,7 @@ public interface EmploymentMap {
 	
 	EmploymentsVo areaEmploymentList(EmploymentsVo vo) throws Exception;
 	
-	int applyCnt();
+	int applyCnt(MemberVo vo);
 	
 	List<ApplyVo> applyListAll(ApplyVo vo);
 	/*

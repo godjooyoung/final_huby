@@ -26,7 +26,8 @@
 	<select id="SelectMatchedEmploymentList" resultType="map"
 		parameterType="map">
 		select
-		e.EMPLOYMENT_ID,e.EMPLOYMENT_TITLE,e.EMPLOYMENT_CONTENTS,e.HOPE_CAREER,e.HOPE_GRADUATE,
+		e.EMPLOYMENT_ID as "employment_id",
+		e.EMPLOYMENT_TITLE,e.EMPLOYMENT_CONTENTS,e.HOPE_CAREER,e.HOPE_GRADUATE,
 		e.employment_id, e.COMPLETE,
 		e.HOPE_JOB_POSITION,e.HOPE_JOB,e.HOPE_LOCATION,e.HOPE_WORK_TYPE,e.EMPLOYMENT_PREFER,e.EMPLOYMENT_TIME,
 		c.COMPANY_NAME,c.COMPANY_TEL,c.COMPANY_EMAIL,c.CEO_NAME,c.BUSINESS_TYPE,
@@ -128,11 +129,47 @@
 	</select>
 	
 	<select id="applyList" resultType="map" parameterType="MemberVo">
-		select a.apply_id, a.apply_date, a.resume_id, a.employment_id, a.member_id, a.video_id, a.employment_id ,
-				e.employment_id, e.employment_title, e.employment_contents, e.hope_career, e.hope_graduate, e.hope_job_position,
-				e.hope_job, e.hope_location, e.hope_work_type, e.employment_prefer, e.employment_time, e.company_id, e.hope_salary
-		from apply a, employments e
-		where a.employment_id = e.employment_id and a.member_id = #{member_id}
+		SELECT
+    rn1,
+    z.*
+FROM
+    (
+        SELECT
+            ROWNUM rn1,
+            x.*
+        FROM
+            (
+                SELECT
+                    a.apply_id,
+                    a.apply_date,
+                    a.resume_id,
+                    a.member_id,
+                    a.video_id,
+                    e.employment_id,
+                    e.employment_title,
+                    e.employment_contents,
+                    e.hope_career,
+                    e.hope_graduate,
+                    e.hope_job_position,
+                    e.hope_job,
+                    e.hope_location,
+                    e.hope_work_type,
+                    e.employment_prefer,
+                    e.employment_time,
+                    e.company_id,
+                    e.hope_salary
+                FROM
+                    apply a,
+                    employments e
+                WHERE
+                    a.employment_id = e.employment_id
+                    AND a.member_id = #{member_id}
+                ORDER BY
+                    a.apply_date
+            ) x
+    ) z
+WHERE
+    rn1 BETWEEN #{first} AND #{last}
 	</select>
 	
 	<select id="selectApplyList" resultType="EmploymentsVo" parameterType="EmploymentsVo">
@@ -149,6 +186,7 @@
 	</select>
 	
 	<select id="applyCnt" resultType="int">
-		select COUNT(*) from apply
+		select COUNT(*) from apply a, employments e
+		where a.employment_id = e.employment_id and a.member_id = #{member_id}
 	</select>
 </mapper>

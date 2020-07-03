@@ -4,7 +4,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<body>
 	<!-- Page Container -->
 	<div class="w3-content w3-margin-top" style="max-width: 1400px;">
 		<!-- The Grid -->
@@ -13,10 +12,6 @@
 			<div class="w3-third">
 				<div class="w3-white w3-text-grey w3-card">
 					<div class="w3-display-container">
-					<!--<img
-							src="download.do?name=${applyman.video_img}"
-							onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
-							style="width: 100%" alt="self-video">  -->
 						<div class='wrap' style='position:relative;'>
 						<div class="inner01" style="position:absolute; left:3%; top:3%;">
 						<h4 style="align:left; color:white; text-shadow: 2px 2px 5px black; font-weight: bolder; 
@@ -36,7 +31,6 @@
  						<source src="download.do?name=${applyman.video_location }" type="video/mp4">영상이 없습니다.
  						</video>
 						</div>
-						
 					</div>
 					<br>
 					<div class="w3-container">

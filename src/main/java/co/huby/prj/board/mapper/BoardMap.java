@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.MapperScan;
 
 import co.huby.prj.vo.ApplyVo;
+import co.huby.prj.vo.CodeVo;
 import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.LikeEmploymentVo;
 import co.huby.prj.vo.LikeVideoVo;
@@ -84,4 +85,6 @@ public interface BoardMap {
 	Map mem_now_interview  (String memberid) throws Exception;
 	
 	void click_complete (EmploymentsVo vo) throws Exception; 
+	
+	CodeVo get_codeName (CodeVo vo) throws Exception;
 }

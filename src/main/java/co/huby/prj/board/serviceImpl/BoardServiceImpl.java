@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import co.huby.prj.board.mapper.BoardMap;
 import co.huby.prj.board.service.BoardService;
+
 import co.huby.prj.vo.ApplyVo;
+import co.huby.prj.vo.CodeVo;
 import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.LikeEmploymentVo;
 import co.huby.prj.vo.LikeVideoVo;
@@ -231,6 +233,12 @@ public class BoardServiceImpl implements BoardService {
 		//공고 마감 버튼 클릭시
 		map.click_complete(vo);
 		
+	}
+
+	@Override
+	public CodeVo get_codeName(CodeVo vo) throws Exception {
+		//코드 아이디로 코드네임 불러오기
+		return map.get_codeName(vo);
 	}
 
 	

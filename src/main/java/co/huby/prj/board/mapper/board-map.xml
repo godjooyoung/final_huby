@@ -427,6 +427,19 @@
 	WHERE
 	EMPLOYMENT_ID = #{employment_id, jdbcType=VARCHAR}
 	</update>
+	
+	<!-- 코드 아이디로 코드네임 가져오기 -->
+	<select id="get_codeName" resultType="co.huby.prj.vo.CodeVo" parameterType="co.huby.prj.vo.CodeVo">
+	SELECT 
+    	CODE_ID ,
+    	CODE_PART,
+    	CODE_NAME ,
+    	CODE_USE 
+	FROM
+    	CODE
+	WHERE 
+    	CODE_ID = #{code_id, jdbcType=VARCHAR}
+	</select>
 
 </mapper>
 

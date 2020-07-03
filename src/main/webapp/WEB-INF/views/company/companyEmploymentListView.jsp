@@ -48,6 +48,9 @@
 				    	<input type="hidden" 
 				    	value="${employment.employment_id}" 
 				    	name="employment_id">
+				    	<input type="hidden" 
+				    	value="${employment.hope_job}" 
+				    	name="code_id">
 				    </form>
 				    </c:forEach>
 				  </ul>

@@ -32,8 +32,10 @@
 		$("#frm").attr("action","applyInsert.do");
 		document.frm.submit();
 	}
+	
 </script>
 <body>
+<br>
 
 <form id="frm" name="frm" method="post">
 	<br>
@@ -231,7 +233,12 @@
 		<button type="button" class="btn-primary" onclick="back()">이전페이지</button>
 	</div>
 	<br>
-	<input type="hidden" id="employment_id" name="employment_id" value="${ mapvo.employment_id }">
+	<c:if test="${not empty mapvo.employment_id }">
+		<input type="hidden" id="employment_id" name="employment_id" value="${mapvo.employment_id}">
+	</c:if>
+	<c:if test="${not empty mapvo.empid }">
+		<input type="hidden" id="employment_id" name="employment_id" value="${mapvo.empid}">
+	</c:if>
 	<input type="hidden" id="resume_id" name="resume_id" value="${ rlist[0].RESUME_ID }">
 	<input type="hidden" id="video_id" name="video_id" value="${ vlist[0].VIDEO_ID }">
 	<%-- <input type="hidden" id="member_id" name="member_id" value="${sessionScope.personalVo.member_id}"> --%>
