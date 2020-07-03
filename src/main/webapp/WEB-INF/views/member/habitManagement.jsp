@@ -39,6 +39,11 @@
 		$("#frm").attr("action", "habitDelete.do");
 		document.frm.submit();
 	}
+	
+	function habitPreview(){
+		var url = "habitPreview.do";
+		var preview = window.open(url,"fullscreen","scrollbars=1");
+	}
 </script>
 <script type="text/javascript">
 	 // Load the Visualization API and the corechart package.
@@ -68,15 +73,21 @@
 				chartData2.push(subarr);
 				chartData.push(chartData2);
 				}
-			}
-      });
+			}// #3CB371 연그린
+      });	//	#FFA500 연주황
       // Instantiate and draw our chart, passing in some options.
       	 for(var i=0; i<chartData.length; i++){
-      		 var fontColor = 'green'; 
+      		 var fontColor = '3CB371'; 
       		 console.log("@@@@@"+chartData[i][1][1]);
-      		 if(chartData[i][1][1] <= 50){
-      			 fontColor = '#e2431e';
+      		 if(chartData[i][1][1] >= 80){
+      			 fontColor = '#3CB371';
       		 }
+      		 if(chartData[i][1][1] <= 79){
+     			 fontColor = '#FFA500';
+     		 }
+      	 	 if(chartData[i][1][1] <= 33){
+      	 		 fontColor = 'red';
+      	 	 }
       		 // Set chart options
       	      var options = {'title':'습관을 잘 지키자',
       	                     'width':345,
@@ -106,7 +117,7 @@
 	<div class="sub_menu_wrap s-inner sub_menu_pc ">
 		<div class="sub_menu_tit"></div>
 		<ul class="sub_menu_box sub01">
-			<li class="m1"><a href="#" onclick="habitInsertPage();">습관등록</a></li>
+			<li class="m1"><a href="#" onclick="habitPreview();">습관등록</a></li>
 			<li class="m2"><a href="#" onclick="habitDelete();">습관삭제</a></li>
 		</ul>
 	</div>
@@ -152,11 +163,23 @@
 								<fmt:formatDate value="${ habit.habit_log_date }"
 									pattern="yyyy-MM-dd HH:mm:ss" var="habit_log_date" />
 								<p class="card-text" style="font-weight: bolder;">최근인증시간:${ habit_log_date }</p>
-								<button type="button" class="btn btn-primary"
-									style="color: white; font-weight: bolder;"
-									onclick="habitcheck(${habit.habit_id})"
-									<c:if test="${ habit.checked == 1 }">disabled
-							</c:if>>인증</button>
+								
+<%-- <button type="button" class="btn btn-primary" style="color: white; font-weight: bolder;" 
+onclick="habitcheck(${habit.habit_id})" 
+<c:if test="${ habit.checked == 1 }">disabled </c:if>
+>인증</button> --%>
+
+<c:choose>
+	<c:when test="${ habit.checked == 0 }">
+		<button type="button" class="btn btn-primary" style="color: white; font-weight: bolder;" 
+		onclick="habitcheck(${habit.habit_id})">인증 해주세요!</button> 
+	</c:when>
+	<c:otherwise>
+		<button type="button" class="btn btn-primary" style="color: white; font-weight: bolder; background: darkblue" 
+		onclick="habitcheck(${habit.habit_id})"disabled>오늘 인증 완료!</button> 
+	</c:otherwise>
+</c:choose>
+
 							</div>
 						</div>
 					</c:forEach>

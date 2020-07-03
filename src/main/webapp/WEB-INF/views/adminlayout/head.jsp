@@ -59,9 +59,9 @@
 							<button type="button" onclick="location.href='index.do'" style="color: #2B333E">홈</button>
 							<button type="button" onclick="location.href='noticePage.do'" style="color: #2B333E">공지사항</button>
 							<button type="button" onclick="location.href='qnaPage.do'" style="color: #2B333E">QnA</button>
-							<button type="button" onclick="location.href='userManagement.do'" style="color: #2B333E">회원관리</button>
-							<!-- <button type="button" onclick="location.href='noticeManagement.do'" style="color: #2B333E">공고관리</button>
-							<button type="button" onclick="location.href='vManagement.do'" style="color: #2B333E">영상관리</button> -->
+							<button type="button" onclick="location.href='personalmemberall.do'" style="color: #2B333E">개인회원</button>
+							<button type="button" onclick="location.href='companymemberall.do'" style="color: #2B333E">기업회원</button>
+							<span style="float: right;"><button type="button" onclick="location.href='adminLogout.do'" style="color: #2B333E">로그아웃</button></span>
 						</div>
 				</div>
 				<!-- <div id="navbar-menu">
@@ -114,9 +114,9 @@
 					<ul class="nav">
 						<li><a href="noticePage.do" class="active"><i class="lnr lnr-home"></i> <span>공지사항</span></a></li>
 						<li><a href="qnaPage.do" class=""><i class="lnr lnr-code"></i> <span>QnA</span></a></li>
-						<li><a href="userManagement.do" class=""><i class="lnr lnr-chart-bars"></i> <span>회원관리</span></a></li>
-						<!-- <li><a href="noticeManagement.do" class=""><i class="lnr lnr-cog"></i> <span>공고관리</span></a></li>
-						<li><a href="vManagement.do" class=""><i class="lnr lnr-alarm"></i> <span>영상관리</span></a></li> -->
+						<li><a href="personalmemberall.do" class=""><i class="lnr lnr-chart-bars"></i> <span>개인회원</span></a></li>
+						<li><a href="companymemberall.do" class=""><i class="lnr lnr-cog"></i> <span>기업회원</span></a></li>
+						<!-- <li><a href="vManagement.do" class=""><i class="lnr lnr-alarm"></i> <span>영상관리</span></a></li> -->
 						
 						<!-- 사이드바 메뉴 현재 사용 안함 -->
 						<!-- <li>

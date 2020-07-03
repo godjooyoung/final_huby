@@ -259,18 +259,6 @@ span.psw {
 <div align="center">
 	<a href="unionJoinForm.do" style="color: red; font-weight: bold;">회원이 아니신가요?</a><br><br>
 </div>
-<div>
-	<button type="button" class="btn-primary" onclick="location.href='main.do' ">홈으로</button>
-	<!-- test -->
-	<button type="button" class="btn-primary" onclick="location.href='gotest.do'">뷰확인용
-		테스트</button>
-	<button type="button" class="btn-primary" onclick="location.href='index.do'">관리자페이지
-		로그인 없음</button>
-	<button type="button" class="btn-primary" onclick="location.href='coemdeview.do'">디테일뷰
-		로그인 없음</button>
-</div>
-
-
 
 <div id="id01" class="modal">
   
@@ -330,7 +318,7 @@ window.onclick = function(event) {
       <span class="psw">Human Union Business Yedam</span>
     </div>
   </form>
-</div><br><br><br><br><br><br><br><br><br><br><br>
+</div><br><br><br><br><br><br><br>
 <div align="center">
 <span style="background-color: white;">
 <button type="button" onclick="location.href='adminLogin.do'" style="background: white;">관리자 로그인</button>

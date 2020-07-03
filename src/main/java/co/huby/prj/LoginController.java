@@ -115,6 +115,7 @@ public class LoginController {
 		
 		if(vo2 != null) {
 			if (vo.getAdmin_pw().equals(vo2.getAdmin_pw())) {
+				request.getSession().setAttribute("adminVo", vo2);
 					mav.setViewName("redirect:index.do");
 			}else {
 				String num = "1";

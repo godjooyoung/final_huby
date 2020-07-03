@@ -120,8 +120,6 @@ p {
 	}
 	
 	function checkSKillDelete(){
-		/* var sid = $("#skill_id").val();
-		$("#sid").val(sid); */
 		$("#frm2").attr("action", "checkSKillDelete.do");
 		document.frm2.submit();
 	}

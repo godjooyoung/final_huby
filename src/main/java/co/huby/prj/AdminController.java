@@ -194,4 +194,10 @@ public class AdminController {
 		
 		return "redirect:qnaPage.do";
 	}
+	
+	@RequestMapping("adminLogout.do")
+	public String adminLogout(Model model, HttpServletRequest request) throws Exception {
+		request.getSession().removeAttribute("adminVo");
+		return "no/common/login";
+	}
 }

@@ -96,7 +96,7 @@
 		    	$("#appendemp"+eid).append(data.hope_career + "<br>");
 		    	$("#appendemp"+eid).append(data.hope_graduate + "<br>");
 		    	$("#appendemp"+eid).append(data.hope_job_position + "<br>");
-		    	$("#appendemp"+eid).append(data.hope_job + "<br>");
+		    	$("#appendemp"+eid).append(data.job_name + "<br>");
 		    	$("#appendemp"+eid).append(data.hope_location + "<br>");
 		    	$("#appendemp"+eid).append(data.hope_work_type + "<br>");
 		    	$("#appendemp"+eid).append(data.employment_prefer + "<br>");
