@@ -9,9 +9,10 @@
 <br>
 
 <style>
-.alarmlist {
-	margin: 0;
-	height: 500px;
+ul {
+	width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
 <script>
@@ -27,21 +28,29 @@
 	}
 </script>
 
-
-	<div class="alarmlist">
+<body>
+<h1 align="center">
+<img width=40px src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABUElEQVRIS9WV7U0CQRCGHypQKkAqUCtQOtAKwArECtQKxAqECrADtQKxArAC7EDzkpnNZbPLsUeOxP11HDPvM18326Hl02lZnxhwDFwB0wR4BDzZ+7uMzQMwAX7cPwYsgFPgGng1I0FvgTGgZx0JSOi5Iibxe0Aa5ymAHCT0DZyZo0ftwnFiAt1YMLKReA94BAQMJToBluYtugwl/rJjjwRRWRXYp/n0gZWXyNObmbCAMsxFnspEgspIoCGgPk0c8A5cAANAzw7cMYGNmZdFQzIHPoBLB4h8BHQtCm92CcCbq6zXptN1wK8pxb9LANWeBr2DAeJIPYKmGQS/3Kr43wCfgtLyyN6nMFsiib/ZF9kEoFHVt1S77JqIu0922cmgaXPjgMLw5Nb1Phl8VUt88BstF3lq+YWdvy3dkgwE0a2mo8tpc6HUnRJAnVby/9YBf8z7RRlnN+oyAAAAAElFTkSuQmCC"/>
+   알림내역</h1>
+<br><br><br>
+	<div class="alarmlist" align="center">
 		<br />
 <form id="frm" name="frm" method="post">
-		<button class="btn btn-outline-primary btn-sm" type="button"
-			onclick="checkAlarmDelete()">선택한 알림 삭제</button>
+		<!-- <button class="btn btn-outline-primary btn-sm" type="button"
+			onclick="checkAlarmDelete()">선택한 알림 삭제</button><br><br> -->
 		<br>
+		
 		<c:forEach var="list" items="${companyalarmlist }">
-				<div id="alarmlist">
-				${list.member_name }님이
+		<ul class="list-group">
+				
+				<li class="list-group-item">${list.member_name }님이
 				${list.alarm_message }를 수락하셨습니다.
-				<input type="checkbox" id="alarm_id" name="alarm_id"
-				value="${list.alarm_id }">
-				</div>
-			<br>
+				<!-- <input type="checkbox" id="alarm_id" name="alarm_id"
+				value="${list.alarm_id }"> --></li><br>
+				
+			</ul>
 		</c:forEach>
-</form>
+		</form>
 	</div>
+	</body>
+	<br><br><br>

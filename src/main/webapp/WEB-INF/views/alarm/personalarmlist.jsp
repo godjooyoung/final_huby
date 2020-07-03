@@ -5,9 +5,10 @@
 
 
 <style>
-.alarmlist {
-	margin: 0;
-	height: 500px;
+ul {
+	width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
 <br>
@@ -20,6 +21,7 @@
 
 	//면접제의 상세보기
 	function interviewOk(e,company_id,member_id,alarm_id) {
+		var closeBtn = '<span onclick="this.parentElement.style.display=\'none\'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>';
 		var button = $(e.target).next()
 		$.ajax({
 			type:"get",
@@ -29,12 +31,10 @@
 			success:
 				function(data){
 					console.log(data);
-						button.append("<br>" +"업종: " + data[0].business_type + "<br>" 
+						button.append($('<li>').html("<br>" +"업종: " + data[0].business_type +closeBtn + "<br>" 
 													+ "주소: " + data[0].company_addr + "<br>" 
 													+ "업태: " + data[0].business_category + "<br>" )
-						          .append($('<input type="button" id="btn" class="btn btn-primary" value="면접수락">').data("companyid", company_id).data("memberid", member_id).data("alarmid", alarm_id))
-						        
-					
+						          .append($('<input type="button" id="btn" class="btn btn-primary" value="면접수락">').data("companyid", company_id).data("memberid", member_id).data("alarmid", alarm_id)))			
 			}
 		})
 	}
@@ -80,41 +80,35 @@
 	}
 </script>
 
+<body>
+<h1 align="center">
+<img width=40px src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABUElEQVRIS9WV7U0CQRCGHypQKkAqUCtQOtAKwArECtQKxAqECrADtQKxArAC7EDzkpnNZbPLsUeOxP11HDPvM18326Hl02lZnxhwDFwB0wR4BDzZ+7uMzQMwAX7cPwYsgFPgGng1I0FvgTGgZx0JSOi5Iibxe0Aa5ymAHCT0DZyZo0ftwnFiAt1YMLKReA94BAQMJToBluYtugwl/rJjjwRRWRXYp/n0gZWXyNObmbCAMsxFnspEgspIoCGgPk0c8A5cAANAzw7cMYGNmZdFQzIHPoBLB4h8BHQtCm92CcCbq6zXptN1wK8pxb9LANWeBr2DAeJIPYKmGQS/3Kr43wCfgtLyyN6nMFsiib/ZF9kEoFHVt1S77JqIu0922cmgaXPjgMLw5Nb1Phl8VUt88BstF3lq+YWdvy3dkgwE0a2mo8tpc6HUnRJAnVby/9YBf8z7RRlnN+oyAAAAAElFTkSuQmCC"/>
+   알림내역</h1>
+<br><br><br><br><br><br>
 <div class="alarmlist">
-<table class="table">
-<thead class="thead-light">
-	<tr>
-		<th>기업명</th>
-		<th>알림메세지</th>
-		<th>알림일시</th>
-		<th></th>
-	</tr>
-</thead>
-<tbody>
+
 	<c:forEach var="list" items="${personalarmlist }"> 
-			<tr>
-				<td>${list.company_name }</td>
-				<td>${list.alarm_message }</td>
-				<td>${list.alarm_time }</td>
+			<ul class="list-group">
+				<li class="list-group-item active">${list.company_name }</li>
+				<li class="list-group-item">${list.alarm_message }</li>
+				<li class="list-group-item">${list.alarm_time }</li>
 				
 			<c:if test="${list.alarm_message eq '면접제의' }">
-				<td><input type="button" value="회사정보보기"
+				<input type="button" value="회사정보보기"
 					onclick="interviewOk(window.event,'${list.company_id}','${list.member_id }','${list.alarm_id }')">
 				<div id="btnsubmit"></div>
-				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }','${list.company_id}','${list.member_id}')">
-			</td></c:if>
+				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }','${list.company_id}','${list.member_id}')"><br>
+			</c:if>
 			
 			<c:if test="${list.alarm_message eq '입사지원요청' }">
-				<td><input type="button" value="공고보기"
+				<input type="button" value="공고보기"
 				onclick="applyOk('${list.alarm_id}','${list.company_id}','${list.member_id}','${list.alarm_message }','${list.employment_id }')">
-				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }')">
-			</td></c:if>
-			</tr>
+				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }')"><br>
+			</c:if>
+			</ul>
 	</c:forEach>
-	</tbody>
-	</table>
 	</div>
-
+	</body>
 <form action="currentY.do" method='POST' name="frmok" id="frmok">
 	<input type="hidden" name="alarmid"> <input type="hidden"
 		name="companyid"> <input type="hidden" name="memberid">

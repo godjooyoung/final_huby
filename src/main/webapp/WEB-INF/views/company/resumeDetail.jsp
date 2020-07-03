@@ -68,12 +68,11 @@ html, body, h1, h2, h3, h4, h5, h6 {
 						<hr>
 					</div>
 					<div align="center">
-					<input type="button" class="btn btn-primary w3-margin" id="button" 
-							value="면접요청" 
-							onclick="interviewRe('${applyman.member_id}')">
-					<input class="btn btn-primary w3-margin" type="button" 
-						value="입사지원요청"
-						onclick="comemploymentlist('${member.member_id}')">
+					<input type="button" class="btn btn-primary w3-margin" value="면접요청" 
+							onclick="interviewRe('${member.member_id}')">
+					<input type="button" class="btn btn-primary w3-margin" value="입사지원요청"
+							onclick="comemploymentlist('${member.member_id}')">
+							 <div id="btnsubmit"></div> <br>
 					</div>
 				</div>
 				<br>
@@ -136,11 +135,9 @@ html, body, h1, h2, h3, h4, h5, h6 {
 				<!-- End Right Column -->
 				<br>
 				<br>
-				<br> <input type="button" value="면접요청"
-						onclick="interviewRe('${member.member_id}')"> 
-					<input type="button" value="입사지원요청"
-						onclick="comemploymentlist('${member.member_id}')">
-					<div id="btnsubmit"></div>
+				<br>  <!--  <input type="button" value="면접요청" onclick="interviewRe('${member.member_id}')"> 
+					<input type="button" value="입사지원요청" onclick="comemploymentlist('${member.member_id}')">
+					 <div id="btnsubmit"></div>-->
 			</div>
 
 			<!-- End Grid -->
@@ -171,7 +168,7 @@ html, body, h1, h2, h3, h4, h5, h6 {
 
 		//입사지원요청 클릭 시 공고목록
 		function comemploymentlist(member_id) {
-
+			
 			$.ajax({
 						type : "get",
 						url : "comemploymentlist.do",
@@ -185,7 +182,7 @@ html, body, h1, h2, h3, h4, h5, h6 {
 								$('<div>')
 										.append($('<span>').html(data[i].EMPLOYMENT_ID).hide())
 										.append($('<span>').html(data[i].EMPLOYMENT_TITLE))
-										.append('<input type="button" id="btn" class="btn btn-outline-primary btn-sm" value="입사 지원 요청하기">')
+										.append('<input type="button" id="btn" class="btn btn-outline-primary btn-sm" value="입사 지원 요청하기" onclick="applyRe()">')
 										.appendTo($('#btnsubmit'))
 							}
 						}
@@ -219,5 +216,5 @@ html, body, h1, h2, h3, h4, h5, h6 {
 					});
 		}
 
-		applyRe();
+		
 	</script>

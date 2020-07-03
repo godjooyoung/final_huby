@@ -71,6 +71,12 @@ public class AlarmController {
 		vo.setCompany_id(request.getParameter("companyid"));
 		vo.setMember_id(request.getParameter("memberid"));
 		int count = alarmService.currentY(vo);
+		
+			vo2.setCompany_id(request.getParameter("companyid"));
+			vo2.setMember_id(request.getParameter("memberid"));
+			chatService.createRoom(vo2);
+			System.out.println(count+"======================");
+		
 		if (handler.users.get(vo.getCompany_id()) != null) {
 			WebSocketSession rcvSession = (WebSocketSession) handler.users.get(vo.getCompany_id());
 			MessageVo messageVo = new MessageVo();
@@ -82,14 +88,7 @@ public class AlarmController {
 			String json = gson.toJson(messageVo);
 			System.out.println(json + "=================================");
 			rcvSession.sendMessage(new TextMessage(json));
-
-			if (count == 1) {
-				vo2.setCompany_id(request.getParameter("companyid"));
-				vo2.setMember_id(request.getParameter("memberid"));
-				chatService.createRoom(vo2);
-				System.out.println(count);
-			}
-		}
+		} 
 		return count;
 	}
 
@@ -124,7 +123,7 @@ public class AlarmController {
 
 		PrintWriter out = response.getWriter();
 		out.print("<script>");
-		out.print("alert('거절되었습니다.');");
+		out.print("alert('삭제되었습니다.');");
 		out.print("location.href='personalarm.do';");
 		out.print("</script>");
 
