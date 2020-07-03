@@ -88,16 +88,20 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/companyEmploymentsApply.do") // 해당 공고에 지원한 사람의 상세내용
-	public String companyApplyList(Model model, HttpServletRequest request, ApplyVo vo, EmploymentsVo vo2) throws Exception {
+	public String companyApplyList(Model model, HttpServletRequest request, ApplyVo vo, EmploymentsVo vo2, CodeVo vo3) throws Exception {
 		String companyid = (String) request.getSession().getAttribute("loginId");
 		String listviewid = request.getParameter("empIdinput");
 		String emp_id = request.getParameter("empIdinput");
-		System.out.println(emp_id);
+		String code_id =request.getParameter("code_id");
+		
 		List<Map> list = boardService.getCompany_ApplyList(companyid, listviewid);
 		vo2.setEmployment_id(emp_id);
 		vo2 = boardService.get_one_employment_by_emp_id(vo2);
+		vo3.setCode_id(code_id);
+		vo3 = boardService.get_codeName(vo3);
 		model.addAttribute("applymenList", list);
 		model.addAttribute("title", vo2);
+		model.addAttribute("code", vo3);
 		return "company/company/companyEmploymentApplymemList";
 	}
 

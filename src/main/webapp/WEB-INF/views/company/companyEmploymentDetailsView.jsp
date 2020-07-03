@@ -27,7 +27,6 @@
 </div>
 <div id="sub_content_wrap" class="sub0101">
 	<div class="ov inner center" style="margin: 0px auto 2%;">    
-    <!-- 실제소스 -->
     <!-- ---------------------------- -->
     <div class="w3-container w3-margin-bottom" style="background-color:#134a8e;">
     	<div style="vertical-align: middle;">
@@ -35,19 +34,26 @@
     		<h5 style="color:white; margin-bottom:20px;"><fmt:formatDate pattern ="yyyy년MM월dd일 까지" value="${employmentsDetails.employment_time}"/></h5>
     	</div>
 	</div>
+	<!-- title 끝 -->
 	<div class="w3-row-padding ">
+		<!-- 내용부분 -->
 		<div class="w3-twothird">
 			
 			  <h2>공고내용</h2>
 			  <div>
-			  <p>${employmentsDetails.employment_contents}</p>
+			  <pre style="word-wrap: break-word">
+			  		${employmentsDetails.employment_contents}
+			  </pre>
 			  </div>
 			  <h2>우대사항</h2>
 			  <div>
-			  <p>${employmentsDetails.employment_prefer}</p>
+			  <pre style="word-wrap: break-word">
+			  		${employmentsDetails.employment_prefer}
+			  </pre>
 			  </div>
  		</div>
- 		
+ 		<!-- 내용부분끝 -->
+ 		<!-- 오른쪽 테이블들 -->
 		<div class="w3-third">
  			<table class="w3-table w3-bordered w3-border">
   				<thead class="w3" style="background-color:#1a56a1;">
@@ -96,65 +102,14 @@
   					<td style="width:33%">${employmentsDetails.hope_job_position}</td>
   				</tr>
   			</table>
+		</div>
+	<!-- 테이블 끝 -->
 	</div>
-</div>
+	<!-- 타이틀아래 -->
+<br>
+
     <!-- ---------------------------- -->
-    <h1>공고 상세 페이지</h1>
-    <table>
-    <tr>
-    	<th>
-    		공고 상세 내용
-    	</th>
-    </tr>
-    <tr>
-    	<td>
-    		*${employmentsDetails.employment_title}
-    	</td>
-    </tr>
-    <tr>
-    	<td>*
-    	<fmt:formatDate pattern ="yyyy년MM월dd일 까지" value="${employmentsDetails.employment_time}"/>
-    	</td>
-    	<td>
-    		*${employmentsDetails.hope_salary}
-    	</td>
-    </tr>
-    <tr>
-    	<td>
-    		*${employmentsDetails.employment_contents}
-    	</td>
-    </tr>
-    <tr>
-    	<td>
-    		*${employmentsDetails.hope_career}
-    	</td>
-    	<td>
-    		*${employmentsDetails.hope_graduate}
-    	</td>
-    </tr>
-    <tr>
-    	<td>
-    		*${employmentsDetails.hope_job_position}
-    	</td>
-    	<td>
-    		*${employmentsDetails.hope_job}
-    	</td>
-    </tr>
-    <tr>
-    	<td>
-    		*${employmentsDetails.hope_location}
-    	</td>
-    	<td>
-    		*${employmentsDetails.hope_work_type}
-    	</td>
-    </tr>
-    <tr>
-    	<td>
-    		*${employmentsDetails.employment_prefer}
-    	</td>
-    </tr>
-    </table>
-    <br>
+  
 	 <!-- ---------------------------- -->
 	<form id="formodify" name="formodify" action="">
 	<input type="hidden" name ="emp_id" id="emp_id" value="${employmentsDetails.employment_id}">

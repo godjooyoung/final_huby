@@ -12,6 +12,7 @@
 				<p class="fs18" data-aos="fade-up" data-aos-delay="400">
 					시간을 허비말고 DO HUBY<br>
 					공고를 눌러 지원자를 확인하세요.
+				
 				</p>
 			</div>
 		</div>
@@ -36,7 +37,7 @@
   		 <ul class="list-group list-group-flush">
     		<c:forEach var="employment" items="${employmentList }">
       			<li class="list-group-item" value="${employment.EMPLOYMENT_ID}" 
-				    onclick="go_applymen_list_page(event,${employment.EMPLOYMENT_ID})">
+				    onclick="go_applymen_list_page(event,${employment.EMPLOYMENT_ID},${employment.HOPE_JOB})">
 				    <p align="left" style="float:left;">${employment.EMPLOYMENT_TITLE}</p>
 				    <p align="left" style="float:left;">
 				     
@@ -48,7 +49,8 @@
     		</c:forEach>
     		</ul>
     		<form id="empIdfrm" name="empIdfrm" action="companyEmploymentsApply.do">
-			<input type="hidden" id ="empIdinput"  name ="empIdinput" value="">
+				<input type="hidden" id ="empIdinput"  name ="empIdinput" value="">
+				<input type="hidden" id="empHjinput" name="code_id" value="" >
     		</form>
     	</div>
 <!-- END OF SOURCE -->
@@ -56,9 +58,12 @@
 	</div>
 </div>
 <script>
-function go_applymen_list_page(e, eid){
+function go_applymen_list_page(e, eid, hj){
 	var emp_id = eid;
-	document.getElementById("empIdinput").value=eid;
+	var hope_job =hj;
+	document.getElementById("empIdinput").value = eid;
+	document.getElementById("empHjinput").value = hope_job;
+	
 	document.empIdfrm.action = "companyEmploymentsApply.do";
 	document.empIdfrm.method = "post";
 	document.empIdfrm.submit();

@@ -28,7 +28,7 @@
 						</p>
 						</div>
 						<video width="100%" controls poster="download.do?name=${applyman.video_img}" playsinline preload="none">
- 						<source src="download.do?name=${applyman.video_location }" type="video/mp4">영상이 없습니다.
+ 						<source src="download.do?name=${applyman.video_location }" type="video/mp4">영상을 찾을수 없습니다.
  						</video>
 						</div>
 					</div>
