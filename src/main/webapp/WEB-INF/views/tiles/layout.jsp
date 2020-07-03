@@ -10,6 +10,7 @@
 <link rel="shortcut icon" href="http://oliveclinic.webtro.kr/favi.ico">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <!-- css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link media="all" href="${pageContext.request.contextPath}/resources/css/common.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap-grid.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap-reboot.css">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <script>
 	$(function() {
@@ -227,10 +228,8 @@ video:hover+.hoverBtn {
 							<div style="padding-top: 20px">
 								<input id="videoChoice" type="file" name="uploadFile"
 									accept="video/*">
-								<button type="button" id="btnSend">
-									<box-icon name='camera' type='solid' animation='tada'></box-icon>
-									보내기
-								</button>
+								<box-icon name='camera' type='solid' animation='tada' color='#134a8e' ></box-icon>
+								<button type="button" id="btnSend">보내기</button>
 							</div>
 						</div>
 					</form>
@@ -244,8 +243,8 @@ video:hover+.hoverBtn {
 						<source src="download.do?name=${matched.video_location }"
 							type="video/mp4" />
 					</video>
-					<span class="hoverBtn"><i class='bx bxs-camera bx-tada' style='color:#134a8e'></i><a class="deleteBtn" href="#" data="${matched.video_id }">삭제하기</a>
-					</span>
+					<span class="hoverBtn"><a class="deleteBtn" href="#"
+						data="${matched.video_id }">삭제하기</a> </span>
 				</div>
 			</c:forEach>
 		</div>

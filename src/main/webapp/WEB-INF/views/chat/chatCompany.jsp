@@ -846,8 +846,7 @@ body {
 			<ul>
 				<c:forEach var="list" items="${companyChatList}">
 					<li class="contact">
-						<div class="wrap"
-							onclick="ajaxSelectChat(window.event,'${list.interview_id }','${list.member_id }')">
+						<div class="wrap" onclick="ajaxSelectChat(window.event,'${list.interview_id }','${list.member_id }')">
 							<span class="contact-status online"></span> <img
 								src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
 							<div class="meta">

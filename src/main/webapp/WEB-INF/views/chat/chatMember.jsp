@@ -829,13 +829,13 @@ body {
 				<p>${loginName}</p>
 				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
 				<div id="expanded">
-					<label for="twitter"><i class="fa fa-facebook fa-fw"
-						aria-hidden="true"></i></label> <input name="twitter" type="text"
-						value="mikeross" /> <label for="twitter"><i
-						class="fa fa-twitter fa-fw" aria-hidden="true"></i></label> <input
-						name="twitter" type="text" value="ross81" /> <label for="twitter"><i
-						class="fa fa-instagram fa-fw" aria-hidden="true"></i></label> <input
-						name="twitter" type="text" value="mike.ross" />
+					<label for="twitter">
+					<i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label> 
+					<input name="twitter" type="text" value="mikeross" /> 
+					<label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label> 
+					<input name="twitter" type="text" value="ross81" /> 
+					<label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label> 
+					<input name="twitter" type="text" value="mike.ross" />
 				</div>
 			</div>
 		</div>
