@@ -112,9 +112,9 @@
 	<br>
 	<!-- 타이틀아래 -->
 	<!-- ---------------------------------------------- -->
-	 <div class="w3-container w3-margin-bottom" style="background-color:#134a8e;">
+	 <div class="w3-margin-bottom" style="background-color:#134a8e;">
     	<div style="vertical-align: middle;">
-    		&nbsp;<h4 style="color:white; margin-bottom:15px;">
+    		&nbsp;<h4 style="color:white; margin-bottom:5px; padding-bottom:15px;">
     				지원자 목록
     			  </h4>
     	</div>
@@ -124,7 +124,7 @@
 	<c:choose>
 		<c:when test="${!empty applymenList}">
 		<div class="sub0101_con">
-			<div class="container">
+			<div>
 				  <ul class="list-group list-group-flush">
 				  	<c:forEach var="applymen" items="${applymenList}" varStatus="cnt" >
 				    <li style="cursor:pointer;" class="list-group-item"  value="${applymen.apply_id}" 

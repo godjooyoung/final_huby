@@ -35,7 +35,7 @@
 	<div class="ov inner center" style="margin: 10% auto 2%;">
 		<!-- 실제 소스들-->
 		<div class="sub0101_con">
-			<div class="container">
+			<div >
 				  <ul class="list-group list-group-flush">
 				  	<c:forEach var="employment" items="${employments}">
 				    <li class="list-group-item"  value="${employment.employment_id}" 
