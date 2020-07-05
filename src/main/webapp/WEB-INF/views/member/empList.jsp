@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script>
-	var tit01 = "공고목록";
-</script>
-
 <div id="sub_vis_wrap" class="sub01 page01">
 	<div class="hd_box"></div>
 	<div class="visual-area ">
@@ -19,9 +15,6 @@
 	</div>
 	<div class="sub_menu_wrap s-inner sub_menu_pc ">
 		<div class="sub_menu_tit">
-			<script>
-				document.write(tit01);
-			</script>
 		</div>
 
 		<ul class="sub_menu_box sub01">

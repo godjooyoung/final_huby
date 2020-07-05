@@ -839,7 +839,7 @@ body {
 		</div>
 		<div id="search">
 			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-			<input type="text" placeholder="검색하세욘" />
+			<input type="text" placeholder="이름을 검색하세요." />
 		</div>
 		
 		<!-- 채팅리스트 -->
@@ -854,8 +854,7 @@ body {
 							<img src="${pageContext.request.contextPath}/resources/FileUpload/${list.member_photo}" alt="" />
 							<div class="meta">
 								<p class="name">${list.member_name}</p>
-								<p class="preview">${recent.message_content } 
-								<c:if test="${fn:contains(connId, list.company_id)}">접속중
+								<c:if test="${fn:contains(connId, list.member_id)}">접속중
 								<box-icon name='message-edit' animation='tada' color='#FFFFFF' ></box-icon>
 							</c:if></p>
 							</div>
@@ -887,7 +886,7 @@ body {
 	
 	<div class="content">
 		<div class="contact-profile">
-			<img src="http://emilcarlsson.se/assets/harveyspecter.png" id="photo" alt="" />
+			<img src="" id="photo">
 			<p id="name"></p>
 			<div class="social-media">
 				<i class="fa fa-facebook" aria-hidden="true"></i> 
@@ -969,7 +968,7 @@ body {
 										+ '<br><span style="float: right; font-size: 9px; text-align: right;">'
 										+ t + '</span></li>').appendTo($('.messages ul')));
 			} else {
-				$("#messages").append($('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>'
+				$("#messages").append($('<li class="sent"><img src="${pageContext.request.contextPath}/resources/FileUpload/${data.name.COMPANY_PHOTO}" alt="" /><p>'
 										+ msg.message_content + '</p>'
 										+ '<br><span style="float: left; font-size: 9px; text-align: left;">'
 										+ t + '</span></li>').appendTo($('.messages ul')));

@@ -938,9 +938,9 @@ body {
 		<!-- end 메시지 입력 창  -->
 	</div>
 </div>
-<script
+<!-- <script
 	src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
-<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script> -->
 <script>
 	
 	$(document).ready(function(){
@@ -1003,7 +1003,7 @@ body {
 												+ '<br><span style="float: right; font-size: 9px; text-align: right;">'
 												+ t + '</span></li>').appendTo($('.messages ul')));
 			} else {
-				$("#messages").append($('<li class="sent"><img src="${pageContext.request.contextPath}/resources/FileUpload/${data.name.MEMBER_PHOTO}" alt="" /><p>'
+				$("#messages").append($('<li class="sent"><img src="${pageContext.request.contextPath}/resources/FileUpload/${data.name.COMPANY_PHOTO}" alt="" /><p>'
 												+ msg.message_content + '</p>'
 												+ '<br><span style="float: left; font-size: 9px; text-align: left;">'
 												+ t + '</span></li>').appendTo($('.messages ul')));
@@ -1082,8 +1082,7 @@ body {
 							}
 
 						}
-						if (data.result.length == 0) {
-							$('#message_content').append("대화내용이 없슴니다,");
+						if (data.result.length == 0) {$('#message_content').append("대화내용이 없슴니다,");
 						}
 						$(".messages").scrollTop($(".messages").prop('scrollHeight'))
 					},
