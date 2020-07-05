@@ -132,12 +132,12 @@
 	<div id="sub_content_wrap" class="sub0101">
 		<div class="ov inner center" style="margin: 0px auto 2%;">
 			<!-- ---------------------------- -->
-			<div class="w3-container w3-margin-bottom"
+			<div class="w3-margin-bottom"
 				style="background-color: #134a8e;">
 				<div style="vertical-align: middle;">
 					&nbsp;
-					<h3 style="color: white; margin-bottom: 10px;">${ empMatch.EMPLOYMENT_TITLE }</h3>
-					<h5 style="color: white; margin-bottom: 20px;">
+					<h3 style="color: white; margin-bottom: 5px;">${ empMatch.EMPLOYMENT_TITLE }</h3>
+					<h5 style="color: white; margin-bottom:20px; padding-bottom:20px;">
 						<fmt:formatDate pattern="yyyy년MM월dd일 까지"
 							value="${ empMatch.EMPLOYMENT_TIME }" />
 					</h5>
@@ -149,15 +149,11 @@
 				<div class="w3-twothird">
 					<h2>공고내용</h2>
 					<div>
-						<pre style="word-wrap: break-word">
-			  		${ empMatch.EMPLOYMENT_CONTENTS }
-			  </pre>
+					<pre>${ empMatch.EMPLOYMENT_CONTENTS }</pre>
 					</div>
 					<h2>우대사항</h2>
 					<div>
-						<pre style="word-wrap: break-word">
-			  		${ empMatch.EMPLOYMENT_PREFER }
-			  </pre>
+					<pre>${ empMatch.EMPLOYMENT_PREFER }</pre>
 					</div>
 				</div>
 				<!-- 내용부분끝 -->

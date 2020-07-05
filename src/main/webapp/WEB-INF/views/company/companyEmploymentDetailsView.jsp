@@ -41,14 +41,12 @@
 			
 			  <h2>공고내용</h2>
 			  <div>
-			  <pre style="word-wrap: break-word">
-			  		${employmentsDetails.employment_contents}
+			  <pre>${employmentsDetails.employment_contents}
 			  </pre>
 			  </div>
 			  <h2>우대사항</h2>
 			  <div>
-			  <pre style="word-wrap: break-word">
-			  		${employmentsDetails.employment_prefer}
+			  <pre>${employmentsDetails.employment_prefer}
 			  </pre>
 			  </div>
  		</div>
