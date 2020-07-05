@@ -658,6 +658,7 @@ body {
 		    		$("#skill_id_"+skill_id).html(skill_id);
 		    		$("#skill_name_"+skill_id).html(skill_name);
 		    		$("#skill_level_"+skill_id).html(skill_level);
+		    		$("#skill_level_"+skill_id).css('width', skill_level+'%');
 		    		$("[id^=ajaxSkill1]").show();
 		    		$("#ajaxSkill2").hide();	
 		    		
@@ -992,10 +993,10 @@ body {
 							</div>
 							<div class="our-services-text">
 								<h4 id="skill_name_${ skill.SKILL_ID }">${ skill.SKILL_NAME }<input type="checkbox" id="skill_id_check" name="skill_id" value="${ skill.SKILL_ID }"></h4>
-								<p id="skill_level_${ skill.SKILL_ID }">${ skill.SKILL_LEVEL }</p>
-								<%-- <p id="skill_level_${ skill.SKILL_ID }" class='w3-container w3-blue w3-center w3-round-large w3-tiny' style='width:${ skill.SKILL_LEVEL }%'>
+								<%-- <p id="skill_level_${ skill.SKILL_ID }">${ skill.SKILL_LEVEL }</p> --%>
+								<p id="skill_level_${ skill.SKILL_ID }" class='w3-container w3-blue w3-center w3-round-large w3-tiny' style='width:${ skill.SKILL_LEVEL }%'>
 									${ skill.SKILL_LEVEL } lv
-								</p> --%>
+								</p>
 							</div>
 							<%-- <button type="button" class="btn-primary" onclick="skillDelete(${ skill.SKILL_ID })">스킬 삭제</button> --%>
 							<button type="button" class="btn-primary" style="background: #0000cd" onclick="ajaxSkillUpdatePage(window.event, ${ skill.SKILL_ID })">스킬 수정</button>

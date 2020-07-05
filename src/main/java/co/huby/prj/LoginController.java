@@ -111,7 +111,6 @@ public class LoginController {
 	public ModelAndView adminLoginCheck(Model model, HttpServletRequest request, AdminTableVo vo) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		AdminTableVo vo2 = adminService.adminSelectOne(vo);
-
 		
 		if(vo2 != null) {
 			if (vo.getAdmin_pw().equals(vo2.getAdmin_pw())) {

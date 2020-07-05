@@ -475,7 +475,7 @@ window.onclick = function(event) {
 </div><br><br><br><br>
 <div align="center">
 <span style="background-color: white;">
-<button type="button" onclick="location.href='adminLogin.do'" style="background: white;">관리자 로그인</button>
+<button type="button" onclick="location.href='adminLogin.do'">관리자 로그인</button>
 </span>
 </div>
 <script>
