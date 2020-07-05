@@ -33,7 +33,7 @@
 						</div>
 					</div>
 					<br>
-					<div class="w3-container">
+					<div>
 						<p>
 							<i class="fas fa-signature w3-margin-right w3-large w3-text-blue"></i>
 							${applyman.member_name}
@@ -73,7 +73,7 @@
 			<!-- Right Column -->
 			<div class="w3-twothird">
 
-				<div class="w3-container w3-card w3-white w3-margin-bottom">
+				<div class="w3-card w3-white w3-margin-bottom">
 					<h2 class="w3-text-grey w3-padding-16">
 						<i class="fas fa-file w3-margin-right w3-xxlarge w3-text-blue" ></i>
 						${applyman.resume_title}
@@ -87,21 +87,21 @@
 						</h6>
 						<hr>
 					</div>
-					<div class="w3-container">
+					<div>
 						<h5 class="w3-opacity">
 							<b>희망연봉</b>
 						</h5>
 						<p>${applyman.hope_salary}</p>
 						<hr>
 					</div>
-					<div class="w3-container">
+					<div>
 						<h5 class="w3-opacity">
 							<b>희망직무</b>
 						</h5>
 						<p>${applyman.code_name}</p>
 						<hr>
 					</div>
-					<div class="w3-container">
+					<div >
 						<h5 class="w3-opacity">
 							<b>희망근무지역</b>
 						</h5>
@@ -110,7 +110,7 @@
 						</h6>
 						<hr>
 					</div>
-					<div class="w3-container">
+					<div >
 						<h5 class="w3-opacity">
 							<b>최종학력</b>
 						</h5>
@@ -121,14 +121,14 @@
 					</div>
 				</div>
 				<br>
-				<div class="w3-container w3-card w3-white w3-margin-bottom">
+				<div class="w3-card w3-white w3-margin-bottom">
 					<h2 class="w3-text-grey w3-padding-16">
 						<a onclick="reciveCareer(event,'${applyman.member_id}')">
 						<i  class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-blue"></i>
 						경력사항
 						</a>
 					</h2>
-					<div class="w3-container">
+					<div>
 						<h5 class="w3-opacity">
 						<!-- 커리어 -->
 						<ul class="nav nav-pills flex-column" id="career${applyman.member_id}">
@@ -140,14 +140,14 @@
 
 				</div>
 				
-				<div class="w3-container w3-card w3-white w3-margin-bottom">
+				<div class="w3-card w3-white w3-margin-bottom">
 					<h2 class="w3-text-grey w3-padding-16">
 						<a onclick="reciveExp(event,'${applyman.member_id}')">
 						<i  class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-blue"></i>
 						관련 경험 및 자기 계발
 						</a>
 					</h2>
-					<div class="w3-container">
+					<div >
 						<h5 class="w3-opacity">
 							<ul class="nav nav-pills flex-column" id="exp${applyman.member_id}">
 							<!-- 여기에 가져온 경험정보를 붙이자. li 태그로로 -->
@@ -158,14 +158,14 @@
 
 				</div>
 				
-				<div class="w3-container w3-card w3-white w3-margin-bottom">
+				<div class="w3-card w3-white w3-margin-bottom">
 					<h2 class="w3-text-grey w3-padding-16">
 						<a onclick="reciveSkill(event,'${applyman.member_id}')">
 						<i  class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-blue"></i>
 						보유기술
 						</a>
 					</h2>
-					<div class="w3-container">
+					<div>
 						<h5 class="w3-opacity">
 							<ul class="nav nav-pills flex-column" id="skills${applyman.member_id}">
 								<!-- 반복문 돌리기 -->
@@ -177,14 +177,14 @@
 
 				</div>
 				
-				<div class="w3-container w3-card w3-white w3-margin-bottom">
+				<div class="w3-card w3-white w3-margin-bottom">
 					<h2 class="w3-text-grey w3-padding-16">
 						<a onclick="reciveHabit(event,'${applyman.member_id}')">
 						<i  class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-blue"></i>
 						습관
 						</a>
 					</h2>
-					<div class="w3-container">
+					<div >
 						<h5 class="w3-opacity">
 							<ul class="nav nav-pills flex-column" id="habits${applyman.member_id}">
 							<!-- 여기에 가져온 습관정보를 붙이자. li 태그로로 -->
