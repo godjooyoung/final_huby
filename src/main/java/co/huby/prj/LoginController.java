@@ -66,6 +66,7 @@ public class LoginController {
 				request.getSession().setAttribute("personalVo", vo2);
 				request.getSession().setAttribute("loginId", vo2.getMember_id());
 				request.getSession().setAttribute("loginName", vo2.getMember_name());
+				request.getSession().setAttribute("memberPhoto", vo2.getMember_photo());
 				request.getSession().setAttribute("loginType", "U");
 			} else {
 				String num = "1";
@@ -92,6 +93,7 @@ public class LoginController {
 				request.getSession().setAttribute("companyVo", vo2);
 				request.getSession().setAttribute("loginId", vo2.getCompany_id());
 				request.getSession().setAttribute("loginName", vo2.getCompany_name());
+				request.getSession().setAttribute("companyPhoto", vo2.getCompany_photo());
 				request.getSession().setAttribute("loginType", "C");
 			} else {
 				String num = "1";
