@@ -36,10 +36,17 @@
 	}
 	
 	function habitDelete(){
+		var chk = $('input[id="habit_id_check"]').is(':checked');
+		
+		if(chk==false){
+			alert("삭제 할 이력서를 선택해주세요");
+		}
+		if(chk==true){
 		var result = confirm("선택한 습관을 정말 삭제하시겠습니까?");
-		if(result){
-		$("#frm").attr("action", "habitDelete.do");
-		document.frm.submit();
+			if(result){
+				$("#frm").attr("action", "habitDelete.do");
+				document.frm.submit();
+			}
 		}
 	}
 	

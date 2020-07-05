@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>HUBY 홈페이지</title>
@@ -136,8 +136,8 @@
 								class="lnr lnr-chart-bars"></i> <span>개인회원</span></a></li>
 						<li><a href="companymemberall.do" class=""><i
 								class="lnr lnr-cog"></i> <span>기업회원</span></a></li>
-						<li><a href="vManagement.do" class=""><i
-								class="lnr lnr-alarm"></i> <span>영상관리</span></a></li> -->
+						<!-- <li><a href="vManagement.do" class=""><i
+								class="lnr lnr-alarm"></i> <span>영상관리</span></a></li> --> -->
 					</ul>
 					<!-- 사이드바 메뉴 현재 사용 안함 -->
 					<!-- <li>
