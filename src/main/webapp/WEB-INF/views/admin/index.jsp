@@ -188,7 +188,96 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="panel-body">
 							<div class="row">
+								<div class="col-md-3">
+									<div class="metric">
+										<div align="center">오늘 올라온 공고</div>
+										<span class="icon"><i class="fa fa-clone"></i></span>
+										<p>
+											<span class="number">1,252</span>
+											<span class="title">Downloads</span>
+										</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="metric">
+									<div align="center">오늘 올라온 이력서</div>
+										<span class="icon"><i class="fa fa-clone"></i></span>
+										<p>
+											<span class="number">203</span>
+											<span class="title">Sales</span>
+										</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="metric">
+									<div align="center">신규회원</div>
+										<span class="icon"><i class="fa fa-android"></i></span>
+										<p>
+											<span class="number">274,678</span>
+											<span class="title">Visits</span>
+										</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="metric">
+									<div align="center">채용현황</div>
+										<span class="icon"><i class="fa fa-bar-chart"></i></span>
+										<p>
+											<span class="number">35%</span>
+											<span class="title">Conversions</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="metric">
+										<div align="center">오늘 올라온 공고</div>
+										<span class="icon"><i class="fa fa-clone"></i></span>
+										<p>
+											<span class="number">1,252</span>
+											<span class="title">Downloads</span>
+										</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="metric">
+									<div align="center">오늘 올라온 이력서</div>
+										<span class="icon"><i class="fa fa-clone"></i></span>
+										<p>
+											<span class="number">203</span>
+											<span class="title">Sales</span>
+										</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="metric">
+									<div align="center">신규회원</div>
+										<span class="icon"><i class="fa fa-android"></i></span>
+										<p>
+											<span class="number">274,678</span>
+											<span class="title">Visits</span>
+										</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="metric">
+									<div align="center">채용현황</div>
+										<span class="icon"><i class="fa fa-bar-chart"></i></span>
+										<p>
+											<span class="number">35%</span>
+											<span class="title">Conversions</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+							<!-- <div class="row">
 								<div class="col-md-9">
 									<div id="headline-chart" class="ct-chart"></div>
 								</div>
@@ -206,13 +295,13 @@
 										<span class="info-label">Total Income</span>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<!-- END OVERVIEW -->
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-md-6">
-							<!-- RECENT PURCHASES -->
+							RECENT PURCHASES
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Recent Purchases</h3>
@@ -278,10 +367,10 @@
 									</div>
 								</div>
 							</div>
-							<!-- END RECENT PURCHASES -->
+							END RECENT PURCHASES
 						</div>
 						<div class="col-md-6">
-							<!-- MULTI CHARTS -->
+							MULTI CHARTS
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Projection vs. Realization</h3>
@@ -294,9 +383,9 @@
 									<div id="visits-trends-chart" class="ct-chart"></div>
 								</div>
 							</div>
-							<!-- END MULTI CHARTS -->
+							END MULTI CHARTS
 						</div>
-					</div>
+					</div> -->
 					<!-- <div class="row">
 						<div class="col-md-7">
 							TODO LIST
@@ -393,9 +482,9 @@
 							END TIMELINE
 						</div>
 					</div> -->
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-md-4">
-							<!-- TASKS -->
+							TASKS
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">My Tasks</h3>
@@ -449,10 +538,10 @@
 									</ul>
 								</div>
 							</div>
-							<!-- END TASKS -->
+							END TASKS
 						</div>
 						<div class="col-md-4">
-							<!-- VISIT CHART -->
+							VISIT CHART
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Website Visits</h3>
@@ -465,10 +554,10 @@
 									<div id="visits-chart" class="ct-chart"></div>
 								</div>
 							</div>
-							<!-- END VISIT CHART -->
+							END VISIT CHART
 						</div>
 						<div class="col-md-4">
-							<!-- REALTIME CHART -->
+							REALTIME CHART
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">System Load</h3>
@@ -491,9 +580,9 @@
 									</ul>
 								</div>
 							</div>
-							<!-- END REALTIME CHART -->
+							END REALTIME CHART
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->

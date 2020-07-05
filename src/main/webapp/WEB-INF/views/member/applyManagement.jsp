@@ -12,6 +12,12 @@
 		location.href = window.location.pathname + "?page=" + p;
 	}
 </script>
+<style>
+	#card_overflow{
+		overflow: hidden;
+    	height: 100px;
+	}
+</style>
 </head>
 <body>
 <br>
@@ -25,7 +31,7 @@
 	<div id="London" class="w3-container city" style="display: block">
 		<!-- <div class="w3-container"> -->
 			<c:forEach var="alist" items="${ alist }">
-				<ul class="w3-ul w3-card-4">
+				<ul id="card_overflow" class="w3-ul w3-card-4">
 					<li id="detailemp${alist.EMPLOYMENT_ID}" class="w3-bar">
 					<span
 						onclick="this.parentElement.style.display='none'"
@@ -90,6 +96,8 @@
 		    dataType: "json",
 		    data: {'employment_id':eid},
 		    success: function(data){
+		    	
+		    	
 		    	$("#appendemp"+eid).empty();
 		    	$("#appendemp"+eid).append(data.employment_title + "<br>");
 		    	$("#appendemp"+eid).append(data.employment_contents + "<br>");

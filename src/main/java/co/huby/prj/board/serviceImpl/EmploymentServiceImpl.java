@@ -76,15 +76,14 @@ public class EmploymentServiceImpl implements EmploymentService {
 	@Override
 	public int applyInsert(Map vo) throws Exception {
 		int n = map.applycheck(vo);
+		int num =0;
 		if(n==0) {
-			int num = 10;
+			num = 10;
 			map.applyInsert(vo);
-			return num;
-		}else{
-			int num = 20;
-			map.applyInsert(vo);
-			return num;
+		}else if(n==1){
+			num = 20;
 		}
+		return num;
 	}
 
 	@Override

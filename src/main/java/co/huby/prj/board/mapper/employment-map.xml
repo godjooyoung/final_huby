@@ -31,7 +31,7 @@
 		e.HOPE_JOB_POSITION,e.HOPE_JOB,e.HOPE_LOCATION,e.HOPE_WORK_TYPE,e.EMPLOYMENT_PREFER,e.EMPLOYMENT_TIME,e.HOPE_SALARY,
 		c.COMPANY_NAME,c.COMPANY_TEL,c.COMPANY_EMAIL,c.CEO_NAME,c.BUSINESS_TYPE,
 		c.COMPANY_ADDR,c.BUSINESS_CATEGORY,c.COMPANY_BIRTH,c.COMPANY_SALES,
-		c.HOMEPAGE,c.COMPANY_DATE, c.company_id, c.COMPANY_PHOTO
+		c.HOMEPAGE,c.COMPANY_DATE, c.COMPANY_PHOTO, c.COMPANY_ID as "company_id"
 		from employments e, company c
 		where e.company_id = c.company_id and e.employment_id =
 		#{employment_id}

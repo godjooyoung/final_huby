@@ -14,9 +14,7 @@
 	position: relative;
 }
 
-body{
- font-weight: bolder;
-}
+
 
 /* #timeline:before {
 	top: 0;

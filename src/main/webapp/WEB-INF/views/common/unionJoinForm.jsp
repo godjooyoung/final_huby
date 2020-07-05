@@ -1500,7 +1500,7 @@ px
 											class="help-block" id="homepageblur"></span>
 									</div>
 									<div class="form-group">
-									<div style="font-weight: bolder;">&nbsp;&nbsp;증명사진</div>
+									<div style="font-weight: bolder;">&nbsp;&nbsp;회사Logo</div>
 										<input type="file" id="company_photo" name="cuploadfile"
 											maxlength="50">
 									</div>

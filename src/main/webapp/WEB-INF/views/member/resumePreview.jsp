@@ -12,7 +12,7 @@
 </head>
 <body>
 <div style="margin: 30px 30px 30px 30px;">
-<form class="form-horizontal" id="frm" name="frm" method="post">
+<form class="form-horizontal" id="frm" name="frm" method="post" onsubmit="resumeInsertGo()">
     <fieldset>
 
         <!-- Form Name -->
@@ -127,7 +127,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="save"></label>
           <div class="col-md-8">
-            <input type="button" id="save" name="save" class="btn btn-success" onclick="resumeInsertGo()" value="등록하기">
+            <input type="submit" id="save" name="save" class="btn btn-success" value="등록하기">
             <input type="reset" name="cancel" class="btn btn-danger" value="취소">
             <input type="button" name="cancel" class="btn btn-primary" onclick="winclose()" value="창닫기">
           </div>
@@ -146,8 +146,6 @@
         	var final_education = $("#final_education").val();
         	var resume_coment = $("#resume_coment").val();
         	
-        	/* $("#frm").attr("action","resumeinsert.do");
-        	document.frm.submit(); */
         	
         	$.ajax({
     		    url: "resumeInsertAjax.do",
@@ -175,6 +173,8 @@
 
         	
     		window.close();
+    		
+    		return true;
         	}
         </script>
         </form>

@@ -36,8 +36,11 @@
 	}
 	
 	function habitDelete(){
+		var result = confirm("선택한 습관을 정말 삭제하시겠습니까?");
+		if(result){
 		$("#frm").attr("action", "habitDelete.do");
 		document.frm.submit();
+		}
 	}
 	
 	function habitPreview(){

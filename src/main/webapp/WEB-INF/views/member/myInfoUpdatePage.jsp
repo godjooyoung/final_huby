@@ -90,6 +90,10 @@
 	function back(){
 		history.back();
 	}
+	
+	if("${result}" == 'success'){
+		alert("비밀번호가 변경 되었습니다.")
+	}
 </script>
 <script>
 <!-- 정규식 검사 시작 -->
@@ -153,7 +157,7 @@
 		}
 
 		if (cnt > 0) {
-			alert("조건을 정확히 입력해주세요");
+			alert("입력 값이 잘못 됐거나 필수 값이 누락 됐습니다.");
 			return false;
 		} else {
 			return true;
@@ -219,36 +223,6 @@
 		history.back();
 	}
 
-	function idcheck() {
-		var id = $("#member_id").val();
-		var idCheck = /^[a-z]+[a-z0-9]{5,19}$/g;
-
-		$.ajax({
-			url : '/idCheck.do', //request 보낼 서버의 경로
-			dataType : 'json',
-			type : 'post', // 메소드(get, post, put 등)
-			data : {
-				'member_id' : $("#member_id").val()
-			}, //보낼 데이터
-			success : function(data) {
-				if (data == 1) {
-					$("#overlap").html("아이디가 중복입니다.");
-					$('#overlap').css("color", "red");
-					return false;
-				} else if (id == "" || !idCheck.test(id)) {
-					$("#overlap").html("영문자로 시작하는 6~20자 영문자 또는 숫자 입력.");
-					$('#overlap').css("color", "red");
-					return false;
-				} else {
-					$('#overlap').html("사용 가능한 아이디입니다.");
-					$('#overlap').css("color", "blue");
-					return true;
-				}
-			}
-		});
-
-	}
-
 	function pwcheck() {
 		var pw = $('#member_pw').val();
 		var pwcheck = /^[A-Za-z0-9]{6,20}$/;
@@ -279,56 +253,21 @@
 		}
 	}
 
-	function namecheck() {
-		var name = $('#member_name').val();
-		var nameCheck = /^[가-힣]{2,5}$/;
-		if (name == '' || !nameCheck.test(name)) {
-			$('#namecheck').html("2~5글자(공백 없음) 한글만 입력 가능.");
-			$('#namecheck').css("color", "red");
-			return false;
-		} else {
-			$('#namecheck').html("사용 가능한 이름입니다.");
-			$('#namecheck').css("color", "blue");
-			return true;
-		}
-	}
-
-	/* function telcheck(){
-	 var phoneRule = /^[0-9]*$/
-	 var tel1 = $("#member_tel1").val();
-	 var tel2 = $("#member_tel2").val();
-	 var tel3 = $("#member_tel3").val();
-	
-	 if(tel1 == "" || tel2 == "" || tel3 == ""){
-	 $('#telcheck').html("번호를 전부 입력해주세요");
-	 $('#telcheck').css("color", "red");
-	 return;
-	 }
-	
-	 if(!phoneRule.test(tel1) || !phoneRule.test(tel2) || !phoneRule.test(tel3)){
-	 $('#telcheck').html("숫자만 입력해주세요.");
-	 $('#telcheck').css("color", "red");
-	 return;
-	
-	 } else {
-	 $('#telcheck').html("정상적으로 번호가 입력되었습니다.");
-	 $('#telcheck').css("color", "blue");
-	 return true;
-	 } 
-	 } */
-
 	function telcheck() {
 		var tel = $("#member_tel").val();
 		var telRule = /^\d{3}-\d{3,4}-\d{4}$/;
-
-		if (!telRule.test(tel)) {
-			$('#telcheck').html("010-####-#### 또는 016-###-####");
-			$('#telcheck').css("color", "red");
-			return false;
+		if (tel != null && tel != "") {
+			if (!telRule.test(tel)) {
+				$('#telcheck').html("ex) 010-####-#### 또는 016-###-####");
+				$('#telcheck').css("color", "red");
+				return false;
+			} else {
+				$('#telcheck').html("사용 가능한 번호입니다.");
+				$('#telcheck').css("color", "blue");
+				return true;
+			}
 		} else {
-			$('#telcheck').html("사용 가능한 번호입니다.");
-			$('#telcheck').css("color", "blue");
-			return true;
+			$('#telcheck').html("");
 		}
 	}
 
@@ -336,14 +275,18 @@
 		var email = $("#member_email").val();
 		var emailRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
-		if (!emailRule.test(email)) {
-			$("#emailcheck").html("ex) abcd1234@naver.com")
-			$('#emailcheck').css("color", "red");
-			return false;
+		if (email != null && email != "") {
+			if (!emailRule.test(email)) {
+				$("#emailcheck").html("ex) abcd1234@naver.com")
+				$('#emailcheck').css("color", "red");
+				return false;
+			} else {
+				$("#emailcheck").html("사용 가능한 이메일입니다.")
+				$('#emailcheck').css("color", "blue");
+				return true;
+			}
 		} else {
-			$("#emailcheck").html("사용 가능한 이메일입니다.")
-			$('#emailcheck').css("color", "blue");
-			return true;
+			$("#emailcheck").html("");
 		}
 	}
 	
@@ -365,6 +308,11 @@
 			return;
 		}
 		
+		if(pwupdate1 != pwupdate2){
+			alert("변경 할 패스워드가 일치하지 않습니다.");
+			return;
+		}
+		
 		$.ajax({
 		    url: "realpwcheck.do",
 		    type: "post",
@@ -379,20 +327,15 @@
 		  });
 		
 		if(result==0){
-			alert("현재 패스워드가 일치하지 않습니다.")
+			alert("현재 패스워드가 일치하지 않습니다.");
 			return;
+		}
+		if(result==1){
+			alert("비밀번호가 변경되었습니다.");
 		}
 		
 		$("#frm").attr("action","pwUpdate.do")
 		document.frm.submit();
-		
-		
-		
-		/* $(document).ready(function(){
-			$("#plzreset").click(function(){
-				alert(1);
-			});
-		}); */
 	}
 </script>
 <body>
@@ -479,14 +422,14 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" id="plzreset" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">비밀번호 변경</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" align="left">비밀번호 변경</h4>
         </div>
         <div class="modal-body">
         <div align="center">
-		현재 비밀번호를 입력해주세요.<input type="password" id="member_pw" name="member_pw"><br>
-		변경 할 비밀번호를 입력해주세요.<input type="password" id="member_pwcheck1" name="member_pwcheck"><br>
-		변경 할 비밀번호 재확인.<input type="password" id="member_pwcheck2">
+		현재 비밀번호를 입력해주세요.<input class="form-control input-md" type="password" id="member_pw" name="member_pw"><br>
+		변경 할 비밀번호를 입력해주세요.<input class="form-control input-md" type="password" id="member_pwcheck1" name="member_pwcheck"><br>
+		변경 할 비밀번호 재확인.<input class="form-control input-md" type="password" id="member_pwcheck2">
 		</div>
         </div>
         <div class="modal-footer">
