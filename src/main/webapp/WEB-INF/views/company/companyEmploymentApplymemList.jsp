@@ -30,12 +30,12 @@
 	<div class="ov inner center" style="margin: 10% auto 2%;">    
     <!-- 실제소스 -->
     <!-- ---------------------------- -->
-    <div class="w3-container w3-margin-bottom" style="background-color:#134a8e;">
+    <div class="w3-margin-bottom" style="background-color:#134a8e;">
     	<div style="vertical-align: middle;">
-    		&nbsp;<h3 style="color:white; margin-bottom:10px;">
+    		&nbsp;<h3 style="color:white; margin-bottom:05px;">
     				${title.employment_title}
     			  </h3>
-    			  <h5 style="color:white; margin-bottom:20px;">
+    			  <h5 style="color:white;  margin-bottom:20px; padding-bottom:20px;">
     			  	<fmt:formatDate pattern ="yyyy년MM월dd일 까지" value="${title.employment_time}"/>
     			  </h5>
     	</div>
