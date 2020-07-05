@@ -10,8 +10,20 @@
 	margin-bottom: 60px;
 }
 
-.services-inner {
-	border: 2px solid #48c7ec;
+.services-inner1 {
+	border: 2px solid #ff0081;
+	margin-left: 35px;
+	transition: .3s;
+}
+
+.services-inner2 {
+	border: 2px solid #f89b00;
+	margin-left: 35px;
+	transition: .3s;
+}
+
+.services-inner3 {
+	border: 2px solid #0000cd;
 	margin-left: 35px;
 	transition: .3s;
 }
@@ -20,11 +32,11 @@
 	float: left;
 	margin-left: -36px;
 	margin-right: 22px;
-	margin-top: 28px;
+	margin-top: 0f8a0f;
 }
 
 .our-services-text {
-	padding-right: 10px;
+	padding-right: 0000a0;
 }
 
 .our-services-text {
@@ -71,7 +83,7 @@ p {
 }
 </style>
 
-<!-- 애니메이션 버튼 -->
+<!-- 애니메이션 이력서 삭제 버튼 -->
 <style>
 body {
   font-size: 16px;
@@ -80,7 +92,7 @@ body {
   background-color: #f8faff;
 }
 
-.bubbly-button {
+.bubbly-button1 {
   font-family: 'Helvetica', 'Arial', sans-serif;
   display: inline-block;
   font-size: 1em;
@@ -98,10 +110,10 @@ body {
   transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
   box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
 }
-.bubbly-button:focus {
+.bubbly-button1:focus {
   outline: 0;
 }
-.bubbly-button:before, .bubbly-button:after {
+.bubbly-button1:before, .bubbly-button1:after {
   position: absolute;
   content: '';
   display: block;
@@ -112,28 +124,28 @@ body {
   transition: all ease-in-out 0.5s;
   background-repeat: no-repeat;
 }
-.bubbly-button:before {
+.bubbly-button1:before {
   display: none;
   top: -75%;
   background-image: radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 20%, #ff0081 20%, transparent 30%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%);
   background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
 }
-.bubbly-button:after {
+.bubbly-button1:after {
   display: none;
   bottom: -75%;
   background-image: radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%);
   background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
 }
-.bubbly-button:active {
+.bubbly-button1:active {
   transform: scale(0.9);
   background-color: #e60074;
   box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
 }
-.bubbly-button.animate:before {
+.bubbly-button1.animate:before {
   display: block;
   animation: topBubbles ease-in-out 0.75s forwards;
 }
-.bubbly-button.animate:after {
+.bubbly-button1.animate:after {
   display: block;
   animation: bottomBubbles ease-in-out 0.75s forwards;
 }
@@ -163,7 +175,193 @@ body {
   }
 }
 </style>
+<!-- 애니메이션 이력서 삭제 버튼 끝 -->
+<!-- 애니메이션 커리어 삭제 버튼 시작-->
+<style>
+body {
+  font-size: 16px;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  text-align: center;
+  background-color: #f8faff;
+}
 
+.bubbly-button2 {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #f89b00;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgba(255, 115, 033, 0.5);
+}
+.bubbly-button2:focus {
+  outline: 0;
+}
+.bubbly-button2:before, .bubbly-button2:after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 140%;
+  height: 100%;
+  left: -20%;
+  z-index: -1000;
+  transition: all ease-in-out 0.5s;
+  background-repeat: no-repeat;
+}
+.bubbly-button2:before {
+  display: none;
+  top: -75%;
+  background-image: radial-gradient(circle, #f89b00 20%, transparent 20%), radial-gradient(circle, transparent 20%, #f89b00 20%, transparent 30%), radial-gradient(circle, #f89b00 20%, transparent 20%), radial-gradient(circle, #f89b00 20%, transparent 20%), radial-gradient(circle, transparent 10%, #f89b00 15%, transparent 20%), radial-gradient(circle, #f89b00 20%, transparent 20%), radial-gradient(circle, #f89b00 20%, transparent 20%), radial-gradient(circle, #f89b00 20%, transparent 20%), radial-gradient(circle, #f89b00 20%, transparent 20%);
+  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+}
+.bubbly-button2:after {
+  display: none;
+  bottom: -75%;
+  background-image: radial-gradient(circle, #f89b00 20%, transparent 20%), radial-gradient(circle, #f89b00 20%, transparent 20%), radial-gradient(circle, transparent 10%, #f89b00 15%, transparent 20%), radial-gradient(circle, #f89b00 20%, transparent 20%), radial-gradient(circle, #f89b00 20%, transparent 20%), radial-gradient(circle, #f89b00 20%, transparent 20%), radial-gradient(circle, #f89b00 20%, transparent 20%);
+  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+}
+.bubbly-button2:active {
+  transform: scale(0.9);
+  background-color: #f89b00;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+}
+.bubbly-button2.animate:before {
+  display: block;
+  animation: topBubbles ease-in-out 0.75s forwards;
+}
+.bubbly-button2.animate:after {
+  display: block;
+  animation: bottomBubbles ease-in-out 0.75s forwards;
+}
+
+@keyframes topBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+  }
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
+  }
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
+  }
+}
+@keyframes bottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
+  }
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
+  }
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+    background-size: 0% 0%, 0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
+  }
+}
+</style>
+<!-- 애니메이션 커리어 삭제 버튼 끝-->
+<!-- 애니메이션 스킬 삭제 버튼 시작-->
+<style>
+body {
+  font-size: 16px;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  text-align: center;
+  background-color: #f8faff;
+}
+
+.bubbly-button3 {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #0000cd;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgba(0, 0, 255, 0.5);
+}
+.bubbly-button3:focus {
+  outline: 0;
+}
+.bubbly-button3:before, .bubbly-button3:after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 140%;
+  height: 100%;
+  left: -20%;
+  z-index: -1000;
+  transition: all ease-in-out 0.5s;
+  background-repeat: no-repeat;
+}
+.bubbly-button3:before {
+  display: none;
+  top: -75%;
+  background-image: radial-gradient(circle, #0000cd 20%, transparent 20%), radial-gradient(circle, transparent 20%, #0000cd 20%, transparent 30%), radial-gradient(circle, #0000cd 20%, transparent 20%), radial-gradient(circle, #0000cd 20%, transparent 20%), radial-gradient(circle, transparent 10%, #0000cd 15%, transparent 20%), radial-gradient(circle, #0000cd 20%, transparent 20%), radial-gradient(circle, #0000cd 20%, transparent 20%), radial-gradient(circle, #0000cd 20%, transparent 20%), radial-gradient(circle, #0000cd 20%, transparent 20%);
+  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+}
+.bubbly-button3:after {
+  display: none;
+  bottom: -75%;
+  background-image: radial-gradient(circle, #0000cd 20%, transparent 20%), radial-gradient(circle, #0000cd 20%, transparent 20%), radial-gradient(circle, transparent 10%, #0000cd 15%, transparent 20%), radial-gradient(circle, #0000cd 20%, transparent 20%), radial-gradient(circle, #0000cd 20%, transparent 20%), radial-gradient(circle, #0000cd 20%, transparent 20%), radial-gradient(circle, #0000cd 20%, transparent 20%);
+  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+}
+.bubbly-button3:active {
+  transform: scale(0.9);
+  background-color: #0000cd;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+}
+.bubbly-button3.animate:before {
+  display: block;
+  animation: topBubbles ease-in-out 0.75s forwards;
+}
+.bubbly-button3.animate:after {
+  display: block;
+  animation: bottomBubbles ease-in-out 0.75s forwards;
+}
+
+@keyframes topBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+  }
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
+  }
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
+  }
+}
+@keyframes bottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
+  }
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
+  }
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+    background-size: 0% 0%, 0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
+  }
+}
+</style>
+<!-- 애니메이션 커리어 삭제 버튼 끝-->
 <script>
 	function resumedelete(rid){
 		alert(rid)
@@ -577,7 +775,7 @@ body {
 		<!-- 이력서 관리 폼 시작 -->
 		<!-- <h2>이력서 관리</h2> -->
 		<!-- <button class="btn-primary" type="button" onclick="location.href='resumeinsertpage.do'">이력서등록</button> -->
-		<button class="bubbly-button" type="button" onclick="checkResumeDelete()">이력서 삭제</button>
+		<button class="bubbly-button1" type="button" onclick="checkResumeDelete()">이력서 삭제</button>
 		<form id="frm" name="frm" method="post">
 		<div class="row">
 			<c:forEach items="${ rlist }" var="list">
@@ -585,7 +783,7 @@ body {
 			<fmt:formatDate value="${career.end_date}" pattern="yyyy-MM-dd" var="endDate" />
 				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
 					<div class="our-services-wrapper mb-60" id="ajaxTest1${ list.resume_id }">
-						<div class="services-inner">
+						<div class="services-inner1" >
 							<div class="our-services-img">
 								<img
 									src="https://www.orioninfosolutions.com/assets/img/icon/Agricultural-activities.png"
@@ -600,7 +798,7 @@ body {
 								<p id="resume_coment_${list.resume_id}">${ list.resume_coment  }</p>
 							</div>
 							<%-- <button type="button" class="btn-primary" onclick="resumedelete(${ list.resume_id })">이력서 삭제</button> --%>
-							<button type="button" class="btn-primary" onclick="resumeupdateAjax(window.event,${ list.resume_id })">이력서 수정</button><br>
+							<button type="button" class="btn-primary" style="background: #ff0081" onclick="resumeupdateAjax(window.event,${ list.resume_id })">이력서 수정</button><br>
 						</div>
 					</div>
 				</div>
@@ -696,7 +894,7 @@ body {
 		<!-- 커리어 관리 폼 시작 -->
 		<!-- <h2>커리어 관리</h2> -->
 		<!-- <button class="btn-primary" type="button" onclick="location.href='careerInsertPage.do'">커리어 등록</button> -->
-		<button class="bubbly-button" type="button" onclick="checkCareerDelete()">커리어 삭제</button>
+		<button class="bubbly-button2" type="button" onclick="checkCareerDelete()">커리어 삭제</button>
 		<form id="frm3" name="frm3" method="post">
 		<div class="row">
 			<c:forEach items="${ clist }" var="career">
@@ -704,7 +902,7 @@ body {
 			<fmt:formatDate value="${career.end_date}" pattern="yyyy-MM-dd" var="endDate" />
 				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
 					<div class="our-services-wrapper mb-60" id="ajaxCareer1${ career.career_id }">
-						<div class="services-inner">
+						<div class="services-inner2">
 							<div class="our-services-img">
 								<img
 									src="https://www.orioninfosolutions.com/assets/img/icon/Agricultural-activities.png" width="68px" alt="">
@@ -718,7 +916,7 @@ body {
 								<p id="job_position_${ career.career_id }">${ career.job_position  }</p>
 							</div>
 							<%-- <button type="button" class="btn-primary" onclick="careerDelete(${ career.career_id })">커리어 삭제</button> --%>
-							<button type="button" class="btn-primary" onclick="ajaxCareerUpdatePage(window.event, ${career.career_id})">커리어 수정</button>
+							<button type="button" class="btn-primary" style="background: #f89b00" onclick="ajaxCareerUpdatePage(window.event, ${career.career_id})">커리어 수정</button>
 						</div>
 					</div>
 				</div>
@@ -780,13 +978,13 @@ body {
 		<!-- 스킬관리  폼 시작 -->
 		<!-- <h2>스킬 관리</h2> -->
 		<!-- <button class="btn-primary" type="button" onclick="skillInsertPage()">스킬 등록</button> -->
-		<button class="bubbly-button" type="button" onclick="checkSKillDelete()">스킬 삭제</button><br><br>
+		<button class="bubbly-button3" type="button" onclick="checkSKillDelete()">스킬 삭제</button><br><br>
 		<form id="frm2" name="frm2" method="post">
 		<div class="row">
 			<c:forEach items="${ slist }" var="skill">
 				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" >
 					<div class="our-services-wrapper mb-60" id="ajaxSkill1${ skill.SKILL_ID }">
-						<div class="services-inner">
+						<div class="services-inner3">
 							<div class="our-services-img">
 								<img
 									src="https://www.orioninfosolutions.com/assets/img/icon/Agricultural-activities.png"
@@ -800,7 +998,7 @@ body {
 								</p> --%>
 							</div>
 							<%-- <button type="button" class="btn-primary" onclick="skillDelete(${ skill.SKILL_ID })">스킬 삭제</button> --%>
-							<button type="button" class="btn-primary" onclick="ajaxSkillUpdatePage(window.event, ${ skill.SKILL_ID })">스킬 수정</button>
+							<button type="button" class="btn-primary" style="background: #0000cd" onclick="ajaxSkillUpdatePage(window.event, ${ skill.SKILL_ID })">스킬 수정</button>
 						</div>
 					</div>
 				</div>
@@ -849,7 +1047,7 @@ body {
 			</div>
 		</div>
 		<!-- 수정폼 끝 -->
-		<!-- 애니메이션 버튼 시작-->
+<!-- 애니메이션 이력서 삭제 버튼 시작-->
 <script>
 var animateButton = function(e) {
 
@@ -863,10 +1061,52 @@ var animateButton = function(e) {
 	  },700);
 	};
 
-	var bubblyButtons = document.getElementsByClassName("bubbly-button");
+	var bubblyButtons = document.getElementsByClassName("bubbly-button1");
 
 	for (var i = 0; i < bubblyButtons.length; i++) {
 	  bubblyButtons[i].addEventListener('click', animateButton, false);
 	}
 </script>
-<!-- 애니메이션 버튼 끝-->
+<!-- 애니메이션 이력서 삭제 버튼 끝-->
+<!-- 애니메이션 경력 삭제 버튼 시작-->
+<script>
+var animateButton = function(e) {
+
+	  e.preventDefault;
+	  //reset animation
+	  e.target.classList.remove('animate');
+	  
+	  e.target.classList.add('animate');
+	  setTimeout(function(){
+	    e.target.classList.remove('animate');
+	  },700);
+	};
+
+	var bubblyButtons = document.getElementsByClassName("bubbly-button2");
+
+	for (var i = 0; i < bubblyButtons.length; i++) {
+	  bubblyButtons[i].addEventListener('click', animateButton, false);
+	}
+</script>
+<!-- 애니메이션 경력 삭제 버튼 시작-->
+<!-- 애니메이션 스킬 삭제 버튼 시작-->
+<script>
+var animateButton = function(e) {
+
+	  e.preventDefault;
+	  //reset animation
+	  e.target.classList.remove('animate');
+	  
+	  e.target.classList.add('animate');
+	  setTimeout(function(){
+	    e.target.classList.remove('animate');
+	  },700);
+	};
+
+	var bubblyButtons = document.getElementsByClassName("bubbly-button3");
+
+	for (var i = 0; i < bubblyButtons.length; i++) {
+	  bubblyButtons[i].addEventListener('click', animateButton, false);
+	}
+</script>
+<!-- 애니메이션 스킬 삭제 버튼 시작-->

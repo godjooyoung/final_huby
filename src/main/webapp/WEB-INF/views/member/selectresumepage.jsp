@@ -105,8 +105,6 @@
 </style>
 <form id="frm" name="frm" method="post">
 <br><br><br><br><br>
-${empMatch.employment_id }<br>
-${empMatch.company_id}
 	<div id="sub_vis_wrap" class="sub01 page01">
 		<div class="hd_box"></div>
 		<div class="visual-area ">

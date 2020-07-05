@@ -17,6 +17,11 @@
 		overflow: hidden;
     	height: 100px;
 	}
+	#table {display: table; width: 100%;}
+	.row {display: table-row; border-bottom: 1px solid #DDD;}
+	.cell {display: table-cell; padding: 20px; border-bottom: 1px solid #DDD;}
+	.col1 { width:5%; border-bottom: 1px solid #DDD;}
+	.col2 {width: 95%; border-bottom: 1px solid #DDD;}
 </style>
 </head>
 <body>
@@ -46,7 +51,14 @@
 							채용공고기간${ EMPLOYMENT_TIME } &nbsp;&nbsp; <span>지원시간: ${APPLY_DATE}  </span>
 						</div></li>
 				</ul>
-						<p id="appendemp${alist.EMPLOYMENT_ID}" style="display: none;"></p>
+					<div>
+						<div id="table">
+						<div class="row" style="border-bottom: 1px solid">
+							<span class="cell col1" id="appendspan${alist.EMPLOYMENT_ID}" style="display: none;"></span>
+							<span class="cell col2" id="appendemp${alist.EMPLOYMENT_ID}" style="display: none;"></span>
+						</div>
+						</div>
+					</div>
 				<%-- <ul class="nav nav-pills flex-column" id="emp${alist.EMPLOYMENT_TIME}"></ul> --%>
 				<br>
 			</c:forEach>
@@ -96,19 +108,29 @@
 		    dataType: "json",
 		    data: {'employment_id':eid},
 		    success: function(data){
-		    	
-		    	
+		    	$("#appendspan"+eid).empty();
 		    	$("#appendemp"+eid).empty();
-		    	$("#appendemp"+eid).append(data.employment_title + "<br>");
+		    	$("#appendspan"+eid).append('공고명<br>');
 		    	$("#appendemp"+eid).append(data.employment_contents + "<br>");
+		    	$("#appendspan"+eid).append("희망경력<br>");
 		    	$("#appendemp"+eid).append(data.hope_career + "<br>");
+		    	$("#appendspan"+eid).append("희망학력<br>");
 		    	$("#appendemp"+eid).append(data.hope_graduate + "<br>");
+		    	$("#appendspan"+eid).append("희망직급<br>");
 		    	$("#appendemp"+eid).append(data.hope_job_position + "<br>");
+		    	$("#appendspan"+eid).append("희망직무<br>");
 		    	$("#appendemp"+eid).append(data.job_name + "<br>");
+		    	$("#appendspan"+eid).append("근무위치<br>");
 		    	$("#appendemp"+eid).append(data.hope_location + "<br>");
+		    	$("#appendspan"+eid).append("근무타입<br>");
 		    	$("#appendemp"+eid).append(data.hope_work_type + "<br>");
+		    	$("#appendspan"+eid).append("우대사항<br>");
 		    	$("#appendemp"+eid).append(data.employment_prefer + "<br>");
+		    	$("#appendspan"+eid).append("희망급여<br>");
 		    	$("#appendemp"+eid).append(data.hope_salary + "<br>");  
+		    	$("#appendemp"+eid).append(data.employment_title + "<br>");
+		    	$("#appendspan"+eid).append("공고내용<br>");
+		    	$("#appendspan"+eid).show();
 		    	$("#appendemp"+eid).show();
 		    	$("#appendemp"+eid).append("<input type=\"button\" class=\"btn-primary\" value=\"상세히보기\"" 
 		    									+"onclick=\"pagegogo('"
@@ -122,6 +144,7 @@
 		})
 		}else{
 			$("#appendemp"+eid).hide();
+			$("#appendspan"+eid).hide();
 		}
 };
 </script>

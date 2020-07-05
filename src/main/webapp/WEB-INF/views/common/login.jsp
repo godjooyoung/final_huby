@@ -432,8 +432,8 @@ body
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Human Union Business Yedam</span>
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">닫기</button>
+      <span class="psw" style="font-weight: bolder; font-size: larger; color: red;">Human Union Business Yedam</span>
     </div>
   </form>
 </div>
@@ -468,8 +468,8 @@ window.onclick = function(event) {
     </div>
 	
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Human Union Business Yedam</span>
+      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">닫기</button>
+      <span class="psw" style="font-weight: bolder; font-size: larger; color: red;">Human Union Business Yedam</span>
     </div>
   </form>
 </div><br><br><br><br>
