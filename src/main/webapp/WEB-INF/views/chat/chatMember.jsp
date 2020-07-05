@@ -1,10 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="co.huby.prj.Applistner"%>
 <br>
-<%=Applistner.getUserList()%>
 <c:set var="connId" value="<%=Applistner.getUserList()%>" />
 <script>
 	try {
@@ -826,55 +824,49 @@ body {
 	<div id="sidepanel">
 		<div id="profile">
 			<div class="wrap">
-				<img id="profile-img"
-					src="${pageContext.request.contextPath}/resources/FileUpload/${memberPhoto}"
-					class="online" alt="" />
+				<img id="profile-img" src="${pageContext.request.contextPath}/resources/FileUpload/${memberPhoto}" class="online" alt="" />
 				<p>${loginName}</p>
 				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
 				<div id="expanded">
-					<label for="twitter"><i class="fa fa-facebook fa-fw"
-						aria-hidden="true"></i></label> <input name="twitter" type="text"
-						value="mikeross" /> <label for="twitter"><i
-						class="fa fa-twitter fa-fw" aria-hidden="true"></i></label> <input
-						name="twitter" type="text" value="ross81" /> <label for="twitter"><i
-						class="fa fa-instagram fa-fw" aria-hidden="true"></i></label> <input
-						name="twitter" type="text" value="mike.ross" />
+					<label for="twitter">
+					<i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label> 
+					<input name="twitter" type="text" value="mikeross" /> 
+					<label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label> 
+					<input name="twitter" type="text" value="ross81" /> <label for="twitter">
+					<i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label> 
+					<input name="twitter" type="text" value="mike.ross" />
 				</div>
 			</div>
 		</div>
 		<div id="search">
 			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-			<input type="text" placeholder="검색하세욘" />
+			<input type="text" id="myInput" placeholder="이름을 검색하세요." />
 		</div>
 
 		<!-- 채팅리스트 -->
 		<div id="contacts">
 			<ul>
 				<c:forEach var="list" items="${personChatList}">
-					<li class="contact" data-i='${list.interview_id }'
-						data-m='${list.member_id }'>
-						<div class="wrap">
+					<li class="contact" data-i='${list.interview_id }' data-m='${list.member_id }'>
+						<div class="wrap" id="myList">
 							<c:if test="${fn:contains(connId, list.company_id)}">
 								<span class="contact-status busy"></span>
 							</c:if>
-							<img
-								src="${pageContext.request.contextPath}/resources/FileUpload/${list.company_photo}"
-								alt="" />
+							<img src="${pageContext.request.contextPath}/resources/FileUpload/${list.company_photo}" alt="" />
 							<div class="meta">
-								<p class="name">${list.company_name} <c:if test="${fn:contains(connId, list.company_id)}">접속중
+								<p class="name">${list.company_name} 
+								<c:if test="${fn:contains(connId, list.company_id)}">접속중
 								<box-icon name='message-edit' animation='tada' color='#FFFFFF' ></box-icon>
 							</c:if></p>
-								<p class="preview">${recent.message_content }</p>
+								<%-- <p class="preview">${recent.message_content }</p> --%>
 							</div>
 							<form id="insert">
-								<input type="hidden" name="interview_id"
-									value="${list.interview_id}"> <input type="hidden"
-									name="company_id" value="${list.company_id}"> <input
-									type="hidden" name="member_id" value="${list.member_id}">
+								<input type="hidden" name="interview_id" value="${list.interview_id}"> 
+								<input type="hidden" name="company_id" value="${list.company_id}"> 
+								<input type="hidden" name="member_id" value="${list.member_id}">
 								<input type="hidden" name="receiver" value="${list.company_id}">
 								<input type="hidden" name="sender" value="${list.member_id}">
-								<input type="hidden" name="message_content"
-									value="${message_content}">
+								<input type="hidden" name="message_content" value="${message_content}">
 							</form>
 						</div>
 					</li>
@@ -885,8 +877,8 @@ body {
 
 		<div id="bottom-bar">
 			<button id="addcontact">
-				<i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add
-					contact</span>
+				<i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> 
+				<span>Add contact</span>
 			</button>
 			<button id="settings">
 				<i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span>
@@ -899,9 +891,9 @@ body {
 			<img src="" id="photo" />
 			<p id="name"></p>
 			<div class="social-media">
-				<i class="fa fa-facebook" aria-hidden="true"></i> <i
-					class="fa fa-twitter" aria-hidden="true"></i> <i
-					class="fa fa-instagram" aria-hidden="true"></i>
+				<i class="fa fa-facebook" aria-hidden="true"></i> 
+				<i class="fa fa-twitter" aria-hidden="true"></i> 
+				<i class="fa fa-instagram" aria-hidden="true"></i>
 			</div>
 		</div>
 
@@ -935,9 +927,9 @@ body {
 		<!-- 메시지 입력 창  -->
 		<div class="message-input">
 			<div class="wrap">
-				<input type="text" placeholder="메시지를 입력하세요." id="message" /> <a
-					href="cameraChat.do"><i class="fa fa-paperclip attachment"
-					aria-hidden="true"></i></a>
+				<input type="text" placeholder="메시지를 입력하세요." id="message" />
+				<a href="cameraChat.do">
+				<i class="fa fa-paperclip attachment" aria-hidden="true"></i></a>
 				<button class="submit" id="sendBtn">
 					<i class="fa fa-paper-plane" aria-hidden="true"></i>
 				</button>
@@ -950,9 +942,18 @@ body {
 	src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
 <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script>
-	$(".messages").animate({
-		scrollTop : $(document).height()
-	}, "fast");
+	
+	$(document).ready(function(){
+	  $("#myInput").on("keyup", function() {
+	    var value = $(this).val().toLowerCase();
+	    $("#myList p").filter(function() {
+	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+	    });
+	  });
+	});
+	
+
+	$(".messages").animate({ scrollTop : $(document).height()}, "fast");
 	$(".expand-button").click(function() {
 		$("#profile").toggleClass("expanded");
 		$("#contacts").toggleClass("expanded");
@@ -997,25 +998,15 @@ body {
 		} else {
 			var t = getTimeStamp();
 			if (msg.message_sender == '${loginId}') {
-				$("#messages")
-						.append(
-								$(
-										'<li class="replies"><img src="${pageContext.request.contextPath}/resources/FileUpload/${memberPhoto}" alt="" /><p>'
-												+ msg.message_content
-												+ '</p>'
+				$("#messages").append($('<li class="replies"><img src="${pageContext.request.contextPath}/resources/FileUpload/${memberPhoto}" alt="" /><p>'
+												+ msg.message_content + '</p>'
 												+ '<br><span style="float: right; font-size: 9px; text-align: right;">'
-												+ t + '</span></li>').appendTo(
-										$('.messages ul')));
+												+ t + '</span></li>').appendTo($('.messages ul')));
 			} else {
-				$("#messages")
-						.append(
-								$(
-										'<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>'
-												+ msg.message_content
-												+ '</p>'
+				$("#messages").append($('<li class="sent"><img src="${pageContext.request.contextPath}/resources/FileUpload/${data.name.MEMBER_PHOTO}" alt="" /><p>'
+												+ msg.message_content + '</p>'
 												+ '<br><span style="float: left; font-size: 9px; text-align: left;">'
-												+ t + '</span></li>').appendTo(
-										$('.messages ul')));
+												+ t + '</span></li>').appendTo($('.messages ul')));
 			}
 		}
 		$('.message-input input').val(null);
@@ -1055,8 +1046,7 @@ body {
 		var frm = i.find("form").get(0);
 		var company_id = frm.company_id.value
 		var member_id = frm.member_id.value
-		message.message_receiver = '${loginId}' == company_id ? member_id
-				: company_id;
+		message.message_receiver = '${loginId}' == company_id ? member_id : company_id;
 		message.message_sender = '${loginId}'
 		message.interview_id = frm.interview_id.value;
 		message.member_id = frm.member_id.value;
@@ -1064,32 +1054,28 @@ body {
 
 		var t = getTimeStamp();
 
-		$
-				.ajax({
-					url : "ajaxSelectChat.do",
-					type : "post",
-					dataType : "json",
-					data : {
-						'interview_id' : chat
-					},
-					success : function(data) {
-						$('#message_content').empty();
-						$('#name').empty();
-						$('#name').append(data.name.COMPANY_NAME);
-						$('#photo').empty();
-						$('#photo').attr("src", data.name.COMPANY_PHOTO);
+		$.ajax({
+			url : "ajaxSelectChat.do",
+			type : "post",
+			dataType : "json",
+			data : {
+				'interview_id' : chat
+			},
+			success : function(data) {
+				$('#message_content').empty();
+				$('#name').empty();
+				$('#name').append(data.name.COMPANY_NAME);
+				$('#photo').empty();
+				$('#photo').attr("src", data.name.COMPANY_PHOTO);
 						for (var i = 0; i < data.result.length; i++) {
 							if (data.result[i].message_sender == '${loginId}') {
-								$('#message_content')
-										.append(
-												"<li class='replies'><img src='${pageContext.request.contextPath}/resources/FileUpload/${memberPhoto}' alt='' /><p>"
+								$('#message_content').append("<li class='replies'><img src='${pageContext.request.contextPath}/resources/FileUpload/${memberPhoto}' alt='' /><p>"
 														+ data.result[i].message_content
 														+ "</p><br><span style='float: right; font-size: 9px; text-align: right;'>"
 														+ t + "</span></li>");
 							} else {
-								$('#message_content')
-										.append(
-												"<li class='sent'><img src='${pageContext.request.contextPath}/resources/FileUpload/" + data.name.COMPANY_PHOTO + "' alt='' /><p>"
+								$('#message_content').append("<li class='sent'><img src='${pageContext.request.contextPath}/resources/FileUpload/" 
+														+ data.name.COMPANY_PHOTO + "' alt='' /><p>"
 														+ data.result[i].message_content
 														+ "</p><br><span style='float: left; font-size: 9px; text-align: left;'>"
 														+ t + "</span></li>");
@@ -1099,8 +1085,7 @@ body {
 						if (data.result.length == 0) {
 							$('#message_content').append("대화내용이 없슴니다,");
 						}
-						$(".messages").scrollTop(
-								$(".messages").prop('scrollHeight'))
+						$(".messages").scrollTop($(".messages").prop('scrollHeight'))
 					},
 					error : function(request, status, error) {
 					}

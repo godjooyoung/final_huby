@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="co.huby.prj.Applistner"%>
@@ -824,17 +823,17 @@ body {
 	<div id="sidepanel">
 		<div id="profile">
 			<div class="wrap">
-				<img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
+				<img id="profile-img" src="${pageContext.request.contextPath}/resources/FileUpload/${companyPhoto}" class="online" alt="" />
 				<p>${loginName}</p>
 				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
 				<div id="expanded">
-					<label for="twitter"><i class="fa fa-facebook fa-fw"
-						aria-hidden="true"></i></label> <input name="twitter" type="text"
-						value="mikeross" /> <label for="twitter"><i
-						class="fa fa-twitter fa-fw" aria-hidden="true"></i></label> <input
-						name="twitter" type="text" value="ross81" /> <label for="twitter"><i
-						class="fa fa-instagram fa-fw" aria-hidden="true"></i></label> <input
-						name="twitter" type="text" value="mike.ross" />
+					<label for="twitter">
+					<i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label> 
+					<input name="twitter" type="text" value="mikeross" /> 
+					<label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label> 
+					<input name="twitter" type="text" value="ross81" /> 
+					<label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label> 
+					<input name="twitter" type="text" value="mike.ross" />
 				</div>
 			</div>
 		</div>
@@ -842,17 +841,23 @@ body {
 			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
 			<input type="text" placeholder="검색하세욘" />
 		</div>
+		
+		<!-- 채팅리스트 -->
 		<div id="contacts">
 			<ul>
 				<c:forEach var="list" items="${companyChatList}">
-					<li class="contact">
-						<div class="wrap"
-							onclick="ajaxSelectChat(window.event,'${list.interview_id }','${list.member_id }')">
-							<span class="contact-status online"></span> <img
-								src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
+					<li class="contact" data-i='${list.interview_id }' data-m='${list.company_id }'>
+						<div class="wrap">
+							<c:if test="${fn:contains(connId, list.member_id)}">
+								<span class="contact-status busy"></span>
+							</c:if>
+							<img src="${pageContext.request.contextPath}/resources/FileUpload/${list.member_photo}" alt="" />
 							<div class="meta">
 								<p class="name">${list.member_name}</p>
-								<p class="preview">${recent.message_content }</p>
+								<p class="preview">${recent.message_content } 
+								<c:if test="${fn:contains(connId, list.company_id)}">접속중
+								<box-icon name='message-edit' animation='tada' color='#FFFFFF' ></box-icon>
+							</c:if></p>
 							</div>
 							<form id ="insert">
 								<input type="hidden" name="interview_id" value="${list.interview_id}">
@@ -865,18 +870,10 @@ body {
 						</div>
 					</li>
 				</c:forEach>
-				<li class="contact active">
-					<div class="wrap">
-						<span class="contact-status busy"></span> <img
-							src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-						<div class="meta">
-							<p class="name">현재대화중인 사람이름</p>
-							<p class="preview">${recent.message_content }</p>
-						</div>
-					</div>
-				</li>
 			</ul>
 		</div>
+		<!-- 채팅리스트 끝 -->
+		
 		<div id="bottom-bar">
 			<button id="addcontact">
 				<i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> 
@@ -887,9 +884,10 @@ body {
 			</button>
 		</div>
 	</div>
+	
 	<div class="content">
 		<div class="contact-profile">
-			<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+			<img src="http://emilcarlsson.se/assets/harveyspecter.png" id="photo" alt="" />
 			<p id="name"></p>
 			<div class="social-media">
 				<i class="fa fa-facebook" aria-hidden="true"></i> 
@@ -901,24 +899,6 @@ body {
 		<!-- 메시지 창  -->
 		<div class="messages">
 			<ul id="message_content">
-				<c:forEach var="contents" items="${message}">
-					<c:choose>
-						<c:when test="${contents.message_receiver == (loginId)}">
-							<li class="sent">
-							<img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-								<p>${contents.message_content}</p> <br> 
-								<span id="message_sandtime" style='float: left; font-size: 9px; text-align: left;'>${contents.message_sandtime }
-							</span></li>
-						</c:when>
-						<c:otherwise>
-							<li class="replies">
-							<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-								<p>${contents.message_content}</p> <br> 
-								<span style='float: right; font-size: 9px; text-align: right;'>${contents.message_sandtime }
-							</span></li>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
 			</ul>
 		</div>
 		<!-- end 메시지 창  -->
@@ -937,46 +917,22 @@ body {
 	</div>
 </div>
 <script>
-	var message = {};
-	message.message_type = 'CHAT';
-
 	$(".messages").animate({ scrollTop : $(document).height()}, "fast");
-	$("#profile-img").click(function() { $("#status-options").toggleClass("active");});
 	$(".expand-button").click(function() {
 		$("#profile").toggleClass("expanded");
 		$("#contacts").toggleClass("expanded");
 	});
-	$("#status-options ul li").click(function() {
-		$("#profile-img").removeClass();
-		$("#status-online").removeClass("active");
-		$("#status-away").removeClass("active");
-		$("#status-busy").removeClass("active");
-		$("#status-offline").removeClass("active");
-		$(this).addClass("active");
-
-		if ($("#status-online").hasClass("active")) {
-			$("#profile-img").addClass("online");
-		} else if ($("#status-away").hasClass("active")) {
-			$("#profile-img").addClass("away");
-		} else if ($("#status-busy").hasClass("active")) {
-			$("#profile-img").addClass("busy");
-		} else if ($("#status-offline").hasClass("active")) {
-			$("#profile-img").addClass("offline");
-		} else {
-			$("#profile-img").removeClass();
-		}
-		;
-
-		$("#status-options").removeClass("active");
-	});
-
+	
+	var message = {};
+	message.message_type = 'CHAT';
+	
 	function newMessage() {
 		var msg = $(".message-input input").val();
 		if (msg != "") {
 			message.message_content = $("#message").val();
 			sock.send(JSON.stringify(message)); //웹소켓으로 메시지를 보내겠어
 		}
-		$("#message").val("");
+		$("#message").val(""); //입력한후 폼에서 삭제
 	}
 
 	function getTimeStamp() {
@@ -1008,7 +964,7 @@ body {
 		} else {
 			var t = getTimeStamp();
 			if (msg.message_sender == '${loginId}') {
-				$("#messages").append($('<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /><p>'
+				$("#messages").append($('<li class="replies"><img src="${pageContext.request.contextPath}/resources/FileUpload/${companyPhoto}" alt="" /><p>'
 										+ msg.message_content + '</p>' 
 										+ '<br><span style="float: right; font-size: 9px; text-align: right;">'
 										+ t + '</span></li>').appendTo($('.messages ul')));
@@ -1017,19 +973,12 @@ body {
 										+ msg.message_content + '</p>'
 										+ '<br><span style="float: left; font-size: 9px; text-align: left;">'
 										+ t + '</span></li>').appendTo($('.messages ul')));
-			}
-
-			var chatAreaHeight = $("#chatArea").height();
-			var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
-			$("#chatArea").scrollTop(maxScroll);
-
 		}
 	}
-
-	$('.message-input input').val(null);
-	$('.contact.active .preview').html('<span>You: </span>' + message);
-	$(".messages").animate({scrollTop : $(document).height()}, "fast");
-
+		$('.message-input input').val(null);
+		$(".messages").scrollTop($(".messages").prop('scrollHeight'))
+	};
+	
 	$('.submit').click(function() {
 		newMessage();
 	});
@@ -1041,15 +990,6 @@ body {
 		}
 	});
 
-	$(document).ready(function() {
-		$('#message').keypress(function(event) {
-			var keycode = (event.keyCode ? event.keyCode : event.which);
-			if (keycode == '13') {
-				newMessage();
-			}
-			event.stopPropagation();
-		});
-
 		$('#sendBtn').click(function() {
 			newMessage();
 		});
@@ -1059,12 +999,16 @@ body {
 		$('#exitBtn').click(function() {
 			disconnect();
 		});
-	});
-
-	function ajaxSelectChat(e, chat) {
 		
-		var i = $(e.target).closest(".wrap")
-		i.addClass("selectChat");
+		$(".contact").click(function() {
+			var interview_id = $(this).attr("data-i")
+			ajaxSelectChat($(this), interview_id);
+		})
+		
+	function ajaxSelectChat(i, chat) {
+		
+		$(".contact").removeClass("active")
+		i.addClass("active");
 		var frm = i.find("form").get(0);
 		var company_id = frm.company_id.value
 		var member_id = frm.member_id.value
@@ -1087,11 +1031,17 @@ body {
 				$('#message_content').empty();
 				$('#name').empty();
 				$('#name').append(data.name.MEMBER_NAME);
+				$('#photo').empty();
+				$('#photo').attr("src", data.name.MEMBER_PHOTO);
 				for (var i = 0; i < data.result.length; i++) {
 					if (data.result[i].message_sender == '${loginId}') {
-						$('#message_content').append("<li class='replies'><img src='http://emilcarlsson.se/assets/harveyspecter.png' alt='' /><p>" + data.result[i].message_content + "</p><br><span style='float: right; font-size: 9px; text-align: right;'>" + t + "</span></li>");
+						$('#message_content').append("<li class='replies'><img src='${pageContext.request.contextPath}/resources/FileUpload/${companyPhoto}' alt='' /><p>" 
+								+ data.result[i].message_content 
+								+ "</p><br><span style='float: right; font-size: 9px; text-align: right;'>" 
+								+ t + "</span></li>");
 				} else {
-					$('#message_content').append("<li class='sent'><img src='http://emilcarlsson.se/assets/mikeross.png' alt='' /><p>" 
+					$('#message_content').append("<li class='sent'><img src='${pageContext.request.contextPath}/resources/FileUpload/"
+										+ data.name.MEMBER_PHOTO + "' alt='' /><p>"
 										+ data.result[i].message_content 
 										+ "</p><br><span style='float: left; font-size: 9px; text-align: left;'>" 
 										+ t + "</span></li>");
@@ -1099,9 +1049,13 @@ body {
 			}
 					if (data.result.length == 0) {$('#message_content').append("대화내용이 없슴니다,");
 				}
+					$(".messages").scrollTop($(".messages").prop('scrollHeight'))
 			},
 			error : function(request, status, error) {
 			}
 		});
 	}
+		setTimeout(function() {
+			$(".contact").first().click()
+		}, 500);
 </script>
