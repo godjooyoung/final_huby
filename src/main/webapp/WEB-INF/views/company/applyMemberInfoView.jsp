@@ -18,7 +18,6 @@
 				 			padding-top:5px; padding-left:5px;">
 				 			<b><u>${applyman.member_name}</u> 지원자</b><br>
 				 			#${applyman.code_name}
-				 			${applyman.member_id}${applyman.member_id}${applyman.member_id}
 						</h4>
 						</div>
 						<div class="inner02" style="position:absolute; left:5%; top:5%;">
@@ -37,7 +36,7 @@
 					<div style="padding-left:15px;">
 						<p>
 							<i class="fas fa-signature w3-margin-right w3-large w3-text-blue"></i>
-							${applyman.member_name}
+							${applyman.member_name}(${applyman.member_id})
 						</p>
 						<p>
 						<i class="fas fa-home w3-margin-right w3-large w3-text-blue"></i>
