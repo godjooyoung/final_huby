@@ -112,7 +112,26 @@ public class MemberHomeController {
 		
 		int n = employmentService.applyInsert(mapvo);
 		if(n==10) {
-			mav.setViewName("redirect:applyManagement.do");
+			String memberid = (String) request.getSession().getAttribute("loginId");
+			mvo.setMember_id(memberid);
+			Paging paging = new Paging();
+			paging.setPageUnit(10);
+			String page = request.getParameter("page");
+			int p = 1;
+			if (page != null)
+				p = Integer.parseInt(page);
+			paging.setPage(p);
+			mvo.setFirst(paging.getFirst());
+			mvo.setLast(paging.getLast());
+			int count = employmentService.applyCnt(mvo);
+			paging.setTotalRecord(count);
+			List<Map> amapvo = employmentService.applyList(mvo);
+			model.addAttribute("paging",paging);
+			model.addAttribute("alist", amapvo);
+			String applyCheck = "10";
+			model.addAttribute("applyCheck",applyCheck);
+			
+			mav.setViewName("person/member/applyManagement");
 		}else if(n==20){
 			String memberid = (String) request.getSession().getAttribute("loginId");
 			rvo.setMember_id(memberid);

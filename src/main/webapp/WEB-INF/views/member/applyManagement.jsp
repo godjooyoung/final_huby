@@ -11,6 +11,10 @@
 	function gopage(p) {
 		location.href = window.location.pathname + "?page=" + p;
 	}
+	
+	if('${applyCheck}' == '10'){
+		alert("지원 성공. 지원내역 페이지로 이동하겠습니다.");
+	}
 </script>
 <style>
 	.page-item{

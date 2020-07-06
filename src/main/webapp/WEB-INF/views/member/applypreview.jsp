@@ -131,7 +131,7 @@ p {
 	</div>
 	<br>
 	<h2 align="center">이력서</h2>
-	<div class="container">
+	<div class="container" align="center">
 		<div class="row">
 			<c:choose>
 				<c:when test="${!empty rlist}">
@@ -150,12 +150,12 @@ p {
 									<h4 class="card-title" id="r_title">${resume.RESUME_TITLE}</h4>
 									<input type="hidden" id="resume_id" name="resume_id" value="${resume.RESUME_ID}">
 									<!--Text-->
-									<p class="card-text" id="r_hope">${resume.JOB_NAME}</p>
-									<p class="card-text" id="r_salary">${resume.HOPE_SALARY}</p>
-									<p class="card-text" id="r_location">${resume.HOPE_LOCATION}</p>
-									<p class="card-text" id="r_education">${resume.FINAL_EDUCATION}</p>
-									<p class="card-text" id="r_coment">${resume.RESUME_COMENT}</p>
-									<input type="radio" id="rselect" name="rselect" value="rselect" checked="checked">&nbsp;&nbsp; Pick
+									<p class="card-text" id="r_hope" style="font-weight: bolder; font-size: larger;">${resume.JOB_NAME}</p>
+									<p class="card-text" id="r_salary" style="font-weight: bolder; font-size: larger;">${resume.HOPE_SALARY}</p>
+									<p class="card-text" id="r_location" style="font-weight: bolder; font-size: larger;">${resume.HOPE_LOCATION}</p>
+									<p class="card-text" id="r_education" style="font-weight: bolder; font-size: larger;">${resume.FINAL_EDUCATION}</p>
+									<p class="card-text" id="r_coment" style="font-weight: bolder; font-size: larger;">${resume.RESUME_COMENT}</p>
+									<input type="radio" id="rselect" name="rselect" value="rselect" checked="checked" >&nbsp;&nbsp; Pick
 								</div>
 							</div>
 							<!--/.Card-->
