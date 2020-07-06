@@ -643,7 +643,7 @@ body {
 	width: 40px;
 	border-radius: 50%;
 	float: left;
-	margin: 14px 12px 0 10px;
+	margin: 9px 12px 0 9px;
 }
 
 #frame .content .contact-profile p {
@@ -1083,7 +1083,7 @@ body {
 							}
 
 						}
-						if (data.result.length == 0) {$('#message_content').append("대화내용이 없슴니다,");
+						if (data.result.length == 0) {$('#message_content').append("<div align='center'><h3>대화를 시작해 보세요.</h3></div>");
 						}
 						$(".messages").scrollTop($(".messages").prop('scrollHeight'))
 					},
