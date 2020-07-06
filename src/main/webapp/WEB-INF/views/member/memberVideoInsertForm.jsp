@@ -209,22 +209,16 @@
 	<div class="hd_box"></div>
 	<div class="visual-area ">
 		<div class="visual-area-in">
-			<div class="visual-area-txt inner sub01 ">
+			<div class="visual-area-txt inner sub01">
 				<div class="tit" data-aos="fade-up" data-aos-delay="300">나의영상</div>
 				<p class="fs18" data-aos="fade-up" data-aos-delay="400">최대 3개의
 					영상을 동록할 수 있습니다</p>
 			</div>
 		</div>
 	</div>
-	<div class="sub_menu_wrap s-inner sub_menu_pc ">
-		<div class="sub_menu_tit"></div>
-		<ul class="sub_menu_box sub01">
-			<li class="m1"><a href="#" onclick="habitInsertPage();">영상등록</a></li>
-		</ul>
-	</div>
 </div>
 <div id="sub_content_wrap" class="sub0101">
-	<div class="ov inner center" style="margin: 10% auto 5%;">
+	<div class="ov inner center" style="margin: 1% auto 5%;">
 		<span style="height: 50px"></span>
 		<div id="div_gifInsert">
 			<div class="container h-100">

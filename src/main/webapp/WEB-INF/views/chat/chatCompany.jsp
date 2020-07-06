@@ -853,7 +853,7 @@ body {
 							</c:if>
 							<img src="${pageContext.request.contextPath}/resources/FileUpload/${list.member_photo}" alt="" />
 							<div class="meta">
-								<p class="name">${list.member_name}</p>
+								<p class="name">${list.member_name}
 								<c:if test="${fn:contains(connId, list.member_id)}">접속중
 								<box-icon name='message-edit' animation='tada' color='#FFFFFF' ></box-icon>
 							</c:if></p>
