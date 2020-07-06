@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!-- 개인회원 시작페이지에서 채용공고 보여줌 -->
 <br>
 <br>
 <br>
-<br><br>
 <style>
 @import
 	url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
@@ -95,7 +93,11 @@ section .section-title {
 	-moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
 	box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
 }
-.backside{width:100%}
+
+.backside {
+	width: 100%
+}
+
 .frontside, .backside {
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
@@ -136,75 +138,103 @@ section .section-title {
 	function selectemployment(cid, eid) {
 		$("#company_id").val(cid);
 		$("#employment_id").val(eid);
-		alert(eid+"번 공고입니다.");
+		alert(eid + "번 공고입니다.");
 		$("#frm").attr("action", "selectresumepage.do");
 		document.frm.submit();
 	}
 </script>
 <script>
-	if('${error}' == 'error'){
+	if ('${error}' == 'error') {
 		alert("이미 지원한 공고입니다.");
 	}
 </script>
-<!-- Team -->
-<div class="w3-container">
-<form id="frm" name="frm" method="post">
-	<section id="team" class="pb-5">
-		<div class="row">
-			<c:choose>
-				<c:when test="${!empty empMatch}">
-					<c:forEach var="empMatch" items="${empMatch}">
-						<div class="col-xs-12 col-sm-6 col-md-2">
-							<div class="container">
+<div id="sub_vis_wrap" class="sub01 page01">
+	<div class="hd_box"></div>
+	<div class="visual-area ">
+		<div class="visual-area-in">
+			<div class="visual-area-txt inner sub01 ">
+				<div class="tit" data-aos="fade-up" data-aos-delay="300">맞춤채용공고</div>
+				<p class="fs18" data-aos="fade-up" data-aos-delay="400">
+					허빟<br>공고목록
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="sub_menu_wrap s-inner sub_menu_pc ">
+		<div class="sub_menu_tit"></div>
 
-								<!-- front -->
-								<div class="image-flip"
-									ontouchstart="this.classList.toggle('hover');">
-									<div class="mainflip flip-0">
-										<div class="frontside">
-											<div class="card">
-												<div class="card-body text-center">
-													<p><img class=" img-fluid" src="${pageContext.request.contextPath}/resources/FileUpload/${empMatch.company_photo}"
-															alt="card image"></p>
-													<h4 class="card-title">${empMatch.company_name}</h4>
-													<p class="card-text">${empMatch.employment_title}</p>
-			
+		<ul class="sub_menu_box sub01">
+			<li class="m1"><a href="employmentList.do">전체채용공고</a></li>
+			<li class="m2"><a href="empMatch.do">맞춤채용공고</a></li>
+			<li class="m3"><a href="load_employment_like_list.do">관심채용공고</a></li>
+		</ul>
+	</div>
+</div>
+	<div class="ov inner center" style="margin: 10% auto 5%;">
+		<form id="frm" name="frm" method="post">
+			<section id="team" class="pb-5">
+				<div class="row">
+					<c:choose>
+						<c:when test="${!empty empMatch}">
+							<c:forEach var="empMatch" items="${empMatch}">
+								<div class="col-xs-12 col-sm-6 col-md-3">
+									<div class="container">
+										<!-- front -->
+										<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+											<div class="mainflip flip-0">
+												<div class="frontside">
+													<div class="card">
+														<div class="card-body text-center">
+															<p>
+																<img class=" img-fluid"
+																	src="${pageContext.request.contextPath}/resources/FileUpload/${empMatch.company_photo}"
+																	alt="card image">
+															</p>
+															<h4 class="card-title">${empMatch.company_name}</h4>
+															<p class="card-text">${empMatch.employment_title}</p>
+
+														</div>
+													</div>
 												</div>
-											</div>
-										</div>
-										<div class="backside">
-											<div class="card">
-												<div class="card-body text-center mt-4" onclick='selectemployment("${ empMatch.company_id }","${ empMatch.employment_id }")'>
-													<h4 class="card-title">${empMatch.company_name}</h4>
-													<p class="card-text">${empMatch.employment_contents}</p>
-													
+												<div class="backside">
+													<div class="card">
+														<div class="card-body text-center mt-4"
+															onclick='selectemployment("${ empMatch.company_id }","${ empMatch.employment_id }")'>
+															<h4 class="card-title">${empMatch.company_name}</h4>
+															<p class="card-text">${empMatch.employment_contents}</p>
+
+														</div>
+														<a href="javascript:void(0)"
+															onclick="click_like_btn(event, '${ empMatch.employment_id }')"
+															class="btn btn-primary btn-sm""><font
+															style="color: white;">스크랩하기</font></a>
+													</div>
 												</div>
-												<a href="javascript:void(0)" onclick="click_like_btn(event, '${ empMatch.employment_id }')"
-														class="btn btn-primary btn-sm" "><font style="color:white;">스크랩하기</font></a>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-					</c:forEach>
-				</c:when>
-			</c:choose>
-		</div>
-	</section>
-	<input type="hidden" id="company_id" name="company_id"> <input
-		type="hidden" id="employment_id" name="employment_id">
-</form>
+							</c:forEach>
+						</c:when>
+					</c:choose>
+				</div>
+			</section>
+			<input type="hidden" id="company_id" name="company_id"> <input
+				type="hidden" id="employment_id" name="employment_id">
+		</form>
+	</div>
 <script>
-//스크립버튼
-	function click_like_btn(e, empid){
+	//스크립버튼
+	function click_like_btn(e, empid) {
 		alert(empid)
-		var emp_id=empid;
+		var emp_id = empid;
 		$.ajax({
-			
+
 			type : "get",
 			url : "insert_to_employment_like.do",
-			data : {"employment_id" : emp_id},
+			data : {
+				"employment_id" : emp_id
+			},
 			//dataType : 'json',
 			success : function() {
 				alert("해당 공고가 스크랩 되었습니다. 스크랩관리에 가서 메모를 추가하세요");
@@ -227,4 +257,3 @@ section .section-title {
 			class="w3-bar-item w3-button w3-hover-black">앞으로</a>
 	</div>
 </div> -->
-</div>	

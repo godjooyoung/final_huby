@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE>
-<html>
-<head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
-<title>Insert title here</title>
 <!-- 모달 조절 -->
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
@@ -25,7 +21,7 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 button {
-  background-color: #4CAF50;
+  background-color: #134a8e;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -84,9 +80,9 @@ span.psw {
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  margin: 5% auto 6% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 20%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button (x) */
@@ -133,7 +129,6 @@ span.psw {
 }
 </style>
 <!-- 모달 버튼 끝 -->
-
 <!-- 이미지 관련 시작 -->
 <style>
 	html,body{
@@ -193,7 +188,7 @@ body {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background: #f72359;
+  background: #134a8e;
   padding: 1em 2em;
   border: none;
   color: white;
@@ -261,7 +256,7 @@ body
 	left: 15px;
 	right: 15px;
 	bottom: 15px;
-	border: 3px solid #ffeb3b;
+	border: 3px solid #134a8e;
 	padding: 30px;
 	box-shadow: 0 5px 10px rgba(0,0,0,.5);
 	text-align: center;
@@ -375,8 +370,10 @@ body
 </head>
 <body>
 <br>
+<!-- 
 <h1 class="title" align="center">WELCOME TO HUBY</h1>
-<br><br><br><br><br><br><br><br>
+ -->
+ <br><br><br><br><br><br><br><br>
 <div class="container">
     <div class="row">
     	<div class="box">
@@ -419,7 +416,7 @@ body
   <form class="modal-content animate" id="frm" name="frm" method="post" action="PersonalLoginCheck.do" onsubmit="return PersonalLoginCheck();">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="${pageContext.request.contextPath}/resources/FileUpload/HUBY4.png" alt="Avatar" class="avatar" style="width: 300px; height: 300px;">
+      <img src="${pageContext.request.contextPath}/resources/FileUpload/hubytext.png" alt="Avatar" class="avatar" style="width: 300px; height: 300px;">
     </div>
     <div class="container">       
       <label for="uname"><b>개인 아이디</b></label>
@@ -433,7 +430,7 @@ body
 
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">닫기</button>
-      <span class="psw" style="font-weight: bolder; font-size: larger; color: red;">Human Union Business Yedam</span>
+  <!--    <span class="psw" style="font-weight: bolder; font-size: larger; color: red;">Human Union Business Yedam</span>  -->
     </div>
   </form>
 </div>
@@ -455,7 +452,7 @@ window.onclick = function(event) {
 	<form class="modal-content animate" id="frm2" name="frm2" method="post" action="CompanyLoginCheck.do">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="${pageContext.request.contextPath}/resources/FileUpload/HUBY4.png" alt="Avatar" class="avatar" style="width: 300px; height: 300px;">
+      <img src="${pageContext.request.contextPath}/resources/FileUpload/hubytext.png" alt="Avatar" class="avatar" style="width: 300px; height: 300px;">
     </div>
 
     <div class="container">
@@ -468,8 +465,8 @@ window.onclick = function(event) {
     </div>
 	
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">닫기</button>
-      <span class="psw" style="font-weight: bolder; font-size: larger; color: red;">Human Union Business Yedam</span>
+      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">닫기</button> 
+       <!--    <span class="psw" style="font-weight: bolder; font-size: larger; color: red;">Human Union Business Yedam</span>  -->
     </div>
   </form>
 </div><br><br><br><br>
