@@ -635,7 +635,7 @@ body {
 	width: 40px;
 	border-radius: 50%;
 	float: left;
-	margin: 9px 12px 0 9px;
+	margin: 14px 12px 0 10px;
 }
 
 #frame .content .contact-profile p {

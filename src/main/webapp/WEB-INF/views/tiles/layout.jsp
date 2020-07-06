@@ -85,7 +85,7 @@ body, h1, h2, h3, h4, h5, h6 {
 
 	//연결
 	function connect() {
-		sock = new SockJS('http://39.116.34.40/huby/chat.do');
+		sock = new SockJS('/prj/chat.do'); //'http://39.116.34.40/huby/chat.do'
 		sock.onopen = function() {
 			console.log('open');
 		};

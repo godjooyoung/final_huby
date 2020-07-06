@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- 개인회원 시작페이지에서 채용공고 보여줌 -->
-<br>
-<br>
-<br>
 <style>
 @import
 	url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
@@ -170,59 +167,72 @@ section .section-title {
 		</ul>
 	</div>
 </div>
-	<div class="ov inner center" style="margin: 10% auto 5%;">
-		<form id="frm" name="frm" method="post">
-			<section id="team" class="pb-5">
-				<div class="row">
-					<c:choose>
-						<c:when test="${!empty empMatch}">
-							<c:forEach var="empMatch" items="${empMatch}">
-								<div class="col-xs-12 col-sm-6 col-md-3">
-									<div class="container">
-										<!-- front -->
-										<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-											<div class="mainflip flip-0">
-												<div class="frontside">
-													<div class="card">
-														<div class="card-body text-center">
-															<p>
-																<img class=" img-fluid"
-																	src="${pageContext.request.contextPath}/resources/FileUpload/${empMatch.company_photo}"
-																	alt="card image">
-															</p>
-															<h4 class="card-title">${empMatch.company_name}</h4>
-															<p class="card-text">${empMatch.employment_title}</p>
+<div class="ov inner center" style="margin: 10% auto 5%;">
+	<form id="frm" name="frm" method="post">
+		<section id="team" class="pb-5">
+			<div class="row">
+				<c:choose>
+					<c:when test="${!empty empMatch}">
+						<c:forEach var="empMatch" items="${empMatch}">
+							<div class="col-xs-12 col-sm-6 col-md-3">
+								<div class="container">
+									<!-- front -->
+									<div class="image-flip"
+										ontouchstart="this.classList.toggle('hover');">
+										<div class="mainflip flip-0">
+											<div class="frontside">
+												<div class="card">
+													<div class="card-body text-center">
+														<p>
+															<img class=" img-fluid"
+																src="${pageContext.request.contextPath}/resources/FileUpload/${empMatch.company_photo}"
+																alt="card image">
+														</p>
+														<h4 class="card-title">${empMatch.company_name}</h4>
+														<p class="card-text">${empMatch.employment_title}</p>
 
-														</div>
 													</div>
 												</div>
-												<div class="backside">
-													<div class="card">
-														<div class="card-body text-center mt-4"
-															onclick='selectemployment("${ empMatch.company_id }","${ empMatch.employment_id }")'>
-															<h4 class="card-title">${empMatch.company_name}</h4>
-															<p class="card-text">${empMatch.employment_contents}</p>
+											</div>
+											<div class="backside">
+												<div class="card">
+													<div class="card-body text-center mt-4"
+														onclick='selectemployment("${ empMatch.company_id }","${ empMatch.employment_id }")'>
+														<h4 class="card-title">${empMatch.company_name}</h4>
+														<p class="card-text">${empMatch.employment_contents}</p>
 
-														</div>
-														<a href="javascript:void(0)"
-															onclick="click_like_btn(event, '${ empMatch.employment_id }')"
-															class="btn btn-primary btn-sm""><font
-															style="color: white;">스크랩하기</font></a>
 													</div>
+													<a href="javascript:void(0)"
+														onclick="click_like_btn(event, '${ empMatch.employment_id }')"
+														class="btn btn-primary btn-sm""><font
+														style="color: white;">스크랩하기</font></a>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</c:forEach>
-						</c:when>
-					</c:choose>
-				</div>
-			</section>
-			<input type="hidden" id="company_id" name="company_id"> <input
-				type="hidden" id="employment_id" name="employment_id">
-		</form>
+							</div>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+			</div>
+		</section>
+		<input type="hidden" id="company_id" name="company_id"> <input
+			type="hidden" id="employment_id" name="employment_id">
+	</form>
+</div>
+<c:set var="empMatch" value="${empMatch}" />
+<c:if test="${empty empMatch}">
+	<div align="center">
+		<h2>
+			매치된 기업이 없습니다. 이력서를 등록해보세요~ <br>맞춤 기업을 추천해드립니다.
+		</h2>
+		<br> <input type="button" value="이력서 등록 하러가기"
+			class="btn btn-warning btn-lg"
+			onClick="location.href='resumemanagement.do'">
 	</div>
+</c:if>
+<br><br><br><br>
 <script>
 	//스크립버튼
 	function click_like_btn(e, empid) {

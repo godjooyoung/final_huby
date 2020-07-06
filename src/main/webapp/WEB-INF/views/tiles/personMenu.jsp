@@ -6,7 +6,7 @@
 		<ul class="gnb_dp2_wrap">
 			<li class="gnb_dp2"><a href="employmentList.do">전체채용공고</a></li>
 			<li class="gnb_dp2"><a href="empMatch.do">맞춤채용공고</a></li>
-			<li class="gnb_dp2"><a href="load_employment_like_list.do">스크랩</a></li>
+			<li class="gnb_dp2"><a href="load_employment_like_list.do">관심채용공고</a></li>
 		</ul></li>
 	<li class="gnb_dp1"><span>채용</span>
 		<ul class="gnb_dp2_wrap">

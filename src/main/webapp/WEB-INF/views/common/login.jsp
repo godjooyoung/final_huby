@@ -82,7 +82,7 @@ span.psw {
   background-color: #fefefe;
   margin: 5% auto 6% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 20%; /* Could be more or less, depending on screen size */
+  width: 60%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button (x) */
@@ -243,8 +243,8 @@ body
 	top: 35%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 400px;
-	height: 400px;
+	width: 300px;
+	height: 300px;
 	background: #white;
 	box-sizing: border-box;
 	box-shadow: 0 20px 50px rgba(0,0,0,.5);
@@ -281,7 +281,7 @@ body
 	fill: transparent;
 }
 .box svg rect{
-	stroke: #0093ff;
+	stroke: #134a8e;
 	stroke-width:10px;
 	stroke-dasharray: 400;
 	animation: animate 3s linear infinite;
@@ -416,7 +416,7 @@ body
   <form class="modal-content animate" id="frm" name="frm" method="post" action="PersonalLoginCheck.do" onsubmit="return PersonalLoginCheck();">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="${pageContext.request.contextPath}/resources/FileUpload/hubytext.png" alt="Avatar" class="avatar" style="width: 300px; height: 300px;">
+      <img src="${pageContext.request.contextPath}/resources/FileUpload/hubytext.png" alt="Avatar" class="avatar" style="width: 200px; height: 200px;">
     </div>
     <div class="container">       
       <label for="uname"><b>개인 아이디</b></label>
@@ -452,7 +452,7 @@ window.onclick = function(event) {
 	<form class="modal-content animate" id="frm2" name="frm2" method="post" action="CompanyLoginCheck.do">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="${pageContext.request.contextPath}/resources/FileUpload/hubytext.png" alt="Avatar" class="avatar" style="width: 300px; height: 300px;">
+      <img src="${pageContext.request.contextPath}/resources/FileUpload/hubytext.png" alt="Avatar" class="avatar" style="width: 200px; height: 200px;">
     </div>
 
     <div class="container">
