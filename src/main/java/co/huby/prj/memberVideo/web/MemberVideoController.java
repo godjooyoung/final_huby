@@ -37,8 +37,8 @@ import net.bramp.ffmpeg.options.VideoEncodingOptions;
 
 @Controller
 public class MemberVideoController {
-	private static final String firstUploadPath = "C:\\Users\\YoonJin\\Desktop\\androidUpload\\";
-	private static final String outputPath = "C:\\Users\\YoonJin\\Desktop\\finalResult\\";
+	private static final String firstUploadPath = "C:\\Users\\User\\Desktop\\androidUpload\\";
+	private static final String outputPath = "C:\\Users\\User\\Desktop\\finalResult\\";
 
 	@Autowired
 	CodeService codeService;
