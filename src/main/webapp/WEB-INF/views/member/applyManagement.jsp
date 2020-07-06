@@ -56,6 +56,7 @@
 						<div class="row" style="border-bottom: 1px solid">
 							<span class="cell col1" id="appendspan${alist.EMPLOYMENT_ID}" style="display: none;"></span>
 							<span class="cell col2" id="appendemp${alist.EMPLOYMENT_ID}" style="display: none;"></span>
+							<input type="hidden" name=apply_id value="${alist.APPLY_ID }">
 						</div>
 						</div>
 					</div>
@@ -98,6 +99,9 @@
 		document.getElementById("go_page_input").value = empid;
 		document.getElementById("frm_go_page").submit(); 
 	}
+	function myApplyResume(aid){
+		location.href="myApplyResume.do?apply_id="+aid;
+	}
 	
 
 	function selectApplyList(eid) {
@@ -108,6 +112,7 @@
 		    dataType: "json",
 		    data: {'employment_id':eid},
 		    success: function(data){
+		    	console.log(data);
 		    	$("#appendspan"+eid).empty();
 		    	$("#appendemp"+eid).empty();
 		    	$("#appendspan"+eid).append('공고명<br>');
@@ -136,6 +141,8 @@
 		    									+"onclick=\"pagegogo('"
 		    									+data.employment_id+
 		    									"')\">" );
+		    	var aid = $("#appendemp"+eid).next().val();
+		    	$("#appendspan"+eid).append('<input type="button" class="btn-primary" value="이력서보기" onclick="myApplyResume('+aid+')">');
 		    },
 
 			error : function() {

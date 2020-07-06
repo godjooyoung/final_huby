@@ -95,7 +95,7 @@
                                              +'<span style="padding:10px">'
                                              +'</span>'
                                              +'<br/>'
-                                             +'<a href="#" class="deleteBtn" + data="'
+                                             +'<a href="#" class="deleteBtn a_btn blue" + data="'
                                              + data.video_id
                                              +'">'
                                              +'삭제하기'
