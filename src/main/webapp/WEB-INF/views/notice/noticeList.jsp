@@ -23,20 +23,17 @@
 		document.frm.submit();		
 	}
 </script>
-<div id="sub_vis_wrap" class="sub01 page01">
-	<div class="hd_box"></div>
-	<div class="visual-area ">
-		<div class="visual-area-in">
-			<div class="visual-area-txt inner sub01 ">
-				<div class="tit" data-aos="fade-up" data-aos-delay="300">공지사항</div>
-				<p class="fs18" data-aos="fade-up" data-aos-delay="400">
-					공지사항임데이
-				</p>
-			</div>
-		</div>
-	</div>
-</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <div align="center">
+	<div class="section-title">
+		<h2>공지사항</h2>
+	</div>
 	<div class="container">
 		<form id="frm" name="frm" method="post">
 			<table class="table table-hover">
@@ -57,7 +54,8 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="notice" items="${noticeList}">
-								<tr onclick="noticedetail('${notice.NOTICE_ID}')"
+								<tr
+									onclick="noticedetail('${notice.NOTICE_ID}')"
 									style="cursor: pointer">
 									<td>${notice.RN}</td>
 									<td>${notice.NOTICE_TITLE}</td>
@@ -101,6 +99,4 @@
 		location.href = window.location.pathname + "?page=" + p;
 	}
 </script>
-<br>
-<br>
-<br>
+<br><br><br>

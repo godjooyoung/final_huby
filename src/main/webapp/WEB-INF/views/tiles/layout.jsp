@@ -10,7 +10,6 @@
 <link rel="shortcut icon" href="http://oliveclinic.webtro.kr/favi.ico">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <!-- css -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link media="all" href="${pageContext.request.contextPath}/resources/css/common.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap-grid.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap-reboot.css">
@@ -19,6 +18,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 <!-- js -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/basic.js"></script>
@@ -46,7 +46,9 @@
 body, h1, h2, h3, h4, h5, h6 {
 	font-family: "Karma", sans-serif
 }
-
+.w3-container {
+	min-height: 600px;
+}
 .w3-bar-block .w3-bar-item {
 	padding: 20px
 }
@@ -80,7 +82,6 @@ body, h1, h2, h3, h4, h5, h6 {
 </script>
 <script>
 	connect();
-
 	//연결
 	function connect() {
 		sock = new SockJS('/prj/chat.do');
