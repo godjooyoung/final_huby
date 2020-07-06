@@ -27,12 +27,11 @@
 		parameterType="map">
 		select
 		e.EMPLOYMENT_ID as "employment_id",
-		e.EMPLOYMENT_TITLE,e.EMPLOYMENT_CONTENTS,e.HOPE_CAREER,e.HOPE_GRADUATE,
-		e.employment_id, e.COMPLETE,
-		e.HOPE_JOB_POSITION,e.HOPE_JOB,e.HOPE_LOCATION,e.HOPE_WORK_TYPE,e.EMPLOYMENT_PREFER,e.EMPLOYMENT_TIME,
+		e.EMPLOYMENT_TITLE,e.EMPLOYMENT_CONTENTS,e.HOPE_CAREER,e.HOPE_GRADUATE, e.COMPLETE, (select code_name from code where code_id = hope_job ) as JOB_NAME,
+		e.HOPE_JOB_POSITION,e.HOPE_JOB,e.HOPE_LOCATION,e.HOPE_WORK_TYPE,e.EMPLOYMENT_PREFER,e.EMPLOYMENT_TIME,e.HOPE_SALARY,
 		c.COMPANY_NAME,c.COMPANY_TEL,c.COMPANY_EMAIL,c.CEO_NAME,c.BUSINESS_TYPE,
 		c.COMPANY_ADDR,c.BUSINESS_CATEGORY,c.COMPANY_BIRTH,c.COMPANY_SALES,
-		c.HOMEPAGE,c.COMPANY_DATE, c.company_id
+		c.HOMEPAGE,c.COMPANY_DATE, c.COMPANY_PHOTO, c.COMPANY_ID as "company_id"
 		from employments e, company c
 		where e.company_id = c.company_id and e.employment_id =
 		#{employment_id}
@@ -173,7 +172,7 @@ WHERE
 	</select>
 	
 	<select id="selectApplyList" resultType="EmploymentsVo" parameterType="EmploymentsVo">
-		select employment_id, employment_title, employment_contents, hope_career, hope_graduate, hope_job_position, 
+		select employment_id, employment_title, employment_contents, hope_career, hope_graduate, hope_job_position, (select code_name from code where code_id = hope_job),
 				hope_job, hope_location, hope_work_type, employment_prefer, employment_time, company_id, hope_salary
 		from employments
 		where employment_id = #{employment_id}

@@ -2,8 +2,10 @@ package co.huby.prj;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,11 +30,37 @@ public class AdminController {
 	QuestionService questionService;
 	
 	@RequestMapping("/index.do")
-	public String index(Locale locale, Model model) {
+	public String index(Locale locale, Model model, MemberVo mvo) {
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
+		
+		int result1 = adminService.allMemberCnt();
+		int result2 = adminService.allCompanyMemberCnt(); 
+		int result3 = adminService.allQnaCnt(); 
+		int result4 = adminService.allMemberResumeCnt();
+		int result5 = adminService.allCompanyEmploymentsCnt(); 
+		int result6 = adminService.allViceoCnt(); 
+		int result7 = adminService.allInterviewCnt(); 
+		int result8 = adminService.allApplyCnt(); 
+		List<Map> result9 = adminService.memberFirstHopeJob(); 
+		List<Map> result10 = adminService.companyFirstHopeJob();
+		List<Map> result11 = adminService.monthlyMemberCnt();
+		List<Map> result12 = adminService.monthlyCompanyMemberCnt();
+		
+		model.addAttribute("result1",result1);	//	전체 회원 수
+		model.addAttribute("result2",result2); // 전체 기업회원 수
+		model.addAttribute("result3",result3); // 답변 해줘야 할 Qna 수
+		model.addAttribute("result4",result4); // 전체 개인 이력서 수
+		model.addAttribute("result5",result5); // 전체 회사 공고 수
+		model.addAttribute("result6",result6); // 전체 개인 영상 수
+		model.addAttribute("result7",result7); // 개인과 회사간의 진행중인 면접 수
+		model.addAttribute("result8",result8); // 개인이 회사에 실제 지원한 이력서 개수
+		model.addAttribute("result9",result9); // 개인이 가장 선호하는 1순위 직종(가지고 있는 이력서 기준) 
+		model.addAttribute("result10",result10); // 회사가 공고에 가장 많이 낸 1순위 직종(올린 공고 기준)
+		model.addAttribute("result11",result11); // 월별 개인 가입자 수
+		model.addAttribute("result12",result12); // 월별 개인 가입자 수
 		
 		return "no/admin/index";
 	}
@@ -193,5 +221,11 @@ public class AdminController {
 		int n = questionService.qUpdateAdmin(qvo);
 		
 		return "redirect:qnaPage.do";
+	}
+	
+	@RequestMapping("adminLogout.do")
+	public String adminLogout(Model model, HttpServletRequest request) throws Exception {
+		request.getSession().removeAttribute("adminVo");
+		return "no/common/login";
 	}
 }

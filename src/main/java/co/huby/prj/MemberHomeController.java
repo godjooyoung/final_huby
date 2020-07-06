@@ -20,8 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 import co.huby.prj.board.service.EmploymentService;
 import co.huby.prj.code.service.CodeService;
 import co.huby.prj.code.service.CodeVo;
+import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.EmploymentsVo;
+import co.huby.prj.vo.HabitVo;
 import co.huby.prj.vo.NoticeVo;
 import co.huby.prj.vo.Paging;
 import co.huby.prj.vo.ResumeVo;
@@ -33,6 +35,8 @@ public class MemberHomeController {
 	private EmploymentService employmentService;
 	@Autowired
 	CodeService codeService;
+	@Autowired
+	MemberService memberService;
 
 	@RequestMapping(value = "/employmentMatch.do")
 	public String memberHome(Model model, HttpServletRequest request, ResumeVo vo) throws Exception {
@@ -158,14 +162,28 @@ public class MemberHomeController {
 	}
 	
 	@RequestMapping(value = "/careerPreview.do")
-	public String careerPreview(Model model, HttpServletRequest request, CodeVo cvo) throws Exception {
+	public String careerPreview(Model model, HttpServletRequest request) throws Exception {
 		List<CodeVo> codeList = codeService.SelectAll();
 		model.addAttribute("clist", codeList);
 		return "no/member/careerPreview";
 	}
 	
 	@RequestMapping(value = "/skillPreview.do")
-	public String skillPreview(Model model, HttpServletRequest request, CodeVo cvo) throws Exception {
+	public String skillPreview(Model model, HttpServletRequest request) throws Exception {
 		return "no/member/skillPreview";
+	}
+	
+	@RequestMapping(value = "/habitPreview.do")
+	public String habitPreview(Model model, HttpServletRequest request) throws Exception {
+		return "no/member/habitPreview";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/habitInsertAjax.do")
+	public int habitInsertAjax(Model model, HttpServletRequest request, HabitVo hvo) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		hvo.setMember_id(id);
+		int n = memberService.habitInsert(hvo);
+		return n;
 	}
 }

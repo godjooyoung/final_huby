@@ -66,6 +66,7 @@ public class LoginController {
 				request.getSession().setAttribute("personalVo", vo2);
 				request.getSession().setAttribute("loginId", vo2.getMember_id());
 				request.getSession().setAttribute("loginName", vo2.getMember_name());
+				request.getSession().setAttribute("memberPhoto", vo2.getMember_photo());
 				request.getSession().setAttribute("loginType", "U");
 			} else {
 				String num = "1";
@@ -92,6 +93,7 @@ public class LoginController {
 				request.getSession().setAttribute("companyVo", vo2);
 				request.getSession().setAttribute("loginId", vo2.getCompany_id());
 				request.getSession().setAttribute("loginName", vo2.getCompany_name());
+				request.getSession().setAttribute("companyPhoto", vo2.getCompany_photo());
 				request.getSession().setAttribute("loginType", "C");
 			} else {
 				String num = "1";
@@ -110,17 +112,25 @@ public class LoginController {
 	@RequestMapping("/adminLoginCheck.do")
 	public ModelAndView adminLoginCheck(Model model, HttpServletRequest request, AdminTableVo vo) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		AdminTableVo vo2 = adminService.selectOne(vo);
+		AdminTableVo vo2 = adminService.adminSelectOne(vo);
 
-		if (vo2.getAdmin_pw().equals(vo.getAdmin_pw())) {
-				mav.setViewName("redirect:index.do");
+		
+		if(vo2 != null) {
+			if (vo.getAdmin_pw().equals(vo2.getAdmin_pw())) {
+				request.getSession().setAttribute("adminVo", vo2);
+					mav.setViewName("redirect:index.do");
+			}else {
+				String num = "1";
+				request.setAttribute("num", num);
+				mav.setViewName("no/admin/adminLogin");
+			}
 		}else {
 			String num = "1";
 			request.setAttribute("num", num);
 			mav.setViewName("no/admin/adminLogin");
 		}
-
-		return mav;
+	
+			return mav;
 	}
 
 	@ResponseBody

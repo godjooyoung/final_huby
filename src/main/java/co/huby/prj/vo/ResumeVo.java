@@ -13,7 +13,6 @@ public class ResumeVo {
 	private String resume_coment;
 	private String job_name;
 	
-	
 	public String getResume_id() {
 		return resume_id;
 	}

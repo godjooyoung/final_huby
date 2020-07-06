@@ -38,7 +38,7 @@
 
 <!-- 다시시도 -->
 
-<div class="w3-row-padding w3-padding-16 w3-center">
+<div class="w3-row w3-padding-16 w3-center">
 	<c:forEach var="matched" items="${matched}">
 		<div class="w3-quarter">
 			<div class='wrap' style='position:relative;'>
@@ -77,7 +77,7 @@
 
 
 <!-- Second Photo Grid-->
-<div class="w3-row-padding w3-padding-16 w3-center" style="position:relative;" id="morePlace">
+<div class="w3-row w3-padding-16 w3-center" style="position:relative;" id="morePlace">
 <!-- 여기에 붙음!!!!!!!!!!!! -->
 </div>
 <!-- Grid END -->

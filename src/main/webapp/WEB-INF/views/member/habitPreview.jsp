@@ -12,37 +12,17 @@
 </head>
 <body>
 <div style="margin: 30px 30px 30px 30px;">
-<form class="form-horizontal" id="frm" name="frm" method="post" onsubmit="skillInsertGo()" >
     <fieldset>
 
         <!-- Form Name -->
-        <legend>스킬 등록</legend>
+        <legend>습관 등록</legend>
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="email">스킬이름</label>  
+          <label class="col-md-4 control-label" for="email">습관명</label>  
           <div class="col-md-4">
-          <input id="skill_name" name="skill_name" type="text" class="form-control input-md" required="required">
+          <input id=habit_name name="habit_name" type="text" class="form-control input-md" required="required">
           <span class="help-block"></span>  
-          </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="email">스킬레벨</label>  
-          <div class="col-md-4">
-          <select class="form-control input-md" id="skill_level" name="skill_level" required="required" onchange="typecheck(this.value)">
-	  		<option value="10">10</option>
-	  		<option value="20">20</option>
-	  		<option value="30">30</option>
-	  		<option value="40">40</option>
-	  		<option value="50">50</option>
-	  		<option value="60">60</option>
-	  		<option value="70">70</option>
-	  		<option value="80">80</option>
-	  		<option value="90">90</option>
-	  		<option value="100">100</option>
-	  	</select>
           </div>
         </div>
 
@@ -50,7 +30,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="save"></label>
           <div class="col-md-8">
-            <input type="submit" id="save" name="save" class="btn btn-success" value="등록하기">
+            <input type="button" id="save" name="save" class="btn btn-success" onclick="habitInsertGo()" value="등록하기">
             <input type="reset" name="cancel" class="btn btn-danger" value="취소">
             <input type="button" name="cancel" class="btn btn-primary" onclick="winclose()" value="창닫기">
           </div>
@@ -62,24 +42,22 @@
         	}
         </script>
         <script>
-        	function skillInsertGo(){
-        		var skill_name = $("#skill_name").val();
-        		var skill_level = $("#skill_level").val();
+        	function habitInsertGo(){
+        		var habit_name = $("#habit_name").val();
         		
         		$.ajax({
-        		    url: "skillInsertAjax.do",
+        		    url: "habitInsertAjax.do",
         		    type: "post",
         		    dataType: "json",
         		    async: false,
         		    data: {
-        		    	'skill_name':skill_name,
-        		    	'skill_level':skill_level
+        		    	'habit_name':habit_name
         		    },
         		    success: function(data){
         		    	if(data==1){
         		    		opener.parent.location.reload();
         		    	}else{
-        		    		alert("스킬 등록 에러. 관리자 문의.")
+        		    		alert("습관 등록 에러. 관리자 문의.")
         		    	}
         		    },
         		    error: function (request, status, error){
@@ -89,7 +67,7 @@
         		window.close();
         	}
         </script>
-        </form>
+        
 </div>
 </body>
 </html>
