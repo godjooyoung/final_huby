@@ -92,7 +92,15 @@
 	}
 	
 	if("${result}" == 'success'){
-		alert("비밀번호가 변경 되었습니다.")
+		alert("비밀번호가 변경 되었습니다.");
+	}
+	
+	if("${updateCheck}" == '1'){
+		alert("정보가 수정되었습니다.");
+	}
+	
+	if("${updateCheck}" == '0'){
+		alert("정보 수정 실패. 관리자 문의");
 	}
 </script>
 <script>

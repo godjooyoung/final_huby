@@ -33,6 +33,235 @@
 	href="resources/img/favicon.png">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+<!-- 개인이 가장 원하는 직종 1위 -->
+<head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+        
+        // AJAX로 데이터
+        var chartData = [];
+        $.ajax({
+        	url : "memberHot.do",
+			method : "post",
+			async : false,
+			type : "json",
+			success : function(data) { // [ {} ] --> [ [] ]로 바꾸는 형태
+			//ajax결과를 chart에 맞는 data 형태로 가공
+			chartData.push(['직업명','구직자의 선택 수'])
+			for(i=0; i<data.length; i++) {
+				var subarr = [data[i].JOB_NAME, parseInt(data[i].CNT)];
+				chartData.push(subarr);
+				}
+			}
+        });
+
+        // Set chart options
+        var options = {'title':'인기 순위',
+                       'width':700,
+                       'height':300,
+                       'bar': {groupWidth: '50%'},
+                       'hAxis': { gridlines: { count: 1 } }               
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.ColumnChart(document.querySelector('#chart_div1'));
+        chart.draw(google.visualization.arrayToDataTable(chartData), options);
+      }
+            
+
+    </script>
+  </head>
+<!-- 개인이 가장 원하는 직종 1위  끝 -->
+<!-- 기업이 가장 많이 채용중인 직종 시작 -->
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+        
+        // AJAX로 데이터
+        var chartData = [];
+        $.ajax({
+        	url : "companyHot.do",
+			method : "post",
+			async : false,
+			type : "json",
+			success : function(data) { // [ {} ] --> [ [] ]로 바꾸는 형태
+			//ajax결과를 chart에 맞는 data 형태로 가공
+			chartData.push(['직업명','기업의 1순위 채용직업'])
+			for(i=0; i<data.length; i++) {
+				var subarr = [data[i].JOB_NAME, parseInt(data[i].CNT)];
+				chartData.push(subarr);
+				}
+			}
+        });
+
+        // Set chart options
+        var options = {'title':'인기 순위',
+                       'width':800,
+                       'height':300,
+                       'bar': {groupWidth: '50%'},
+                       'hAxis': { gridlines: { count: 1 } }               
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.ColumnChart(document.querySelector('#chart_div2'));
+        chart.draw(google.visualization.arrayToDataTable(chartData), options);
+      }
+            
+
+    </script>
+  </head>
+<!-- 기업이 가장 많이 채용중인 직종 끝 -->
+<!-- 월별 개인 회원 가입 수 -->
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+        
+        // AJAX로 데이터
+        var chartData = [];
+        $.ajax({
+        	url : "monthlyMemberCnt.do",
+			method : "post",
+			async : false,
+			type : "json",
+			success : function(data) { // [ {} ] --> [ [] ]로 바꾸는 형태
+			//ajax결과를 chart에 맞는 data 형태로 가공
+			chartData.push(['월','단위:1명']);
+				chartData.push(['1월',data[0].ONE]);
+				chartData.push(['2월',data[0].TWO]);
+				chartData.push(['3월',data[0].THREE]);
+				chartData.push(['4월',data[0].FOUR]);
+				chartData.push(['5월',data[0].FIVE]);
+				chartData.push(['6월',data[0].SIX]);
+				chartData.push(['7월',data[0].SEVEN]);
+				chartData.push(['8월',data[0].EIGHT]);
+				chartData.push(['9월',data[0].NINE]);
+				chartData.push(['10월',data[0].TEN]);
+				chartData.push(['11월',data[0].ELEVEN]);
+				chartData.push(['12월',data[0].TWELVE]);
+				}
+        });
+
+        // Set chart options
+        var options = {'title':'월별 개인회원 가입자 현황',
+                       'width':1000,
+                       'height':300,
+                       'bar': {groupWidth: '50%'},
+                       'hAxis': { gridlines: { count: 1 } }               
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.ColumnChart(document.querySelector('#chart_div3'));
+        chart.draw(google.visualization.arrayToDataTable(chartData), options);
+      }
+            
+
+    </script>
+  </head>
+<!-- 월별 개인 회원 가입 수-->
+<!-- 월별 기업 회원 가입 수 -->
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+        
+        // AJAX로 데이터
+        var chartData = [];
+        $.ajax({
+        	url : "monthlycompanyCnt.do",
+			method : "post",
+			async : false,
+			type : "json",
+			success : function(data) { // [ {} ] --> [ [] ]로 바꾸는 형태
+			//ajax결과를 chart에 맞는 data 형태로 가공
+			chartData.push(['월','단위:1명']);
+				chartData.push(['1월',data[0].ONE]);
+				chartData.push(['2월',data[0].TWO]);
+				chartData.push(['3월',data[0].THREE]);
+				chartData.push(['4월',data[0].FOUR]);
+				chartData.push(['5월',data[0].FIVE]);
+				chartData.push(['6월',data[0].SIX]);
+				chartData.push(['7월',data[0].SEVEN]);
+				chartData.push(['8월',data[0].EIGHT]);
+				chartData.push(['9월',data[0].NINE]);
+				chartData.push(['10월',data[0].TEN]);
+				chartData.push(['11월',data[0].ELEVEN]);
+				chartData.push(['12월',data[0].TWELVE]);
+				}
+        });
+
+        // Set chart options
+        var options = {'title':'월별 기업회원 가입자 현황',
+                       'width':1000,
+                       'height':300,
+                       'bar': {groupWidth: '50%'},
+                       'hAxis': { gridlines: { count: 1 } }               
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.ColumnChart(document.querySelector('#chart_div4'));
+        chart.draw(google.visualization.arrayToDataTable(chartData), options);
+      }
+            
+
+    </script>
+  </head>
+<!-- 월별 기업 회원 가입 수 -->
 </head>
 <body>
 	<!-- WRAPPER -->
@@ -251,6 +480,26 @@
 							</div>
 						</div>
 						<div class="panel-body">
+							<div align="center">
+									<div id="chart_div1"></div>
+									<div id="chart_div2"></div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-12" align="center">
+									<div id="chart_div3"></div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-12" align="center">
+									<div id="chart_div4"></div>
+								</div>
+							</div>
+						</div>
+						<%-- <div class="panel-body">
 							<div class="row">
 								<div align="center">
 								<h1>개인이 희망하는 직종 순위!</h1>
@@ -279,6 +528,16 @@
 											</tr>
 										</c:forEach>
 									</table>
+								</div>
+								<div class="col-md-3">
+									<div class="metric">
+										<div align="center"><a href="personalmemberall.do" style="border-bottom: solid black 1px;"></a></div>
+										<span class="icon"><i class="fa fa-clone"></i></span>
+										
+										<p>
+											<span class="number"></span> <span class="title"></span>
+										</p>
+									</div>
 								</div>
 								<div align="center">
 								<h1>월별 개인회원 가입 수</h1>
@@ -314,6 +573,7 @@
 											</tr>
 										</c:forEach>
 									</table>
+									<div id="chart_div3"></div>
 								</div>
 								<div align="center">
 								<h1>월별 기업회원 가입 수</h1>
@@ -349,14 +609,10 @@
 											</tr>
 										</c:forEach>
 									</table>
+									<div id="chart_div4"></div>
 								</div>
 							</div>
-						</div>
-						<!-- <div class="row">
-								<div class="col-md-9">
-									<div id="headline-chart" class="ct-chart"></div>
-								</div>
-							</div> -->
+						</div> --%>
 					</div>
 				</div>
 				<!-- END OVERVIEW -->
