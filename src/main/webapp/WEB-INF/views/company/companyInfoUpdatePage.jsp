@@ -131,6 +131,15 @@
     }
 </script>
 <script>
+if("${infoCheck}" == "1"){
+	alert("정보가 수정되었습니다.");
+}
+
+if("${infoCheck}" == "0"){
+	alert("정보 수정 실패. 관리자 문의");
+}
+</script>
+<script>
 function updatecheck(){
 		var cnt = 0;
 		
@@ -322,7 +331,7 @@ function pwupdatecheck(){
 		if(result==10){
     		alert("비밀번호가 변경되었습니다.");
     	}
-    
+		
 	
 		$("#frm").attr("action","companyPwUpdate.do");
 		document.frm.submit();

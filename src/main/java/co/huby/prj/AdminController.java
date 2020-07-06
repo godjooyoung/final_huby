@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.huby.prj.admin.service.AdminService;
 import co.huby.prj.board.service.QuestionService;
@@ -227,5 +228,33 @@ public class AdminController {
 	public String adminLogout(Model model, HttpServletRequest request) throws Exception {
 		request.getSession().removeAttribute("adminVo");
 		return "no/common/login";
+	}
+	
+	@ResponseBody
+	@RequestMapping("memberHot.do")
+	public List<Map> memberHot(Model model, HttpServletRequest request) throws Exception {
+		List<Map> memberHot = adminService.memberFirstHopeJob();
+		return memberHot;
+	}
+	
+	@ResponseBody
+	@RequestMapping("companyHot.do")
+	public List<Map> companyHot(Model model, HttpServletRequest request) throws Exception {
+		List<Map> companyHot = adminService.companyFirstHopeJob();
+		return companyHot;
+	}
+	
+	@ResponseBody
+	@RequestMapping("monthlyMemberCnt.do")
+	public List<Map> monthlyMemberCnt(Model model, HttpServletRequest request) throws Exception {
+		List<Map> monthlyMemberCnt = adminService.monthlyMemberCnt();
+		return monthlyMemberCnt;
+	}
+	
+	@ResponseBody
+	@RequestMapping("monthlycompanyCnt.do")
+	public List<Map> monthlycompanyCnt(Model model, HttpServletRequest request) throws Exception {
+		List<Map> monthlycompanyCnt = adminService.monthlyCompanyMemberCnt();
+		return monthlycompanyCnt;
 	}
 }

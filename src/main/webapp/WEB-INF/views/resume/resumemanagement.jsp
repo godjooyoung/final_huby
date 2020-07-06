@@ -449,7 +449,7 @@ body {
 		}
 		
 		if(chk==true){
-			var result = confirm("선택한 이력서를 정말 삭제하시겠습니까?");
+			var result = confirm("이력서를 삭제하면 현재 이력서로 지원한 기업에 대한 지원이력도 삭제 됩니다. 정말 삭제하시겠습니까?");
 			if(result){
 				$("#frm").attr("action", "checkResumeDelete.do");
 				document.frm.submit();
@@ -883,8 +883,8 @@ body {
 									<input type="text" class="form-control input-md" id="resume_final_education" value="text">
 									<p>한마디</p>
 									<input type="text" class="form-control input-md" id="resume_coment" value="text">
-									<button type="button" class="btn-primary" onclick="ajaxResumeUpdate()">수정하기</button>
-									<button type="button" class="btn-primary" id="ajaxResumeCancleBtn" onclick="ajaxResumeCancle()">취소</button>
+									<button type="button" class="btn-primary" onclick="ajaxResumeUpdate()" style="background-color: #ff0081">수정하기</button>
+									<button type="button" class="btn-primary" id="ajaxResumeCancleBtn" onclick="ajaxResumeCancle()" style="background: #ff0081">취소</button>
 							</div>
 						</div>
 					</div>
@@ -967,8 +967,8 @@ body {
 									$("#job_position").val("${param.job_position}");
 								</script>
 							</div>
-							<button type="button" class="btn-primary" id="ajaxCareerSaveBtn" onclick="ajaxCareerSave()">커리어 저장하기</button>
-							<button type="button" class="btn-primary" id="ajaxCareerCancleBtn" onclick="ajaxCareerCancle()">취소</button>
+							<button type="button" class="btn-primary" id="ajaxCareerSaveBtn" onclick="ajaxCareerSave()" style="background-color: #f89b00">수정하기</button>
+							<button type="button" class="btn-primary" id="ajaxCareerCancleBtn" onclick="ajaxCareerCancle()" style="background-color: #f89b00">취소</button>
 						</div>
 					</div>
 				</div>
@@ -994,7 +994,7 @@ body {
 							<div class="our-services-text">
 								<h4 id="skill_name_${ skill.SKILL_ID }">${ skill.SKILL_NAME }<input type="checkbox" id="skill_id_check" name="skill_id" value="${ skill.SKILL_ID }"></h4>
 								<%-- <p id="skill_level_${ skill.SKILL_ID }">${ skill.SKILL_LEVEL }</p> --%>
-								<p id="skill_level_${ skill.SKILL_ID }" class='w3-container w3-blue w3-center w3-round-large w3-tiny' style='width:${ skill.SKILL_LEVEL }%'>
+								<p id="skill_level_${ skill.SKILL_ID }" class='w3-blue w3-center w3-round-large w3-tiny' style='width:${ skill.SKILL_LEVEL }%'>
 									${ skill.SKILL_LEVEL } lv
 								</p>
 							</div>
@@ -1039,8 +1039,8 @@ body {
 											$("#skill_level").val("${param.skill_level}");
 										</script>
 							</div>
-							<button type="button" class="btn-primary" id="ajaxSkillSaveBtn" onclick="ajaxSkillUpdate()">저장하기</button>
-							<button type="button" class="btn-primary" id="ajaxSkillCancleBtn" onclick="ajaxSkillUpdateCancle()">취소</button>
+							<button type="button" class="btn-primary" id="ajaxSkillSaveBtn" onclick="ajaxSkillUpdate()" style="background-color: #0000cd">수정하기</button>
+							<button type="button" class="btn-primary" id="ajaxSkillCancleBtn" onclick="ajaxSkillUpdateCancle()" style="background-color: #0000cd">취소</button>
 							<button type="button" class="btn-primary" id="ajaxSkillInsertBtn" onclick="ajaxSkillInsert()" style="display: none;">등록하기</button>
 						</div>
 					</div>

@@ -133,7 +133,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/myInfoUpdate.do")
-	public String myInfoUpdate(Model model, MemberVo mvo, HttpServletRequest request) throws Exception {
+	public ModelAndView myInfoUpdate(Model model, MemberVo mvo, HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
 		String id = (String) request.getSession().getAttribute("loginId");
 		mvo.setMember_id(id);
 		
@@ -152,8 +153,25 @@ public class MemberController {
 		}
 		
 		int n = memberService.memberUpdate(mvo);
-		
-		return "redirect:myInfoUpdatePage.do";
+		if(n==1) {
+			String memberid = (String) request.getSession().getAttribute("loginId");
+			mvo.setMember_id(memberid);
+			MemberVo checkVo = memberService.selectone(mvo);
+			model.addAttribute("mlist",checkVo);
+			String updateCheck = "1";
+			model.addAttribute("updateCheck",updateCheck);
+			mav.setViewName("person/member/myInfoUpdatePage");
+			return mav;
+		}else {
+			String memberid = (String) request.getSession().getAttribute("loginId");
+			mvo.setMember_id(memberid);
+			MemberVo checkVo = memberService.selectone(mvo);
+			model.addAttribute("mlist",checkVo);
+			String updateCheck = "0";
+			model.addAttribute("updateCheck",updateCheck);
+			mav.setViewName("person/member/myInfoUpdatePage");
+			return mav;
+		}
 	}
 	
 	@RequestMapping(value = "/skillDelete.do")

@@ -128,14 +128,15 @@ public class CompanyController {
 	}
 	
 	@RequestMapping("/companyInfoUpdate.do")
-	public String companyInfoUpdate(Model model, HttpServletRequest request, CompanyVo cvo) throws IllegalStateException, IOException {
+	public ModelAndView companyInfoUpdate(Model model, HttpServletRequest request, CompanyVo cvo) throws Exception {
+		ModelAndView mav = new ModelAndView();
 		String id = (String) request.getSession().getAttribute("loginId");
 		cvo.setCompany_id(id);
 		
 		MultipartFile uploadFile = cvo.getCuploadfile();
 		String path = request.getSession().getServletContext().getRealPath("/resources/FileUpload");
 		System.out.println("@@@@@@@@" + path);
-		System.out.println("@@@@@@@@@@@@@@@@@"+uploadFile.getSize());
+
 		if (uploadFile != null && uploadFile.getSize()>0) {
 			String fileName = uploadFile.getOriginalFilename();
 			File file = new File(path, fileName);
@@ -148,8 +149,29 @@ public class CompanyController {
 		
 		
 		int n = companyMemberService.companyMemberUpdate(cvo);
-		
-		return "redirect:companyInfoUpdatePage.do";
+		if(n==1) {
+			String companyid = (String) request.getSession().getAttribute("loginId");
+			cvo.setCompany_id(companyid);
+			CompanyVo checkVo = companyMemberService.companySelectOne(cvo);
+			model.addAttribute("cvo",checkVo);
+			List<CodeVo> typeVo = codeService.SelectAll();
+			model.addAttribute("typeVo",typeVo);
+			String updateCheck = "1";
+			model.addAttribute("infoCheck",updateCheck);
+			mav.setViewName("company/company/companyInfoUpdatePage");
+			return mav;
+		}else {
+			String companyid = (String) request.getSession().getAttribute("loginId");
+			cvo.setCompany_id(companyid);
+			CompanyVo checkVo = companyMemberService.companySelectOne(cvo);
+			model.addAttribute("cvo",checkVo);
+			List<CodeVo> typeVo = codeService.SelectAll();
+			model.addAttribute("typeVo",typeVo);
+			String updateCheck = "1";
+			model.addAttribute("infoCheck",updateCheck);
+			mav.setViewName("company/company/companyInfoUpdatePage");
+			return mav;
+		}
 	}
 	
 	@ResponseBody

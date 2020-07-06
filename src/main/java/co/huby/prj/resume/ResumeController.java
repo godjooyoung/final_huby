@@ -247,7 +247,9 @@ public class ResumeController {
 	@RequestMapping("checkResumeDelete.do")
 	public String checkResumeDelete(Model model, HttpServletRequest request, ResumeVo rvo) throws Exception {
 		
+		
 		String[] resumeArray = request.getParameterValues("resume_id");
+		
 		
 		for(int i=0; i<resumeArray.length; i++) {
 			ResumeVo arrayRvo = new ResumeVo();
