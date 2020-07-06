@@ -423,9 +423,9 @@
 	<update id="click_complete" parameterType="co.huby.prj.vo.EmploymentsVo">
 		UPDATE employments
 		SET 
-	COMPLETE = #{complete, jdbcType=VARCHAR}
-	WHERE
-	EMPLOYMENT_ID = #{employment_id, jdbcType=VARCHAR}
+		COMPLETE = #{complete, jdbcType=VARCHAR}
+		WHERE
+		EMPLOYMENT_ID = #{employment_id, jdbcType=VARCHAR}
 	</update>
 	
 	<!-- 코드 아이디로 코드네임 가져오기 -->

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="sub_vis_wrap" class="sub01 page01">
 	<div class="hd_box"></div>
 	<div class="visual-area ">
@@ -123,7 +124,15 @@
 
 	<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" onclick="subm('modi')"> 
 	<input type="button"  class="btn btn-primary" value="삭제"  id="btnDelete" onclick="subm('dele')">
-	<input type="button"  class="btn btn-success" value="마감"  id="btnComplete" onclick="subm('complete')">
+	<c:set var="complete" value="${employmentsDetails.complete}"></c:set>
+		<c:choose>
+			<c:when test="${complete == 'Y'}">
+		       <input type="button"  class="btn btn-danger" value="공고재개"  id="btnComplete" onclick="subm('complete')">
+		    </c:when>
+			<c:when test="${complete == 'N'}">
+		       <input type="button"  class="btn btn-success" value="마감"  id="btnComplete" onclick="subm('complete')">
+		    </c:when>
+		</c:choose>
 	</form>
 <!-- END -->
 </div>
@@ -148,16 +157,18 @@ function subm(type){
         }else {
         	if (document.getElementById("btnComplete").value == "마감") {
         	if (confirm("공고를 마감하시겠습니까?") == true) {
-        		 var emp_id =document.getElementById("emp_id").value;
+        		 var emp_id = document.getElementById("emp_id").value;
                 // Yes click
                 	$.ajax({
 					type:"post",
 					url:"complete.do",
-					data : {'emp_id': emp_id },  
+					data : {'emp_id':document.getElementById("emp_id").value},  
 					//contentType: 'application/json', 
 					success: function(){
 			 		alert("공고마감했습니다.");
-			 		document.getElementById("btnComplete").value="마감 취소"
+			 		document.getElementById("btnComplete").value="공고재개";
+			 		document.getElementById("btnComplete").className="btn btn-danger";
+			 		
 					},
 					error: function(){
 			  		alert("에러 발생. 관리자에게 문의주세요.");
@@ -172,11 +183,12 @@ function subm(type){
                 	$.ajax({
 					type:"post",
 					url:"re_post.do",
-					data : {'emp_id': emp_id },  
+					data : {'emp_id':document.getElementById("emp_id").value},  
 					//contentType: 'application/json', 
 					success: function(){
 			 		alert("공고재개했습니다.");
 			 		document.getElementById("btnComplete").value="마감"
+			 		document.getElementById("btnComplete").className="btn btn-success";
 					},
 					error: function(){
 			  		alert("에러 발생. 관리자에게 문의주세요.");
