@@ -72,6 +72,10 @@
 							<div>
 								<p>
 									<i class="fas fa-signature w3-margin-right w3-large w3-text-blue"></i>
+									${sessionScope.personalVo.member_id}
+								</p>
+								<p>
+									<i class="fas fa-signature w3-margin-right w3-large w3-text-blue"></i>
 									${sessionScope.personalVo.member_name}
 								</p>
 								<p>

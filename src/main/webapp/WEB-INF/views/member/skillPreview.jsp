@@ -13,11 +13,7 @@
 <body>
 <div style="margin: 30px 30px 30px 30px;">
 <form class="form-horizontal" id="frm" name="frm" method="post" onsubmit="skillInsertGo()" >
-    <fieldset>
-
-        <!-- Form Name -->
-        <legend>스킬 등록</legend>
-
+		<h1 align="center" style="font-weight: bolder;">스킬 등록</h1>
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="email">스킬이름</label>  
@@ -55,7 +51,6 @@
             <input type="button" name="cancel" class="btn btn-primary" onclick="winclose()" value="창닫기">
           </div>
         </div>
-        </fieldset>
         <script>
         	function winclose(){
         		window.close();

@@ -267,19 +267,19 @@
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<!-- NAVBAR -->
-		<nav class="navbar navbar-default navbar-fixed-top">
+		<!-- <nav class="navbar navbar-default navbar-fixed-top"> -->
 			<!-- 허비 로고 명 들어갈 곳 -->
 			<!-- <a href="index.html"><img src="resources/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a> -->
 
-			<div class="navbar-btn navbar-btn-left col-sm-3">
+			<!-- <div class="navbar-btn navbar-btn-left col-sm-3">
 				<span><button type="button" class="btn-toggle-fullwidth"
 						style="color: #2B333E">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						HUBY &nbsp;&nbsp;&nbsp;<i class="lnr lnr-arrow-left-circle"></i>
 					</button></span>
-			</div>
-			<div class="container-fluid setup-bg d-flex flex-column">
-				<div class="container my-auto">
+			</div> -->
+			<!-- <div class="container-fluid setup-bg d-flex flex-column">
+				<div class="container my-auto"> -->
 					<!-- 검색창 -->
 					<!-- <form class="navbar-form navbar-left">
 					<div class="input-group">
@@ -290,7 +290,7 @@
 					<!-- <div class="navbar-btn navbar-btn-right">
 					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
 				</div> -->
-					<div class="row col-sm-9" id="navbar-menu">
+					<!-- <div class="row col-sm-9" id="navbar-menu">
 						<div class="navbar-btn navbar-btn-right">
 							<button type="button" onclick="location.href='index.do'"
 								style="color: #2B333E">홈</button>
@@ -304,11 +304,11 @@
 							<button type="button"
 								onclick="location.href='companymemberall.do'"
 								style="color: #2B333E">기업회원</button>
-							<!-- <button type="button" onclick="location.href='vManagement.do'" style="color: #2B333E">영상관리</button> -->
+							<button type="button" onclick="location.href='vManagement.do'" style="color: #2B333E">영상관리</button>
 							<span style="float: right;"><button type="button"
 									onclick="location.href='adminLogout.do'" style="color: #2B333E">로그아웃</button></span>
 						</div>
-					</div>
+					</div> -->
 					<!-- <div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-center">
 						<li class="dropdown">
@@ -348,9 +348,9 @@
 						</li>
 					</ul>
 				</div> -->
-				</div>
+				<!-- </div>
 			</div>
-		</nav>
+		</nav> -->
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar">
@@ -365,6 +365,8 @@
 								class="lnr lnr-chart-bars"></i> <span>개인회원</span></a></li>
 						<li><a href="companymemberall.do" class=""><i
 								class="lnr lnr-cog"></i> <span>기업회원</span></a></li>
+						<li><a href="adminLogout.do" class=""><i
+								class="lnr lnr-cog"></i> <span>로그아웃</span></a></li>
 						<!-- <li><a href="vManagement.do" class=""><i
 								class="lnr lnr-alarm"></i> <span>영상관리</span></a></li> --> -->
 					</ul>

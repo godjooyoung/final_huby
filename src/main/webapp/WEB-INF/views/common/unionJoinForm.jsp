@@ -54,121 +54,7 @@
 100%
 {
 transform
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-translateY
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(-20
-px
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+:translateY (-20 px
 );
 }
 }
@@ -176,125 +62,13 @@ px
 keyframes mover { 0% {
 	transform: translateY(0);
 }
-
 100%
 {
 transform
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 :
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 translateY
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 (-20
 px
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 );
 }
 }
@@ -307,6 +81,7 @@ px
 .register .register-form {
 	padding: 10%;
 	margin-top: 10%;
+	width: 100%
 }
 
 .btnRegister {
@@ -421,7 +196,7 @@ px
 		var idCheck = /^[a-z]+[a-z0-9]{5,19}$/g;
 
 		$.ajax({
-			url : '/idCheck.do', //request 보낼 서버의 경로
+			url : 'idCheck.do', //request 보낼 서버의 경로
 			dataType : 'json',
 			type : 'post', // 메소드(get, post, put 등)
 			data : {
@@ -450,7 +225,7 @@ px
 
 	}
 
-	/* function pwcheck(){
+	 function pwcheck(){
 	 var pw = $('#member_pw').val();
 	 var pwcheck = /^[A-Za-z0-9]{6,20}$/;
 	
@@ -478,7 +253,7 @@ px
 	 $('#pwcheck2').css("color", "red");
 	 return true;
 	 }
-	 } */
+	 }
 
 	function namecheck() {
 		var name = $('#member_name').val();
@@ -550,7 +325,7 @@ px
 				$('#emailcheck').css("color", "red");
 				return false;
 			} else {
-				$("#emailcheck").html("사용 가능한 이메일입니다.")
+				$("#emailcheck").html("사용 가능한 주소입니다.")
 				$('#emailcheck').css("color", "blue");
 				return true;
 			}
@@ -596,7 +371,7 @@ px
 		var idCheck = /^[a-z]+[a-z0-9]{5,19}$/g;
 
 		$.ajax({
-			url : '/idCheck.do', //request 보낼 서버의 경로
+			url : 'idCheck.do', //request 보낼 서버의 경로
 			dataType : 'json',
 			type : 'post', // 메소드(get, post, put 등)
 			data : {
@@ -768,7 +543,7 @@ px
 		var idCheck = /^[a-z]+[a-z0-9]{5,19}$/g;
 
 		$.ajax({
-			url : '/CompanyidCheck.do', //request 보낼 서버의 경로
+			url : 'CompanyidCheck.do', //request 보낼 서버의 경로
 			dataType : 'json',
 			type : 'post', // 메소드(get, post, put 등)
 			data : {
@@ -845,7 +620,7 @@ px
 				$("#r_numblur").css("color", "red");
 			} else {
 				$.ajax({
-					url : '/CompanyrNumCheck.do', //request 보낼 서버의 경로
+					url : 'CompanyrNumCheck.do', //request 보낼 서버의 경로
 					dataType : 'json',
 					type : 'post', // 메소드(get, post, put 등)
 					data : {
@@ -1063,7 +838,7 @@ px
 		}
 	}
 
-	function bcategorycheckc() {
+	/* function bcategorycheckc() {
 		var bcategory = $("#business_category").val();
 		var bcategoryRule = /^[가-힣]{2,5}$/;
 
@@ -1075,16 +850,15 @@ px
 				$("#bcategoryblur").html("사용 가능한 카테고리입니다.");
 				$('#bcategoryblur').css("color", "blue");
 			}
-		}else{
+		} else {
 			$("#bcategoryblur").html("");
 		}
-	}
+	} */
 
 	function homepagecheckc() {
 		var homepage = $("#homepage").val();
 		var homepageRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
-		
 		if (homepage != null && homepage != "") {
 			if (!homepageRule.test(homepage)) {
 				$("#homepageblur").html("ex) abcd1234@naver.com");
@@ -1093,7 +867,7 @@ px
 				$("#homepageblur").html("사용 가능한 이메일입니다.")
 				$('#homepageblur').css("color", "blue");
 			}
-		}else{
+		} else {
 			$("#homepageblur").html("");
 		}
 	}
@@ -1129,7 +903,7 @@ px
 		var idCheck = /^[a-z]+[a-z0-9]{5,19}$/g;
 
 		$.ajax({
-			url : '/CompanyidCheck.do', //request 보낼 서버의 경로
+			url : 'CompanyidCheck.do', //request 보낼 서버의 경로
 			dataType : 'json',
 			type : 'post', // 메소드(get, post, put 등)
 			data : {
@@ -1159,7 +933,7 @@ px
 			$("#r_numblur").css("color", "red");
 		} else {
 			$.ajax({
-				url : '/CompanyrNumCheck.do', //request 보낼 서버의 경로
+				url : 'CompanyrNumCheck.do', //request 보낼 서버의 경로
 				dataType : 'json',
 				type : 'post', // 메소드(get, post, put 등)
 				data : {
@@ -1181,7 +955,7 @@ px
 		var name = $("#company_name").val();
 		var nameRule = /^[가-힣a-zA-Z()]{1,7}$/;
 		if (name == "" || !nameRule.test(name)) {
-			$("#nameblur").html("1~7글자 한글,영어(공백 없음)만 입력 가능합니다.");
+			$("#nameblur").html("1~7글자 한글,영어(공백 없음)만 입력.");
 			$("#nameblur").css("color", "red");
 			cnt++;
 		} else {
@@ -1284,7 +1058,7 @@ px
 				$('#homepageblur').css("color", "red");
 				cnt++;
 			} else {
-				$("#homepageblur").html("사용 가능한 이메일입니다.")
+				$("#homepageblur").html("사용 가능한 주소입니다.")
 				$('#homepageblur').css("color", "blue");
 			}
 		}
@@ -1316,7 +1090,7 @@ px
 <body>
 	<div class="container register">
 		<div class="row">
-			<div class="col-md-3 register-left">
+			<div class="col-md-3 register-left" st>
 				<img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
 				<h3>HUBY</h3>
 				<p>Human Union Business Yedam</p>
@@ -1439,10 +1213,10 @@ px
 						<form class="form-horizontal" id="frm2" name="frm2" method="post"
 							enctype="multipart/form-data" action="CompanyInsertJoin.do"
 							onsubmit="return joincheckc()">
-							<div class="row register-form">
+							<div class="row register-form" style="width: 100%">
 								<div class="col-md-6">
 									<div class="form-group">
-									<div>아이디</div>
+										<div>아이디</div>
 										<input class="form-control input-md" type="text"
 											id="company_id" name="company_id" required="required"
 											onblur="idcheckc()" maxlength="20"
@@ -1450,7 +1224,7 @@ px
 											id="overlapc"></span>
 									</div>
 									<div class="form-group">
-									<div>사업자번호</div>
+										<div>사업자번호</div>
 										<input class="form-control input-md" type="text"
 											id="regist_number" name="regist_number" required="required"
 											onblur="r_numcheckc()" maxlength="12"
@@ -1458,7 +1232,7 @@ px
 										<span class="help-block" id="r_numblur"></span>
 									</div>
 									<div class="form-group">
-									<div>비밀번호</div>
+										<div>비밀번호</div>
 										<input class="form-control input-md" type="password"
 											id="company_pw" name="company_pw" required="required"
 											onblur="pwcheckc()" maxlength="20"
@@ -1466,7 +1240,7 @@ px
 											class="help-block" id="pwblur"></span>
 									</div>
 									<div class="form-group">
-									<div>비밀번호 확인</div>
+										<div>비밀번호 확인</div>
 										<input class="form-control input-md" type="password"
 											id="company_pw2" name="company_pw2" required="required"
 											onblur="pwcheck2c()" maxlength="20"
@@ -1474,7 +1248,7 @@ px
 											class="help-block" id="pwblur2"></span>
 									</div>
 									<div class="form-group">
-									<div>종목</div>
+										<div>종목</div>
 										<select class="form-control input-md" id="business_type"
 											name="business_type" required="required"
 											onchange="typecheckc(this.value)">
@@ -1485,7 +1259,7 @@ px
 										</select>
 									</div>
 									<div class="form-group">
-									<div>이메일</div>
+										<div>이메일</div>
 										<input class="form-control input-md" type="text"
 											id="company_email" name="company_email"
 											onblur="emailcheckc()" maxlength="30"
@@ -1493,21 +1267,14 @@ px
 											class="help-block" id="emailblur"></span>
 									</div>
 									<div class="form-group">
-									<div>홈페이지</div>
-										<input class="form-control input-md" type="text" id="homepage"
-											name="homepage" onblur="homepagecheckc()" maxlength="30"
-											placeholder="Enter Your Company Homepage Address"> <span
-											class="help-block" id="homepageblur"></span>
-									</div>
-									<div class="form-group">
-									<div style="font-weight: bolder;">&nbsp;&nbsp;회사Logo</div>
+										<div style="font-weight: bolder;">&nbsp;&nbsp;회사Logo</div>
 										<input type="file" id="company_photo" name="cuploadfile"
 											maxlength="50">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-									<div>회사명</div>
+										<div>회사명</div>
 										<input class="form-control input-md" type="text"
 											id="company_name" name="company_name" required="required"
 											onblur="namecheckc()" maxlength="5"
@@ -1515,14 +1282,14 @@ px
 											class="help-block" id="nameblur"></span>
 									</div>
 									<div class="form-group">
-									<div>CEO 이름</div>
+										<div>CEO 이름</div>
 										<input class="form-control input-md" type="text" id="ceo_name"
 											name="ceo_name" required="required" maxlength="5"
 											onblur="ceonamecheckc()" placeholder="Enter Company CEO Name">
 										<span class="help-block" id="ceoblur"></span>
 									</div>
 									<div class="form-group">
-									<div>전화번호</div>
+										<div>전화번호</div>
 										<input class="form-control input-md" type="text"
 											id="company_tel" name="company_tel" required="required"
 											onblur="telcheckc()" maxlength="13"
@@ -1530,22 +1297,29 @@ px
 											class="help-block" id="telblur"></span>
 									</div>
 									<div class="form-group">
-									<div>카테고리</div>
+										<div>홈페이지</div>
+										<input class="form-control input-md" type="text" id="homepage"
+											name="homepage" onblur="homepagecheckc()" maxlength="30"
+											placeholder="Enter Your Company Homepage Address"> <span
+											class="help-block" id="homepageblur"></span>
+									</div>
+									<!-- <div class="form-group">
+										<div>카테고리</div>
 										<input class="form-control input-md" type="text"
 											id="business_category" name="business_category"
 											required="required" onblur="bcategorycheckc()" maxlength="5"
 											placeholder="Enter Your Company Category"><br> <span
 											class="help-block" id="bcategoryblur"></span>
-									</div>
+									</div> -->
 									<div class="form-group">
-									<div>설립일</div>
+										<div>설립일</div>
 										<input class="form-control input-md" type="date"
 											id="company_birth" name="company_birth"
 											onblur="birthcheckc()"> <span class="help-block"
 											id=""></span>
 									</div>
 									<div class="form-group">
-									<div>매출액</div>
+										<div>매출액</div>
 										<select class="form-control input-md" type="text"
 											id="company_sales" name="company_sales"
 											onchange="salescheckc(this.value)">
@@ -1557,7 +1331,7 @@ px
 										</select> <span class="help-block" id="salesblur"></span>
 									</div>
 									<div class="form-group">
-									<div>주소</div>
+										<div>주소</div>
 										<input class="form-control input-md" type="text"
 											id="company_addr1" name="company_addr1" maxlength="50"
 											placeholder="Enter Your Company Address"> <input

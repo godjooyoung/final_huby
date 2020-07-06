@@ -219,7 +219,6 @@
 
 	//좋아요 버튼 스크립트
 	function click_like_btn(e, empid) {
-		alert(empid)
 		var emp_id = empid;
 		$.ajax({
 
@@ -240,7 +239,6 @@
 	};//END OF click_like_btn
 
 	function go_apply_page(e, empid) {
-		alert(empid)
 		var emp_id = empid;
 		var formTag = "empfrmforapply" + emp_id;
 		//document.getElementById(formTag).action="applyinfoall.do";

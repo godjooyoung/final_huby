@@ -6,6 +6,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <style>
+
 .mb-60 {
 	margin-bottom: 60px;
 }
@@ -449,7 +450,7 @@ body {
 		}
 		
 		if(chk==true){
-			var result = confirm("이력서를 삭제하면 현재 이력서로 지원한 기업에 대한 지원이력도 삭제 됩니다. 정말 삭제하시겠습니까?");
+			var result = confirm("이력서를 삭제한다면 현재 이력서로 지원한 지원이력도 삭제 됩니다. 정말 삭제하시겠습니까?");
 			if(result){
 				$("#frm").attr("action", "checkResumeDelete.do");
 				document.frm.submit();
@@ -880,7 +881,19 @@ body {
 									  		<option value="전국">전국</option>
 									  	</select></p>
 									<p>최종학력</p>
-									<input type="text" class="form-control input-md" id="resume_final_education" value="text">
+									<select class="form-control input-md" id="resume_final_education" name="resume_final_education" required="required">
+								  		<option value="">학력 선택</option>
+						  				<option value="학력무관"> 학력무관</option>
+						  				<option value="고등학교졸업"> 고등학교졸업 이상</option>
+						  				<option value="대학졸업"> 대학졸업(2,3년) 이상</option>
+						  				<option value="대학교졸업"> 대학교졸업(4년) 이상</option>
+						  				<option value="석사졸업"> 석사졸업 이상</option>
+						  				<option value="박사졸업"> 박사졸업 이상</option>
+								  	</select>
+								  	<script>
+										$("#resume_final_education").val("${param.resume_final_education}");
+									</script>
+									<!-- <input type="text" class="form-control input-md" id="resume_final_education" value="text"> -->
 									<p>한마디</p>
 									<input type="text" class="form-control input-md" id="resume_coment" value="text">
 									<button type="button" class="btn-primary" onclick="ajaxResumeUpdate()" style="background-color: #ff0081">수정하기</button>

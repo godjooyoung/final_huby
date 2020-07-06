@@ -13,11 +13,7 @@
 <body>
 <div style="margin: 30px 30px 30px 30px;">
 <form class="form-horizontal" id="frm" name="frm" method="post" onsubmit="resumeInsertGo()">
-    <fieldset>
-
-        <!-- Form Name -->
-        <legend>이력서 등록</legend>
-
+		<h1 align="center" style="font-weight: bolder;">이력서 등록</h1>
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="name">제목</label>  
@@ -107,7 +103,16 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="rpassword">최종학력</label>
           <div class="col-md-4">
-            <input id="final_education" name="final_education" type="text" class="form-control input-md" required="required">
+          	<select class="form-control input-md" id="final_education" name="final_education" required="required">
+		  		<option value="">학력 선택</option>
+  				<option value="학력무관"> 학력무관</option>
+  				<option value="고등학교졸업"> 고등학교졸업 이상</option>
+  				<option value="대학졸업"> 대학졸업(2,3년) 이상</option>
+  				<option value="대학교졸업"> 대학교졸업(4년) 이상</option>
+  				<option value="석사졸업"> 석사졸업 이상</option>
+  				<option value="박사졸업"> 박사졸업 이상</option>
+		  	</select>
+            <!-- <input id="final_education" name="final_education" type="text" class="form-control input-md" required="required"> -->
             <span class="help-block"></span>  
           </div>
         </div>
@@ -132,7 +137,6 @@
             <input type="button" name="cancel" class="btn btn-primary" onclick="winclose()" value="창닫기">
           </div>
         </div>
-        </fieldset>
         <script>
         	function winclose(){
         		window.close();

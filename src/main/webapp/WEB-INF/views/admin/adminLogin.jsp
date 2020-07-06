@@ -350,10 +350,11 @@ body
     	</div>
     </div>
 </div><br><br>
-<div align="center">
+<div align="center"><br>
 <button class="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
 	<span>관리자 로그인</span>
 </button>
+
 </div>
 
 <div id="id01" class="modal">
