@@ -6,7 +6,83 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title></title>
+<style>
+.mb-60 {
+	margin-bottom: 60px;
+}
+
+.services-inner1 {
+	border: 2px solid #ff0081;
+	margin-left: 35px;
+	transition: .3s;
+}
+
+.services-inner2 {
+	border: 2px solid #f89b00;
+	margin-left: 35px;
+	transition: .3s;
+}
+
+.services-inner3 {
+	border: 2px solid #0000cd;
+	margin-left: 35px;
+	transition: .3s;
+}
+
+.our-services-img {
+	float: left;
+	margin-left: -36px;
+	margin-right: 22px;
+	margin-top: 0f8a0f;
+}
+
+.our-services-text {
+	padding-right: 0000a0;
+}
+
+.our-services-text {
+	overflow: hidden;
+	padding: 28px 0 25px;
+}
+
+.our-services-text h4 {
+	color: #222222;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	margin-bottom: 8px;
+	padding-bottom: 10px;
+	position: relative;
+	text-transform: uppercase;
+}
+
+.our-services-text h4::before {
+	background: #ec6d48 none repeat scroll 0 0;
+	bottom: 0;
+	content: "";
+	height: 1px;
+	position: absolute;
+	width: 35px;
+}
+
+.our-services-wrapper:hover .services-inner {
+	background: #fff none repeat scroll 0 0;
+	border: 2px solid transparent;
+	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.our-services-text p {
+	margin-bottom: 0;
+}
+
+p {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 26px;
+	color: #666;
+	margin-bottom: 15px;
+}
+</style>
 
 </head>
 <body>
@@ -62,9 +138,9 @@
 							<!--Card-->
 							<div class="card">
 								<!--Card image-->
-								<img class="img-fluid"
+								<!-- <img class="img-fluid"
 									src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg"
-									alt="Card image cap">
+									alt="Card image cap"> -->
 
 								<!--Card content-->
 								<div class="card-body" id="checkresume">

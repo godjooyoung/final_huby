@@ -224,9 +224,11 @@
 					<tr>
 						<td colspan="1" id="cominfotitle"
 							style="width: 15%; border-left: none;"></td>
-						<th colspan="2" id="cominfotitle" style="width: 35%"><img
-							style="width: 30%;"
-							src="${pageContext.request.contextPath}/resources/FileUpload/${ empMatch.COMPANY_PHOTO }">${empMatch.COMPANY_NAME}</th>
+						<th colspan="2" id="cominfotitle" style="width: 35%">
+						<c:if test="${not empty empMatch.COMPANY_PHOTO }">
+							<img style="width: 30%;" src="${pageContext.request.contextPath}/resources/FileUpload/${ empMatch.COMPANY_PHOTO }">
+						</c:if>
+						${empMatch.COMPANY_NAME}</th>
 						<td colspan="1" id="cominfobtn" style="width: 15%">
 							
 								<!-- <a href="resumemanagement.do" class="pinkBg btns">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;스크랩
