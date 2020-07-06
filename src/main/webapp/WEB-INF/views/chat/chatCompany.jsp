@@ -874,12 +874,12 @@ body {
 		<!-- 채팅리스트 끝 -->
 		
 		<div id="bottom-bar">
-			<button id="addcontact">
+			<button id="addcontact" onclick="location.href='get_matched_video_list_first.do'">
 				<i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> 
 				<span>맞춤추천인재</span>
 			</button>
-			<button id="settings">
-				<i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span>
+			<button id="settings" onclick="location.href='forcomemploymentsList.do'">
+				<i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>공고관리</span>
 			</button>
 		</div>
 	</div>

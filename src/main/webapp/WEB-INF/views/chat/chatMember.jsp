@@ -876,12 +876,12 @@ body {
 		<!-- 채팅리스트 끝 -->
 
 		<div id="bottom-bar">
-			<button id="addcontact">
+			<button id="addcontact" onclick="location.href='resumemanagement.do'">
 				<i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> 
-				<span>Add contact</span>
+				<span>내이력서관리</span>
 			</button>
-			<button id="settings">
-				<i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span>
+			<button id="settings" onclick="location.href='applyManagement.do'">
+				<i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>지원내역</span>
 			</button>
 		</div>
 	</div>
