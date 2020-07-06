@@ -5,6 +5,7 @@
 	<select id="getMatchedListForCompany"
 		parameterType="co.huby.prj.vo.VideoVo" resultType="map">
 		SELECT DISTINCT
+		c.code_id as "code_id",
 		c.code_name as "code_name",
 		v.video_id as "video_id",
 		v.video_contents
@@ -161,11 +162,11 @@
 		SELECT
 		* FROM VIDEO WHERE video_id = #{video_id}
 	</select>
-
-	<select id="get_resume" parameterType="ResumeVo"
-		resultType="ResumeVo">
-		select * from resume where member_id = #{member_id} and
-		select_resume = 'Y'
+		
+	<select id="get_resume" parameterType="string" resultType="ResumeVo">
+		select * from resume where member_id = #{param1} and
+		hope_job = #{param2} and ROWNUM <![CDATA[<=]]> 1
+		ORDER BY resume_id DESC
 	</select>
 	
 	<!-- 기업이 영상에 좋아요 버튼을 다시클릭할경우 테이블에서 삭제됨. -->
@@ -288,6 +289,7 @@
         FROM
              (SELECT DISTINCT
         			ROWNUM as "RNUM",
+        			c.code_id,
 					c.code_name, 
 					v.video_id, 
 					v.video_contents, 
@@ -306,7 +308,7 @@
 		SELECT * FROM (        
 			(select ROWNUM AS "RNUM", InnerQuery.* from
     		(SELECT DISTINCT
-       	
+       		c.code_id as "code_id",
 			c.code_name as "code_name",
 			v.video_id as "video_id",
 			v.video_contents as "video_contents",

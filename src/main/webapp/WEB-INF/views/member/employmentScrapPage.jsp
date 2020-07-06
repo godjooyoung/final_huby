@@ -73,7 +73,7 @@
 			      				<!-- 작성모달 -->
 			      				<div id="modal${empLikeList.EMPLOYMENT_LIKE_ID}" class="w3-modal">
 									<div class="w3-modal-content">
-									<div class="w3-container">
+									<div>
 										<br> 
 											<span
 												onclick="modalOff(event,${empLikeList.EMPLOYMENT_LIKE_ID})"
@@ -117,7 +117,7 @@
 			      				<!-- 수정모달 -->
 			      				<div id="modal${empLikeList.EMPLOYMENT_LIKE_ID}" class="w3-modal">
 								<div class="w3-modal-content">
-									<div class="w3-container">
+									<div>
 										<br> <span
 											onclick="modalOff(event,${empLikeList.EMPLOYMENT_LIKE_ID})"
 											class="w3-button w3-display-topright">&times;</span>

@@ -83,11 +83,7 @@ public class BoardServiceImpl implements BoardService {
 		return map.get_video(memberid);
 	}
 
-	@Override
-	public ResumeVo get_resume(ResumeVo resume) throws Exception {
-		// TODO Auto-generated method stub
-		return map.get_resume(resume);
-	}
+	
 
 	@Override
 	public void videoLikeDeleteFromCompany(LikeVideoVo vo) throws Exception {
@@ -239,6 +235,11 @@ public class BoardServiceImpl implements BoardService {
 	public CodeVo get_codeName(CodeVo vo) throws Exception {
 		//코드 아이디로 코드네임 불러오기
 		return map.get_codeName(vo);
+	}
+	@Override
+	public ResumeVo get_resume(String member_id, String code) throws Exception {
+		// TODO Auto-generated method stub
+		return map.get_resume(member_id, code);
 	}
 
 	

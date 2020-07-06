@@ -58,7 +58,7 @@
 			<img src="download.do?name=${matched.video_img }" alt="thumnail"
 				style="width: 100%;"
 				onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
-				onclick="location.href='resumeDetail.do?video_id=${matched.video_id}&member_id=${matched.member_id }&hashcode=${matched.code_name}'">
+				onclick="location.href='resumeDetail.do?video_id=${matched.video_id}&member_id=${matched.member_id }&hashcode=${matched.code_id}&codename=${matched.code_name}'">
 			<div class="inner03"
 				style="position:absolute; left:87%; top:4%"; 
 				id="btn${matched.video_id }" name="likeBtn"
@@ -198,6 +198,10 @@
 							+item.video_id
 							+"&member_id="
 							+item.member_id
+							+"&hashcode="
+							+item.code_id
+							+"&codename="
+							+item.code_name
 							+"'\">"
 							+"<div class='inner03' style='position:absolute; left:87%; top:4%'; id='btn"
 							+item.video_id

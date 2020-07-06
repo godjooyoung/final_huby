@@ -36,7 +36,7 @@ public interface BoardService {
 
 	VideoVo get_video(String memberid) throws Exception;
 
-	ResumeVo get_resume(ResumeVo resume) throws Exception;
+	ResumeVo get_resume(String member_id, String code) throws Exception;
 	
 	void videoLikeDeleteFromCompany(LikeVideoVo vo) throws Exception;
 	

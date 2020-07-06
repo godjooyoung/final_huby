@@ -91,18 +91,19 @@ public class CompanyController {
 		ModelAndView mav = new ModelAndView();
 		String videoid = (String) request.getParameter("video_id");
 		String memberId = (String) request.getParameter("member_id");
-		String code_name = (String) request.getParameter("hashcode");
+		String code_name = (String) request.getParameter("codename");
+		String code_id = (String) request.getParameter("hashcode");
 		memberVo.setMember_id(memberId);
-		resumeVo.setMember_id(memberId);
 		codeVo.setCode_name(code_name);
+		
 		VideoVo video = boardService.get_video(videoid);
 		MemberVo member = memberService.selectone(memberVo);
-		ResumeVo resume = boardService.get_resume(resumeVo);
 		codeVo = codeService.get_codeAll(codeVo);
+		resumeVo = boardService.get_resume(memberId, code_id);
 		
 		model.addAttribute("video", video);
 		model.addAttribute("member", member);
-		model.addAttribute("resume", resume);
+		model.addAttribute("resume", resumeVo);
 		model.addAttribute("code", codeVo);
 		mav.setViewName("company/company/resumeDetail");
 		return mav;
