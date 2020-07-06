@@ -153,6 +153,10 @@
 <br><br><br>
 </c:forEach> --%>
 			<!-- 기존 작업 끝 -->
+			<span style="background: #3CB371; font-weight: bolder; font-size: larger; color: white; float: left; margin-right: 1%">성실</span>
+			<span style="background: #FFA500; font-weight: bolder; font-size: larger; color: white; float: left; margin-right: 1%">보통</span>
+			<span style="background: red; font-weight: bolder; font-size: larger; color: white; float: left; margin-right: 1%">게으름</span>
+			<br><br>
 			<div class="container">
 				<hr />
 				<div class="row">
