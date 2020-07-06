@@ -183,7 +183,7 @@ section .section-title {
 													
 												</div>
 												<a href="javascript:void(0)" onclick="click_like_btn(event, '${ empMatch.employment_id }')"
-														class="btn btn-primary btn-sm">스크랩하기</a>
+														class="btn btn-primary btn-sm" "><font style="color:white;">스크랩하기</font></a>
 											</div>
 										</div>
 									</div>
@@ -199,7 +199,7 @@ section .section-title {
 		type="hidden" id="employment_id" name="employment_id">
 </form>
 <script>
-//좋아요 버튼 스크립트
+//스크립버튼
 	function click_like_btn(e, empid){
 		alert(empid)
 		var emp_id=empid;

@@ -171,7 +171,7 @@
 																+ "<b>"
 																+ item.EMPLOYMENT_ID
 																+ "<br>"
-																+ "<input type=\"button\" value=\"공고 마감된 공고입니다.\">"
+																+ "<h3><i>본 공고는 마감되었습니다.</i></h3>"
 																+ "<br><input type=\"button\" value=\"스크랩하기\"  onClick=\"click_like_btn(event,"
 																+ item.EMPLOYMENT_ID
 																+ ")\">")
@@ -231,7 +231,7 @@
 			},
 			//dataType : 'json',
 			success : function() {
-				alert("해당 공고가 스크랩 되었습니다. 스크랩관리에 가서 메모를 추가하세요");
+				alert("해당 공고가 스크랩 되었습니다. 메모를 추가해서 스크랩 관리를 해보세요.");
 			},
 			error : function() {
 				alert("에러 발생. 관리자에게 문의주세요.");
