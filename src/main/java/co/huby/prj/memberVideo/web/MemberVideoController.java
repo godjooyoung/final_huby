@@ -96,8 +96,8 @@ public class MemberVideoController {
 		uploadFile.transferTo(file);// 안드로이드에서 파일 업로드하는 부분
 
 		// 영상 압축부분
-		FFmpeg ffmpeg = new FFmpeg("C:\\Users\\YoonJin\\Desktop\\Test\\local\\bin\\ffmpeg");
-		FFprobe ffprobe = new FFprobe("C:\\Users\\YoonJin\\Desktop\\Test\\local\\bin\\ffprobe");
+		FFmpeg ffmpeg = new FFmpeg("C:\\Users\\User\\Desktop\\Test\\local\\bin\\ffmpeg");
+		FFprobe ffprobe = new FFprobe("C:\\Users\\User\\Desktop\\Test\\local\\bin\\ffprobe");
 		FFmpegExecutor excutor = new FFmpegExecutor(ffmpeg, ffprobe);
 		FFmpegBuilder builder = new FFmpegBuilder().overrideOutputFiles(true)
 				.addInput(firstUploadPath + newName + ".mp4").addOutput(outputPath + newName + ".mp4")
