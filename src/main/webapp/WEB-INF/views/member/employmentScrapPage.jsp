@@ -21,8 +21,9 @@
 		</div>
 
 		<ul class="sub_menu_box sub01">
+			
 			<li class="m1"><a href="employmentList.do">전체채용공고</a></li>
-			<li class="m2"><a href="employmentMatch.do">맞춤채용공고</a></li>
+			<li class="m2"><a href="empMatch.do">맞춤채용공고</a></li>
 			<li class="m3"><a href="load_employment_like_list.do">관심채용공고</a></li>
 		</ul>
 	</div>
