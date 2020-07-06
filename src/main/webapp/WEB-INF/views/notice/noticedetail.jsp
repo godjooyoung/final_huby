@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!DOCTYPE html>
+<br><br><br><br><br><br><br><br>
 <div id="base" class="container col-md-8">
    <div class="card">
       <div class="card-body">
@@ -37,3 +37,4 @@
       </div>
    </div>
 </div>
+<br><br><br><br>

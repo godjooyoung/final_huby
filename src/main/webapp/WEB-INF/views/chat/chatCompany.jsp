@@ -1031,7 +1031,7 @@ body {
 				$('#name').empty();
 				$('#name').append(data.name.MEMBER_NAME);
 				$('#photo').empty();
-				$('#photo').attr("src", data.name.MEMBER_PHOTO);
+				$('#photo').attr("src", "${pageContext.request.contextPath}/resources/FileUpload/" + data.name.MEMBER_PHOTO);
 				for (var i = 0; i < data.result.length; i++) {
 					if (data.result[i].message_sender == '${loginId}') {
 						$('#message_content').append("<li class='replies'><img src='${pageContext.request.contextPath}/resources/FileUpload/${companyPhoto}' alt='' /><p>" 
