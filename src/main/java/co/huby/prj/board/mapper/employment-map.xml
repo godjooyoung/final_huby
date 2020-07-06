@@ -59,7 +59,7 @@
 	<select id="careerAll" resultType="map" parameterType="map">
 		select
 		career_id, start_date, end_date, company_name, career_content, job,
-		job_position, member_id
+		job_position, member_id, (select code_name from code where code_id=job ) as job_name
 		from career
 		where member_id = #{member_id}
 	</select>

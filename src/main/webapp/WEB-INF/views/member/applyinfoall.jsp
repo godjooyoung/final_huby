@@ -126,6 +126,28 @@
 						${rlist[0].RESUME_TITLE}
 					</h2>
 					<div>
+				<table class="w3-table" style="border-left: none;">
+					<tr>
+						<th>희망연봉</th>
+						<td id="r_salary">${rlist[0].HOPE_SALARY}</td>
+						<th>희망직무</th>
+						<td colspan="2" id="r_hope">${rlist[0].JOB_NAME}</td>
+					</tr>
+					<tr>
+						<th>희망근무지역</th>
+						<td id="r_location">${rlist[0].HOPE_LOCATION}</td>
+						<th>최종학력</th>
+						<td colspan="2" id="r_education">${rlist[0].FINAL_EDUCATION}</td>
+					</tr>
+					<tr>
+						<th>한마디</th>
+						<td colspan="4" id="r_coment">${rlist[0].FINAL_COMENTS}</td>
+					</tr>
+				</table>
+			</div>
+					
+					
+					<%-- <div>
 						<h5 class="w3-opacity">
 							<b>한마디</b>
 						</h5>
@@ -166,7 +188,7 @@
 							${rlist[0].FINAL_EDUCATION}
 						</h6>
 						<br>
-					</div>
+					</div> --%>
 				</div>
 				<br>
 				<div class="w3-card w3-white w3-margin-bottom">
@@ -181,7 +203,12 @@
 							<c:forEach items="${ clist }" var="career">
 							<fmt:formatDate value="${ career.START_DATE }" pattern="yyyy-MM-dd" var="start_date" />
 							<fmt:formatDate value="${ career.END_DATE }" pattern="yyyy-MM-dd" var="end_date" />
-							<p>회사명:${ career.COMPANY_NAME } | 직무:{ career.JOB } | 직무내용:${ career.CAREER_CONTENT } | 직책:${ career.JOB_POSITION } | 기간:${ start_date }~${ end_date }</p>
+							<%-- <p>회사명:${ career.COMPANY_NAME } | 직무:{ career.JOB_NAME } | 직무내용:${ career.CAREER_CONTENT } | 직책:${ career.JOB_POSITION } | 기간:${ start_date }~${ end_date }</p> --%>
+							<span>${ career.COMPANY_NAME }</span>
+							<span style="margin-left: 5%">${ career.JOB_NAME }</span>
+							<span style="margin-left: 10%">${ start_date }~${ end_date }</span>
+							<span style="margin-left: 10%">${ career.JOB_POSITION }</span><br>
+							<span>${ career.CAREER_CONTENT }</span>
 							</c:forEach>
 						</h5>
 						<hr>
@@ -216,16 +243,16 @@
 						<h5 class="w3-opacity">
 								<c:forEach items="${ slist }" var="skill">
 									<p>${ skill.SKILL_NAME }</p>
-									<div clas="w3-light-grey w3-round-large">
-										<div class='w3-blue w3-center w3-round-large w3-tiny' style='width:${ skill.SKILL_LEVEL }%'>
-											${ skill.SKILL_LEVEL } lv
+									<div class="w3-light-grey w3-round-large">
+										<div class='w3-blue w3-center w3-round-large w3-large' style='width:${ skill.SKILL_LEVEL }%'>
+											${ skill.SKILL_LEVEL }Lv
 										</div>
 									</div>
 								</c:forEach>
 						</h5>
 						<hr>
 					</div>
-
+	
 				</div>
 				
 				<div class="w3-card w3-white w3-margin-bottom">
@@ -239,7 +266,14 @@
 						<h5 class="w3-opacity">
 							<c:forEach items="${ hlist }" var="habit">
 							<fmt:formatDate value="${habit.HABIT_START_DATE }" pattern="yyyy-MM-dd" var="habit_date" />
-							<p>습관명:${ habit.HABIT_NAME} | 시작일:${ habit_date } | 성공률${ habit.PER }%</p>
+							<div style="margin-bottom: 10px">
+							<span>습관명:</span><span style="margin-left: 5%">${ habit.HABIT_NAME}</span><span style="margin-left: 10%">시작일:</span><span style="margin-left: 5%">${ habit_date }</span>
+							</div>
+							<div class="w3-light-grey w3-round-large">
+										<div class='w3-blue w3-center w3-round-large w3-large' style='width:${ habit.PER }%'>
+											 성공률: ${ habit.PER } %
+										</div>
+									</div>
 							</c:forEach>	
 						</h5>
 						<hr>
