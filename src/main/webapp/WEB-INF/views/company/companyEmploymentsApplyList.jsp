@@ -33,7 +33,7 @@
 <!-- 공고목록과 그 공고에 지원한 지원자 목록이 뜬다. -->
 <!-- 제목 -->
 <!-- 공고목록 -->
-  		 <div>
+  		 <div class="container">
   		 <ul class="list-group list-group-flush">
     		<c:forEach var="employment" items="${employmentList }">
       			<li class="list-group-item" value="${employment.EMPLOYMENT_ID}" 

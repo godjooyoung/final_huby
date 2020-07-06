@@ -30,12 +30,12 @@
 	<div class="ov inner center" style="margin: 10% auto 2%;">    
     <!-- 실제소스 -->
     <!-- ---------------------------- -->
-    <div class="w3-margin-bottom" style="background-color:#134a8e;">
+    <div class="w3-container w3-margin-bottom" style="background-color:#134a8e;">
     	<div style="vertical-align: middle;">
-    		&nbsp;<h3 style="color:white; margin-bottom:05px;">
+    		&nbsp;<h3 style="color:white; margin-bottom:10px;">
     				${title.employment_title}
     			  </h3>
-    			  <h5 style="color:white;  margin-bottom:20px; padding-bottom:20px;">
+    			  <h5 style="color:white; margin-bottom:20px;">
     			  	<fmt:formatDate pattern ="yyyy년MM월dd일 까지" value="${title.employment_time}"/>
     			  </h5>
     	</div>
@@ -47,12 +47,14 @@
 			
 			  <h2>공고내용</h2>
 			  <div>
-			  <pre>${title.employment_contents}
+			  <pre style="word-wrap: break-word">
+			  		${title.employment_contents}
 			  </pre>
 			  </div>
 			  <h2>우대사항</h2>
 			  <div>
-			  <pre>${title.employment_prefer}
+			  <pre style="word-wrap: break-word">
+			  		${title.employment_prefer}
 			  </pre>
 			  </div>
  		</div>
@@ -112,9 +114,9 @@
 	<br>
 	<!-- 타이틀아래 -->
 	<!-- ---------------------------------------------- -->
-	 <div class="w3-margin-bottom" style="background-color:#134a8e;">
+	 <div class="w3-container w3-margin-bottom" style="background-color:#134a8e;">
     	<div style="vertical-align: middle;">
-    		&nbsp;<h4 style="color:white; margin-bottom:5px; padding-bottom:15px;">
+    		&nbsp;<h4 style="color:white; margin-bottom:15px;">
     				지원자 목록
     			  </h4>
     	</div>
@@ -124,7 +126,7 @@
 	<c:choose>
 		<c:when test="${!empty applymenList}">
 		<div class="sub0101_con">
-			<div>
+			<div class="container">
 				  <ul class="list-group list-group-flush">
 				  	<c:forEach var="applymen" items="${applymenList}" varStatus="cnt" >
 				    <li style="cursor:pointer;" class="list-group-item"  value="${applymen.apply_id}" 

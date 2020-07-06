@@ -119,7 +119,7 @@ NextRTC.prototype.upperCase = function upperCase(content, custom) {
 };
 
 var nextRTC = new NextRTC({
-	wsURL: 'ws://localhost:90/signaling',
+	wsURL: 'wss://192.168.1.41:84/signaling',
   mediaConfig: {
     video: true,
     audio: false,

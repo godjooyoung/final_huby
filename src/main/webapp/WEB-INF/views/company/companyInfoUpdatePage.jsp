@@ -295,11 +295,8 @@ function pwupdatecheck(){
 		alert('변경 할 패스워드 입력해주세요.');
 		return;
 	}
-	if(pwcheck1 != pwcheck2){
-		alert("변경 할 패스워드가 일치하지 않습니다.");
-		return;
-	}
 	
+	if(pwcheck != null && pwcheck != ""){
 		$.ajax({
 		    url:'companyPwUpdateCheck.do', //request 보낼 서버의 경로
 		    type:'post', // 메소드(get, post, put 등)
@@ -314,18 +311,21 @@ function pwupdatecheck(){
 		    }
 		});
 		
-		if(result==20){
-			alert("현재 패스워드가 일치하지 않습니다.");
-			return;
-		}
-		
-		if(result==10){
-    		alert("비밀번호가 변경되었습니다.");
+		if(result=='10'){
+    		alert("현재 비밀번호와 일치합니다.");
+    	}else if(result == '20'){
+    		alert("현재 비밀번호와 일치하지 않습니다. 확인해주세요.");
+    		return;
     	}
-    
+    }
+		
+
 	
+	if(pwcheck1 == pwcheck2){
 		$("#frm").attr("action","companyPwUpdate.do");
 		document.frm.submit();
+	} else {
+		alert("변경할 패스워드가 서로 일치하지않습니다.");
 	}
 </script>
 <script>
@@ -447,9 +447,9 @@ function pwupdatecheck(){
         </div>
         <div class="modal-body">
         <div align="center">
-		현재 비밀번호를 입력해주세요.<input class="form-control input-md" type="password" id="company_pw" name="company_pw"><br>
-		변경 할 비밀번호를 입력해주세요.<input class="form-control input-md" type="password" id="company_pwcheck1" name="company_pwcheck"><br>
-		변경 할 비밀번호 재확인.<input class="form-control input-md" type="password" id="company_pwcheck2">
+		현재 비밀번호를 입력해주세요.<input type="password" id="company_pw" name="company_pw"><br>
+		변경 할 비밀번호를 입력해주세요.<input type="password" id="company_pwcheck1" name="company_pwcheck"><br>
+		변경 할 비밀번호 재확인.<input type="password" id="company_pwcheck2">
 		</div>
         </div>
         <div class="modal-footer">

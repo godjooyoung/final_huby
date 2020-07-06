@@ -1,7 +1,6 @@
 package co.huby.prj;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -295,9 +294,21 @@ public class MemberController {
 	}*/
 	
 	@RequestMapping(value = "/pwUpdate.do")
-	public String pwUpdate(Model model, MemberVo mvo, HttpServletRequest request, HttpServletRequest response) throws Exception {
+	public String pwUpdate(Model model, MemberVo mvo, HttpServletRequest request) throws Exception {
 		int n = memberService.pwUpdate(mvo);
-		return "redirect:myInfoUpdatePage.do";
+		String num = "0";
+		if(n==1) {
+			num = "1";
+		}else {
+			num = "0";
+		}
+		String id = (String) request.getSession().getAttribute("loginId");
+		mvo.setMember_id(id);
+		MemberVo checkVo = memberService.selectone(mvo);
+		model.addAttribute("mlist",checkVo);
+		model.addAttribute("resultCheck",num);
+		
+		return "person/member/myInfoUpdatePage";
 	}
 	
 	@ResponseBody

@@ -14,9 +14,7 @@
 	position: relative;
 }
 
-
-
-/* #timeline:before {
+#timeline:before {
 	top: 0;
 	bottom: 0;
 	position: absolute;
@@ -25,7 +23,7 @@
 	background-color: #4997cd;
 	left: 50%;
 	margin-left: -1.5px;
-} */
+}
 
 #timeline .clearFix {
 	clear: both;

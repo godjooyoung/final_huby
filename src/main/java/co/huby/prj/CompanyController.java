@@ -158,10 +158,9 @@ public class CompanyController {
 		String companyId = (String) request.getSession().getAttribute("loginId");
 		cvo.setCompany_id(companyId);
 		CompanyVo checkCvo = companyMemberService.selectone(cvo);
+		boolean pwdMatch = pwdEncoder.matches(cvo.getCompany_pw(), checkCvo.getCompany_pw());
 		
 		String error = "";
-		
-		boolean pwdMatch = pwdEncoder.matches(cvo.getCompany_pw(), checkCvo.getCompany_pw());
 		if(pwdMatch) {
 			error = "10";
 		}else {
@@ -170,9 +169,15 @@ public class CompanyController {
 		
 		return error;
 	}
-	@RequestMapping(value = "/companyPwUpdate.do")
+	
+	@RequestMapping("/companyPwUpdate.do")
 	public String companyPwUpdate(Model model, HttpServletRequest request, CompanyVo cvo) {
+		String companyId = (String) request.getSession().getAttribute("loginId");
+		cvo.setCompany_id(companyId);
+		cvo.setCompany_pw(cvo.getCompany_pwcheck());
+		
 		int n = companyMemberService.companyPwUpdate(cvo);
+		
 		return "redirect:companyInfoUpdatePage.do";
 	}
 	

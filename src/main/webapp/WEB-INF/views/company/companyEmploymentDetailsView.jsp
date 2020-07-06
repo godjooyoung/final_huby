@@ -28,10 +28,10 @@
 <div id="sub_content_wrap" class="sub0101">
 	<div class="ov inner center" style="margin: 0px auto 2%;">    
     <!-- ---------------------------- -->
-    <div class=" w3-margin-bottom" style="background-color:#134a8e; ">
+    <div class="w3-container w3-margin-bottom" style="background-color:#134a8e;">
     	<div style="vertical-align: middle;">
-    		&nbsp;<h3 style="color:white; margin-bottom:5px;">${employmentsDetails.employment_title}</h3>
-    		<h5 style="color:white; margin-bottom:20px; padding-bottom:20px;"><fmt:formatDate pattern ="yyyy년MM월dd일 까지" value="${employmentsDetails.employment_time}"/></h5>
+    		&nbsp;<h3 style="color:white; margin-bottom:10px;">${employmentsDetails.employment_title}</h3>
+    		<h5 style="color:white; margin-bottom:20px;"><fmt:formatDate pattern ="yyyy년MM월dd일 까지" value="${employmentsDetails.employment_time}"/></h5>
     	</div>
 	</div>
 	<!-- title 끝 -->
@@ -41,12 +41,14 @@
 			
 			  <h2>공고내용</h2>
 			  <div>
-			  <pre>${employmentsDetails.employment_contents}
+			  <pre style="word-wrap: break-word">
+			  		${employmentsDetails.employment_contents}
 			  </pre>
 			  </div>
 			  <h2>우대사항</h2>
 			  <div>
-			  <pre>${employmentsDetails.employment_prefer}
+			  <pre style="word-wrap: break-word">
+			  		${employmentsDetails.employment_prefer}
 			  </pre>
 			  </div>
  		</div>

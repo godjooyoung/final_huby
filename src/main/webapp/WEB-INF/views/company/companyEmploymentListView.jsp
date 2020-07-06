@@ -5,6 +5,7 @@
 <style>
 	li{cursor:pointer}
 </style>
+
 <div id="sub_vis_wrap" class="sub01 page01">
 	<div class="hd_box"></div>
 	<div class="visual-area ">
@@ -35,7 +36,7 @@
 	<div class="ov inner center" style="margin: 10% auto 2%;">
 		<!-- 실제 소스들-->
 		<div class="sub0101_con">
-			<div >
+			<div class="container">
 				  <ul class="list-group list-group-flush">
 				  	<c:forEach var="employment" items="${employments}">
 				    <li class="list-group-item"  value="${employment.employment_id}" 

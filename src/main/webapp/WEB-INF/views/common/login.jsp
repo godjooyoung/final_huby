@@ -6,8 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
 <title>Insert title here</title>
 <!-- 모달 조절 -->
 <style>
@@ -132,9 +130,7 @@ span.psw {
   }
 }
 </style>
-<!-- 모달 버튼 끝 -->
-
-<!-- 이미지 관련 시작 -->
+<!-- 이미지 조절 -->
 <style>
 	html,body{
 			height: 100%;
@@ -176,138 +172,6 @@ span.psw {
          border-radius: 50%;
        }
 </style>
-<!-- 이미지 관련 끝 -->
-
-<!-- 버튼관련 시작 -->
-<style>
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: white;
-}
-
-.button {
-  position: relative;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background: #f72359;
-  padding: 1em 2em;
-  border: none;
-  color: white;
-  font-size: 1.2em;
-  cursor: pointer;
-  outline: none;
-  overflow: hidden;
-  border-radius: 100px;
-}
-.button span {
-  position: relative;
-  pointer-events: none;
-}
-.button::before {
-  --size: 0;
-  content: '';
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  width: var(--size);
-  height: var(--size);
-  background: radial-gradient(circle closest-side, #4405f7, transparent);
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  transition: width .2s ease, height .2s ease;
-}
-.button:hover::before {
-  --size: 400px;
-}
-
-</style>
-<!-- 버튼관련 끝 -->
-
-<!-- 이미지 꾸미기 -->
-<style>
-body
-{
-	margin: 0;
-	padding: 0;
-	background: #white;
-	font-family: sans-serif;
-}
-.title h2 {
-    text-align: center;
-    color: #white;
-    text-transform: capitalize;
-    margin-top: 20px;
-}
-.box
-{
-	position: absolute;
-	top: 35%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 400px;
-	height: 400px;
-	background: #white;
-	box-sizing: border-box;
-	box-shadow: 0 20px 50px rgba(0,0,0,.5);
-	border:2px solid rgba(0,0,0,.5);
-}
-.box .content{
-	position: absolute;
-	top: 15px;
-	left: 15px;
-	right: 15px;
-	bottom: 15px;
-	border: 3px solid #ffeb3b;
-	padding: 30px;
-	box-shadow: 0 5px 10px rgba(0,0,0,.5);
-	text-align: center;
-}
-.box .content h1{
-	color: #fff;
-	font-size: 30px;
-	margin: 0 0 10px;
-	padding: 0;
-
-}
-.box .content p{
- color: #fff;
-}
-.box svg,
-.box svg rect{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	fill: transparent;
-}
-.box svg rect{
-	stroke: #0093ff;
-	stroke-width:10px;
-	stroke-dasharray: 400;
-	animation: animate 3s linear infinite;
-
-}
-.box img{
-    width :100%;
-}
-@keyframes animate
-{
-	0%{
-		stroke-dashoffset:800;
-	}
-	100%{
-		stroke-dashoffset:0;
-	}
-
-}
-</style>
-<!-- 이미지 꾸미기 끝 -->
-
 <script>
 	if ('${num}' == 1) {
 		alert("로그인 실패, ID/PW를 정확히 입력해주세요.");
@@ -374,22 +238,8 @@ body
 </script>
 </head>
 <body>
-<br>
-<h1 class="title" align="center">WELCOME TO HUBY</h1>
 <br><br><br><br><br><br><br><br>
-<div class="container">
-    <div class="row">
-    	<div class="box">
-    		<svg><rect></rect></svg>
-    		<div class="content">
-    			<img src="${pageContext.request.contextPath}/resources/FileUpload/HUBY5.png">
-    		</div>
-    	</div>
-    </div>
-</div>
-
-<br><br><br><br><br><br><br><br><br><br>
-	<%-- <div class="container">
+	<div class="container">
 		<div class="d-flex justify-content-center h-100">
 			<div class="image_outer_container">
 				<!-- <div class="green_icon"></div> -->
@@ -398,21 +248,29 @@ body
 				</div>
 			</div>
 		</div>
-	</div> --%>
-
+	</div>
+	
 <div align="center">
-<button class="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-	<span>개인회원 로그인</span>
-</button>
-<button class="button" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">
-	<span>기업회원 로그인</span>
-</button>
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">개인회원 로그인</button>
+<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">기업회원 로그인</button>
 </div>
 
 <br><br>
 <div align="center">
-	<a href="unionJoinForm.do" style="color: red; font-weight: bold; font-size: larger;">회원이 아니신가요?</a><br><br>
+	<a href="unionJoinForm.do" style="color: red; font-weight: bold;">회원이 아니신가요?</a><br><br>
 </div>
+<div>
+	<button type="button" class="btn-primary" onclick="location.href='main.do' ">홈으로</button>
+	<!-- test -->
+	<button type="button" class="btn-primary" onclick="location.href='gotest.do'">뷰확인용
+		테스트</button>
+	<button type="button" class="btn-primary" onclick="location.href='index.do'">관리자페이지
+		로그인 없음</button>
+	<button type="button" class="btn-primary" onclick="location.href='coemdeview.do'">디테일뷰
+		로그인 없음</button>
+</div>
+
+
 
 <div id="id01" class="modal">
   
@@ -432,8 +290,8 @@ body
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">닫기</button>
-      <span class="psw" style="font-weight: bolder; font-size: larger; color: red;">Human Union Business Yedam</span>
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Human Union Business Yedam</span>
     </div>
   </form>
 </div>
@@ -468,14 +326,14 @@ window.onclick = function(event) {
     </div>
 	
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">닫기</button>
-      <span class="psw" style="font-weight: bolder; font-size: larger; color: red;">Human Union Business Yedam</span>
+      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Human Union Business Yedam</span>
     </div>
   </form>
-</div><br><br><br><br>
+</div><br><br><br><br><br><br><br><br><br><br><br>
 <div align="center">
 <span style="background-color: white;">
-<button type="button" onclick="location.href='adminLogin.do'">관리자 로그인</button>
+<button type="button" onclick="location.href='adminLogin.do'" style="background: white;">관리자 로그인</button>
 </span>
 </div>
 <script>

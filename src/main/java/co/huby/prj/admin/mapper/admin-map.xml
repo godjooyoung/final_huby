@@ -128,99 +128,12 @@
 		select COUNT(*) from notice
 	</select>
 	
-	<select id="adminSelectOne" resultType="AdminTableVo" parameterType="AdminTableVo">
-		select admin_id, admin_pw
+	<select id="selectOne" resultType="AdminTableVo" parameterType="AdminTableVo">
+		select admin_id 
 		from admin_table 
 		where 
-			admin_id = #{admin_id} 
-			and 
-			admin_pw = #{admin_pw}
-	</select>
-	
-	<select id="allMemberCnt" resultType="int">
-		select count(*) as memberCnt from member
-	</select>
-	
-	<select id="allCompanyMemberCnt" resultType="int">
-		select count(*) as companyCnt from company
-	</select>
-	
-	<select id="allQnaCnt" resultType="int">
-		select count(*) as qnaCnt
-		from question
-		where q_answer is null
-		group by q_answer
-	</select>
-	
-	<select id="allMemberResumeCnt" resultType="int">
-		select count(*) as memberResumeCnt from resume
-	</select>
-	
-	<select id="allCompanyEmploymentsCnt" resultType="int">
-		select count(*) as companyEmploymentCnt from employments
-	</select>
-	
-	<select id="allViceoCnt" resultType="int">
-		select count(*) as memberVideoCnt from video
-	</select>
-	
-	<select id="allInterviewCnt" resultType="int">
-		select count(*) as interviewCnt from interview
-	</select>
-	
-	<select id="allApplyCnt" resultType="int">
-		select count(*) as applyCnt from apply
-	</select>
-	
-	<select id="memberFirstHopeJob" resultType="map">
-		select rownum rn, a.*, dense_rank() over (order by cnt desc) as rank
-		from
-			(select hope_job, (select code_name from code where code_id=hope_job) as job_name, count(hope_job) as cnt
-			from resume
-			group by hope_job
-			)a
-		order by cnt desc
-	</select>
-	
-	<select id="companyFirstHopeJob" resultType="map">
-		select rownum rn, a.*, dense_rank() over (order by cnt desc) as rank
-		from
-		(select hope_job, (select code_name from code where code_id=hope_job) as job_name, count(hope_job) as cnt 
-		from employments
-		group by hope_job
-		)a 
-		order by cnt desc
-	</select>
-	
-	<select id="monthlyMemberCnt" resultType="map">
-		select decode(to_char(sysdate,'MM'), '01', COUNT(*), 0) AS one,
-        decode(to_char(sysdate,'MM'), '02', COUNT(*), 0) AS two,
-        decode(to_char(sysdate,'MM'), '03', COUNT(*), 0) AS three,
-        decode(to_char(sysdate,'MM'), '04', COUNT(*), 0) AS four,
-        decode(to_char(sysdate,'MM'), '05', COUNT(*), 0) AS five,
-        decode(to_char(sysdate,'MM'), '06', COUNT(*), 0) AS six,
-        decode(to_char(sysdate,'MM'), '07', COUNT(*), 0) AS seven,
-        decode(to_char(sysdate,'MM'), '08', COUNT(*), 0) AS eight,
-        decode(to_char(sysdate,'MM'), '09', COUNT(*), 0) AS nine,
-        decode(to_char(sysdate,'MM'), '10', COUNT(*), 0) AS ten,
-        decode(to_char(sysdate,'MM'), '11', COUNT(*), 0) AS eleven,
-        decode(to_char(sysdate,'MM'), '12', COUNT(*), 0) AS twelve
-		FROM MEMBER
-	</select>
-	
-	<select id="monthlyCompanyMemberCnt" resultType="map">
-		select decode(to_char(sysdate,'MM'), '01', COUNT(*), 0) AS one,
-        decode(to_char(sysdate,'MM'), '02', COUNT(*), 0) AS two,
-        decode(to_char(sysdate,'MM'), '03', COUNT(*), 0) AS three,
-        decode(to_char(sysdate,'MM'), '04', COUNT(*), 0) AS four,
-        decode(to_char(sysdate,'MM'), '05', COUNT(*), 0) AS five,
-        decode(to_char(sysdate,'MM'), '06', COUNT(*), 0) AS six,
-        decode(to_char(sysdate,'MM'), '07', COUNT(*), 0) AS seven,
-        decode(to_char(sysdate,'MM'), '08', COUNT(*), 0) AS eight,
-        decode(to_char(sysdate,'MM'), '09', COUNT(*), 0) AS nine,
-        decode(to_char(sysdate,'MM'), '10', COUNT(*), 0) AS ten,
-        decode(to_char(sysdate,'MM'), '11', COUNT(*), 0) AS eleven,
-        decode(to_char(sysdate,'MM'), '12', COUNT(*), 0) AS twelve
-		FROM company
+		admin_id = #{admin_id} 
+		and 
+		admin_pw = #{admin_pw}
 	</select>
 </mapper>

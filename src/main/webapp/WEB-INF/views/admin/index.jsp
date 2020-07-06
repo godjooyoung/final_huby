@@ -1,86 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!doctype html>
 <html lang="en">
 <head>
-<title>HUBY 홈페이지</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<link rel="stylesheet" href="resources/css/boardall.css">
-<!-- VENDOR CSS -->
-<link rel="stylesheet"
-	href="resources/vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="resources/vendor/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="resources/vendor/linearicons/style.css">
-<link rel="stylesheet"
-	href="resources/vendor/chartist/css/chartist-custom.css">
-<!-- MAIN CSS -->
-<link rel="stylesheet" href="resources/css/adminmain.css">
-<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-<link rel="stylesheet" href="resources/css/demo.css">
-<!-- GOOGLE FONTS -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700"
-	rel="stylesheet">
-<!-- ICONS -->
-<link rel="apple-touch-icon" sizes="76x76"
-	href="resources/img/apple-icon.png">
-<link rel="icon" type="image/png" sizes="96x96"
-	href="resources/img/favicon.png">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<title>HUBY 홈페이지</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="resources/css/boardall.css">
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="resources/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="resources/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="resources/vendor/chartist/css/chartist-custom.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="resources/css/adminmain.css">
+	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+	<link rel="stylesheet" href="resources/css/demo.css">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="resources/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="resources/img/favicon.png">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<!-- NAVBAR -->
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<!-- 허비 로고 명 들어갈 곳 -->
-			<!-- <a href="index.html"><img src="resources/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a> -->
-
+		<nav class="navbar navbar-default navbar-fixed-top">		
+				<!-- 허비 로고 명 들어갈 곳 -->
+				<!-- <a href="index.html"><img src="resources/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a> -->				
+				
 			<div class="navbar-btn navbar-btn-left col-sm-3">
-				<span><button type="button" class="btn-toggle-fullwidth"
-						style="color: #2B333E">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						HUBY &nbsp;&nbsp;&nbsp;<i class="lnr lnr-arrow-left-circle"></i>
-					</button></span>
+				<span><button type="button" class="btn-toggle-fullwidth" style="color: #2B333E">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HUBY &nbsp;&nbsp;&nbsp;<i class="lnr lnr-arrow-left-circle"></i></button></span>
 			</div>
 			<div class="container-fluid setup-bg d-flex flex-column">
 				<div class="container my-auto">
-					<!-- 검색창 -->
-					<!-- <form class="navbar-form navbar-left">
+				<!-- 검색창 -->
+				<!-- <form class="navbar-form navbar-left">
 					<div class="input-group">
 						<input type="text" value="" class="form-control" placeholder="Search dashboard...">
 						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
 					</div>
 				</form> -->
-					<!-- <div class="navbar-btn navbar-btn-right">
+				<!-- <div class="navbar-btn navbar-btn-right">
 					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
 				</div> -->
-					<div class="row col-sm-9" id="navbar-menu">
+				<div class="row col-sm-9" id="navbar-menu">
 						<div class="navbar-btn navbar-btn-right">
-							<button type="button" onclick="location.href='index.do'"
-								style="color: #2B333E">홈</button>
-							<button type="button" onclick="location.href='noticePage.do'"
-								style="color: #2B333E">공지사항</button>
-							<button type="button" onclick="location.href='qnaPage.do'"
-								style="color: #2B333E">QnA</button>
-							<button type="button"
-								onclick="location.href='personalmemberall.do'"
-								style="color: #2B333E">개인회원</button>
-							<button type="button"
-								onclick="location.href='companymemberall.do'"
-								style="color: #2B333E">기업회원</button>
-							<!-- <button type="button" onclick="location.href='vManagement.do'" style="color: #2B333E">영상관리</button> -->
-							<span style="float: right;"><button type="button"
-									onclick="location.href='adminLogout.do'" style="color: #2B333E">로그아웃</button></span>
+						 	<button type="button" onclick="location.href='index.do'" style="color: #2B333E">홈</button>
+							<button type="button" onclick="location.href='noticePage.do'" style="color: #2B333E">공지사항</button>
+							<button type="button" onclick="location.href='qnaPage.do'" style="color: #2B333E">QnA</button>
+							<button type="button" onclick="location.href='userManagement.do'" style="color: #2B333E">회원관리</button>
+							<!-- <button type="button" onclick="location.href='noticeManagement.do'" style="color: #2B333E">공고관리</button>
+							<button type="button" onclick="location.href='vManagement.do'" style="color: #2B333E">영상관리</button> -->
 						</div>
-					</div>
-					<!-- <div id="navbar-menu">
+				</div>
+				<!-- <div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-center">
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
@@ -121,26 +100,21 @@
 				</div> -->
 				</div>
 			</div>
-		</nav>
+		</nav>	
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar">
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="noticePage.do" class="active"><i
-								class="lnr lnr-home"></i> <span>공지사항</span></a></li>
-						<li><a href="qnaPage.do" class=""><i class="lnr lnr-code"></i>
-								<span>QnA</span></a></li>
-						<li><a href="personalmemberall.do" class=""><i
-								class="lnr lnr-chart-bars"></i> <span>개인회원</span></a></li>
-						<li><a href="companymemberall.do" class=""><i
-								class="lnr lnr-cog"></i> <span>기업회원</span></a></li>
-						<!-- <li><a href="vManagement.do" class=""><i
-								class="lnr lnr-alarm"></i> <span>영상관리</span></a></li> --> -->
+						<li><a href="noticePage.do" class="active"><i class="lnr lnr-home"></i> <span>공지사항</span></a></li>
+						<li><a href="qnaPage.do" class=""><i class="lnr lnr-code"></i> <span>QnA</span></a></li>
+						<li><a href="userManagement.do" class=""><i class="lnr lnr-chart-bars"></i> <span>회원관리</span></a></li>
+						<!-- <li><a href="noticeManagement.do" class=""><i class="lnr lnr-cog"></i> <span>공고관리</span></a></li>
+						<li><a href="vManagement.do" class=""><i class="lnr lnr-alarm"></i> <span>영상관리</span></a></li> -->
 					</ul>
-					<!-- 사이드바 메뉴 현재 사용 안함 -->
-					<!-- <li>
+						<!-- 사이드바 메뉴 현재 사용 안함 -->
+						<!-- <li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
@@ -159,7 +133,7 @@
 		</div>
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
-
+		
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
@@ -174,195 +148,70 @@
 							<div class="row">
 								<div class="col-md-3">
 									<div class="metric">
-										<div align="center"><a href="personalmemberall.do" style="border-bottom: solid black 1px;">전체 개인회원</a></div>
+										<div align="center">오늘 올라온 공고</div>
 										<span class="icon"><i class="fa fa-clone"></i></span>
 										<p>
-											<span class="number">${ result1 }</span> <span class="title">명</span>
+											<span class="number">1,252</span>
+											<span class="title">Downloads</span>
 										</p>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<div align="center"><a href="companymemberall.do" style="border-bottom: solid black 1px;">전체 기업회원</a></div>
+									<div align="center">오늘 올라온 이력서</div>
 										<span class="icon"><i class="fa fa-clone"></i></span>
 										<p>
-											<span class="number">${ result2 }</span> <span class="title">명</span>
+											<span class="number">203</span>
+											<span class="title">Sales</span>
 										</p>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<div align="center"><a href="qnaPage.do" style="border-bottom: solid black 1px;">대기중인 Qna</a></div>
+									<div align="center">신규회원</div>
 										<span class="icon"><i class="fa fa-android"></i></span>
 										<p>
-											<span class="number">${ result3 }</span> <span class="title">건</span>
+											<span class="number">274,678</span>
+											<span class="title">Visits</span>
 										</p>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<div align="center">전체 개인영상</div>
+									<div align="center">채용현황</div>
 										<span class="icon"><i class="fa fa-bar-chart"></i></span>
 										<p>
-											<span class="number">${ result4 }</span> <span class="title">개</span>
+											<span class="number">35%</span>
+											<span class="title">Conversions</span>
 										</p>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="panel-body">
 							<div class="row">
-								<div class="col-md-3">
-									<div class="metric">
-										<div align="center">전체 회사 공고</div>
-										<span class="icon"><i class="fa fa-clone"></i></span>
-										<p>
-											<span class="number">${ result5 }</span> <span class="title">개</span>
-										</p>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="metric">
-										<div align="center">전체 개인 영상</div>
-										<span class="icon"><i class="fa fa-clone"></i></span>
-										<p>
-											<span class="number">${ result6 }</span> <span class="title">개</span>
-										</p>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="metric">
-										<div align="center">진행중인 면접</div>
-										<span class="icon"><i class="fa fa-clone"></i></span>
-										<p>
-											<span class="number">${ result7 }</span> <span class="title">건</span>
-										</p>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="metric">
-										<div align="center">진행중인 입사 지원</div>
-										<span class="icon"><i class="fa fa-android"></i></span>
-										<p>
-											<span class="number">${ result8 }</span> <span class="title">건</span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="panel-body">
-							<div class="row">
-								<div align="center">
-								<h1>개인이 희망하는 직종 순위!</h1>
-									<table border="1px">
-										<tr>
-											<th style="width: 50px; text-align: center; background: lightgray">순위</th>
-											<th style="width: 300px; background: lightgray">직업명</th>
-										</tr>
-										<c:forEach items="${ result9 }" var="rank">
-											<tr>
-												<th style="width: 50px; text-align: center;">${ rank.RANK }</th>
-												<th>${ rank.JOB_NAME }</th>
-											</tr>
-										</c:forEach>
-									</table>
-									<h1>기업이 가장 많이 채용중인 직종 순위!</h1>
-									<table border="1px">
-										<tr>
-											<th style="width: 50px; text-align: center; background: lightgray">순위</th>
-											<th style="width: 300px; background: lightgray">직업명</th>
-										</tr>
-										<c:forEach items="${ result10 }" var="rank">
-											<tr>
-												<th style="width: 50px; text-align: center;">${ rank.RANK }</th>
-												<th>${ rank.JOB_NAME }</th>
-											</tr>
-										</c:forEach>
-									</table>
-								</div>
-								<div align="center">
-								<h1>월별 개인회원 가입 수</h1>
-									<table border="1px">
-										<tr>
-											<th style="width: 50px; text-align: center; background: lightgray">1월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">2월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">3월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">4월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">5월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">6월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">7월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">8월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">9월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">10월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">11월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">12월</th>
-										</tr>
-										<c:forEach items="${ result11 }" var="Mcnt">
-											<tr>
-												<th style="width: 50px; text-align: center;">${ Mcnt.ONE }</th>
-												<th style="width: 50px; text-align: center;">${ Mcnt.TWO }</th>
-												<th style="width: 50px; text-align: center;">${ Mcnt.THREE }</th>
-												<th style="width: 50px; text-align: center;">${ Mcnt.FOUR }</th>
-												<th style="width: 50px; text-align: center;">${ Mcnt.FIVE }</th>
-												<th style="width: 50px; text-align: center;">${ Mcnt.SIX }</th>
-												<th style="width: 50px; text-align: center;">${ Mcnt.SEVEN }</th>
-												<th style="width: 50px; text-align: center;">${ Mcnt.EIGHT }</th>
-												<th style="width: 50px; text-align: center;">${ Mcnt.NINE }</th>
-												<th style="width: 50px; text-align: center;">${ Mcnt.TEN }</th>
-												<th style="width: 50px; text-align: center;">${ Mcnt.ELEVEN }</th>
-												<th style="width: 50px; text-align: center;">${ Mcnt.TWELVE }</th>
-											</tr>
-										</c:forEach>
-									</table>
-								</div>
-								<div align="center">
-								<h1>월별 기업회원 가입 수</h1>
-									<table border="1px">
-										<tr>
-											<th style="width: 50px; text-align: center; background: lightgray">1월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">2월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">3월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">4월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">5월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">6월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">7월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">8월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">9월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">10월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">11월</th>
-											<th style="width: 50px; text-align: center; background: lightgray">12월</th>
-										</tr>
-										<c:forEach items="${ result12 }" var="Ccnt">
-											<tr>
-												<th style="width: 50px; text-align: center;">${ Ccnt.ONE }</th>
-												<th style="width: 50px; text-align: center;">${ Ccnt.TWO }</th>
-												<th style="width: 50px; text-align: center;">${ Ccnt.THREE }</th>
-												<th style="width: 50px; text-align: center;">${ Ccnt.FOUR }</th>
-												<th style="width: 50px; text-align: center;">${ Ccnt.FIVE }</th>
-												<th style="width: 50px; text-align: center;">${ Ccnt.SIX }</th>
-												<th style="width: 50px; text-align: center;">${ Ccnt.SEVEN }</th>
-												<th style="width: 50px; text-align: center;">${ Ccnt.EIGHT }</th>
-												<th style="width: 50px; text-align: center;">${ Ccnt.NINE }</th>
-												<th style="width: 50px; text-align: center;">${ Ccnt.TEN }</th>
-												<th style="width: 50px; text-align: center;">${ Ccnt.ELEVEN }</th>
-												<th style="width: 50px; text-align: center;">${ Ccnt.TWELVE }</th>
-											</tr>
-										</c:forEach>
-									</table>
-								</div>
-							</div>
-						</div>
-						<!-- <div class="row">
 								<div class="col-md-9">
 									<div id="headline-chart" class="ct-chart"></div>
 								</div>
-							</div> -->
+								<div class="col-md-3">
+									<div class="weekly-summary text-right">
+										<span class="number">2,315</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 12%</span>
+										<span class="info-label">Total Sales</span>
+									</div>
+									<div class="weekly-summary text-right">
+										<span class="number">$5,758</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 23%</span>
+										<span class="info-label">Monthly Income</span>
+									</div>
+									<div class="weekly-summary text-right">
+										<span class="number">$65,938</span> <span class="percentage"><i class="fa fa-caret-down text-danger"></i> 8%</span>
+										<span class="info-label">Total Income</span>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-				<!-- END OVERVIEW -->
-				<!-- <div class="row">
+					<!-- END OVERVIEW -->
+					<div class="row">
 						<div class="col-md-6">
-							RECENT PURCHASES
+							<!-- RECENT PURCHASES -->
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Recent Purchases</h3>
@@ -428,10 +277,10 @@
 									</div>
 								</div>
 							</div>
-							END RECENT PURCHASES
+							<!-- END RECENT PURCHASES -->
 						</div>
 						<div class="col-md-6">
-							MULTI CHARTS
+							<!-- MULTI CHARTS -->
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Projection vs. Realization</h3>
@@ -444,10 +293,10 @@
 									<div id="visits-trends-chart" class="ct-chart"></div>
 								</div>
 							</div>
-							END MULTI CHARTS
+							<!-- END MULTI CHARTS -->
 						</div>
-					</div> -->
-				<!-- <div class="row">
+					</div>
+					<!-- <div class="row">
 						<div class="col-md-7">
 							TODO LIST
 							<div class="panel">
@@ -543,9 +392,9 @@
 							END TIMELINE
 						</div>
 					</div> -->
-				<!-- <div class="row">
+					<div class="row">
 						<div class="col-md-4">
-							TASKS
+							<!-- TASKS -->
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">My Tasks</h3>
@@ -599,10 +448,10 @@
 									</ul>
 								</div>
 							</div>
-							END TASKS
+							<!-- END TASKS -->
 						</div>
 						<div class="col-md-4">
-							VISIT CHART
+							<!-- VISIT CHART -->
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Website Visits</h3>
@@ -615,10 +464,10 @@
 									<div id="visits-chart" class="ct-chart"></div>
 								</div>
 							</div>
-							END VISIT CHART
+							<!-- END VISIT CHART -->
 						</div>
 						<div class="col-md-4">
-							REALTIME CHART
+							<!-- REALTIME CHART -->
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">System Load</h3>
@@ -641,41 +490,33 @@
 									</ul>
 								</div>
 							</div>
-							END REALTIME CHART
+							<!-- END REALTIME CHART -->
 						</div>
-					</div> -->
+					</div>
+				</div>
 			</div>
+			<!-- END MAIN CONTENT -->
 		</div>
-		<!-- END MAIN CONTENT -->
+		<!-- END MAIN -->
+		<div class="clearfix"></div>
+		<footer>
+			<div class="container-fluid">
+				<p class="copyright">&copy; 2020 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
+			</div>
+		</footer>
 	</div>
-	<!-- END MAIN -->
-	<div class="clearfix"></div>
-	<footer>
-		<div class="container-fluid">
-			<p class="copyright">
-				&copy; 2020 <a href="https://www.themeineed.com" target="_blank">Theme
-					I Need</a>. All Rights Reserved.
-			</p>
-		</div>
-	</footer>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/chartist/js/chartist.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/klorofil-common.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/chartist/js/chartist.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/scripts/klorofil-common.js"></script>
 	<script>
 	$(function() {
 		var data, options;
-		
+
 		// headline charts
 		data = {
 			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],

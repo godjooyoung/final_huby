@@ -70,10 +70,8 @@ public class CompanyMemberServiceImpl implements CompanyMemberService {
 
 	@Override
 	public int companyPwUpdate(CompanyVo vo) {
+		vo.setCompany_pw(pwdEncoder.encode(vo.getCompany_pw()));
 		// TODO Auto-generated method stub
-		vo.setCompany_pwcheck(pwdEncoder.encode(vo.getCompany_pwcheck()));
 		return map.companyPwUpdate(vo);
 	}
-
-	
 }

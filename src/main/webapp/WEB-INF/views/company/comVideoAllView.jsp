@@ -7,7 +7,7 @@
 <div class="w3-main w3-content w3-padding" style="max-width: 1200px;"></div>
 
 <!-- First Photo Grid-->
-<div class="w3-row w3-padding-16 w3-center">
+<div class="w3-row-padding w3-padding-16 w3-center">
 		<c:set var="firstList" value="${firstList}" />
 		<c:if test="${empty firstList}">
 		아직 올려진 영상이 없습니다.
@@ -49,7 +49,7 @@
 </div>
 <!-- Grid END -->
 <!-- Second Photo Grid-->
-<div class="w3-row w3-padding-16 w3-center" style="position:relative;" id="morePlace">
+<div class="w3-row-padding w3-padding-16 w3-center" style="position:relative;" id="morePlace">
 		
 </div>
 <!-- Grid END -->

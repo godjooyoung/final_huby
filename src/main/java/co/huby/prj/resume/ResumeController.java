@@ -74,27 +74,41 @@ public class ResumeController {
 		return "person/resume/resumemanagement";
 	}
 	
-	/*
-	 * @RequestMapping("resumeinsert.do") public ModelAndView resumeinsert(Model
-	 * model, HttpServletRequest request, ResumeVo vo, MemberVo mvo) throws
-	 * Exception { ModelAndView mav = new ModelAndView(); String memberid = (String)
-	 * request.getSession().getAttribute("loginId"); vo.setMember_id(memberid);
-	 * 
-	 * int n = resumeService.resumeInsert(vo);
-	 * 
-	 * if(n == 1) { String id = (String)
-	 * request.getSession().getAttribute("loginId"); mvo.setMember_id(id);
-	 * List<ResumeVo> checkRvo = resumeService.SelectAll(mvo); List<Map> svo =
-	 * employmentService.skillsAll(mvo); List<CareerVo> cvo =
-	 * memberService.careerAll(mvo); List<CodeVo> codeList =
-	 * codeService.SelectAll();
-	 * 
-	 * model.addAttribute("rlist" ,checkRvo); model.addAttribute("slist", svo);
-	 * model.addAttribute("clist", cvo); model.addAttribute("codeList", codeList);
-	 * 
-	 * mav.setViewName("person/resume/resumemanagement"); }else {
-	 * mav.setViewName("redirect:resumemanagement.do"); } return mav; }
-	 */
+	@RequestMapping("resumeinsertpage.do")
+	public String resumeinsertpage(Model model, HttpServletRequest request, ResumeVo vo) throws Exception {
+		List<CodeVo> codeList = codeService.SelectAll();
+		model.addAttribute("codeList", codeList);
+		
+		return "person/resume/resumeinsertpage";
+	}
+	
+	@RequestMapping("resumeinsert.do")
+	public ModelAndView resumeinsert(Model model, HttpServletRequest request, ResumeVo vo, MemberVo mvo) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String memberid = (String) request.getSession().getAttribute("loginId");
+		vo.setMember_id(memberid);
+		
+		int n = resumeService.resumeInsert(vo);
+		
+		if(n == 1) {
+			String id = (String) request.getSession().getAttribute("loginId");
+			mvo.setMember_id(id);
+			List<ResumeVo> checkRvo = resumeService.SelectAll(mvo);
+			List<Map> svo = employmentService.skillsAll(mvo);
+			List<CareerVo> cvo = memberService.careerAll(mvo);
+			List<CodeVo> codeList = codeService.SelectAll();
+			
+			model.addAttribute("rlist" ,checkRvo);
+			model.addAttribute("slist", svo);
+			model.addAttribute("clist", cvo);
+			model.addAttribute("codeList", codeList);
+			
+			mav.setViewName("person/resume/resumemanagement");
+		}else {
+			mav.setViewName("redirect:resumemanagement.do");
+		}
+		return mav;
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/resumeInsertAjax.do")
