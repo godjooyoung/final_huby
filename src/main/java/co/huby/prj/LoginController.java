@@ -62,7 +62,7 @@ public class LoginController {
 		if (vo2 != null) {
 			boolean pwdMatch = pwdEncoder.matches(vo.getMember_pw(), vo2.getMember_pw());
 			if (pwdMatch) {
-				mav.setViewName("redirect:resumemanagement.do");
+				mav.setViewName("redirect:employmentMatch.do");
 				request.getSession().setAttribute("personalVo", vo2);
 				request.getSession().setAttribute("loginId", vo2.getMember_id());
 				request.getSession().setAttribute("loginName", vo2.getMember_name());
