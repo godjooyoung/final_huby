@@ -8,7 +8,9 @@ import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.CareerVo;
 import co.huby.prj.vo.ExperienceVo;
 import co.huby.prj.vo.HabitVo;
+import co.huby.prj.vo.ResumeVo;
 import co.huby.prj.vo.SkillsVo;
+import co.huby.prj.vo.VideoVo;
 
 @MapperScan
 public interface MemberMap{
@@ -40,4 +42,8 @@ public interface MemberMap{
 	int experienceInsert(ExperienceVo vo) throws Exception;
 	int experienceUpdate(ExperienceVo vo) throws Exception;
 	int experienceDelete(ExperienceVo vo) throws Exception;
+	int resumeCnt(MemberVo vo) throws Exception;
+	int videoCnt(MemberVo vo) throws Exception;
+	ResumeVo selectResumeOne(String str) throws Exception;
+	VideoVo selectVideoOne(String str) throws Exception;
 }

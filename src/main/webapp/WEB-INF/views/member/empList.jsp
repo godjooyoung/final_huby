@@ -25,7 +25,7 @@
 		</ul>
 	</div>
 </div>
-
+<form id="frm" name="frm" action="employmentList.do" method="post">
 <div id="sub_content_wrap" class="sub0101">
 	<div class="ov inner center" style="margin: 10% auto 5%;">
 		<div class="sub0101_con">

@@ -25,6 +25,7 @@ import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.HabitVo;
 import co.huby.prj.vo.Paging;
 import co.huby.prj.vo.ResumeVo;
+import co.huby.prj.vo.VideoVo;
 
 @Controller
 public class MemberHomeController {
@@ -197,9 +198,35 @@ public class MemberHomeController {
 	}
 	
 	@RequestMapping(value = "/myApplyResume.do")
-	public String myApplyResume(Model model, HttpServletRequest request,ApplyVo avo) throws Exception {
+	public String myApplyResume(Model model, HttpServletRequest request,ApplyVo avo, MemberVo mvo) throws Exception {
 		Map checkMap = boardService.get_apply_member_info(avo);
 		model.addAttribute("applyman", checkMap);
+		
+		String id = (String) request.getSession().getAttribute("loginId");
+		mvo.setMember_id(id);
+
+		String resumeId = (String) checkMap.get("resume_id");
+		String videoId = (String) checkMap.get("video_id");
+		
+		ResumeVo resumeVo = memberService.selectResumeOne(resumeId);
+		VideoVo videoVo = memberService.selectVideoOne(videoId);
+		model.addAttribute("applyRvo",resumeVo);
+		model.addAttribute("applyVvo", videoVo);
+		
+		List<CodeVo> codeList = codeService.SelectAll();
+		//List<Map> lmapvo = employmentService.resumeAll(mvo);
+		//List<Map> vmapvo = employmentService.videoAll(mvo);
+		List<Map> smapvo = employmentService.skillsAll(mvo);
+		List<Map> cmapvo = employmentService.careerAll(mvo);
+		List<Map> hmapvo = employmentService.habitAll(mvo);
+		
+
+//		model.addAttribute("rlist", lmapvo);
+//		model.addAttribute("vlist", vmapvo);
+		model.addAttribute("slist", smapvo);
+		model.addAttribute("clist", cmapvo);
+		model.addAttribute("hlist", hmapvo);
+		model.addAttribute("codelist", codeList);
 		
 		return "person/member/myApplyResume";
 	}

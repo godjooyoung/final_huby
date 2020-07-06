@@ -76,7 +76,7 @@
 	<select id="get_apply_member_info"
 		parameterType="co.huby.prj.vo.ApplyVo" resultType="map">
 		SELECT
-		R.resume_title as "resume_title",
+		R.resume_title as "resume_title", R.resume_id as "resume_id",
 		R.resume_coment as "resume_coment",
 		R.hope_salary as "hope_salary",
 		R.hope_job as "hope_job",

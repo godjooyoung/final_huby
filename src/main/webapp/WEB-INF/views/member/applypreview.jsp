@@ -105,14 +105,16 @@ p {
 								<%-- <img class="img-fluid"
 									src="${pageContext.request.contextPath}/resources/FileUpload/Chrysanthemum.jpg"
 									alt="Card image cap"> --%>
+								<div class="card-body" id="checkvideo">
 								<video id="v_img" width="100%" controls poster="download.do?name=${video.VIDEO_IMG}" playsinline preload="none">
 		 						</video>
 		 						<source id="v_location" src="download.do?name=${video.VIDEO_LOCATION }" type="video/mp4">
 								<!--Card content-->
-								<div class="card-body" id="checkvideo">
 									<!--Title-->
 									<h4 class="card-title" id="v_hashtag">${video.JOB_NAME}</h4>
 									<input type="hidden" id="video_id" name="video_id" value="${video.VIDEO_ID}">
+									<input type="hidden" id="video_location" value="${video.VIDEO_LOCATION}">
+									<input type="hidden" id="video_img" value="${video.VIDEO_IMG}">
 									<!--Text-->
 									<p class="card-text" id="v_content">${video.VIDEO_CONTENTS}</p>
 									<%-- <p class="card-text" id="v_img">${video.VIDEO_IMG}</p> --%>
@@ -171,14 +173,26 @@ p {
 
 <script>
 	function pick2(){
+		
 		var rchecked = $(document).find("[name='rselect']:checked").closest("#checkresume");
 		var vchecked = $(document).find("[name='vselect']:checked").closest("#checkvideo");
-
+		
+		var videoVal = vchecked.find("#video_location").val();
+		var videoImg = vchecked.find("#video_img").val();
+		
+		var video = '<video id="v_img" width="100%" controls poster="download.do?name='+videoImg+'" playsinline preload="none">';
+		video += 		'<source id="v_location" src="download.do?name='+videoVal+'" type="video/mp4">';
+		video += 	'</video>';
+		video += 	'<input type="hidden" id="vCheck" value="'+videoVal+'">';
+		
 		opener.document.getElementById("v_hashtag").innerHTML = vchecked.find("#v_hashtag").html();
 		opener.document.getElementById("v_content").innerHTML = vchecked.find("#v_content").html();
-		opener.document.getElementById("v_img").innerHTML = vchecked.find("#v_img").html();
-		opener.document.getElementById("v_location").innerHTML = vchecked.find("#v_location").html();
-
+		/* opener.document.getElementById("v_img").innerHTML = vchecked.find("#v_img").html(); */
+		
+		$("#testVideo", opener.document).empty();
+		$("#testVideo", opener.document).append(video);
+		
+		
 		opener.document.getElementById("r_title").innerHTML = rchecked.find("#r_title").html(); 
 		opener.document.getElementById("r_hope").innerHTML = rchecked.find("#r_hope").html();
 		opener.document.getElementById("r_salary").innerHTML = rchecked.find("#r_salary").html();
@@ -186,7 +200,7 @@ p {
 		opener.document.getElementById("r_education").innerHTML = rchecked.find("#r_education").html();
 		opener.document.getElementById("r_coment").innerHTML = rchecked.find("#r_coment").html();
 		
-		opener.document.getElementById("resume_id").value = rchecked.find("#resume_Id").val();
+		opener.document.getElementById("resume_id").value = rchecked.find("#resume_id").val();
 		opener.document.getElementById("video_id").value = vchecked.find("#video_id").val();
 		
 		window.close();

@@ -163,7 +163,7 @@
 		select habit_id, habit_name, habit_start_date, habit_log_date, member_id, cnt, case when trunc(habit_log_date) = trunc(sysdate) then 1 else 0 end as checked, round(cnt/CEIL(trunc(sysdate)+1-trunc(habit_start_date))*100) as per
 		from habit
 		where member_id = #{member_id}
-		order by habit_start_date
+		order by habit_id desc
 	</select>
 	
 	<update id="habitUpdate" parameterType="HabitVo">
@@ -210,6 +210,24 @@
 		select * from skills where member_id = #{member_id}
 	</select>
 	
+	<select id="resumeCnt" resultType="int" parameterType="MemberVo">
+	 	select count(resume_id) from resume where member_id = #{member_id}
+	</select>
+	
+	<select id="videoCnt" resultType="int" parameterType="MemberVo">
+	 	select count(video_id) from video where member_id = #{member_id}
+	</select>
+	
+	<select id="selectResumeOne" parameterType="String" resultType="ResumeVo">
+		select resume_id, member_id, resume_title, hope_job, (select code_name from code where code_id = hope_job) as job_name,
+		hope_salary, hope_location, final_education, resume_coment
+		from resume
+		where resume_id = #{value}
+	</select>
+	
+	<select id="selectVideoOne" parameterType="String" resultType="VideoVo">
+		select * from video where video_id = #{value}
+	</select>
 	<!-- <select id="Experience" resultType="ExperienceVo" parameterType="MemberVo">
 		select experience_id, e_start_date, e_end_date, experience_title, 
 		experience_place_name, experience_action, member_id

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -336,4 +337,20 @@ public class MemberController {
 		
 		return result;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/vrCheck.do")
+	public Map vrCheck(Model model, HabitVo hvo, HttpServletRequest request, MemberVo mvo) throws Exception {
+		String id = (String) request.getSession().getAttribute("loginId");
+		Map checkMap = new HashMap<String, Object>();
+		
+		mvo.setMember_id(id);
+		int n = memberService.resumeCnt(mvo);
+		int z = memberService.videoCnt(mvo);
+		checkMap.put("resumeCnt", n);
+		checkMap.put("videoCnt", z);
+		
+		return checkMap;
+	}
+	
 }

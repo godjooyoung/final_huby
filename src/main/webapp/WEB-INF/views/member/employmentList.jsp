@@ -110,10 +110,12 @@
 <!-- 스크립트 -->
 <script>
 	function locationcheck(selected){
+		$("#frm").attr("action","employmentList.do");
 		document.frm.submit();
 	}
 	
 	function jobcheck(selected){
+		$("#frm").attr("action","employmentList.do");
 		document.frm.submit();
 	}
 	

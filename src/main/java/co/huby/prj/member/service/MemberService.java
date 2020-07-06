@@ -5,7 +5,9 @@ import java.util.List;
 import co.huby.prj.vo.CareerVo;
 import co.huby.prj.vo.ExperienceVo;
 import co.huby.prj.vo.HabitVo;
+import co.huby.prj.vo.ResumeVo;
 import co.huby.prj.vo.SkillsVo;
+import co.huby.prj.vo.VideoVo;
 
 public interface MemberService {
 	List<MemberVo> SelectAll() throws Exception;
@@ -36,4 +38,8 @@ public interface MemberService {
 	int experienceInsert(ExperienceVo vo) throws Exception;
 	int experienceUpdate(ExperienceVo vo) throws Exception;
 	int experienceDelete(ExperienceVo vo) throws Exception;
+	int resumeCnt(MemberVo vo) throws Exception;
+	int videoCnt(MemberVo vo) throws Exception;
+	ResumeVo selectResumeOne(String str) throws Exception;
+	VideoVo selectVideoOne(String str) throws Exception; 
 }

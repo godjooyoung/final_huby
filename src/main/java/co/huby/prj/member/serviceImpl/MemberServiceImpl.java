@@ -12,7 +12,9 @@ import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.CareerVo;
 import co.huby.prj.vo.ExperienceVo;
 import co.huby.prj.vo.HabitVo;
+import co.huby.prj.vo.ResumeVo;
 import co.huby.prj.vo.SkillsVo;
+import co.huby.prj.vo.VideoVo;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -194,6 +196,30 @@ public class MemberServiceImpl implements MemberService {
 	public int experienceDelete(ExperienceVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return map.experienceDelete(vo);
+	}
+
+	@Override
+	public int resumeCnt(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.resumeCnt(vo);
+	}
+
+	@Override
+	public int videoCnt(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return map.videoCnt(vo);
+	}
+
+	@Override
+	public ResumeVo selectResumeOne(String str) throws Exception {
+		// TODO Auto-generated method stub
+		return map.selectResumeOne(str);
+	}
+
+	@Override
+	public VideoVo selectVideoOne(String str) throws Exception {
+		// TODO Auto-generated method stub
+		return map.selectVideoOne(str);
 	}
 	
 }

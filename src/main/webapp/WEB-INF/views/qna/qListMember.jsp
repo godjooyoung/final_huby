@@ -38,6 +38,29 @@
 						<!-- question        -->
 						<div class="card">
 							<c:forEach var="list" items="${qList}" varStatus="sts">
+							<c:choose>
+								<c:when test="${list.Q_ANSWER == null}">
+								<div id="headingTwo${ sts.index }" class="card-header">
+									<h4 class="mb-0 accordion-heading">
+										<button data-toggle="collapse" data-target="#collapseTwo${ sts.index }"
+											aria-expanded="false" aria-controls="collapseTwo" class="d-flex align-items-center collapsed">
+											<i class="icon-plug" style="color: red"></i><span>${list.Q_TITLE }</span>
+										</button>
+									</h4>
+								</div>
+								<div id="collapseTwo${ sts.index }" aria-labelledby="headingTwo" data-parent="#accordion" class="collapse">
+									<div class="card-body">문의 내용 : ${ list.Q_CONTENTS }</div>
+									<c:choose>
+										<c:when test="${list.Q_ANSWER == null}">
+											<div class="card-body">답변이 없습니다.</div>
+										</c:when>
+										<c:otherwise>
+											<div class="card-body">운영자의 답변 : ${list.Q_ANSWER}</div>
+										</c:otherwise>
+									</c:choose>
+								</div>
+								</c:when>
+								<c:otherwise>
 								<div id="headingTwo${ sts.index }" class="card-header">
 									<h4 class="mb-0 accordion-heading">
 										<button data-toggle="collapse" data-target="#collapseTwo${ sts.index }"
@@ -57,6 +80,8 @@
 										</c:otherwise>
 									</c:choose>
 								</div>
+								</c:otherwise>
+							</c:choose>
 							</c:forEach>
 						</div>
 						<br>
