@@ -6,7 +6,8 @@
 <br>
 <br>
 <br>
-<br><br>
+<br>
+<br>
 <style>
 @import
 	url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
@@ -95,7 +96,11 @@ section .section-title {
 	-moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
 	box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
 }
-.backside{width:100%}
+
+.backside {
+	width: 100%
+}
+
 .frontside, .backside {
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
@@ -136,86 +141,110 @@ section .section-title {
 	function selectemployment(cid, eid) {
 		$("#company_id").val(cid);
 		$("#employment_id").val(eid);
+		alert(eid + "번 공고입니다.");
 		$("#frm").attr("action", "selectresumepage.do");
 		document.frm.submit();
 	}
 </script>
 <script>
-	if('${error}' == 'error'){
+	if ('${error}' == 'error') {
 		alert("이미 지원한 공고입니다.");
 	}
 </script>
 <!-- Team -->
 <div class="w3-container">
-<form id="frm" name="frm" method="post">
-	<section id="team" class="pb-5">
-		<div class="row">
-			<c:choose>
-				<c:when test="${!empty empMatch}">
-					<c:forEach var="empMatch" items="${empMatch}">
-						<div class="col-xs-12 col-sm-6 col-md-2">
-							<div class="container">
+	<form id="frm" name="frm" method="post">
+		<section id="team" class="pb-5">
+			<div class="row">
+				<c:choose>
+					<c:when test="${!empty empMatch}">
 
-								<!-- front -->
-								<div class="image-flip"
-									ontouchstart="this.classList.toggle('hover');">
-									<div class="mainflip flip-0">
-										<div class="frontside">
-											<div class="card">
-												<div class="card-body text-center">
-													<p><img class=" img-fluid" src="${pageContext.request.contextPath}/resources/FileUpload/${empMatch.company_photo}"
-															alt="card image"></p>
-													<h4 class="card-title">${empMatch.company_name}</h4>
-													<p class="card-text">${empMatch.employment_title}</p>
-			
+						<c:forEach var="empMatch" items="${empMatch}">
+
+							<div class="col-xs-12 col-sm-6 col-md-2">
+								<div class="container">
+
+									<!-- front -->
+									<div class="image-flip"
+										ontouchstart="this.classList.toggle('hover');">
+										<div class="mainflip flip-0">
+											<div class="frontside">
+												<div class="card">
+													<div class="card-body text-center">
+														<p>
+															<img class=" img-fluid"
+																src="${pageContext.request.contextPath}/resources/FileUpload/${empMatch.company_photo}"
+																alt="card image">
+														</p>
+														<h4 class="card-title">${empMatch.company_name}</h4>
+														<p class="card-text">${empMatch.employment_title}</p>
+
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="backside">
-											<div class="card">
-												<div class="card-body text-center mt-4" onclick='selectemployment("${ empMatch.company_id }","${ empMatch.employment_id }")'>
-													<h4 class="card-title">${empMatch.company_name}</h4>
-													<p class="card-text">${empMatch.employment_contents}</p>
-													
+											<div class="backside">
+												<div class="card">
+													<div class="card-body text-center mt-4"
+														onclick='selectemployment("${ empMatch.company_id }","${ empMatch.employment_id }")'>
+														<h4 class="card-title">${empMatch.company_name}</h4>
+														<p class="card-text">${empMatch.employment_contents}</p>
+
+													</div>
+													<a href="javascript:void(0)"
+														onclick="click_like_btn(event, '${ empMatch.employment_id }')"
+														class="btn btn-primary btn-sm""><font
+														style="color: white;">스크랩하기</font></a>
 												</div>
-												<a href="javascript:void(0)" onclick="click_like_btn(event, '${ empMatch.employment_id }')"
-														class="btn btn-primary btn-sm" "><font style="color:white;">스크랩하기</font></a>
 											</div>
 										</div>
 									</div>
+
 								</div>
 							</div>
-						</div>
-					</c:forEach>
-				</c:when>
-			</c:choose>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+			</div>
+		</section>
+		<input type="hidden" id="company_id" name="company_id"> <input
+			type="hidden" id="employment_id" name="employment_id">
+	</form>
+	<c:set var="empMatch" value="${empMatch}" />
+	<c:if test="${empty empMatch}">
+		<div align="center">
+			<h2>
+				매치된 기업이 없습니다. 이력서를 등록해보세요~ <br>맞춤 기업을 추천해드립니다.
+			</h2>
+			<br> <input type="button" value="이력서 등록 하러가기"
+				class="btn btn-warning btn-lg"
+				onClick="location.href='resumemanagement.do'">
 		</div>
-	</section>
-	<input type="hidden" id="company_id" name="company_id"> <input
-		type="hidden" id="employment_id" name="employment_id">
-</form>
-<script>
-//스크립버튼
-	function click_like_btn(e, empid){
-		var emp_id=empid;
-		$.ajax({
-			
-			type : "get",
-			url : "insert_to_employment_like.do",
-			data : {"employment_id" : emp_id},
-			//dataType : 'json',
-			success : function() {
-				alert("해당 공고가 스크랩 되었습니다. 스크랩관리에 가서 메모를 추가하세요");
-			},
-			error : function() {
-				alert("에러 발생. 관리자에게 문의주세요.");
-			}
-		})//end OF AJAX
+	</c:if>
+	<script>
+		//스크립버튼
+		function click_like_btn(e, empid) {
+			alert(empid)
+			var emp_id = empid;
+			$.ajax({
 
-	}//END OF click_like_btn
-</script>
-<!-- Pagination -->
-<!--<div class="w3-center w3-padding-32">
+				type : "get",
+				url : "insert_to_employment_like.do",
+				data : {
+					"employment_id" : emp_id
+				},
+				//dataType : 'json',
+				success : function() {
+					alert("해당 공고가 스크랩 되었습니다. 스크랩관리에 가서 메모를 추가하세요");
+				},
+				error : function() {
+					alert("에러 발생. 관리자에게 문의주세요.");
+				}
+			})//end OF AJAX
+
+		}//END OF click_like_btn
+	</script>
+	<!-- Pagination -->
+	<!--<div class="w3-center w3-padding-32">
 	<div class="w3-bar">
 		<a href="#" class="w3-bar-item w3-button w3-hover-black">뒤로</a> <a
 			href="#" class="w3-bar-item w3-black w3-button">1</a> <a href="#"
@@ -225,4 +254,4 @@ section .section-title {
 			class="w3-bar-item w3-button w3-hover-black">앞으로</a>
 	</div>
 </div> -->
-</div>	
+</div>
