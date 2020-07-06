@@ -18,6 +18,7 @@
 				 			padding-top:5px; padding-left:5px;">
 				 			<b><u>${applyman.member_name}</u> 지원자</b><br>
 				 			#${applyman.code_name}
+				 			${applyman.member_id}${applyman.member_id}${applyman.member_id}
 						</h4>
 						</div>
 						<div class="inner02" style="position:absolute; left:5%; top:5%;">
@@ -72,13 +73,12 @@
 
 			<!-- Right Column -->
 			<div class="w3-twothird">
-
-				<div class="w3-card w3-white w3-margin-bottom">
+				<div class="w3-card w3-white w3-margin-bottom" style="padding-left:15px;">
 					<h2 class="w3-text-grey w3-padding-16">
 						<i class="fas fa-file w3-margin-right w3-xxlarge w3-text-blue" ></i>
 						${applyman.resume_title}
 					</h2>
-					<div>
+					<div style="width:100%;">
 						<h5 class="w3-opacity">
 							<b>한마디</b>
 						</h5>
@@ -87,37 +87,43 @@
 						</h6>
 						<hr>
 					</div>
-					<div>
-						<h5 class="w3-opacity">
-							<b>희망연봉</b>
-						</h5>
-						<p>${applyman.hope_salary}</p>
-						<hr>
+					<div class="w3-cell-row">
+					<div style="width:50%;" class="w3-cell">
+						<div>
+							<h5 class="w3-opacity">
+								<b>희망연봉</b>
+							</h5>
+							<p>${applyman.hope_salary}</p>
+							<hr>
+						</div>
+						<div>
+							<h5 class="w3-opacity">
+								<b>희망직무</b>
+							</h5>
+							<p>${applyman.code_name}</p>
+							<hr>
+						</div>
+					</div>	
+					<div style="width:50%;" class="w3-cell">
+						<div>
+							<h5 class="w3-opacity">
+								<b>희망근무지역</b>
+							</h5>
+							<h6 class="w3-text-teal">
+								${applyman.hope_location}
+							</h6>
+							<hr>
+						</div>
+						<div>
+							<h5 class="w3-opacity">
+								<b>최종학력</b>
+							</h5>
+							<h6 class="w3-text-teal">
+								${applyman.final_education}
+							</h6>
+							<br>
+						</div>
 					</div>
-					<div>
-						<h5 class="w3-opacity">
-							<b>희망직무</b>
-						</h5>
-						<p>${applyman.code_name}</p>
-						<hr>
-					</div>
-					<div >
-						<h5 class="w3-opacity">
-							<b>희망근무지역</b>
-						</h5>
-						<h6 class="w3-text-teal">
-							${applyman.hope_location}
-						</h6>
-						<hr>
-					</div>
-					<div >
-						<h5 class="w3-opacity">
-							<b>최종학력</b>
-						</h5>
-						<h6 class="w3-text-teal">
-							${applyman.final_education}
-						</h6>
-						<br>
 					</div>
 				</div>
 				<br>
@@ -128,7 +134,7 @@
 						경력사항
 						</a>
 					</h2>
-					<div>
+					<div style="padding-left:15px;">
 						<h5 class="w3-opacity">
 						<!-- 커리어 -->
 						<ul class="nav nav-pills flex-column" id="career${applyman.member_id}">
@@ -147,7 +153,7 @@
 						보유기술
 						</a>
 					</h2>
-					<div>
+					<div style="padding-left:15px;">
 						<h5 class="w3-opacity">
 							<ul class="nav nav-pills flex-column" id="skills${applyman.member_id}">
 								<!-- 반복문 돌리기 -->
@@ -166,7 +172,7 @@
 						습관
 						</a>
 					</h2>
-					<div >
+					<div style="padding-left:15px;">
 						<h5 class="w3-opacity">
 							<ul class="nav nav-pills flex-column" id="habits${applyman.member_id}">
 							<!-- 여기에 가져온 습관정보를 붙이자. li 태그로로 -->
@@ -200,15 +206,13 @@ function reciveSkill(e,memberid){
 			alert ("성공 skills");
 			$(place).empty();
 			$.each(data,function(idx,item){
-				$('<li>').html(item.SKILL_NAME + '<div class="w3-light-grey w3-round-large">' 
+				$('<li>').html(item.SKILL_NAME 
+						+ '<div class="w3-light-grey w3-round-large">' 
 						+ "<div class='w3-blue w3-center w3-round-large w3-large' style='width:"
 						+item.SKILL_LEVEL+
 						"%'>" 
 						+ item.SKILL_LEVEL + "lv</div></div><br>"
-						+"<div class=\"w3-light-grey w3-round-large\">"
-						+ "<div class='w3-blue w3-center w3-round-large w3-large' style='width:10"
-						+"%'></div>"
-						+item.PER + "</div>")
+						)
 				.appendTo(place);
 			});//each
 			
@@ -224,10 +228,12 @@ function reciveSkill(e,memberid){
 function reciveHabit(e,memberid){
 	var place = document.getElementById("habits"+memberid);
 	var plusLi = document.createElement('li');
+	var id = memberid;
+	alert (id);
 	$.ajax({
 		type:"get",
 		url:"showHabit.do",
-		data : {'memberid': memberid },
+		data : {'memberid':id },
 		contentType: "application/json",
 		dataType : 'json',
 		success: 
@@ -239,16 +245,22 @@ function reciveHabit(e,memberid){
 			$.each(data,function(idx,item){
 				$('<li>').html(
 						"습관"
-						+(idx+1)+ "  : " 
-						+ item.HABIT_NAME + " "
-						+" 시작 날짜 " +item.habit_start_date 
-						+ " 인증횟수 " + item.CNT
-						+ "성취률"
+						+(idx+1)
+						+ " : " 
+						+ item.HABIT_NAME 
+						+ "<br>"
+						+"시작 날짜  : " 
+						+item.habit_start_date 
+						+"<br>인증횟수  : " 
+						+ item.CNT
+						+"<br>성취률 <br>"
 						+"<div class=\"w3-light-grey w3-round-large\">"
-						+ "<div class='w3-blue w3-center w3-round-large w3-large' style='width:"
-						+item.PER
-						+"%'></div>"
-						+item.PER + "</div>")
+						+"<div class=\"w3-blue w3-center w3-round-large w3-large\" style='width:"
+						+item.PER 
+						+"%'>"
+						+item.PER 
+						+"</div>"
+						+"</div><br>")
 				.appendTo(place);
 			});//each
 			
