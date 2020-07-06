@@ -137,6 +137,7 @@
 		var closeBtn = '<span onclick="this.parentElement.style.display=\'none\'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>';
 		var place = document.getElementById("emp" + empid);
 		var plusLi = document.createElement('li');
+		var yesOrNo="";
 		$
 				.ajax({
 					type : "get",
@@ -147,39 +148,65 @@
 					dataType : 'json',
 					success : function(data) {
 						console.log(data[0]);
-
 						$(place).empty();
-						$
-								.each(
-										data,
-										function(idx, item) {
-											$('<li>')
-													.html(
-															"공고제목:"
-																	+ item.EMPLOYMENT_TITLE
-																	+ "<br>"
-																	+ "직급:"
-																	+ item.HOPE_JOB_POSITION
-																	+ "<br>"
-																	+ closeBtn
-																	+ "지역:"
-																	+ item.HOPE_LOCATION
-																	+ "<br>"
-																	+ "내용:"
-																	+ item.EMPLOYMENT_CONTENTS
-																	+ "<br>"
-																	+ item.HOPE_WORK_TYPE
-																	+ "<b>"
-																	+ item.EMPLOYMENT_ID
-																	+ "<b>"
-																	+ "<br><input type=\"button\" value=\"지원하기\"  onClick=\"go_apply_page(event,"
-																	+ item.EMPLOYMENT_ID
-																	+ ")\">"
-																	+ "<br><input type=\"button\" value=\"스크랩하기\"  onClick=\"click_like_btn(event,"
-																	+ item.EMPLOYMENT_ID
-																	+ ")\">")
+						$.each( data,
+									 function(idx, item) {
+											yesOrNo = item.COMPLETE;
+											if (yesOrNo == 'Y'){
+												$('<li>').html(
+														"공고제목:"
+																+ item.EMPLOYMENT_TITLE
+																+ "<br>"
+																+ "직급:"
+																+ item.HOPE_JOB_POSITION
+																+ "<br>"
+																+ closeBtn
+																+ "지역:"
+																+ item.HOPE_LOCATION
+																+ "<br>"
+																+ "내용:"
+																+ item.EMPLOYMENT_CONTENTS
+																+ "<br>"
+																+ item.HOPE_WORK_TYPE
+																+ "<b>"
+																+ item.EMPLOYMENT_ID
+																+ "<br>"
+																+ "<input type=\"button\" value=\"공고 마감된 공고입니다.\">"
+																+ "<br><input type=\"button\" value=\"스크랩하기\"  onClick=\"click_like_btn(event,"
+																+ item.EMPLOYMENT_ID
+																+ ")\">")
 
-													.appendTo(place);
+												.appendTo(place);
+												
+											}else if (yesOrNo =='N'){
+												$('<li>').html(
+														"공고제목:"
+																+ item.EMPLOYMENT_TITLE
+																+ "<br>"
+																+ "직급:"
+																+ item.HOPE_JOB_POSITION
+																+ "<br>"
+																+ closeBtn
+																+ "지역:"
+																+ item.HOPE_LOCATION
+																+ "<br>"
+																+ "내용:"
+																+ item.EMPLOYMENT_CONTENTS
+																+ "<br>"
+																+ item.HOPE_WORK_TYPE
+																+ "<b>"
+																+ item.EMPLOYMENT_ID
+																+ "<br>"
+																+ "<input type=\"button\" value=\"지원하기\" onClick=\"go_apply_page(event,"
+																+ item.EMPLOYMENT_ID
+																+ ")\">"
+																+ "<br><input type=\"button\" value=\"스크랩하기\"  onClick=\"click_like_btn(event,"
+																+ item.EMPLOYMENT_ID
+																+ ")\">")
+
+												.appendTo(place);
+												}//end if
+											
 										});//each
 
 					},
