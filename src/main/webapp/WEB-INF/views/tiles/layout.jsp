@@ -56,7 +56,7 @@ body, h1, h2, h3, h4, h5, h6 {
 <title>HUBY</title>
 </head>
 <body id="page-top">
-	<div id="wrapper">
+	<div id="wrapper" style="background-color: white;">
 		<tiles:insertAttribute name="top" />
 		<br> <br>
 		<div id="msgAlert"></div>

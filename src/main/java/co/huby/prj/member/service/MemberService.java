@@ -3,6 +3,7 @@ package co.huby.prj.member.service;
 import java.util.List;
 
 import co.huby.prj.vo.CareerVo;
+import co.huby.prj.vo.ExperienceVo;
 import co.huby.prj.vo.HabitVo;
 import co.huby.prj.vo.SkillsVo;
 
@@ -31,4 +32,8 @@ public interface MemberService {
 	int pwUpdate(MemberVo vo) throws Exception;
 	int selectSkillId() throws Exception;
 	List<SkillsVo> skillAll(SkillsVo vo) throws Exception;
+	List<ExperienceVo> Experience(MemberVo vo) throws Exception;
+	int experienceInsert(ExperienceVo vo) throws Exception;
+	int experienceUpdate(ExperienceVo vo) throws Exception;
+	int experienceDelete(ExperienceVo vo) throws Exception;
 }

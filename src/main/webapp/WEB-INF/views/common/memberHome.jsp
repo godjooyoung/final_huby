@@ -141,7 +141,6 @@ section .section-title {
 	function selectemployment(cid, eid) {
 		$("#company_id").val(cid);
 		$("#employment_id").val(eid);
-		alert(eid + "번 공고입니다.");
 		$("#frm").attr("action", "selectresumepage.do");
 		document.frm.submit();
 	}
@@ -223,7 +222,6 @@ section .section-title {
 	<script>
 		//스크립버튼
 		function click_like_btn(e, empid) {
-			alert(empid)
 			var emp_id = empid;
 			$.ajax({
 

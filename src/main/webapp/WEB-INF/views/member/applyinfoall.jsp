@@ -72,6 +72,10 @@
 							<div>
 								<p>
 									<i class="fas fa-signature w3-margin-right w3-large w3-text-blue"></i>
+									${sessionScope.personalVo.member_id}
+								</p>
+								<p>
+									<i class="fas fa-signature w3-margin-right w3-large w3-text-blue"></i>
 									${sessionScope.personalVo.member_name}
 								</p>
 								<p>
@@ -185,7 +189,7 @@
 
 				</div>
 				
-				<div class="w3-card w3-white w3-margin-bottom">
+				<%-- <div class="w3-card w3-white w3-margin-bottom">
 					<h2 class="w3-text-grey w3-padding-16">
 						<a onclick="reciveExp(event,'${applyman.member_id}')">
 						<i  class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-blue"></i>
@@ -201,7 +205,7 @@
 						<hr>
 					</div>
 
-				</div>
+				</div> --%>
 				
 				<div class="w3-card w3-white w3-margin-bottom">
 					<h2 class="w3-text-grey w3-padding-16">

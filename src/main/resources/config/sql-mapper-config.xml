@@ -23,6 +23,6 @@
 		<typeAlias alias="QuestionVo"
 			type="co.huby.prj.vo.QuestionVo" />
 		<typeAlias alias="Paging" type="co.huby.prj.vo.Paging" />
-
+		<typeAlias alias="ExperienceVo" type="co.huby.prj.vo.ExperienceVo" />
 	</typeAliases>
 </configuration>

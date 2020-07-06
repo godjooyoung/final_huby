@@ -13,11 +13,7 @@
 <body>
 <div style="margin: 30px 30px 30px 30px;">
 <form class="form-horizontal" id="frm" name="frm" method="post" onsubmit="careerInsertGo()" >
-    <fieldset>
-
-        <!-- Form Name -->
-        <legend>커리어 등록</legend>
-
+		<h1 align="center" style="font-weight: bolder;">커리어 등록</h1>
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="name">회사명</label>  
@@ -62,7 +58,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="rpassword">업무직책</label>
           <div class="col-md-4">
-            <select class="form-control input-md" input id="job_position" name="job_position" required="required">
+            <select class="form-control input-md" id="job_position" name="job_position" required="required">
   				<option value="" disabled selected>선택</option>
   				<option value="사원">사원급</option>
   				<option value="대리">대리급</option>
@@ -94,7 +90,6 @@
             <input type="button" name="cancel" class="btn btn-primary" onclick="winclose()" value="창닫기">
           </div>
         </div>
-        </fieldset>
         <script>
         	function winclose(){
         		window.close();

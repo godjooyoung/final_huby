@@ -880,7 +880,18 @@ body {
 									  		<option value="전국">전국</option>
 									  	</select></p>
 									<p>최종학력</p>
-									<input type="text" class="form-control input-md" id="resume_final_education" value="text">
+									<select class="form-control input-md" id="resume_final_education" name="resume_final_education" required="required">
+						  				<option value="" disabled selected>선택</option>
+						  				<option value="학력무관"> 학력무관</option>
+						  				<option value="고등학교졸업"> 고등학교졸업 이상</option>
+						  				<option value="대학졸업"> 대학졸업(2,3년) 이상</option>
+						  				<option value="대학교졸업"> 대학교졸업(4년) 이상</option>
+						  				<option value="석사졸업"> 석사졸업 이상</option>
+						  				<option value="박사졸업"> 박사졸업 이상</option>
+									</select>
+									<script>
+										$("#resume_final_education").val("${param.resume_final_education}");
+									</script>
 									<p>한마디</p>
 									<input type="text" class="form-control input-md" id="resume_coment" value="text">
 									<button type="button" class="btn-primary" onclick="ajaxResumeUpdate()" style="background-color: #ff0081">수정하기</button>

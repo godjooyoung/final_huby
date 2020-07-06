@@ -209,6 +209,14 @@
 	<select id="skillAll" resultType="SkillsVo" parameterType="SkillsVo">
 		select * from skills where member_id = #{member_id}
 	</select>
+	
+	<!-- <select id="Experience" resultType="ExperienceVo" parameterType="MemberVo">
+		select experience_id, e_start_date, e_end_date, experience_title, 
+		experience_place_name, experience_action, member_id
+		from experience
+		where member_id = #{member_id}
+	</select> -->
+	
 	<!-- <select id="getSelect" parameterType="MemberVO" resultType="MemberVO">
 		SELECT * FROM MEMBER WHERE ID = #{ID}
 	</select>

@@ -13,6 +13,9 @@
 	}
 </script>
 <style>
+	.page-item{
+		margin: auto;
+	}
 	#card_overflow{
 		overflow: hidden;
     	height: 100px;
