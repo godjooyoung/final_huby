@@ -40,12 +40,14 @@
         
           //로딩중 이미지 표시
           $('#loadingImg').show();
+
       }
       
       function closeLoadingWithMask() {
           $('#mask, #loadingImg').hide();
           $('#mask, #loadingImg').remove(); 
       }
+
       $(document).on('click', '#btnSend',function(){
                      if($("video").length >=3){
                         alert("영상은 3개까지 등록 가능합니다. 기존의 영상을 삭제 후 다시 실행해 주세요.");
@@ -150,6 +152,7 @@
 	padding: 1px;
 	border-radius: 3px;
 }
+
 .bar {
 	background-color: #B4F5B4;
 	width: 0%;
@@ -157,6 +160,7 @@
 	border-radius: 3px;
 	margin: 0px;
 }
+
 .percent {
 	position: absolute;
 	display: inline-block;
@@ -169,17 +173,21 @@
 	position: relative;
 	top: 100px;
 }
+
 .div_videoInsert {
 	display: inline-block;
 }
+
 .a_block {
 	text-align: center;
 }
+
 .video_css {
 	border: 5px solid #08298A;
 	border-radius: 20px;
 	outline: none;
 }
+
 .a_btn {
 	text-decoration:none;
 	font-size: 1.5rem;
@@ -191,6 +199,7 @@
 	transition: all 0.1s;
 	font-family: 'Hanna', sans-serif;
 }
+
 .a_btn.blue {
 	background-color: #1f75d9;
 	border-bottom: 5px solid #165195;

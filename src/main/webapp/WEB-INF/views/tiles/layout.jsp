@@ -82,6 +82,7 @@ body, h1, h2, h3, h4, h5, h6 {
 </script>
 <script>
 	connect();
+
 	//연결
 	function connect() {
 		sock = new SockJS('/prj/chat.do');
