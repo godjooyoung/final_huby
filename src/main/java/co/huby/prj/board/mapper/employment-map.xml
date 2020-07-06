@@ -59,7 +59,7 @@
 	<select id="careerAll" resultType="map" parameterType="map">
 		select
 		career_id, start_date, end_date, company_name, career_content, job,
-		job_position, member_id, (select code_name from code where code_id=job ) as job_name
+		job_position, member_id
 		from career
 		where member_id = #{member_id}
 	</select>
@@ -73,7 +73,11 @@
 	</select>
 	
 	<select id="habitAll" resultType="map" parameterType="map">
-		select habit_id, habit_name, habit_start_date, habit_log_date, member_id, cnt, case when trunc(habit_log_date) = trunc(sysdate) then 1 else 0 end as checked, round(cnt/CEIL(trunc(sysdate)+1-trunc(habit_start_date))*100) as per
+		select habit_id, 
+				habit_name,
+				TO_CHAR(habit_start_date, 'yyyy-MM-dd') as "habit_start_date", 
+				TO_CHAR(habit_log_date,'yyyy-MM-dd') as "habit_log_date", 
+				member_id, cnt, case when trunc(habit_log_date) = trunc(sysdate) then 1 else 0 end as checked, round(cnt/CEIL(trunc(sysdate)+1-trunc(habit_start_date))*100) as per
 		from habit
 		where member_id = #{member_id}
 		order by habit_start_date
