@@ -11,7 +11,7 @@
 			<!-- Left Column -->
 			<div class="w3-third">
 				<div class="w3-white w3-text-grey w3-card">
-					<div class="w3-display-container">
+					<div class="w3-display">
 						<div class='wrap' style='position:relative;'>
 						<div class="inner01" style="position:absolute; left:3%; top:3%;">
 						<h4 style="align:left; color:white; text-shadow: 2px 2px 5px black; font-weight: bolder; 
@@ -78,7 +78,7 @@
 						<i class="fas fa-file w3-margin-right w3-xxlarge w3-text-blue" ></i>
 						${applyman.resume_title}
 					</h2>
-					<div class="w3-container">
+					<div>
 						<h5 class="w3-opacity">
 							<b>한마디</b>
 						</h5>
@@ -133,24 +133,6 @@
 						<!-- 커리어 -->
 						<ul class="nav nav-pills flex-column" id="career${applyman.member_id}">
 						<!-- 여기에 가져온 경력정보를 붙이자. li 태그로로 -->
-						</ul>
-						</h5>
-						<hr>
-					</div>
-
-				</div>
-				
-				<div class="w3-card w3-white w3-margin-bottom">
-					<h2 class="w3-text-grey w3-padding-16">
-						<a onclick="reciveExp(event,'${applyman.member_id}')">
-						<i  class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-blue"></i>
-						관련 경험 및 자기 계발
-						</a>
-					</h2>
-					<div >
-						<h5 class="w3-opacity">
-							<ul class="nav nav-pills flex-column" id="exp${applyman.member_id}">
-							<!-- 여기에 가져온 경험정보를 붙이자. li 태그로로 -->
 						</ul>
 						</h5>
 						<hr>
@@ -218,7 +200,15 @@ function reciveSkill(e,memberid){
 			alert ("성공 skills");
 			$(place).empty();
 			$.each(data,function(idx,item){
-				$('<li>').html(item.SKILL_NAME + '<div clas="w3-light-grey w3-round-large">' + "<div class='w3-container w3-blue w3-center w3-round-large w3-tiny' style='width:"+item.SKILL_LEVEL+"%'>" + item.SKILL_LEVEL + "lv</div></div><br>")
+				$('<li>').html(item.SKILL_NAME + '<div class="w3-light-grey w3-round-large">' 
+						+ "<div class='w3-blue w3-center w3-round-large w3-large' style='width:"
+						+item.SKILL_LEVEL+
+						"%'>" 
+						+ item.SKILL_LEVEL + "lv</div></div><br>"
+						+"<div class=\"w3-light-grey w3-round-large\">"
+						+ "<div class='w3-blue w3-center w3-round-large w3-large' style='width:10"
+						+"%'></div>"
+						+item.PER + "</div>")
 				.appendTo(place);
 			});//each
 			
@@ -243,13 +233,22 @@ function reciveHabit(e,memberid){
 		success: 
 			function(data){	
 			alert ("성공 habit");
-			console.log(data[0]);
+			console.log("--------------------------"+data[0]);
 			
 			$(place).empty();
 			$.each(data,function(idx,item){
-				$('<li>').html("습관"+ (idx+1) + " " + item.HABIT_NAME + " "
-						+ item.HABIT_START_DATE
-						+ " 인증 " + item.CNT)
+				$('<li>').html(
+						"습관"
+						+(idx+1)+ "  : " 
+						+ item.HABIT_NAME + " "
+						+" 시작 날짜 " +item.habit_start_date 
+						+ " 인증횟수 " + item.CNT
+						+ "성취률"
+						+"<div class=\"w3-light-grey w3-round-large\">"
+						+ "<div class='w3-blue w3-center w3-round-large w3-large' style='width:"
+						+item.PER
+						+"%'></div>"
+						+item.PER + "</div>")
 				.appendTo(place);
 			});//each
 			

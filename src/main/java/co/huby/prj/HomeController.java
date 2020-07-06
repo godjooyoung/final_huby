@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import co.huby.prj.board.service.BoardService;
-
+import co.huby.prj.board.service.EmploymentService;
+import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.ApplyVo;
 import co.huby.prj.vo.CodeVo;
 import co.huby.prj.vo.EmploymentsVo;
@@ -39,6 +40,8 @@ public class HomeController {
 
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private EmploymentService employmentService;
 	/*
 	@InitBinder
 	public void allowEmptyDateBinding(WebDataBinder binder) {
@@ -137,9 +140,11 @@ public class HomeController {
 
 	@ResponseBody
 	@RequestMapping(value = "/showHabit.do") // 습관보여주기
-	public List<Map> showHabit(Model model, HttpServletRequest request, ApplyVo vo) throws Exception {
+	public List<Map> showHabit(Model model, HttpServletRequest request, MemberVo vo) throws Exception {
 		String memberid = request.getParameter("memberid");
-		List<Map> list = boardService.get_habit(memberid);
+		vo.setMember_id(memberid);
+		List<Map> list = employmentService.habitAll(vo);
+		System.out.println("습관 가져오자 습관");
 		return list;
 	}
 
