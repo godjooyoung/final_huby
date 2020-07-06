@@ -876,7 +876,7 @@ body {
 		<div id="bottom-bar">
 			<button id="addcontact">
 				<i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> 
-				<span>Add contact</span>
+				<span>맞춤추천인재</span>
 			</button>
 			<button id="settings">
 				<i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span>
@@ -1058,7 +1058,7 @@ body {
 										+ t + "</span></li>");
 				}					
 			}
-					if (data.result.length == 0) {$('#message_content').append("대화내용이 없슴니다,");
+					if (data.result.length == 0) {$('#message_content').append("<div align='center'><h3>대화를 시작해 보세요.</h3></div>");
 				}
 					$(".messages").scrollTop($(".messages").prop('scrollHeight'))
 			},
