@@ -34,7 +34,7 @@
 						</div>
 					</div>
 					<br>
-					<div>
+					<div style="padding-left:15px;">
 						<p>
 							<i class="fas fa-signature w3-margin-right w3-large w3-text-blue"></i>
 							${applyman.member_name}
@@ -53,11 +53,14 @@
 						</p>
 						<p>
 							<i class="fas fa-venus-mars w3-margin-right w3-large w3-text-blue"></i>
-							${applyman.member_gender}
+							<c:set var="gender" value="${applyman.member_gender}"></c:set>
+							<c:if test="${gender eq 'M' }">남성</c:if>
+							<c:if test="${gender eq 'W' }">여성</c:if>
 						</p>
 						<p>
 							<i class="fas fa-birthday-cake w3-margin-right w3-large w3-text-blue"></i>
-							${applyman.member_birth}
+							<fmt:formatDate  type="date" value="${applyman.member_birth}"/>
+							
 						</p>
 						
 						<hr>
