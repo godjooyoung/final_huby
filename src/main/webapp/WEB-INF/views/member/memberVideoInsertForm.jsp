@@ -239,7 +239,7 @@
 							<div>
 								<textarea class="text-area" id="editor" name="textarea"
 									style="width: 100%" rows="10" id="textarea"
-									placeholder="코멘트를 남기실 수 있습니다."></textarea>
+									placeholder="코멘트를 남기실 수 있습니다." required></textarea>
 								<!-- 텍스트 에어리어는 붙여서 입력할것 떨어지면 공백이 발생한다. -->
 							</div>
 							<div style="padding-top: 20px">
