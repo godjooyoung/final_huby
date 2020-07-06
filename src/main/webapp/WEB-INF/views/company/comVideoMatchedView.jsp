@@ -84,7 +84,11 @@
 
 <c:set var="matched" value="${matched}" />
 <c:if test="${empty matched}">
-		매치된 영상이 없습니다. 공고를 내보세요~ 맞춤 인재를 추천해드립니다.
+		<div align="center">
+			<font style="color:#134a8e; font-weight:bolder;">매치된 영상이 없습니다.</font> <br>
+			허비를 통해 공고를 내보세요. 맞춤 인재를 추천해드립니다!
+			<a>공고등록하러가기</a><a>모든 인재 보러가기</a>
+		</div>
 </c:if>
 <c:set var="matched" value="${matched}" />
 <c:if test="${not empty matched}">
@@ -177,11 +181,15 @@
 							+"<div class='inner02' style='position:absolute; left:5%; top:5%;'>"
 							+"<br>"
 							+"<p style='overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:250px;"
-							+"font-weight: bold; text-shadow: 1px 1px 2px white;'>"
+							+"font-weight: bold;  color:white; text-shadow: 2px 2px 5px black;'>"
 							+item.video_contents
 							+"</p></div>"
 							+"<img src='download.do?name="
 							+item.video_img
+							+"&member_id="
+							+item.member_id
+							+"hashcode="
+							+item.code_name
 							+"' alt='썸네일'"
 							+"style='width:100%;' onerror=\""
 							+"this.src=\'"
@@ -208,7 +216,7 @@
 				$(load_mord_btn).empty();
 				$('<div class=\"\">').html(
 						"<div class='wrap' style='position:relative; width:100%;'>"
-						+"<h4><b><u>더이상 없어요..ㅜㅜ</u></b></h4>"
+						+"<h4><b><u>더이상 없어요..(T.T)</u></b></h4>"
 						+"</div>"
 						).appendTo(place);
 			};//endif

@@ -139,7 +139,7 @@
 					<h3 style="color: white; margin-bottom: 5px;">${ empMatch.EMPLOYMENT_TITLE }</h3>
 					<h5 style="color: white; margin-bottom:20px; padding-bottom:20px;">
 						<fmt:formatDate pattern="yyyy년MM월dd일 까지"
-							value="${ empMatch.EMPLOYMENT_TIME }" />
+							value="${empMatch.EMPLOYMENT_TIME }" />
 					</h5>
 				</div>
 			</div>

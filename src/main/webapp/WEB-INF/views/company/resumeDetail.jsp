@@ -39,7 +39,7 @@ html, body, h1, h2, h3, h4, h5, h6 {
 					</div>
 					<!-- -->
 					<br>
-					<div class="w3-container">
+					<div>
 						<p>
 							<i class="fas fa-signature w3-margin-right w3-large w3-text-blue"></i>
 							${member.member_name}
@@ -83,12 +83,12 @@ html, body, h1, h2, h3, h4, h5, h6 {
 			<!-- Right Column -->
 			<div class="w3-twothird">
 
-				<div class="w3-container w3-card w3-white w3-margin-bottom">
+				<div class="w3-card w3-white w3-margin-bottom">
 					<h2 class="w3-text-grey w3-padding-16">
 						<i class="fas fa-file w3-margin-right w3-xxlarge w3-text-blue" ></i>
 						${resume.resume_title}
 					</h2>
-					<div class="w3-container">
+					<div>
 						<h5 class="w3-opacity">
 							<b>한마디</b>
 						</h5>
@@ -97,21 +97,21 @@ html, body, h1, h2, h3, h4, h5, h6 {
 						</h6>
 						<hr>
 					</div>
-					<div class="w3-container">
+					<div>
 						<h5 class="w3-opacity">
 							<b>희망연봉</b>
 						</h5>
 						<p>${resume.hope_salary}</p>
 						<hr>
 					</div>
-					<div class="w3-container">
+					<div>
 						<h5 class="w3-opacity">
 							<b>희망직무</b>
 						</h5>
 						<p>${code.code_name}</p>
 						<hr>
 					</div>
-					<div class="w3-container">
+					<div>
 						<h5 class="w3-opacity">
 							<b>희망근무지역</b>
 						</h5>
@@ -120,7 +120,7 @@ html, body, h1, h2, h3, h4, h5, h6 {
 						</h6>
 						<hr>
 					</div>
-					<div class="w3-container">
+					<div >
 						<h5 class="w3-opacity">
 							<b>최종학력</b>
 						</h5>
