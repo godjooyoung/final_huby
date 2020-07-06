@@ -942,6 +942,7 @@ body {
 	src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
 <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script> -->
 <script>
+	var img = document.getElementById("photo");
 	
 	$(document).ready(function(){
 	  $("#myInput").on("keyup", function() {
@@ -1003,7 +1004,7 @@ body {
 												+ '<br><span style="float: right; font-size: 9px; text-align: right;">'
 												+ t + '</span></li>').appendTo($('.messages ul')));
 			} else {
-				$("#messages").append($('<li class="sent"><img src="${pageContext.request.contextPath}/resources/FileUpload/${data.name.COMPANY_PHOTO}" alt="" /><p>'
+				$("#messages").append($('<li class="sent"><img src="'+ img.src +'" /><p>'
 												+ msg.message_content + '</p>'
 												+ '<br><span style="float: left; font-size: 9px; text-align: left;">'
 												+ t + '</span></li>').appendTo($('.messages ul')));
@@ -1066,7 +1067,7 @@ body {
 				$('#name').empty();
 				$('#name').append(data.name.COMPANY_NAME);
 				$('#photo').empty();
-				$('#photo').attr("src", data.name.COMPANY_PHOTO);
+				$('#photo').attr("src", "${pageContext.request.contextPath}/resources/FileUpload/" + data.name.COMPANY_PHOTO);
 						for (var i = 0; i < data.result.length; i++) {
 							if (data.result[i].message_sender == '${loginId}') {
 								$('#message_content').append("<li class='replies'><img src='${pageContext.request.contextPath}/resources/FileUpload/${memberPhoto}' alt='' /><p>"

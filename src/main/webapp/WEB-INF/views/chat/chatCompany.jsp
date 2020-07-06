@@ -839,7 +839,7 @@ body {
 		</div>
 		<div id="search">
 			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-			<input type="text" placeholder="이름을 검색하세요." />
+			<input type="text" id="myInput" placeholder="이름을 검색하세요." />
 		</div>
 		
 		<!-- 채팅리스트 -->
@@ -916,6 +916,18 @@ body {
 	</div>
 </div>
 <script>
+	var img = document.getElementById("photo");
+	
+	$(document).ready(function(){
+		  $("#myInput").on("keyup", function() {
+		    var value = $(this).val().toLowerCase();
+		    $("#myList p").filter(function() {
+		      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		    });
+		  });
+		});
+	
+	
 	$(".messages").animate({ scrollTop : $(document).height()}, "fast");
 	$(".expand-button").click(function() {
 		$("#profile").toggleClass("expanded");
@@ -968,7 +980,7 @@ body {
 										+ '<br><span style="float: right; font-size: 9px; text-align: right;">'
 										+ t + '</span></li>').appendTo($('.messages ul')));
 			} else {
-				$("#messages").append($('<li class="sent"><img src="${pageContext.request.contextPath}/resources/FileUpload/${data.name.COMPANY_PHOTO}" alt="" /><p>'
+				$("#messages").append($('<li class="sent"><img src="'+ img.src +'" /><p>'
 										+ msg.message_content + '</p>'
 										+ '<br><span style="float: left; font-size: 9px; text-align: left;">'
 										+ t + '</span></li>').appendTo($('.messages ul')));
@@ -1031,7 +1043,7 @@ body {
 				$('#name').empty();
 				$('#name').append(data.name.MEMBER_NAME);
 				$('#photo').empty();
-				$('#photo').attr("src", data.name.MEMBER_PHOTO);
+				$('#photo').attr("src", "${pageContext.request.contextPath}/resources/FileUpload/" + data.name.MEMBER_PHOTO);
 				for (var i = 0; i < data.result.length; i++) {
 					if (data.result[i].message_sender == '${loginId}') {
 						$('#message_content').append("<li class='replies'><img src='${pageContext.request.contextPath}/resources/FileUpload/${companyPhoto}' alt='' /><p>" 

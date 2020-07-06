@@ -1,13 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <article>
 	<div class="container" role="main">
-		<h2>질문하기</h2>
-		<form name="form" id="form" role="form" method="post" action="qInsertC.do">
+		<h2>문의하기</h2>
+		<br>
+		<form name="form" id="form" role="form" method="post"
+			action="qInsertC.do">
 			<div class="mb-3">
 				<label for="title">제목</label> <input type="text"
-					class="form-control" name="q_title" id="q_title" placeholder="제목을 입력해 주세요">
+					class="form-control" name="q_title" id="q_title"
+					placeholder="제목을 입력해 주세요"><br>
+				<br>
 			</div>
 			<div class="mb-3">
 				<label for="content">내용</label>
@@ -16,11 +26,13 @@
 			</div>
 			<div>
 				<button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
-				<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='qListMember.do'">목록</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnList"
+					onclick="location.href='qListMember.do'">목록</button>
 				<br> <br> <br>
 			</div>
 		</form>
 	</div>
 </article>
-
-
+<br>
+<br>
+<br>

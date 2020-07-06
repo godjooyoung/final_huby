@@ -6,9 +6,10 @@
 	<div class="visual-area ">
 		<div class="visual-area-in">
 			<div class="visual-area-txt inner sub01 ">
-				<div class="tit" data-aos="fade-up" data-aos-delay="300">공고목록</div>
+				<div class="tit" data-aos="fade-up" data-aos-delay="300">전체채용공고</div>
 				<p class="fs18" data-aos="fade-up" data-aos-delay="400">
-					허빟<br>공고목록
+					시간을 허비말고 DO HUBY<br>
+					전체 채용 공고입니다.
 				</p>
 			</div>
 		</div>
@@ -19,7 +20,7 @@
 
 		<ul class="sub_menu_box sub01">
 			<li class="m1"><a href="employmentList.do">전체채용공고</a></li>
-			<li class="m2"><a href="employmentMatch.do">맞춤채용공고</a></li>
+			<li class="m2"><a href="empMatch.do">맞춤채용공고</a></li>
 			<li class="m3"><a href="load_employment_like_list.do">관심채용공고</a></li>
 		</ul>
 	</div>
@@ -27,11 +28,8 @@
 
 <div id="sub_content_wrap" class="sub0101">
 	<div class="ov inner center" style="margin: 10% auto 5%;">
-		<div class="sub0101_tit">여긴공고전체 보</div>
-
 		<div class="sub0101_con">
-			<div class="w3-container">
-				<h2>공고리스트</h2>
+			<div>
 				<div>
 					<select class="form-control input-md" id="location"
 						name="hope_location" onchange="locationcheck(this.value)">
@@ -76,35 +74,41 @@
 						$("#job").val("${param.hope_job}");
 					</script>
 					</form>
-					<!-- 공고 리스트 BODY -->
 				</div>
-				<c:forEach var="elist" items="${elist}">
-					<ul class="w3-ul w3-card-4">
-						<li class="w3-bar"><img src="img_avatar2.png"
-							class="w3-bar-item w3-circle w3-hide-small" style="width: 85px">
-							<div class="w3-bar-item">
-								<a onclick="empDetail(event,'${elist.EMPLOYMENT_ID}')"> <span
-									class="w3-large">${elist.EMPLOYMENT_TITLE}</span></a><br> <span>${elist.HOPE_JOB_POSITION}</span>
-							</div></li>
-					</ul>
-					<ul class="nav nav-pills flex-column"
-						id="emp${elist.EMPLOYMENT_ID}">
-					</ul>
-					<br>
-					<form id="empfrmforapply${elist.EMPLOYMENT_ID}"
+
+<!-- ------------------------------ 공고 리스트 body----------------------------------- -->	
+<!-- 실제 소스들-->
+		<br>
+		<div class="sub0101_con">
+			<div>
+				  <ul class="list-group list-group-flush">
+				  	<c:forEach var="elist" items="${elist}">
+				    <li class="list-group-item" 
+				    	onclick="empDetail(event,'${elist.EMPLOYMENT_ID}')">
+				    	<img src="${pageContext.request.contextPath}/resources/FileUpload/#companyphoto#" class="w3-bar-item w3-circle w3-hide-small" style="width: 85px; float:left;">
+				    	<p align="left" style="float:left;">${elist.EMPLOYMENT_TITLE}</p>
+				    	<p align="left" style="float:left;">${elist.HOPE_JOB_POSITION}</p>
+				    	<p align="right" style="float:right;">
+				    	<fmt:formatDate pattern ="yyyy년MM월dd일 까지" value="${employment.employment_time}"/></p>
+				    </li>
+				    <li id="emp${elist.EMPLOYMENT_ID}">
+					
+					</li>
+				   <form id="empfrmforapply${elist.EMPLOYMENT_ID}"
 						action="applyinfoall.do" method="POST" name="empfrm">
 						<input type="hidden" id="empidInput${elist.EMPLOYMENT_ID}"
 							value="${elist.EMPLOYMENT_ID}" name="empid">
 					</form>
-				</c:forEach>
-
+				    </c:forEach>
+				 </ul>
 			</div>
-			<!-- 공고 리스트 end -->
 		</div>
-		<!-- 상단바 end -->
-
+<!-- 실제소스 끝 -->
+<!-------------------------------- 공고 리스트 BODY ------------------------------------->
 	</div>
 </div>
+</div>
+
 <!-- 스크립트 -->
 <script>
 	function locationcheck(selected) {
@@ -134,12 +138,11 @@
 <!-- 스크립트 -->
 <script>
 	function empDetail(e, empid) {
-		var closeBtn = '<span onclick="this.parentElement.style.display=\'none\'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>';
+		var closeBtn = '<span onclick="this.parentElement.style.display=\'none\'" class="w3-bar-item w3-button w3-white w3-xxlarge" style="float:right;" >×</span>';
 		var place = document.getElementById("emp" + empid);
 		var plusLi = document.createElement('li');
 		var yesOrNo="";
-		$
-				.ajax({
+		$.ajax({
 					type : "get",
 					url : "empDetaleList.do",
 					data : {
@@ -153,56 +156,52 @@
 									 function(idx, item) {
 											yesOrNo = item.COMPLETE;
 											if (yesOrNo == 'Y'){
-												$('<li>').html(
-														"공고제목:"
-																+ item.EMPLOYMENT_TITLE
-																+ "<br>"
-																+ "직급:"
+												$('<div style="padding-top:10px;">').html(
+																'<span onclick="this.parentElement.style.display=\'none\'" class="w3-bar-item w3-button w3-white w3-xxlarge w3-rigth" style="float:right; padding-top:5px;">×</span>'
+																+'<p align="left" style="float:left;">'
+																+ "공고내용 : "
+																+ item.EMPLOYMENT_CONTENTS
+																+ "근무 포지션 : "
 																+ item.HOPE_JOB_POSITION
 																+ "<br>"
-																+ closeBtn
-																+ "지역:"
+																+ "근무지역 : "
 																+ item.HOPE_LOCATION
-																+ "<br>"
-																+ "내용:"
-																+ item.EMPLOYMENT_CONTENTS
-																+ "<br>"
+																+ "<br><b>근무형태 :"
 																+ item.HOPE_WORK_TYPE
-																+ "<b>"
-																+ item.EMPLOYMENT_ID
+																+ "</b></p>"
 																+ "<br>"
-																+ "<input type=\"button\" value=\"공고 마감된 공고입니다.\">"
-																+ "<br><input type=\"button\" value=\"스크랩하기\"  onClick=\"click_like_btn(event,"
+																+ "<br><br><br><div><input type=\"button\" class=\"w3-button w3-blue\" value=\"본 공고는 마감되었습니다.\"></input>"
+																+ "<input type=\"button\" class=\"w3-button w3-red\" value=\"스크랩하기\"  onClick=\"click_like_btn(event,"
 																+ item.EMPLOYMENT_ID
-																+ ")\">")
+																+ ")\">"
+																+"</div><br>"
+																)
 
 												.appendTo(place);
 												
 											}else if (yesOrNo =='N'){
-												$('<li>').html(
-														"공고제목:"
-																+ item.EMPLOYMENT_TITLE
-																+ "<br>"
-																+ "직급:"
-																+ item.HOPE_JOB_POSITION
-																+ "<br>"
-																+ closeBtn
-																+ "지역:"
-																+ item.HOPE_LOCATION
-																+ "<br>"
-																+ "내용:"
-																+ item.EMPLOYMENT_CONTENTS
-																+ "<br>"
-																+ item.HOPE_WORK_TYPE
-																+ "<b>"
-																+ item.EMPLOYMENT_ID
-																+ "<br>"
-																+ "<input type=\"button\" value=\"지원하기\" onClick=\"go_apply_page(event,"
+												$('<div style="padding-top:10px;">').html(
+														'<span onclick="this.parentElement.style.display=\'none\'" class="w3-bar-item w3-button w3-white w3-xxlarge w3-rigth" style="float:right; padding-top:5px;">×</span>'
+														+'<p align="left" style="float:left;">'
+														+ "공고내용 : "
+														+ item.EMPLOYMENT_CONTENTS
+														+ "근무 포지션 : "
+														+ item.HOPE_JOB_POSITION
+														+ "<br>"
+														+ "근무지역 : "
+														+ item.HOPE_LOCATION
+														+ "<br><b>근무형태 :"
+														+ item.HOPE_WORK_TYPE
+														+ "</b></p>"
+																+ "<br><br><br><br>"
+																+ "<input type=\"button\" class=\"w3-button w3-blue\" value=\"지원하기\" onClick=\"go_apply_page(event,"
 																+ item.EMPLOYMENT_ID
 																+ ")\">"
-																+ "<br><input type=\"button\" value=\"스크랩하기\"  onClick=\"click_like_btn(event,"
+																+ "<input type=\"button\" class=\"w3-button w3-red\" value=\"스크랩하기\"  onClick=\"click_like_btn(event,"
 																+ item.EMPLOYMENT_ID
-																+ ")\">")
+																+ ")\">"
+																+"</div><br>"
+																)
 
 												.appendTo(place);
 												}//end if
@@ -231,7 +230,7 @@
 			},
 			//dataType : 'json',
 			success : function() {
-				alert("해당 공고가 스크랩 되었습니다. 스크랩관리에 가서 메모를 추가하세요");
+				alert("해당 공고가 스크랩 되었습니다. 메모를 추가해서 스크랩 관리를 해보세요.");
 			},
 			error : function() {
 				alert("에러 발생. 관리자에게 문의주세요.");

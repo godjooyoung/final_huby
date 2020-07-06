@@ -8,8 +8,8 @@
 			e.employment_contents as "employment_contents" FROM company c, employments 
 			e WHERE c.company_id = e.company_id -->
 		SELECT DISTINCT c.company_name as "company_name",
-		e.employment_title as
-		"employment_title",
+		c.company_photo as "company_photo",
+		e.employment_title as "employment_title",
 		e.employment_contents as "employment_contents",
 		c.company_id as "company_id", e.hope_job, e.employment_id as
 		"employment_id"

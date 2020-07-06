@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE>
-<html>
-<head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
-<title>Insert title here</title>
 <!-- 모달 조절 -->
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
@@ -25,7 +21,7 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 button {
-  background-color: #4CAF50;
+  background-color: #134a8e;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -84,9 +80,9 @@ span.psw {
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  margin: 5% auto 6% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 20%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button (x) */
@@ -193,7 +189,7 @@ body {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background: #f72359;
+  background: #134a8e;
   padding: 1em 2em;
   border: none;
   color: white;
@@ -261,7 +257,7 @@ body
 	left: 15px;
 	right: 15px;
 	bottom: 15px;
-	border: 3px solid #0000cd;
+	border: 3px solid #134a8e;
 	padding: 30px;
 	box-shadow: 0 5px 10px rgba(0,0,0,.5);
 	text-align: center;
@@ -286,7 +282,7 @@ body
 	fill: transparent;
 }
 .box svg rect{
-	stroke: #ff0081;
+	stroke: #134a8e;
 	stroke-width:10px;
 	stroke-dasharray: 400;
 	animation: animate 3s linear infinite;
@@ -365,7 +361,7 @@ body
     <form class="modal-content animate" id="frm" name="frm" method="post" action="adminLoginCheck.do" onsubmit="return adminLoginCheck()">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="${pageContext.request.contextPath}/resources/FileUpload/HUBY4.png" alt="Avatar" class="avatar" style="width: 300px; height: 300px;">
+      <img src="${pageContext.request.contextPath}/resources/FileUpload/hubytext.png" alt="Avatar" class="avatar" style="width: 300px; height: 300px;">
     </div>
     <div class="container">       
       <label for="uname"><b>아이디</b></label>
@@ -379,7 +375,7 @@ body
 
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">닫기</button>
-      <span class="psw" style="font-weight: bolder; font-size: larger; color: red;">Human Union Business Yedam</span>
+  <!--    <span class="psw" style="font-weight: bolder; font-size: larger; color: red;">Human Union Business Yedam</span>  -->
     </div>
   </form>
 </div>

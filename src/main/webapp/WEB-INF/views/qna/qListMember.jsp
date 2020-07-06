@@ -1,14 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/style.default.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/custom.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/lightbox.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/fontastic.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.default.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/lightbox.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontastic.css">
 <div id="sub_vis_wrap" class="sub01 page01">
 	<div class="hd_box"></div>
 	<div class="visual-area ">
@@ -45,16 +40,13 @@
 							<c:forEach var="list" items="${qList}" varStatus="sts">
 								<div id="headingTwo${ sts.index }" class="card-header">
 									<h4 class="mb-0 accordion-heading">
-										<button data-toggle="collapse"
-											data-target="#collapseTwo${ sts.index }"
-											aria-expanded="false" aria-controls="collapseTwo"
-											class="d-flex align-items-center collapsed">
+										<button data-toggle="collapse" data-target="#collapseTwo${ sts.index }"
+											aria-expanded="false" aria-controls="collapseTwo" class="d-flex align-items-center collapsed">
 											<i class="icon-plug"></i><span>${list.Q_TITLE }</span>
 										</button>
 									</h4>
 								</div>
-								<div id="collapseTwo${ sts.index }" aria-labelledby="headingTwo"
-									data-parent="#accordion" class="collapse">
+								<div id="collapseTwo${ sts.index }" aria-labelledby="headingTwo" data-parent="#accordion" class="collapse">
 									<div class="card-body">문의 내용 : ${ list.Q_CONTENTS }</div>
 									<c:choose>
 										<c:when test="${list.Q_ANSWER == null}">

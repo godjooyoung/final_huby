@@ -1,14 +1,11 @@
 package co.huby.prj;
 
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Response;
 
-import org.apache.tiles.request.attribute.Addable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +23,6 @@ import co.huby.prj.member.service.MemberVo;
 import co.huby.prj.vo.ApplyVo;
 import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.HabitVo;
-import co.huby.prj.vo.NoticeVo;
 import co.huby.prj.vo.Paging;
 import co.huby.prj.vo.ResumeVo;
 
@@ -49,6 +45,15 @@ public class MemberHomeController {
 		List<Map> list = employmentService.getMatchedEmploymentList(vo);
 		model.addAttribute("empMatch", list);
 		return "person/common/memberHome";
+	}
+	
+	@RequestMapping(value = "/empMatch.do")
+	public String empMatch(Model model, HttpServletRequest request, ResumeVo vo) throws Exception {
+		String memberid = (String) request.getSession().getAttribute("loginId");
+		vo.setMember_id(memberid);
+		List<Map> list = employmentService.getMatchedEmploymentList(vo);
+		model.addAttribute("empMatch", list);
+		return "person/member/empMatch";
 	}
 
 	@RequestMapping(value = "/selectresumepage.do")

@@ -238,7 +238,8 @@
 									<span class="ripple pinkBg"></span>
 								</a> -->
 								
-								<button type="button" onclick="location.href='resumemanagement.do'" class="pinkBg btns">스크랩
+								<button type="button" onclick="click_like_btn(event, '${ empMatch.EMPLOYMENT_ID }')" 
+									class="pinkBg btns">스크랩
 									<span class="ripple pinkBg"></span> 
 									<span class="ripple pinkBg"></span>
 									<span class="ripple pinkBg"></span>
@@ -306,3 +307,24 @@
 	<input type="hidden" id="company_id" name="company_id"> <input
 		type="hidden" id="employment_id" name="employment_id">
 </form>
+<script>
+//스크립버튼
+	function click_like_btn(e, empid){
+		alert(empid)
+		var emp_id=empid;
+		$.ajax({
+			
+			type : "get",
+			url : "insert_to_employment_like.do",
+			data : {"employment_id" : emp_id},
+			//dataType : 'json',
+			success : function() {
+				alert("해당 공고가 스크랩 되었습니다. 스크랩관리에 가서 메모를 추가하세요");
+			},
+			error : function() {
+				alert("에러 발생. 관리자에게 문의주세요.");
+			}
+		})//end OF AJAX
+
+	}//END OF click_like_btn
+</script>
