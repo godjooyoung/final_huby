@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.huby.prj.board.service.BoardService;
 import co.huby.prj.board.service.EmploymentService;
 import co.huby.prj.code.service.CodeService;
 import co.huby.prj.code.service.CodeVo;
 import co.huby.prj.member.service.MemberService;
 import co.huby.prj.member.service.MemberVo;
+import co.huby.prj.vo.ApplyVo;
 import co.huby.prj.vo.EmploymentsVo;
 import co.huby.prj.vo.HabitVo;
 import co.huby.prj.vo.Paging;
@@ -33,6 +35,8 @@ public class MemberHomeController {
 	CodeService codeService;
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	BoardService boardService;
 
 	@RequestMapping(value = "/employmentMatch.do")
 	public String memberHome(Model model, HttpServletRequest request, ResumeVo vo) throws Exception {
@@ -96,7 +100,7 @@ public class MemberHomeController {
 		model.addAttribute("rlist",lmapvo);
 		model.addAttribute("vlist",vmapvo);
 		
-		return "person/member/applypreview";
+		return "no/member/applypreview";
 	}	
 	
 	@RequestMapping(value = "/applyInsert.do")
@@ -190,5 +194,13 @@ public class MemberHomeController {
 		hvo.setMember_id(id);
 		int n = memberService.habitInsert(hvo);
 		return n;
+	}
+	
+	@RequestMapping(value = "/myApplyResume.do")
+	public String myApplyResume(Model model, HttpServletRequest request,ApplyVo avo) throws Exception {
+		Map checkMap = boardService.get_apply_member_info(avo);
+		model.addAttribute("applyman", checkMap);
+		
+		return "person/member/myApplyResume";
 	}
 }
