@@ -10,8 +10,7 @@
 		<div class="visual-area-in">
 			<div class="visual-area-txt inner sub01 ">
 				<div class="tit" data-aos="fade-up" data-aos-delay="300">문의사항</div>
-				<p class="fs18" data-aos="fade-up" data-aos-delay="400">무엇이든
-					물어보세요</p>
+				<p class="fs18" data-aos="fade-up" data-aos-delay="400">무엇이든 물어보세요</p>
 			</div>
 		</div>
 	</div>

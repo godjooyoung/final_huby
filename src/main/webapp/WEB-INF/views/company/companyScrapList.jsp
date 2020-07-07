@@ -1,56 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 기업이 스크랩한 영상들 보여주는 페이지 -->
 <div class="w3-main w3-content w3-padding" style="max-width: 1200px;"></div>
 
 <!-- First Photo Grid-->
-<h2 align="center">스크랩한 영상입니다.</h2>
+<!-- <h2 align="center">스크랩한 영상 목록</h2> -->
 <div class="w3-row-padding w3-padding-16 w3-center">
 	<c:forEach var="comLike" items="${comLike}">
 		<div class="w3-quarter">
-			<div class='wrap' style='position:relative;'>
-				<div class="inner01" style="position:absolute; left:3%; top:3%;">
-					<h4 style="align:left;  color:white; text-shadow: 2px 2px 5px black;  font-weight: bolder; 
-				 	padding-top:5px; padding-left:5px;">
-				 		#${comLike.CODE_NAME}
-					</h4>
+			<div class='wrap' style='position: relative;'>
+				<div class="inner01" style="position: absolute; left: 3%; top: 3%;">
+					<h4
+						style="align: left; color: white; text-shadow: 2px 2px 5px black; font-weight: bolder; padding-top: 5px; padding-left: 5px;">
+						#${comLike.CODE_NAME}</h4>
 				</div>
-				<div class="inner02" style="position:absolute; left:5%; top:5%;">
+				<div class="inner02" style="position: absolute; left: 5%; top: 5%;">
 					<br>
-					<p style="text-align:left;overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:250px;
-						font-weight: bold;  color:white; text-shadow: 2px 2px 5px black; ">
-						${comLike.VIDEO_CONTENTS}
-					</p>
+					<p
+						style="text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 250px; font-weight: bold; color: white; text-shadow: 2px 2px 5px black;">
+						${comLike.VIDEO_CONTENTS}</p>
 				</div>
-			<img src="download.do?name=${comLike.VIDEO_IMG }" alt="thumnail"
-				style="width: 100%;"
-				onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
-				onclick="location.href='resumeDetail.do?video_id=${comLike.VIDEO_ID}&member_id=${comLike.MEMBER_ID }'">
-			<div class="inner03"
-				style="position:absolute; left:87%; top:4%"; 
+				<img src="download.do?name=${comLike.VIDEO_IMG }" alt="thumnail"
+					style="width: 100%;"
+					onerror="this.src='${pageContext.request.contextPath}/resources/img/common/empty_thumnails.png'"
+					onclick="location.href='resumeDetail.do?video_id=${comLike.VIDEO_ID}&member_id=${comLike.MEMBER_ID }'">
+				<div class="inner03" style="position: absolute; left: 87%; top: 4%"
+					; 
 				id="btn${comLike.VIDEO_ID }" name="likeBtn"
-				value="${comLike.VIDEO_ID}"
-				onclick="subm(${comLike.LIKE_VIDEO_ID})">
-				<font id="font${comLike.VIDEO_ID }" color="red" style="-webkit-text-stroke: 1px black; font-size: xx-large;" data-count="0">
-					<b> <i class="fas fa-heart"></i> </b>
-				</font>
-			</div>
+					value="${comLike.VIDEO_ID}"
+					onclick="subm(${comLike.LIKE_VIDEO_ID})">
+					<font id="font${comLike.VIDEO_ID }" color="red"
+						style="-webkit-text-stroke: 1px black; font-size: xx-large;"
+						data-count="0"> <b> <i class="fas fa-heart"></i>
+					</b>
+					</font>
+				</div>
 			</div>
 			<br>
 		</div>
-		<form id ="frm${comLike.LIKE_VIDEO_ID}" name="frm${comLike.LIKE_VIDEO_ID}" action="">
-		<input type="hidden" value="${comLike.LIKE_VIDEO_ID}" name="delid">
-		<!--<input type="button"  class="btn btn-primary" value="좋아요취소"  id="btnDelete" onclick="subm(${comLike.LIKE_VIDEO_ID})">-->
+		<form id="frm${comLike.LIKE_VIDEO_ID}"
+			name="frm${comLike.LIKE_VIDEO_ID}" action="">
+			<input type="hidden" value="${comLike.LIKE_VIDEO_ID}" name="delid">
+			<!--<input type="button"  class="btn btn-primary" value="좋아요취소"  id="btnDelete" onclick="subm(${comLike.LIKE_VIDEO_ID})">-->
 		</form>
 	</c:forEach>
 </div>
 <!-- Grid END -->
 <!-- Second Photo Grid-->
-<div class="w3-row-padding w3-padding-16 w3-center" style="position:relative;" id="morePlace">
-		
-</div>
+<div class="w3-row-padding w3-padding-16 w3-center"
+	style="position: relative;" id="morePlace"></div>
 <!-- Grid END -->
 
 
@@ -62,8 +63,22 @@
 </div>
 -->
 
-<div class="w3-main w3-content w3-padding" style="max-width:1200px; height:50px"></div>
+<div class="w3-main w3-content w3-padding"
+	style="max-width: 1200px; height: 50px"></div>
 
+<c:set var="comLike" value="${comLike}" />
+<c:if test="${empty comLike}">
+	<div class="w3-container">
+		<div align="center">
+			<h2>스크랩한 영상이 없습니다.</h2>
+			<br> <br> <input type="button" value="맞춤 추천 인재로 가기"
+				class="btn btn-warning btn-lg"
+				onClick="location.href='get_matched_video_list_first.do'"> <input
+				type="button" value="전체 인재 목록으로 가기" class="btn btn-warning btn-lg"
+				onClick="location.href='get_video_list_first.do'">
+		</div>
+	</div>
+</c:if>
 <script>	
 	function loadVideoData_more(plusnum) {
 		var plus = plusnum;
@@ -166,6 +181,3 @@ function subm(like_video_id){
 	
 }
 </script>
-
-
-
