@@ -63,6 +63,10 @@
 			success : function(data) { // [ {} ] --> [ [] ]로 바꾸는 형태
 			//ajax결과를 chart에 맞는 data 형태로 가공
 			chartData.push(['직업명','구직자의 선택 수'])
+			if(data.length == 0){
+				chartData.push(['NO DATA',0]);
+				return;
+			}
 			for(i=0; i<data.length; i++) {
 				var subarr = [data[i].JOB_NAME, parseInt(data[i].CNT)];
 				chartData.push(subarr);
@@ -114,8 +118,13 @@
 			async : false,
 			type : "json",
 			success : function(data) { // [ {} ] --> [ [] ]로 바꾸는 형태
+				
 			//ajax결과를 chart에 맞는 data 형태로 가공
 			chartData.push(['직업명','기업의 1순위 채용직업'])
+			if(data.length == 0){
+				chartData.push(['NO DATA',0]);
+				return;
+			}
 			for(i=0; i<data.length; i++) {
 				var subarr = [data[i].JOB_NAME, parseInt(data[i].CNT)];
 				chartData.push(subarr);

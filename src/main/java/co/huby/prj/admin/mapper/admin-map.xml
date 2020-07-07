@@ -148,7 +148,6 @@
 		select count(*) as qnaCnt
 		from question
 		where q_answer is null
-		group by q_answer
 	</select>
 	
 	<select id="allMemberResumeCnt" resultType="int">
