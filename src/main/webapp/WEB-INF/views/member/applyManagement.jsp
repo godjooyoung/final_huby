@@ -48,14 +48,15 @@
 					<span
 						onclick="this.parentElement.style.display='none'"
 						class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-						<img src="img_avatar2.png"
+						<img id="cphoto" src="${pageContext.request.contextPath}/resources/FileUpload/${alist.COMPANY_PHOTO}" 
 						class="w3-bar-item w3-circle w3-hide-small" style="width: 85px">
-						<div class="w3-bar-item" onclick="selectApplyList('${alist.EMPLOYMENT_ID}')">
+						<div class="w3-bar-item" onclick="selectApplyList('${alist.EMPLOYMENT_ID}', '${ alist.COMPANY_ID }')">
 							<span class="w3-large">공고명: ${alist.EMPLOYMENT_TITLE}</span><br>
 							<span class="w3-large">공고내용: ${alist.EMPLOYMENT_CONTENTS}</span><br>
 							<fmt:formatDate value="${ alist.EMPLOYMENT_TIME }" pattern="yyyy-MM-dd" var="EMPLOYMENT_TIME" />
 							<fmt:formatDate value="${ alist.APPLY_DATE }" pattern="yyyy-MM-dd HH:mm:ss" var="APPLY_DATE" />
 							채용공고기간${ EMPLOYMENT_TIME } &nbsp;&nbsp; <span>지원시간: ${APPLY_DATE}  </span>
+							<input type="hidden" name="company_id" value="${ alist.COMPANY_ID }">
 						</div></li>
 				</ul>
 					<div>
@@ -111,15 +112,16 @@
 	}
 	
 
-	function selectApplyList(eid) {
+	function selectApplyList(eid, cid) {
 		if($("#appendemp"+eid).css("display") == "none"){
 		$.ajax({
 		    url: "selectApplyList.do",
 		    type: "POST",
 		    dataType: "json",
-		    data: {'employment_id':eid},
+		    data: {'employment_id':eid,
+		    	'company_id':cid
+		    	},
 		    success: function(data){
-		    	console.log(data);
 		    	$("#appendspan"+eid).empty();
 		    	$("#appendemp"+eid).empty();
 		    	$("#appendspan"+eid).append('공고명<br>');
@@ -130,8 +132,6 @@
 		    	$("#appendemp"+eid).append(data.hope_graduate + "<br>");
 		    	$("#appendspan"+eid).append("희망직급<br>");
 		    	$("#appendemp"+eid).append(data.hope_job_position + "<br>");
-		    	$("#appendspan"+eid).append("희망직무<br>");
-		    	$("#appendemp"+eid).append(data.job_name + "<br>");
 		    	$("#appendspan"+eid).append("근무위치<br>");
 		    	$("#appendemp"+eid).append(data.hope_location + "<br>");
 		    	$("#appendspan"+eid).append("근무타입<br>");

@@ -19,9 +19,16 @@ public class EmploymentsVo {
 	private String hope_salary;
 	private String complete;
 	private String job_name;
+	private String company_photo;
 	
 	
 	
+	public String getCompany_photo() {
+		return company_photo;
+	}
+	public void setCompany_photo(String company_photo) {
+		this.company_photo = company_photo;
+	}
 	public String getJob_name() {
 		return job_name;
 	}

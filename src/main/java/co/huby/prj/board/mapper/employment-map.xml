@@ -163,7 +163,7 @@ FROM
                     e.hope_work_type,
                     e.employment_prefer,
                     e.employment_time,
-                    e.company_id,
+                    e.company_id, (select company_photo from company where company_id = e.company_id) as company_photo,
                     e.hope_salary
                 FROM
                     apply a,
@@ -181,8 +181,9 @@ WHERE
 	
 	<select id="selectApplyList" resultType="EmploymentsVo" parameterType="EmploymentsVo">
 		select employment_id, employment_title, employment_contents, hope_career, hope_graduate, hope_job_position, (select code_name from code where code_id = hope_job),
-				hope_job, hope_location, hope_work_type, employment_prefer, employment_time, company_id, hope_salary
-		from employments
+				hope_job, hope_location, hope_work_type, employment_prefer, employment_time, company_id, hope_salary,
+				(select company_photo from company where company_id = e.company_id) as company_photo
+		from employments e
 		where employment_id = #{employment_id}
 	</select>
 	
