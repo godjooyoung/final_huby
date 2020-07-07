@@ -1,21 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
 <style>
 ul {
 	width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 </style>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <script type="text/javascript">
 
 	//면접제의 상세보기
@@ -79,36 +71,50 @@ ul {
 	}
 </script>
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+<div id="sub_content_wrap" class="sub0101">
+	<div class="ov inner center" style="margin: 10% auto 5%;">
+		<h1 align="center">
+			<box-icon name='bell-ring' type='solid' animation='tada'
+				color='#134a8e' size='45px'></box-icon>
+			알림내역
+		</h1>
+		<br> <br> <br>
+		<div class="alarmlist">
+			<c:forEach var="list" items="${personalarmlist }">
+				<ul class="list-group">
+					<li class="list-group-item active">${list.company_name }</li>
+					<li class="list-group-item">${list.alarm_message }</li>
+					<li class="list-group-item">${list.alarm_time }</li>
 
-<body>
-<h1 align="center">
-<box-icon name='bell-ring' type='solid' animation='tada' color='#134a8e' size='45px'></box-icon>
-   알림내역</h1>
-<br><br><br><br><br><br>
-<div class="alarmlist">
+					<c:if test="${list.alarm_message eq '면접제의' }">
+						<input type="button" value="회사정보보기"
+							onclick="interviewOk(window.event,'${list.company_id}','${list.member_id }','${list.alarm_id }')">
+						<div id="btnsubmit"></div>
+						<input type="button" value="거절"
+							onclick="alarmRe('${list.alarm_id }','${list.company_id}','${list.member_id}')">
+						<br>
+					</c:if>
 
-	<c:forEach var="list" items="${personalarmlist }"> 
-			<ul class="list-group">
-				<li class="list-group-item active">${list.company_name }</li>
-				<li class="list-group-item">${list.alarm_message }</li>
-				<li class="list-group-item">${list.alarm_time }</li>
-				
-			<c:if test="${list.alarm_message eq '면접제의' }">
-				<input type="button" value="회사정보보기"
-					onclick="interviewOk(window.event,'${list.company_id}','${list.member_id }','${list.alarm_id }')">
-				<div id="btnsubmit"></div>
-				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }','${list.company_id}','${list.member_id}')"><br>
-			</c:if>
-			
-			<c:if test="${list.alarm_message eq '입사지원요청' }">
-				<input type="button" value="공고보기"
-				onclick="applyOk('${list.alarm_id}','${list.company_id}','${list.member_id}','${list.alarm_message }','${list.employment_id }')">
-				<input type="button" value="거절" onclick="alarmRe('${list.alarm_id }')"><br>
-			</c:if>
-			</ul>
-	</c:forEach>
+					<c:if test="${list.alarm_message eq '입사지원요청' }">
+						<input type="button" value="공고보기"
+							onclick="applyOk('${list.alarm_id}','${list.company_id}','${list.member_id}','${list.alarm_message }','${list.employment_id }')">
+						<input type="button" value="거절"
+							onclick="alarmRe('${list.alarm_id }')">
+						<br>
+					</c:if>
+				</ul>
+			</c:forEach>
+		</div>
 	</div>
-	</body>
+</div>
+<c:set var="list" value="${companyalarmlist}" />
+<c:if test="${empty companyalarmlist}">
+	<div align="center">
+		<h2>받은 알림이 없습니다.</h2>
+	</div>
+</c:if>
+<br>
+<br>
 <form action="currentY.do" method='POST' name="frmok" id="frmok">
 	<input type="hidden" name="alarmid"> <input type="hidden"
 		name="companyid"> <input type="hidden" name="memberid">
@@ -117,5 +123,9 @@ ul {
 <form action="alarmdelete.do" method='POST' name="frmre" id="frmre">
 	<input type="hidden" name="alarmid">
 </form>
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
