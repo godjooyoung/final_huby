@@ -307,6 +307,14 @@ body
 	if ('${num}' == 1) {
 		alert("로그인 실패, ID/PW를 정확히 입력해주세요.");
 	}
+	
+	if ('${success1}' == 1) {
+		alert("가입성공! 로그인 해주세요!");
+	}
+	
+	if ('${success2}' == 1) {
+		alert("가입성공! 로그인 해주세요!");
+	}
 </script>
 <script>
 	function CompanyLoginCheck() {

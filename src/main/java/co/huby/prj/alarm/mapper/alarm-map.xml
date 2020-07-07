@@ -73,7 +73,7 @@
 	</select>
 	
 	<select id="companyselect" parameterType="co.huby.prj.vo.CompanyVo" resultType="co.huby.prj.vo.CompanyVo">
-		SELECT BUSINESS_TYPE, COMPANY_ADDR, BUSINESS_CATEGORY 
+		SELECT BUSINESS_TYPE, COMPANY_ADDR 
 		FROM COMPANY 
 		WHERE COMPANY_ID = #{company_id }
 	</select>

@@ -888,7 +888,7 @@ px
 
 	function namecheckc() {
 		var name = $("#company_name").val();
-		var nameRule = /^[가-힣a-zA-Z()]{1,7}$/;
+		var nameRule = /^[가-힣a-zA-Z()]{1,30}$/;
 		if (name != null && name != "") {
 			if (!nameRule.test(name)) {
 				$("#nameblur").html("1~7글자 한글,영어(공백 없음)만 입력.");
@@ -1100,11 +1100,11 @@ px
 
 	function homepagecheckc() {
 		var homepage = $("#homepage").val();
-		var homepageRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		var homepageRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
 		if (homepage != null && homepage != "") {
 			if (!homepageRule.test(homepage)) {
-				$("#homepageblur").html("ex) abcd1234@naver.com");
+				$("#homepageblur").html("ex) daeguoracle.ac.kr");
 				$('#homepageblur').css("color", "red");
 			} else {
 				$("#homepageblur").html("사용 가능한 주소입니다.")
@@ -1196,9 +1196,9 @@ px
 		}
 
 		var name = $("#company_name").val();
-		var nameRule = /^[가-힣a-zA-Z()]{1,7}$/;
+		var nameRule = /^[가-힣a-zA-Z()]{1,30}$/;
 		if (name == "" || !nameRule.test(name)) {
-			$("#nameblur").html("1~7글자 한글,영어(공백 없음)만 입력 가능합니다.");
+			$("#nameblur").html("한글,영어(공백 없음)만 입력 가능합니다.");
 			$("#nameblur").css("color", "red");
 			cnt++;
 		} else {
@@ -1278,7 +1278,7 @@ px
 			$("#typeblur").css("color", "blue");
 		}
 
-		var bcategory = $("#business_category").val();
+		/* var bcategory = $("#business_category").val();
 		var bcategoryRule = /^[가-힣]{2,5}$/;
 
 		if (!bcategoryRule.test(bcategory)) {
@@ -1288,16 +1288,16 @@ px
 		} else {
 			$("#bcategoryblur").html("사용 가능한 카테고리입니다.");
 			$('#bcategoryblur').css("color", "blue");
-		}
+		} */
 
 		var birth = $("#company_birth").val()
 		var birthRule = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
 
 		var homepage = $("#homepage").val();
-		var homepageRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		var homepageRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 		if (homepage != "") {
 			if (homepage != "" && !homepageRule.test(homepage)) {
-				$("#homepageblur").html("ex) abcd1234@naver.com");
+				$("#homepageblur").html("ex) daeguoracle.ac.kr");
 				$('#homepageblur').css("color", "red");
 				cnt++;
 			} else {
@@ -1520,7 +1520,7 @@ px
 										<div>회사명</div>
 										<input class="form-control input-md" type="text"
 											id="company_name" name="company_name" required="required"
-											onblur="namecheckc()" maxlength="5"
+											onblur="namecheckc()" maxlength="30"
 											placeholder="Enter Your Company Name"> <span
 											class="help-block" id="nameblur"></span>
 									</div>

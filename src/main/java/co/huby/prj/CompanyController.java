@@ -78,6 +78,8 @@ public class CompanyController {
 		int n = companyMemberService.companyMemberInsert(vo);
 		
 		if (n == 1) {
+			String loginCheck = "1";
+			model.addAttribute("success2", loginCheck);
 			mav.setViewName("no/common/login");
 		} else {
 			mav.setViewName("member/personalmemberjoinFail");

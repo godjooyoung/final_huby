@@ -22,7 +22,6 @@
 					<if test="company_addr != null and company_addr != ''">
 					company_addr,
 					</if>
-					business_category,
 					<if test="company_birth != null"> 
 					company_birth, 
 					</if>
@@ -45,7 +44,6 @@
 				<if test="company_addr != null and company_addr != ''">
 				#{company_addr},
 				</if>
-				#{business_category},
 				<if test="company_birth != null">
 				#{company_birth},
 				</if>
@@ -76,7 +74,7 @@
 	
 	<select id="companySelectOne" resultType="CompanyVo" parameterType="CompanyVo">
 		SELECT company_id, regist_number, company_name, company_pw, company_tel, 
-				company_email, ceo_name, business_type, company_addr, business_category, company_photo, 
+				company_email, ceo_name, business_type, company_addr, company_photo, 
 				company_birth, company_sales, homepage, company_date, (select code_name from code where code_id = business_type ) as job_name
 		FROM COMPANY WHERE COMPANY_ID = #{company_id}
 	</select>
@@ -101,9 +99,6 @@
 	    </if>
 		<if test="company_addr != null and company_addr != ''">
 	    ,company_addr = #{company_addr}
-	    </if>
-		<if test="business_category != null and business_category != ''">
-	    ,business_category = #{business_category}
 	    </if>
 		<if test="company_sales != null and company_sales != ''">
 	    ,company_sales = #{company_sales}

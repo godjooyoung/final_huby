@@ -43,7 +43,6 @@
 		                    ceo_name,
 		                    business_type,
 		                    company_addr,
-		                    business_category,
 		                    company_birth,
 		                    company_sales,
 		                    homepage,
