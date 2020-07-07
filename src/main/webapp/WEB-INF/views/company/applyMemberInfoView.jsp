@@ -205,7 +205,6 @@ function reciveSkill(e,memberid){
 		dataType : 'json',
 		success: 
 			function(data){	
-			alert ("성공 skills");
 			$(place).empty();
 			$.each(data,function(idx,item){
 				$('<li>').html(item.SKILL_NAME 
@@ -231,7 +230,6 @@ function reciveHabit(e,memberid){
 	var place = document.getElementById("habits"+memberid);
 	var plusLi = document.createElement('li');
 	var id = memberid;
-	alert (id);
 	$.ajax({
 		type:"get",
 		url:"showHabit.do",
@@ -240,7 +238,6 @@ function reciveHabit(e,memberid){
 		dataType : 'json',
 		success: 
 			function(data){	
-			alert ("성공 habit");
 			console.log("--------------------------"+data[0]);
 			
 			$(place).empty();
@@ -286,7 +283,6 @@ function reciveExp(e,memberid){
 		dataType : 'json',
 		success: 
 			function(data){	
-			alert ("성공 exp");
 			console.log(data[0]);
 			$(place).empty();
 			$.each(data,function(idx,item){
@@ -313,7 +309,6 @@ function reciveCareer(e,memberid){
 		dataType : 'json',
 		success: 
 			function(data){	
-			alert ("성공 career");
 			console.log(data.length);
 			
 			$(place).empty();

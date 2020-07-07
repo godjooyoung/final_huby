@@ -56,7 +56,7 @@ li {
 		</div>
 		<!-- 실제소스 끝 -->
 		<c:set var="employment" value="${employments}" />
-		<c:if test="${empty employments}">
+		<c:if test="${empty employment}">
 			<div align="center">
 				<h2>
 					등록 된 공고가 없습니다. <br> 허비를 통해 공고를 내보세요. 맞춤 인재를 추천해드립니다!
@@ -74,7 +74,6 @@ li {
 <script>
 	//게시글을 누르면 셀렉트 되서 상세 내용 보기로 간다 슝슝
 	function showemployment(employment_id){
-		alert(employment_id);
 		var emp_id =employment_id;
 		var frm = document.getElementById("frm"+emp_id);
 			 frm.action = "employmentsDetailsforCom.do";

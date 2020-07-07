@@ -171,7 +171,6 @@ onclick="location.href='resumeDetail.do?video_id=${comLike.VIDEO_ID}&member_id=$
 -->
 <script>
 function subm(like_video_id){
-	alert("스크랩을 취소합니다.");
 	var lvid = like_video_id;
 	var frmid = "frm"+lvid;
 	document.getElementById(frmid).action="delete_like_video.do";

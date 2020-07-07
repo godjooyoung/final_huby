@@ -141,7 +141,6 @@
 function subm(type){
 	var employment_id =document.getElementById("emp_id").value ;
 	if (type == "modi"){
-	alert(employment_id +"번 공고를 수정합니다.");
 	document.getElementById("formodify").action="empMpdifyPageGo.do";
 	document.getElementById("formodify").method = "post";
 	document.getElementById("formodify").submit();
