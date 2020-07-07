@@ -175,7 +175,7 @@ section .section-title {
 					<c:when test="${!empty empMatch}">
 						<c:forEach var="empMatch" items="${empMatch}">
 							<div class="col-xs-12 col-sm-6 col-md-3">
-								<div class="container">
+								<div class="container" style="cursor:pointer">
 									<!-- front -->
 									<div class="image-flip"
 										ontouchstart="this.classList.toggle('hover');">

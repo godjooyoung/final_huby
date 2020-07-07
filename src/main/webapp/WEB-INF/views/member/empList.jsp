@@ -81,7 +81,7 @@
 		<br>
 		<div class="sub0101_con">
 			<div>
-				  <ul class="list-group list-group-flush">
+				  <ul style="cursor:pointer" class="list-group list-group-flush">
 				  	<c:forEach var="elist" items="${elist}">
 				    <li class="list-group-item"
 				    	onclick="empDetail(event,'${elist.EMPLOYMENT_ID}')">
