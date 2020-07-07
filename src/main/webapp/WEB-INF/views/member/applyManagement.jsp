@@ -43,14 +43,14 @@
 	<div id="London" class="w3-container city" style="display: block">
 		<!-- <div class="w3-container"> -->
 			<c:forEach var="alist" items="${ alist }">
-				<ul id="card_overflow" class="w3-ul w3-card-4">
+				<ul style="cursor:pointer" id="card_overflow" class="w3-ul w3-card-4" onclick="selectApplyList('${alist.EMPLOYMENT_ID}', '${ alist.COMPANY_ID }')">
 					<li id="detailemp${alist.EMPLOYMENT_ID}" class="w3-bar">
 					<span
 						onclick="this.parentElement.style.display='none'"
 						class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
 						<img id="cphoto" src="${pageContext.request.contextPath}/resources/FileUpload/${alist.COMPANY_PHOTO}" 
 						class="w3-bar-item w3-circle w3-hide-small" style="width: 85px">
-						<div class="w3-bar-item" onclick="selectApplyList('${alist.EMPLOYMENT_ID}', '${ alist.COMPANY_ID }')">
+						<div class="w3-bar-item">
 							<span class="w3-large">공고명: ${alist.EMPLOYMENT_TITLE}</span><br>
 							<span class="w3-large">공고내용: ${alist.EMPLOYMENT_CONTENTS}</span><br>
 							<fmt:formatDate value="${ alist.EMPLOYMENT_TIME }" pattern="yyyy-MM-dd" var="EMPLOYMENT_TIME" />
