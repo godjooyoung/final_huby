@@ -30,7 +30,7 @@
 			<div class="visual-area-txt inner sub01 ">
 				<div class="tit" data-aos="fade-up" data-aos-delay="300">공지사항</div>
 				<p class="fs18" data-aos="fade-up" data-aos-delay="400">
-					공지사항임데이
+					공지사항 입니다.
 				</p>
 			</div>
 		</div>
