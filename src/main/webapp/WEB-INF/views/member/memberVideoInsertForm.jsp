@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link href="http://fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/earlyaccess/hanna.css"
+	rel="stylesheet">
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <script>
    $(function() {
-     /*  var bar = $('.bar');
+      var bar = $('.bar');
       var percent = $('.percent'); 
       var status = $('#status');
-       */
+       
          function LoadingWithMask() {
           //화면의 높이와 너비를 구합니다.
           var maskHeight = $(document).height();
@@ -60,28 +61,29 @@
                                     url : 'memberVideoInsert.do',
                                     enctype : "multipart/form-data",
                                     dataType : "json",
-                               /*      beforeSend : function() {
+                                    beforeSend : function() {
                                        status.empty();
                                        var percentVal = '0%';
                                        bar.width(percentVal);
                                        percent.html(percentVal);
-                                    }, */
+                                    }, 
                             		uploadProgress : function(
                                           event, position, total,
                                           percentComplete) {
-                                      /*  var percentVal = percentComplete
+                                     var percentVal = percentComplete
                                              + '%';
                                        bar.width(percentVal);
                                        percent.html(percentVal);
                                        if (percentComplete == 100) {
-                                          percent.html("처리중") */
+                                          percent.html("처리중"); 
                                           LoadingWithMask();
+                                          }
                                     },
                                     success : function(data) {
                                        alert('영상이 등록되었습니다.');
-                                      /*  var percentVal = '0%';
+                                        var percentVal = '0%';
                                        bar.width(percentVal);
-                                       percent.html(percentVal); */
+                                       percent.html(percentVal); 
                                              closeLoadingWithMask();
                                              
                                        var video =                   	   
@@ -105,9 +107,9 @@
                                     },
                                     error : function(e) {
                                        console.log(e);
-                                     /*   var percentVal = '0%';
+                                        var percentVal = '0%';
                                        bar.width(percentVal);
-                                       percent.html(percentVal); */
+                                       percent.html(percentVal); 
                                        alert('영상이 등록되지 않았습니다.');
                                        closeLoadingWithMask();
                                     }
@@ -189,7 +191,7 @@
 }
 
 .a_btn {
-	text-decoration:none;
+	text-decoration: none;
 	font-size: 1.5rem;
 	color: white;
 	padding: 5px 10px 5px 10px;
