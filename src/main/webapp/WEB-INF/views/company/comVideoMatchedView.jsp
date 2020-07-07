@@ -84,11 +84,14 @@
 
 <c:set var="matched" value="${matched}" />
 <c:if test="${empty matched}">
+<div class="w3-container"> <br><br><br><br>  
 		<div align="center">
-			<font style="color:#134a8e; font-weight:bolder;">매치된 영상이 없습니다.</font> <br>
-			허비를 통해 공고를 내보세요. 맞춤 인재를 추천해드립니다!
-			<a>공고등록하러가기</a><a>모든 인재 보러가기</a>
-		</div>
+			<h2>매치된 영상이 없습니다. <br>
+			허비를 통해 공고를 내보세요. 맞춤 인재를 추천해드립니다!</h2>
+			<br><input type="button" value="공고 등록 하러가기"
+				class="btn btn-warning btn-lg"
+				onClick="location.href='empInsertPageGo.do'">
+		</div></div>
 </c:if>
 <c:set var="matched" value="${matched}" />
 <c:if test="${not empty matched}">
