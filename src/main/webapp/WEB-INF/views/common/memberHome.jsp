@@ -160,7 +160,7 @@ section .section-title {
 
 						<c:forEach var="empMatch" items="${empMatch}">
 
-							<div style="cursor:pointer" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+							<div style="cursor:pointer" class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
 								<div class="container">
 
 									<!-- front -->
