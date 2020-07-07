@@ -17,6 +17,9 @@
 <style>
 	h2 { background-color: lightgray; }
 	button { width: 100px; height: 50px;}
+	.w3-opacity{
+		opacity: 2;
+	}
 </style>
 <script>
 	function back(){
@@ -52,10 +55,19 @@
 	
 	function applyInsert(){
 		var chk = $("#vCheck").val();
+		var rchk = $("#r_title").html();
+		
+		
 		if(chk==null || chk==""){
-			alert("영상이 없으면 지원이 불가능합니다. 영상을 등록하세요");
+			alert("영상이 없으면 지원이 불가능합니다. 영상을 먼저 등록하세요");
 			return;
 		}
+		
+		if(rchk==null || rchk==""){
+			alert("이력서가 없으면 지원이 불가능합니다. 이력서를 먼저 등록하세요");
+			return;
+		}
+		
 		
 		$("#frm").attr("action","applyInsert.do");
 		document.frm.submit();
@@ -75,7 +87,7 @@
 								<h4 style="align:left; color:white; text-shadow: 2px 2px 5px black; font-weight: bolder; 
 						 			padding-top:5px; padding-left:5px;">
 						 			<b><u>${sessionScope.personalVo.member_name}</u> 지원자</b><br>
-						 			<p id="v_hashtag">${applyVvo.job_name}</p>
+						 				<p id="v_hashtag">${applyVvo.job_name}</p>
 								</h4>
 							</div>
 							<div class="inner02" style="position:absolute; left:5%; top:5%;">
@@ -130,8 +142,6 @@
 								<hr>
 							</div>
 					<div align="center">
-						<button type="button" class="btn-primary" onclick="view()">이력서, 동영상 변경</button>
-						<button type="button" class="btn-primary" onclick="applyInsert()">지원하기</button>
 						<button type="button" class="btn-primary" onclick="back()">이전페이지</button>
 					</div>
 				</div>
@@ -144,30 +154,30 @@
 			<!-- Right Column -->
 			<div class="w3-twothird">	
 				<div class="w3-card w3-white w3-margin-bottom" id="checkresume">
-					<h2 class="w3-text-grey w3-padding-16"  id="r_title">
+					<h2 class="w3-text-grey w3-padding-16">
 						<i class="fas fa-file w3-margin-right w3-xxlarge w3-text-blue" ></i>
-						${applyRvo.resume_title}
+						<span id="r_title">${applyRvo.resume_title}</span>
 					</h2>
 					<div>
-				<table class="w3-table" style="border-left: none;">
-					<tr>
-						<th>희망연봉</th>
-						<td id="r_salary">${applyRvo.hope_salary}</td>
-						<th>희망직무</th>
-						<td colspan="2" id="r_hope">${applyRvo.job_name}</td>
-					</tr>
-					<tr>
-						<th>희망근무지역</th>
-						<td id="r_location">${applyRvo.hope_location}</td>
-						<th>최종학력</th>
-						<td colspan="2" id="r_education">${applyRvo.final_education}</td>
-					</tr>
-					<tr>
-						<th>한마디</th>
-						<td colspan="4" id="r_coment">${applyRvo.resume_coment}</td>
-					</tr>
-				</table>
-			</div>
+						<table class="w3-opacity" style="font-size: large;">
+							<tr>
+								<th style="width: 20%">희망연봉</th>
+								<td id="r_salary" style="width: 30%">${applyRvo.hope_salary}</td>
+								<th style="width: 20%">희망직무</th>
+								<td style="width: 30%" colspan="2" id="r_hope">${applyRvo.job_name}</td>
+							</tr>
+							<tr>
+								<th>희망근무지역</th>
+								<td id="r_location">${applyRvo.hope_location}</td>
+								<th>최종학력</th>
+								<td colspan="2" id="r_education">${applyRvo.final_education}</td>
+							</tr>
+							<tr>
+								<th>한마디</th>
+								<td colspan="4" id="r_coment">${applyRvo.resume_coment}</td>
+							</tr>
+						</table>
+					</div>
 					
 					
 					<%-- <div>
@@ -219,7 +229,6 @@
 						<i  class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-blue"></i>
 						경력사항
 					</h2>
-					
 					<div>
 						<h5 class="w3-opacity">
 						<!-- 커리어 -->
@@ -227,16 +236,13 @@
 							<fmt:formatDate value="${ career.START_DATE }" pattern="yyyy-MM-dd" var="start_date" />
 							<fmt:formatDate value="${ career.END_DATE }" pattern="yyyy-MM-dd" var="end_date" />
 							<%-- <p>회사명:${ career.COMPANY_NAME } | 직무:{ career.JOB_NAME } | 직무내용:${ career.CAREER_CONTENT } | 직책:${ career.JOB_POSITION } | 기간:${ start_date }~${ end_date }</p> --%>
-							<span>${ career.COMPANY_NAME }</span>
-							<span style="margin-left: 5%">${ career.JOB_NAME }</span>
-							<span style="margin-left: 10%">${ start_date }~${ end_date }</span>
-							<span style="margin-left: 10%">${ career.JOB_POSITION }</span><br>
-							<span>${ career.CAREER_CONTENT }</span>
+							<span>◈${ career.COMPANY_NAME } | ${ career.JOB_NAME } | ${ start_date }~${ end_date } | 
+							${ career.JOB_POSITION }<br> 
+							&nbsp;&nbsp;&nbsp;&nbsp;상세업무: &nbsp;${ career.CAREER_CONTENT }</span><br>
 							</c:forEach>
 						</h5>
 						<hr>
 					</div>
-
 				</div>
 				
 				<%-- <div class="w3-card w3-white w3-margin-bottom">
@@ -265,7 +271,9 @@
 					<div>
 						<h5 class="w3-opacity">
 								<c:forEach items="${ slist }" var="skill">
-									<p>${ skill.SKILL_NAME }</p>
+								<div style="margin-bottom: 5px">
+									<span>◈${ skill.SKILL_NAME }</span>
+								</div>
 									<div class="w3-light-grey w3-round-large">
 										<div class='w3-blue w3-center w3-round-large w3-large' style='width:${ skill.SKILL_LEVEL }%'>
 											${ skill.SKILL_LEVEL }Lv
@@ -288,15 +296,17 @@
 					<div >
 						<h5 class="w3-opacity">
 							<c:forEach items="${ hlist }" var="habit">
+							<c:if test="${habit.PER != 0}">
 							<fmt:formatDate value="${habit.HABIT_START_DATE }" pattern="yyyy-MM-dd" var="habit_date" />
-							<div style="margin-bottom: 10px">
-							<span>습관명:</span><span style="margin-left: 5%">${ habit.HABIT_NAME}</span><span style="margin-left: 10%">시작일:</span><span style="margin-left: 5%">${ habit_date }</span>
+							<div style="margin-bottom: 5px">
+							<span>◈${ habit.HABIT_NAME}</span><span style="float: right;">시작일:${ habit_date }</span>
 							</div>
-							<div class="w3-light-grey w3-round-large">
-										<div class='w3-blue w3-center w3-round-large w3-large' style='width:${ habit.PER }%'>
-											 성공률: ${ habit.PER } %
-										</div>
+								<div class="w3-light-grey w3-round-large">
+									<div class='w3-blue w3-center w3-round-large w3-large' style='width:${ habit.PER }%'>
+										 성공률: ${ habit.PER } %
 									</div>
+								</div>
+							</c:if>
 							</c:forEach>	
 						</h5>
 						<hr>

@@ -84,7 +84,11 @@
 	</select>
 
 	<select id="employmentList" resultType="map" parameterType="map">
-		select * from employments 
+		select employment_id, employment_title, employment_contents, hope_career, hope_graduate,
+		hope_job_position, hope_job, (select code_name from code where code_id = hope_job) as job_name,
+		(select company_photo from company c where c.company_id = e.company_id) as company_photo,
+		hope_location, hope_work_type, employment_prefer, employment_time, e.company_id, hope_salary, complete
+		from employments e 
 		<where> 
 			<if test="hope_location != null and hope_location != ''">
 	    	hope_location = #{hope_location}

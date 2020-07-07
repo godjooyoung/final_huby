@@ -83,9 +83,11 @@
 			<div>
 				  <ul class="list-group list-group-flush">
 				  	<c:forEach var="elist" items="${elist}">
-				    <li class="list-group-item" 
+				    <li class="list-group-item"
 				    	onclick="empDetail(event,'${elist.EMPLOYMENT_ID}')">
-				    	<img src="${pageContext.request.contextPath}/resources/FileUpload/#companyphoto#" class="w3-bar-item w3-circle w3-hide-small" style="width: 85px; float:left;">
+				    	<c:if test="${not empty elist.COMPANY_PHOTO}">
+				    		<img src="${pageContext.request.contextPath}/resources/FileUpload/${elist.COMPANY_PHOTO}" class="w3-bar-item w3-circle w3-hide-small" style="width: 85px; float:left;">
+				    	</c:if>
 				    	<p align="left" style="float:left;">${elist.EMPLOYMENT_TITLE}</p>
 				    	<p align="left" style="float:left;">${elist.HOPE_JOB_POSITION}</p>
 				    	<p align="right" style="float:right;">
@@ -239,7 +241,6 @@
 	};//END OF click_like_btn
 
 	function go_apply_page(e, empid) {
-		alert(empid)
 		var emp_id = empid;
 		var formTag = "empfrmforapply" + emp_id;
 		//document.getElementById(formTag).action="applyinfoall.do";

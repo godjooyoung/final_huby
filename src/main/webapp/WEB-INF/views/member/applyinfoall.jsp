@@ -43,7 +43,7 @@
 		    	}
 		    	
 		    	var url = "applypreview.do";
-				var preview = window.open(url,"fullscreen", "scrollbars=1"); //풀스크린 방식
+				var preview = window.open(url,"fullscreen", "scrollbars=1,width=500,height=700"); //풀스크린 방식
 		    },
 		    error: function (request, status, error){
 		    	
@@ -86,7 +86,7 @@
 							<div class="inner01" style="position:absolute; left:3%; top:3%;">
 								<h4 style="align:left; color:white; text-shadow: 2px 2px 5px black; font-weight: bolder; 
 						 			padding-top:5px; padding-left:5px;">
-						 			<b><u>${vlist[0].MEMBER_NAME}</u> 지원자</b><br>
+						 			<b><u>${sessionScope.personalVo.member_name}</u> 지원자</b><br>
 						 			<p id="v_hashtag">${vlist[0].JOB_NAME}</p>
 								</h4>
 							</div>

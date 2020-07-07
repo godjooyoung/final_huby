@@ -86,12 +86,7 @@ p {
 
 </head>
 <body>
-<br><br><br><br><br>
-
 	<form id="frm" name="frm" method="post">
-	<br>
-	<br>
-	<br>
 	<h2 align="center">영상</h2>
 	<div class="container">
 		<div class="row">

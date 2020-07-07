@@ -226,7 +226,8 @@
 	</select>
 	
 	<select id="selectVideoOne" parameterType="String" resultType="VideoVo">
-		select * from video where video_id = #{value}
+		select video_id, video_contents, video_img, hashtag, company_id, member_id, video_location,
+		(select code_name from code where code_id = hashtag) as job_name from video where video_id = #{value}
 	</select>
 	<!-- <select id="Experience" resultType="ExperienceVo" parameterType="MemberVo">
 		select experience_id, e_start_date, e_end_date, experience_title, 
