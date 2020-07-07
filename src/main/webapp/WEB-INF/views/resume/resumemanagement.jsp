@@ -755,7 +755,7 @@ body {
 	<div class="visual-area ">
 		<div class="visual-area-in">
 			<div class="visual-area-txt inner sub01 ">
-				<div class="tit" data-aos="fade-up" data-aos-delay="300">이력서관리</div>
+				<div class="tit" data-aos="fade-up" data-aos-delay="300" style="float: left;">이력서관리</div>
 			</div>
 		</div>
 	</div>

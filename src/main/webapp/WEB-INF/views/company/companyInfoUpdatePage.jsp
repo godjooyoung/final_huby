@@ -186,7 +186,7 @@ function updatecheck(){
 		
 		if(email != ""){
 			if(!emailRule.test(email)){
-				$("#emailblur").html("ex) abcd1234@naver.com")
+				$("#emailblur").html("ex) abcd1234@naver.com");
 				$('#emailblur').css("color", "red");
 				cnt++;
 			}else{
@@ -236,10 +236,10 @@ function updatecheck(){
 				
 		
 		var homepage = $("#homepage").val();
-		var homepageRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		var homepageRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 		if(homepage != ""){
 			if(homepage != "" && !homepageRule.test(homepage)){
-				$("#homepageblur").html("ex) abcd1234@naver.com");
+				$("#homepageblur").html("ex) daeguoracle.ac.kr");
 				$('#homepageblur').css("color", "red");
 				cnt++;
 			}else{
