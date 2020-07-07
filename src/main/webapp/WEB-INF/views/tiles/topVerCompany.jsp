@@ -32,8 +32,7 @@
 		</div>
 		
 		<div id="gnb_tel" class="hd_gnb_tel">
-			<a href="companyalarm.do"><img
-				src="${pageContext.request.contextPath}/resources/img/common/alarm1.png" /></a>
+			<a href="companyalarm.do"></a>
 			<span id="count" class="badge badge-danger" 
 			style="position: absolute;
     		top: 0px;

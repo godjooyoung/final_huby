@@ -40,7 +40,7 @@ ul {
 						<li class="list-group-item">${list.member_name }님이
 							${list.alarm_message }를 수락하셨습니다. <!-- <input type="checkbox" id="alarm_id" name="alarm_id"
 				value="${list.alarm_id }"> -->
-								<input type="button" value="채팅" class="btn btn-light" onClick="location.href='company_chatList.do'">
+								<input type="button" value="채팅" class="btn btn-primary" onClick="location.href='company_chatList.do'">
 						</li>
 						<br>
 					</ul>
