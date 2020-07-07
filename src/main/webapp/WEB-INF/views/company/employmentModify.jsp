@@ -199,29 +199,173 @@
 	
   <!-- 로케 -->
   <div class="w3-row w3-section">
- <div class="w3-col" style="width:150px">
-  			희망 지역
+ 	<div class="w3-col" style="width:150px">
+ 		희망 지역
   	</div>
-    <div class="w3-rest">
+  <div class="w3-rest">
+  <c:set var="loca" value="${before.hope_location}"/>
   <select class="w3-select w3-border" name="location" required="required">
+  <c:choose>
+  <c:when test="${loca eq '전국'}">
+  <option value="전국" selected="selected"> 전국</option>
+  </c:when>
+  <c:when test="${loca ne '전국'}">
   <option value="전국"> 전국</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '서울'}">
+  <option value="서울" selected="selected"> 서울</option>
+  </c:when>
+  <c:when test="${loca ne '서울'}">
   <option value="서울"> 서울</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '경기'}">
+  <option value="경기" selected="selected"> 경기</option>
+  </c:when>
+  <c:when test="${loca ne '경기'}">
   <option value="경기"> 경기</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '인천'}">
+  <option value="인천" selected="selected"> 인천</option>
+  </c:when>
+  <c:when test="${loca ne '인천'}">
   <option value="인천"> 인천</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '강원'}">
+  <option value="강원" selected="selected"> 강원</option>
+  </c:when>
+  <c:when test="${loca ne '강원'}">
   <option value="강원"> 강원</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '대전'}">
+  <option value="대전" selected="selected"> 대전</option>
+  </c:when>
+  <c:when test="${loca ne '대전'}">
   <option value="대전"> 대전</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '세종'}">
+  <option value="세종" selected="selected"> 세종</option>
+  </c:when>
+  <c:when test="${loca ne '세종'}">
   <option value="세종"> 세종</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '충남'}">
+  <option value="충남" selected="selected"> 충남</option>
+  </c:when>
+  <c:when test="${loca ne '충남'}">
   <option value="충남"> 충남</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '충북'}">
+  <option value="충북" selected="selected"> 충북</option>
+  </c:when>
+  <c:when test="${loca ne '충북'}">
   <option value="충북"> 충북</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '부산'}">
+  <option value="부산" selected="selected"> 부산</option>
+  </c:when>
+  <c:when test="${loca ne '부산'}">
   <option value="부산"> 부산</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '울산'}">
+  <option value="울산" selected="selected"> 울산</option>
+  </c:when>
+  <c:when test="${loca ne '울산'}">
   <option value="울산"> 울산</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '경남'}">
+  <option value="경남" selected="selected"> 경남</option>
+  </c:when>
+  <c:when test="${loca ne '경남'}">
   <option value="경남"> 경남</option>
+  </c:when>
+  </c:choose>
+   
+  <c:choose>
+  <c:when test="${loca eq '경북'}">
+  <option value="경북" selected="selected"> 경북</option>
+  </c:when>
+  <c:when test="${loca ne '경북'}">
   <option value="경북"> 경북</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '대구'}">
+  <option value="대구" selected="selected"> 대구</option>
+  </c:when>
+  <c:when test="${loca ne '대구'}">
   <option value="대구"> 대구</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '광주'}">
+  <option value="광주" selected="selected"> 광주</option>
+  </c:when>
+  <c:when test="${loca ne '광주'}">
   <option value="광주"> 광주</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '전남'}">
+  <option value="전남" selected="selected"> 전남</option>
+  </c:when>
+  <c:when test="${loca ne '전남'}">
   <option value="전남"> 전남</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '전북'}">
+  <option value="전북" selected="selected"> 전북</option>
+  </c:when>
+  <c:when test="${loca ne '전북'}">
   <option value="전북"> 전북</option>
+  </c:when>
+  </c:choose>
+  
+  <c:choose>
+  <c:when test="${loca eq '제주'}">
+  <option value="제주" selected="selected"> 제주</option>
+  </c:when>
+  <c:when test="${loca ne '제주'}">
   <option value="제주"> 제주</option>
+  </c:when>
+  </c:choose>
   </select>
 </div>
 </div>

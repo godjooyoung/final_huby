@@ -195,22 +195,13 @@ public class HomeController {
 		String worktype = request.getParameter("worktype");
 		String contents = request.getParameter("contents");
 		String salary = request.getParameter("salary");
-		
+		String location = request.getParameter("location"); 
 		String time = request.getParameter("time");
 		
 		System.out.println("-----시간" + time);
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
 		Date d = df.parse(time);
 		
-		String[] locations = request.getParameterValues("location"); 
-		String location = "";
-		String locas = "";
-		
-	
-			for(int i=0; i<locations.length; i++){
-			 location = (locations[i] + ".");
-			 locas += location;
-			}
 		vo.setEmployment_title(title);
 		vo.setCompany_id(companyid);
 		vo.setEmployment_contents(contents);
@@ -219,10 +210,10 @@ public class HomeController {
 		vo.setHope_career(career);
 		vo.setHope_graduate(graduate);
 		vo.setHope_job(job);
-		vo.setHope_location(locas);
 		vo.setHope_work_type(worktype);
 		vo.setHope_job_position(position);
 		vo.setHope_salary(salary);
+		vo.setHope_location(location);
 		boardService.comWriteEmploy(vo);
 		return "redirect:forcomemploymentsList.do";
 	}
@@ -275,6 +266,7 @@ public class HomeController {
 		String position = request.getParameter("position");
 		String career =request.getParameter("career");
 		String worktype =request.getParameter("worktype");
+		String location = request.getParameter("location");
 		
 		vo.setCompany_id(companyid);
 		vo.setEmployment_id(emplomentid);
@@ -287,6 +279,7 @@ public class HomeController {
 		vo.setHope_job_position(position);
 		vo.setHope_career(career);
 		vo.setHope_work_type(worktype);
+		vo.setHope_location(location);
 		
 		model.addAttribute("before", vo);
 		return "company/company/employmentModify";
@@ -307,19 +300,21 @@ public class HomeController {
 		String contents = request.getParameter("contents");
 		String salary = request.getParameter("salary");
 		String time = request.getParameter("time");
+		String location = request.getParameter("location"); 
 		System.out.println("-----시간" + time);
 		//시간 변환
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
 		Date d = df.parse(time);
 		
-		//지역 다중선택시 배열에 담김
+		/*지역 다중선택시 배열에 담김
 		String[] locations = request.getParameterValues("location"); 
 		String location = "";
 		String locas = "";
 			for(int i=0; i<locations.length; i++){
 			 location = (locations[i] + ".");
 			 locas += location;
-			}
+			}*/
+		
 		vo.setEmployment_id(emp_id);
 		vo.setEmployment_title(title);
 		vo.setCompany_id(companyid);
@@ -329,10 +324,11 @@ public class HomeController {
 		vo.setHope_career(career);
 		vo.setHope_graduate(graduate);
 		vo.setHope_job(job);
-		vo.setHope_location(locas);
+		vo.setHope_location(location);
 		vo.setHope_work_type(worktype);
 		vo.setHope_job_position(position);
 		vo.setHope_salary(salary);
+		
 		//vo에 담은 값으로 쿼리 진행
 		boardService.modify_employment(vo);
 		
