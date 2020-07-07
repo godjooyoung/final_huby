@@ -106,5 +106,6 @@
 		select habit_id, habit_name, habit_start_date, habit_log_date, member_id, cnt, case when trunc(habit_log_date) = trunc(sysdate) then 1 else 0 end as checked, round(cnt/CEIL(trunc(sysdate)+1-trunc(habit_start_date))*100) as per
 		from habit h
 		where member_id = #{member_id}
+		order by habit_start_date
 	</select>
 </mapper>

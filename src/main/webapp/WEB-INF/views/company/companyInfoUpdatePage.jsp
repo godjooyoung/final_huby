@@ -217,7 +217,7 @@ function updatecheck(){
 			$("#typeblur").css("color","blue");
 		}
 		
-		var bcategory = $("#business_category").val();  
+		/* var bcategory = $("#business_category").val();  
 		var bcategoryRule = /^[가-힣]{2,5}$/;
 		
 		if(!bcategoryRule.test(bcategory)){
@@ -227,7 +227,7 @@ function updatecheck(){
 		}else{
 			$("#bcategoryblur").html("사용 가능한 카테고리입니다.");
 			$('#bcategoryblur').css("color", "blue");
-		}
+		} */
 		
 		
 		
@@ -403,16 +403,11 @@ function pwupdatecheck(){
             </div>
             <div class="form-group">
                 <label>주소</label><br/>
-               	  	<input class="form-control input-md" type="text" id="company_addr1" name="company_addr1" maxlength="50" value="${ cvo.company_addr }"><!-- 
+               	  	<input class="form-control input-md" type="text" id="company_addr1" name="company_addr1" maxlength="80" value="${ cvo.company_addr }"><!-- 
 				  	<input class="form-control input-md" type="text" id="company_addr2" name="company_addr2" placeholder="Detail Company Address" maxlength="50"> -->
 				  	<input class="btn btn-primary" type="button" onclick="sample4_execDaumPostcode()" value="주소 찾기">
 				  	<input type="hidden" id="company_addr" name="company_addr">
 				  	<span class="help-block" id=""></span> 
-            </div>
-            <div class="form-group">
-                <label>카테고리</label><br/>
-               	  	<input class="form-control input-md" type="text" id="business_category" name="business_category" required="required" onblur="bcategorycheck()" maxlength="5" value="${ cvo.business_category }"><br>
-					<span class="help-block" id="bcategoryblur"></span> 
             </div>
             <div class="form-group">
                 <label>설립일</label><br/>

@@ -12,16 +12,12 @@
 </head>
 <body>
 <div style="margin: 30px 30px 30px 30px;">
-    <fieldset>
-
-        <!-- Form Name -->
-        <legend>습관 등록</legend>
-
+<h1 align="center" style="font-weight: bolder;">습관 등록</h1>
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="email">습관명</label>  
           <div class="col-md-4">
-          <input id=habit_name name="habit_name" type="text" class="form-control input-md" required="required">
+          <input id=habit_name name="habit_name" type="text" class="form-control input-md" required="required" maxlength="30">
           <span class="help-block"></span>  
           </div>
         </div>
@@ -35,7 +31,6 @@
             <input type="button" name="cancel" class="btn btn-primary" onclick="winclose()" value="창닫기">
           </div>
         </div>
-        </fieldset>
         <script>
         	function winclose(){
         		window.close();

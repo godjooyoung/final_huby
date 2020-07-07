@@ -108,7 +108,7 @@ public class MemberVideoController {
 		FFmpegBuilder thumbnail = new FFmpegBuilder().overrideOutputFiles(true)
 				.addInput(firstUploadPath + newName + ".mp4").addOutput(outputPath + newName + ".gif")
 				.addExtraArgs("-ss", "00:00:00.000").addExtraArgs("-pix_fmt", "rgb24").addExtraArgs("-r", "30")
-				.addExtraArgs("-s", "360x640").addExtraArgs("-t", "00:00:7.000").done();
+				.addExtraArgs("-s", "360x640").addExtraArgs("-t", "00:00:9.000").done();
 		excutor.createJob(thumbnail).run();
 		file.delete();
 

@@ -55,10 +55,19 @@
 	
 	function applyInsert(){
 		var chk = $("#vCheck").val();
+		var rchk = $("#r_title").html();
+		
+		
 		if(chk==null || chk==""){
-			alert("영상이 없으면 지원이 불가능합니다. 영상을 등록하세요");
+			alert("영상이 없으면 지원이 불가능합니다. 영상을 먼저 등록하세요");
 			return;
 		}
+		
+		if(rchk==null || rchk==""){
+			alert("이력서가 없으면 지원이 불가능합니다. 이력서를 먼저 등록하세요");
+			return;
+		}
+		
 		
 		$("#frm").attr("action","applyInsert.do");
 		document.frm.submit();
@@ -147,9 +156,9 @@
 			<!-- Right Column -->
 			<div class="w3-twothird">	
 				<div class="w3-card w3-white w3-margin-bottom" id="checkresume">
-					<h2 class="w3-text-grey w3-padding-16"  id="r_title">
+					<h2 class="w3-text-grey w3-padding-16">
 						<i class="fas fa-file w3-margin-right w3-xxlarge w3-text-blue" ></i>
-						${rlist[0].RESUME_TITLE}
+						<span id="r_title">${rlist[0].RESUME_TITLE}</span>
 					</h2>
 					<div>
 						<table class="w3-opacity" style="font-size: large;">

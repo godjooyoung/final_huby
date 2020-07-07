@@ -52,7 +52,7 @@
 	
 	function habitPreview(){
 		var url = "habitPreview.do";
-		var preview = window.open(url,"fullscreen","scrollbars=1");
+		var preview = window.open(url,"fullscreen","scrollbars=1,width=500,height=300");
 	}
 </script>
 <script type="text/javascript">
@@ -68,12 +68,14 @@
       var habitid = $("#habit_id").val();
       // AJAX로 데이터
       var chartData = [];
+      var ajaxData;
       $.ajax({
 			url : "habitChartData.do",
 			method : "post",
 			async : false,
 			type : "json",
 			success : function(data) { // [ {} ] --> [ [] ]로 바꾸는 형태
+				ajaxData = data;
 			//ajax결과를 chart에 맞는 data 형태로 가공
 			for(i=0; i<data.length; i++) {
 				var chartData2 = [];
@@ -86,6 +88,7 @@
 			}// #3CB371 연그린
       });	//	#FFA500 연주황
       // Instantiate and draw our chart, passing in some options.
+      console.log(chartData);
       	 for(var i=0; i<chartData.length; i++){
       		 var fontColor = '3CB371'; 
       		 console.log("@@@@@"+chartData[i][1][1]);
@@ -99,7 +102,13 @@
       	 		 fontColor = 'red';
       	 	 }
       		 // Set chart options
-      	      var options = {'title':'습관을 잘 지키자',
+      	      var options = {'title':ajaxData[i].habit_name,
+		      	    		titleTextStyle: {
+		      	    	         color: '333333',
+		      	    	         fontName: 'Arial',
+		      	    	         fontSize: 20,
+		      	    	       	 titlePosition: 'none'
+		      	    	       },
       	                     'width':345,
       	                     'height':300,
       	                     'bar': {groupWidth: '30%'},
@@ -166,14 +175,14 @@
 								<!-- <img class="card-img-top" src="http://gdurl.com/ow9D" alt="Card image cap"> -->
 								<div id="chart_div${ var.index }"></div>
 								<br>
-								<h5 class="card-title" style="font-weight: bolder;">
-									습관명:${ habit.habit_name } <input type="checkbox"
-										id="habit_id_check" name="habit_id_check"
-										value="${habit.habit_id}">
-								</h5>
 								<fmt:formatDate value="${ habit.habit_start_date }"
 									pattern="yyyy-MM-dd" var="habit_start_date" />
-								<p class="card-text" style="font-weight: bolder;">시작시간:${ habit_start_date }</p>
+								<p class="card-text" style="font-weight: bolder;">시작시간:${ habit_start_date }
+								<input type="checkbox"
+										id="habit_id_check" name="habit_id_check"
+										value="${habit.habit_id}">
+								</p>
+								
 								<fmt:formatDate value="${ habit.habit_log_date }"
 									pattern="yyyy-MM-dd HH:mm:ss" var="habit_log_date" />
 								<p class="card-text" style="font-weight: bolder;">최근인증시간:${ habit_log_date }</p>

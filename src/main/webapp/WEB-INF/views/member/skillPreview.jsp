@@ -18,7 +18,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="email">스킬이름</label>  
           <div class="col-md-4">
-          <input id="skill_name" name="skill_name" type="text" class="form-control input-md" required="required">
+          <input id="skill_name" name="skill_name" type="text" class="form-control input-md" required="required" maxlength="50">
           <span class="help-block"></span>  
           </div>
         </div>
