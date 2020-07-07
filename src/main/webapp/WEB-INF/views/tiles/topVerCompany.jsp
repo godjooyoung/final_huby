@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<style>
+		#alarmimg2{
+		 width: 40px;
+		 background-color: 
+		}
+	</style>
+	
 <header id="hd_wrap" class="over hd-up">
 	<div id="hd_top">
 		<div class="hd_logo">
@@ -25,7 +32,12 @@
 		</div>
 		
 		<div id="gnb_tel" class="hd_gnb_tel">
-			<a href="tel:0536330077"></a>
+			<a href="companyalarm.do"><img
+				src="${pageContext.request.contextPath}/resources/img/common/alarm1.png" /></a>
+			<span id="count" class="badge badge-danger" 
+			style="position: absolute;
+    		top: 0px;
+    		left: 25px;"></span>
 		</div>
 		<%@include file="companyMenu.jsp"%>
 		<div id="gnb_menu" class="hd_gnb_menu">

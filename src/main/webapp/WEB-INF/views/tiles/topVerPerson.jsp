@@ -27,7 +27,11 @@
 		
 
 		<div id="gnb_tel" class="hd_gnb_tel">
-			<a href="employmentMatch.do"></a>
+			<a href="personalarm.do"></a>
+			<span id="count" class="badge badge-danger" 
+			style="position: absolute;
+    		top: 0px;
+    		left: 25px;"></span>
 		</div>
 		<%@include file="personMenu.jsp"%>
 		<div id="gnb_menu" class="hd_gnb_menu">
