@@ -155,7 +155,7 @@
 			<div class="w3-twothird">	
 				<div class="w3-card w3-white w3-margin-bottom" id="checkresume">
 					<h2 class="w3-text-grey w3-padding-16">
-						<i class="fas fa-file w3-margin-right w3-xxlarge w3-text-blue" ></i>
+						<i  class="fas fa-file fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-blue"></i>
 						<span id="r_title">${applyRvo.resume_title}</span>
 					</h2>
 					<div>
