@@ -391,7 +391,7 @@
 							name="member_addr1" maxlength="50" value="${ mlist.member_addr }">
 						<input class="btn btn-primary btn-block" type="button"
 							onclick="sample4_execDaumPostcode()" value="주소 찾기"> <input
-							type="hidden" id="member_addr" name="member_addr" width="200px">
+							type="hidden" id="member_addr" name="member_addr" width="200px" maxlength="80">
 						<span class="help-block"></span>
             </div>
             <div class="form-group">

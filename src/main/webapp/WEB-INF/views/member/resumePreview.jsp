@@ -18,7 +18,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="name">제목</label>  
           <div class="col-md-4">
-          <input id="resume_title" name="resume_title" type="text" class="form-control input-md" required="required">
+          <input id="resume_title" name="resume_title" type="text" class="form-control input-md" required="required" maxlength="50">
           <span class="help-block"></span>  
           </div>
         </div>
@@ -120,7 +120,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="address1">각오 한마디</label>  
           <div class="col-md-4">
-          <input id="resume_coment" name="resume_coment" type="text" class="form-control input-md" required="required">
+          <input id="resume_coment" name="resume_coment" type="text" class="form-control input-md" required="required" maxlength="50">
     		<span class="help-block"></span>  
           </div>
         </div>

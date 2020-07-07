@@ -307,6 +307,10 @@ body
 	if ('${num}' == 1) {
 		alert("로그인 실패, ID/PW를 정확히 입력해주세요.");
 	}
+	
+	function back(){
+		history.back();
+	}
 </script>
 <script>
 	function adminLoginCheck() {
@@ -353,6 +357,9 @@ body
 <div align="center">
 <button class="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
 	<span>관리자 로그인</span>
+</button>
+<button class="button" onclick="back()" style="width:auto;">
+	<span>이전페이지</span>
 </button>
 </div>
 

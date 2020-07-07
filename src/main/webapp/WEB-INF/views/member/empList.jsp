@@ -219,7 +219,6 @@
 
 	//좋아요 버튼 스크립트
 	function click_like_btn(e, empid) {
-		alert(empid)
 		var emp_id = empid;
 		$.ajax({
 

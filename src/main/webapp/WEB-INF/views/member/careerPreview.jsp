@@ -18,7 +18,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="name">회사명</label>  
           <div class="col-md-4">
-          <input id="company_name" name="company_name" type="text" class="form-control input-md" required="required">
+          <input id="company_name" name="company_name" type="text" class="form-control input-md" required="required" maxlength="50">
           <span class="help-block"></span>  
           </div>
         </div>
@@ -74,7 +74,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="address1">업무내용</label>  
           <div class="col-md-4">
-          <input id="career_content" name="career_content" type="text" class="form-control input-md" required="required">
+          <input id="career_content" name="career_content" type="text" class="form-control input-md" required="required" maxlength="50">
     		<span class="help-block"></span>  
           </div>
         </div>

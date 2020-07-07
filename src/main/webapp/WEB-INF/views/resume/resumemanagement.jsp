@@ -481,17 +481,17 @@ body {
 		}
 		
 		var url = "resumePreview.do";
-		var preview = window.open(url,"fullscreen", "scrollbars=1");
+		var preview = window.open(url,"fullscreen", "scrollbars=1,width=500,height=700");
 	}
 	 
 	 function CareerView(){
 		var url = "careerPreview.do";
-		var preview = window.open(url,"fullscreen", "scrollbars=1");
+		var preview = window.open(url,"fullscreen", "scrollbars=1,width=500,height=700");
 	}
 	 
 	 function skillView(){
 		var url = "skillPreview.do";
-		var preview = window.open(url,"fullscreen", "scrollbars=1");
+		var preview = window.open(url,"fullscreen", "scrollbars=1,width=500,height=400");
 	 }
 	 
 	/* function resumeupdateAjax(e,rid){
