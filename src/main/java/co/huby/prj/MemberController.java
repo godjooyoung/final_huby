@@ -99,6 +99,8 @@ public class MemberController {
 		int n = memberService.memberInsert(vo);
 
 		if (n == 1) {
+			String loginCheck = "1";
+			model.addAttribute("success1", loginCheck);
 			mav.setViewName("no/common/login");
 		} else {
 			mav.setViewName("no/common/personalmemberjoinFail");
