@@ -249,18 +249,18 @@ function reciveHabit(e,memberid){
 						"습관"
 						+(idx+1)
 						+ " : " 
-						+ item.HABIT_NAME 
+						+ item.habit_name 
 						+ "<br>"
 						+"시작 날짜  : " 
 						+item.habit_start_date 
 						+"<br>인증횟수  : " 
-						+ item.CNT
+						+ item.cnt
 						+"<br>성취률 <br>"
 						+"<div class=\"w3-light-grey w3-round-large\">"
 						+"<div class=\"w3-blue w3-center w3-round-large w3-large\" style='width:"
-						+item.PER 
+						+item.per 
 						+"%'>"
-						+item.PER 
+						+item.per 
 						+"</div>"
 						+"</div><br>")
 				.appendTo(place);

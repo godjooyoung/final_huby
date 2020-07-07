@@ -61,7 +61,7 @@
 			</div>
 			<!-- END OF SOURCE -->
 			<c:set var="employment" value="${employmentList}" />
-			<c:if test="${empty employments}">
+			<c:if test="${empty employment}">
 				<div align="center">
 					<h2>
 						등록 된 공고가 없습니다. <br> 허비를 통해 공고를 내보세요. 맞춤 인재를 추천해드립니다!
