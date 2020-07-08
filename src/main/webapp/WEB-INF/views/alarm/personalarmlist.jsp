@@ -23,9 +23,9 @@ ul {
 				function(data){
 					console.log(data);
 						button.append($('<li>').html("<br>" +"업종: " + data[0].business_type +closeBtn + "<br>" 
-													+ "주소: " + data[0].company_addr + "<br>" 
-													+ "업태: " + data[0].business_category + "<br>" )
-						          .append($('<input type="button" id="btn" class="btn btn-primary" value="면접수락">').data("companyid", company_id).data("memberid", member_id).data("alarmid", alarm_id)))			
+													+ "주소: " + data[0].company_addr + "<br>"  )
+						          .append($('<input type="button" id="btn" class="btn btn-primary" value="면접수락">').data("companyid", company_id)
+						        		  .data("memberid", member_id).data("alarmid", alarm_id)))			
 			}
 		})
 	}
