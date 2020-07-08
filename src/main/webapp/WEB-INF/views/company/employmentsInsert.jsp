@@ -186,8 +186,7 @@
   			공고내용
   		</div>
     	<div class="w3-rest">
-      		<textarea class="w3-input w3-border" name="contents" required="required">
-			</textarea>
+      		<textarea class="w3-input w3-border" name="contents" required="required"></textarea>
     	</div>
 	</div>
 	<div class="w3-row w3-section">
@@ -195,8 +194,7 @@
   			우대사항
   		</div>
     	<div class="w3-rest">
-      		<textarea class="w3-input w3-border" name="prefer" required="required">
-			</textarea>
+      		<textarea class="w3-input w3-border" name="prefer" required="required"></textarea>
     	</div>
 	</div>
 	<div class="w3-row w3-section">
